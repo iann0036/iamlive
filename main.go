@@ -22,7 +22,7 @@ var bIAMMap []byte
 var callLog []Entry
 
 // CLI args
-var setiniFlag = flag.Bool("setini", false, "when set, the .aws/config file will be updated to use the CSM monitoring (and removed when exiting)")
+var setiniFlag = flag.Bool("setini", false, "when set, the .aws/config file will be updated to use the CSM monitoring and removed when exiting")
 var profileFlag = flag.String("profile", "default", "use the specified profile when combined with --setini")
 var failsonlyFlag = flag.Bool("failsonly", false, "when set, only failed AWS calls will be added to the policy")
 
