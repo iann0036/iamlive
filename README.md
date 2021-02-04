@@ -60,7 +60,7 @@ export AWS_CSM_HOST=127.0.0.1
 
 _I get a message "package embed is not in GOROOT" when attempting to build myself_
 
-This project requires Go 1.16 or above to be built correctly (due to embedding feature)
+This project requires Go 1.16 or above to be built correctly (due to embedding feature).
 
 _Can we include specifics for the Resource and Condition fields?_
 
