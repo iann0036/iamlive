@@ -6,9 +6,19 @@
 
 ## Installation
 
+### Pre-built binaries
+
+Pre-built binaries will be available shortly.
+
+### Build with Go
+
+To build and install this application, clone this repository and execute the following from it's base:
+
 ```
 go install
 ```
+
+You must have Go 1.16 or later installed for the build to work.
 
 ## Usage
 
