@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # build and publish in parallel: linux/386, linux/amd64, windows/386, windows/amd64, darwin/386, darwin/amd64 
+        # build and publish in parallel: linux/386, linux/amd64, windows/386, windows/amd64, darwin/amd64 
         goos: [linux, windows, darwin]
         goarch: ["386", amd64]
         exclude:
         - goos: darwin
-          node: "386"
+          goarch: "386"
     steps:
     - uses: actions/checkout@v2
     - uses: iann0036/go-release-action@v1.14
