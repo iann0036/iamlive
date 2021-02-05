@@ -4,6 +4,8 @@
 
 > Generate a basic IAM policy from AWS client-side monitoring (CSM)
 
+![](https://raw.githubusercontent.com/iann0036/iamlive/assets/iamlive.gif)
+
 ## Installation
 
 ### Pre-built binaries
