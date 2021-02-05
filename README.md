@@ -12,6 +12,8 @@
 
 Pre-built binaries for Windows, macOS and Linux are available for download in the project [releases](https://github.com/iann0036/iamlive/releases).
 
+Once downloaded, place the extracted binary in your $PATH (or execute in-place). For macOS users, you may need to allow the application to run via System Preferences.
+
 ### Build with Go
 
 To build and install this application, clone this repository and execute the following from it's base:
