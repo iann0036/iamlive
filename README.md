@@ -28,11 +28,11 @@ To start the listener, simply run `iamlive` in a separate window to your CLI / S
 
 You can optionally also include the following arguments to the `iamlive` command:
 
-**--set-ini:** when set, the `.aws/config` file will be updated to use the CSM monitoring and removed when exiting (default: false)
+**--set-ini:** when set, the `.aws/config` file will be updated to use the CSM monitoring and removed when exiting (_default: false_)
 
-**--profile:** use the specified profile when combined with `--set-ini` (default: default)
+**--profile:** use the specified profile when combined with `--set-ini` (_default: default_)
 
-**--fails-only:** when set, only failed AWS calls will be added to the policy (default: false)
+**--fails-only:** when set, only failed AWS calls will be added to the policy (_default: false_)
 
 _Example_
 
