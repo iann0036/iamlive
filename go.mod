@@ -1,4 +1,4 @@
-module github.com/iann0036/iam-live
+module github.com/iann0036/iamlive
 
 go 1.16
 

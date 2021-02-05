@@ -19,12 +19,15 @@ import (
 //go:embed map.json
 var bIAMMap []byte
 
+//go:embed iam_definition.json
+var bIAMSAR []byte
+
 var callLog []Entry
 
 // CLI args
-var setiniFlag = flag.Bool("setini", false, "when set, the .aws/config file will be updated to use the CSM monitoring and removed when exiting")
-var profileFlag = flag.String("profile", "default", "use the specified profile when combined with --setini")
-var failsonlyFlag = flag.Bool("failsonly", false, "when set, only failed AWS calls will be added to the policy")
+var setiniFlag = flag.Bool("set-ini", false, "when set, the .aws/config file will be updated to use the CSM monitoring and removed when exiting")
+var profileFlag = flag.String("profile", "default", "use the specified profile when combined with --set-ini")
+var failsonlyFlag = flag.Bool("fails-only", false, "when set, only failed AWS calls will be added to the policy")
 
 // Entry is a single CSM entry
 type Entry struct {
@@ -139,7 +142,7 @@ func handleLoggedCall() {
 			continue
 		}
 
-		newActions := getAction(entry.Service, entry.Method)
+		newActions := getDependantActions(getActions(entry.Service, entry.Method))
 
 		for _, newAction := range newActions {
 			foundAction := false
@@ -183,7 +186,64 @@ type mappingInfoItem struct {
 	Action string `json:"action"`
 }
 
-func getAction(service, method string) []string {
+type iamDefService struct {
+	Prefix     string            `json:"prefix"`
+	Privileges []iamDefPrivilege `json"privileges"`
+}
+
+type iamDefPrivilege struct {
+	Privilege     string               `json:"privilege"`
+	ResourceTypes []iamDefResourceType `json:"resource_types"`
+}
+
+type iamDefResourceType struct {
+	DependentActions []string `json:"dependent_actions"`
+}
+
+func uniqueSlice(slice []string) []string {
+	keys := make(map[string]bool)
+	list := []string{}
+	for _, entry := range slice {
+		if _, value := keys[entry]; !value {
+			keys[entry] = true
+			list = append(list, entry)
+		}
+	}
+	return list
+}
+
+func getDependantActions(actions []string) []string {
+	var iamDef []iamDefService
+
+	err := json.Unmarshal(bIAMSAR, &iamDef)
+	if err != nil {
+		panic(err)
+	}
+
+	for _, baseaction := range actions {
+		splitbase := strings.Split(baseaction, ":")
+		baseservice := splitbase[0]
+		basemethod := splitbase[1]
+
+		for _, service := range iamDef {
+			if strings.ToLower(service.Prefix) == strings.ToLower(baseservice) {
+				for _, priv := range service.Privileges {
+					if strings.ToLower(priv.Privilege) == strings.ToLower(basemethod) {
+						for _, resourceType := range priv.ResourceTypes {
+							for _, dependentAction := range resourceType.DependentActions {
+								actions = append(actions, dependentAction)
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	return uniqueSlice(actions)
+}
+
+func getActions(service, method string) []string {
 	var iamMap iamMapBase
 	var actions []string
 
