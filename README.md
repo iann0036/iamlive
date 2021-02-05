@@ -10,7 +10,7 @@
 
 ### Pre-built binaries
 
-Pre-built binaries will be available shortly.
+Pre-built binaries for Windows, macOS and Linux are available for download in the project [releases](https://github.com/iann0036/iamlive/releases).
 
 ### Build with Go
 
