@@ -77,3 +77,7 @@ This project requires Go 1.16 or above to be built correctly (due to embedding f
 _Can we include specifics for the Resource and Condition fields?_
 
 No, the CSM protocol does not support it and cannot be changed.
+
+## Acknowledgements
+
+This project makes heavy use of [Parliament](https://github.com/duo-labs/parliament) and was assisted by Scott Piper's [CSM explainer](https://summitroute.com/blog/2020/05/25/client_side_monitoring/).
