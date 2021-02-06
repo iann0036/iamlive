@@ -830,7 +830,7 @@
                 "action": "dynamodb:PartiQLSelect",
                 "conditions": {
                     "lhs": "Statements[].Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "SELECT "
                 }
             },
@@ -838,7 +838,7 @@
                 "action": "dynamodb:PartiQLInsert",
                 "conditions": {
                     "lhs": "Statements[].Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "INSERT "
                 }
             },
@@ -846,7 +846,7 @@
                 "action": "dynamodb:PartiQLUpdate",
                 "conditions": {
                     "lhs": "Statements[].Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "UPDATE "
                 }
             },
@@ -854,7 +854,7 @@
                 "action": "dynamodb:PartiQLDelete",
                 "conditions": {
                     "lhs": "Statements[].Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "DELETE "
                 }
             }
@@ -864,7 +864,7 @@
                 "action": "dynamodb:PartiQLSelect",
                 "conditions": {
                     "lhs": "Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "SELECT "
                 }
             },
@@ -872,7 +872,7 @@
                 "action": "dynamodb:PartiQLInsert",
                 "conditions": {
                     "lhs": "Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "INSERT "
                 }
             },
@@ -880,7 +880,7 @@
                 "action": "dynamodb:PartiQLUpdate",
                 "conditions": {
                     "lhs": "Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "UPDATE "
                 }
             },
@@ -888,7 +888,7 @@
                 "action": "dynamodb:PartiQLDelete",
                 "conditions": {
                     "lhs": "Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "DELETE "
                 }
             }
@@ -898,7 +898,7 @@
                 "action": "dynamodb:PartiQLSelect",
                 "conditions": {
                     "lhs": "TransactStatements[].Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "SELECT "
                 }
             },
@@ -906,7 +906,7 @@
                 "action": "dynamodb:PartiQLInsert",
                 "conditions": {
                     "lhs": "TransactStatements[].Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "INSERT "
                 }
             },
@@ -914,7 +914,7 @@
                 "action": "dynamodb:PartiQLUpdate",
                 "conditions": {
                     "lhs": "TransactStatements[].Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "UPDATE "
                 }
             },
@@ -922,7 +922,7 @@
                 "action": "dynamodb:PartiQLDelete",
                 "conditions": {
                     "lhs": "TransactStatements[].Statement",
-                    "op": "Contains",
+                    "op": "IContains",
                     "rhs": "DELETE "
                 }
             }
@@ -3597,6 +3597,292 @@
         "GreengrassV2.GetComponentVersionArtifact": [
             {
                 "action": "greengrass:GetComponentVersionArtifact",
+                "undocumented": true
+            }
+        ],
+        "TimestreamQuery.Query": [
+            {
+                "action": "timestream:Select",
+                "conditions": {
+                    "lhs": "QueryString",
+                    "op": "IContains",
+                    "rhs": "SELECT ",
+                    "andCondition": {
+                        "lhs": "QueryString",
+                        "op": "INotContains",
+                        "rhs": " FROM "
+                    }
+                }
+            },
+            {
+                "action": "timestream:SelectValues",
+                "conditions": {
+                    "lhs": "QueryString",
+                    "op": "IContains",
+                    "rhs": "SELECT ",
+                    "andCondition": {
+                        "lhs": "QueryString",
+                        "op": "IContains",
+                        "rhs": " FROM "
+                    }
+                }
+            },
+            {
+                "action": "timestream:ListDatabases",
+                "conditions": {
+                    "lhs": "QueryString",
+                    "op": "IContains",
+                    "rhs": "SHOW DATABASES "
+                }
+            },
+            {
+                "action": "timestream:ListTables",
+                "conditions": {
+                    "lhs": "QueryString",
+                    "op": "IContains",
+                    "rhs": "SHOW TABLES "
+                }
+            },
+            {
+                "action": "timestream:ListMeasures",
+                "conditions": {
+                    "lhs": "QueryString",
+                    "op": "IContains",
+                    "rhs": "SHOW MEASURES "
+                }
+            },
+            {
+                "action": "timestream:DescribeTable",
+                "conditions": {
+                    "lhs": "QueryString",
+                    "op": "IContains",
+                    "rhs": "DESCRIBE "
+                }
+            }
+        ],
+        "KMS.ReEncrypt": [
+            {
+                "action": "kms:ReEncryptFrom"
+            },
+            {
+                "action": "kms:ReEncryptTo"
+            }
+        ],
+        "Route53.ActivateKeySigningKey": [
+            {
+                "action": "route53:ActivateKeySigningKey",
+                "undocumented": true
+            },
+            {
+                "action": "kms:DescribeKey"
+            },
+            {
+                "action": "kms:GetPublicKey"
+            },
+            {
+                "action": "kms:Sign"
+            }
+        ],
+        "Route53.CreateKeySigningKey": [
+            {
+                "action": "route53:CreateKeySigningKey",
+                "undocumented": true
+            },
+            {
+                "action": "kms:DescribeKey"
+            },
+            {
+                "action": "kms:GetPublicKey"
+            },
+            {
+                "action": "kms:Sign"
+            }
+        ],
+        "Route53.DeactivateKeySigningKey": [
+            {
+                "action": "route53:DeactivateKeySigningKey",
+                "undocumented": true
+            },
+            {
+                "action": "kms:DescribeKey"
+            },
+            {
+                "action": "kms:GetPublicKey"
+            },
+            {
+                "action": "kms:Sign"
+            }
+        ],
+        "Route53.DeleteKeySigningKey": [
+            {
+                "action": "route53:DeleteKeySigningKey",
+                "undocumented": true
+            },
+            {
+                "action": "kms:DescribeKey"
+            },
+            {
+                "action": "kms:GetPublicKey"
+            },
+            {
+                "action": "kms:Sign"
+            }
+        ],
+        "Route53.DisableHostedZoneDNSSEC": [
+            {
+                "action": "route53:DisableHostedZoneDNSSEC",
+                "undocumented": true
+            },
+            {
+                "action": "kms:DescribeKey"
+            },
+            {
+                "action": "kms:GetPublicKey"
+            },
+            {
+                "action": "kms:Sign"
+            }
+        ],
+        "Route53.EnableHostedZoneDNSSEC": [
+            {
+                "action": "route53:EnableHostedZoneDNSSEC",
+                "undocumented": true
+            },
+            {
+                "action": "kms:DescribeKey"
+            },
+            {
+                "action": "kms:GetPublicKey"
+            },
+            {
+                "action": "kms:Sign"
+            }
+        ],
+        "Route53.GetDNSSEC": [
+            {
+                "action": "route53:GetDNSSEC",
+                "undocumented": true
+            }
+        ],
+        "S3.CompleteMultipartUpload": [
+            {
+                "action": "s3:PutObject"
+            }
+        ],
+        "S3.CreateMultipartUpload": [
+            {
+                "action": "s3:PutObject"
+            }
+        ],
+        "S3.GetBucketCors": [
+            {
+                "action": "s3:GetBucketCORS"
+            }
+        ],
+        "S3.GetBucketIntelligentTieringConfiguration": [
+            {
+                "action": "s3:GetIntelligentTieringConfiguration"
+            }
+        ],
+        "S3.GetObjectLockConfiguration": [
+            {
+                "action": "s3:GetBucketObjectLockConfiguration"
+            }
+        ],
+        "S3.ListMultipartUploads": [
+            {
+                "action": "s3:ListBucketMultipartUploads"
+            }
+        ],
+        "S3.ListObjectVersions": [
+            {
+                "action": "s3:ListBucketVersions"
+            }
+        ],
+        "S3.ListParts": [
+            {
+                "action": "s3:ListMultipartUploadParts"
+            }
+        ],
+        "S3.PutBucketCors": [
+            {
+                "action": "s3:PutBucketCORS"
+            }
+        ],
+        "S3.PutBucketIntelligentTieringConfiguration": [
+            {
+                "action": "s3:PutIntelligentTieringConfiguration"
+            }
+        ],
+        "S3.PutObjectLockConfiguration": [
+            {
+                "action": "s3:PutBucketObjectLockConfiguration"
+            }
+        ],
+        "S3.UploadPart": [
+            {
+                "action": "s3:PutObject"
+            }
+        ],
+        "S3.UploadPartCopy": [
+            {
+                "action": "s3:PutObject"
+            }
+        ],
+        "S3Control.CreateJob": [
+            {
+                "action": "s3:CreateJob",
+                "undocumented": true
+            },
+            {
+                "action": "iam:PassRole"
+            }
+        ],
+        "S3Control.DescribeJob": [
+            {
+                "action": "s3:DescribeJob",
+                "undocumented": true
+            }
+        ],
+        "S3Control.ListJobs": [
+            {
+                "action": "s3:ListJobs",
+                "undocumented": true
+            }
+        ],
+        "ServiceCatalog.DescribePortfolioShares": [
+            {
+                "action": "servicecatalog:DescribePortfolioShares",
+                "undocumented": true
+            }
+        ],
+        "ServiceCatalog.GetProvisionedProductOutputs": [
+            {
+                "action": "servicecatalog:GetProvisionedProductOutputs",
+                "undocumented": true
+            }
+        ],
+        "ServiceCatalog.UpdatePortfolioShare": [
+            {
+                "action": "servicecatalog:UpdatePortfolioShare",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.AssociateConnectionAlias": [
+            {
+                "action": "workspaces:AssociateConnectionAlias",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.CopyWorkspaceImage": [
+            {
+                "action": "workspaces:CopyWorkspaceImage",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.DisassociateConnectionAlias": [
+            {
+                "action": "workspaces:DisassociateConnectionAlias",
                 "undocumented": true
             }
         ]
