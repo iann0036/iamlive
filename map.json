@@ -1,4 +1,5 @@
 {
+    "info": "This file is sourced from https://github.com/iann0036/sdk-iam-map",
     "sdk_permissionless_actions": [
         "DynamoDB.DescribeEndpoints",
         "STS.GetCallerIdentity"
