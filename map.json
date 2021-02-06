@@ -3377,6 +3377,228 @@
                     }
                 }
             }
+        ],
+        "CognitoIdentity.GetPrincipalTagAttributeMap": [
+            {
+                "action": "cognito-identity:GetPrincipalTagAttributeMap",
+                "undocumented": true
+            }
+        ],
+        "CognitoIdentity.SetPrincipalTagAttributeMap": [
+            {
+                "action": "cognito-identity:SetPrincipalTagAttributeMap",
+                "undocumented": true
+            }
+        ],
+        "APIGateway.FlushStageAuthorizersCache": [
+            {
+                "action": "apigateway:DELETE"
+            }
+        ],
+        "APIGateway.FlushStageCache": [
+            {
+                "action": "apigateway:DELETE"
+            }
+        ],
+        "APIGateway.GenerateClientCertificate": [
+            {
+                "action": "apigateway:POST"
+            }
+        ],
+        "APIGateway.ImportApiKeys": [
+            {
+                "action": "apigateway:POST"
+            }
+        ],
+        "APIGateway.ImportRestApi": [
+            {
+                "action": "apigateway:POST"
+            }
+        ],
+        "APIGateway.TagResource": [
+            {
+                "action": "apigateway:PUT"
+            }
+        ],
+        "APIGateway.TestInvokeAuthorizer": [
+            {
+                "action": "apigateway:POST"
+            }
+        ],
+        "APIGateway.TestInvokeMethod": [
+            {
+                "action": "apigateway:POST"
+            }
+        ],
+        "APIGateway.UntagResource": [
+            {
+                "action": "apigateway:DELETE"
+            }
+        ],
+        "Lightsail.DisableAddOn": [
+            {
+                "action": "lightsail:DisableAddOn",
+                "undocumented": true
+            }
+        ],
+        "Lightsail.EnableAddOn": [
+            {
+                "action": "lightsail:EnableAddOn",
+                "undocumented": true
+            }
+        ],
+        "Shield.AssociateProactiveEngagementDetails": [
+            {
+                "action": "shield:AssociateProactiveEngagementDetails",
+                "undocumented": true
+            }
+        ],
+        "Shield.CreateProtectionGroup": [
+            {
+                "action": "shield:CreateProtectionGroup",
+                "undocumented": true
+            }
+        ],
+        "Shield.DeleteProtectionGroup": [
+            {
+                "action": "shield:DeleteProtectionGroup",
+                "undocumented": true
+            }
+        ],
+        "Shield.DescribeAttackStatistics": [
+            {
+                "action": "shield:DescribeAttackStatistics",
+                "undocumented": true
+            }
+        ],
+        "Shield.DescribeProtectionGroup": [
+            {
+                "action": "shield:DescribeProtectionGroup",
+                "undocumented": true
+            }
+        ],
+        "Shield.DisableProactiveEngagement": [
+            {
+                "action": "shield:DisableProactiveEngagement",
+                "undocumented": true
+            }
+        ],
+        "Shield.EnableProactiveEngagement": [
+            {
+                "action": "shield:EnableProactiveEngagement",
+                "undocumented": true
+            }
+        ],
+        "Shield.ListProtectionGroups": [
+            {
+                "action": "shield:ListProtectionGroups",
+                "undocumented": true
+            }
+        ],
+        "Shield.ListResourcesInProtectionGroup": [
+            {
+                "action": "shield:ListResourcesInProtectionGroup",
+                "undocumented": true
+            }
+        ],
+        "Shield.UpdateProtectionGroup": [
+            {
+                "action": "shield:UpdateProtectionGroup",
+                "undocumented": true
+            }
+        ],
+        "SWF.UndeprecateActivityType": [
+            {
+                "action": "swf:UndeprecateActivityType",
+                "undocumented": true
+            }
+        ],
+        "SWF.UndeprecateDomain": [
+            {
+                "action": "swf:UndeprecateDomain",
+                "undocumented": true
+            }
+        ],
+        "SWF.UndeprecateWorkflowType": [
+            {
+                "action": "swf:UndeprecateWorkflowType",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.CreateConnectionAlias": [
+            {
+                "action": "workspaces:CreateConnectionAlias",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.DescribeConnectionAliases": [
+            {
+                "action": "workspaces:DescribeConnectionAliases",
+                "undocumented": true
+            }
+        ],
+        "Connect.CreateIntegrationAssociation": [
+            {
+                "action": "connect:CreateIntegrationAssociation",
+                "undocumented": true
+            }
+        ],
+        "Connect.CreateUseCase": [
+            {
+                "action": "connect:CreateUseCase",
+                "undocumented": true
+            }
+        ],
+        "Connect.DeleteIntegrationAssociation": [
+            {
+                "action": "connect:DeleteIntegrationAssociation",
+                "undocumented": true
+            }
+        ],
+        "Connect.DeleteUseCase": [
+            {
+                "action": "connect:DeleteUseCase",
+                "undocumented": true
+            }
+        ],
+        "Connect.ListIntegrationAssociations": [
+            {
+                "action": "connect:ListIntegrationAssociations",
+                "undocumented": true
+            }
+        ],
+        "Connect.ListUseCases": [
+            {
+                "action": "connect:ListUseCases",
+                "undocumented": true
+            }
+        ],
+        "ApiGatewayV2.ResetAuthorizersCache": [
+            {
+                "action": "apigateway:DELETE"
+            }
+        ],
+        "ApiGatewayV2.ImportApi": [
+            {
+                "action": "apigateway:PUT"
+            }
+        ],
+        "ApiGatewayV2.ReimportApi": [
+            {
+                "action": "apigateway:PUT"
+            }
+        ],
+        "ConnectContactLens.ListRealtimeContactAnalysisSegments": [
+            {
+                "action": "connect:ListRealtimeContactAnalysisSegments",
+                "undocumented": true
+            }
+        ],
+        "GreengrassV2.GetComponentVersionArtifact": [
+            {
+                "action": "greengrass:GetComponentVersionArtifact",
+                "undocumented": true
+            }
         ]
     },
     "sdk_service_mappings": {
