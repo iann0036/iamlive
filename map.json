@@ -3885,6 +3885,149 @@
                 "action": "workspaces:DisassociateConnectionAlias",
                 "undocumented": true
             }
+        ],
+        "S3Control.DeleteJobTagging": [
+            {
+                "action": "s3:DeleteJobTagging"
+            }
+        ],
+        "S3Control.DeleteStorageLensConfiguration": [
+            {
+                "action": "s3:DeleteStorageLensConfiguration"
+            }
+        ],
+        "S3Control.DeleteStorageLensConfigurationTagging": [
+            {
+                "action": "s3:DeleteStorageLensConfigurationTagging"
+            }
+        ],
+        "S3Control.GetAccessPointPolicyStatus": [
+            {
+                "action": "s3:GetAccessPointPolicyStatus"
+            }
+        ],
+        "S3Control.GetJobTagging": [
+            {
+                "action": "s3:GetJobTagging"
+            }
+        ],
+        "S3Control.GetStorageLensConfiguration": [
+            {
+                "action": "s3:GetStorageLensConfiguration"
+            }
+        ],
+        "S3Control.GetStorageLensConfigurationTagging": [
+            {
+                "action": "s3:GetStorageLensConfigurationTagging"
+            }
+        ],
+        "S3Control.ListStorageLensConfigurations": [
+            {
+                "action": "s3:ListStorageLensConfigurations"
+            }
+        ],
+        "S3Control.PutJobTagging": [
+            {
+                "action": "s3:PutJobTagging"
+            }
+        ],
+        "S3Control.PutStorageLensConfiguration": [
+            {
+                "action": "s3:PutStorageLensConfiguration"
+            }
+        ],
+        "S3Control.PutStorageLensConfigurationTagging": [
+            {
+                "action": "s3:PutStorageLensConfigurationTagging"
+            }
+        ],
+        "S3Control.UpdateJobPriority": [
+            {
+                "action": "s3:UpdateJobPriority"
+            }
+        ],
+        "S3Control.UpdateJobStatus": [
+            {
+                "action": "s3:UpdateJobStatus"
+            }
+        ],
+        "WorkSpaces.DeleteConnectionAlias": [
+            {
+                "action": "workspaces:DeleteConnectionAlias",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.DeregisterWorkspaceDirectory": [
+            {
+                "action": "workspaces:DeregisterWorkspaceDirectory",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.DescribeConnectionAliasPermissions": [
+            {
+                "action": "workspaces:DescribeConnectionAliasPermissions",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.DescribeWorkspaceImagePermissions": [
+            {
+                "action": "workspaces:DescribeWorkspaceImagePermissions",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.DescribeWorkspaceSnapshots": [
+            {
+                "action": "workspaces:DescribeWorkspaceSnapshots",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.MigrateWorkspace": [
+            {
+                "action": "workspaces:MigrateWorkspace",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.ModifySelfservicePermissions": [
+            {
+                "action": "workspaces:ModifySelfservicePermissions",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.ModifyWorkspaceAccessProperties": [
+            {
+                "action": "workspaces:ModifyWorkspaceAccessProperties",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.ModifyWorkspaceCreationProperties": [
+            {
+                "action": "workspaces:ModifyWorkspaceCreationProperties",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.RegisterWorkspaceDirectory": [
+            {
+                "action": "workspaces:RegisterWorkspaceDirectory",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.RestoreWorkspace": [
+            {
+                "action": "workspaces:RestoreWorkspace",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.UpdateConnectionAliasPermission": [
+            {
+                "action": "workspaces:UpdateConnectionAliasPermission",
+                "undocumented": true
+            }
+        ],
+        "WorkSpaces.UpdateWorkspaceImagePermission": [
+            {
+                "action": "workspaces:UpdateWorkspaceImagePermission",
+                "undocumented": true
+            }
         ]
     },
     "sdk_service_mappings": {
