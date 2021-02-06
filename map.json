@@ -2754,6 +2754,210 @@
                 "undocumented": true
             }
         ],
+        "SESV2.CreateContactList": [
+            {
+                "action": "ses:CreateContactList",
+                "undocumented": true
+            }
+        ],
+        "SESV2.CreateEmailIdentityPolicy": [
+            {
+                "action": "ses:CreateEmailIdentityPolicy",
+                "undocumented": true
+            }
+        ],
+        "SESV2.CreateEmailTemplate": [
+            {
+                "action": "ses:CreateEmailTemplate",
+                "undocumented": true
+            }
+        ],
+        "SESV2.CreateImportJob": [
+            {
+                "action": "ses:CreateImportJob",
+                "undocumented": true
+            }
+        ],
+        "SESV2.DeleteContact": [
+            {
+                "action": "ses:DeleteContact",
+                "undocumented": true
+            }
+        ],
+        "SESV2.DeleteContactList": [
+            {
+                "action": "ses:DeleteContactList",
+                "undocumented": true
+            }
+        ],
+        "SESV2.DeleteEmailIdentityPolicy": [
+            {
+                "action": "ses:DeleteEmailIdentityPolicy",
+                "undocumented": true
+            }
+        ],
+        "SESV2.DeleteEmailTemplate": [
+            {
+                "action": "ses:DeleteEmailTemplate",
+                "undocumented": true
+            }
+        ],
+        "SESV2.DeleteSuppressedDestination": [
+            {
+                "action": "ses:DeleteSuppressedDestination",
+                "undocumented": true
+            }
+        ],
+        "SESV2.GetContact": [
+            {
+                "action": "ses:GetContact",
+                "undocumented": true
+            }
+        ],
+        "SESV2.GetContactList": [
+            {
+                "action": "ses:GetContactList",
+                "undocumented": true
+            }
+        ],
+        "SESV2.GetDomainDeliverabilityCampaign": [
+            {
+                "action": "ses:GetDomainDeliverabilityCampaign",
+                "undocumented": true
+            }
+        ],
+        "SESV2.GetEmailIdentityPolicies": [
+            {
+                "action": "ses:GetEmailIdentityPolicies",
+                "undocumented": true
+            }
+        ],
+        "SESV2.GetEmailTemplate": [
+            {
+                "action": "ses:GetEmailTemplate",
+                "undocumented": true
+            }
+        ],
+        "SESV2.GetImportJob": [
+            {
+                "action": "ses:GetImportJob",
+                "undocumented": true
+            }
+        ],
+        "SESV2.GetSuppressedDestination": [
+            {
+                "action": "ses:GetSuppressedDestination",
+                "undocumented": true
+            }
+        ],
+        "SESV2.ListContactLists": [
+            {
+                "action": "ses:ListContactLists",
+                "undocumented": true
+            }
+        ],
+        "SESV2.ListContacts": [
+            {
+                "action": "ses:ListContacts",
+                "undocumented": true
+            }
+        ],
+        "SESV2.ListDomainDeliverabilityCampaigns": [
+            {
+                "action": "ses:ListDomainDeliverabilityCampaigns",
+                "undocumented": true
+            }
+        ],
+        "SESV2.ListEmailTemplates": [
+            {
+                "action": "ses:ListEmailTemplates",
+                "undocumented": true
+            }
+        ],
+        "SESV2.ListImportJobs": [
+            {
+                "action": "ses:ListImportJobs",
+                "undocumented": true
+            }
+        ],
+        "SESV2.ListSuppressedDestinations": [
+            {
+                "action": "ses:ListSuppressedDestinations",
+                "undocumented": true
+            }
+        ],
+        "SESV2.PutAccountDetails": [
+            {
+                "action": "ses:PutAccountDetails",
+                "undocumented": true
+            }
+        ],
+        "SESV2.PutAccountSuppressionAttributes": [
+            {
+                "action": "ses:PutAccountSuppressionAttributes",
+                "undocumented": true
+            }
+        ],
+        "SESV2.PutConfigurationSetSuppressionOptions": [
+            {
+                "action": "ses:PutConfigurationSetSuppressionOptions",
+                "undocumented": true
+            }
+        ],
+        "SESV2.PutEmailIdentityConfigurationSetAttributes": [
+            {
+                "action": "ses:PutEmailIdentityConfigurationSetAttributes",
+                "undocumented": true
+            }
+        ],
+        "SESV2.PutEmailIdentityDkimSigningAttributes": [
+            {
+                "action": "ses:PutEmailIdentityDkimSigningAttributes",
+                "undocumented": true
+            }
+        ],
+        "SESV2.PutSuppressedDestination": [
+            {
+                "action": "ses:PutSuppressedDestination",
+                "undocumented": true
+            }
+        ],
+        "SESV2.SendBulkEmail": [
+            {
+                "action": "ses:SendBulkEmail",
+                "undocumented": true
+            }
+        ],
+        "SESV2.TestRenderEmailTemplate": [
+            {
+                "action": "ses:TestRenderEmailTemplate",
+                "undocumented": true
+            }
+        ],
+        "SESV2.UpdateContact": [
+            {
+                "action": "ses:UpdateContact",
+                "undocumented": true
+            }
+        ],
+        "SESV2.UpdateContactList": [
+            {
+                "action": "ses:UpdateContactList",
+                "undocumented": true
+            }
+        ],
+        "SESV2.UpdateEmailIdentityPolicy": [
+            {
+                "action": "ses:UpdateEmailIdentityPolicy",
+                "undocumented": true
+            }
+        ],
+        "SESV2.UpdateEmailTemplate": [
+            {
+                "action": "ses:UpdateEmailTemplate",
+                "undocumented": true
+            }
+        ],
         "ElasticInference.DescribeAcceleratorOfferings": [
             {
                 "action": "elastic-inference:DescribeAcceleratorOfferings",
