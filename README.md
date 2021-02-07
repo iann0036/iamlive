@@ -24,7 +24,7 @@ You must have Go 1.16 or later installed for the build to work.
 
 ## Usage
 
-To start the listener, simply run `iamlive` in a separate window to your CLI / SDK application. You can use Cmd+C / Ctrl+C to exit when you are done.
+To start the listener, simply run `iamlive` in a separate window to your CLI / SDK application. You can use Ctrl+C to exit when you are done.
 
 ### CLI Arguments
 
