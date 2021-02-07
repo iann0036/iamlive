@@ -188,7 +188,7 @@ type mappingInfoItem struct {
 
 type iamDefService struct {
 	Prefix     string            `json:"prefix"`
-	Privileges []iamDefPrivilege `json"privileges"`
+	Privileges []iamDefPrivilege `json:"privileges"`
 }
 
 type iamDefPrivilege struct {
