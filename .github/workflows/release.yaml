@@ -23,3 +23,4 @@ jobs:
         goarch: ${{ matrix.goarch }}
         goversion: "https://golang.org/dl/go1.16rc1.linux-amd64.tar.gz"
         binary_name: "iamlive"
+        pre_command: export CGO_ENABLED=0
