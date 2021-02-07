@@ -31,8 +31,8 @@ var callLog []Entry
 var setiniFlag = flag.Bool("set-ini", false, "when set, the .aws/config file will be updated to use the CSM monitoring and removed when exiting")
 var profileFlag = flag.String("profile", "default", "use the specified profile when combined with --set-ini")
 var failsonlyFlag = flag.Bool("fails-only", false, "when set, only failed AWS calls will be added to the policy")
-var outputFileFlag = flag.String("output-file", "", "specify a file that will be written to on sighup or exit")
-var terminalRefreshSecsFlag = flag.Int("refresh-rate", 0, "Instead of refreshing the console on every API call, do it this number of seconds ")
+var outputFileFlag = flag.String("output-file", "", "specify a file that will be written to on SIGHUP or exit")
+var terminalRefreshSecsFlag = flag.Int("refresh-rate", 0, "instead of flushing to console every API call, do it this number of seconds")
 
 // Entry is a single CSM entry
 type Entry struct {
@@ -134,7 +134,6 @@ func listenForEvents() {
 	}
 }
 
-
 func getPolicyDocument() []byte {
 	policy := IAMPolicy{
 		Version:   "2012-10-17",
@@ -179,14 +178,18 @@ func getPolicyDocument() []byte {
 }
 
 func handleLoggedCall() {
-	// when using terraform which makes many calls in parallel, the temrinal
-	// can be glitchy if we always call, so we might have decided to refresh on an interval
+	// when making many calls in parallel, the terminal can be glitchy
+	// if we flush too often, optional flush on timer
 	if *terminalRefreshSecsFlag == 0 {
 		writePolicyToTerminal()
-	} 
+	}
 }
 
 func writePolicyToTerminal() {
+	if len(callLog) == 0 {
+		return
+	}
+
 	policyDoc := getPolicyDocument()
 
 	goterm.Clear()
@@ -307,10 +310,10 @@ func setTerminalRefresh() {
 	quit := make(chan struct{})
 	go func() {
 		for {
-		select {
-			case <- ticker.C:
+			select {
+			case <-ticker.C:
 				writePolicyToTerminal()
-			case <- quit:
+			case <-quit:
 				ticker.Stop()
 				return
 			}
@@ -322,7 +325,7 @@ func setFileFlush() {
 	if *outputFileFlag == "" {
 		log.Fatal("No file specified")
 	}
-	
+
 	sigc := make(chan os.Signal, 1)
 	signal.Notify(sigc,
 		syscall.SIGHUP,
@@ -332,15 +335,14 @@ func setFileFlush() {
 		for s := range sigc {
 			err := ioutil.WriteFile(*outputFileFlag, getPolicyDocument(), 0644)
 			if err != nil {
-				log.Fatalf("Error writing policy to %s",*outputFileFlag )
+				log.Fatalf("Error writing policy to %s", *outputFileFlag)
 			}
 			if s == syscall.SIGINT || s == syscall.SIGTERM {
 				os.Exit(0)
 			}
 		}
-	}()	
+	}()
 }
-
 
 func main() {
 	flag.Parse()

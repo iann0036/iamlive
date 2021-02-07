@@ -36,10 +36,14 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--fails-only:** when set, only failed AWS calls will be added to the policy (_default: false_)
 
+**--output-file:** specify a file that will be written to on SIGHUP or exit (_default: unset_)
+
+**--refresh-rate:** instead of flushing to console every API call, do it this number of seconds (_default: 0_)
+
 _Example_
 
 ```
-iamlive --set-ini --profile myprofile --fails-only
+iamlive --set-ini --profile myprofile --fails-only --output-file policy.json --refresh-rate 1
 ```
 
 ### CSM Enabling
