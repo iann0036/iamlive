@@ -5,11 +5,14 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io/ioutil"
+	"log"
 	"net"
 	"os"
 	"os/signal"
 	"strings"
 	"syscall"
+	"time"
 
 	"github.com/buger/goterm"
 	"github.com/mitchellh/go-homedir"
@@ -28,6 +31,8 @@ var callLog []Entry
 var setiniFlag = flag.Bool("set-ini", false, "when set, the .aws/config file will be updated to use the CSM monitoring and removed when exiting")
 var profileFlag = flag.String("profile", "default", "use the specified profile when combined with --set-ini")
 var failsonlyFlag = flag.Bool("fails-only", false, "when set, only failed AWS calls will be added to the policy")
+var outputFileFlag = flag.String("output-file", "", "specify a file that will be written to on sighup or exit")
+var terminalRefreshSecsFlag = flag.Int("refresh-rate", 0, "Instead of refreshing the console on every API call, do it this number of seconds ")
 
 // Entry is a single CSM entry
 type Entry struct {
@@ -129,7 +134,8 @@ func listenForEvents() {
 	}
 }
 
-func handleLoggedCall() {
+
+func getPolicyDocument() []byte {
 	policy := IAMPolicy{
 		Version:   "2012-10-17",
 		Statement: []Statement{},
@@ -159,21 +165,33 @@ func handleLoggedCall() {
 			}
 		}
 	}
-
 	policy.Statement = append(policy.Statement, Statement{
 		Effect:   "Allow",
 		Resource: "*",
 		Action:   actions,
 	})
 
-	b, err := json.MarshalIndent(policy, "", "    ")
+	doc, err := json.MarshalIndent(policy, "", "    ")
 	if err != nil {
 		panic(err)
 	}
+	return doc
+}
+
+func handleLoggedCall() {
+	// when using terraform which makes many calls in parallel, the temrinal
+	// can be glitchy if we always call, so we might have decided to refresh on an interval
+	if *terminalRefreshSecsFlag == 0 {
+		writePolicyToTerminal()
+	} 
+}
+
+func writePolicyToTerminal() {
+	policyDoc := getPolicyDocument()
 
 	goterm.Clear()
 	goterm.MoveCursor(1, 1)
-	goterm.Println(string(b))
+	goterm.Println(string(string(policyDoc)))
 	goterm.Flush()
 }
 
@@ -280,11 +298,61 @@ func getActions(service, method string) []string {
 	}
 }
 
+func setTerminalRefresh() {
+	if *terminalRefreshSecsFlag <= 0 {
+		*terminalRefreshSecsFlag = 1
+	}
+
+	ticker := time.NewTicker(time.Duration(*terminalRefreshSecsFlag) * time.Second)
+	quit := make(chan struct{})
+	go func() {
+		for {
+		select {
+			case <- ticker.C:
+				writePolicyToTerminal()
+			case <- quit:
+				ticker.Stop()
+				return
+			}
+		}
+	}()
+}
+
+func setFileFlush() {
+	if *outputFileFlag == "" {
+		log.Fatal("No file specified")
+	}
+	
+	sigc := make(chan os.Signal, 1)
+	signal.Notify(sigc,
+		syscall.SIGHUP,
+		syscall.SIGINT,
+		syscall.SIGTERM)
+	go func() {
+		for s := range sigc {
+			err := ioutil.WriteFile(*outputFileFlag, getPolicyDocument(), 0644)
+			if err != nil {
+				log.Fatalf("Error writing policy to %s",*outputFileFlag )
+			}
+			if s == syscall.SIGINT || s == syscall.SIGTERM {
+				os.Exit(0)
+			}
+		}
+	}()	
+}
+
+
 func main() {
 	flag.Parse()
 
 	if *setiniFlag {
 		setCSMConfig()
+	}
+	if *outputFileFlag != "" {
+		setFileFlush()
+	}
+	if *terminalRefreshSecsFlag != 0 {
+		setTerminalRefresh()
 	}
 	listenForEvents()
 	handleLoggedCall()
