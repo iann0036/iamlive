@@ -34,7 +34,7 @@ var profileFlag = flag.String("profile", "default", "use the specified profile w
 var failsonlyFlag = flag.Bool("fails-only", false, "when set, only failed AWS calls will be added to the policy")
 var outputFileFlag = flag.String("output-file", "", "specify a file that will be written to on SIGHUP or exit")
 var terminalRefreshSecsFlag = flag.Int("refresh-rate", 0, "instead of flushing to console every API call, do it this number of seconds")
-var alphabetizeFlag = flag.Bool("alphabetical", false, "sort actions alphabetically")
+var sortAlphabeticalFlag = flag.Bool("sort-alphabetical", false, "sort actions alphabetically")
 
 // Entry is a single CSM entry
 type Entry struct {
@@ -193,9 +193,11 @@ func getPolicyDocument() []byte {
 			}
 		}
 	}
-	if *alphabetizeFlag {
+
+	if *sortAlphabeticalFlag {
 		sort.Strings(actions)
 	}
+
 	policy.Statement = append(policy.Statement, Statement{
 		Effect:   "Allow",
 		Resource: "*",

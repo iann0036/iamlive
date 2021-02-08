@@ -40,10 +40,12 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--refresh-rate:** instead of flushing to console every API call, do it this number of seconds (_default: 0_)
 
+**--sort-alphabetical:** sort actions alphabetically (_default: false_)
+
 _Example_
 
 ```
-iamlive --set-ini --profile myprofile --fails-only --output-file policy.json --refresh-rate 1
+iamlive --set-ini --profile myprofile --fails-only --output-file policy.json --refresh-rate 1 --sort-alphabetical
 ```
 
 ### CSM Enabling
