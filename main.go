@@ -271,6 +271,9 @@ func getDependantActions(actions []string) []string {
 
 	for _, baseaction := range actions {
 		splitbase := strings.Split(baseaction, ":")
+		if len(splitbase) != 2 {
+			continue
+		}
 		baseservice := splitbase[0]
 		basemethod := splitbase[1]
 
