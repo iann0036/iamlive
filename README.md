@@ -42,10 +42,12 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--sort-alphabetical:** sort actions alphabetically (_default: false_)
 
-_Example_
+**--host:** host to listen on (_default: 127.0.0.1_)
+
+_Comprehensive Example_
 
 ```
-iamlive --set-ini --profile myprofile --fails-only --output-file policy.json --refresh-rate 1 --sort-alphabetical
+iamlive --set-ini --profile myprofile --fails-only --output-file policy.json --refresh-rate 1 --sort-alphabetical --host 127.0.0.1
 ```
 
 ### CSM Enabling
