@@ -35,6 +35,7 @@ var failsonlyFlag = flag.Bool("fails-only", false, "when set, only failed AWS ca
 var outputFileFlag = flag.String("output-file", "", "specify a file that will be written to on SIGHUP or exit")
 var terminalRefreshSecsFlag = flag.Int("refresh-rate", 0, "instead of flushing to console every API call, do it this number of seconds")
 var sortAlphabeticalFlag = flag.Bool("sort-alphabetical", false, "sort actions alphabetically")
+var hostFlag = flag.String("host", "127.0.0.1", "host to listen on")
 
 // Entry is a single CSM entry
 type Entry struct {
@@ -127,7 +128,7 @@ func setCSMConfigAndFileFlush() {
 func listenForEvents() {
 	addr := net.UDPAddr{
 		Port: 31000,
-		IP:   net.ParseIP("127.0.0.1"),
+		IP:   net.ParseIP(*hostFlag),
 	}
 	conn, err := net.ListenUDP("udp", &addr)
 	if err != nil {
