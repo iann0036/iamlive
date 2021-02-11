@@ -4253,6 +4253,7 @@
         "SES": "ses",
         "SESV2": "ses",
         "SESv2": "ses",
+        "SFN": "states",
         "SSO Admin": "sso",
         "SSO OIDC": "sso-directory",
         "SSO": "sso",
@@ -4285,6 +4286,7 @@
         "Transfer": "transfer",
         "Translate": "translate",
         "WAFRegional": "waf-regional",
+        "WAF Regional": "waf-regional",
         "WellArchitected": "wellarchitected",
         "WorkLink": "worklink"
     }
