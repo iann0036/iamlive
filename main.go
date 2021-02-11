@@ -234,8 +234,9 @@ func writePolicyToTerminal() {
 }
 
 type iamMapBase struct {
-	SDKMethodIAMMappings map[string][]interface{} `json:"sdk_method_iam_mappings"`
-	SDKServiceMappings   map[string]string        `json:"sdk_service_mappings"`
+	SDKMethodIAMMappings     map[string][]interface{} `json:"sdk_method_iam_mappings"`
+	SDKServiceMappings       map[string]string        `json:"sdk_service_mappings"`
+	SDKPermissionlessActions []string                 `json:"sdk_permissionless_actions"`
 }
 
 type mappingInfoItem struct {
@@ -311,6 +312,14 @@ func getActions(service, method string) []string {
 		panic(err)
 	}
 
+	// checked if permissionless
+	for _, permissionlessAction := range iamMap.SDKPermissionlessActions {
+		if strings.ToLower(permissionlessAction) == fmt.Sprintf("%s.%s", strings.ToLower(service), strings.ToLower(method)) {
+			return []string{}
+		}
+	}
+
+	// check IAM mappings
 	for sdkCall, mappingInfo := range iamMap.SDKMethodIAMMappings {
 		if fmt.Sprintf("%s.%s", strings.ToLower(service), strings.ToLower(method)) == strings.ToLower(sdkCall) {
 			for _, item := range mappingInfo {
@@ -327,6 +336,7 @@ func getActions(service, method string) []string {
 		return actions
 	}
 
+	// substitute service name
 	for sdkService, iamService := range iamMap.SDKServiceMappings {
 		if service == sdkService {
 			service = iamService
