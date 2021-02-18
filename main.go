@@ -126,6 +126,8 @@ func setCSMConfigAndFileFlush() {
 }
 
 func listenForEvents() {
+	var iamMap iamMapBase
+
 	addr := net.UDPAddr{
 		Port: 31000,
 		IP:   net.ParseIP(*hostFlag),
@@ -140,6 +142,11 @@ func listenForEvents() {
 	}
 	defer conn.Close()
 
+	err = json.Unmarshal(bIAMMap, &iamMap)
+	if err != nil {
+		panic(err)
+	}
+
 	var buf [1048576]byte
 	for {
 		rlen, _, err := conn.ReadFromUDP(buf[:])
@@ -149,12 +156,20 @@ func listenForEvents() {
 
 		entries := strings.Split(string(buf[0:rlen]), "\n")
 
+	EntryLoop:
 		for _, entry := range entries {
 			var e Entry
 
 			err := json.Unmarshal([]byte(entry), &e)
 			if err != nil {
 				panic(err)
+			}
+
+			// checked if permissionless
+			for _, permissionlessAction := range iamMap.SDKPermissionlessActions {
+				if strings.ToLower(permissionlessAction) == fmt.Sprintf("%s.%s", strings.ToLower(e.Service), strings.ToLower(e.Method)) {
+					continue EntryLoop
+				}
 			}
 
 			if e.Type == "ApiCall" {
