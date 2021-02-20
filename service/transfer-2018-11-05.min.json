@@ -1,0 +1,701 @@
+{
+  "version": "2.0",
+  "metadata": {
+    "apiVersion": "2018-11-05",
+    "endpointPrefix": "transfer",
+    "jsonVersion": "1.1",
+    "protocol": "json",
+    "serviceAbbreviation": "AWS Transfer",
+    "serviceFullName": "AWS Transfer Family",
+    "serviceId": "Transfer",
+    "signatureVersion": "v4",
+    "signingName": "transfer",
+    "targetPrefix": "TransferService",
+    "uid": "transfer-2018-11-05"
+  },
+  "operations": {
+    "CreateServer": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "Certificate": {},
+          "Domain": {},
+          "EndpointDetails": {
+            "shape": "S4"
+          },
+          "EndpointType": {},
+          "HostKey": {
+            "shape": "Se"
+          },
+          "IdentityProviderDetails": {
+            "shape": "Sf"
+          },
+          "IdentityProviderType": {},
+          "LoggingRole": {},
+          "Protocols": {
+            "shape": "Sj"
+          },
+          "SecurityPolicyName": {},
+          "Tags": {
+            "shape": "Sm"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "ServerId"
+        ],
+        "members": {
+          "ServerId": {}
+        }
+      }
+    },
+    "CreateUser": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "Role",
+          "ServerId",
+          "UserName"
+        ],
+        "members": {
+          "HomeDirectory": {},
+          "HomeDirectoryType": {},
+          "HomeDirectoryMappings": {
+            "shape": "Sv"
+          },
+          "Policy": {},
+          "PosixProfile": {
+            "shape": "S10"
+          },
+          "Role": {},
+          "ServerId": {},
+          "SshPublicKeyBody": {},
+          "Tags": {
+            "shape": "Sm"
+          },
+          "UserName": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "ServerId",
+          "UserName"
+        ],
+        "members": {
+          "ServerId": {},
+          "UserName": {}
+        }
+      }
+    },
+    "DeleteServer": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId"
+        ],
+        "members": {
+          "ServerId": {}
+        }
+      }
+    },
+    "DeleteSshPublicKey": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId",
+          "SshPublicKeyId",
+          "UserName"
+        ],
+        "members": {
+          "ServerId": {},
+          "SshPublicKeyId": {},
+          "UserName": {}
+        }
+      }
+    },
+    "DeleteUser": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId",
+          "UserName"
+        ],
+        "members": {
+          "ServerId": {},
+          "UserName": {}
+        }
+      }
+    },
+    "DescribeSecurityPolicy": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "SecurityPolicyName"
+        ],
+        "members": {
+          "SecurityPolicyName": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "SecurityPolicy"
+        ],
+        "members": {
+          "SecurityPolicy": {
+            "type": "structure",
+            "required": [
+              "SecurityPolicyName"
+            ],
+            "members": {
+              "Fips": {
+                "type": "boolean"
+              },
+              "SecurityPolicyName": {},
+              "SshCiphers": {
+                "shape": "S1e"
+              },
+              "SshKexs": {
+                "shape": "S1e"
+              },
+              "SshMacs": {
+                "shape": "S1e"
+              },
+              "TlsCiphers": {
+                "shape": "S1e"
+              }
+            }
+          }
+        }
+      }
+    },
+    "DescribeServer": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId"
+        ],
+        "members": {
+          "ServerId": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "Server"
+        ],
+        "members": {
+          "Server": {
+            "type": "structure",
+            "required": [
+              "Arn"
+            ],
+            "members": {
+              "Arn": {},
+              "Certificate": {},
+              "Domain": {},
+              "EndpointDetails": {
+                "shape": "S4"
+              },
+              "EndpointType": {},
+              "HostKeyFingerprint": {},
+              "IdentityProviderDetails": {
+                "shape": "Sf"
+              },
+              "IdentityProviderType": {},
+              "LoggingRole": {},
+              "Protocols": {
+                "shape": "Sj"
+              },
+              "SecurityPolicyName": {},
+              "ServerId": {},
+              "State": {},
+              "Tags": {
+                "shape": "Sm"
+              },
+              "UserCount": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "DescribeUser": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId",
+          "UserName"
+        ],
+        "members": {
+          "ServerId": {},
+          "UserName": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "ServerId",
+          "User"
+        ],
+        "members": {
+          "ServerId": {},
+          "User": {
+            "type": "structure",
+            "required": [
+              "Arn"
+            ],
+            "members": {
+              "Arn": {},
+              "HomeDirectory": {},
+              "HomeDirectoryMappings": {
+                "shape": "Sv"
+              },
+              "HomeDirectoryType": {},
+              "Policy": {},
+              "PosixProfile": {
+                "shape": "S10"
+              },
+              "Role": {},
+              "SshPublicKeys": {
+                "type": "list",
+                "member": {
+                  "type": "structure",
+                  "required": [
+                    "DateImported",
+                    "SshPublicKeyBody",
+                    "SshPublicKeyId"
+                  ],
+                  "members": {
+                    "DateImported": {
+                      "type": "timestamp"
+                    },
+                    "SshPublicKeyBody": {},
+                    "SshPublicKeyId": {}
+                  }
+                }
+              },
+              "Tags": {
+                "shape": "Sm"
+              },
+              "UserName": {}
+            }
+          }
+        }
+      }
+    },
+    "ImportSshPublicKey": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId",
+          "SshPublicKeyBody",
+          "UserName"
+        ],
+        "members": {
+          "ServerId": {},
+          "SshPublicKeyBody": {},
+          "UserName": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "ServerId",
+          "SshPublicKeyId",
+          "UserName"
+        ],
+        "members": {
+          "ServerId": {},
+          "SshPublicKeyId": {},
+          "UserName": {}
+        }
+      }
+    },
+    "ListSecurityPolicies": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "MaxResults": {
+            "type": "integer"
+          },
+          "NextToken": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "SecurityPolicyNames"
+        ],
+        "members": {
+          "NextToken": {},
+          "SecurityPolicyNames": {
+            "type": "list",
+            "member": {}
+          }
+        }
+      }
+    },
+    "ListServers": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "MaxResults": {
+            "type": "integer"
+          },
+          "NextToken": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "Servers"
+        ],
+        "members": {
+          "NextToken": {},
+          "Servers": {
+            "type": "list",
+            "member": {
+              "type": "structure",
+              "required": [
+                "Arn"
+              ],
+              "members": {
+                "Arn": {},
+                "Domain": {},
+                "IdentityProviderType": {},
+                "EndpointType": {},
+                "LoggingRole": {},
+                "ServerId": {},
+                "State": {},
+                "UserCount": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ListTagsForResource": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "Arn"
+        ],
+        "members": {
+          "Arn": {},
+          "MaxResults": {
+            "type": "integer"
+          },
+          "NextToken": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "Arn": {},
+          "NextToken": {},
+          "Tags": {
+            "shape": "Sm"
+          }
+        }
+      }
+    },
+    "ListUsers": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId"
+        ],
+        "members": {
+          "MaxResults": {
+            "type": "integer"
+          },
+          "NextToken": {},
+          "ServerId": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "ServerId",
+          "Users"
+        ],
+        "members": {
+          "NextToken": {},
+          "ServerId": {},
+          "Users": {
+            "type": "list",
+            "member": {
+              "type": "structure",
+              "required": [
+                "Arn"
+              ],
+              "members": {
+                "Arn": {},
+                "HomeDirectory": {},
+                "HomeDirectoryType": {},
+                "Role": {},
+                "SshPublicKeyCount": {
+                  "type": "integer"
+                },
+                "UserName": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "StartServer": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId"
+        ],
+        "members": {
+          "ServerId": {}
+        }
+      }
+    },
+    "StopServer": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId"
+        ],
+        "members": {
+          "ServerId": {}
+        }
+      }
+    },
+    "TagResource": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "Arn",
+          "Tags"
+        ],
+        "members": {
+          "Arn": {},
+          "Tags": {
+            "shape": "Sm"
+          }
+        }
+      }
+    },
+    "TestIdentityProvider": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId",
+          "UserName"
+        ],
+        "members": {
+          "ServerId": {},
+          "ServerProtocol": {},
+          "SourceIp": {},
+          "UserName": {},
+          "UserPassword": {
+            "type": "string",
+            "sensitive": true
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "StatusCode",
+          "Url"
+        ],
+        "members": {
+          "Response": {},
+          "StatusCode": {
+            "type": "integer"
+          },
+          "Message": {},
+          "Url": {}
+        }
+      }
+    },
+    "UntagResource": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "Arn",
+          "TagKeys"
+        ],
+        "members": {
+          "Arn": {},
+          "TagKeys": {
+            "type": "list",
+            "member": {}
+          }
+        }
+      }
+    },
+    "UpdateServer": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId"
+        ],
+        "members": {
+          "Certificate": {},
+          "EndpointDetails": {
+            "shape": "S4"
+          },
+          "EndpointType": {},
+          "HostKey": {
+            "shape": "Se"
+          },
+          "IdentityProviderDetails": {
+            "shape": "Sf"
+          },
+          "LoggingRole": {},
+          "Protocols": {
+            "shape": "Sj"
+          },
+          "SecurityPolicyName": {},
+          "ServerId": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "ServerId"
+        ],
+        "members": {
+          "ServerId": {}
+        }
+      }
+    },
+    "UpdateUser": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ServerId",
+          "UserName"
+        ],
+        "members": {
+          "HomeDirectory": {},
+          "HomeDirectoryType": {},
+          "HomeDirectoryMappings": {
+            "shape": "Sv"
+          },
+          "Policy": {},
+          "PosixProfile": {
+            "shape": "S10"
+          },
+          "Role": {},
+          "ServerId": {},
+          "UserName": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "required": [
+          "ServerId",
+          "UserName"
+        ],
+        "members": {
+          "ServerId": {},
+          "UserName": {}
+        }
+      }
+    }
+  },
+  "shapes": {
+    "S4": {
+      "type": "structure",
+      "members": {
+        "AddressAllocationIds": {
+          "type": "list",
+          "member": {}
+        },
+        "SubnetIds": {
+          "type": "list",
+          "member": {}
+        },
+        "VpcEndpointId": {},
+        "VpcId": {},
+        "SecurityGroupIds": {
+          "type": "list",
+          "member": {}
+        }
+      }
+    },
+    "Se": {
+      "type": "string",
+      "sensitive": true
+    },
+    "Sf": {
+      "type": "structure",
+      "members": {
+        "Url": {},
+        "InvocationRole": {}
+      }
+    },
+    "Sj": {
+      "type": "list",
+      "member": {}
+    },
+    "Sm": {
+      "type": "list",
+      "member": {
+        "type": "structure",
+        "required": [
+          "Key",
+          "Value"
+        ],
+        "members": {
+          "Key": {},
+          "Value": {}
+        }
+      }
+    },
+    "Sv": {
+      "type": "list",
+      "member": {
+        "type": "structure",
+        "required": [
+          "Entry",
+          "Target"
+        ],
+        "members": {
+          "Entry": {},
+          "Target": {}
+        }
+      }
+    },
+    "S10": {
+      "type": "structure",
+      "required": [
+        "Uid",
+        "Gid"
+      ],
+      "members": {
+        "Uid": {
+          "type": "long"
+        },
+        "Gid": {
+          "type": "long"
+        },
+        "SecondaryGids": {
+          "type": "list",
+          "member": {
+            "type": "long"
+          }
+        }
+      }
+    },
+    "S1e": {
+      "type": "list",
+      "member": {}
+    }
+  }
+}

@@ -1,0 +1,515 @@
+{
+  "version": "2.0",
+  "metadata": {
+    "apiVersion": "2017-03-31",
+    "endpointPrefix": "lakeformation",
+    "jsonVersion": "1.1",
+    "protocol": "json",
+    "serviceFullName": "AWS Lake Formation",
+    "serviceId": "LakeFormation",
+    "signatureVersion": "v4",
+    "signingName": "lakeformation",
+    "targetPrefix": "AWSLakeFormation",
+    "uid": "lakeformation-2017-03-31"
+  },
+  "operations": {
+    "BatchGrantPermissions": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "Entries"
+        ],
+        "members": {
+          "CatalogId": {},
+          "Entries": {
+            "shape": "S3"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "Failures": {
+            "shape": "Sm"
+          }
+        }
+      }
+    },
+    "BatchRevokePermissions": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "Entries"
+        ],
+        "members": {
+          "CatalogId": {},
+          "Entries": {
+            "shape": "S3"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "Failures": {
+            "shape": "Sm"
+          }
+        }
+      }
+    },
+    "DeregisterResource": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ResourceArn"
+        ],
+        "members": {
+          "ResourceArn": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {}
+      }
+    },
+    "DescribeResource": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ResourceArn"
+        ],
+        "members": {
+          "ResourceArn": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "ResourceInfo": {
+            "shape": "Sw"
+          }
+        }
+      }
+    },
+    "GetDataLakeSettings": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "CatalogId": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "DataLakeSettings": {
+            "shape": "S11"
+          }
+        }
+      }
+    },
+    "GetEffectivePermissionsForPath": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ResourceArn"
+        ],
+        "members": {
+          "CatalogId": {},
+          "ResourceArn": {},
+          "NextToken": {},
+          "MaxResults": {
+            "type": "integer"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "Permissions": {
+            "shape": "S1a"
+          },
+          "NextToken": {}
+        }
+      }
+    },
+    "GrantPermissions": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "Principal",
+          "Resource",
+          "Permissions"
+        ],
+        "members": {
+          "CatalogId": {},
+          "Principal": {
+            "shape": "S6"
+          },
+          "Resource": {
+            "shape": "S8"
+          },
+          "Permissions": {
+            "shape": "Sj"
+          },
+          "PermissionsWithGrantOption": {
+            "shape": "Sj"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {}
+      }
+    },
+    "ListPermissions": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "CatalogId": {},
+          "Principal": {
+            "shape": "S6"
+          },
+          "ResourceType": {},
+          "Resource": {
+            "shape": "S8"
+          },
+          "NextToken": {},
+          "MaxResults": {
+            "type": "integer"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "PrincipalResourcePermissions": {
+            "shape": "S1a"
+          },
+          "NextToken": {}
+        }
+      }
+    },
+    "ListResources": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "FilterConditionList": {
+            "type": "list",
+            "member": {
+              "type": "structure",
+              "members": {
+                "Field": {},
+                "ComparisonOperator": {},
+                "StringValueList": {
+                  "type": "list",
+                  "member": {}
+                }
+              }
+            }
+          },
+          "MaxResults": {
+            "type": "integer"
+          },
+          "NextToken": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "ResourceInfoList": {
+            "type": "list",
+            "member": {
+              "shape": "Sw"
+            }
+          },
+          "NextToken": {}
+        }
+      }
+    },
+    "PutDataLakeSettings": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "DataLakeSettings"
+        ],
+        "members": {
+          "CatalogId": {},
+          "DataLakeSettings": {
+            "shape": "S11"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {}
+      }
+    },
+    "RegisterResource": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ResourceArn"
+        ],
+        "members": {
+          "ResourceArn": {},
+          "UseServiceLinkedRole": {
+            "type": "boolean"
+          },
+          "RoleArn": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {}
+      }
+    },
+    "RevokePermissions": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "Principal",
+          "Resource",
+          "Permissions"
+        ],
+        "members": {
+          "CatalogId": {},
+          "Principal": {
+            "shape": "S6"
+          },
+          "Resource": {
+            "shape": "S8"
+          },
+          "Permissions": {
+            "shape": "Sj"
+          },
+          "PermissionsWithGrantOption": {
+            "shape": "Sj"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {}
+      }
+    },
+    "UpdateResource": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "RoleArn",
+          "ResourceArn"
+        ],
+        "members": {
+          "RoleArn": {},
+          "ResourceArn": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {}
+      }
+    }
+  },
+  "shapes": {
+    "S3": {
+      "type": "list",
+      "member": {
+        "shape": "S4"
+      }
+    },
+    "S4": {
+      "type": "structure",
+      "required": [
+        "Id"
+      ],
+      "members": {
+        "Id": {},
+        "Principal": {
+          "shape": "S6"
+        },
+        "Resource": {
+          "shape": "S8"
+        },
+        "Permissions": {
+          "shape": "Sj"
+        },
+        "PermissionsWithGrantOption": {
+          "shape": "Sj"
+        }
+      }
+    },
+    "S6": {
+      "type": "structure",
+      "members": {
+        "DataLakePrincipalIdentifier": {}
+      }
+    },
+    "S8": {
+      "type": "structure",
+      "members": {
+        "Catalog": {
+          "type": "structure",
+          "members": {}
+        },
+        "Database": {
+          "type": "structure",
+          "required": [
+            "Name"
+          ],
+          "members": {
+            "CatalogId": {},
+            "Name": {}
+          }
+        },
+        "Table": {
+          "type": "structure",
+          "required": [
+            "DatabaseName"
+          ],
+          "members": {
+            "CatalogId": {},
+            "DatabaseName": {},
+            "Name": {},
+            "TableWildcard": {
+              "type": "structure",
+              "members": {}
+            }
+          }
+        },
+        "TableWithColumns": {
+          "type": "structure",
+          "required": [
+            "DatabaseName",
+            "Name"
+          ],
+          "members": {
+            "CatalogId": {},
+            "DatabaseName": {},
+            "Name": {},
+            "ColumnNames": {
+              "shape": "Sf"
+            },
+            "ColumnWildcard": {
+              "type": "structure",
+              "members": {
+                "ExcludedColumnNames": {
+                  "shape": "Sf"
+                }
+              }
+            }
+          }
+        },
+        "DataLocation": {
+          "type": "structure",
+          "required": [
+            "ResourceArn"
+          ],
+          "members": {
+            "CatalogId": {},
+            "ResourceArn": {}
+          }
+        }
+      }
+    },
+    "Sf": {
+      "type": "list",
+      "member": {}
+    },
+    "Sj": {
+      "type": "list",
+      "member": {}
+    },
+    "Sm": {
+      "type": "list",
+      "member": {
+        "type": "structure",
+        "members": {
+          "RequestEntry": {
+            "shape": "S4"
+          },
+          "Error": {
+            "type": "structure",
+            "members": {
+              "ErrorCode": {},
+              "ErrorMessage": {}
+            }
+          }
+        }
+      }
+    },
+    "Sw": {
+      "type": "structure",
+      "members": {
+        "ResourceArn": {},
+        "RoleArn": {},
+        "LastModified": {
+          "type": "timestamp"
+        }
+      }
+    },
+    "S11": {
+      "type": "structure",
+      "members": {
+        "DataLakeAdmins": {
+          "type": "list",
+          "member": {
+            "shape": "S6"
+          }
+        },
+        "CreateDatabaseDefaultPermissions": {
+          "shape": "S13"
+        },
+        "CreateTableDefaultPermissions": {
+          "shape": "S13"
+        },
+        "TrustedResourceOwners": {
+          "type": "list",
+          "member": {}
+        }
+      }
+    },
+    "S13": {
+      "type": "list",
+      "member": {
+        "type": "structure",
+        "members": {
+          "Principal": {
+            "shape": "S6"
+          },
+          "Permissions": {
+            "shape": "Sj"
+          }
+        }
+      }
+    },
+    "S1a": {
+      "type": "list",
+      "member": {
+        "type": "structure",
+        "members": {
+          "Principal": {
+            "shape": "S6"
+          },
+          "Resource": {
+            "shape": "S8"
+          },
+          "Permissions": {
+            "shape": "Sj"
+          },
+          "PermissionsWithGrantOption": {
+            "shape": "Sj"
+          },
+          "AdditionalDetails": {
+            "type": "structure",
+            "members": {
+              "ResourceShare": {
+                "type": "list",
+                "member": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

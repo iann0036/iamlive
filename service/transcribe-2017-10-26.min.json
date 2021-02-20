@@ -1,0 +1,918 @@
+{
+  "version": "2.0",
+  "metadata": {
+    "apiVersion": "2017-10-26",
+    "endpointPrefix": "transcribe",
+    "jsonVersion": "1.1",
+    "protocol": "json",
+    "serviceFullName": "Amazon Transcribe Service",
+    "serviceId": "Transcribe",
+    "signatureVersion": "v4",
+    "signingName": "transcribe",
+    "targetPrefix": "Transcribe",
+    "uid": "transcribe-2017-10-26"
+  },
+  "operations": {
+    "CreateLanguageModel": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "LanguageCode",
+          "BaseModelName",
+          "ModelName",
+          "InputDataConfig"
+        ],
+        "members": {
+          "LanguageCode": {},
+          "BaseModelName": {},
+          "ModelName": {},
+          "InputDataConfig": {
+            "shape": "S5"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "LanguageCode": {},
+          "BaseModelName": {},
+          "ModelName": {},
+          "InputDataConfig": {
+            "shape": "S5"
+          },
+          "ModelStatus": {}
+        }
+      }
+    },
+    "CreateMedicalVocabulary": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyName",
+          "LanguageCode",
+          "VocabularyFileUri"
+        ],
+        "members": {
+          "VocabularyName": {},
+          "LanguageCode": {},
+          "VocabularyFileUri": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "VocabularyName": {},
+          "LanguageCode": {},
+          "VocabularyState": {},
+          "LastModifiedTime": {
+            "type": "timestamp"
+          },
+          "FailureReason": {}
+        }
+      }
+    },
+    "CreateVocabulary": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyName",
+          "LanguageCode"
+        ],
+        "members": {
+          "VocabularyName": {},
+          "LanguageCode": {},
+          "Phrases": {
+            "shape": "Si"
+          },
+          "VocabularyFileUri": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "VocabularyName": {},
+          "LanguageCode": {},
+          "VocabularyState": {},
+          "LastModifiedTime": {
+            "type": "timestamp"
+          },
+          "FailureReason": {}
+        }
+      }
+    },
+    "CreateVocabularyFilter": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyFilterName",
+          "LanguageCode"
+        ],
+        "members": {
+          "VocabularyFilterName": {},
+          "LanguageCode": {},
+          "Words": {
+            "shape": "Sn"
+          },
+          "VocabularyFilterFileUri": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "VocabularyFilterName": {},
+          "LanguageCode": {},
+          "LastModifiedTime": {
+            "type": "timestamp"
+          }
+        }
+      }
+    },
+    "DeleteLanguageModel": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ModelName"
+        ],
+        "members": {
+          "ModelName": {}
+        }
+      }
+    },
+    "DeleteMedicalTranscriptionJob": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "MedicalTranscriptionJobName"
+        ],
+        "members": {
+          "MedicalTranscriptionJobName": {}
+        }
+      }
+    },
+    "DeleteMedicalVocabulary": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyName"
+        ],
+        "members": {
+          "VocabularyName": {}
+        }
+      }
+    },
+    "DeleteTranscriptionJob": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "TranscriptionJobName"
+        ],
+        "members": {
+          "TranscriptionJobName": {}
+        }
+      }
+    },
+    "DeleteVocabulary": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyName"
+        ],
+        "members": {
+          "VocabularyName": {}
+        }
+      }
+    },
+    "DeleteVocabularyFilter": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyFilterName"
+        ],
+        "members": {
+          "VocabularyFilterName": {}
+        }
+      }
+    },
+    "DescribeLanguageModel": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "ModelName"
+        ],
+        "members": {
+          "ModelName": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "LanguageModel": {
+            "shape": "Sz"
+          }
+        }
+      }
+    },
+    "GetMedicalTranscriptionJob": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "MedicalTranscriptionJobName"
+        ],
+        "members": {
+          "MedicalTranscriptionJobName": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "MedicalTranscriptionJob": {
+            "shape": "S13"
+          }
+        }
+      }
+    },
+    "GetMedicalVocabulary": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyName"
+        ],
+        "members": {
+          "VocabularyName": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "VocabularyName": {},
+          "LanguageCode": {},
+          "VocabularyState": {},
+          "LastModifiedTime": {
+            "type": "timestamp"
+          },
+          "FailureReason": {},
+          "DownloadUri": {}
+        }
+      }
+    },
+    "GetTranscriptionJob": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "TranscriptionJobName"
+        ],
+        "members": {
+          "TranscriptionJobName": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "TranscriptionJob": {
+            "shape": "S1i"
+          }
+        }
+      }
+    },
+    "GetVocabulary": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyName"
+        ],
+        "members": {
+          "VocabularyName": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "VocabularyName": {},
+          "LanguageCode": {},
+          "VocabularyState": {},
+          "LastModifiedTime": {
+            "type": "timestamp"
+          },
+          "FailureReason": {},
+          "DownloadUri": {}
+        }
+      }
+    },
+    "GetVocabularyFilter": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyFilterName"
+        ],
+        "members": {
+          "VocabularyFilterName": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "VocabularyFilterName": {},
+          "LanguageCode": {},
+          "LastModifiedTime": {
+            "type": "timestamp"
+          },
+          "DownloadUri": {}
+        }
+      }
+    },
+    "ListLanguageModels": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "StatusEquals": {},
+          "NameContains": {},
+          "NextToken": {},
+          "MaxResults": {
+            "type": "integer"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "NextToken": {},
+          "Models": {
+            "type": "list",
+            "member": {
+              "shape": "Sz"
+            }
+          }
+        }
+      }
+    },
+    "ListMedicalTranscriptionJobs": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "Status": {},
+          "JobNameContains": {},
+          "NextToken": {},
+          "MaxResults": {
+            "type": "integer"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "Status": {},
+          "NextToken": {},
+          "MedicalTranscriptionJobSummaries": {
+            "type": "list",
+            "member": {
+              "type": "structure",
+              "members": {
+                "MedicalTranscriptionJobName": {},
+                "CreationTime": {
+                  "type": "timestamp"
+                },
+                "StartTime": {
+                  "type": "timestamp"
+                },
+                "CompletionTime": {
+                  "type": "timestamp"
+                },
+                "LanguageCode": {},
+                "TranscriptionJobStatus": {},
+                "FailureReason": {},
+                "OutputLocationType": {},
+                "Specialty": {},
+                "Type": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "ListMedicalVocabularies": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "NextToken": {},
+          "MaxResults": {
+            "type": "integer"
+          },
+          "StateEquals": {},
+          "NameContains": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "Status": {},
+          "NextToken": {},
+          "Vocabularies": {
+            "shape": "S29"
+          }
+        }
+      }
+    },
+    "ListTranscriptionJobs": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "Status": {},
+          "JobNameContains": {},
+          "NextToken": {},
+          "MaxResults": {
+            "type": "integer"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "Status": {},
+          "NextToken": {},
+          "TranscriptionJobSummaries": {
+            "type": "list",
+            "member": {
+              "type": "structure",
+              "members": {
+                "TranscriptionJobName": {},
+                "CreationTime": {
+                  "type": "timestamp"
+                },
+                "StartTime": {
+                  "type": "timestamp"
+                },
+                "CompletionTime": {
+                  "type": "timestamp"
+                },
+                "LanguageCode": {},
+                "TranscriptionJobStatus": {},
+                "FailureReason": {},
+                "OutputLocationType": {},
+                "ContentRedaction": {
+                  "shape": "S1o"
+                },
+                "ModelSettings": {
+                  "shape": "S1m"
+                },
+                "IdentifyLanguage": {
+                  "type": "boolean"
+                },
+                "IdentifiedLanguageScore": {
+                  "type": "float"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "ListVocabularies": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "NextToken": {},
+          "MaxResults": {
+            "type": "integer"
+          },
+          "StateEquals": {},
+          "NameContains": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "Status": {},
+          "NextToken": {},
+          "Vocabularies": {
+            "shape": "S29"
+          }
+        }
+      }
+    },
+    "ListVocabularyFilters": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "NextToken": {},
+          "MaxResults": {
+            "type": "integer"
+          },
+          "NameContains": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "NextToken": {},
+          "VocabularyFilters": {
+            "type": "list",
+            "member": {
+              "type": "structure",
+              "members": {
+                "VocabularyFilterName": {},
+                "LanguageCode": {},
+                "LastModifiedTime": {
+                  "type": "timestamp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "StartMedicalTranscriptionJob": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "MedicalTranscriptionJobName",
+          "LanguageCode",
+          "Media",
+          "OutputBucketName",
+          "Specialty",
+          "Type"
+        ],
+        "members": {
+          "MedicalTranscriptionJobName": {},
+          "LanguageCode": {},
+          "MediaSampleRateHertz": {
+            "type": "integer"
+          },
+          "MediaFormat": {},
+          "Media": {
+            "shape": "S17"
+          },
+          "OutputBucketName": {},
+          "OutputKey": {},
+          "OutputEncryptionKMSKeyId": {},
+          "Settings": {
+            "shape": "S19"
+          },
+          "Specialty": {},
+          "Type": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "MedicalTranscriptionJob": {
+            "shape": "S13"
+          }
+        }
+      }
+    },
+    "StartTranscriptionJob": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "TranscriptionJobName",
+          "Media"
+        ],
+        "members": {
+          "TranscriptionJobName": {},
+          "LanguageCode": {},
+          "MediaSampleRateHertz": {
+            "type": "integer"
+          },
+          "MediaFormat": {},
+          "Media": {
+            "shape": "S17"
+          },
+          "OutputBucketName": {},
+          "OutputKey": {},
+          "OutputEncryptionKMSKeyId": {},
+          "Settings": {
+            "shape": "S1k"
+          },
+          "ModelSettings": {
+            "shape": "S1m"
+          },
+          "JobExecutionSettings": {
+            "shape": "S1n"
+          },
+          "ContentRedaction": {
+            "shape": "S1o"
+          },
+          "IdentifyLanguage": {
+            "type": "boolean"
+          },
+          "LanguageOptions": {
+            "shape": "S1r"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "TranscriptionJob": {
+            "shape": "S1i"
+          }
+        }
+      }
+    },
+    "UpdateMedicalVocabulary": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyName",
+          "LanguageCode"
+        ],
+        "members": {
+          "VocabularyName": {},
+          "LanguageCode": {},
+          "VocabularyFileUri": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "VocabularyName": {},
+          "LanguageCode": {},
+          "LastModifiedTime": {
+            "type": "timestamp"
+          },
+          "VocabularyState": {}
+        }
+      }
+    },
+    "UpdateVocabulary": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyName",
+          "LanguageCode"
+        ],
+        "members": {
+          "VocabularyName": {},
+          "LanguageCode": {},
+          "Phrases": {
+            "shape": "Si"
+          },
+          "VocabularyFileUri": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "VocabularyName": {},
+          "LanguageCode": {},
+          "LastModifiedTime": {
+            "type": "timestamp"
+          },
+          "VocabularyState": {}
+        }
+      }
+    },
+    "UpdateVocabularyFilter": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "VocabularyFilterName"
+        ],
+        "members": {
+          "VocabularyFilterName": {},
+          "Words": {
+            "shape": "Sn"
+          },
+          "VocabularyFilterFileUri": {}
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "VocabularyFilterName": {},
+          "LanguageCode": {},
+          "LastModifiedTime": {
+            "type": "timestamp"
+          }
+        }
+      }
+    }
+  },
+  "shapes": {
+    "S5": {
+      "type": "structure",
+      "required": [
+        "S3Uri",
+        "DataAccessRoleArn"
+      ],
+      "members": {
+        "S3Uri": {},
+        "TuningDataS3Uri": {},
+        "DataAccessRoleArn": {}
+      }
+    },
+    "Si": {
+      "type": "list",
+      "member": {}
+    },
+    "Sn": {
+      "type": "list",
+      "member": {}
+    },
+    "Sz": {
+      "type": "structure",
+      "members": {
+        "ModelName": {},
+        "CreateTime": {
+          "type": "timestamp"
+        },
+        "LastModifiedTime": {
+          "type": "timestamp"
+        },
+        "LanguageCode": {},
+        "BaseModelName": {},
+        "ModelStatus": {},
+        "UpgradeAvailability": {
+          "type": "boolean"
+        },
+        "FailureReason": {},
+        "InputDataConfig": {
+          "shape": "S5"
+        }
+      }
+    },
+    "S13": {
+      "type": "structure",
+      "members": {
+        "MedicalTranscriptionJobName": {},
+        "TranscriptionJobStatus": {},
+        "LanguageCode": {},
+        "MediaSampleRateHertz": {
+          "type": "integer"
+        },
+        "MediaFormat": {},
+        "Media": {
+          "shape": "S17"
+        },
+        "Transcript": {
+          "type": "structure",
+          "members": {
+            "TranscriptFileUri": {}
+          }
+        },
+        "StartTime": {
+          "type": "timestamp"
+        },
+        "CreationTime": {
+          "type": "timestamp"
+        },
+        "CompletionTime": {
+          "type": "timestamp"
+        },
+        "FailureReason": {},
+        "Settings": {
+          "shape": "S19"
+        },
+        "Specialty": {},
+        "Type": {}
+      }
+    },
+    "S17": {
+      "type": "structure",
+      "members": {
+        "MediaFileUri": {}
+      }
+    },
+    "S19": {
+      "type": "structure",
+      "members": {
+        "ShowSpeakerLabels": {
+          "type": "boolean"
+        },
+        "MaxSpeakerLabels": {
+          "type": "integer"
+        },
+        "ChannelIdentification": {
+          "type": "boolean"
+        },
+        "ShowAlternatives": {
+          "type": "boolean"
+        },
+        "MaxAlternatives": {
+          "type": "integer"
+        },
+        "VocabularyName": {}
+      }
+    },
+    "S1i": {
+      "type": "structure",
+      "members": {
+        "TranscriptionJobName": {},
+        "TranscriptionJobStatus": {},
+        "LanguageCode": {},
+        "MediaSampleRateHertz": {
+          "type": "integer"
+        },
+        "MediaFormat": {},
+        "Media": {
+          "shape": "S17"
+        },
+        "Transcript": {
+          "type": "structure",
+          "members": {
+            "TranscriptFileUri": {},
+            "RedactedTranscriptFileUri": {}
+          }
+        },
+        "StartTime": {
+          "type": "timestamp"
+        },
+        "CreationTime": {
+          "type": "timestamp"
+        },
+        "CompletionTime": {
+          "type": "timestamp"
+        },
+        "FailureReason": {},
+        "Settings": {
+          "shape": "S1k"
+        },
+        "ModelSettings": {
+          "shape": "S1m"
+        },
+        "JobExecutionSettings": {
+          "shape": "S1n"
+        },
+        "ContentRedaction": {
+          "shape": "S1o"
+        },
+        "IdentifyLanguage": {
+          "type": "boolean"
+        },
+        "LanguageOptions": {
+          "shape": "S1r"
+        },
+        "IdentifiedLanguageScore": {
+          "type": "float"
+        }
+      }
+    },
+    "S1k": {
+      "type": "structure",
+      "members": {
+        "VocabularyName": {},
+        "ShowSpeakerLabels": {
+          "type": "boolean"
+        },
+        "MaxSpeakerLabels": {
+          "type": "integer"
+        },
+        "ChannelIdentification": {
+          "type": "boolean"
+        },
+        "ShowAlternatives": {
+          "type": "boolean"
+        },
+        "MaxAlternatives": {
+          "type": "integer"
+        },
+        "VocabularyFilterName": {},
+        "VocabularyFilterMethod": {}
+      }
+    },
+    "S1m": {
+      "type": "structure",
+      "members": {
+        "LanguageModelName": {}
+      }
+    },
+    "S1n": {
+      "type": "structure",
+      "members": {
+        "AllowDeferredExecution": {
+          "type": "boolean"
+        },
+        "DataAccessRoleArn": {}
+      }
+    },
+    "S1o": {
+      "type": "structure",
+      "required": [
+        "RedactionType",
+        "RedactionOutput"
+      ],
+      "members": {
+        "RedactionType": {},
+        "RedactionOutput": {}
+      }
+    },
+    "S1r": {
+      "type": "list",
+      "member": {}
+    },
+    "S29": {
+      "type": "list",
+      "member": {
+        "type": "structure",
+        "members": {
+          "VocabularyName": {},
+          "LanguageCode": {},
+          "LastModifiedTime": {
+            "type": "timestamp"
+          },
+          "VocabularyState": {}
+        }
+      }
+    }
+  }
+}

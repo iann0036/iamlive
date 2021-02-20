@@ -1,0 +1,18 @@
+# github.com/buger/goterm v0.0.0-20200322175922-2f3e71b85129
+## explicit
+github.com/buger/goterm
+# github.com/elazarl/goproxy v0.0.0-20210110162100-a92cc753f88e
+## explicit
+github.com/elazarl/goproxy
+# github.com/mitchellh/go-homedir v1.1.0
+## explicit
+github.com/mitchellh/go-homedir
+# golang.org/dl v0.0.0-20210204224843-1557c60ec592
+## explicit
+# golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c
+## explicit
+golang.org/x/sys/internal/unsafeheader
+golang.org/x/sys/unix
+# gopkg.in/ini.v1 v1.62.0
+## explicit
+gopkg.in/ini.v1
