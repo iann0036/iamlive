@@ -16,6 +16,7 @@ var sortAlphabeticalFlag = flag.Bool("sort-alphabetical", false, "sort actions a
 var hostFlag = flag.String("host", "127.0.0.1", "host to listen on")
 var modeFlag = flag.String("mode", "csm", "[experimental] the listening mode (csm,proxy)")
 var bindAddrFlag = flag.String("bind-addr", "127.0.0.1:10080", "[experimental] the bind address for proxy mode")
+var caBundleFlag = flag.String("ca-bundle", "~/.iamlive/ca.pem", "[experimental] the certificate bundle (PEM) to use")
 
 func main() {
 	flag.Parse()
@@ -24,8 +25,9 @@ func main() {
 		setTerminalRefresh()
 	}
 
+	setINIConfigAndFileFlush()
+
 	if *modeFlag == "csm" {
-		setCSMConfigAndFileFlush()
 		listenForEvents()
 		handleLoggedCall()
 	} else if *modeFlag == "proxy" {

@@ -15,7 +15,7 @@ import (
 	"gopkg.in/ini.v1"
 )
 
-func setCSMConfigAndFileFlush() {
+func setINIConfigAndFileFlush() {
 	// set ini
 	if *setiniFlag {
 		cfgfile, err := homedir.Expand("~/.aws/config")
@@ -29,9 +29,17 @@ func setCSMConfigAndFileFlush() {
 		}
 
 		if *profileFlag == "default" {
-			cfg.Section("default").Key("csm_enabled").SetValue("true")
+			if *modeFlag == "csm" {
+				cfg.Section("default").Key("csm_enabled").SetValue("true")
+			} else if *modeFlag == "proxy" {
+				cfg.Section("default").Key("ca_bundle").SetValue(*caBundleFlag)
+			}
 		} else {
-			cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).Key("csm_enabled").SetValue("true")
+			if *modeFlag == "csm" {
+				cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).Key("csm_enabled").SetValue("true")
+			} else if *modeFlag == "proxy" {
+				cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).Key("ca_bundle").SetValue(*caBundleFlag)
+			}
 		}
 
 		cfg.SaveTo(cfgfile)
@@ -55,22 +63,30 @@ func setCSMConfigAndFileFlush() {
 			}
 
 			if s == syscall.SIGINT || s == syscall.SIGTERM || s == syscall.SIGQUIT {
-				// revert ini
-				cfgfile, err := homedir.Expand("~/.aws/config") // need to redeclare
-				if err != nil {
-					os.Exit(1)
-				}
-
-				cfg, err := ini.Load(cfgfile)
-				if err != nil {
-					os.Exit(1)
-				}
-
 				if *setiniFlag {
+					// revert ini
+					cfgfile, err := homedir.Expand("~/.aws/config") // need to redeclare
+					if err != nil {
+						os.Exit(1)
+					}
+
+					cfg, err := ini.Load(cfgfile)
+					if err != nil {
+						os.Exit(1)
+					}
+
 					if *profileFlag == "default" {
-						cfg.Section("default").DeleteKey("csm_enabled")
+						if *modeFlag == "csm" {
+							cfg.Section("default").DeleteKey("csm_enabled")
+						} else if *modeFlag == "proxy" {
+							cfg.Section("default").DeleteKey("ca_bundle")
+						}
 					} else {
-						cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).DeleteKey("csm_enabled")
+						if *modeFlag == "csm" {
+							cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).DeleteKey("csm_enabled")
+						} else if *modeFlag == "proxy" {
+							cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).DeleteKey("ca_bundle")
+						}
 					}
 					cfg.SaveTo(cfgfile)
 				}
