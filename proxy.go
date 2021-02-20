@@ -141,7 +141,11 @@ func handleAWSRequest(host, uri, body string) {
 	}
 
 	region := "us-east-1"
-	// TODO: Better region match
+	re, _ := regexp.Compile(`\.(.+)\.amazonaws\.com(?:\.cn)?$`)
+	matches := re.FindStringSubmatch(host)
+	if len(matches) == 2 {
+		region = matches[1]
+	}
 
 	callLog = append(callLog, Entry{
 		Region:              region,
