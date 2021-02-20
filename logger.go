@@ -50,53 +50,59 @@ func getPolicyDocument() []byte {
 		Statement: []Statement{},
 	}
 
-	var actions []string
-	var resources []string
+	if *modeFlag == "csm" {
+		var actions []string
 
-	for _, entry := range callLog {
-		if *failsonlyFlag && (entry.FinalHTTPStatusCode >= 200 && entry.FinalHTTPStatusCode <= 299) {
-			continue
-		}
+		for _, entry := range callLog {
+			if *failsonlyFlag && (entry.FinalHTTPStatusCode >= 200 && entry.FinalHTTPStatusCode <= 299) {
+				continue
+			}
 
-		newActions := getDependantActions(getActions(entry.Service, entry.Method))
+			newActions := getDependantActions(getActions(entry.Service, entry.Method))
 
-		for _, newAction := range newActions {
-			foundAction := false
+			for _, newAction := range newActions {
+				foundAction := false
 
-			for _, action := range actions {
-				if action == newAction {
-					foundAction = true
-					break
+				for _, action := range actions {
+					if action == newAction {
+						foundAction = true
+						break
+					}
+				}
+				if !foundAction {
+					actions = append(actions, newAction)
 				}
 			}
-			if !foundAction {
-				actions = append(actions, newAction)
-			}
 		}
 
-		resources = []string{"*"}
-
-		if len(entry.Parameters) > 0 {
-			resources = getResourcesForCall(entry)
+		if *sortAlphabeticalFlag {
+			sort.Strings(actions)
 		}
-	}
 
-	if *sortAlphabeticalFlag {
-		sort.Strings(actions)
-	}
-
-	if len(resources) == 1 && resources[0] == "*" {
 		policy.Statement = append(policy.Statement, Statement{
 			Effect:   "Allow",
 			Resource: "*",
 			Action:   actions,
 		})
-	} else {
-		policy.Statement = append(policy.Statement, Statement{
-			Effect:   "Allow",
-			Resource: resources,
-			Action:   actions,
-		})
+	} else if *modeFlag == "proxy" {
+		for _, entry := range callLog {
+			if *failsonlyFlag && (entry.FinalHTTPStatusCode >= 200 && entry.FinalHTTPStatusCode <= 299) {
+				continue
+			}
+
+			actions := getDependantActions(getActions(entry.Service, entry.Method))
+			if *sortAlphabeticalFlag {
+				sort.Strings(actions)
+			}
+
+			resources := getResourcesForCall(entry)
+
+			policy.Statement = append(policy.Statement, Statement{
+				Effect:   "Allow",
+				Resource: resources,
+				Action:   actions,
+			})
+		}
 	}
 
 	doc, err := json.MarshalIndent(policy, "", "    ")
@@ -114,21 +120,41 @@ func handleLoggedCall() {
 	}
 }
 
+func countRune(s string, r rune) int {
+	count := 0
+	for _, c := range s {
+		if c == r {
+			count++
+		}
+	}
+	return count
+}
+
 func writePolicyToTerminal() {
 	if len(callLog) == 0 {
 		return
 	}
 
-	policyDoc := getPolicyDocument()
+	policyDoc := string(getPolicyDocument())
+	policyHeight := countRune(policyDoc, '\n') + 1
 
 	goterm.Clear()
 	goterm.MoveCursor(1, 1)
-	goterm.Println(string(policyDoc))
-	goterm.Flush()
+	if goterm.Height() < policyHeight {
+		fmt.Println(policyDoc)
+	} else {
+		goterm.Println(policyDoc)
+		goterm.Flush()
+	}
 }
 
 type iamMapMethod struct {
-	Action string `json:"action"`
+	Action           string                      `json:"action"`
+	ResourceMappings map[string]iamMapResMapItem `json:"resource_mappings"`
+}
+
+type iamMapResMapItem struct {
+	Template string `json:"template"`
 }
 
 type iamMapBase struct {
@@ -291,9 +317,11 @@ func getResourcesForCall(call Entry) (resources []string) {
 				for _, resourceType := range privilege.ResourceTypes {
 					for _, resource := range service.Resources {
 						if resource.Resource == strings.Replace(resourceType.ResourceType, "*", "", -1) && resource.Resource != "" {
-							subbedArn := subSARARN(resource.Arn, call)
-							if resourceType.ResourceType[len(resourceType.ResourceType)-1:] == "*" || subbedArn[len(subbedArn)-1:] != "*" {
-								resources = append(resources, subbedArn)
+							subbedArns := subSARARN(resource.Arn, call)
+							for _, subbedArn := range subbedArns {
+								if resourceType.ResourceType[len(resourceType.ResourceType)-1:] == "*" || subbedArn[len(subbedArn)-1:] != "*" {
+									resources = append(resources, subbedArn)
+								}
 							}
 						}
 					}
@@ -344,23 +372,58 @@ func mapCallToPrivilegeArray(service iamDefService, call Entry) []iamDefPrivileg
 	return []iamDefPrivilege{}
 }
 
-func subSARARN(arn string, call Entry) string {
-	// TODO: User params
+func subSARARN(arn string, call Entry) []string {
+	var iamMap iamMapBase
 
-	account := "123456789012"
-	partition := "aws"
-	if call.Region[0:3] == "cn-" {
-		partition = "aws-cn"
+	err := json.Unmarshal(bIAMMap, &iamMap)
+	if err != nil {
+		panic(err)
 	}
-	if call.Region[0:7] == "us-gov-" {
-		partition = "aws-us-gov"
-	}
-	arn = regexp.MustCompile(`\$\{Partition\}`).ReplaceAllString(arn, partition)
-	arn = regexp.MustCompile(`\$\{Region\}`).ReplaceAllString(arn, call.Region)
-	arn = regexp.MustCompile(`\$\{Account\}`).ReplaceAllString(arn, account)
-	arn = regexp.MustCompile(`\$\{.+?\}`).ReplaceAllString(arn, "*")
 
-	return arn
+	for sdkCall, mappingInfo := range iamMap.SDKMethodIAMMappings {
+		if fmt.Sprintf("%s.%s", strings.ToLower(call.Service), strings.ToLower(call.Method)) == strings.ToLower(sdkCall) {
+			for _, item := range mappingInfo {
+				for resMappingVar, resMapping := range item.ResourceMappings {
+					if !strings.Contains(resMapping.Template, "%") { // TODO: Handle specials
+						arn = regexp.MustCompile(`\$\{`+resMappingVar+`\}`).ReplaceAllString(arn, strings.ReplaceAll(resMapping.Template, `$`, `$$`))
+					}
+				}
+			}
+		}
+	}
+
+	arns := []string{arn} // matrix
+	for paramVarName, params := range call.Parameters {
+		newArns := []string{}
+		for _, param := range params {
+			for i := range arns {
+				arn = regexp.MustCompile(`\$\{`+paramVarName+`\}`).ReplaceAllString(arns[i], param) // TODO: Check replace actually happened
+
+				newArns = append(newArns, arn)
+			}
+		}
+		arns = newArns
+	}
+
+	retArns := make([]string, 0)
+	for _, arn := range arns {
+		account := "123456789012"
+		partition := "aws"
+		if call.Region[0:3] == "cn-" {
+			partition = "aws-cn"
+		}
+		if call.Region[0:7] == "us-gov-" {
+			partition = "aws-us-gov"
+		}
+		arn = regexp.MustCompile(`\$\{Partition\}`).ReplaceAllString(arn, partition)
+		arn = regexp.MustCompile(`\$\{Region\}`).ReplaceAllString(arn, call.Region)
+		arn = regexp.MustCompile(`\$\{Account\}`).ReplaceAllString(arn, account)
+		arn = regexp.MustCompile(`\$\{.+?\}`).ReplaceAllString(arn, "*")
+
+		retArns = append(retArns, arn)
+	}
+
+	return retArns
 }
 
 func mapServicePrefix(prefix string, mappings iamMapBase) string {

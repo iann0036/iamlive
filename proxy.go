@@ -5,6 +5,7 @@ import (
 	"embed"
 	"encoding/json"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -22,9 +23,9 @@ var serviceDefinitions []ServiceDefinition
 
 func createProxy(addr string) {
 	proxy := goproxy.NewProxyHttpServer()
-	//TODO: proxy.Logger =
+	proxy.Logger = log.New(io.Discard, "", log.LstdFlags)
 	proxy.OnRequest().HandleConnect(goproxy.AlwaysMitm)
-	proxy.OnRequest().DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
+	proxy.OnRequest().DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) { // TODO: Move to onResponse for HTTP response codes
 		body, _ := ioutil.ReadAll(req.Body)
 
 		isAWSHostname, _ := regexp.MatchString(`^.*\.amazonaws\.com(?:\.cn)?$`, req.Host)
