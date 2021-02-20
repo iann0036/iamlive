@@ -128,7 +128,11 @@ func handleAWSRequest(host, uri, body string) {
 
 				propReference := findPropReference(serviceDef.Operations[action].Input, normalizedK, "", "")
 				if propReference != "" {
-					params[propReference] = v
+					if len(params[propReference]) > 0 {
+						params[propReference] = append(params[propReference], v...)
+					} else {
+						params[propReference] = v
+					}
 				}
 
 				//fmt.Printf("k=%v,v=%v\n", k, v)
@@ -136,7 +140,11 @@ func handleAWSRequest(host, uri, body string) {
 		}
 	}
 
+	region := "us-east-1"
+	// TODO: Better region match
+
 	callLog = append(callLog, Entry{
+		Region:              region,
 		Type:                "ProxyCall",
 		Service:             serviceDef.Metadata.ServiceID,
 		Method:              action,
@@ -169,7 +177,20 @@ func findPropReference(obj ServiceStructure, searchProp string, path string, loc
 			}
 		}
 	case "long", "float", "":
-		locationPath = fmt.Sprintf("%s.%s", locationPath, obj.LocationName)
+		if obj.LocationName != "" {
+			if locationPath == "" {
+				locationPath = obj.LocationName
+			} else {
+				locationPath = fmt.Sprintf("%s.%s", locationPath, obj.LocationName)
+			}
+		} else {
+			splitPath := strings.Split(path, ".")
+			if locationPath == "" {
+				locationPath = splitPath[len(splitPath)-1]
+			} else {
+				locationPath = fmt.Sprintf("%s.%s", locationPath, splitPath[len(splitPath)-1])
+			}
+		}
 		if locationPath == searchProp {
 			return path
 		}

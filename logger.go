@@ -4,6 +4,8 @@ import (
 	_ "embed"
 	"encoding/json"
 	"fmt"
+	"log"
+	"regexp"
 	"sort"
 	"strings"
 	"time"
@@ -21,6 +23,7 @@ var callLog []Entry
 
 // Entry is a single CSM entry
 type Entry struct {
+	Region              string `json:"Region"`
 	Type                string `json:"Type"`
 	Service             string `json:"Service"`
 	Method              string `json:"Api"`
@@ -124,10 +127,14 @@ func writePolicyToTerminal() {
 	goterm.Flush()
 }
 
+type iamMapMethod struct {
+	Action string `json:"action"`
+}
+
 type iamMapBase struct {
-	SDKMethodIAMMappings     map[string][]interface{} `json:"sdk_method_iam_mappings"`
-	SDKServiceMappings       map[string]string        `json:"sdk_service_mappings"`
-	SDKPermissionlessActions []string                 `json:"sdk_permissionless_actions"`
+	SDKMethodIAMMappings     map[string][]iamMapMethod `json:"sdk_method_iam_mappings"`
+	SDKServiceMappings       map[string]string         `json:"sdk_service_mappings"`
+	SDKPermissionlessActions []string                  `json:"sdk_permissionless_actions"`
 }
 
 type mappingInfoItem struct {
@@ -137,15 +144,23 @@ type mappingInfoItem struct {
 type iamDefService struct {
 	Prefix     string            `json:"prefix"`
 	Privileges []iamDefPrivilege `json:"privileges"`
+	Resources  []iamDefResource  `json:"resources"`
 }
 
 type iamDefPrivilege struct {
 	Privilege     string               `json:"privilege"`
 	ResourceTypes []iamDefResourceType `json:"resource_types"`
+	Description   string               `json:"description"`
+}
+
+type iamDefResource struct {
+	Resource string `json:"resource"`
+	Arn      string `json:"arn"`
 }
 
 type iamDefResourceType struct {
 	DependentActions []string `json:"dependent_actions"`
+	ResourceType     string   `json:"resource_type"`
 }
 
 func uniqueSlice(slice []string) []string {
@@ -214,11 +229,7 @@ func getActions(service, method string) []string {
 	for sdkCall, mappingInfo := range iamMap.SDKMethodIAMMappings {
 		if fmt.Sprintf("%s.%s", strings.ToLower(service), strings.ToLower(method)) == strings.ToLower(sdkCall) {
 			for _, item := range mappingInfo {
-				for mappingInfoItemKey, mappingInfoItemValue := range item.(map[string]interface{}) {
-					if mappingInfoItemKey == "action" {
-						actions = append(actions, fmt.Sprintf("%v", mappingInfoItemValue))
-					}
-				}
+				actions = append(actions, item.Action)
 			}
 		}
 	}
@@ -260,6 +271,104 @@ func setTerminalRefresh() {
 	}()
 }
 
+type resourceType struct {
+	ResourceType string `json:"resourceType"`
+}
+
 func getResourcesForCall(call Entry) (resources []string) {
-	return []string{"*"}
+	var iamDef []iamDefService
+
+	err := json.Unmarshal(bIAMSAR, &iamDef)
+	if err != nil {
+		panic(err)
+	}
+
+	for _, service := range iamDef {
+		if service.Prefix == strings.ToLower(call.Service) {
+			privilegearray := mapCallToPrivilegeArray(service, call)
+
+			for _, privilege := range privilegearray {
+				for _, resourceType := range privilege.ResourceTypes {
+					for _, resource := range service.Resources {
+						if resource.Resource == strings.Replace(resourceType.ResourceType, "*", "", -1) && resource.Resource != "" {
+							subbedArn := subSARARN(resource.Arn, call)
+							if resourceType.ResourceType[len(resourceType.ResourceType)-1:] == "*" || subbedArn[len(subbedArn)-1:] != "*" {
+								resources = append(resources, subbedArn)
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	if len(resources) == 0 {
+		resources = []string{"*"}
+	}
+
+	return resources
+}
+
+func mapCallToPrivilegeArray(service iamDefService, call Entry) []iamDefPrivilege {
+	lowerPriv := fmt.Sprintf("%s:%s", strings.ToLower(call.Service), strings.ToLower(call.Method))
+
+	var privileges []iamDefPrivilege
+
+	var iamMap iamMapBase
+	err := json.Unmarshal(bIAMMap, &iamMap)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for iamMapMethodName, iamMapMethods := range iamMap.SDKMethodIAMMappings {
+		if strings.ToLower(iamMapMethodName) == lowerPriv {
+			for _, mappedPriv := range iamMapMethods {
+				for _, privilege := range service.Privileges {
+					if fmt.Sprintf("%s:%s", strings.ToLower(mapServicePrefix(service.Prefix, iamMap)), strings.ToLower(privilege.Privilege)) == strings.ToLower(mappedPriv.Action) {
+						privileges = append(privileges, privilege)
+						break
+					}
+				}
+			}
+		}
+	}
+
+	if len(privileges) == 0 {
+		for _, servicePrivilege := range service.Privileges {
+			if strings.ToLower(call.Method) == strings.ToLower(servicePrivilege.Privilege) {
+				return []iamDefPrivilege{servicePrivilege}
+			}
+		}
+	}
+
+	return []iamDefPrivilege{}
+}
+
+func subSARARN(arn string, call Entry) string {
+	// TODO: User params
+
+	account := "123456789012"
+	partition := "aws"
+	if call.Region[0:3] == "cn-" {
+		partition = "aws-cn"
+	}
+	if call.Region[0:7] == "us-gov-" {
+		partition = "aws-us-gov"
+	}
+	arn = regexp.MustCompile(`\$\{Partition\}`).ReplaceAllString(arn, partition)
+	arn = regexp.MustCompile(`\$\{Region\}`).ReplaceAllString(arn, call.Region)
+	arn = regexp.MustCompile(`\$\{Account\}`).ReplaceAllString(arn, account)
+	arn = regexp.MustCompile(`\$\{.+?\}`).ReplaceAllString(arn, "*")
+
+	return arn
+}
+
+func mapServicePrefix(prefix string, mappings iamMapBase) string {
+	for sdkprefix, mappedprefix := range mappings.SDKServiceMappings {
+		if sdkprefix == prefix {
+			return mappedprefix
+		}
+	}
+
+	return prefix
 }

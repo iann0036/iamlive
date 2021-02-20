@@ -21581,7 +21581,12 @@
         ],
         "IAM.CreateUser": [
             {
-                "action": "iam:CreateUser"
+                "action": "iam:CreateUser",
+                "resource_mappings": {
+                    "UserNameWithPath": {
+                        "template": "${UserName}"
+                    }
+                }
             }
         ],
         "IAM.CreateVirtualMFADevice": [
