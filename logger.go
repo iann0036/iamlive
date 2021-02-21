@@ -141,7 +141,7 @@ func writePolicyToTerminal() {
 	goterm.Clear()
 	goterm.MoveCursor(1, 1)
 	if goterm.Height() < policyHeight {
-		fmt.Println(policyDoc)
+		fmt.Println("\n\n" + policyDoc)
 	} else {
 		goterm.Println(policyDoc)
 		goterm.Flush()
@@ -397,7 +397,7 @@ func subSARARN(arn string, call Entry) []string {
 		newArns := []string{}
 		for _, param := range params {
 			for i := range arns {
-				arn = regexp.MustCompile(`\$\{`+paramVarName+`\}`).ReplaceAllString(arns[i], param) // TODO: Check replace actually happened
+				arn = regexp.MustCompile(`\$\{`+paramVarName+`\}`).ReplaceAllString(arns[i], param) // TODO: Check replace actually happened (might be caught by duplicate remover)
 
 				newArns = append(newArns, arn)
 			}

@@ -30,11 +30,11 @@ To start the listener, simply run `iamlive` in a separate window to your CLI / S
 
 You can optionally also include the following arguments to the `iamlive` command:
 
-**--set-ini:** when set, the `.aws/config` file will be updated to use the CSM monitoring and removed when exiting (_default: false_)
+**--set-ini:** when set, the `.aws/config` file will be updated to use the CSM monitoring or CA bundle and removed when exiting (_default: false_)
 
 **--profile:** use the specified profile when combined with `--set-ini` (_default: default_)
 
-**--fails-only:** when set, only failed AWS calls will be added to the policy (_default: false_)
+**--fails-only:** when set, only failed AWS calls will be added to the policy, csm mode only (_default: false_)
 
 **--output-file:** specify a file that will be written to on SIGHUP or exit (_default: unset_)
 
@@ -42,15 +42,27 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--sort-alphabetical:** sort actions alphabetically (_default: false_)
 
-**--host:** host to listen on (_default: 127.0.0.1_)
+**--host:** host to listen on for CSM (_default: 127.0.0.1_)
 
-_Comprehensive Example_
+**--mode:** _[experimental]_ the listening mode (`csm`,`proxy`) (_default: csm_)
+
+**--bind-addr:** _[experimental]_ the bind address for proxy mode (_default: 127.0.0.1:10080_)
+
+**--ca-bundle:** _[experimental]_ the certificate bundle (PEM) to use for proxy mode (_default: ~/.iamlive/ca.pem_)
+
+_Comprehensive Example (CSM)_
 
 ```
 iamlive --set-ini --profile myprofile --fails-only --output-file policy.json --refresh-rate 1 --sort-alphabetical --host 127.0.0.1
 ```
 
-### CSM Enabling
+_Comprehensive Example (Proxy)_
+
+```
+iamlive --mode proxy --set-ini --profile myprofile --output-file policy.json --refresh-rate 1 --sort-alphabetical --bind-addr 127.0.0.1:10080 --ca-bundle ~/.iamlive/ca.pem
+```
+
+### CSM Mode
 
 #### CLI
 
@@ -76,15 +88,15 @@ export AWS_CSM_PORT=31000
 export AWS_CSM_HOST=127.0.0.1
 ```
 
+### Proxy Mode
+
+Coming soon.
+
 ## FAQs
 
 _I get a message "package embed is not in GOROOT" when attempting to build myself_
 
 This project requires Go 1.16 or above to be built correctly (due to embedding feature).
-
-_Can we include specifics for the Resource and Condition fields?_
-
-No, the CSM protocol does not support it and cannot be changed.
 
 ## Acknowledgements
 
