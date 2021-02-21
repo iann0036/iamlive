@@ -161,7 +161,11 @@ func handleAWSRequest(host, uri, body string, respCode int) {
 }
 
 func findPropReference(obj ServiceStructure, searchProp string, path string, locationPath string) (ret string) {
-	switch obj.Type { // TODO: Check for other types
+	// TODO: Shape deref
+
+	switch obj.Type { // TODO: Exhaustive check for other types
+	case "boolean", "timestamp", "blob", "map":
+		return ""
 	case "structure":
 		for k, v := range obj.Members {
 			if obj.LocationName != "" {
@@ -181,7 +185,7 @@ func findPropReference(obj ServiceStructure, searchProp string, path string, loc
 				return ret
 			}
 		}
-	case "long", "float", "":
+	case "long", "float", "integer", "", "string":
 		if obj.LocationName != "" {
 			if locationPath == "" {
 				locationPath = obj.LocationName

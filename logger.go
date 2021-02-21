@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"reflect"
 	"regexp"
 	"sort"
 	"strings"
@@ -84,7 +85,7 @@ func getPolicyDocument() []byte {
 			Resource: "*",
 			Action:   actions,
 		})
-	} else if *modeFlag == "proxy" { // TODO: Aggregation modes and duplicate removal
+	} else if *modeFlag == "proxy" {
 		for _, entry := range callLog {
 			if *failsonlyFlag && (entry.FinalHTTPStatusCode >= 200 && entry.FinalHTTPStatusCode <= 299) {
 				continue
@@ -103,6 +104,15 @@ func getPolicyDocument() []byte {
 				Action:   actions,
 			})
 		}
+
+		policy = aggregatePolicy(policy)
+
+		for i := 0; i < len(policy.Statement); i++ { // make any single wildcard resource a non-array
+			resource := policy.Statement[i].Resource.([]string)
+			if len(resource) == 1 && resource[0] == "*" {
+				policy.Statement[i].Resource = "*"
+			}
+		}
 	}
 
 	doc, err := json.MarshalIndent(policy, "", "    ")
@@ -110,6 +120,31 @@ func getPolicyDocument() []byte {
 		panic(err)
 	}
 	return doc
+}
+
+func removeStatementItem(slice []Statement, i int) []Statement {
+	copy(slice[i:], slice[i+1:])
+	return slice[:len(slice)-1]
+}
+
+func aggregatePolicy(policy IAMPolicy) IAMPolicy {
+	for i := 0; i < len(policy.Statement); i++ {
+		sort.Strings(policy.Statement[i].Resource.([]string))
+		for j := i + 1; j < len(policy.Statement); j++ {
+			sort.Strings(policy.Statement[j].Resource.([]string))
+
+			if reflect.DeepEqual(policy.Statement[i].Resource.([]string), policy.Statement[j].Resource.([]string)) {
+				policy.Statement[i].Action = append(policy.Statement[i].Action, policy.Statement[j].Action...) // combine
+				policy.Statement = removeStatementItem(policy.Statement, j)                                    // remove dupe
+				j--
+			}
+		}
+
+		policy.Statement[i].Action = uniqueSlice(policy.Statement[i].Action)
+		policy.Statement[i].Resource = uniqueSlice(policy.Statement[i].Resource.([]string))
+	}
+
+	return policy
 }
 
 func handleLoggedCall() {
@@ -317,7 +352,7 @@ func getResourcesForCall(call Entry) (resources []string) {
 				for _, resourceType := range privilege.ResourceTypes {
 					for _, resource := range service.Resources {
 						if resource.Resource == strings.Replace(resourceType.ResourceType, "*", "", -1) && resource.Resource != "" {
-							subbedArns := subSARARN(resource.Arn, call)
+							subbedArns := subSARARN(resource.Arn, call, strings.Replace(resourceType.ResourceType, "*", "", -1))
 							for _, subbedArn := range subbedArns {
 								if resourceType.ResourceType[len(resourceType.ResourceType)-1:] == "*" || subbedArn[len(subbedArn)-1:] != "*" {
 									resources = append(resources, subbedArn)
@@ -372,7 +407,7 @@ func mapCallToPrivilegeArray(service iamDefService, call Entry) []iamDefPrivileg
 	return []iamDefPrivilege{}
 }
 
-func subSARARN(arn string, call Entry) []string {
+func subSARARN(arn string, call Entry, resourceType string) []string {
 	var iamMap iamMapBase
 
 	err := json.Unmarshal(bIAMMap, &iamMap)
@@ -397,7 +432,7 @@ func subSARARN(arn string, call Entry) []string {
 		newArns := []string{}
 		for _, param := range params {
 			for i := range arns {
-				arn = regexp.MustCompile(`\$\{`+paramVarName+`\}`).ReplaceAllString(arns[i], param) // TODO: Check replace actually happened (might be caught by duplicate remover)
+				arn = regexp.MustCompile(`\$\{`+paramVarName+`\}`).ReplaceAllString(arns[i], param) // might have dupes but resolved out later
 
 				newArns = append(newArns, arn)
 			}
