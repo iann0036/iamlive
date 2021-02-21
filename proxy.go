@@ -30,7 +30,7 @@ func createProxy(addr string) {
 
 		isAWSHostname, _ := regexp.MatchString(`^.*\.amazonaws\.com(?:\.cn)?$`, req.Host)
 		if isAWSHostname {
-			handleAWSRequest(req.Host, req.RequestURI, string(body))
+			handleAWSRequest(req.Host, req.RequestURI, string(body), 200)
 		}
 
 		req.Body = ioutil.NopCloser(bytes.NewBuffer(body))
@@ -98,7 +98,7 @@ func readServiceFiles() {
 	}
 }
 
-func handleAWSRequest(host, uri, body string) {
+func handleAWSRequest(host, uri, body string, respCode int) {
 	vals, err := url.ParseQuery(body)
 	if err != nil {
 		return
@@ -154,14 +154,14 @@ func handleAWSRequest(host, uri, body string) {
 		Service:             serviceDef.Metadata.ServiceID,
 		Method:              action,
 		Parameters:          params,
-		FinalHTTPStatusCode: 200,
+		FinalHTTPStatusCode: respCode,
 	})
 
 	handleLoggedCall()
 }
 
 func findPropReference(obj ServiceStructure, searchProp string, path string, locationPath string) (ret string) {
-	switch obj.Type {
+	switch obj.Type { // TODO: Check for other types
 	case "structure":
 		for k, v := range obj.Members {
 			if obj.LocationName != "" {

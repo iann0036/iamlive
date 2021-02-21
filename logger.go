@@ -84,7 +84,7 @@ func getPolicyDocument() []byte {
 			Resource: "*",
 			Action:   actions,
 		})
-	} else if *modeFlag == "proxy" {
+	} else if *modeFlag == "proxy" { // TODO: Aggregation modes and duplicate removal
 		for _, entry := range callLog {
 			if *failsonlyFlag && (entry.FinalHTTPStatusCode >= 200 && entry.FinalHTTPStatusCode <= 299) {
 				continue
