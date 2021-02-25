@@ -30,7 +30,7 @@ func createProxy(addr string) {
 
 		isAWSHostname, _ := regexp.MatchString(`^.*\.amazonaws\.com(?:\.cn)?$`, req.Host)
 		if isAWSHostname {
-			handleAWSRequest(req.Host, req.RequestURI, string(body), 200)
+			handleAWSRequest(req, body, 200)
 		}
 
 		req.Body = ioutil.NopCloser(bytes.NewBuffer(body))
@@ -98,45 +98,68 @@ func readServiceFiles() {
 	}
 }
 
-func handleAWSRequest(host, uri, body string, respCode int) {
-	vals, err := url.ParseQuery(body)
-	if err != nil {
-		return
-	}
-
-	if len(vals["Action"]) != 1 || len(vals["Version"]) != 1 {
-		return
-	}
-	action := vals["Action"][0]
-	version := vals["Version"][0]
+func handleAWSRequest(req *http.Request, body []byte, respCode int) {
+	host := req.Host
+	//uri := req.RequestURI
 
 	var serviceDef ServiceDefinition
-
 	endpointPrefix := strings.Split(host, ".")[0]
 	for _, serviceDefinition := range serviceDefinitions {
-		if serviceDefinition.Metadata.EndpointPrefix == endpointPrefix && serviceDefinition.Metadata.APIVersion == version {
+		if serviceDefinition.Metadata.EndpointPrefix == endpointPrefix { // TODO: Ensure latest version
 			serviceDef = serviceDefinition
 		}
 	}
 
 	params := make(map[string][]string)
+	action := "*"
 
-	if serviceDef.Operations[action].Input.Type == "structure" {
-		for k, v := range vals {
-			if k != "Action" && k != "Version" {
-				var re = regexp.MustCompile(`\.[0-9]+`)
-				normalizedK := re.ReplaceAllString(k, "[]")
+	var bodyJSON interface{}
+	err := json.Unmarshal(body, &bodyJSON)
 
-				propReference := findPropReference(serviceDef.Operations[action].Input, normalizedK, "", "")
-				if propReference != "" {
-					if len(params[propReference]) > 0 {
-						params[propReference] = append(params[propReference], v...)
+	if err == nil {
+		// JSON schema
+
+		action = strings.Split(req.Header.Get("X-Amz-Target"), ".")[1] // TODO: error handle
+		panic(0)
+
+		// TODO: convert bodyJSON to params
+	} else {
+		// URL param schema
+		vals, err := url.ParseQuery(string(body))
+		if err != nil {
+			return
+		}
+
+		if len(vals["Action"]) != 1 || len(vals["Version"]) != 1 {
+			return
+		}
+		action = vals["Action"][0]
+
+		if serviceDef.Operations[action].Input.Type == "structure" {
+			for k, v := range vals {
+				if k != "Action" && k != "Version" {
+					normalizedK := regexp.MustCompile(`\.member\.[0-9]+`).ReplaceAllString(k, "[]")
+					normalizedK = regexp.MustCompile(`\.[0-9]+`).ReplaceAllString(normalizedK, "[]")
+
+					/*
+						propReference := findPropReference(serviceDef.Operations[action].Input, normalizedK, "", "")
+						if propReference != "" {
+							if len(params[propReference]) > 0 {
+								params[propReference] = append(params[propReference], v...)
+							} else {
+								params[propReference] = v
+							}
+						}
+					*/
+
+					if len(params[normalizedK]) > 0 {
+						params[normalizedK] = append(params[normalizedK], v...)
 					} else {
-						params[propReference] = v
+						params[normalizedK] = v
 					}
-				}
 
-				//fmt.Printf("k=%v,v=%v\n", k, v)
+					//fmt.Printf("k=%v,v=%v\n", k, v)
+				}
 			}
 		}
 	}

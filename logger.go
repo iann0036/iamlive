@@ -186,6 +186,11 @@ func writePolicyToTerminal() {
 type iamMapMethod struct {
 	Action           string                      `json:"action"`
 	ResourceMappings map[string]iamMapResMapItem `json:"resource_mappings"`
+	ArnOverride      iamMapArnOverride           `json:"arn_override"`
+}
+
+type iamMapArnOverride struct {
+	Template string `json:"template"`
 }
 
 type iamMapResMapItem struct {
@@ -407,6 +412,14 @@ func mapCallToPrivilegeArray(service iamDefService, call Entry) []iamDefPrivileg
 	return []iamDefPrivilege{}
 }
 
+func specialSubstitution(template string, call Entry) []string {
+	if !strings.Contains(template, "%%") {
+		return []string{template}
+	}
+
+	return []string{}
+}
+
 func subSARARN(arn string, call Entry, resourceType string) []string {
 	var iamMap iamMapBase
 
@@ -415,19 +428,29 @@ func subSARARN(arn string, call Entry, resourceType string) []string {
 		panic(err)
 	}
 
+	arns := []string{} // matrix
+
+	// resource_mappings template & arn_override
 	for sdkCall, mappingInfo := range iamMap.SDKMethodIAMMappings {
 		if fmt.Sprintf("%s.%s", strings.ToLower(call.Service), strings.ToLower(call.Method)) == strings.ToLower(sdkCall) {
 			for _, item := range mappingInfo {
+				if item.ArnOverride.Template != "" {
+					specialSubstitutedArns := specialSubstitution(item.ArnOverride.Template, call)
+					arns = append(arns, specialSubstitutedArns...)
+					if len(specialSubstitutedArns) > 0 {
+						continue
+					}
+				}
 				for resMappingVar, resMapping := range item.ResourceMappings {
-					if !strings.Contains(resMapping.Template, "%") { // TODO: Handle specials
-						arn = regexp.MustCompile(`\$\{`+resMappingVar+`\}`).ReplaceAllString(arn, strings.ReplaceAll(resMapping.Template, `$`, `$$`))
+					if !strings.Contains(resMapping.Template, "%%") { // TODO: Handle specials
+						arn = regexp.MustCompile(`\$\{`+resMappingVar+`\}`).ReplaceAllString(arn, strings.ReplaceAll(resMapping.Template, `$`, `$$`)) // escape $ for regexp
 					}
 				}
 			}
 		}
 	}
 
-	arns := []string{arn} // matrix
+	// parameter substitution
 	for paramVarName, params := range call.Parameters {
 		newArns := []string{}
 		for _, param := range params {
@@ -453,7 +476,7 @@ func subSARARN(arn string, call Entry, resourceType string) []string {
 		arn = regexp.MustCompile(`\$\{Partition\}`).ReplaceAllString(arn, partition)
 		arn = regexp.MustCompile(`\$\{Region\}`).ReplaceAllString(arn, call.Region)
 		arn = regexp.MustCompile(`\$\{Account\}`).ReplaceAllString(arn, account)
-		arn = regexp.MustCompile(`\$\{.+?\}`).ReplaceAllString(arn, "*")
+		arn = regexp.MustCompile(`\$\{.+?\}`).ReplaceAllString(arn, "*") // TODO: preserve ${aws:*} variables
 
 		retArns = append(retArns, arn)
 	}
