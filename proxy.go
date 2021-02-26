@@ -98,6 +98,40 @@ func readServiceFiles() {
 	}
 }
 
+func flatten(top bool, flatMap map[string][]string, nested interface{}, prefix string) error {
+	assign := func(newKey string, v interface{}) error {
+		switch v.(type) {
+		case map[string]interface{}, []interface{}:
+			if err := flatten(false, flatMap, v, newKey); err != nil {
+				return err
+			}
+		default:
+			flatMap[newKey] = append(flatMap[newKey], fmt.Sprintf("%v", v))
+		}
+
+		return nil
+	}
+
+	switch nested.(type) {
+	case map[string]interface{}:
+		for k, v := range nested.(map[string]interface{}) {
+			if top {
+				assign(k, v)
+			} else {
+				assign(prefix+"."+k, v)
+			}
+		}
+	case []interface{}:
+		for _, v := range nested.([]interface{}) {
+			assign(prefix+"[]", v)
+		}
+	default:
+		return fmt.Errorf("invalid object type")
+	}
+
+	return nil
+}
+
 func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	host := req.Host
 	//uri := req.RequestURI
@@ -118,11 +152,9 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 
 	if err == nil {
 		// JSON schema
-
 		action = strings.Split(req.Header.Get("X-Amz-Target"), ".")[1] // TODO: error handle
-		panic(0)
 
-		// TODO: convert bodyJSON to params
+		flatten(true, params, bodyJSON, "")
 	} else {
 		// URL param schema
 		vals, err := url.ParseQuery(string(body))
@@ -152,7 +184,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 						}
 					*/
 
-					if len(params[normalizedK]) > 0 {
+					if len(params[normalizedK]) > 0 { // TODO: Check logic here
 						params[normalizedK] = append(params[normalizedK], v...)
 					} else {
 						params[normalizedK] = v

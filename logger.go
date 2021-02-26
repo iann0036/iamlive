@@ -60,7 +60,6 @@ func getPolicyDocument() []byte {
 			}
 
 			newActions := getDependantActions(getActions(entry.Service, entry.Method))
-
 			for _, newAction := range newActions {
 				foundAction := false
 
@@ -87,22 +86,45 @@ func getPolicyDocument() []byte {
 		})
 	} else if *modeFlag == "proxy" {
 		for _, entry := range callLog {
+			var actions []string
+
 			if *failsonlyFlag && (entry.FinalHTTPStatusCode >= 200 && entry.FinalHTTPStatusCode <= 299) {
 				continue
 			}
 
-			actions := getDependantActions(getActions(entry.Service, entry.Method))
-			if *sortAlphabeticalFlag {
-				sort.Strings(actions)
+			newActions := getDependantActions(getActions(entry.Service, entry.Method))
+			for _, newAction := range newActions {
+				foundAction := false
+
+				for _, action := range actions {
+					if action == newAction {
+						foundAction = true
+						break
+					}
+				}
+				if !foundAction {
+					actions = append(actions, newAction)
+				}
 			}
 
-			resources := getResourcesForCall(entry)
+			policy.Statement = getStatementsForProxyCall(entry)
 
-			policy.Statement = append(policy.Statement, Statement{
-				Effect:   "Allow",
-				Resource: resources,
-				Action:   actions,
-			})
+		ActionLoop: // add any actions shown in SAR dependant_actions not added by map
+			for _, action := range actions {
+				for _, statement := range policy.Statement {
+					for _, statementAction := range statement.Action {
+						if statementAction == action {
+							continue ActionLoop
+						}
+					}
+				}
+
+				policy.Statement = append(policy.Statement, Statement{
+					Effect:   "Allow",
+					Resource: []string{"*"},
+					Action:   []string{action},
+				})
+			}
 		}
 
 		policy = aggregatePolicy(policy)
@@ -341,7 +363,7 @@ type resourceType struct {
 	ResourceType string `json:"resourceType"`
 }
 
-func getResourcesForCall(call Entry) (resources []string) {
+func getStatementsForProxyCall(call Entry) (statements []Statement) {
 	var iamDef []iamDefService
 
 	err := json.Unmarshal(bIAMSAR, &iamDef)
@@ -349,11 +371,15 @@ func getResourcesForCall(call Entry) (resources []string) {
 		panic(err)
 	}
 
+	resources := []string{}
+
 	for _, service := range iamDef {
 		if service.Prefix == strings.ToLower(call.Service) {
 			privilegearray := mapCallToPrivilegeArray(service, call)
 
 			for _, privilege := range privilegearray {
+				action := fmt.Sprintf("%s:%s", service.Prefix, privilege.Privilege)
+
 				for _, resourceType := range privilege.ResourceTypes {
 					for _, resource := range service.Resources {
 						if resource.Resource == strings.Replace(resourceType.ResourceType, "*", "", -1) && resource.Resource != "" {
@@ -361,6 +387,11 @@ func getResourcesForCall(call Entry) (resources []string) {
 							for _, subbedArn := range subbedArns {
 								if resourceType.ResourceType[len(resourceType.ResourceType)-1:] == "*" || subbedArn[len(subbedArn)-1:] != "*" {
 									resources = append(resources, subbedArn)
+									statements = append(statements, Statement{
+										Effect:   "Allow",
+										Resource: []string{subbedArn},
+										Action:   []string{action},
+									})
 								}
 							}
 						}
@@ -370,11 +401,17 @@ func getResourcesForCall(call Entry) (resources []string) {
 		}
 	}
 
-	if len(resources) == 0 {
-		resources = []string{"*"}
+	if len(statements) == 0 {
+		statements = []Statement{
+			{
+				Effect:   "Allow",
+				Resource: []string{"*"},
+				Action:   []string{"*"},
+			},
+		}
 	}
 
-	return resources
+	return statements
 }
 
 func mapCallToPrivilegeArray(service iamDefService, call Entry) []iamDefPrivilege {
