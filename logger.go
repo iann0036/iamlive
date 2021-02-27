@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"net/url"
 	"reflect"
 	"regexp"
 	"sort"
@@ -109,7 +110,7 @@ func getPolicyDocument() []byte {
 
 			policy.Statement = getStatementsForProxyCall(entry)
 
-		ActionLoop: // add any actions shown in SAR dependant_actions not added by map
+		ActionLoop: // add any actions shown in SAR dependant_actions not added by map (is this even possible?)
 			for _, action := range actions {
 				for _, statement := range policy.Statement {
 					for _, statementAction := range statement.Action {
@@ -363,61 +364,93 @@ type resourceType struct {
 	ResourceType string `json:"resourceType"`
 }
 
-func getStatementsForProxyCall(call Entry) (statements []Statement) {
-	var iamDef []iamDefService
+func resolveSpecials(arn string, call Entry) []string {
+	startIndex := strings.Index(arn, "%%")
+	endIndex := strings.LastIndex(arn, "%%")
 
-	err := json.Unmarshal(bIAMSAR, &iamDef)
-	if err != nil {
-		panic(err)
-	}
+	if startIndex > -1 && endIndex != startIndex {
+		parts := strings.Split(arn[startIndex+2:endIndex-1], "%")
 
-	resources := []string{}
+		if len(parts) < 2 {
+			return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+		}
 
-	for _, service := range iamDef {
-		if service.Prefix == strings.ToLower(call.Service) {
-			privilegearray := mapCallToPrivilegeArray(service, call)
-
-			for _, privilege := range privilegearray {
-				action := fmt.Sprintf("%s:%s", service.Prefix, privilege.Privilege)
-
-				for _, resourceType := range privilege.ResourceTypes {
-					for _, resource := range service.Resources {
-						if resource.Resource == strings.Replace(resourceType.ResourceType, "*", "", -1) && resource.Resource != "" {
-							subbedArns := subSARARN(resource.Arn, call, strings.Replace(resourceType.ResourceType, "*", "", -1))
-							for _, subbedArn := range subbedArns {
-								if resourceType.ResourceType[len(resourceType.ResourceType)-1:] == "*" || subbedArn[len(subbedArn)-1:] != "*" {
-									resources = append(resources, subbedArn)
-									statements = append(statements, Statement{
-										Effect:   "Allow",
-										Resource: []string{subbedArn},
-										Action:   []string{action},
-									})
-								}
-							}
-						}
-					}
-				}
+		switch parts[0] {
+		case "iftruthy":
+			if len(parts) != 4 {
+				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 			}
+
+			arns := subARNParameters(parts[1], call, true)
+			if len(arns) < 1 {
+				return []string{arn[0:startIndex] + parts[3] + arn[endIndex+2:]}
+			}
+			if arns[0] == "" {
+				return []string{arn[0:startIndex] + parts[3] + arn[endIndex+2:]}
+			}
+
+			return []string{arn[0:startIndex] + parts[2] + arn[endIndex+2:]}
+		case "urlencode":
+			if len(parts) != 2 {
+				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+			}
+
+			arns := subARNParameters(parts[1], call, true)
+			if len(arns) < 1 {
+				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+			}
+			if arns[0] == "" {
+				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+			}
+
+			return []string{arn[0:startIndex] + url.QueryEscape(arns[0]) + arn[endIndex+2:]}
+		case "many":
+			manyParts := []string{}
+
+			for _, part := range parts[1:] {
+				arns := subARNParameters(part, call, true)
+				if len(arns) < 1 {
+					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+				}
+				if arns[0] == "" {
+					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+				}
+
+				manyParts = append(manyParts, arns[0])
+			}
+
+			return manyParts
+		case "regex":
+			if len(parts) != 3 {
+				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+			}
+
+			arns := subARNParameters(parts[1], call, true)
+			if len(arns) < 1 {
+				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+			}
+			if arns[0] == "" {
+				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+			}
+
+			r := regexp.MustCompile(parts[2]) // TODO: $ escape for regex?
+			groups := r.FindStringSubmatch(arns[0])
+
+			if len(groups) < 2 {
+				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+			}
+
+			return []string{arn[0:startIndex] + groups[1] + arn[endIndex+2:]}
+		default: // unknown function
+			return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 		}
 	}
 
-	if len(statements) == 0 {
-		statements = []Statement{
-			{
-				Effect:   "Allow",
-				Resource: []string{"*"},
-				Action:   []string{"*"},
-			},
-		}
-	}
-
-	return statements
+	return []string{arn}
 }
 
-func mapCallToPrivilegeArray(service iamDefService, call Entry) []iamDefPrivilege {
-	lowerPriv := fmt.Sprintf("%s:%s", strings.ToLower(call.Service), strings.ToLower(call.Method))
-
-	var privileges []iamDefPrivilege
+func getStatementsForProxyCall(call Entry) (statements []Statement) {
+	lowerPriv := strings.ToLower(fmt.Sprintf("%s.%s", call.Service, call.Method))
 
 	var iamMap iamMapBase
 	err := json.Unmarshal(bIAMMap, &iamMap)
@@ -425,67 +458,83 @@ func mapCallToPrivilegeArray(service iamDefService, call Entry) []iamDefPrivileg
 		log.Fatal(err)
 	}
 
-	for iamMapMethodName, iamMapMethods := range iamMap.SDKMethodIAMMappings {
-		if strings.ToLower(iamMapMethodName) == lowerPriv {
-			for _, mappedPriv := range iamMapMethods {
-				for _, privilege := range service.Privileges {
-					if fmt.Sprintf("%s:%s", strings.ToLower(mapServicePrefix(service.Prefix, iamMap)), strings.ToLower(privilege.Privilege)) == strings.ToLower(mappedPriv.Action) {
-						privileges = append(privileges, privilege)
-						break
-					}
-				}
-			}
-		}
-	}
-
-	if len(privileges) == 0 {
-		for _, servicePrivilege := range service.Privileges {
-			if strings.ToLower(call.Method) == strings.ToLower(servicePrivilege.Privilege) {
-				return []iamDefPrivilege{servicePrivilege}
-			}
-		}
-	}
-
-	return []iamDefPrivilege{}
-}
-
-func specialSubstitution(template string, call Entry) []string {
-	if !strings.Contains(template, "%%") {
-		return []string{template}
-	}
-
-	return []string{}
-}
-
-func subSARARN(arn string, call Entry, resourceType string) []string {
-	var iamMap iamMapBase
-
-	err := json.Unmarshal(bIAMMap, &iamMap)
+	var iamDef []iamDefService
+	err = json.Unmarshal(bIAMSAR, &iamDef)
 	if err != nil {
 		panic(err)
 	}
 
-	arns := []string{} // matrix
+	for iamMapMethodName, iamMapMethods := range iamMap.SDKMethodIAMMappings {
+		if strings.ToLower(iamMapMethodName) == lowerPriv {
+			for _, mappedPriv := range iamMapMethods {
+				resources := []string{}
 
-	// resource_mappings template & arn_override
-	for sdkCall, mappingInfo := range iamMap.SDKMethodIAMMappings {
-		if fmt.Sprintf("%s.%s", strings.ToLower(call.Service), strings.ToLower(call.Method)) == strings.ToLower(sdkCall) {
-			for _, item := range mappingInfo {
-				if item.ArnOverride.Template != "" {
-					specialSubstitutedArns := specialSubstitution(item.ArnOverride.Template, call)
-					arns = append(arns, specialSubstitutedArns...)
-					if len(specialSubstitutedArns) > 0 {
-						continue
+				// arn_override
+				if mappedPriv.ArnOverride.Template != "" {
+					arns := resolveSpecials(mappedPriv.ArnOverride.Template, call)
+
+					for _, arn := range arns {
+						resources = append(resources, subARNParameters(arn, call, false)...) // sub full parameters and add to resources
 					}
 				}
-				for resMappingVar, resMapping := range item.ResourceMappings {
-					if !strings.Contains(resMapping.Template, "%%") { // TODO: Handle specials
-						arn = regexp.MustCompile(`\$\{`+resMappingVar+`\}`).ReplaceAllString(arn, strings.ReplaceAll(resMapping.Template, `$`, `$$`)) // escape $ for regexp
+
+				// resource_mappings
+				if len(resources) == 0 {
+					for _, service := range iamDef { // in the SAR
+						if service.Prefix == strings.ToLower(call.Service) { // find the service for the call TODO: check mappings for this
+							for _, servicePrivilege := range service.Privileges {
+								if strings.ToLower(call.Method) == strings.ToLower(servicePrivilege.Privilege) { // find the method for the call
+									for _, resourceType := range servicePrivilege.ResourceTypes { // get all resource types for the privilege
+										for _, resource := range service.Resources { // go through the service resources
+											if resource.Resource == strings.Replace(resourceType.ResourceType, "*", "", -1) && resource.Resource != "" { // match the resource type (doesn't matter if mandatory)
+												arns := []string{resource.Arn} // the base ARN template, matrix init
+												newArns := []string{}
+
+												// substitute the resource_mappings
+												for resMappingVar, resMapping := range mappedPriv.ResourceMappings { // for each mapping
+													for _, arn := range arns { // for each of the arn list
+														newArns = []string{}
+														resMappingTemplates := resolveSpecials(resMapping.Template, call) // get a list of resolved template strings
+
+														for _, resMappingTemplate := range resMappingTemplates {
+															variableReplaced := regexp.MustCompile(`\$\{`+resMappingVar+`\}`).ReplaceAllString(arn, strings.ReplaceAll(resMappingTemplate, `$`, `$$`)) // escape $ for regexp
+															newArns = append(newArns, variableReplaced)
+														}
+													}
+													arns = newArns
+												}
+
+												for _, arn := range arns {
+													resources = append(resources, subARNParameters(arn, call, false)...) // sub full parameters and add to resources
+												}
+											}
+										}
+									}
+								}
+							}
+						}
 					}
 				}
+
+				// default (last ditch)
+				if len(resources) == 0 {
+					resources = []string{"*"}
+				}
+
+				statements = append(statements, Statement{
+					Effect:   "Allow",
+					Resource: resources,
+					Action:   []string{mappedPriv.Action},
+				})
 			}
 		}
 	}
+
+	return statements
+}
+
+func subARNParameters(arn string, call Entry, specialsOnly bool) []string {
+	arns := []string{arn} // matrix
 
 	// parameter substitution
 	for paramVarName, params := range call.Parameters {
@@ -498,6 +547,17 @@ func subSARARN(arn string, call Entry, resourceType string) []string {
 			}
 		}
 		arns = newArns
+	}
+
+	if specialsOnly {
+		if len(arns) != 1 {
+			return []string{}
+		}
+		matched, _ := regexp.Match(`\$\{.+?\}`, []byte(arns[0]))
+		if matched {
+			return []string{}
+		}
+		return arns
 	}
 
 	retArns := make([]string, 0)
