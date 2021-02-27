@@ -381,11 +381,8 @@ func resolveSpecials(arn string, call Entry) []string {
 				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 			}
 
-			arns := subARNParameters(parts[1], call, true)
-			if len(arns) < 1 {
-				return []string{arn[0:startIndex] + parts[3] + arn[endIndex+2:]}
-			}
-			if arns[0] == "" {
+			fullyResolved, arns := subARNParameters(parts[1], call, true)
+			if len(arns) < 1 || arns[0] == "" || !fullyResolved {
 				return []string{arn[0:startIndex] + parts[3] + arn[endIndex+2:]}
 			}
 
@@ -395,11 +392,8 @@ func resolveSpecials(arn string, call Entry) []string {
 				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 			}
 
-			arns := subARNParameters(parts[1], call, true)
-			if len(arns) < 1 {
-				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
-			}
-			if arns[0] == "" {
+			fullyResolved, arns := subARNParameters(parts[1], call, true)
+			if len(arns) < 1 || arns[0] == "" || !fullyResolved {
 				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 			}
 
@@ -408,11 +402,8 @@ func resolveSpecials(arn string, call Entry) []string {
 			manyParts := []string{}
 
 			for _, part := range parts[1:] {
-				arns := subARNParameters(part, call, true)
-				if len(arns) < 1 {
-					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
-				}
-				if arns[0] == "" {
+				fullyResolved, arns := subARNParameters(part, call, true)
+				if len(arns) < 1 || arns[0] == "" || !fullyResolved {
 					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 				}
 
@@ -425,11 +416,8 @@ func resolveSpecials(arn string, call Entry) []string {
 				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 			}
 
-			arns := subARNParameters(parts[1], call, true)
-			if len(arns) < 1 {
-				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
-			}
-			if arns[0] == "" {
+			fullyResolved, arns := subARNParameters(parts[1], call, true)
+			if len(arns) < 1 || arns[0] == "" || !fullyResolved {
 				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 			}
 
@@ -466,7 +454,7 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 
 	for iamMapMethodName, iamMapMethods := range iamMap.SDKMethodIAMMappings {
 		if strings.ToLower(iamMapMethodName) == lowerPriv {
-			for _, mappedPriv := range iamMapMethods {
+			for mappedPrivIndex, mappedPriv := range iamMapMethods {
 				resources := []string{}
 
 				// arn_override
@@ -474,7 +462,12 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 					arns := resolveSpecials(mappedPriv.ArnOverride.Template, call)
 
 					for _, arn := range arns {
-						resources = append(resources, subARNParameters(arn, call, false)...) // sub full parameters and add to resources
+						fullyResolved, subbedArns := subARNParameters(arn, call, false)
+						for _, subbedArn := range subbedArns {
+							if mappedPrivIndex == 0 || fullyResolved {
+								resources = append(resources, subbedArn) // sub full parameters and add to resources
+							}
+						}
 					}
 				}
 
@@ -505,7 +498,10 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 												}
 
 												for _, arn := range arns {
-													resources = append(resources, subARNParameters(arn, call, false)...) // sub full parameters and add to resources
+													fullyResolved, subbedArns := subARNParameters(arn, call, false)
+													if strings.HasSuffix(resourceType.ResourceType, "*") || fullyResolved { // check if mandatory or fully resolved
+														resources = append(resources, subbedArns...) // sub full parameters and add to resources
+													}
 												}
 											}
 										}
@@ -533,52 +529,35 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 	return statements
 }
 
-func subARNParameters(arn string, call Entry, specialsOnly bool) []string {
-	arns := []string{arn} // matrix
-
+func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string) {
 	// parameter substitution
 	for paramVarName, params := range call.Parameters {
-		newArns := []string{}
 		for _, param := range params {
-			for i := range arns {
-				arn = regexp.MustCompile(`\$\{`+paramVarName+`\}`).ReplaceAllString(arns[i], param) // might have dupes but resolved out later
-
-				newArns = append(newArns, arn)
-			}
+			arn = regexp.MustCompile(`\$\{`+paramVarName+`\}`).ReplaceAllString(arn, param) // might have dupes but resolved out later
 		}
-		arns = newArns
 	}
 
 	if specialsOnly {
-		if len(arns) != 1 {
-			return []string{}
-		}
-		matched, _ := regexp.Match(`\$\{.+?\}`, []byte(arns[0]))
-		if matched {
-			return []string{}
-		}
-		return arns
+		matched, _ := regexp.Match(`\$\{.+?\}`, []byte(arn))
+
+		return !matched, []string{arn}
 	}
 
-	retArns := make([]string, 0)
-	for _, arn := range arns {
-		account := "123456789012"
-		partition := "aws"
-		if call.Region[0:3] == "cn-" {
-			partition = "aws-cn"
-		}
-		if call.Region[0:7] == "us-gov-" {
-			partition = "aws-us-gov"
-		}
-		arn = regexp.MustCompile(`\$\{Partition\}`).ReplaceAllString(arn, partition)
-		arn = regexp.MustCompile(`\$\{Region\}`).ReplaceAllString(arn, call.Region)
-		arn = regexp.MustCompile(`\$\{Account\}`).ReplaceAllString(arn, account)
-		arn = regexp.MustCompile(`\$\{.+?\}`).ReplaceAllString(arn, "*") // TODO: preserve ${aws:*} variables
-
-		retArns = append(retArns, arn)
+	account := "123456789012"
+	partition := "aws"
+	if call.Region[0:3] == "cn-" {
+		partition = "aws-cn"
 	}
+	if call.Region[0:7] == "us-gov-" {
+		partition = "aws-us-gov"
+	}
+	arn = regexp.MustCompile(`\$\{Partition\}`).ReplaceAllString(arn, partition)
+	arn = regexp.MustCompile(`\$\{Region\}`).ReplaceAllString(arn, call.Region)
+	arn = regexp.MustCompile(`\$\{Account\}`).ReplaceAllString(arn, account)
+	unresolvedArn := arn
+	arn = regexp.MustCompile(`\$\{.+?\}`).ReplaceAllString(arn, "*") // TODO: preserve ${aws:*} variables
 
-	return retArns
+	return (unresolvedArn == arn), []string{arn}
 }
 
 func mapServicePrefix(prefix string, mappings iamMapBase) string {
