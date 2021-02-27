@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/url"
+	"os"
 	"reflect"
 	"regexp"
 	"sort"
@@ -87,45 +88,49 @@ func getPolicyDocument() []byte {
 		})
 	} else if *modeFlag == "proxy" {
 		for _, entry := range callLog {
-			var actions []string
+			//var actions []string
 
 			if *failsonlyFlag && (entry.FinalHTTPStatusCode >= 200 && entry.FinalHTTPStatusCode <= 299) {
 				continue
 			}
 
-			newActions := getDependantActions(getActions(entry.Service, entry.Method))
-			for _, newAction := range newActions {
-				foundAction := false
+			/*
+				newActions := getDependantActions(getActions(entry.Service, entry.Method))
+				for _, newAction := range newActions {
+					foundAction := false
 
-				for _, action := range actions {
-					if action == newAction {
-						foundAction = true
-						break
-					}
-				}
-				if !foundAction {
-					actions = append(actions, newAction)
-				}
-			}
-
-			policy.Statement = getStatementsForProxyCall(entry)
-
-		ActionLoop: // add any actions shown in SAR dependant_actions not added by map (is this even possible?)
-			for _, action := range actions {
-				for _, statement := range policy.Statement {
-					for _, statementAction := range statement.Action {
-						if statementAction == action {
-							continue ActionLoop
+					for _, action := range actions {
+						if action == newAction {
+							foundAction = true
+							break
 						}
 					}
+					if !foundAction {
+						actions = append(actions, newAction)
+					}
 				}
+			*/
 
-				policy.Statement = append(policy.Statement, Statement{
-					Effect:   "Allow",
-					Resource: []string{"*"},
-					Action:   []string{action},
-				})
-			}
+			policy.Statement = append(policy.Statement, getStatementsForProxyCall(entry)...)
+
+			/*
+				ActionLoop: // add any actions shown in SAR dependant_actions not added by map (is this even possible?)
+					for _, action := range actions {
+						for _, statement := range policy.Statement {
+							for _, statementAction := range statement.Action {
+								if statementAction == action {
+									continue ActionLoop
+								}
+							}
+						}
+
+						policy.Statement = append(policy.Statement, Statement{
+							Effect:   "Allow",
+							Resource: []string{"*"},
+							Action:   []string{action},
+						})
+					}
+			*/
 		}
 
 		policy = aggregatePolicy(policy)
@@ -364,7 +369,7 @@ type resourceType struct {
 	ResourceType string `json:"resourceType"`
 }
 
-func resolveSpecials(arn string, call Entry) []string {
+func resolveSpecials(arn string, call Entry, mandatory bool) []string {
 	startIndex := strings.Index(arn, "%%")
 	endIndex := strings.LastIndex(arn, "%%")
 
@@ -377,15 +382,26 @@ func resolveSpecials(arn string, call Entry) []string {
 
 		switch parts[0] {
 		case "iftruthy":
+			if len(parts) == 3 { // weird bug for empty string false values
+				parts = append(parts, "")
+			}
+
 			if len(parts) != 4 {
 				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 			}
 
 			fullyResolved, arns := subARNParameters(parts[1], call, true)
+
 			if len(arns) < 1 || arns[0] == "" || !fullyResolved {
+				if parts[3] == "" && mandatory {
+					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+				}
 				return []string{arn[0:startIndex] + parts[3] + arn[endIndex+2:]}
 			}
 
+			if parts[2] == "" && mandatory {
+				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+			}
 			return []string{arn[0:startIndex] + parts[2] + arn[endIndex+2:]}
 		case "urlencode":
 			if len(parts) != 2 {
@@ -394,7 +410,10 @@ func resolveSpecials(arn string, call Entry) []string {
 
 			fullyResolved, arns := subARNParameters(parts[1], call, true)
 			if len(arns) < 1 || arns[0] == "" || !fullyResolved {
-				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+				if mandatory {
+					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+				}
+				return []string{}
 			}
 
 			return []string{arn[0:startIndex] + url.QueryEscape(arns[0]) + arn[endIndex+2:]}
@@ -404,7 +423,10 @@ func resolveSpecials(arn string, call Entry) []string {
 			for _, part := range parts[1:] {
 				fullyResolved, arns := subARNParameters(part, call, true)
 				if len(arns) < 1 || arns[0] == "" || !fullyResolved {
-					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+					if mandatory {
+						return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+					}
+					return []string{}
 				}
 
 				manyParts = append(manyParts, arns[0])
@@ -418,14 +440,20 @@ func resolveSpecials(arn string, call Entry) []string {
 
 			fullyResolved, arns := subARNParameters(parts[1], call, true)
 			if len(arns) < 1 || arns[0] == "" || !fullyResolved {
-				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+				if mandatory {
+					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+				}
+				return []string{}
 			}
 
 			r := regexp.MustCompile(parts[2]) // TODO: $ escape for regex?
 			groups := r.FindStringSubmatch(arns[0])
 
-			if len(groups) < 2 {
-				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+			if len(groups) < 2 || groups[1] == "" {
+				if mandatory {
+					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+				}
+				return []string{}
 			}
 
 			return []string{arn[0:startIndex] + groups[1] + arn[endIndex+2:]}
@@ -459,15 +487,21 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 
 				// arn_override
 				if mappedPriv.ArnOverride.Template != "" {
-					arns := resolveSpecials(mappedPriv.ArnOverride.Template, call)
+					arns := resolveSpecials(mappedPriv.ArnOverride.Template, call, false)
 
-					for _, arn := range arns {
-						fullyResolved, subbedArns := subARNParameters(arn, call, false)
-						for _, subbedArn := range subbedArns {
-							if mappedPrivIndex == 0 || fullyResolved {
-								resources = append(resources, subbedArn) // sub full parameters and add to resources
+					if len(arns) == 0 || len(arns) > 1 || arns[0] != "" { // skip if empty after resolving specials
+						for _, arn := range arns {
+							fullyResolved, subbedArns := subARNParameters(arn, call, false)
+							for _, subbedArn := range subbedArns {
+								if mappedPrivIndex == 0 || fullyResolved {
+									resources = append(resources, subbedArn) // sub full parameters and add to resources
+								}
 							}
 						}
+					}
+
+					if len(resources) == 0 && len(mappedPriv.ResourceMappings) == 0 {
+						continue
 					}
 				}
 
@@ -482,12 +516,18 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 											if resource.Resource == strings.Replace(resourceType.ResourceType, "*", "", -1) && resource.Resource != "" { // match the resource type (doesn't matter if mandatory)
 												arns := []string{resource.Arn} // the base ARN template, matrix init
 												newArns := []string{}
+												mandatory := strings.HasSuffix(resourceType.ResourceType, "*")
 
 												// substitute the resource_mappings
 												for resMappingVar, resMapping := range mappedPriv.ResourceMappings { // for each mapping
+													resMappingTemplates := resolveSpecials(resMapping.Template, call, mandatory) // get a list of resolved template strings
+
+													if len(resMappingTemplates) == 1 && resMappingTemplates[0] == "" {
+														continue
+													}
+
 													for _, arn := range arns { // for each of the arn list
 														newArns = []string{}
-														resMappingTemplates := resolveSpecials(resMapping.Template, call) // get a list of resolved template strings
 
 														for _, resMappingTemplate := range resMappingTemplates {
 															variableReplaced := regexp.MustCompile(`\$\{`+resMappingVar+`\}`).ReplaceAllString(arn, strings.ReplaceAll(resMappingTemplate, `$`, `$$`)) // escape $ for regexp
@@ -497,9 +537,13 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 													arns = newArns
 												}
 
+												if len(arns) == 0 && mandatory {
+													arns = []string{"*"}
+												}
+
 												for _, arn := range arns {
 													fullyResolved, subbedArns := subARNParameters(arn, call, false)
-													if strings.HasSuffix(resourceType.ResourceType, "*") || fullyResolved { // check if mandatory or fully resolved
+													if mandatory || fullyResolved { // check if mandatory or fully resolved
 														resources = append(resources, subbedArns...) // sub full parameters and add to resources
 													}
 												}
@@ -509,6 +553,10 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 								}
 							}
 						}
+					}
+
+					if len(resources) == 0 {
+						continue
 					}
 				}
 
@@ -526,6 +574,8 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 		}
 	}
 
+	os.Exit(0)
+
 	return statements
 }
 
@@ -533,7 +583,7 @@ func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string
 	// parameter substitution
 	for paramVarName, params := range call.Parameters {
 		for _, param := range params {
-			arn = regexp.MustCompile(`\$\{`+paramVarName+`\}`).ReplaceAllString(arn, param) // might have dupes but resolved out later
+			arn = regexp.MustCompile(`\$\{`+strings.ReplaceAll(strings.ReplaceAll(paramVarName, "[", "\\["), "]", "\\]")+`\}`).ReplaceAllString(arn, param) // might have dupes but resolved out later
 		}
 	}
 

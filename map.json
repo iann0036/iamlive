@@ -6173,7 +6173,7 @@
                 "action": "appstream:DescribeFleets",
                 "resource_mappings": {
                     "FleetName": {
-                        "template": "${Names}[]"
+                        "template": "${Names[]}"
                     }
                 }
             }
@@ -6183,7 +6183,7 @@
                 "action": "appstream:DescribeImageBuilders",
                 "resource_mappings": {
                     "ImageBuilderName": {
-                        "template": "${Names}[]"
+                        "template": "${Names[]}"
                     }
                 }
             }
@@ -6203,7 +6203,7 @@
                 "action": "appstream:DescribeImages",
                 "resource_mappings": {
                     "ImageName": {
-                        "template": "${Names}[]"
+                        "template": "${Names[]}"
                     }
                 }
             }
@@ -6226,7 +6226,7 @@
                 "action": "appstream:DescribeStacks",
                 "resource_mappings": {
                     "StackName": {
-                        "template": "${Names}[]"
+                        "template": "${Names[]}"
                     }
                 }
             }
@@ -9386,7 +9386,7 @@
                 "action": "cloudsearch:DescribeDomains",
                 "resource_mappings": {
                     "DomainName": {
-                        "template": "${DomainNames}[]"
+                        "template": "${DomainNames[]}"
                     }
                 }
             }
@@ -9589,7 +9589,7 @@
                 "action": "cloudtrail:ListTags",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "trail": "${ResourceIdList}[]"
+                    "trail": "${ResourceIdList[]}"
                 }
             }
         ],
@@ -9675,7 +9675,7 @@
                 "action": "cloudwatch:DeleteAlarms",
                 "resource_mappings": {
                     "AlarmName": {
-                        "template": "${AlarmNames}[]"
+                        "template": "${AlarmNames[]}"
                     }
                 }
             }
@@ -9691,7 +9691,7 @@
                 "action": "cloudwatch:DeleteDashboards",
                 "resource_mappings": {
                     "DashboardName": {
-                        "template": "${DashboardNames}[]"
+                        "template": "${DashboardNames[]}"
                     }
                 }
             }
@@ -9701,7 +9701,7 @@
                 "action": "cloudwatch:DeleteInsightRules",
                 "resource_mappings": {
                     "InsightRuleName": {
-                        "template": "${RuleNames}[]"
+                        "template": "${RuleNames[]}"
                     }
                 }
             }
@@ -9721,7 +9721,7 @@
                 "action": "cloudwatch:DescribeAlarms",
                 "resource_mappings": {
                     "AlarmName": {
-                        "template": "%%many%${AlarmNames}[]%${AlarmNamePrefix}*%%"
+                        "template": "%%many%${AlarmNames[]}%${AlarmNamePrefix}*%%"
                     }
                 }
             }
@@ -9749,7 +9749,7 @@
                 "action": "cloudwatch:DisableAlarmActions",
                 "resource_mappings": {
                     "AlarmName": {
-                        "template": "${AlarmNames}[]"
+                        "template": "${AlarmNames[]}"
                     }
                 }
             }
@@ -9759,7 +9759,7 @@
                 "action": "cloudwatch:DisableInsightRules",
                 "resource_mappings": {
                     "InsightRuleName": {
-                        "template": "${RuleNames}[]"
+                        "template": "${RuleNames[]}"
                     }
                 }
             }
@@ -9769,7 +9769,7 @@
                 "action": "cloudwatch:EnableAlarmActions",
                 "resource_mappings": {
                     "AlarmName": {
-                        "template": "${AlarmNames}[]"
+                        "template": "${AlarmNames[]}"
                     }
                 }
             }
@@ -9779,7 +9779,7 @@
                 "action": "cloudwatch:EnableInsightRules",
                 "resource_mappings": {
                     "InsightRuleName": {
-                        "template": "${RuleNames}[]"
+                        "template": "${RuleNames[]}"
                     }
                 }
             }
@@ -10623,7 +10623,7 @@
                 "action": "logs:StartQuery",
                 "resource_mappings": {
                     "LogGroupName": {
-                        "template": "%%many%${logGroupName}%${logGroupName}[]%%"
+                        "template": "%%many%${logGroupName}%${logGroupName[]}%%"
                     }
                 }
             }
@@ -10665,7 +10665,7 @@
                 "action": "codebuild:BatchDeleteBuilds",
                 "resource_mappings": {
                     "ProjectName": {
-                        "template": "%%regex%${ids}[]%/\\:(.+)$/g%%"
+                        "template": "%%regex%${ids[]}%/\\:(.+)$/g%%"
                     }
                 }
             }
@@ -10675,7 +10675,7 @@
                 "action": "codebuild:BatchGetBuildBatches",
                 "resource_mappings": {
                     "ProjectName": {
-                        "template": "%%regex%${ids}[]%/\\:(.+)$/g%%"
+                        "template": "%%regex%${ids[]}%/\\:(.+)$/g%%"
                     }
                 }
             }
@@ -10685,7 +10685,7 @@
                 "action": "codebuild:BatchGetBuilds",
                 "resource_mappings": {
                     "ProjectName": {
-                        "template": "%%regex%${ids}[]%/\\:(.+)$/g%%"
+                        "template": "%%regex%${ids[]}%/\\:(.+)$/g%%"
                     }
                 }
             }
@@ -10695,7 +10695,7 @@
                 "action": "codebuild:BatchGetProjects",
                 "resource_mappings": {
                     "ProjectName": {
-                        "template": "${names}[]"
+                        "template": "${names[]}"
                     }
                 }
             }
@@ -10705,7 +10705,7 @@
                 "action": "codebuild:BatchGetReportGroups",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "report-group": "${reportGroupArns}[]"
+                    "report-group": "${reportGroupArns[]}"
                 }
             }
         ],
@@ -10760,7 +10760,7 @@
                 "action": "codebuild:DeleteBuildBatch",
                 "resource_mappings": {
                     "ProjectName": {
-                        "template": "%%regex%${ids}[]%/\\:(.+)$/g%%"
+                        "template": "%%regex%${ids[]}%/\\:(.+)$/g%%"
                     }
                 }
             }
@@ -11081,7 +11081,7 @@
                 "action": "codecommit:BatchAssociateApprovalRuleTemplateWithRepositories",
                 "resource_mappings": {
                     "RepositoryName": {
-                        "template": "${repositoryNames}[]"
+                        "template": "${repositoryNames[]}"
                     }
                 }
             }
@@ -11101,7 +11101,7 @@
                 "action": "codecommit:BatchDisassociateApprovalRuleTemplateFromRepositories",
                 "resource_mappings": {
                     "RepositoryName": {
-                        "template": "${repositoryNames}[]"
+                        "template": "${repositoryNames[]}"
                     }
                 }
             }
@@ -11121,7 +11121,7 @@
                 "action": "codecommit:BatchGetRepositories",
                 "resource_mappings": {
                     "RepositoryName": {
-                        "template": "${repositoryNames}[]"
+                        "template": "${repositoryNames[]}"
                     }
                 }
             }
@@ -11802,7 +11802,7 @@
                 "action": "codedeploy:AddTagsToOnPremisesInstances",
                 "resource_mappings": {
                     "InstanceName": {
-                        "template": "${instanceNames}[]"
+                        "template": "${instanceNames[]}"
                     }
                 }
             }
@@ -11822,7 +11822,7 @@
                 "action": "codedeploy:BatchGetApplications",
                 "resource_mappings": {
                     "ApplicationName": {
-                        "template": "${applicationNames}[]"
+                        "template": "${applicationNames[]}"
                     }
                 }
             }
@@ -11835,7 +11835,7 @@
                         "template": "${applicationName}"
                     },
                     "DeploymentGroupName": {
-                        "template": "${deploymentGroupNames}[]"
+                        "template": "${deploymentGroupNames[]}"
                     }
                 }
             }
@@ -11877,7 +11877,7 @@
                 "action": "codedeploy:BatchGetOnPremisesInstances",
                 "resource_mappings": {
                     "InstanceName": {
-                        "template": "${instanceNames}[]"
+                        "template": "${instanceNames[]}"
                     }
                 }
             }
@@ -12197,7 +12197,7 @@
                 "action": "codedeploy:RemoveTagsFromOnPremisesInstances",
                 "resource_mappings": {
                     "InstanceName": {
-                        "template": "${instanceNames}[]"
+                        "template": "${instanceNames[]}"
                     }
                 }
             }
@@ -16151,7 +16151,7 @@
                 "action": "ds:DescribeSharedDirectories",
                 "resource_mappings": {
                     "DirectoryId": {
-                        "template": "%%many%${OwnerDirectoryId}%${SharedDirectoryIds}[]%%"
+                        "template": "%%many%${OwnerDirectoryId}%${SharedDirectoryIds[]}%%"
                     }
                 }
             }
@@ -17489,7 +17489,7 @@
                 "action": "ec2:AcceptReservedInstancesExchangeQuote",
                 "resource_mappings": {
                     "ReservationId": {
-                        "template": "${ReservedInstanceIds}[]"
+                        "template": "${ReservedInstanceIds[]}"
                     }
                 }
             }
@@ -17499,7 +17499,7 @@
                 "action": "ec2:AcceptTransitGatewayMulticastDomainAssociations",
                 "resource_mappings": {
                     "SubnetId": {
-                        "template": "${SubnetIds}[]"
+                        "template": "${SubnetIds[]}"
                     },
                     "TransitGatewayAttachmentId": {
                         "template": "${TransitGatewayAttachmentId}"
@@ -17535,7 +17535,7 @@
                 "action": "ec2:AcceptVpcEndpointConnections",
                 "resource_mappings": {
                     "VpcEndpointId": {
-                        "template": "${VpcEndpointIds}[]"
+                        "template": "${VpcEndpointIds[]}"
                     },
                     "VpcEndpointServiceId": {
                         "template": "${ServiceId}"
@@ -17585,7 +17585,7 @@
                         "template": "${ClientVpnEndpointId}"
                     },
                     "SecurityGroupId": {
-                        "template": "${SecurityGroupIds}[]"
+                        "template": "${SecurityGroupIds[]}"
                     },
                     "VpcId": {
                         "template": "${VpcId}"
@@ -17718,7 +17718,7 @@
                 "action": "ec2:AssociateTransitGatewayMulticastDomain",
                 "resource_mappings": {
                     "SubnetId": {
-                        "template": "${SubnetIds}[]"
+                        "template": "${SubnetIds[]}"
                     },
                     "TransitGatewayAttachmentId": {
                         "template": "${TransitGatewayAttachmentId}"
@@ -17763,7 +17763,7 @@
                         "template": "${InstanceId}"
                     },
                     "SecurityGroupId": {
-                        "template": "${Groups}[]"
+                        "template": "${Groups[]}"
                     },
                     "VpcId": {
                         "template": "${VpcId}"
@@ -17922,7 +17922,7 @@
                 "action": "ec2:CancelSpotFleetRequests",
                 "resource_mappings": {
                     "SpotFleetRequestId": {
-                        "template": "${SpotFleetRequestIds}[]"
+                        "template": "${SpotFleetRequestIds[]}"
                     }
                 }
             }
@@ -17932,7 +17932,7 @@
                 "action": "ec2:CancelSpotInstanceRequests",
                 "resource_mappings": {
                     "SpotInstanceRequestId": {
-                        "template": "${SpotInstanceRequestIds}[]"
+                        "template": "${SpotInstanceRequestIds[]}"
                     }
                 }
             }
@@ -18000,7 +18000,7 @@
                         "template": "*"
                     },
                     "SecurityGroupId": {
-                        "template": "${SecurityGroupIds}[]"
+                        "template": "${SecurityGroupIds[]}"
                     },
                     "VpcId": {
                         "template": "${VpcId}"
@@ -18209,7 +18209,7 @@
                         "template": "${LaunchTemplateData.Placement.GroupName}"
                     },
                     "SecurityGroupId": {
-                        "template": "%%many%${LaunchTemplateData.NetworkInterfaces[].Groups}[]%${LaunchTemplateData.SecurityGroupIds}[]%%"
+                        "template": "%%many%${LaunchTemplateData.NetworkInterfaces[].Groups[]}%${LaunchTemplateData.SecurityGroupIds[]}%%"
                     },
                     "SnapshotId": {
                         "template": "${LaunchTemplateData.BlockDeviceMappings[].Ebs.SnapshotId}"
@@ -18246,7 +18246,7 @@
                         "template": "${LaunchTemplateData.Placement.GroupName}"
                     },
                     "SecurityGroupId": {
-                        "template": "%%many%${LaunchTemplateData.NetworkInterfaces[].Groups}[]%${LaunchTemplateData.SecurityGroupIds}[]%%"
+                        "template": "%%many%${LaunchTemplateData.NetworkInterfaces[].Groups[]}%${LaunchTemplateData.SecurityGroupIds[]}%%"
                     },
                     "SnapshotId": {
                         "template": "${LaunchTemplateData.BlockDeviceMappings[].Ebs.SnapshotId}"
@@ -18356,7 +18356,7 @@
                         "template": "${SubnetId}"
                     },
                     "SecurityGroupId": {
-                        "template": "${Groups}[]"
+                        "template": "${Groups[]}"
                     }
                 }
             }
@@ -18510,62 +18510,62 @@
                 "action": "ec2:CreateTags",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "capacity-reservation": "%%iftemplatematch%${Resources}[]%%",
-                    "client-vpn-endpoint": "%%iftemplatematch%${Resources}[]%%",
-                    "customer-gateway": "%%iftemplatematch%${Resources}[]%%",
-                    "dedicated-host": "%%iftemplatematch%${Resources}[]%%",
-                    "dhcp-options": "%%iftemplatematch%${Resources}[]%%",
-                    "egress-only-internet-gateway": "%%iftemplatematch%${Resources}[]%%",
-                    "elastic-gpu": "%%iftemplatematch%${Resources}[]%%",
-                    "elastic-ip": "%%iftemplatematch%${Resources}[]%%",
-                    "export-image-task": "%%iftemplatematch%${Resources}[]%%",
-                    "export-instance-task": "%%iftemplatematch%${Resources}[]%%",
-                    "fleet": "%%iftemplatematch%${Resources}[]%%",
-                    "fpga-image": "%%iftemplatematch%${Resources}[]%%",
-                    "host-reservation": "%%iftemplatematch%${Resources}[]%%",
-                    "image": "%%iftemplatematch%${Resources}[]%%",
-                    "import-image-task": "%%iftemplatematch%${Resources}[]%%",
-                    "import-snapshot-task": "%%iftemplatematch%${Resources}[]%%",
-                    "instance": "%%iftemplatematch%${Resources}[]%%",
-                    "internet-gateway": "%%iftemplatematch%${Resources}[]%%",
-                    "ipv4pool-ec2": "%%iftemplatematch%${Resources}[]%%",
-                    "ipv6pool-ec2": "%%iftemplatematch%${Resources}[]%%",
-                    "key-pair": "%%iftemplatematch%${Resources}[]%%",
-                    "launch-template": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway-route-table": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway-route-table-virtual-interface-group-association": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway-route-table-vpc-association": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway-virtual-interface": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway-virtual-interface-group": "%%iftemplatematch%${Resources}[]%%",
-                    "natgateway": "%%iftemplatematch%${Resources}[]%%",
-                    "network-acl": "%%iftemplatematch%${Resources}[]%%",
-                    "network-interface": "%%iftemplatematch%${Resources}[]%%",
-                    "placement-group": "%%iftemplatematch%${Resources}[]%%",
-                    "prefix-list": "%%iftemplatematch%${Resources}[]%%",
-                    "reserved-instances": "%%iftemplatematch%${Resources}[]%%",
-                    "route-table": "%%iftemplatematch%${Resources}[]%%",
-                    "security-group": "%%iftemplatematch%${Resources}[]%%",
-                    "snapshot": "%%iftemplatematch%${Resources}[]%%",
-                    "spot-fleet-request": "%%iftemplatematch%${Resources}[]%%",
-                    "spot-instances-request": "%%iftemplatematch%${Resources}[]%%",
-                    "subnet": "%%iftemplatematch%${Resources}[]%%",
-                    "traffic-mirror-filter": "%%iftemplatematch%${Resources}[]%%",
-                    "traffic-mirror-session": "%%iftemplatematch%${Resources}[]%%",
-                    "traffic-mirror-target": "%%iftemplatematch%${Resources}[]%%",
-                    "transit-gateway": "%%iftemplatematch%${Resources}[]%%",
-                    "transit-gateway-attachment": "%%iftemplatematch%${Resources}[]%%",
-                    "transit-gateway-connect-peer": "%%iftemplatematch%${Resources}[]%%",
-                    "transit-gateway-multicast-domain": "%%iftemplatematch%${Resources}[]%%",
-                    "transit-gateway-route-table": "%%iftemplatematch%${Resources}[]%%",
-                    "volume": "%%iftemplatematch%${Resources}[]%%",
-                    "vpc": "%%iftemplatematch%${Resources}[]%%",
-                    "vpc-endpoint": "%%iftemplatematch%${Resources}[]%%",
-                    "vpc-endpoint-service": "%%iftemplatematch%${Resources}[]%%",
-                    "vpc-flow-log": "%%iftemplatematch%${Resources}[]%%",
-                    "vpc-peering-connection": "%%iftemplatematch%${Resources}[]%%",
-                    "vpn-connection": "%%iftemplatematch%${Resources}[]%%",
-                    "vpn-gateway": "%%iftemplatematch%${Resources}[]%%"
+                    "capacity-reservation": "%%iftemplatematch%${Resources[]}%%",
+                    "client-vpn-endpoint": "%%iftemplatematch%${Resources[]}%%",
+                    "customer-gateway": "%%iftemplatematch%${Resources[]}%%",
+                    "dedicated-host": "%%iftemplatematch%${Resources[]}%%",
+                    "dhcp-options": "%%iftemplatematch%${Resources[]}%%",
+                    "egress-only-internet-gateway": "%%iftemplatematch%${Resources[]}%%",
+                    "elastic-gpu": "%%iftemplatematch%${Resources[]}%%",
+                    "elastic-ip": "%%iftemplatematch%${Resources[]}%%",
+                    "export-image-task": "%%iftemplatematch%${Resources[]}%%",
+                    "export-instance-task": "%%iftemplatematch%${Resources[]}%%",
+                    "fleet": "%%iftemplatematch%${Resources[]}%%",
+                    "fpga-image": "%%iftemplatematch%${Resources[]}%%",
+                    "host-reservation": "%%iftemplatematch%${Resources[]}%%",
+                    "image": "%%iftemplatematch%${Resources[]}%%",
+                    "import-image-task": "%%iftemplatematch%${Resources[]}%%",
+                    "import-snapshot-task": "%%iftemplatematch%${Resources[]}%%",
+                    "instance": "%%iftemplatematch%${Resources[]}%%",
+                    "internet-gateway": "%%iftemplatematch%${Resources[]}%%",
+                    "ipv4pool-ec2": "%%iftemplatematch%${Resources[]}%%",
+                    "ipv6pool-ec2": "%%iftemplatematch%${Resources[]}%%",
+                    "key-pair": "%%iftemplatematch%${Resources[]}%%",
+                    "launch-template": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway-route-table": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway-route-table-virtual-interface-group-association": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway-route-table-vpc-association": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway-virtual-interface": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway-virtual-interface-group": "%%iftemplatematch%${Resources[]}%%",
+                    "natgateway": "%%iftemplatematch%${Resources[]}%%",
+                    "network-acl": "%%iftemplatematch%${Resources[]}%%",
+                    "network-interface": "%%iftemplatematch%${Resources[]}%%",
+                    "placement-group": "%%iftemplatematch%${Resources[]}%%",
+                    "prefix-list": "%%iftemplatematch%${Resources[]}%%",
+                    "reserved-instances": "%%iftemplatematch%${Resources[]}%%",
+                    "route-table": "%%iftemplatematch%${Resources[]}%%",
+                    "security-group": "%%iftemplatematch%${Resources[]}%%",
+                    "snapshot": "%%iftemplatematch%${Resources[]}%%",
+                    "spot-fleet-request": "%%iftemplatematch%${Resources[]}%%",
+                    "spot-instances-request": "%%iftemplatematch%${Resources[]}%%",
+                    "subnet": "%%iftemplatematch%${Resources[]}%%",
+                    "traffic-mirror-filter": "%%iftemplatematch%${Resources[]}%%",
+                    "traffic-mirror-session": "%%iftemplatematch%${Resources[]}%%",
+                    "traffic-mirror-target": "%%iftemplatematch%${Resources[]}%%",
+                    "transit-gateway": "%%iftemplatematch%${Resources[]}%%",
+                    "transit-gateway-attachment": "%%iftemplatematch%${Resources[]}%%",
+                    "transit-gateway-connect-peer": "%%iftemplatematch%${Resources[]}%%",
+                    "transit-gateway-multicast-domain": "%%iftemplatematch%${Resources[]}%%",
+                    "transit-gateway-route-table": "%%iftemplatematch%${Resources[]}%%",
+                    "volume": "%%iftemplatematch%${Resources[]}%%",
+                    "vpc": "%%iftemplatematch%${Resources[]}%%",
+                    "vpc-endpoint": "%%iftemplatematch%${Resources[]}%%",
+                    "vpc-endpoint-service": "%%iftemplatematch%${Resources[]}%%",
+                    "vpc-flow-log": "%%iftemplatematch%${Resources[]}%%",
+                    "vpc-peering-connection": "%%iftemplatematch%${Resources[]}%%",
+                    "vpn-connection": "%%iftemplatematch%${Resources[]}%%",
+                    "vpn-gateway": "%%iftemplatematch%${Resources[]}%%"
                 }
             }
         ],
@@ -18736,7 +18736,7 @@
                         "template": "${VpcId}"
                     },
                     "SubnetId": {
-                        "template": "${SubnetIds}[]"
+                        "template": "${SubnetIds[]}"
                     }
                 }
             }
@@ -18778,13 +18778,13 @@
                         "template": "*"
                     },
                     "RouteTableId": {
-                        "template": "${RouteTableIds}[]"
+                        "template": "${RouteTableIds[]}"
                     },
                     "SecurityGroupId": {
-                        "template": "${SecurityGroupIds}[]"
+                        "template": "${SecurityGroupIds[]}"
                     },
                     "SubnetId": {
-                        "template": "${SubnetIds}[]"
+                        "template": "${SubnetIds[]}"
                     }
                 }
             }
@@ -18932,7 +18932,7 @@
                 "action": "ec2:DeleteFleets",
                 "resource_mappings": {
                     "FleetId": {
-                        "template": "${FleetIds}[]"
+                        "template": "${FleetIds[]}"
                     }
                 }
             }
@@ -18942,7 +18942,7 @@
                 "action": "ec2:DeleteFlowLogs",
                 "resource_mappings": {
                     "VpcFlowLogId": {
-                        "template": "${FlowLogIds}[]"
+                        "template": "${FlowLogIds[]}"
                     }
                 }
             }
@@ -19104,7 +19104,7 @@
                 "action": "ec2:DeleteQueuedReservedInstances",
                 "resource_mappings": {
                     "ReservationId": {
-                        "template": "${ReservedInstancesIds}[]"
+                        "template": "${ReservedInstancesIds[]}"
                     }
                 }
             }
@@ -19173,62 +19173,62 @@
                 "action": "ec2:DeleteTags",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "capacity-reservation": "%%iftemplatematch%${Resources}[]%%",
-                    "client-vpn-endpoint": "%%iftemplatematch%${Resources}[]%%",
-                    "customer-gateway": "%%iftemplatematch%${Resources}[]%%",
-                    "dedicated-host": "%%iftemplatematch%${Resources}[]%%",
-                    "dhcp-options": "%%iftemplatematch%${Resources}[]%%",
-                    "egress-only-internet-gateway": "%%iftemplatematch%${Resources}[]%%",
-                    "elastic-gpu": "%%iftemplatematch%${Resources}[]%%",
-                    "elastic-ip": "%%iftemplatematch%${Resources}[]%%",
-                    "export-image-task": "%%iftemplatematch%${Resources}[]%%",
-                    "export-instance-task": "%%iftemplatematch%${Resources}[]%%",
-                    "fleet": "%%iftemplatematch%${Resources}[]%%",
-                    "fpga-image": "%%iftemplatematch%${Resources}[]%%",
-                    "host-reservation": "%%iftemplatematch%${Resources}[]%%",
-                    "image": "%%iftemplatematch%${Resources}[]%%",
-                    "import-image-task": "%%iftemplatematch%${Resources}[]%%",
-                    "import-snapshot-task": "%%iftemplatematch%${Resources}[]%%",
-                    "instance": "%%iftemplatematch%${Resources}[]%%",
-                    "internet-gateway": "%%iftemplatematch%${Resources}[]%%",
-                    "ipv4pool-ec2": "%%iftemplatematch%${Resources}[]%%",
-                    "ipv6pool-ec2": "%%iftemplatematch%${Resources}[]%%",
-                    "key-pair": "%%iftemplatematch%${Resources}[]%%",
-                    "launch-template": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway-route-table": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway-route-table-virtual-interface-group-association": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway-route-table-vpc-association": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway-virtual-interface": "%%iftemplatematch%${Resources}[]%%",
-                    "local-gateway-virtual-interface-group": "%%iftemplatematch%${Resources}[]%%",
-                    "natgateway": "%%iftemplatematch%${Resources}[]%%",
-                    "network-acl": "%%iftemplatematch%${Resources}[]%%",
-                    "network-interface": "%%iftemplatematch%${Resources}[]%%",
-                    "placement-group": "%%iftemplatematch%${Resources}[]%%",
-                    "prefix-list": "%%iftemplatematch%${Resources}[]%%",
-                    "reserved-instances": "%%iftemplatematch%${Resources}[]%%",
-                    "route-table": "%%iftemplatematch%${Resources}[]%%",
-                    "security-group": "%%iftemplatematch%${Resources}[]%%",
-                    "snapshot": "%%iftemplatematch%${Resources}[]%%",
-                    "spot-fleet-request": "%%iftemplatematch%${Resources}[]%%",
-                    "spot-instances-request": "%%iftemplatematch%${Resources}[]%%",
-                    "subnet": "%%iftemplatematch%${Resources}[]%%",
-                    "traffic-mirror-filter": "%%iftemplatematch%${Resources}[]%%",
-                    "traffic-mirror-session": "%%iftemplatematch%${Resources}[]%%",
-                    "traffic-mirror-target": "%%iftemplatematch%${Resources}[]%%",
-                    "transit-gateway": "%%iftemplatematch%${Resources}[]%%",
-                    "transit-gateway-attachment": "%%iftemplatematch%${Resources}[]%%",
-                    "transit-gateway-connect-peer": "%%iftemplatematch%${Resources}[]%%",
-                    "transit-gateway-multicast-domain": "%%iftemplatematch%${Resources}[]%%",
-                    "transit-gateway-route-table": "%%iftemplatematch%${Resources}[]%%",
-                    "volume": "%%iftemplatematch%${Resources}[]%%",
-                    "vpc": "%%iftemplatematch%${Resources}[]%%",
-                    "vpc-endpoint": "%%iftemplatematch%${Resources}[]%%",
-                    "vpc-endpoint-service": "%%iftemplatematch%${Resources}[]%%",
-                    "vpc-flow-log": "%%iftemplatematch%${Resources}[]%%",
-                    "vpc-peering-connection": "%%iftemplatematch%${Resources}[]%%",
-                    "vpn-connection": "%%iftemplatematch%${Resources}[]%%",
-                    "vpn-gateway": "%%iftemplatematch%${Resources}[]%%"
+                    "capacity-reservation": "%%iftemplatematch%${Resources[]}%%",
+                    "client-vpn-endpoint": "%%iftemplatematch%${Resources[]}%%",
+                    "customer-gateway": "%%iftemplatematch%${Resources[]}%%",
+                    "dedicated-host": "%%iftemplatematch%${Resources[]}%%",
+                    "dhcp-options": "%%iftemplatematch%${Resources[]}%%",
+                    "egress-only-internet-gateway": "%%iftemplatematch%${Resources[]}%%",
+                    "elastic-gpu": "%%iftemplatematch%${Resources[]}%%",
+                    "elastic-ip": "%%iftemplatematch%${Resources[]}%%",
+                    "export-image-task": "%%iftemplatematch%${Resources[]}%%",
+                    "export-instance-task": "%%iftemplatematch%${Resources[]}%%",
+                    "fleet": "%%iftemplatematch%${Resources[]}%%",
+                    "fpga-image": "%%iftemplatematch%${Resources[]}%%",
+                    "host-reservation": "%%iftemplatematch%${Resources[]}%%",
+                    "image": "%%iftemplatematch%${Resources[]}%%",
+                    "import-image-task": "%%iftemplatematch%${Resources[]}%%",
+                    "import-snapshot-task": "%%iftemplatematch%${Resources[]}%%",
+                    "instance": "%%iftemplatematch%${Resources[]}%%",
+                    "internet-gateway": "%%iftemplatematch%${Resources[]}%%",
+                    "ipv4pool-ec2": "%%iftemplatematch%${Resources[]}%%",
+                    "ipv6pool-ec2": "%%iftemplatematch%${Resources[]}%%",
+                    "key-pair": "%%iftemplatematch%${Resources[]}%%",
+                    "launch-template": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway-route-table": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway-route-table-virtual-interface-group-association": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway-route-table-vpc-association": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway-virtual-interface": "%%iftemplatematch%${Resources[]}%%",
+                    "local-gateway-virtual-interface-group": "%%iftemplatematch%${Resources[]}%%",
+                    "natgateway": "%%iftemplatematch%${Resources[]}%%",
+                    "network-acl": "%%iftemplatematch%${Resources[]}%%",
+                    "network-interface": "%%iftemplatematch%${Resources[]}%%",
+                    "placement-group": "%%iftemplatematch%${Resources[]}%%",
+                    "prefix-list": "%%iftemplatematch%${Resources[]}%%",
+                    "reserved-instances": "%%iftemplatematch%${Resources[]}%%",
+                    "route-table": "%%iftemplatematch%${Resources[]}%%",
+                    "security-group": "%%iftemplatematch%${Resources[]}%%",
+                    "snapshot": "%%iftemplatematch%${Resources[]}%%",
+                    "spot-fleet-request": "%%iftemplatematch%${Resources[]}%%",
+                    "spot-instances-request": "%%iftemplatematch%${Resources[]}%%",
+                    "subnet": "%%iftemplatematch%${Resources[]}%%",
+                    "traffic-mirror-filter": "%%iftemplatematch%${Resources[]}%%",
+                    "traffic-mirror-session": "%%iftemplatematch%${Resources[]}%%",
+                    "traffic-mirror-target": "%%iftemplatematch%${Resources[]}%%",
+                    "transit-gateway": "%%iftemplatematch%${Resources[]}%%",
+                    "transit-gateway-attachment": "%%iftemplatematch%${Resources[]}%%",
+                    "transit-gateway-connect-peer": "%%iftemplatematch%${Resources[]}%%",
+                    "transit-gateway-multicast-domain": "%%iftemplatematch%${Resources[]}%%",
+                    "transit-gateway-route-table": "%%iftemplatematch%${Resources[]}%%",
+                    "volume": "%%iftemplatematch%${Resources[]}%%",
+                    "vpc": "%%iftemplatematch%${Resources[]}%%",
+                    "vpc-endpoint": "%%iftemplatematch%${Resources[]}%%",
+                    "vpc-endpoint-service": "%%iftemplatematch%${Resources[]}%%",
+                    "vpc-flow-log": "%%iftemplatematch%${Resources[]}%%",
+                    "vpc-peering-connection": "%%iftemplatematch%${Resources[]}%%",
+                    "vpn-connection": "%%iftemplatematch%${Resources[]}%%",
+                    "vpn-gateway": "%%iftemplatematch%${Resources[]}%%"
                 }
             }
         ],
@@ -19403,7 +19403,7 @@
                 "action": "ec2:DeleteVpcEndpointServiceConfigurations",
                 "resource_mappings": {
                     "VpcEndpointServiceId": {
-                        "template": "${ServiceIds}[]"
+                        "template": "${ServiceIds[]}"
                     }
                 }
             }
@@ -19413,7 +19413,7 @@
                 "action": "ec2:DeleteVpcEndpoints",
                 "resource_mappings": {
                     "VpcEndpointId": {
-                        "template": "${VpcEndpointIds}[]"
+                        "template": "${VpcEndpointIds[]}"
                     }
                 }
             }
@@ -19485,7 +19485,7 @@
                 "action": "ec2:DeregisterTransitGatewayMulticastGroupMembers",
                 "resource_mappings": {
                     "NetworkInterfaceId": {
-                        "template": "${NetworkInterfaceIds}[]"
+                        "template": "${NetworkInterfaceIds[]}"
                     },
                     "TransitGatewayMulticastDomainId": {
                         "template": "${TransitGatewayMulticastDomainId}"
@@ -19498,7 +19498,7 @@
                 "action": "ec2:DeregisterTransitGatewayMulticastGroupSources",
                 "resource_mappings": {
                     "NetworkInterfaceId": {
-                        "template": "${NetworkInterfaceIds}[]"
+                        "template": "${NetworkInterfaceIds[]}"
                     },
                     "TransitGatewayMulticastDomainId": {
                         "template": "${TransitGatewayMulticastDomainId}"
@@ -20296,7 +20296,7 @@
                 "action": "ec2:DisableFastSnapshotRestores",
                 "resource_mappings": {
                     "SnapshotId": {
-                        "template": "${SourceSnapshotIds}[]"
+                        "template": "${SourceSnapshotIds[]}"
                     }
                 }
             }
@@ -20421,7 +20421,7 @@
                 "action": "ec2:DisassociateTransitGatewayMulticastDomain",
                 "resource_mappings": {
                     "SubnetId": {
-                        "template": "${SubnetIds}[]"
+                        "template": "${SubnetIds[]}"
                     },
                     "TransitGatewayAttachmentId": {
                         "template": "${TransitGatewayAttachmentId}"
@@ -20462,7 +20462,7 @@
                 "action": "ec2:EnableFastSnapshotRestores",
                 "resource_mappings": {
                     "SnapshotId": {
-                        "template": "${SourceSnapshotIds}[]"
+                        "template": "${SourceSnapshotIds[]}"
                     }
                 }
             }
@@ -20651,7 +20651,7 @@
                 "action": "ec2:GetHostReservationPurchasePreview",
                 "resource_mappings": {
                     "DedicatedHostId": {
-                        "template": "${HostIdSet}[]"
+                        "template": "${HostIdSet[]}"
                     }
                 }
             }
@@ -20701,7 +20701,7 @@
                 "action": "ec2:GetReservedInstancesExchangeQuote",
                 "resource_mappings": {
                     "ReservationId": {
-                        "template": "${ReservedInstanceIds}[]"
+                        "template": "${ReservedInstanceIds[]}"
                     }
                 }
             }
@@ -20781,7 +20781,7 @@
                 "action": "ec2:ImportInstance",
                 "resource_mappings": {
                     "SecurityGroupId": {
-                        "template": "${LaunchSpecification.GroupIds}[]"
+                        "template": "${LaunchSpecification.GroupIds[]}"
                     },
                     "SubnetId": {
                         "template": "${LaunchSpecification.SubnetId}"
@@ -20835,7 +20835,7 @@
                         "template": "${ClientVpnEndpointId}"
                     },
                     "SecurityGroupId": {
-                        "template": "${SecurityGroupIds}[]"
+                        "template": "${SecurityGroupIds[]}"
                     },
                     "VpcId": {
                         "template": "${VpcId}"
@@ -20913,7 +20913,7 @@
                 "action": "ec2:ModifyHosts",
                 "resource_mappings": {
                     "DedicatedHostId": {
-                        "template": "${HostIds}[]"
+                        "template": "${HostIds[]}"
                     }
                 }
             }
@@ -20948,7 +20948,7 @@
                         "template": "${InstanceId}"
                     },
                     "SecurityGroupId": {
-                        "template": "${Groups}[]"
+                        "template": "${Groups[]}"
                     },
                     "VolumeId": {
                         "template": "${BlockDeviceMappings[].Ebs.VolumeId}"
@@ -21046,7 +21046,7 @@
                         "template": "*"
                     },
                     "SecurityGroupId": {
-                        "template": "${Groups}[]"
+                        "template": "${Groups[]}"
                     }
                 }
             }
@@ -21056,7 +21056,7 @@
                 "action": "ec2:ModifyReservedInstances",
                 "resource_mappings": {
                     "ReservationId": {
-                        "template": "${ReservedInstancesIds}[]"
+                        "template": "${ReservedInstancesIds[]}"
                     }
                 }
             }
@@ -21318,7 +21318,7 @@
                 "action": "ec2:MonitorInstances",
                 "resource_mappings": {
                     "InstanceId": {
-                        "template": "${InstanceIds}[]"
+                        "template": "${InstanceIds[]}"
                     }
                 }
             }
@@ -21340,7 +21340,7 @@
                 "action": "ec2:PurchaseHostReservation",
                 "resource_mappings": {
                     "DedicatedHostId": {
-                        "template": "${HostIdSet}[]"
+                        "template": "${HostIdSet[]}"
                     }
                 }
             }
@@ -21362,7 +21362,7 @@
                 "action": "ec2:RebootInstances",
                 "resource_mappings": {
                     "InstanceId": {
-                        "template": "${InstanceIds}[]"
+                        "template": "${InstanceIds[]}"
                     }
                 }
             }
@@ -21384,7 +21384,7 @@
                 "action": "ec2:RegisterTransitGatewayMulticastGroupMembers",
                 "resource_mappings": {
                     "NetworkInterfaceId": {
-                        "template": "${NetworkInterfaceIds}[]"
+                        "template": "${NetworkInterfaceIds[]}"
                     },
                     "TransitGatewayMulticastDomainId": {
                         "template": "${TransitGatewayMulticastDomainId}"
@@ -21397,7 +21397,7 @@
                 "action": "ec2:RegisterTransitGatewayMulticastGroupSources",
                 "resource_mappings": {
                     "NetworkInterfaceId": {
-                        "template": "${NetworkInterfaceIds}[]"
+                        "template": "${NetworkInterfaceIds[]}"
                     },
                     "TransitGatewayMulticastDomainId": {
                         "template": "${TransitGatewayMulticastDomainId}"
@@ -21410,7 +21410,7 @@
                 "action": "ec2:RejectTransitGatewayMulticastDomainAssociations",
                 "resource_mappings": {
                     "SubnetId": {
-                        "template": "${SubnetIds}[]"
+                        "template": "${SubnetIds[]}"
                     },
                     "TransitGatewayAttachmentId": {
                         "template": "${TransitGatewayAttachmentId}"
@@ -21446,7 +21446,7 @@
                 "action": "ec2:RejectVpcEndpointConnections",
                 "resource_mappings": {
                     "VpcEndpointId": {
-                        "template": "${VpcEndpointIds}[]"
+                        "template": "${VpcEndpointIds[]}"
                     },
                     "VpcEndpointServiceId": {
                         "template": "${ServiceId}"
@@ -21479,7 +21479,7 @@
                 "action": "ec2:ReleaseHosts",
                 "resource_mappings": {
                     "DedicatedHostId": {
-                        "template": "${HostIds}[]"
+                        "template": "${HostIds[]}"
                     }
                 }
             }
@@ -21597,7 +21597,7 @@
                 "action": "ec2:ReportInstanceStatus",
                 "resource_mappings": {
                     "InstanceId": {
-                        "template": "${Instances}[]"
+                        "template": "${Instances[]}"
                     }
                 }
             }
@@ -21641,7 +21641,7 @@
                         "template": "${LaunchSpecification.KeyName}"
                     },
                     "SecurityGroupId": {
-                        "template": "%%many%${LaunchSpecification.NetworkInterfaces[].Groups}[]%${LaunchSpecification.SecurityGroupIds}[]%%"
+                        "template": "%%many%${LaunchSpecification.NetworkInterfaces[].Groups[]}%${LaunchSpecification.SecurityGroupIds[]}%%"
                     },
                     "SubnetId": {
                         "template": "%%many%${LaunchSpecification.NetworkInterfaces[].SubnetId}%${LaunchSpecification.SubnetId}%%"
@@ -21777,7 +21777,7 @@
                         "template": "${NetworkInterfaces[].NetworkInterfaceId}"
                     },
                     "SecurityGroupId": {
-                        "template": "${SecurityGroupIds}[]"
+                        "template": "${SecurityGroupIds[]}"
                     },
                     "SubnetId": {
                         "template": "${SubnetId}"
@@ -21928,7 +21928,7 @@
                         "template": "${LaunchSpecification.Placement.GroupName}"
                     },
                     "SecurityGroupId": {
-                        "template": "%%many%${LaunchSpecification.SecurityGroupIds}[]%${LaunchSpecification.NetworkInterfaces[].Groups}[]%%"
+                        "template": "%%many%${LaunchSpecification.SecurityGroupIds[]}%${LaunchSpecification.NetworkInterfaces[].Groups[]}%%"
                     },
                     "SnapshotId": {
                         "template": "${LaunchSpecification.BlockDeviceMappings[].Ebs.SnapshotId}"
@@ -21996,7 +21996,7 @@
                 "action": "ec2:StartInstances",
                 "resource_mappings": {
                     "InstanceId": {
-                        "template": "${InstanceIds}[]"
+                        "template": "${InstanceIds[]}"
                     }
                 }
             }
@@ -22026,7 +22026,7 @@
                 "action": "ec2:StopInstances",
                 "resource_mappings": {
                     "InstanceId": {
-                        "template": "${InstanceIds}[]"
+                        "template": "${InstanceIds[]}"
                     }
                 }
             }
@@ -22049,7 +22049,7 @@
                 "action": "ec2:TerminateInstances",
                 "resource_mappings": {
                     "InstanceId": {
-                        "template": "${InstanceIds}[]"
+                        "template": "${InstanceIds[]}"
                     }
                 }
             }
@@ -22079,7 +22079,7 @@
                 "action": "ec2:UnmonitorInstances",
                 "resource_mappings": {
                     "InstanceId": {
-                        "template": "${InstanceIds}[]"
+                        "template": "${InstanceIds[]}"
                     }
                 }
             }
@@ -22227,7 +22227,7 @@
                 "action": "ecr:DescribeRepositories",
                 "resource_mappings": {
                     "RepositoryName": {
-                        "template": "${repositoryNames}[]"
+                        "template": "${repositoryNames[]}"
                     }
                 }
             }
@@ -22548,7 +22548,7 @@
                 "action": "ecs:DescribeCapacityProviders",
                 "resource_mappings": {
                     "CapacityProviderName": {
-                        "template": "%%regex%${capacityProviders}[]%/^(?:.+\\/)?(.+)$/g%%"
+                        "template": "%%regex%${capacityProviders[]}%/^(?:.+\\/)?(.+)$/g%%"
                     }
                 }
             }
@@ -22558,7 +22558,7 @@
                 "action": "ecs:DescribeClusters",
                 "resource_mappings": {
                     "ClusterName": {
-                        "template": "%%regex%${clusters}[]%/^(?:.+\\/)?(.+)$/g%%"
+                        "template": "%%regex%${clusters[]}%/^(?:.+\\/)?(.+)$/g%%"
                     }
                 }
             }
@@ -22568,7 +22568,7 @@
                 "action": "ecs:DescribeContainerInstances",
                 "resource_mappings": {
                     "ContainerInstanceId": {
-                        "template": "%%regex%${containerInstances}[]%/^(?:.+\\/)?(.+)$/g%%"
+                        "template": "%%regex%${containerInstances[]}%/^(?:.+\\/)?(.+)$/g%%"
                     }
                 }
             }
@@ -22578,7 +22578,7 @@
                 "action": "ecs:DescribeServices",
                 "resource_mappings": {
                     "ServiceName": {
-                        "template": "%%regex%${services}[]%/^(?:.+\\/)?(.+)$/g%%"
+                        "template": "%%regex%${services[]}%/^(?:.+\\/)?(.+)$/g%%"
                     }
                 }
             }
@@ -22603,7 +22603,7 @@
                         "template": "%%regex%${service}%/^(?:.+\\/)?(.+)$/g%%"
                     },
                     "TaskSetId": {
-                        "template": "%%regex%${taskSets}[]%/^(?:.+\\/)?(.+)$/g%%"
+                        "template": "%%regex%${taskSets[]}%/^(?:.+\\/)?(.+)$/g%%"
                     }
                 }
             }
@@ -22613,7 +22613,7 @@
                 "action": "ecs:DescribeTasks",
                 "resource_mappings": {
                     "TaskId": {
-                        "template": "%%regex%${tasks}[]%/^(?:.+\\/)?(.+)$/g%%"
+                        "template": "%%regex%${tasks[]}%/^(?:.+\\/)?(.+)$/g%%"
                     }
                 }
             }
@@ -22723,7 +22723,7 @@
                 "action": "ecs:PutClusterCapacityProviders",
                 "resource_mappings": {
                     "CapacityProviderName": {
-                        "template": "%%regex%${capacityProviders}[]%/^(?:.+\\/)?(.+)$/g%%"
+                        "template": "%%regex%${capacityProviders[]}%/^(?:.+\\/)?(.+)$/g%%"
                     }
                 }
             }
@@ -22891,7 +22891,7 @@
                 "action": "ecs:UpdateContainerInstancesState",
                 "resource_mappings": {
                     "ContainerInstanceId": {
-                        "template": "%%regex%${containerInstances}[]%/^(?:.+\\/)?(.+)$/g%%"
+                        "template": "%%regex%${containerInstances[]}%/^(?:.+\\/)?(.+)$/g%%"
                     }
                 }
             }
@@ -23204,10 +23204,10 @@
                 "action": "elasticache:BatchApplyUpdateAction",
                 "resource_mappings": {
                     "CacheClusterId": {
-                        "template": "${CacheClusterIds}[]"
+                        "template": "${CacheClusterIds[]}"
                     },
                     "ReplicationGroupId": {
-                        "template": "${ReplicationGroupIds}[]"
+                        "template": "${ReplicationGroupIds[]}"
                     }
                 }
             }
@@ -23217,10 +23217,10 @@
                 "action": "elasticache:BatchStopUpdateAction",
                 "resource_mappings": {
                     "CacheClusterId": {
-                        "template": "${CacheClusterIds}[]"
+                        "template": "${CacheClusterIds[]}"
                     },
                     "ReplicationGroupId": {
-                        "template": "${ReplicationGroupIds}[]"
+                        "template": "${ReplicationGroupIds[]}"
                     }
                 }
             }
@@ -23262,10 +23262,10 @@
                         "template": "${ReplicationGroupId}"
                     },
                     "CacheSecurityGroupName": {
-                        "template": "${CacheSecurityGroupNames}[]"
+                        "template": "${CacheSecurityGroupNames[]}"
                     },
                     "SnapshotName": {
-                        "template": "%%many%${SnapshotArns}[]%arn:${Partition}:elasticache:${Region}:${Account}:snapshot:${SnapshotName}%%"
+                        "template": "%%many%${SnapshotArns[]}%arn:${Partition}:elasticache:${Region}:${Account}:snapshot:${SnapshotName}%%"
                     },
                     "CacheSubnetGroupName": {
                         "template": "${CacheSubnetGroupName}"
@@ -23333,17 +23333,17 @@
                         "template": "${ReplicationGroupId}"
                     },
                     "CacheSecurityGroupName": {
-                        "template": "${CacheSecurityGroupNames}[]"
+                        "template": "${CacheSecurityGroupNames[]}"
                     },
                     "CacheSubnetGroupName": {
                         "template": "${CacheSubnetGroupName}"
                     },
                     "UserGroupId": {
-                        "template": "${UserGroupIds}[]"
+                        "template": "${UserGroupIds[]}"
                     }
                 },
                 "resourcearn_mappings": {
-                    "snapshot": "${SnapshotArns}[]"
+                    "snapshot": "${SnapshotArns[]}"
                 }
             }
         ],
@@ -23378,7 +23378,7 @@
                 "action": "elasticache:CreateUserGroup",
                 "resource_mappings": {
                     "UserId": {
-                        "template": "${UserIds}[]"
+                        "template": "${UserIds[]}"
                     },
                     "UserGroupId": {
                         "template": "${UserGroupId}"
@@ -23627,10 +23627,10 @@
                 "action": "elasticache:DescribeUpdateActions",
                 "resource_mappings": {
                     "CacheClusterId": {
-                        "template": "${CacheClusterIds}[]"
+                        "template": "${CacheClusterIds[]}"
                     },
                     "ReplicationGroupId": {
-                        "template": "${ReplicationGroupIds}[]"
+                        "template": "${ReplicationGroupIds[]}"
                     }
                 }
             }
@@ -23729,7 +23729,7 @@
                         "template": "${CacheParameterGroupName}"
                     },
                     "CacheSecurityGroupName": {
-                        "template": "${CacheSecurityGroupNames}[]"
+                        "template": "${CacheSecurityGroupNames[]}"
                     }
                 }
             }
@@ -23775,10 +23775,10 @@
                         "template": "${CacheParameterGroupName}"
                     },
                     "CacheSecurityGroupName": {
-                        "template": "${CacheSecurityGroupNames}[]"
+                        "template": "${CacheSecurityGroupNames[]}"
                     },
                     "UserGroupId": {
-                        "template": "%%many%${UserGroupIdsToAdd}[]%${UserGroupIdsToRemove}[]%%"
+                        "template": "%%many%${UserGroupIdsToAdd[]}%${UserGroupIdsToRemove[]}%%"
                     }
                 }
             }
@@ -23808,7 +23808,7 @@
                 "action": "elasticache:ModifyUserGroup",
                 "resource_mappings": {
                     "UserId": {
-                        "template": "%%many%${UserIdsToAdd}[]%${UserIdsToRemove}[]%%"
+                        "template": "%%many%${UserIdsToAdd[]}%${UserIdsToRemove[]}%%"
                     },
                     "UserGroupId": {
                         "template": "${UserGroupId}"
@@ -23955,7 +23955,7 @@
                         "template": "${ApplicationName}"
                     },
                     "VersionLabel": {
-                        "template": "${VersionLabels}[]"
+                        "template": "${VersionLabels[]}"
                     }
                 }
             }
@@ -24121,7 +24121,7 @@
                         "template": "${ApplicationName}"
                     },
                     "VersionLabel": {
-                        "template": "${VersionLabels}[]"
+                        "template": "${VersionLabels[]}"
                     }
                 }
             }
@@ -24131,7 +24131,7 @@
                 "action": "elasticbeanstalk:DescribeApplications",
                 "resource_mappings": {
                     "ApplicationName": {
-                        "template": "${ApplicationNames}[]"
+                        "template": "${ApplicationNames[]}"
                     }
                 }
             }
@@ -24231,7 +24231,7 @@
                         "template": "${ApplicationName}"
                     },
                     "EnvironmentName": {
-                        "template": "${EnvironmentNames}[]"
+                        "template": "${EnvironmentNames[]}"
                     }
                 }
             }
@@ -24751,14 +24751,14 @@
                 "action": "elasticloadbalancing:AddTags",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "listener-rule/app": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "listener-rule/net": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "listener/app": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "listener/net": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "loadbalancer/app/": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "loadbalancer/net/": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "targetgroup": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "loadbalancer": "%%iftemplatematch%${ResourceArns}[]%%"
+                    "listener-rule/app": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "listener-rule/net": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "listener/app": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "listener/net": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "loadbalancer/app/": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "loadbalancer/net/": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "targetgroup": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "loadbalancer": "%%iftemplatematch%${ResourceArns[]}%%"
                 }
             }
         ],
@@ -24896,14 +24896,14 @@
                 "action": "elasticloadbalancing:DescribeTags",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "listener-rule/app": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "listener-rule/net": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "listener/app": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "listener/net": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "loadbalancer/app/": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "loadbalancer/net/": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "targetgroup": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "loadbalancer": "%%iftemplatematch%${ResourceArns}[]%%"
+                    "listener-rule/app": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "listener-rule/net": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "listener/app": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "listener/net": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "loadbalancer/app/": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "loadbalancer/net/": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "targetgroup": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "loadbalancer": "%%iftemplatematch%${ResourceArns[]}%%"
                 }
             }
         ],
@@ -24998,14 +24998,14 @@
                 "action": "elasticloadbalancing:RemoveTags",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "listener-rule/app": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "listener-rule/net": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "listener/app": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "listener/net": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "loadbalancer/app/": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "loadbalancer/net/": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "targetgroup": "%%iftemplatematch%${ResourceArns}[]%%",
-                    "loadbalancer": "%%iftemplatematch%${ResourceArns}[]%%"
+                    "listener-rule/app": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "listener-rule/net": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "listener/app": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "listener/net": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "loadbalancer/app/": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "loadbalancer/net/": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "targetgroup": "%%iftemplatematch%${ResourceArns[]}%%",
+                    "loadbalancer": "%%iftemplatematch%${ResourceArns[]}%%"
                 }
             }
         ],
@@ -25422,7 +25422,7 @@
                 "action": "es:DescribeElasticsearchDomains",
                 "resource_mappings": {
                     "DomainName": {
-                        "template": "${DomainNames}[]"
+                        "template": "${DomainNames[]}"
                     }
                 }
             }
@@ -27016,7 +27016,7 @@
                 "action": "health:DescribeAffectedEntities",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "event": "${filter.eventArns}[]"
+                    "event": "${filter.eventArns[]}"
                 }
             }
         ],
@@ -28774,8 +28774,8 @@
                     }
                 },
                 "resourcearn_mappings": {
-                    "thing": "%%iftemplatematch%${targets}[]%%",
-                    "thinggroup": "%%iftemplatematch%${targets}[]%%"
+                    "thing": "%%iftemplatematch%${targets[]}%%",
+                    "thinggroup": "%%iftemplatematch%${targets[]}%%"
                 }
             },
             {
@@ -33940,7 +33940,7 @@
                 "action": "opsworks:DescribeStacks",
                 "resource_mappings": {
                     "StackId": {
-                        "template": "${StackIds}[]"
+                        "template": "${StackIds[]}"
                     }
                 }
             }
@@ -35925,7 +35925,7 @@
                 "action": "polly:StartSpeechSynthesisTask",
                 "resource_mappings": {
                     "LexiconName": {
-                        "template": "${LexiconNames}[]"
+                        "template": "${LexiconNames[]}"
                     }
                 }
             }
@@ -35935,7 +35935,7 @@
                 "action": "polly:SynthesizeSpeech",
                 "resource_mappings": {
                     "LexiconName": {
-                        "template": "${LexiconNames}[]"
+                        "template": "${LexiconNames[]}"
                     }
                 }
             }
@@ -36154,7 +36154,7 @@
                         "template": "${DBParameterGroupName}"
                     },
                     "SecurityGroupName": {
-                        "template": "${DBSecurityGroups}[]"
+                        "template": "${DBSecurityGroups[]}"
                     },
                     "SubnetGroupName": {
                         "template": "${DBSubnetGroupName}"
@@ -36434,10 +36434,10 @@
                 "action": "rds:DeregisterDBProxyTargets",
                 "resource_mappings": {
                     "DbClusterInstanceName": {
-                        "template": "${DBClusterIdentifiers}[]"
+                        "template": "${DBClusterIdentifiers[]}"
                     },
                     "DbInstanceName": {
-                        "template": "${DBClusterIdentifiers}[]"
+                        "template": "${DBClusterIdentifiers[]}"
                     },
                     "DbProxyId": {
                         "template": "*"
@@ -36909,7 +36909,7 @@
                         "template": "${DBParameterGroupName}"
                     },
                     "SecurityGroupName": {
-                        "template": "${DBSecurityGroups}[]"
+                        "template": "${DBSecurityGroups[]}"
                     }
                 }
             },
@@ -37487,7 +37487,7 @@
             {
                 "action": "iam:PassRole",
                 "arn_override": {
-                    "template": "${IamRoles}[]"
+                    "template": "${IamRoles[]}"
                 }
             }
         ],
@@ -38000,7 +38000,7 @@
                         "template": "${DbUser}"
                     },
                     "DbGroup": {
-                        "template": "${DbGroups}[]"
+                        "template": "${DbGroups[]}"
                     },
                     "DbName": {
                         "template": "${DbName}"
@@ -42236,7 +42236,7 @@
                 "action": "ssm:DeleteParameters",
                 "resource_mappings": {
                     "FullyQualifiedParameterName": {
-                        "template": "${Names}[]"
+                        "template": "${Names[]}"
                     }
                 }
             }
@@ -42656,7 +42656,7 @@
                 "action": "ssm:GetParameters",
                 "resource_mappings": {
                     "FullyQualifiedParameterName": {
-                        "template": "${Names}[]"
+                        "template": "${Names[]}"
                     }
                 }
             }
@@ -42962,7 +42962,7 @@
                 "action": "ssm:StartAssociationsOnce",
                 "resource_mappings": {
                     "AssociationId": {
-                        "template": "${AssociationIds}[]"
+                        "template": "${AssociationIds[]}"
                     }
                 }
             }
@@ -43490,7 +43490,7 @@
                 "action": "storagegateway:DescribeNFSFileShares",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "share": "${FileShareARNList}[]"
+                    "share": "${FileShareARNList[]}"
                 }
             }
         ],
@@ -43499,7 +43499,7 @@
                 "action": "storagegateway:DescribeSMBFileShares",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "share": "${FileShareARNList}[]"
+                    "share": "${FileShareARNList[]}"
                 }
             }
         ],
@@ -43526,7 +43526,7 @@
                 "action": "storagegateway:DescribeStorediSCSIVolumes",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "volume": "${VolumeARNs}[]"
+                    "volume": "${VolumeARNs[]}"
                 }
             }
         ],
@@ -43658,7 +43658,7 @@
                 "action": "storagegateway:ListTapePools",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "tapepool": "${PoolARNs}[]"
+                    "tapepool": "${PoolARNs[]}"
                 }
             }
         ],
@@ -43667,7 +43667,7 @@
                 "action": "storagegateway:ListTapes",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "tape": "${TapeARNs}[]"
+                    "tape": "${TapeARNs[]}"
                 }
             }
         ],
@@ -46542,7 +46542,7 @@
                 "action": "workspaces:DescribeClientProperties",
                 "resource_mappings": {
                     "DirectoryId": {
-                        "template": "${ResourceIds}[]"
+                        "template": "${ResourceIds[]}"
                     }
                 }
             }
@@ -46552,7 +46552,7 @@
                 "action": "workspaces:DescribeIpGroups",
                 "resource_mappings": {
                     "GroupId": {
-                        "template": "${GroupIds}[]"
+                        "template": "${GroupIds[]}"
                     }
                 }
             }
@@ -46568,7 +46568,7 @@
                 "action": "workspaces:DescribeWorkspaceBundles",
                 "resource_mappings": {
                     "BundleId": {
-                        "template": "${BundleIds}[]"
+                        "template": "${BundleIds[]}"
                     }
                 }
             }
@@ -48383,7 +48383,7 @@
                 "action": "dax:DescribeClusters",
                 "resource_mappings": {
                     "ClusterName": {
-                        "template": "${ClusterNames}[]"
+                        "template": "${ClusterNames[]}"
                     }
                 }
             }
@@ -48792,7 +48792,7 @@
                 "action": "glue:BatchDeleteConnection",
                 "resource_mappings": {
                     "ConnectionName": {
-                        "template": "${ConnectionNameList}[]"
+                        "template": "${ConnectionNameList[]}"
                     }
                 }
             }
@@ -48818,7 +48818,7 @@
                         "template": "${DatabaseName}"
                     },
                     "TableName": {
-                        "template": "${TablesToDelete}[]"
+                        "template": "${TablesToDelete[]}"
                     }
                 }
             }
@@ -48834,7 +48834,7 @@
                         "template": "${TableName}"
                     },
                     "TableVersionName": {
-                        "template": "${VersionIds}[]"
+                        "template": "${VersionIds[]}"
                     }
                 }
             }
@@ -54019,7 +54019,7 @@
                         "template": "${DeviceFleetName}"
                     },
                     "DeviceName": {
-                        "template": "${DeviceNames}[]"
+                        "template": "${DeviceNames[]}"
                     }
                 }
             }
@@ -56294,7 +56294,7 @@
                 "action": "cloud9:DescribeEnvironments",
                 "resource_mappings": {
                     "ResourceId": {
-                        "template": "${environmentIds}[]"
+                        "template": "${environmentIds[]}"
                     }
                 }
             }
@@ -57388,7 +57388,7 @@
                         "template": "${QueueId}"
                     },
                     "QuickConnectId": {
-                        "template": "${QuickConnectIds}[]"
+                        "template": "${QuickConnectIds[]}"
                     }
                 }
             }
@@ -57458,7 +57458,7 @@
                         "template": "${OutboundCallerConfig.OutboundCallerIdNumberId}"
                     },
                     "QuickConnectId": {
-                        "template": "${QuickConnectIds}[]"
+                        "template": "${QuickConnectIds[]}"
                     }
                 }
             }
@@ -57512,7 +57512,7 @@
                         "template": "${RoutingProfileId}"
                     },
                     "SecurityProfileId": {
-                        "template": "${SecurityProfileIds}[]"
+                        "template": "${SecurityProfileIds[]}"
                     },
                     "UserId": {
                         "template": "*"
@@ -57767,7 +57767,7 @@
                         "template": "${QueueId}"
                     },
                     "QuickConnectId": {
-                        "template": "${QuickConnectIds}[]"
+                        "template": "${QuickConnectIds[]}"
                     }
                 }
             }
@@ -58491,7 +58491,7 @@
                         "template": "${InstanceId}"
                     },
                     "SecurityProfileId": {
-                        "template": "${SecurityProfileIds}[]"
+                        "template": "${SecurityProfileIds[]}"
                     },
                     "UserId": {
                         "template": "${UserId}"
@@ -59906,7 +59906,7 @@
                         "template": "${DBParameterGroupName}"
                     },
                     "SecurityGroupName": {
-                        "template": "${DBSecurityGroups}[]"
+                        "template": "${DBSecurityGroups[]}"
                     },
                     "SubnetGroupName": {
                         "template": "${DBSubnetGroupName}"
@@ -60284,7 +60284,7 @@
                         "template": "${DBParameterGroupName}"
                     },
                     "SecurityGroupName": {
-                        "template": "${DBSecurityGroups}[]"
+                        "template": "${DBSecurityGroups[]}"
                     }
                 }
             }
@@ -65205,7 +65205,7 @@
                 "action": "robomaker:CreateWorldExportJob",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "world": "${worlds}[]"
+                    "world": "${worlds[]}"
                 }
             },
             {
@@ -71877,7 +71877,7 @@
                 "action": "forecast:UpdateDatasetGroup",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "dataset": "${DatasetArns}[]",
+                    "dataset": "${DatasetArns[]}",
                     "datasetGroup": "${DatasetGroupArn}"
                 }
             }
@@ -72257,7 +72257,7 @@
                 "action": "savingsplans:DescribeSavingsPlans",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "savingsplan": "${savingsPlanArns}[]"
+                    "savingsplan": "${savingsPlanArns[]}"
                 }
             }
         ],
@@ -75304,7 +75304,7 @@
                 "action": "frauddetector:BatchGetVariable",
                 "resource_mappings": {
                     "resourcePath": {
-                        "template": "${names}[]"
+                        "template": "${names[]}"
                     }
                 }
             }
@@ -76330,7 +76330,7 @@
                 "action": "networkmanager:DescribeGlobalNetworks",
                 "resource_mappings": {
                     "ResourceId": {
-                        "template": "${GlobalNetworkIds}[]"
+                        "template": "${GlobalNetworkIds[]}"
                     }
                 }
             }
@@ -76373,7 +76373,7 @@
                 "action": "networkmanager:GetConnections",
                 "resource_mappings": {
                     "ResourceId": {
-                        "template": "${ConnectionIds}[]"
+                        "template": "${ConnectionIds[]}"
                     },
                     "GlobalNetworkId": {
                         "template": "${GlobalNetworkId}"
@@ -76396,7 +76396,7 @@
                 "action": "networkmanager:GetDevices",
                 "resource_mappings": {
                     "ResourceId": {
-                        "template": "${DeviceIds}[]"
+                        "template": "${DeviceIds[]}"
                     },
                     "GlobalNetworkId": {
                         "template": "${GlobalNetworkId}"
@@ -76422,7 +76422,7 @@
                 "action": "networkmanager:GetLinks",
                 "resource_mappings": {
                     "ResourceId": {
-                        "template": "${LinkIds}[]"
+                        "template": "${LinkIds[]}"
                     },
                     "GlobalNetworkId": {
                         "template": "${GlobalNetworkId}"
@@ -76435,7 +76435,7 @@
                 "action": "networkmanager:GetSites",
                 "resource_mappings": {
                     "ResourceId": {
-                        "template": "${SiteIds}[]"
+                        "template": "${SiteIds[]}"
                     },
                     "GlobalNetworkId": {
                         "template": "${GlobalNetworkId}"
@@ -77633,7 +77633,7 @@
                 "action": "macie2:BatchGetCustomDataIdentifiers",
                 "resource_mappings": {
                     "ResourceId": {
-                        "template": "${ids}[]"
+                        "template": "${ids[]}"
                     }
                 }
             }
@@ -78629,7 +78629,7 @@
                 "action": "ivs:BatchGetChannel",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "Channel": "${arns}[]"
+                    "Channel": "${arns[]}"
                 }
             }
         ],
@@ -78638,7 +78638,7 @@
                 "action": "ivs:BatchGetStreamKey",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "Stream-Key": "${arns}[]"
+                    "Stream-Key": "${arns[]}"
                 }
             }
         ],
@@ -81156,7 +81156,7 @@
                 "action": "ecr-public:DescribeRepositories",
                 "resource_mappings": {
                     "RepositoryName": {
-                        "template": "${repositoryNames}[]"
+                        "template": "${repositoryNames[]}"
                     }
                 }
             }
