@@ -44,7 +44,7 @@ type ServiceDefinition struct {
 	Version    string                      `json:"version"`
 	Metadata   ServiceDefinitionMetadata   `json:"metadata"`
 	Operations map[string]ServiceOperation `json:"operations"`
-	Shapes     map[string]interface{}      `json:"shapes"`
+	Shapes     map[string]ServiceStructure `json:"shapes"`
 }
 
 type ServiceOperation struct {
@@ -173,16 +173,10 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 					normalizedK := regexp.MustCompile(`\.member\.[0-9]+`).ReplaceAllString(k, "[]")
 					normalizedK = regexp.MustCompile(`\.[0-9]+`).ReplaceAllString(normalizedK, "[]")
 
-					/*
-						propReference := findPropReference(serviceDef.Operations[action].Input, normalizedK, "", "")
-						if propReference != "" {
-							if len(params[propReference]) > 0 {
-								params[propReference] = append(params[propReference], v...)
-							} else {
-								params[propReference] = v
-							}
-						}
-					*/
+					resolvedPropertyName := resolvePropertyName(serviceDef.Operations[action].Input, normalizedK, "", serviceDef.Shapes)
+					if resolvedPropertyName != "" {
+						normalizedK = resolvedPropertyName
+					}
 
 					if len(params[normalizedK]) > 0 { // TODO: Check logic here
 						params[normalizedK] = append(params[normalizedK], v...)
@@ -215,65 +209,38 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	handleLoggedCall()
 }
 
-func findPropReference(obj ServiceStructure, searchProp string, path string, locationPath string) (ret string) {
-	// TODO: Shape deref
+func resolvePropertyName(obj ServiceStructure, searchProp string, path string, shapes map[string]ServiceStructure) (ret string) {
+	if searchProp[len(searchProp)-2:] == "[]" { // trim trailing []
+		searchProp = searchProp[:len(searchProp)-2]
+	}
+
+	if obj.Shape != "" {
+		obj = shapes[obj.Shape]
+	}
 
 	switch obj.Type { // TODO: Exhaustive check for other types
 	case "boolean", "timestamp", "blob", "map":
 		return ""
 	case "structure":
 		for k, v := range obj.Members {
-			if obj.LocationName != "" {
-				if locationPath == "" {
-					locationPath = obj.LocationName
-				} else {
-					locationPath = fmt.Sprintf("%s.%s", locationPath, obj.LocationName)
-				}
-			}
 			newPath := fmt.Sprintf("%s.%s", path, k)
 			if path == "" {
 				newPath = k
 			}
 
-			ret = findPropReference(v, searchProp, newPath, locationPath)
+			ret = resolvePropertyName(v, searchProp, newPath, shapes)
 			if ret != "" {
 				return ret
 			}
 		}
 	case "long", "float", "integer", "", "string":
-		if obj.LocationName != "" {
-			if locationPath == "" {
-				locationPath = obj.LocationName
-			} else {
-				locationPath = fmt.Sprintf("%s.%s", locationPath, obj.LocationName)
-			}
-		} else {
-			splitPath := strings.Split(path, ".")
-			if locationPath == "" {
-				locationPath = splitPath[len(splitPath)-1]
-			} else {
-				locationPath = fmt.Sprintf("%s.%s", locationPath, splitPath[len(splitPath)-1])
-			}
-		}
-		if locationPath == searchProp {
+		if obj.LocationName == searchProp { // TODO: need a 4th locationPath to prepend to locationname
 			return path
 		}
 	case "list":
-		if obj.LocationName != "" {
-			if locationPath == "" {
-				locationPath = fmt.Sprintf("%s[]", obj.LocationName)
-			} else {
-				locationPath = fmt.Sprintf("%s.%s[]", locationPath, obj.LocationName)
-			}
-
-			if locationPath == searchProp {
-				return path
-			}
-		}
-
 		newPath := fmt.Sprintf("%s[]", path)
 
-		ret = findPropReference(*obj.Member, searchProp, newPath, locationPath)
+		ret = resolvePropertyName(*obj.Member, searchProp, newPath, shapes)
 		if ret != "" {
 			return ret
 		}

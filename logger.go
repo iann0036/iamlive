@@ -574,6 +574,7 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 		}
 	}
 
+	fmt.Println(call)
 	os.Exit(0)
 
 	return statements
