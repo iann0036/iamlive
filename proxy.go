@@ -236,17 +236,12 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, l
 				newPath = k
 			}
 
-			newLocationPath := locationPath
-
-			if obj.LocationName != "" {
-				if obj.LocationName != "item" { // skip list item structures
-					newLocationPath = fmt.Sprintf(".%s", obj.LocationName)
-				}
+			newLocationPath := locationPath + "." + k
+			if v.LocationName != "" {
+				v.ParentKey = v.LocationName
 			} else {
-				newLocationPath = fmt.Sprintf(".%s", obj.ParentKey)
+				v.ParentKey = k
 			}
-
-			v.ParentKey = k
 
 			ret = resolvePropertyName(v, searchProp, newPath, newLocationPath, shapes)
 			if ret != "" {
@@ -259,6 +254,7 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, l
 			key = obj.LocationName
 		}
 
+		//locationPath = locationPath[:strings.LastIndex(locationPath, ".")] // override last element
 		locationPath = fmt.Sprintf("%s.%s", locationPath, key)
 
 		if len(locationPath) > 2 && locationPath[len(locationPath)-2:] == "[]" { // trim trailing []
@@ -275,9 +271,10 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, l
 			fmt.Println("NON-Matching path: " + locationPath + " - " + searchProp)
 		}
 	case "list":
-		newPath := fmt.Sprintf("%s.[]", path)
+		newPath := fmt.Sprintf("%s[]", path)
+		newLocationPath := fmt.Sprintf("%s[]", locationPath)
 
-		ret = resolvePropertyName(*obj.Member, searchProp, newPath, fmt.Sprintf("%s[]", locationPath), shapes)
+		ret = resolvePropertyName(*obj.Member, searchProp, newPath, newLocationPath, shapes)
 		if ret != "" {
 			return ret
 		}
