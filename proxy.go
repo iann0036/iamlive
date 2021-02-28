@@ -10,6 +10,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"regexp"
 	"strings"
 
@@ -58,6 +59,7 @@ type ServiceStructure struct {
 	Member       *ServiceStructure           `json:"member"`
 	Members      map[string]ServiceStructure `json:"members"`
 	LocationName string                      `json:"locationName"`
+	ParentKey    string
 }
 
 type ServiceDefinitionMetadata struct {
@@ -188,6 +190,10 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 				}
 			}
 		}
+
+		fmt.Println(vals)
+		fmt.Println(params)
+		os.Exit(0)
 	}
 
 	region := "us-east-1"
@@ -232,17 +238,15 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, l
 
 			newLocationPath := locationPath
 
-			if v.LocationName != "" {
-				if v.LocationName != "item" { // skip list item structures
-					newLocationPath = fmt.Sprintf(".%s", v.LocationName)
+			if obj.LocationName != "" {
+				if obj.LocationName != "item" { // skip list item structures
+					newLocationPath = fmt.Sprintf(".%s", obj.LocationName)
 				}
 			} else {
-				newLocationPath = fmt.Sprintf(".%s", k)
+				newLocationPath = fmt.Sprintf(".%s", obj.ParentKey)
 			}
 
-			if newLocationPath[0] == '.' { // trim leading .
-				newLocationPath = newLocationPath[1:]
-			}
+			v.ParentKey = k
 
 			ret = resolvePropertyName(v, searchProp, newPath, newLocationPath, shapes)
 			if ret != "" {
@@ -250,15 +254,28 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, l
 			}
 		}
 	case "long", "float", "integer", "", "string":
+		key := obj.ParentKey
+		if obj.LocationName != "" {
+			key = obj.LocationName
+		}
+
+		locationPath = fmt.Sprintf("%s.%s", locationPath, key)
+
 		if len(locationPath) > 2 && locationPath[len(locationPath)-2:] == "[]" { // trim trailing []
 			locationPath = locationPath[:len(locationPath)-2]
 		}
+		if locationPath[0] == '.' { // trim leading .
+			locationPath = locationPath[1:]
+		}
 
 		if strings.ToLower(locationPath) == strings.ToLower(searchProp) {
+			fmt.Println("Matching path: " + locationPath)
 			return path
+		} else {
+			fmt.Println("NON-Matching path: " + locationPath + " - " + searchProp)
 		}
 	case "list":
-		newPath := fmt.Sprintf("%s[]", path)
+		newPath := fmt.Sprintf("%s.[]", path)
 
 		ret = resolvePropertyName(*obj.Member, searchProp, newPath, fmt.Sprintf("%s[]", locationPath), shapes)
 		if ret != "" {

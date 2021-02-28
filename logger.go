@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"net/url"
-	"os"
 	"reflect"
 	"regexp"
 	"sort"
@@ -537,9 +536,6 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 													arns = newArns
 												}
 
-												fmt.Println("res_mapping SUBBED ARNS:")
-												fmt.Println(arns)
-
 												if len(arns) == 0 && mandatory {
 													arns = []string{"*"}
 												}
@@ -549,9 +545,6 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 													if mandatory || fullyResolved { // check if mandatory or fully resolved
 														resources = append(resources, subbedArns...) // sub full parameters and add to resources
 													}
-
-													fmt.Println("SUBBED ARNS:")
-													fmt.Println(subbedArns)
 												}
 											}
 										}
@@ -580,23 +573,33 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 		}
 	}
 
-	os.Exit(0)
-
 	return statements
 }
 
 func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string) {
+	arns := []string{arn}
+
 	// parameter substitution
 	for paramVarName, params := range call.Parameters {
+		newArns := []string{}
 		for _, param := range params {
-			arn = regexp.MustCompile(`\$\{`+strings.ReplaceAll(strings.ReplaceAll(paramVarName, "[", "\\["), "]", "\\]")+`\}`).ReplaceAllString(arn, param) // might have dupes but resolved out later
+			for _, arn := range arns {
+				newArns = append(newArns, regexp.MustCompile(`\$\{`+strings.ReplaceAll(strings.ReplaceAll(paramVarName, "[", "\\["), "]", "\\]")+`\}`).ReplaceAllString(arn, param)) // might have dupes but resolved out later
+			}
 		}
+		arns = newArns
 	}
 
 	if specialsOnly {
-		matched, _ := regexp.Match(`\$\{.+?\}`, []byte(arn))
+		anyMatched := false
+		for _, arn := range arns {
+			matched, _ := regexp.Match(`\$\{.+?\}`, []byte(arn))
+			if matched {
+				anyMatched = true
+			}
+		}
 
-		return !matched, []string{arn}
+		return !anyMatched, arns
 	}
 
 	account := "123456789012"
@@ -607,13 +610,22 @@ func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string
 	if call.Region[0:7] == "us-gov-" {
 		partition = "aws-us-gov"
 	}
-	arn = regexp.MustCompile(`\$\{Partition\}`).ReplaceAllString(arn, partition)
-	arn = regexp.MustCompile(`\$\{Region\}`).ReplaceAllString(arn, call.Region)
-	arn = regexp.MustCompile(`\$\{Account\}`).ReplaceAllString(arn, account)
-	unresolvedArn := arn
-	arn = regexp.MustCompile(`\$\{.+?\}`).ReplaceAllString(arn, "*") // TODO: preserve ${aws:*} variables
 
-	return (unresolvedArn == arn), []string{arn}
+	anyUnresolved := false
+	result := []string{}
+	for _, arn := range arns {
+		arn = regexp.MustCompile(`\$\{Partition\}`).ReplaceAllString(arn, partition)
+		arn = regexp.MustCompile(`\$\{Region\}`).ReplaceAllString(arn, call.Region)
+		arn = regexp.MustCompile(`\$\{Account\}`).ReplaceAllString(arn, account)
+		unresolvedArn := arn
+		arn = regexp.MustCompile(`\$\{.+?\}`).ReplaceAllString(arn, "*") // TODO: preserve ${aws:*} variables
+		if unresolvedArn != arn {
+			anyUnresolved = true
+		}
+		result = append(result, arn)
+	}
+
+	return !anyUnresolved, result
 }
 
 func mapServicePrefix(prefix string, mappings iamMapBase) string {
