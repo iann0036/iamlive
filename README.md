@@ -59,7 +59,7 @@ iamlive --set-ini --profile myprofile --fails-only --output-file policy.json --r
 _Comprehensive Example (Proxy)_
 
 ```
-iamlive --mode proxy --set-ini --profile myprofile --output-file policy.json --refresh-rate 1 --sort-alphabetical --bind-addr 127.0.0.1:10080 --ca-bundle ~/.iamlive/ca.pem
+iamlive --mode proxy --set-ini --profile myprofile --output-file policy.json --refresh-rate 1 --sort-alphabetical --bind-addr 127.0.0.1:10080 --ca-bundle ~/.iamlive/ca.pem --ca-key ~/.iamlive/ca.key
 ```
 
 ### CSM Mode

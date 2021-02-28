@@ -2,18 +2,29 @@ package main
 
 import (
 	"bytes"
+	"crypto/rand"
+	"crypto/rsa"
+	"crypto/tls"
+	"crypto/x509"
+	"crypto/x509/pkix"
 	"embed"
 	"encoding/json"
+	"encoding/pem"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"log"
+	"math/big"
 	"net/http"
 	"net/url"
+	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/elazarl/goproxy"
+	"github.com/mitchellh/go-homedir"
 )
 
 //go:embed service/*
@@ -21,7 +32,123 @@ var serviceFiles embed.FS
 
 var serviceDefinitions []ServiceDefinition
 
+func loadCAKeys() error {
+	var caCert []byte
+	var caKey []byte
+
+	caBundlePath, err := homedir.Expand(*caBundleFlag)
+	if err != nil {
+		return err
+	}
+	caKeyPath, err := homedir.Expand(*caKeyFlag)
+	if err != nil {
+		return err
+	}
+
+	if _, err := os.Stat(caBundlePath); os.IsNotExist(err) {
+		if _, err := os.Stat(caKeyPath); os.IsNotExist(err) {
+			// make directories
+			err = os.MkdirAll(filepath.Dir(caBundlePath), 0700)
+			if err != nil {
+				return err
+			}
+			err = os.MkdirAll(filepath.Dir(caKeyPath), 0700)
+			if err != nil {
+				return err
+			}
+
+			// generate keys
+			ca := &x509.Certificate{
+				SerialNumber: big.NewInt(2019),
+				Subject: pkix.Name{
+					Organization:  []string{"iamlive CA"},
+					Country:       []string{"US"},
+					Province:      []string{""},
+					Locality:      []string{"San Francisco"},
+					StreetAddress: []string{"Golden Gate Bridge"},
+					PostalCode:    []string{"94016"},
+				},
+				NotBefore:             time.Now(),
+				NotAfter:              time.Now().AddDate(10, 0, 0),
+				IsCA:                  true,
+				ExtKeyUsage:           []x509.ExtKeyUsage{x509.ExtKeyUsageClientAuth, x509.ExtKeyUsageServerAuth},
+				KeyUsage:              x509.KeyUsageDigitalSignature | x509.KeyUsageCertSign,
+				BasicConstraintsValid: true,
+			}
+
+			caPrivKey, err := rsa.GenerateKey(rand.Reader, 4096)
+			if err != nil {
+				return err
+			}
+
+			caBytes, err := x509.CreateCertificate(rand.Reader, ca, ca, &caPrivKey.PublicKey, caPrivKey)
+			if err != nil {
+				return err
+			}
+
+			caPEM := new(bytes.Buffer)
+			pem.Encode(caPEM, &pem.Block{
+				Type:  "CERTIFICATE",
+				Bytes: caBytes,
+			})
+
+			caPrivKeyPEM := new(bytes.Buffer)
+			pem.Encode(caPrivKeyPEM, &pem.Block{
+				Type:  "RSA PRIVATE KEY",
+				Bytes: x509.MarshalPKCS1PrivateKey(caPrivKey),
+			})
+
+			caCert = caPEM.Bytes()
+			caKey = caPrivKeyPEM.Bytes()
+
+			// write data
+			err = ioutil.WriteFile(caBundlePath, caCert, 0600)
+			if err != nil {
+				return err
+			}
+			err = ioutil.WriteFile(caKeyPath, caKey, 0600)
+			if err != nil {
+				return err
+			}
+		} else {
+			return fmt.Errorf("CA bundle file exists without key file")
+		}
+	} else {
+		if _, err := os.Stat(caKeyPath); os.IsNotExist(err) {
+			return fmt.Errorf("CA key file exists without bundle file")
+		}
+
+		caCert, err = ioutil.ReadFile(caBundlePath)
+		if err != nil {
+			return err
+		}
+		caKey, err = ioutil.ReadFile(caKeyPath)
+		if err != nil {
+			return err
+		}
+	}
+
+	goproxyCa, err := tls.X509KeyPair(caCert, caKey)
+	if err != nil {
+		return err
+	}
+	if goproxyCa.Leaf, err = x509.ParseCertificate(goproxyCa.Certificate[0]); err != nil {
+		return err
+	}
+	goproxy.GoproxyCa = goproxyCa
+	goproxy.OkConnect = &goproxy.ConnectAction{Action: goproxy.ConnectAccept, TLSConfig: goproxy.TLSConfigFromCA(&goproxyCa)}
+	goproxy.MitmConnect = &goproxy.ConnectAction{Action: goproxy.ConnectMitm, TLSConfig: goproxy.TLSConfigFromCA(&goproxyCa)}
+	goproxy.HTTPMitmConnect = &goproxy.ConnectAction{Action: goproxy.ConnectHTTPMitm, TLSConfig: goproxy.TLSConfigFromCA(&goproxyCa)}
+	goproxy.RejectConnect = &goproxy.ConnectAction{Action: goproxy.ConnectReject, TLSConfig: goproxy.TLSConfigFromCA(&goproxyCa)}
+	return nil
+}
+
 func createProxy(addr string) {
+	err := loadCAKeys()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	proxy := goproxy.NewProxyHttpServer()
 	proxy.Logger = log.New(io.Discard, "", log.LstdFlags)
 	proxy.OnRequest().HandleConnect(goproxy.AlwaysMitm)
