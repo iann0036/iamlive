@@ -10,7 +10,6 @@ import (
 	"log"
 	"net/http"
 	"net/url"
-	"os"
 	"regexp"
 	"strings"
 
@@ -59,7 +58,7 @@ type ServiceStructure struct {
 	Member       *ServiceStructure           `json:"member"`
 	Members      map[string]ServiceStructure `json:"members"`
 	LocationName string                      `json:"locationName"`
-	ParentKey    string
+	QueryName    string                      `json:"queryName"`
 }
 
 type ServiceDefinitionMetadata struct {
@@ -190,10 +189,6 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 				}
 			}
 		}
-
-		fmt.Println(vals)
-		fmt.Println(params)
-		os.Exit(0)
 	}
 
 	region := "us-east-1"
@@ -222,8 +217,10 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, l
 
 	if obj.Shape != "" {
 		locationName := obj.LocationName
+		queryName := obj.QueryName
 		obj = shapes[obj.Shape]
 		obj.LocationName = locationName
+		obj.QueryName = queryName
 	}
 
 	switch obj.Type { // TODO: Exhaustive check for other types
@@ -237,10 +234,10 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, l
 			}
 
 			newLocationPath := locationPath + "." + k
-			if v.LocationName != "" {
-				v.ParentKey = v.LocationName
-			} else {
-				v.ParentKey = k
+			if v.QueryName != "" {
+				newLocationPath = locationPath + "." + v.QueryName
+			} else if v.LocationName != "" {
+				newLocationPath = locationPath + "." + v.LocationName
 			}
 
 			ret = resolvePropertyName(v, searchProp, newPath, newLocationPath, shapes)
@@ -249,14 +246,6 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, l
 			}
 		}
 	case "long", "float", "integer", "", "string":
-		key := obj.ParentKey
-		if obj.LocationName != "" {
-			key = obj.LocationName
-		}
-
-		//locationPath = locationPath[:strings.LastIndex(locationPath, ".")] // override last element
-		locationPath = fmt.Sprintf("%s.%s", locationPath, key)
-
 		if len(locationPath) > 2 && locationPath[len(locationPath)-2:] == "[]" { // trim trailing []
 			locationPath = locationPath[:len(locationPath)-2]
 		}
@@ -265,10 +254,7 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, l
 		}
 
 		if strings.ToLower(locationPath) == strings.ToLower(searchProp) {
-			fmt.Println("Matching path: " + locationPath)
 			return path
-		} else {
-			fmt.Println("NON-Matching path: " + locationPath + " - " + searchProp)
 		}
 	case "list":
 		newPath := fmt.Sprintf("%s[]", path)

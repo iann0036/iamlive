@@ -21811,6 +21811,12 @@
             {
                 "action": "ec2:RunInstances",
                 "arn_override": {
+                    "template": "%%iftruthy%${SecurityGroups[]}%arn:${Partition}:ec2:${Region}:${Account}:security-group/*%%%"
+                }
+            },
+            {
+                "action": "ec2:RunInstances",
+                "arn_override": {
                     "template": "%%iftruthy%${LaunchTemplate.LaunchTemplateId}%arn:${Partition}:ec2:${Region}::image/*%%%"
                 }
             },

@@ -1,6 +1,6 @@
 # iamlive
 
-> Generate a basic IAM policy from AWS client-side monitoring (CSM)
+> Generate an IAM policy from AWS calls using client-side monitoring (CSM) or embedded proxy
 
 ![](https://raw.githubusercontent.com/iann0036/iamlive/assets/iamlive.gif)
 
