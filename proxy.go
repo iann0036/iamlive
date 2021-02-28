@@ -173,7 +173,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 					normalizedK := regexp.MustCompile(`\.member\.[0-9]+`).ReplaceAllString(k, "[]")
 					normalizedK = regexp.MustCompile(`\.[0-9]+`).ReplaceAllString(normalizedK, "[]")
 
-					resolvedPropertyName := resolvePropertyName(serviceDef.Operations[action].Input, normalizedK, "", serviceDef.Shapes)
+					resolvedPropertyName := resolvePropertyName(serviceDef.Operations[action].Input, normalizedK, "", "", serviceDef.Shapes)
 					if resolvedPropertyName != "" {
 						normalizedK = resolvedPropertyName
 					}
@@ -209,13 +209,15 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	handleLoggedCall()
 }
 
-func resolvePropertyName(obj ServiceStructure, searchProp string, path string, shapes map[string]ServiceStructure) (ret string) {
+func resolvePropertyName(obj ServiceStructure, searchProp string, path string, locationPath string, shapes map[string]ServiceStructure) (ret string) {
 	if searchProp[len(searchProp)-2:] == "[]" { // trim trailing []
 		searchProp = searchProp[:len(searchProp)-2]
 	}
 
 	if obj.Shape != "" {
+		locationName := obj.LocationName
 		obj = shapes[obj.Shape]
+		obj.LocationName = locationName
 	}
 
 	switch obj.Type { // TODO: Exhaustive check for other types
@@ -228,19 +230,37 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, s
 				newPath = k
 			}
 
-			ret = resolvePropertyName(v, searchProp, newPath, shapes)
+			newLocationPath := locationPath
+
+			if v.LocationName != "" {
+				if v.LocationName != "item" { // skip list item structures
+					newLocationPath = fmt.Sprintf(".%s", v.LocationName)
+				}
+			} else {
+				newLocationPath = fmt.Sprintf(".%s", k)
+			}
+
+			if newLocationPath[0] == '.' { // trim leading .
+				newLocationPath = newLocationPath[1:]
+			}
+
+			ret = resolvePropertyName(v, searchProp, newPath, newLocationPath, shapes)
 			if ret != "" {
 				return ret
 			}
 		}
 	case "long", "float", "integer", "", "string":
-		if obj.LocationName == searchProp { // TODO: need a 4th locationPath to prepend to locationname
+		if len(locationPath) > 2 && locationPath[len(locationPath)-2:] == "[]" { // trim trailing []
+			locationPath = locationPath[:len(locationPath)-2]
+		}
+
+		if strings.ToLower(locationPath) == strings.ToLower(searchProp) {
 			return path
 		}
 	case "list":
 		newPath := fmt.Sprintf("%s[]", path)
 
-		ret = resolvePropertyName(*obj.Member, searchProp, newPath, shapes)
+		ret = resolvePropertyName(*obj.Member, searchProp, newPath, fmt.Sprintf("%s[]", locationPath), shapes)
 		if ret != "" {
 			return ret
 		}

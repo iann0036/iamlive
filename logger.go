@@ -537,6 +537,9 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 													arns = newArns
 												}
 
+												fmt.Println("res_mapping SUBBED ARNS:")
+												fmt.Println(arns)
+
 												if len(arns) == 0 && mandatory {
 													arns = []string{"*"}
 												}
@@ -546,6 +549,9 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 													if mandatory || fullyResolved { // check if mandatory or fully resolved
 														resources = append(resources, subbedArns...) // sub full parameters and add to resources
 													}
+
+													fmt.Println("SUBBED ARNS:")
+													fmt.Println(subbedArns)
 												}
 											}
 										}
@@ -574,7 +580,6 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 		}
 	}
 
-	fmt.Println(call)
 	os.Exit(0)
 
 	return statements
