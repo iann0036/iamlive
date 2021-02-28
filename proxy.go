@@ -175,8 +175,15 @@ type ServiceDefinition struct {
 }
 
 type ServiceOperation struct {
+	Http   ServiceHttp      `json:"http"`
 	Input  ServiceStructure `json:"input"`
 	Output ServiceStructure `json:"output"`
+}
+
+type ServiceHttp struct {
+	Method       string `json:"method"`
+	RequestURI   string `json:"requestUri"`
+	ResponseCode int    `json:"responseCode"`
 }
 
 type ServiceStructure struct {
@@ -262,29 +269,99 @@ func flatten(top bool, flatMap map[string][]string, nested interface{}, prefix s
 
 func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	host := req.Host
-	//uri := req.RequestURI
+	uri := req.RequestURI
 
 	var serviceDef ServiceDefinition
-	endpointPrefix := strings.Split(host, ".")[0]
-	for _, serviceDefinition := range serviceDefinitions {
-		if serviceDefinition.Metadata.EndpointPrefix == endpointPrefix { // TODO: Ensure latest version
-			serviceDef = serviceDefinition
+	hostSplit := strings.Split(host, ".")
+	if hostSplit[len(hostSplit)-1] == "com" && hostSplit[len(hostSplit)-2] == "amazonaws" {
+		endpointPrefix := hostSplit[len(hostSplit)-3]
+		if len(hostSplit) > 3 {
+			endpointPrefix = hostSplit[len(hostSplit)-4]
 		}
+		for _, serviceDefinition := range serviceDefinitions {
+			if serviceDefinition.Metadata.EndpointPrefix == endpointPrefix { // TODO: Ensure latest version
+				serviceDef = serviceDefinition
+			}
+		}
+	} else {
+		return
 	}
 
+	uriparams := make(map[string]string)
 	params := make(map[string][]string)
 	action := "*"
 
-	var bodyJSON interface{}
-	err := json.Unmarshal(body, &bodyJSON)
-
-	if err == nil {
-		// JSON schema
-		action = strings.Split(req.Header.Get("X-Amz-Target"), ".")[1] // TODO: error handle
-
-		flatten(true, params, bodyJSON, "")
-	} else {
+	if serviceDef.Metadata.Protocol == "rest-json" {
 		// URL param schema
+		urlobj, err := url.ParseRequestURI(uri)
+		if err != nil {
+			return
+		}
+		vals := urlobj.Query()
+
+		// path part
+		for operationName, operation := range serviceDef.Operations {
+			templateMatches := regexp.MustCompile(`{([^/]+?)}`).FindAllStringSubmatch(operation.Http.RequestURI, -1)
+			regexStr := fmt.Sprintf("^%s$", regexp.MustCompile(`{([^/]+?)}`).ReplaceAllString(operation.Http.RequestURI, "([^/]+)"))
+			pathMatchSuccess := regexp.MustCompile(regexStr).Match([]byte(urlobj.Path))
+
+			if operation.Http.Method == req.Method && pathMatchSuccess {
+				action = operationName
+				pathMatches := regexp.MustCompile(regexStr).FindAllStringSubmatch(urlobj.Path, -1)
+
+				if len(pathMatches) > 0 && len(pathMatches) > 0 && len(templateMatches) == len(pathMatches[0])-1 {
+					for i := 0; i < len(templateMatches); i++ {
+						uriparams[templateMatches[i][1]] = pathMatches[0][1:][i]
+					}
+				}
+			}
+		}
+
+		// query part
+		for k, v := range vals {
+			normalizedK := regexp.MustCompile(`\.member\.[0-9]+`).ReplaceAllString(k, "[]")
+			normalizedK = regexp.MustCompile(`\.[0-9]+`).ReplaceAllString(normalizedK, "[]")
+
+			resolvedPropertyName := resolvePropertyName(serviceDef.Operations[action].Input, normalizedK, "", "", serviceDef.Shapes)
+			if resolvedPropertyName != "" {
+				normalizedK = resolvedPropertyName
+			}
+
+			if len(params[normalizedK]) > 0 {
+				params[normalizedK] = append(params[normalizedK], v...)
+			} else {
+				params[normalizedK] = v
+			}
+		}
+
+		// body part
+		if len(body) > 0 {
+			var bodyJSON interface{}
+			err := json.Unmarshal(body, &bodyJSON)
+			if err != nil {
+				return
+			}
+
+			flatten(true, params, bodyJSON, "")
+		}
+	} else if serviceDef.Metadata.Protocol == "json" {
+		// JSON schema
+		var bodyJSON interface{}
+		err := json.Unmarshal(body, &bodyJSON)
+
+		if err == nil {
+			amzTargetHeader := req.Header.Get("X-Amz-Target")
+			if amzTargetHeader != "" {
+				action = strings.Split(amzTargetHeader, ".")[1] // TODO: error handle
+				flatten(true, params, bodyJSON, "")
+			} else {
+				return
+			}
+		} else {
+			return
+		}
+	} else if serviceDef.Metadata.Protocol == "ec2" || serviceDef.Metadata.Protocol == "query" {
+		// URL param schema in body
 		vals, err := url.ParseQuery(string(body))
 		if err != nil {
 			return
@@ -306,13 +383,11 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 						normalizedK = resolvedPropertyName
 					}
 
-					if len(params[normalizedK]) > 0 { // TODO: Check logic here
+					if len(params[normalizedK]) > 0 {
 						params[normalizedK] = append(params[normalizedK], v...)
 					} else {
 						params[normalizedK] = v
 					}
-
-					//fmt.Printf("k=%v,v=%v\n", k, v)
 				}
 			}
 		}
@@ -331,6 +406,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		Service:             serviceDef.Metadata.ServiceID,
 		Method:              action,
 		Parameters:          params,
+		URIParameters:       uriparams,
 		FinalHTTPStatusCode: respCode,
 	})
 

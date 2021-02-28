@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/url"
+	"os"
 	"reflect"
 	"regexp"
 	"sort"
@@ -30,6 +31,7 @@ type Entry struct {
 	Service             string `json:"Service"`
 	Method              string `json:"Api"`
 	Parameters          map[string][]string
+	URIParameters       map[string]string
 	FinalHTTPStatusCode int `json:"FinalHttpStatusCode"`
 }
 
@@ -87,49 +89,11 @@ func getPolicyDocument() []byte {
 		})
 	} else if *modeFlag == "proxy" {
 		for _, entry := range callLog {
-			//var actions []string
-
 			if *failsonlyFlag && (entry.FinalHTTPStatusCode >= 200 && entry.FinalHTTPStatusCode <= 299) {
 				continue
 			}
 
-			/*
-				newActions := getDependantActions(getActions(entry.Service, entry.Method))
-				for _, newAction := range newActions {
-					foundAction := false
-
-					for _, action := range actions {
-						if action == newAction {
-							foundAction = true
-							break
-						}
-					}
-					if !foundAction {
-						actions = append(actions, newAction)
-					}
-				}
-			*/
-
 			policy.Statement = append(policy.Statement, getStatementsForProxyCall(entry)...)
-
-			/*
-				ActionLoop: // add any actions shown in SAR dependant_actions not added by map (is this even possible?)
-					for _, action := range actions {
-						for _, statement := range policy.Statement {
-							for _, statementAction := range statement.Action {
-								if statementAction == action {
-									continue ActionLoop
-								}
-							}
-						}
-
-						policy.Statement = append(policy.Statement, Statement{
-							Effect:   "Allow",
-							Resource: []string{"*"},
-							Action:   []string{action},
-						})
-					}
-			*/
 		}
 
 		policy = aggregatePolicy(policy)
@@ -573,6 +537,10 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 		}
 	}
 
+	fmt.Println(call)
+	fmt.Println(statements)
+	os.Exit(0)
+
 	return statements
 }
 
@@ -586,6 +554,15 @@ func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string
 			for _, arn := range arns {
 				newArns = append(newArns, regexp.MustCompile(`\$\{`+strings.ReplaceAll(strings.ReplaceAll(paramVarName, "[", "\\["), "]", "\\]")+`\}`).ReplaceAllString(arn, param)) // might have dupes but resolved out later
 			}
+		}
+		arns = newArns
+	}
+
+	// URI parameter substitution
+	for paramVarName, param := range call.URIParameters {
+		newArns := []string{}
+		for _, arn := range arns {
+			newArns = append(newArns, regexp.MustCompile(`\$\{`+strings.ReplaceAll(strings.ReplaceAll(paramVarName, "[", "\\["), "]", "\\]")+`\}`).ReplaceAllString(arn, param)) // might have dupes but resolved out later
 		}
 		arns = newArns
 	}
