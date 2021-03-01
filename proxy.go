@@ -352,7 +352,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		if err == nil {
 			amzTargetHeader := req.Header.Get("X-Amz-Target")
 			if amzTargetHeader != "" {
-				action = strings.Split(amzTargetHeader, ".")[1] // TODO: error handle
+				action = strings.Split(amzTargetHeader, ".")[1]
 				flatten(true, params, bodyJSON, "")
 			} else {
 				return

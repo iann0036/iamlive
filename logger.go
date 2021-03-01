@@ -486,7 +486,7 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 											if strings.Replace(resourceType.ResourceType, "*", "", -1) == mapResType {
 												mandatory := strings.HasSuffix(resourceType.ResourceType, "*")
 
-												resARNMappingTemplates := resolveSpecials(mapResTemplate, call, false) // TODO: Check mandatory flagging here
+												resARNMappingTemplates := resolveSpecials(mapResTemplate, call, false)
 												if len(resARNMappingTemplates) == 1 && resARNMappingTemplates[0] == "" {
 													continue
 												}
@@ -525,7 +525,7 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 
 												// substitute the resource_mappings
 												for resMappingVar, resMapping := range mappedPriv.ResourceMappings { // for each mapping
-													resMappingTemplates := resolveSpecials(resMapping.Template, call, false) // get a list of resolved template strings TODO: Check mandatory flagging here
+													resMappingTemplates := resolveSpecials(resMapping.Template, call, false) // get a list of resolved template strings
 
 													if len(resMappingTemplates) == 1 && resMappingTemplates[0] == "" {
 														continue
