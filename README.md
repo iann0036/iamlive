@@ -48,21 +48,37 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--bind-addr:** _[experimental]_ the bind address for proxy mode (_default: 127.0.0.1:10080_)
 
-**--ca-bundle:** _[experimental]_ the certificate bundle (PEM) to use for proxy mode (_default: ~/.iamlive/ca.pem_)
+**--ca-bundle:** _[experimental]_ the CA certificate bundle (PEM) to use for proxy mode (_default: ~/.iamlive/ca.pem_)
 
-_Comprehensive Example (CSM)_
+**--ca-key:** _[experimental]_ the CA certificate key to use for proxy mode (_default: ~/.iamlive/ca.key_)
+
+Basic Example (CSM Mode)_
+
+```
+iamlive --set-ini
+```
+
+Basic Example (Proxy Mode)_
+
+```
+iamlive --set-ini --mode proxy
+```
+
+_Comprehensive Example (CSM Mode)_
 
 ```
 iamlive --set-ini --profile myprofile --fails-only --output-file policy.json --refresh-rate 1 --sort-alphabetical --host 127.0.0.1
 ```
 
-_Comprehensive Example (Proxy)_
+_Comprehensive Example (Proxy Mode)_
 
 ```
-iamlive --mode proxy --set-ini --profile myprofile --output-file policy.json --refresh-rate 1 --sort-alphabetical --bind-addr 127.0.0.1:10080 --ca-bundle ~/.iamlive/ca.pem --ca-key ~/.iamlive/ca.key
+iamlive --set-ini --mode proxy --profile myprofile --output-file policy.json --refresh-rate 1 --sort-alphabetical --bind-addr 127.0.0.1:10080 --ca-bundle ~/.iamlive/ca.pem --ca-key ~/.iamlive/ca.key
 ```
 
 ### CSM Mode
+
+Client-side monitoring mode is the default behaviour and will use [metrics](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/metrics.html) delivered locally via UDP to capture policy statements with the `Action` key only (`Resource` is only available in proxy mode).
 
 #### CLI
 
@@ -90,7 +106,40 @@ export AWS_CSM_HOST=127.0.0.1
 
 ### Proxy Mode
 
-Coming soon.
+Proxy mode will serve a local HTTP(S) server (by default at `http://127.0.0.1:10080`) that will MITM requests sent to the AWS endpoints and generate IAM policy statements with both `Action` and `Resource` keys. The CA key/certificate pair will be automatically generated and stored by default at `~/.iamlive/ca.pem`.
+
+#### CLI
+
+To set the appropriate CA bundle in the AWS CLI, you should either use the `--set-ini` option or add the following to the relevant profile in `.aws/config`:
+
+```
+ca_bundle = ~/.iamlive/ca.pem
+```
+
+Alternatively, you can run the following in the window executing your CLI commands:
+
+```
+export AWS_CA_BUNDLE=~/.iamlive/ca.pem
+```
+
+You must also set the proxy settings for your session by running the following in the window executing your CLI commands:
+
+```
+export HTTP_PROXY=http://127.0.0.1:10080
+export HTTPS_PROXY=http://127.0.0.1:10080
+```
+
+#### SDKs
+
+To enable CSM in the various AWS SDKs, you can run the following in the window executing your application prior to it starting:
+
+```
+export HTTP_PROXY=http://127.0.0.1:10080
+export HTTPS_PROXY=http://127.0.0.1:10080
+export AWS_CA_BUNDLE=~/.iamlive/ca.pem
+```
+
+Check the [official docs](https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-ca_bundle.html) for further details on setting the CA bundle.
 
 ## FAQs
 
@@ -100,4 +149,4 @@ This project requires Go 1.16 or above to be built correctly (due to embedding f
 
 ## Acknowledgements
 
-This project makes heavy use of [Parliament](https://github.com/duo-labs/parliament) and was assisted by Scott Piper's [CSM explainer](https://summitroute.com/blog/2020/05/25/client_side_monitoring/).
+This project makes heavy use of [Parliament](https://github.com/duo-labs/parliament) and was assisted by Scott Piper's [CSM explainer](https://summitroute.com/blog/2020/05/25/client_side_monitoring/). Thanks also to Noam Dahan's [research](https://ermetic.com/whats-new/blog/auditing-passrole-a-problematic-privilege-escalation-permission/) into missing `iam:PassRole` dependant actions.
