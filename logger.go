@@ -23,6 +23,10 @@ var bIAMSAR []byte
 
 var callLog []Entry
 
+// JSON maps
+var iamMap iamMapBase
+var iamDef []iamDefService
+
 // Entry is a single CSM entry
 type Entry struct {
 	Region              string `json:"Region"`
@@ -45,6 +49,18 @@ type Statement struct {
 type IAMPolicy struct {
 	Version   string      `json:"Version"`
 	Statement []Statement `json:"Statement"`
+}
+
+func loadMaps() {
+	err := json.Unmarshal(bIAMMap, &iamMap)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = json.Unmarshal(bIAMSAR, &iamDef)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func getPolicyDocument() []byte {
@@ -233,13 +249,6 @@ func uniqueSlice(slice []string) []string {
 }
 
 func getDependantActions(actions []string) []string {
-	var iamDef []iamDefService
-
-	err := json.Unmarshal(bIAMSAR, &iamDef)
-	if err != nil {
-		panic(err)
-	}
-
 	for _, baseaction := range actions {
 		splitbase := strings.Split(baseaction, ":")
 		if len(splitbase) != 2 {
@@ -267,13 +276,7 @@ func getDependantActions(actions []string) []string {
 }
 
 func getActions(service, method string) []string {
-	var iamMap iamMapBase
 	var actions []string
-
-	err := json.Unmarshal(bIAMMap, &iamMap)
-	if err != nil {
-		panic(err)
-	}
 
 	// checked if permissionless
 	for _, permissionlessAction := range iamMap.SDKPermissionlessActions {
@@ -437,18 +440,6 @@ func resolveSpecials(arn string, call Entry, mandatory bool) []string {
 
 func getStatementsForProxyCall(call Entry) (statements []Statement) {
 	lowerPriv := strings.ToLower(fmt.Sprintf("%s.%s", call.Service, call.Method))
-
-	var iamMap iamMapBase
-	err := json.Unmarshal(bIAMMap, &iamMap)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	var iamDef []iamDefService
-	err = json.Unmarshal(bIAMSAR, &iamDef)
-	if err != nil {
-		panic(err)
-	}
 
 	for iamMapMethodName, iamMapMethods := range iamMap.SDKMethodIAMMappings {
 		if strings.ToLower(iamMapMethodName) == lowerPriv {

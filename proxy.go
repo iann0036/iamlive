@@ -452,7 +452,7 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, l
 		if len(locationPath) > 2 && locationPath[len(locationPath)-2:] == "[]" { // trim trailing []
 			locationPath = locationPath[:len(locationPath)-2]
 		}
-		if locationPath[0] == '.' { // trim leading .
+		if len(locationPath) > 0 && locationPath[0] == '.' { // trim leading .
 			locationPath = locationPath[1:]
 		}
 

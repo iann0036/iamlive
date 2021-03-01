@@ -8,6 +8,7 @@ import (
 	"net"
 	"os"
 	"os/signal"
+	"runtime/pprof"
 	"strings"
 	"syscall"
 
@@ -90,6 +91,8 @@ func setINIConfigAndFileFlush() {
 					}
 					cfg.SaveTo(cfgfile)
 				}
+
+				pprof.StopCPUProfile()
 
 				// exit
 				os.Exit(0)
