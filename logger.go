@@ -175,9 +175,10 @@ func writePolicyToTerminal() {
 }
 
 type iamMapMethod struct {
-	Action           string                      `json:"action"`
-	ResourceMappings map[string]iamMapResMapItem `json:"resource_mappings"`
-	ArnOverride      iamMapArnOverride           `json:"arn_override"`
+	Action              string                      `json:"action"`
+	ResourceMappings    map[string]iamMapResMapItem `json:"resource_mappings"`
+	ResourceARNMappings map[string]string           `json:"resourcearn_mappings"`
+	ArnOverride         iamMapArnOverride           `json:"arn_override"`
 }
 
 type iamMapArnOverride struct {
@@ -468,10 +469,45 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 					}
 				}
 
+				// resourcearn_mappings
+				if len(mappedPriv.ResourceARNMappings) > 0 {
+					for _, service := range iamDef { // in the SAR
+						if service.Prefix == strings.ToLower(call.Service) { // find the service for the call
+							for _, servicePrivilege := range service.Privileges {
+								if strings.ToLower(call.Method) == strings.ToLower(servicePrivilege.Privilege) { // find the method for the call
+									for _, resourceType := range servicePrivilege.ResourceTypes { // get all resource types for the privilege
+										for mapResType, mapResTemplate := range mappedPriv.ResourceARNMappings {
+											if strings.Replace(resourceType.ResourceType, "*", "", -1) == mapResType {
+												mandatory := strings.HasSuffix(resourceType.ResourceType, "*")
+
+												resARNMappingTemplates := resolveSpecials(mapResTemplate, call, mandatory)
+												if len(resARNMappingTemplates) == 1 && resARNMappingTemplates[0] == "" {
+													continue
+												}
+
+												if len(resARNMappingTemplates) == 0 && mandatory {
+													resARNMappingTemplates = []string{"*"}
+												}
+
+												for _, resARNMappingTemplate := range resARNMappingTemplates {
+													fullyResolved, subbedArns := subARNParameters(resARNMappingTemplate, call, false)
+													if mandatory || fullyResolved { // check if mandatory or fully resolved
+														resources = append(resources, subbedArns...) // sub full parameters and add to resources
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
 				// resource_mappings
 				if len(resources) == 0 {
 					for _, service := range iamDef { // in the SAR
-						if service.Prefix == strings.ToLower(call.Service) { // find the service for the call TODO: check mappings for this
+						if service.Prefix == strings.ToLower(call.Service) { // find the service for the call
 							for _, servicePrivilege := range service.Privileges {
 								if strings.ToLower(call.Method) == strings.ToLower(servicePrivilege.Privilege) { // find the method for the call
 									for _, resourceType := range servicePrivilege.ResourceTypes { // get all resource types for the privilege
