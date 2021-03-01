@@ -517,10 +517,6 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 							}
 						}
 					}
-
-					if len(resources) == 0 {
-						continue
-					}
 				}
 
 				// default (last ditch)
