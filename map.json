@@ -27197,7 +27197,7 @@
                 "action": "iam:CreateGroup",
                 "resource_mappings": {
                     "GroupNameWithPath": {
-                        "template": "%%regex%${Path}%/^\\/?(.+)\\/?$/g%%/${GroupName}"
+                        "template": "%%regex%${Path}%/^\\/(.+)$/g%%${GroupName}"
                     }
                 }
             }
@@ -27207,7 +27207,7 @@
                 "action": "iam:CreateInstanceProfile",
                 "resource_mappings": {
                     "InstanceProfileNameWithPath": {
-                        "template": "%%regex%${Path}%/^\\/?(.+)\\/?$/g%%/${InstanceProfileName}"
+                        "template": "%%regex%${Path}%/^\\/(.+)$/g%%${InstanceProfileName}"
                     }
                 }
             }
@@ -27232,7 +27232,7 @@
                 "action": "iam:CreatePolicy",
                 "resource_mappings": {
                     "PolicyNameWithPath": {
-                        "template": "%%regex%${Path}%/^\\/?(.+)\\/?$/g%%/${PolicyName}"
+                        "template": "%%regex%${Path}%/^\\/(.+)$/g%%${PolicyName}"
                     }
                 }
             }
@@ -27251,7 +27251,7 @@
                 "action": "iam:CreateRole",
                 "resource_mappings": {
                     "RoleNameWithPath": {
-                        "template": "%%regex%${Path}%/^\\/?(.+)\\/?$/g%%/${RoleName}"
+                        "template": "%%regex%${Path}%/^\\/(.+)$/g%%${RoleName}"
                     }
                 }
             }
@@ -27286,7 +27286,7 @@
                 "action": "iam:CreateUser",
                 "resource_mappings": {
                     "UserNameWithPath": {
-                        "template": "%%regex%${Path}%/^\\/?(.+)\\/?$/g%%/${UserName}"
+                        "template": "%%regex%${Path}%/^\\/(.+)$/g%%${UserName}"
                     }
                 }
             }
@@ -27296,7 +27296,7 @@
                 "action": "iam:CreateVirtualMFADevice",
                 "resource_mappings": {
                     "MfaTokenIdWithPath": {
-                        "template": "%%regex%${Path}%/^\\/?(.+)\\/?$/g%%/*"
+                        "template": "%%regex%${Path}%/^\\/(.+)$/g%%*"
                     }
                 }
             }
@@ -28337,7 +28337,7 @@
                 "action": "iam:UploadServerCertificate",
                 "resource_mappings": {
                     "CertificateNameWithPath": {
-                        "template": "%%regex%${Path}%/^\\/?(.+)\\/?$/g%%/${ServerCertificateName}"
+                        "template": "%%regex%${Path}%/^\\/(.+)$/g%%${ServerCertificateName}"
                     }
                 }
             }
@@ -42672,7 +42672,7 @@
                 "action": "ssm:GetParametersByPath",
                 "resource_mappings": {
                     "FullyQualifiedParameterName": {
-                        "template": "%%regex%${Path}%/^\\/?(.+)$/g%%*"
+                        "template": "%%regex%${Path}%/^\\/(.+)$/g%%*"
                     }
                 }
             }

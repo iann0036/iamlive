@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"log"
 	"net/url"
-	"os"
 	"reflect"
 	"regexp"
 	"sort"
@@ -338,7 +337,7 @@ func resolveSpecials(arn string, call Entry, mandatory bool) []string {
 	endIndex := strings.LastIndex(arn, "%%")
 
 	if startIndex > -1 && endIndex != startIndex {
-		parts := strings.Split(arn[startIndex+2:endIndex-1], "%")
+		parts := strings.Split(arn[startIndex+2:endIndex], "%")
 
 		if len(parts) < 2 {
 			return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
@@ -357,14 +356,20 @@ func resolveSpecials(arn string, call Entry, mandatory bool) []string {
 			fullyResolved, arns := subARNParameters(parts[1], call, true)
 
 			if len(arns) < 1 || arns[0] == "" || !fullyResolved {
-				if parts[3] == "" && mandatory {
-					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+				if parts[3] == "" {
+					if mandatory {
+						return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+					}
+					return []string{arn[0:startIndex] + arn[endIndex+2:]}
 				}
 				return []string{arn[0:startIndex] + parts[3] + arn[endIndex+2:]}
 			}
 
 			if parts[2] == "" && mandatory {
-				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+				if mandatory {
+					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+				}
+				return []string{arn[0:startIndex] + arn[endIndex+2:]}
 			}
 			return []string{arn[0:startIndex] + parts[2] + arn[endIndex+2:]}
 		case "urlencode":
@@ -377,7 +382,7 @@ func resolveSpecials(arn string, call Entry, mandatory bool) []string {
 				if mandatory {
 					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 				}
-				return []string{}
+				return []string{arn[0:startIndex] + arn[endIndex+2:]}
 			}
 
 			return []string{arn[0:startIndex] + url.QueryEscape(arns[0]) + arn[endIndex+2:]}
@@ -390,7 +395,7 @@ func resolveSpecials(arn string, call Entry, mandatory bool) []string {
 					if mandatory {
 						return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 					}
-					return []string{}
+					return []string{arn[0:startIndex] + arn[endIndex+2:]}
 				}
 
 				manyParts = append(manyParts, arns[0])
@@ -403,21 +408,22 @@ func resolveSpecials(arn string, call Entry, mandatory bool) []string {
 			}
 
 			fullyResolved, arns := subARNParameters(parts[1], call, true)
+
 			if len(arns) < 1 || arns[0] == "" || !fullyResolved {
 				if mandatory {
 					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 				}
-				return []string{}
+				return []string{arn[0:startIndex] + arn[endIndex+2:]}
 			}
 
-			r := regexp.MustCompile(parts[2]) // TODO: $ escape for regex?
-			groups := r.FindStringSubmatch(arns[0])
+			r := regexp.MustCompile(parts[2])
+			groups := r.FindStringSubmatch(strings.ReplaceAll(arns[0], `$`, `$$`))
 
 			if len(groups) < 2 || groups[1] == "" {
 				if mandatory {
 					return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
 				}
-				return []string{}
+				return []string{arn[0:startIndex] + arn[endIndex+2:]}
 			}
 
 			return []string{arn[0:startIndex] + groups[1] + arn[endIndex+2:]}
@@ -480,7 +486,7 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 											if strings.Replace(resourceType.ResourceType, "*", "", -1) == mapResType {
 												mandatory := strings.HasSuffix(resourceType.ResourceType, "*")
 
-												resARNMappingTemplates := resolveSpecials(mapResTemplate, call, mandatory)
+												resARNMappingTemplates := resolveSpecials(mapResTemplate, call, false) // TODO: Check mandatory flagging here
 												if len(resARNMappingTemplates) == 1 && resARNMappingTemplates[0] == "" {
 													continue
 												}
@@ -519,7 +525,7 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 
 												// substitute the resource_mappings
 												for resMappingVar, resMapping := range mappedPriv.ResourceMappings { // for each mapping
-													resMappingTemplates := resolveSpecials(resMapping.Template, call, mandatory) // get a list of resolved template strings
+													resMappingTemplates := resolveSpecials(resMapping.Template, call, false) // get a list of resolved template strings TODO: Check mandatory flagging here
 
 													if len(resMappingTemplates) == 1 && resMappingTemplates[0] == "" {
 														continue
@@ -568,10 +574,6 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 			}
 		}
 	}
-
-	fmt.Println(call)
-	fmt.Println(statements)
-	os.Exit(0)
 
 	return statements
 }
