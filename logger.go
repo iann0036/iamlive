@@ -156,7 +156,7 @@ func aggregatePolicy(policy IAMPolicy) IAMPolicy {
 func handleLoggedCall() {
 	// when making many calls in parallel, the terminal can be glitchy
 	// if we flush too often, optional flush on timer
-	if *terminalRefreshSecsFlag == 0 {
+	if *refreshRateFlag == 0 {
 		writePolicyToTerminal()
 	}
 }
@@ -312,11 +312,11 @@ func getActions(service, method string) []string {
 }
 
 func setTerminalRefresh() {
-	if *terminalRefreshSecsFlag <= 0 {
-		*terminalRefreshSecsFlag = 1
+	if *refreshRateFlag <= 0 {
+		*refreshRateFlag = 1
 	}
 
-	ticker := time.NewTicker(time.Duration(*terminalRefreshSecsFlag) * time.Second)
+	ticker := time.NewTicker(time.Duration(*refreshRateFlag) * time.Second)
 	quit := make(chan struct{})
 	go func() {
 		for {
