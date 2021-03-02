@@ -21,6 +21,7 @@ var modeFlag = flag.String("mode", "csm", "[experimental] the listening mode (cs
 var bindAddrFlag = flag.String("bind-addr", "127.0.0.1:10080", "[experimental] the bind address for proxy mode")
 var caBundleFlag = flag.String("ca-bundle", "~/.iamlive/ca.pem", "[experimental] the CA certificate bundle (PEM) to use for proxy mode")
 var caKeyFlag = flag.String("ca-key", "~/.iamlive/ca.key", "[experimental] the CA certificate key to use for proxy mode")
+var accountIdFlag = flag.String("account-id", "123456789012", "[experimental] the AWS account ID to use in policy outputs within proxy mode")
 var cpuProfileFlag = flag.String("cpu-profile", "", "[experimental] write a CPU profile to this file (for performance testing purposes)")
 
 func main() {

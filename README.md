@@ -52,6 +52,8 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--ca-key:** _[experimental]_ the CA certificate key to use for proxy mode (_default: ~/.iamlive/ca.key_)
 
+**--account-id:** _[experimental]_ the AWS account ID to use in policy outputs within proxy mode (_default: 123456789012_)
+
 _Basic Example (CSM Mode)_
 
 ```
@@ -73,7 +75,7 @@ iamlive --set-ini --profile myprofile --fails-only --output-file policy.json --r
 _Comprehensive Example (Proxy Mode)_
 
 ```
-iamlive --set-ini --mode proxy --profile myprofile --output-file policy.json --refresh-rate 1 --sort-alphabetical --bind-addr 127.0.0.1:10080 --ca-bundle ~/.iamlive/ca.pem --ca-key ~/.iamlive/ca.key
+iamlive --set-ini --mode proxy --profile myprofile --output-file policy.json --refresh-rate 1 --sort-alphabetical --bind-addr 127.0.0.1:10080 --ca-bundle ~/.iamlive/ca.pem --ca-key ~/.iamlive/ca.key --account-id 123456789012
 ```
 
 ### CSM Mode

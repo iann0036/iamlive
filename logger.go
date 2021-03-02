@@ -608,7 +608,7 @@ func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string
 		return !anyMatched, arns
 	}
 
-	account := "123456789012"
+	account := *accountIdFlag
 	partition := "aws"
 	if call.Region[0:3] == "cn-" {
 		partition = "aws-cn"
