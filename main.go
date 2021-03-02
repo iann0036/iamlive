@@ -2,396 +2,130 @@ package main
 
 import (
 	_ "embed"
-	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
 	"log"
-	"net"
 	"os"
-	"os/signal"
-	"sort"
-	"strings"
-	"syscall"
-	"time"
+	"runtime/pprof"
 
-	"github.com/buger/goterm"
 	"github.com/mitchellh/go-homedir"
 	"gopkg.in/ini.v1"
 )
 
-//go:embed map.json
-var bIAMMap []byte
-
-//go:embed iam_definition.json
-var bIAMSAR []byte
-
-var callLog []Entry
-
 // CLI args
-var setiniFlag = flag.Bool("set-ini", false, "when set, the .aws/config file will be updated to use the CSM monitoring and removed when exiting")
-var profileFlag = flag.String("profile", "default", "use the specified profile when combined with --set-ini")
-var failsonlyFlag = flag.Bool("fails-only", false, "when set, only failed AWS calls will be added to the policy")
-var outputFileFlag = flag.String("output-file", "", "specify a file that will be written to on SIGHUP or exit")
-var terminalRefreshSecsFlag = flag.Int("refresh-rate", 0, "instead of flushing to console every API call, do it this number of seconds")
-var sortAlphabeticalFlag = flag.Bool("sort-alphabetical", false, "sort actions alphabetically")
-var hostFlag = flag.String("host", "127.0.0.1", "host to listen on")
+var setiniFlag *bool
+var profileFlag *string
+var failsonlyFlag *bool
+var outputFileFlag *string
+var refreshRateFlag *int
+var sortAlphabeticalFlag *bool
+var hostFlag *string
+var modeFlag *string
+var bindAddrFlag *string
+var caBundleFlag *string
+var caKeyFlag *string
+var accountIDFlag *string
+var cpuProfileFlag = flag.String("cpu-profile", "", "[experimental] write a CPU profile to this file (for performance testing purposes)")
 
-// Entry is a single CSM entry
-type Entry struct {
-	Type                string `json:"Type"`
-	Service             string `json:"Service"`
-	Method              string `json:"Api"`
-	FinalHTTPStatusCode int    `json:"FinalHttpStatusCode"`
-}
+func parseConfig() {
+	setIni := false
+	profile := "default"
+	failsOnly := false
+	outputFile := ""
+	refreshRate := 0
+	sortAlphabetical := false
+	host := "127.0.0.1"
+	mode := "csm"
+	bindAddr := "127.0.0.1:10080"
+	caBundle := "~/.iamlive/ca.pem"
+	caKey := "~/.iamlive/ca.key"
+	accountID := "123456789012"
 
-// Statement is a single statement within an IAM policy
-type Statement struct {
-	Effect   string   `json:"Effect"`
-	Action   []string `json:"Action"`
-	Resource string   `json:"Resource"`
-}
-
-// IAMPolicy is a full IAM policy
-type IAMPolicy struct {
-	Version   string      `json:"Version"`
-	Statement []Statement `json:"Statement"`
-}
-
-func setCSMConfigAndFileFlush() {
-	// set ini
-	if *setiniFlag {
-		cfgfile, err := homedir.Expand("~/.aws/config")
-		if err != nil {
-			return
-		}
-
+	cfgfile, err := homedir.Expand("~/.iamlive/config")
+	if err == nil {
 		cfg, err := ini.Load(cfgfile)
-		if err != nil {
-			return
-		}
-
-		if *profileFlag == "default" {
-			cfg.Section("default").Key("csm_enabled").SetValue("true")
-		} else {
-			cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).Key("csm_enabled").SetValue("true")
-		}
-
-		cfg.SaveTo(cfgfile)
-	}
-
-	// listen for exit, cleanup and flush
-	sigc := make(chan os.Signal, 1)
-	signal.Notify(sigc,
-		syscall.SIGHUP,
-		syscall.SIGINT,
-		syscall.SIGTERM,
-		syscall.SIGQUIT)
-	go func() {
-		for s := range sigc {
-			// flush to file
-			if *outputFileFlag != "" {
-				err := ioutil.WriteFile(*outputFileFlag, getPolicyDocument(), 0644)
-				if err != nil {
-					log.Fatalf("Error writing policy to %s", *outputFileFlag)
-				}
+		if err == nil {
+			if cfg.Section("").HasKey("set-ini") {
+				setIni, _ = cfg.Section("").Key("set-ini").Bool()
 			}
-
-			if s == syscall.SIGINT || s == syscall.SIGTERM || s == syscall.SIGQUIT {
-				// revert ini
-				cfgfile, err := homedir.Expand("~/.aws/config") // need to redeclare
-				if err != nil {
-					os.Exit(1)
-				}
-
-				cfg, err := ini.Load(cfgfile)
-				if err != nil {
-					os.Exit(1)
-				}
-
-				if *setiniFlag {
-					if *profileFlag == "default" {
-						cfg.Section("default").DeleteKey("csm_enabled")
-					} else {
-						cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).DeleteKey("csm_enabled")
-					}
-					cfg.SaveTo(cfgfile)
-				}
-
-				// exit
-				os.Exit(0)
+			if cfg.Section("").HasKey("profile") {
+				profile = cfg.Section("").Key("profile").String()
 			}
-		}
-	}()
-}
-
-func listenForEvents() {
-	var iamMap iamMapBase
-
-	addr := net.UDPAddr{
-		Port: 31000,
-		IP:   net.ParseIP(*hostFlag),
-	}
-	conn, err := net.ListenUDP("udp", &addr)
-	if err != nil {
-		panic(err)
-	}
-	err = conn.SetReadBuffer(1048576)
-	if err != nil {
-		panic(err)
-	}
-	defer conn.Close()
-
-	err = json.Unmarshal(bIAMMap, &iamMap)
-	if err != nil {
-		panic(err)
-	}
-
-	var buf [1048576]byte
-	for {
-		rlen, _, err := conn.ReadFromUDP(buf[:])
-		if err != nil {
-			panic(err)
-		}
-
-		entries := strings.Split(string(buf[0:rlen]), "\n")
-
-	EntryLoop:
-		for _, entry := range entries {
-			var e Entry
-
-			err := json.Unmarshal([]byte(entry), &e)
-			if err != nil {
-				panic(err)
+			if cfg.Section("").HasKey("fails-only") {
+				failsOnly, _ = cfg.Section("").Key("fails-only").Bool()
 			}
-
-			// checked if permissionless
-			for _, permissionlessAction := range iamMap.SDKPermissionlessActions {
-				if strings.ToLower(permissionlessAction) == fmt.Sprintf("%s.%s", strings.ToLower(e.Service), strings.ToLower(e.Method)) {
-					continue EntryLoop
-				}
+			if cfg.Section("").HasKey("output-file") {
+				outputFile = cfg.Section("").Key("output-file").String()
 			}
-
-			if e.Type == "ApiCall" {
-				callLog = append(callLog, e)
-				handleLoggedCall()
+			if cfg.Section("").HasKey("refresh-rate") {
+				refreshRate, _ = cfg.Section("").Key("refresh-rate").Int()
 			}
-		}
-	}
-}
-
-func getPolicyDocument() []byte {
-	policy := IAMPolicy{
-		Version:   "2012-10-17",
-		Statement: []Statement{},
-	}
-
-	var actions []string
-
-	for _, entry := range callLog {
-		if *failsonlyFlag && (entry.FinalHTTPStatusCode >= 200 && entry.FinalHTTPStatusCode <= 299) {
-			continue
-		}
-
-		newActions := getDependantActions(getActions(entry.Service, entry.Method))
-
-		for _, newAction := range newActions {
-			foundAction := false
-
-			for _, action := range actions {
-				if action == newAction {
-					foundAction = true
-					break
-				}
+			if cfg.Section("").HasKey("sort-alphabetical") {
+				sortAlphabetical, _ = cfg.Section("").Key("sort-alphabetical").Bool()
 			}
-			if !foundAction {
-				actions = append(actions, newAction)
+			if cfg.Section("").HasKey("host") {
+				host = cfg.Section("").Key("host").String()
+			}
+			if cfg.Section("").HasKey("mode") {
+				mode = cfg.Section("").Key("mode").String()
+			}
+			if cfg.Section("").HasKey("bind-addr") {
+				bindAddr = cfg.Section("").Key("bind-addr").String()
+			}
+			if cfg.Section("").HasKey("ca-bundle") {
+				caBundle = cfg.Section("").Key("ca-bundle").String()
+			}
+			if cfg.Section("").HasKey("ca-key") {
+				caKey = cfg.Section("").Key("ca-key").String()
+			}
+			if cfg.Section("").HasKey("account-id") {
+				accountID = cfg.Section("").Key("account-id").String()
 			}
 		}
 	}
 
-	if *sortAlphabeticalFlag {
-		sort.Strings(actions)
-	}
-
-	policy.Statement = append(policy.Statement, Statement{
-		Effect:   "Allow",
-		Resource: "*",
-		Action:   actions,
-	})
-
-	doc, err := json.MarshalIndent(policy, "", "    ")
-	if err != nil {
-		panic(err)
-	}
-	return doc
-}
-
-func handleLoggedCall() {
-	// when making many calls in parallel, the terminal can be glitchy
-	// if we flush too often, optional flush on timer
-	if *terminalRefreshSecsFlag == 0 {
-		writePolicyToTerminal()
-	}
-}
-
-func writePolicyToTerminal() {
-	if len(callLog) == 0 {
-		return
-	}
-
-	policyDoc := getPolicyDocument()
-
-	goterm.Clear()
-	goterm.MoveCursor(1, 1)
-	goterm.Println(string(string(policyDoc)))
-	goterm.Flush()
-}
-
-type iamMapBase struct {
-	SDKMethodIAMMappings     map[string][]interface{} `json:"sdk_method_iam_mappings"`
-	SDKServiceMappings       map[string]string        `json:"sdk_service_mappings"`
-	SDKPermissionlessActions []string                 `json:"sdk_permissionless_actions"`
-}
-
-type mappingInfoItem struct {
-	Action string `json:"action"`
-}
-
-type iamDefService struct {
-	Prefix     string            `json:"prefix"`
-	Privileges []iamDefPrivilege `json:"privileges"`
-}
-
-type iamDefPrivilege struct {
-	Privilege     string               `json:"privilege"`
-	ResourceTypes []iamDefResourceType `json:"resource_types"`
-}
-
-type iamDefResourceType struct {
-	DependentActions []string `json:"dependent_actions"`
-}
-
-func uniqueSlice(slice []string) []string {
-	keys := make(map[string]bool)
-	list := []string{}
-	for _, entry := range slice {
-		if _, value := keys[entry]; !value {
-			keys[entry] = true
-			list = append(list, entry)
-		}
-	}
-	return list
-}
-
-func getDependantActions(actions []string) []string {
-	var iamDef []iamDefService
-
-	err := json.Unmarshal(bIAMSAR, &iamDef)
-	if err != nil {
-		panic(err)
-	}
-
-	for _, baseaction := range actions {
-		splitbase := strings.Split(baseaction, ":")
-		if len(splitbase) != 2 {
-			continue
-		}
-		baseservice := splitbase[0]
-		basemethod := splitbase[1]
-
-		for _, service := range iamDef {
-			if strings.ToLower(service.Prefix) == strings.ToLower(baseservice) {
-				for _, priv := range service.Privileges {
-					if strings.ToLower(priv.Privilege) == strings.ToLower(basemethod) {
-						for _, resourceType := range priv.ResourceTypes {
-							for _, dependentAction := range resourceType.DependentActions {
-								actions = append(actions, dependentAction)
-							}
-						}
-					}
-				}
-			}
-		}
-	}
-
-	return uniqueSlice(actions)
-}
-
-func getActions(service, method string) []string {
-	var iamMap iamMapBase
-	var actions []string
-
-	err := json.Unmarshal(bIAMMap, &iamMap)
-	if err != nil {
-		panic(err)
-	}
-
-	// checked if permissionless
-	for _, permissionlessAction := range iamMap.SDKPermissionlessActions {
-		if strings.ToLower(permissionlessAction) == fmt.Sprintf("%s.%s", strings.ToLower(service), strings.ToLower(method)) {
-			return []string{}
-		}
-	}
-
-	// check IAM mappings
-	for sdkCall, mappingInfo := range iamMap.SDKMethodIAMMappings {
-		if fmt.Sprintf("%s.%s", strings.ToLower(service), strings.ToLower(method)) == strings.ToLower(sdkCall) {
-			for _, item := range mappingInfo {
-				for mappingInfoItemKey, mappingInfoItemValue := range item.(map[string]interface{}) {
-					if mappingInfoItemKey == "action" {
-						actions = append(actions, fmt.Sprintf("%v", mappingInfoItemValue))
-					}
-				}
-			}
-		}
-	}
-
-	if len(actions) > 0 {
-		return actions
-	}
-
-	// substitute service name
-	for sdkService, iamService := range iamMap.SDKServiceMappings {
-		if service == sdkService {
-			service = iamService
-			break
-		}
-	}
-
-	return []string{
-		fmt.Sprintf("%s:%s", strings.ToLower(service), method),
-	}
-}
-
-func setTerminalRefresh() {
-	if *terminalRefreshSecsFlag <= 0 {
-		*terminalRefreshSecsFlag = 1
-	}
-
-	ticker := time.NewTicker(time.Duration(*terminalRefreshSecsFlag) * time.Second)
-	quit := make(chan struct{})
-	go func() {
-		for {
-			select {
-			case <-ticker.C:
-				writePolicyToTerminal()
-			case <-quit:
-				ticker.Stop()
-				return
-			}
-		}
-	}()
+	setiniFlag = flag.Bool("set-ini", setIni, "when set, the .aws/config file will be updated to use the CSM monitoring or CA bundle and removed when exiting")
+	profileFlag = flag.String("profile", profile, "use the specified profile when combined with --set-ini")
+	failsonlyFlag = flag.Bool("fails-only", failsOnly, "when set, only failed AWS calls will be added to the policy, csm mode only")
+	outputFileFlag = flag.String("output-file", outputFile, "specify a file that will be written to on SIGHUP or exit")
+	refreshRateFlag = flag.Int("refresh-rate", refreshRate, "instead of flushing to console every API call, do it this number of seconds")
+	sortAlphabeticalFlag = flag.Bool("sort-alphabetical", sortAlphabetical, "sort actions alphabetically")
+	hostFlag = flag.String("host", host, "host to listen on for CSM")
+	modeFlag = flag.String("mode", mode, "[experimental] the listening mode (csm,proxy)")
+	bindAddrFlag = flag.String("bind-addr", bindAddr, "[experimental] the bind address for proxy mode")
+	caBundleFlag = flag.String("ca-bundle", caBundle, "[experimental] the CA certificate bundle (PEM) to use for proxy mode")
+	caKeyFlag = flag.String("ca-key", caKey, "[experimental] the CA certificate key to use for proxy mode")
+	accountIDFlag = flag.String("account-id", accountID, "[experimental] the AWS account ID to use in policy outputs within proxy mode")
 }
 
 func main() {
+	parseConfig()
+
 	flag.Parse()
 
-	setCSMConfigAndFileFlush()
+	if *cpuProfileFlag != "" {
+		f, err := os.Create(*cpuProfileFlag)
+		if err != nil {
+			log.Fatal(err)
+		}
+		pprof.StartCPUProfile(f)
+		defer pprof.StopCPUProfile()
+	}
 
-	if *terminalRefreshSecsFlag != 0 {
+	if *refreshRateFlag != 0 {
 		setTerminalRefresh()
 	}
-	listenForEvents()
-	handleLoggedCall()
+
+	setINIConfigAndFileFlush()
+	loadMaps()
+
+	if *modeFlag == "csm" {
+		listenForEvents()
+		handleLoggedCall()
+	} else if *modeFlag == "proxy" {
+		readServiceFiles()
+		createProxy(*bindAddrFlag)
+	} else {
+		fmt.Println("ERROR: unknown mode")
+	}
 }
