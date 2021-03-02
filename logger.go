@@ -419,6 +419,10 @@ func resolveSpecials(arn string, call Entry, mandatory bool) []string {
 				return []string{arn[0:startIndex] + arn[endIndex+2:]}
 			}
 
+			if parts[2][0] == '/' {
+				parts[2] = parts[2][1 : len(parts[2])-2]
+			}
+
 			r := regexp.MustCompile(parts[2])
 			groups := r.FindStringSubmatch(strings.ReplaceAll(arns[0], `$`, `$$`))
 

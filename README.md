@@ -52,13 +52,13 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--ca-key:** _[experimental]_ the CA certificate key to use for proxy mode (_default: ~/.iamlive/ca.key_)
 
-Basic Example (CSM Mode)_
+_Basic Example (CSM Mode)_
 
 ```
 iamlive --set-ini
 ```
 
-Basic Example (Proxy Mode)_
+_Basic Example (Proxy Mode)_
 
 ```
 iamlive --set-ini --mode proxy
