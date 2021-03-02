@@ -110,7 +110,7 @@ export AWS_CSM_HOST=127.0.0.1
 
 ### Proxy Mode
 
-Proxy mode will serve a local HTTP(S) server (by default at `http://127.0.0.1:10080`) that will MITM requests sent to the AWS endpoints and generate IAM policy statements with both `Action` and `Resource` keys. The CA key/certificate pair will be automatically generated and stored within `~/.iamlive/` by default.
+Proxy mode will serve a local HTTP(S) server (by default at `http://127.0.0.1:10080`) that will inspect requests sent to the AWS endpoints before forwarding on to generate IAM policy statements with both `Action` and `Resource` keys. The CA key/certificate pair will be automatically generated and stored within `~/.iamlive/` by default.
 
 #### CLI
 
