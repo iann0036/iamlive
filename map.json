@@ -4417,7 +4417,15 @@
         ],
         "LexModelsV2.CreateBotAlias": [
             {
-                "action": "lex:PutBotAlias"
+                "action": "lex:PutBotAlias",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "*"
+                    },
+                    "BotAlias": {
+                        "template": "${botAliasName}"
+                    }
+                }
             }
         ],
         "LexModelsV2.CreateIntent": [
@@ -4448,17 +4456,41 @@
         ],
         "LexModelsV2.DescribeIntent": [
             {
-                "action": "lex:GetIntent"
+                "action": "lex:GetIntent",
+                "resource_mappings": {
+                    "IntentName": {
+                        "template": "*"
+                    },
+                    "IntentVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelsV2.DescribeSlotType": [
             {
-                "action": "lex:GetSlotType"
+                "action": "lex:GetSlotType",
+                "resource_mappings": {
+                    "SlotName": {
+                        "template": "*"
+                    },
+                    "SlotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelsV2.ListBotVersions": [
             {
-                "action": "lex:GetBotVersions"
+                "action": "lex:GetBotVersions",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "*"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelsV2.ListBots": [
@@ -4493,22 +4525,54 @@
         ],
         "LexModelsV2.UpdateBot": [
             {
-                "action": "lex:PutBot"
+                "action": "lex:PutBot",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "*"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelsV2.UpdateBotAlias": [
             {
-                "action": "lex:PutBotAlias"
+                "action": "lex:PutBotAlias",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "*"
+                    },
+                    "BotAlias": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelsV2.UpdateIntent": [
             {
-                "action": "lex:PutIntent"
+                "action": "lex:PutIntent",
+                "resource_mappings": {
+                    "IntentName": {
+                        "template": "*"
+                    },
+                    "IntentVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelsV2.UpdateSlotType": [
             {
-                "action": "lex:PutSlotType"
+                "action": "lex:PutSlotType",
+                "resource_mappings": {
+                    "SlotName": {
+                        "template": "*"
+                    },
+                    "SlotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "ApiGatewayV2.CreateApi": [
@@ -16067,7 +16131,12 @@
         ],
         "DirectoryService.DeleteTrust": [
             {
-                "action": "ds:DeleteTrust"
+                "action": "ds:DeleteTrust",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "DirectoryService.DeregisterCertificate": [
@@ -16422,12 +16491,22 @@
         ],
         "DirectoryService.UpdateTrust": [
             {
-                "action": "ds:UpdateTrust"
+                "action": "ds:UpdateTrust",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "DirectoryService.VerifyTrust": [
             {
-                "action": "ds:VerifyTrust"
+                "action": "ds:VerifyTrust",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Discovery.AssociateConfigurationItemsToApplication": [
@@ -17019,12 +17098,22 @@
         ],
         "DynamoDB.BatchGetItem": [
             {
-                "action": "dynamodb:BatchGetItem"
+                "action": "dynamodb:BatchGetItem",
+                "resource_mappings": {
+                    "TableName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "DynamoDB.BatchWriteItem": [
             {
-                "action": "dynamodb:BatchWriteItem"
+                "action": "dynamodb:BatchWriteItem",
+                "resource_mappings": {
+                    "TableName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "DynamoDB.CreateBackup": [
@@ -17312,7 +17401,18 @@
         ],
         "DynamoDB.RestoreTableToPointInTime": [
             {
-                "action": "dynamodb:RestoreTableToPointInTime"
+                "action": "dynamodb:RestoreTableToPointInTime",
+                "resource_mappings": {
+                    "TableName": {
+                        "template": "%%many%${SourceTableName}%${TargetTableName}%%"
+                    }
+                }
+            },
+            {
+                "action": "dynamodb:RestoreTableToPointInTime",
+                "arn_override": {
+                    "template": "${SourceTableArn}"
+                }
             }
         ],
         "DynamoDB.Scan": [
@@ -17564,7 +17664,12 @@
         ],
         "EC2.AllocateAddress": [
             {
-                "action": "ec2:AllocateAddress"
+                "action": "ec2:AllocateAddress",
+                "resource_mappings": {
+                    "Ipv4PoolEc2Id": {
+                        "template": "${CustomerOwnedIpv4Pool}"
+                    }
+                }
             }
         ],
         "EC2.AllocateHosts": [
@@ -21173,7 +21278,15 @@
         ],
         "EC2.ModifyTransitGatewayVpcAttachment": [
             {
-                "action": "ec2:ModifyTransitGatewayVpcAttachment"
+                "action": "ec2:ModifyTransitGatewayVpcAttachment",
+                "resource_mappings": {
+                    "TransitGatewayAttachmentId": {
+                        "template": "${TransitGatewayAttachmentId}"
+                    },
+                    "SubnetId": {
+                        "template": "%%many%${AddSubnetIds}[]%${RemoveSubnetIds}[]%%"
+                    }
+                }
             }
         ],
         "EC2.ModifyVolume": [
@@ -21208,7 +21321,21 @@
         ],
         "EC2.ModifyVpcEndpoint": [
             {
-                "action": "ec2:ModifyVpcEndpoint"
+                "action": "ec2:ModifyVpcEndpoint",
+                "resource_mappings": {
+                    "VpcEndpointId": {
+                        "template": "${VpcEndpointId}"
+                    },
+                    "RouteTableId": {
+                        "template": "%%many%${AddRouteTableIds}[]%${RemoveRouteTableIds}[]%%"
+                    },
+                    "SecurityGroupId": {
+                        "template": "%%many%${AddSecurityGroupIds}[]%${RemoveSecurityGroupIds}[]%%"
+                    },
+                    "SubnetId": {
+                        "template": "%%many%${AddSubnetIds}[]%${RemoveSubnetIds}%%"
+                    }
+                }
             }
         ],
         "EC2.ModifyVpcEndpointConnectionNotification": [
@@ -24508,7 +24635,27 @@
         ],
         "ELB.AddTags": [
             {
-                "action": "elasticloadbalancing:AddTags"
+                "action": "elasticloadbalancing:AddTags",
+                "resource_mappings": {
+                    "LoadBalancerName": {
+                        "template": "${LoadBalancerNames}[]"
+                    },
+                    "LoadBalancerId": {
+                        "template": "*"
+                    },
+                    "ListenerId": {
+                        "template": "*"
+                    },
+                    "ListenerRuleId": {
+                        "template": "*"
+                    },
+                    "TargetGroupName": {
+                        "template": "${LoadBalancerNames}[]"
+                    },
+                    "TargetGroupId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "ELB.ApplySecurityGroupsToLoadBalancer": [
@@ -24563,7 +24710,15 @@
         ],
         "ELB.CreateLoadBalancer": [
             {
-                "action": "elasticloadbalancing:CreateLoadBalancer"
+                "action": "elasticloadbalancing:CreateLoadBalancer",
+                "resource_mappings": {
+                    "LoadBalancerName": {
+                        "template": "${LoadBalancerName}"
+                    },
+                    "LoadBalancerId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "ELB.CreateLoadBalancerListeners": [
@@ -24588,7 +24743,15 @@
         ],
         "ELB.DeleteLoadBalancer": [
             {
-                "action": "elasticloadbalancing:DeleteLoadBalancer"
+                "action": "elasticloadbalancing:DeleteLoadBalancer",
+                "resource_mappings": {
+                    "LoadBalancerName": {
+                        "template": "${LoadBalancerName}"
+                    },
+                    "LoadBalancerId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "ELB.DeleteLoadBalancerListeners": [
@@ -24659,7 +24822,27 @@
         ],
         "ELB.DescribeTags": [
             {
-                "action": "elasticloadbalancing:DescribeTags"
+                "action": "elasticloadbalancing:DescribeTags",
+                "resource_mappings": {
+                    "LoadBalancerName": {
+                        "template": "${LoadBalancerNames}[]"
+                    },
+                    "LoadBalancerId": {
+                        "template": "*"
+                    },
+                    "ListenerId": {
+                        "template": "*"
+                    },
+                    "ListenerRuleId": {
+                        "template": "*"
+                    },
+                    "TargetGroupName": {
+                        "template": "*"
+                    },
+                    "TargetGroupId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "ELB.DetachLoadBalancerFromSubnets": [
@@ -24694,7 +24877,15 @@
         ],
         "ELB.ModifyLoadBalancerAttributes": [
             {
-                "action": "elasticloadbalancing:ModifyLoadBalancerAttributes"
+                "action": "elasticloadbalancing:ModifyLoadBalancerAttributes",
+                "resource_mappings": {
+                    "LoadBalancerName": {
+                        "template": "${LoadBalancerName}"
+                    },
+                    "LoadBalancerId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "ELB.RegisterInstancesWithLoadBalancer": [
@@ -24709,7 +24900,27 @@
         ],
         "ELB.RemoveTags": [
             {
-                "action": "elasticloadbalancing:RemoveTags"
+                "action": "elasticloadbalancing:RemoveTags",
+                "resource_mappings": {
+                    "LoadBalancerName": {
+                        "template": "${LoadBalancerNames}[]"
+                    },
+                    "LoadBalancerId": {
+                        "template": "*"
+                    },
+                    "ListenerId": {
+                        "template": "*"
+                    },
+                    "ListenerRuleId": {
+                        "template": "*"
+                    },
+                    "TargetGroupName": {
+                        "template": "*"
+                    },
+                    "TargetGroupId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "ELB.SetLoadBalancerListenerSSLCertificate": [
@@ -24780,7 +24991,15 @@
         ],
         "ELBv2.CreateLoadBalancer": [
             {
-                "action": "elasticloadbalancing:CreateLoadBalancer"
+                "action": "elasticloadbalancing:CreateLoadBalancer",
+                "resource_mappings": {
+                    "LoadBalancerName": {
+                        "template": "${Name}"
+                    },
+                    "LoadBalancerId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "ELBv2.CreateRule": [
@@ -27224,7 +27443,12 @@
         ],
         "IAM.CreateOpenIDConnectProvider": [
             {
-                "action": "iam:CreateOpenIDConnectProvider"
+                "action": "iam:CreateOpenIDConnectProvider",
+                "resource_mappings": {
+                    "OidcProviderName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "IAM.CreatePolicy": [
@@ -27268,7 +27492,12 @@
         ],
         "IAM.CreateServiceLinkedRole": [
             {
-                "action": "iam:CreateServiceLinkedRole"
+                "action": "iam:CreateServiceLinkedRole",
+                "resource_mappings": {
+                    "RoleNameWithPath": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "IAM.CreateServiceSpecificCredential": [
@@ -27627,7 +27856,13 @@
         ],
         "IAM.GetContextKeysForPrincipalPolicy": [
             {
-                "action": "iam:GetContextKeysForPrincipalPolicy"
+                "action": "iam:GetContextKeysForPrincipalPolicy",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "group": "%%iftemplatematch%${PolicySourceArn}%%",
+                    "role": "%%iftemplatematch%${PolicySourceArn}%%",
+                    "user": "%%iftemplatematch%${PolicySourceArn}%%"
+                }
             }
         ],
         "IAM.GetCredentialReport": [
@@ -28160,7 +28395,13 @@
         ],
         "IAM.SimulatePrincipalPolicy": [
             {
-                "action": "iam:SimulatePrincipalPolicy"
+                "action": "iam:SimulatePrincipalPolicy",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "group": "%%iftemplatematch%${PolicySourceArn}%%",
+                    "role": "%%iftemplatematch%${PolicySourceArn}%%",
+                    "user": "%%iftemplatematch%${PolicySourceArn}%%"
+                }
             }
         ],
         "IAM.TagRole": [
@@ -28231,7 +28472,12 @@
         ],
         "IAM.UpdateGroup": [
             {
-                "action": "iam:UpdateGroup"
+                "action": "iam:UpdateGroup",
+                "resource_mappings": {
+                    "GroupNameWithPath": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "IAM.UpdateLoginProfile": [
@@ -28294,7 +28540,12 @@
         ],
         "IAM.UpdateServerCertificate": [
             {
-                "action": "iam:UpdateServerCertificate"
+                "action": "iam:UpdateServerCertificate",
+                "resource_mappings": {
+                    "CertificateNameWithPath": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "IAM.UpdateServiceSpecificCredential": [
@@ -28319,7 +28570,12 @@
         ],
         "IAM.UpdateUser": [
             {
-                "action": "iam:UpdateUser"
+                "action": "iam:UpdateUser",
+                "resource_mappings": {
+                    "UserNameWithPath": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "IAM.UploadSSHPublicKey": [
@@ -28624,12 +28880,29 @@
         ],
         "Iot.AssociateTargetsWithJob": [
             {
-                "action": "iot:AssociateTargetsWithJob"
+                "action": "iot:AssociateTargetsWithJob",
+                "resource_mappings": {
+                    "JobId": {
+                        "template": "${jobId}"
+                    }
+                },
+                "resourcearn_mappings": {
+                    "thing": "%%iftemplatematch%${targets}[]%%",
+                    "thinggroup": "%%iftemplatematch%${targets}[]%%"
+                }
             }
         ],
         "Iot.AttachPolicy": [
             {
-                "action": "iot:AttachPolicy"
+                "action": "iot:AttachPolicy",
+                "resource_mappings": {
+                    "Certificate": {
+                        "template": "*"
+                    },
+                    "ThingGroupName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Iot.AttachPrincipalPolicy": [
@@ -28643,7 +28916,18 @@
         ],
         "Iot.AttachSecurityProfile": [
             {
-                "action": "iot:AttachSecurityProfile"
+                "action": "iot:AttachSecurityProfile",
+                "resource_mappings": {
+                    "SecurityProfileName": {
+                        "template": "${securityProfileName}"
+                    },
+                    "DimensionName": {
+                        "template": "*"
+                    },
+                    "ThingGroupName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Iot.AttachThingPrincipal": [
@@ -29502,7 +29786,15 @@
         ],
         "Iot.DetachPolicy": [
             {
-                "action": "iot:DetachPolicy"
+                "action": "iot:DetachPolicy",
+                "resource_mappings": {
+                    "Certificate": {
+                        "template": "*"
+                    },
+                    "ThingGroupName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Iot.DetachPrincipalPolicy": [
@@ -29516,7 +29808,18 @@
         ],
         "Iot.DetachSecurityProfile": [
             {
-                "action": "iot:DetachSecurityProfile"
+                "action": "iot:DetachSecurityProfile",
+                "resource_mappings": {
+                    "SecurityProfileName": {
+                        "template": "${securityProfileName}"
+                    },
+                    "DimensionName": {
+                        "template": "*"
+                    },
+                    "ThingGroupName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Iot.DetachThingPrincipal": [
@@ -29873,7 +30176,12 @@
         ],
         "Iot.ListSecurityProfilesForTarget": [
             {
-                "action": "iot:ListSecurityProfilesForTarget"
+                "action": "iot:ListSecurityProfilesForTarget",
+                "resource_mappings": {
+                    "ThingGroupName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Iot.ListStreams": [
@@ -30512,7 +30820,15 @@
         ],
         "Iot.UpdateThingGroupsForThing": [
             {
-                "action": "iot:UpdateThingGroupsForThing"
+                "action": "iot:UpdateThingGroupsForThing",
+                "resource_mappings": {
+                    "ThingName": {
+                        "template": "${thingName}"
+                    },
+                    "ThingGroupName": {
+                        "template": "%%many%${thingGroupsToAdd}[]%${thingGroupsToRemove}[]%%"
+                    }
+                }
             }
         ],
         "Iot.ValidateSecurityProfileBehaviors": [
@@ -32002,27 +32318,100 @@
         ],
         "LexRuntime.DeleteSession": [
             {
-                "action": "lex:DeleteSession"
+                "action": "lex:DeleteSession",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotAlias": {
+                        "template": "${botAlias}"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "*"
+                    },
+                    "BotAliasId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexRuntime.GetSession": [
             {
-                "action": "lex:GetSession"
+                "action": "lex:GetSession",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotAlias": {
+                        "template": "${botAlias}"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "*"
+                    },
+                    "BotAliasId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexRuntime.PostContent": [
             {
-                "action": "lex:PostContent"
+                "action": "lex:PostContent",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotAlias": {
+                        "template": "${botAlias}"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexRuntime.PostText": [
             {
-                "action": "lex:PostText"
+                "action": "lex:PostText",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotAlias": {
+                        "template": "${botAlias}"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexRuntime.PutSession": [
             {
-                "action": "lex:PutSession"
+                "action": "lex:PutSession",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotAlias": {
+                        "template": "${botAlias}"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "*"
+                    },
+                    "BotAliasId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Lightsail.AllocateStaticIp": [
@@ -33196,7 +33585,12 @@
         ],
         "MachineLearning.GetEvaluation": [
             {
-                "action": "machinelearning:GetEvaluation"
+                "action": "machinelearning:GetEvaluation",
+                "resource_mappings": {
+                    "DatasourceId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "MachineLearning.GetMLModel": [
@@ -34416,17 +34810,68 @@
         ],
         "Organizations.AcceptHandshake": [
             {
-                "action": "organizations:AcceptHandshake"
+                "action": "organizations:AcceptHandshake",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "HandshakeType": {
+                        "template": "*"
+                    },
+                    "HandshakeId": {
+                        "template": "%%regex%${HandshakeId}%/^(?:h-)?(.+)$/g%%"
+                    }
+                }
             }
         ],
         "Organizations.AttachPolicy": [
             {
-                "action": "organizations:AttachPolicy"
+                "action": "organizations:AttachPolicy",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "PolicyType": {
+                        "template": "*"
+                    },
+                    "PolicyId": {
+                        "template": "%%regex%${PolicyId}%/^(?:p-)?(.+)$/g%%"
+                    },
+                    "AccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.CancelHandshake": [
             {
-                "action": "organizations:CancelHandshake"
+                "action": "organizations:CancelHandshake",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "HandshakeType": {
+                        "template": "*"
+                    },
+                    "HandshakeId": {
+                        "template": "%%regex%${HandshakeId}%/^(?:h-)?(.+)$/g%%"
+                    }
+                }
             }
         ],
         "Organizations.CreateAccount": [
@@ -34461,7 +34906,21 @@
         ],
         "Organizations.CreateOrganizationalUnit": [
             {
-                "action": "organizations:CreateOrganizationalUnit"
+                "action": "organizations:CreateOrganizationalUnit",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.CreatePolicy": [
@@ -34472,7 +34931,21 @@
         ],
         "Organizations.DeclineHandshake": [
             {
-                "action": "organizations:DeclineHandshake"
+                "action": "organizations:DeclineHandshake",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "HandshakeType": {
+                        "template": "*"
+                    },
+                    "HandshakeId": {
+                        "template": "%%regex%${HandshakeId}%/^(?:h-)?(.+)$/g%%"
+                    }
+                }
             }
         ],
         "Organizations.DeleteOrganization": [
@@ -34483,22 +34956,69 @@
         ],
         "Organizations.DeleteOrganizationalUnit": [
             {
-                "action": "organizations:DeleteOrganizationalUnit"
+                "action": "organizations:DeleteOrganizationalUnit",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "%%regex%${OrganizationalUnitId}%/^(?:ou-)?(.+)$/g%%"
+                    }
+                }
             }
         ],
         "Organizations.DeletePolicy": [
             {
-                "action": "organizations:DeletePolicy"
+                "action": "organizations:DeletePolicy",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "PolicyType": {
+                        "template": "*"
+                    },
+                    "PolicyId": {
+                        "template": "%%regex%${PolicyId}%/^(?:p-)?(.+)$/g%%"
+                    }
+                }
             }
         ],
         "Organizations.DeregisterDelegatedAdministrator": [
             {
-                "action": "organizations:DeregisterDelegatedAdministrator"
+                "action": "organizations:DeregisterDelegatedAdministrator",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "${AccountId}"
+                    }
+                }
             }
         ],
         "Organizations.DescribeAccount": [
             {
-                "action": "organizations:DescribeAccount"
+                "action": "organizations:DescribeAccount",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "${AccountId}"
+                    }
+                }
             }
         ],
         "Organizations.DescribeCreateAccountStatus": [
@@ -34509,12 +35029,37 @@
         ],
         "Organizations.DescribeEffectivePolicy": [
             {
-                "action": "organizations:DescribeEffectivePolicy"
+                "action": "organizations:DescribeEffectivePolicy",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.DescribeHandshake": [
             {
-                "action": "organizations:DescribeHandshake"
+                "action": "organizations:DescribeHandshake",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "HandshakeType": {
+                        "template": "*"
+                    },
+                    "HandshakeId": {
+                        "template": "%%regex%${HandshakeId}%/^(?:h-)?(.+)$/g%%"
+                    }
+                }
             }
         ],
         "Organizations.DescribeOrganization": [
@@ -34525,17 +35070,65 @@
         ],
         "Organizations.DescribeOrganizationalUnit": [
             {
-                "action": "organizations:DescribeOrganizationalUnit"
+                "action": "organizations:DescribeOrganizationalUnit",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "%%regex%${OrganizationalUnitId}%/^(?:ou-)?(.+)$/g%%"
+                    }
+                }
             }
         ],
         "Organizations.DescribePolicy": [
             {
-                "action": "organizations:DescribePolicy"
+                "action": "organizations:DescribePolicy",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "PolicyType": {
+                        "template": "*"
+                    },
+                    "PolicyId": {
+                        "template": "%%regex%${PolicyId}%/^(?:p-)?(.+)$/g%%"
+                    }
+                }
             }
         ],
         "Organizations.DetachPolicy": [
             {
-                "action": "organizations:DetachPolicy"
+                "action": "organizations:DetachPolicy",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "PolicyType": {
+                        "template": "*"
+                    },
+                    "PolicyId": {
+                        "template": "%%regex%${PolicyId}%/^(?:p-)?(.+)$/g%%"
+                    },
+                    "AccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.DisableAWSServiceAccess": [
@@ -34546,7 +35139,18 @@
         ],
         "Organizations.DisablePolicyType": [
             {
-                "action": "organizations:DisablePolicyType"
+                "action": "organizations:DisablePolicyType",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "${RootId}"
+                    }
+                }
             }
         ],
         "Organizations.EnableAWSServiceAccess": [
@@ -34563,12 +35167,34 @@
         ],
         "Organizations.EnablePolicyType": [
             {
-                "action": "organizations:EnablePolicyType"
+                "action": "organizations:EnablePolicyType",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "${RootId}"
+                    }
+                }
             }
         ],
         "Organizations.InviteAccountToOrganization": [
             {
-                "action": "organizations:InviteAccountToOrganization"
+                "action": "organizations:InviteAccountToOrganization",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.LeaveOrganization": [
@@ -34591,12 +35217,40 @@
         ],
         "Organizations.ListAccountsForParent": [
             {
-                "action": "organizations:ListAccountsForParent"
+                "action": "organizations:ListAccountsForParent",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.ListChildren": [
             {
-                "action": "organizations:ListChildren"
+                "action": "organizations:ListChildren",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.ListCreateAccountStatus": [
@@ -34613,7 +35267,18 @@
         ],
         "Organizations.ListDelegatedServicesForAccount": [
             {
-                "action": "organizations:ListDelegatedServicesForAccount"
+                "action": "organizations:ListDelegatedServicesForAccount",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "${AccountId}"
+                    }
+                }
             }
         ],
         "Organizations.ListHandshakesForAccount": [
@@ -34630,12 +35295,40 @@
         ],
         "Organizations.ListOrganizationalUnitsForParent": [
             {
-                "action": "organizations:ListOrganizationalUnitsForParent"
+                "action": "organizations:ListOrganizationalUnitsForParent",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.ListParents": [
             {
-                "action": "organizations:ListParents"
+                "action": "organizations:ListParents",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.ListPolicies": [
@@ -34646,7 +35339,24 @@
         ],
         "Organizations.ListPoliciesForTarget": [
             {
-                "action": "organizations:ListPoliciesForTarget"
+                "action": "organizations:ListPoliciesForTarget",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.ListRoots": [
@@ -34657,47 +35367,194 @@
         ],
         "Organizations.ListTagsForResource": [
             {
-                "action": "organizations:ListTagsForResource"
+                "action": "organizations:ListTagsForResource",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    },
+                    "PolicyType": {
+                        "template": "*"
+                    },
+                    "PolicyId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.ListTargetsForPolicy": [
             {
-                "action": "organizations:ListTargetsForPolicy"
+                "action": "organizations:ListTargetsForPolicy",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "PolicyType": {
+                        "template": "*"
+                    },
+                    "PolicyId": {
+                        "template": "%%regex%${PolicyId}%/^(?:p-)?(.+)$/g%%"
+                    }
+                }
             }
         ],
         "Organizations.MoveAccount": [
             {
-                "action": "organizations:MoveAccount"
+                "action": "organizations:MoveAccount",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "${AccountId}"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.RegisterDelegatedAdministrator": [
             {
-                "action": "organizations:RegisterDelegatedAdministrator"
+                "action": "organizations:RegisterDelegatedAdministrator",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "${AccountId}"
+                    }
+                }
             }
         ],
         "Organizations.RemoveAccountFromOrganization": [
             {
-                "action": "organizations:RemoveAccountFromOrganization"
+                "action": "organizations:RemoveAccountFromOrganization",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "${AccountId}"
+                    }
+                }
             }
         ],
         "Organizations.TagResource": [
             {
-                "action": "organizations:TagResource"
+                "action": "organizations:TagResource",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    },
+                    "PolicyType": {
+                        "template": "*"
+                    },
+                    "PolicyId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.UntagResource": [
             {
-                "action": "organizations:UntagResource"
+                "action": "organizations:UntagResource",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "AccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "*"
+                    },
+                    "PolicyType": {
+                        "template": "*"
+                    },
+                    "PolicyId": {
+                        "template": "*"
+                    },
+                    "RootId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Organizations.UpdateOrganizationalUnit": [
             {
-                "action": "organizations:UpdateOrganizationalUnit"
+                "action": "organizations:UpdateOrganizationalUnit",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "OrganizationalUnitId": {
+                        "template": "%%regex%${OrganizationalUnitId}%/^(?:ou-)?(.+)$/g%%"
+                    }
+                }
             }
         ],
         "Organizations.UpdatePolicy": [
             {
-                "action": "organizations:UpdatePolicy"
+                "action": "organizations:UpdatePolicy",
+                "resource_mappings": {
+                    "MasterAccountId": {
+                        "template": "*"
+                    },
+                    "OrganizationId": {
+                        "template": "*"
+                    },
+                    "PolicyType": {
+                        "template": "*"
+                    },
+                    "PolicyId": {
+                        "template": "%%regex%${PolicyId}%/^(?:p-)?(.+)$/g%%"
+                    }
+                }
             }
         ],
         "Pinpoint.CreateApp": [
@@ -35522,7 +36379,12 @@
         ],
         "Pinpoint.PhoneNumberValidate": [
             {
-                "action": "mobiletargeting:PhoneNumberValidate"
+                "action": "mobiletargeting:PhoneNumberValidate",
+                "resource_mappings": {
+                    "AppId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Pinpoint.PutEventStream": [
@@ -35990,7 +36852,20 @@
         ],
         "RDS.AddTagsToResource": [
             {
-                "action": "rds:AddTagsToResource"
+                "action": "rds:AddTagsToResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "db": "%%iftemplatematch%${ResourceName}%%",
+                    "es": "%%iftemplatematch%${ResourceName}%%",
+                    "og": "%%iftemplatematch%${ResourceName}%%",
+                    "pg": "%%iftemplatematch%${ResourceName}%%",
+                    "proxy": "%%iftemplatematch%${ResourceName}%%",
+                    "ri": "%%iftemplatematch%${ResourceName}%%",
+                    "secgrp": "%%iftemplatematch%${ResourceName}%%",
+                    "snapshot": "%%iftemplatematch%${ResourceName}%%",
+                    "subgrp": "%%iftemplatematch%${ResourceName}%%",
+                    "target-group": "%%iftemplatematch%${ResourceName}%%"
+                }
             }
         ],
         "RDS.ApplyPendingMaintenanceAction": [
@@ -37424,7 +38299,21 @@
         ],
         "Redshift.AuthorizeClusterSecurityGroupIngress": [
             {
-                "action": "redshift:AuthorizeClusterSecurityGroupIngress"
+                "action": "redshift:AuthorizeClusterSecurityGroupIngress",
+                "resource_mappings": {
+                    "SecurityGroupName": {
+                        "template": "${ClusterSecurityGroupName}"
+                    },
+                    "Owner": {
+                        "template": "*"
+                    },
+                    "Ec2SecurityGroupId": {
+                        "template": "*"
+                    },
+                    "Ece2SecuritygroupId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Redshift.AuthorizeSnapshotAccess": [
@@ -37455,7 +38344,11 @@
         ],
         "Redshift.BatchModifyClusterSnapshots": [
             {
-                "action": "redshift:BatchModifyClusterSnapshots"
+                "action": "redshift:BatchModifyClusterSnapshots",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "snapshot": "%%iftemplatematch%${SnapshotIdentifierList}[]%%"
+                }
             }
         ],
         "Redshift.CancelResize": [
@@ -37600,7 +38493,12 @@
         ],
         "Redshift.CreateSnapshotSchedule": [
             {
-                "action": "redshift:CreateSnapshotSchedule"
+                "action": "redshift:CreateSnapshotSchedule",
+                "resource_mappings": {
+                    "ParameterGroupName": {
+                        "template": "${ScheduleIdentifier}"
+                    }
+                }
             }
         ],
         "Redshift.CreateTags": [
@@ -37733,7 +38631,12 @@
         ],
         "Redshift.DeleteSnapshotSchedule": [
             {
-                "action": "redshift:DeleteSnapshotSchedule"
+                "action": "redshift:DeleteSnapshotSchedule",
+                "resource_mappings": {
+                    "ParameterGroupName": {
+                        "template": "${ScheduleIdentifier}"
+                    }
+                }
             }
         ],
         "Redshift.DeleteTags": [
@@ -37917,7 +38820,12 @@
         ],
         "Redshift.DescribeSnapshotSchedules": [
             {
-                "action": "redshift:DescribeSnapshotSchedules"
+                "action": "redshift:DescribeSnapshotSchedules",
+                "resource_mappings": {
+                    "ParameterGroupName": {
+                        "template": "${ScheduleIdentifier}"
+                    }
+                }
             }
         ],
         "Redshift.DescribeStorage": [
@@ -38068,7 +38976,11 @@
         ],
         "Redshift.ModifyClusterSnapshot": [
             {
-                "action": "redshift:ModifyClusterSnapshot"
+                "action": "redshift:ModifyClusterSnapshot",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "snapshot": "%%iftemplatematch%${SnapshotIdentifier}%%"
+                }
             }
         ],
         "Redshift.ModifyClusterSnapshotSchedule": [
@@ -38125,7 +39037,12 @@
         ],
         "Redshift.ModifySnapshotSchedule": [
             {
-                "action": "redshift:ModifySnapshotSchedule"
+                "action": "redshift:ModifySnapshotSchedule",
+                "resource_mappings": {
+                    "ParameterGroupName": {
+                        "template": "${ScheduleIdentifier}"
+                    }
+                }
             }
         ],
         "Redshift.PauseCluster": [
@@ -38218,7 +39135,21 @@
         ],
         "Redshift.RevokeClusterSecurityGroupIngress": [
             {
-                "action": "redshift:RevokeClusterSecurityGroupIngress"
+                "action": "redshift:RevokeClusterSecurityGroupIngress",
+                "resource_mappings": {
+                    "SecurityGroupName": {
+                        "template": "${ClusterSecurityGroupName}"
+                    },
+                    "Owner": {
+                        "template": "*"
+                    },
+                    "Ec2SecurityGroupId": {
+                        "template": "*"
+                    },
+                    "Ece2SecuritygroupId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Redshift.RevokeSnapshotAccess": [
@@ -38764,7 +39695,12 @@
         ],
         "Route53.ChangeTagsForResource": [
             {
-                "action": "route53:ChangeTagsForResource"
+                "action": "route53:ChangeTagsForResource",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Route53.CreateHealthCheck": [
@@ -39126,12 +40062,22 @@
         ],
         "Route53.ListTagsForResource": [
             {
-                "action": "route53:ListTagsForResource"
+                "action": "route53:ListTagsForResource",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Route53.ListTagsForResources": [
             {
-                "action": "route53:ListTagsForResources"
+                "action": "route53:ListTagsForResources",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Route53.ListTrafficPolicies": [
@@ -40895,27 +41841,52 @@
         ],
         "SES.SendBulkTemplatedEmail": [
             {
-                "action": "ses:SendBulkTemplatedEmail"
+                "action": "ses:SendBulkTemplatedEmail",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SES.SendCustomVerificationEmail": [
             {
-                "action": "ses:SendCustomVerificationEmail"
+                "action": "ses:SendCustomVerificationEmail",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SES.SendEmail": [
             {
-                "action": "ses:SendEmail"
+                "action": "ses:SendEmail",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SES.SendRawEmail": [
             {
-                "action": "ses:SendRawEmail"
+                "action": "ses:SendRawEmail",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SES.SendTemplatedEmail": [
             {
-                "action": "ses:SendTemplatedEmail"
+                "action": "ses:SendTemplatedEmail",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SES.SetActiveReceiptRuleSet": [
@@ -42123,12 +43094,34 @@
         ],
         "SSM.CreateAssociation": [
             {
-                "action": "ssm:CreateAssociation"
+                "action": "ssm:CreateAssociation",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "ManagedInstanceName": {
+                        "template": "*"
+                    }
+                },
+                "resourcearn_mappings": {
+                    "document": "%%iftemplatematch%${Name}%%"
+                }
             }
         ],
         "SSM.CreateAssociationBatch": [
             {
-                "action": "ssm:CreateAssociationBatch"
+                "action": "ssm:CreateAssociationBatch",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${Entries[].InstanceId}"
+                    },
+                    "ManagedInstanceName": {
+                        "template": "*"
+                    }
+                },
+                "resourcearn_mappings": {
+                    "document": "%%iftemplatematch%${Entries[].Name}%%"
+                }
             }
         ],
         "SSM.CreateDocument": [
@@ -42189,7 +43182,21 @@
         ],
         "SSM.DeleteAssociation": [
             {
-                "action": "ssm:DeleteAssociation"
+                "action": "ssm:DeleteAssociation",
+                "resource_mappings": {
+                    "AssociationId": {
+                        "template": "${AssociationId}"
+                    },
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "ManagedInstanceName": {
+                        "template": "*"
+                    }
+                },
+                "resourcearn_mappings": {
+                    "document": "%%iftemplatematch%${Name}%%"
+                }
             }
         ],
         "SSM.DeleteDocument": [
@@ -42315,7 +43322,21 @@
         ],
         "SSM.DescribeAssociation": [
             {
-                "action": "ssm:DescribeAssociation"
+                "action": "ssm:DescribeAssociation",
+                "resource_mappings": {
+                    "AssociationId": {
+                        "template": "${AssociationId}"
+                    },
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "ManagedInstanceName": {
+                        "template": "*"
+                    }
+                },
+                "resourcearn_mappings": {
+                    "document": "%%iftemplatematch%${Name}%%"
+                }
             }
         ],
         "SSM.DescribeAssociationExecutionTargets": [
@@ -42370,7 +43391,15 @@
         ],
         "SSM.DescribeEffectiveInstanceAssociations": [
             {
-                "action": "ssm:DescribeEffectiveInstanceAssociations"
+                "action": "ssm:DescribeEffectiveInstanceAssociations",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "ManagedInstanceName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SSM.DescribeEffectivePatchesForPatchBaseline": [
@@ -42385,7 +43414,15 @@
         ],
         "SSM.DescribeInstanceAssociationsStatus": [
             {
-                "action": "ssm:DescribeInstanceAssociationsStatus"
+                "action": "ssm:DescribeInstanceAssociationsStatus",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "ManagedInstanceName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SSM.DescribeInstanceInformation": [
@@ -42528,7 +43565,12 @@
         ],
         "SSM.GetCalendarState": [
             {
-                "action": "ssm:GetCalendarState"
+                "action": "ssm:GetCalendarState",
+                "resource_mappings": {
+                    "DocumentName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SSM.GetCommandInvocation": [
@@ -42545,7 +43587,12 @@
         ],
         "SSM.GetDefaultPatchBaseline": [
             {
-                "action": "ssm:GetDefaultPatchBaseline"
+                "action": "ssm:GetDefaultPatchBaseline",
+                "resource_mappings": {
+                    "PatchBaselineIdResourceId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SSM.GetDeployablePatchSnapshotForInstance": [
@@ -42834,7 +43881,15 @@
         ],
         "SSM.PutComplianceItems": [
             {
-                "action": "ssm:PutComplianceItems"
+                "action": "ssm:PutComplianceItems",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "*"
+                    },
+                    "ManagedInstanceName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SSM.PutInventory": [
@@ -42975,12 +44030,22 @@
         ],
         "SSM.StartAutomationExecution": [
             {
-                "action": "ssm:StartAutomationExecution"
+                "action": "ssm:StartAutomationExecution",
+                "resource_mappings": {
+                    "AutomationDefinitionName:VersionId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SSM.StartChangeRequestExecution": [
             {
-                "action": "ssm:StartChangeRequestExecution"
+                "action": "ssm:StartChangeRequestExecution",
+                "resource_mappings": {
+                    "AutomationDefinitionName:VersionId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SSM.StartSession": [
@@ -43014,12 +44079,37 @@
         ],
         "SSM.UpdateAssociation": [
             {
-                "action": "ssm:UpdateAssociation"
+                "action": "ssm:UpdateAssociation",
+                "resource_mappings": {
+                    "AssociationId": {
+                        "template": "${AssociationId}"
+                    },
+                    "InstanceId": {
+                        "template": "*"
+                    },
+                    "ManagedInstanceName": {
+                        "template": "*"
+                    }
+                },
+                "resourcearn_mappings": {
+                    "document": "%%iftemplatematch%${Name}%%"
+                }
             }
         ],
         "SSM.UpdateAssociationStatus": [
             {
-                "action": "ssm:UpdateAssociationStatus"
+                "action": "ssm:UpdateAssociationStatus",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "ManagedInstanceName": {
+                        "template": "*"
+                    }
+                },
+                "resourcearn_mappings": {
+                    "document": "%%iftemplatematch%${Name}%%"
+                }
             }
         ],
         "SSM.UpdateDocument": [
@@ -43239,7 +44329,18 @@
         ],
         "StorageGateway.CreateCachediSCSIVolume": [
             {
-                "action": "storagegateway:CreateCachediSCSIVolume"
+                "action": "storagegateway:CreateCachediSCSIVolume",
+                "resource_mappings": {
+                    "GatewayId": {
+                        "template": "*"
+                    },
+                    "VolumeId": {
+                        "template": "*"
+                    }
+                },
+                "resourcearn_mappings": {
+                    "gateway": "${GatewayARN}"
+                }
             }
         ],
         "StorageGateway.CreateNFSFileShare": [
@@ -46899,72 +48000,214 @@
         ],
         "LexModelBuildingService.CreateBotVersion": [
             {
-                "action": "lex:CreateBotVersion"
+                "action": "lex:CreateBotVersion",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${name}"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.CreateIntentVersion": [
             {
-                "action": "lex:CreateIntentVersion"
+                "action": "lex:CreateIntentVersion",
+                "resource_mappings": {
+                    "IntentName": {
+                        "template": "${name}"
+                    },
+                    "IntentVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.CreateSlotTypeVersion": [
             {
-                "action": "lex:CreateSlotTypeVersion"
+                "action": "lex:CreateSlotTypeVersion",
+                "resource_mappings": {
+                    "SlotName": {
+                        "template": "${name}"
+                    },
+                    "SlotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.DeleteBot": [
             {
-                "action": "lex:DeleteBot"
+                "action": "lex:DeleteBot",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${name}"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "*"
+                    },
+                    "BotAliasId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.DeleteBotAlias": [
             {
-                "action": "lex:DeleteBotAlias"
+                "action": "lex:DeleteBotAlias",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotAlias": {
+                        "template": "${name}"
+                    },
+                    "BotId": {
+                        "template": "*"
+                    },
+                    "BotAliasId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.DeleteBotChannelAssociation": [
             {
-                "action": "lex:DeleteBotChannelAssociation"
+                "action": "lex:DeleteBotChannelAssociation",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotAlias": {
+                        "template": "${botAlias}"
+                    },
+                    "ChannelName": {
+                        "template": "${name}"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.DeleteBotVersion": [
             {
-                "action": "lex:DeleteBotVersion"
+                "action": "lex:DeleteBotVersion",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${name}"
+                    },
+                    "BotVersion": {
+                        "template": "${version}"
+                    },
+                    "BotId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.DeleteIntent": [
             {
-                "action": "lex:DeleteIntent"
+                "action": "lex:DeleteIntent",
+                "resource_mappings": {
+                    "IntentName": {
+                        "template": "${name}"
+                    },
+                    "IntentVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.DeleteIntentVersion": [
             {
-                "action": "lex:DeleteIntentVersion"
+                "action": "lex:DeleteIntentVersion",
+                "resource_mappings": {
+                    "IntentName": {
+                        "template": "${name}"
+                    },
+                    "IntentVersion": {
+                        "template": "${version}"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.DeleteSlotType": [
             {
-                "action": "lex:DeleteSlotType"
+                "action": "lex:DeleteSlotType",
+                "resource_mappings": {
+                    "SlotName": {
+                        "template": "${name}"
+                    },
+                    "SlotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.DeleteSlotTypeVersion": [
             {
-                "action": "lex:DeleteSlotTypeVersion"
+                "action": "lex:DeleteSlotTypeVersion",
+                "resource_mappings": {
+                    "SlotName": {
+                        "template": "${name}"
+                    },
+                    "SlotVersion": {
+                        "template": "${version}"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.DeleteUtterances": [
             {
-                "action": "lex:DeleteUtterances"
+                "action": "lex:DeleteUtterances",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.GetBot": [
             {
-                "action": "lex:GetBot"
+                "action": "lex:GetBot",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${name}"
+                    },
+                    "BotAlias": {
+                        "template": "*"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.GetBotAlias": [
             {
-                "action": "lex:GetBotAlias"
+                "action": "lex:GetBotAlias",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotAlias": {
+                        "template": "${name}"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.GetBotAliases": [
@@ -46975,17 +48218,47 @@
         ],
         "LexModelBuildingService.GetBotChannelAssociation": [
             {
-                "action": "lex:GetBotChannelAssociation"
+                "action": "lex:GetBotChannelAssociation",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotAlias": {
+                        "template": "${botAlias}"
+                    },
+                    "ChannelName": {
+                        "template": "${name}"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.GetBotChannelAssociations": [
             {
-                "action": "lex:GetBotChannelAssociations"
+                "action": "lex:GetBotChannelAssociations",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotAlias": {
+                        "template": "${botAlias}"
+                    },
+                    "ChannelName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.GetBotVersions": [
             {
-                "action": "lex:GetBotVersions"
+                "action": "lex:GetBotVersions",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${name}"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.GetBots": [
@@ -47014,7 +48287,15 @@
         ],
         "LexModelBuildingService.GetExport": [
             {
-                "action": "lex:GetExport"
+                "action": "lex:GetExport",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${name}"
+                    },
+                    "BotVersion": {
+                        "template": "${version}"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.GetImport": [
@@ -47025,12 +48306,28 @@
         ],
         "LexModelBuildingService.GetIntent": [
             {
-                "action": "lex:GetIntent"
+                "action": "lex:GetIntent",
+                "resource_mappings": {
+                    "IntentName": {
+                        "template": "${name}"
+                    },
+                    "IntentVersion": {
+                        "template": "${version}"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.GetIntentVersions": [
             {
-                "action": "lex:GetIntentVersions"
+                "action": "lex:GetIntentVersions",
+                "resource_mappings": {
+                    "IntentName": {
+                        "template": "${name}"
+                    },
+                    "IntentVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.GetIntents": [
@@ -47041,12 +48338,28 @@
         ],
         "LexModelBuildingService.GetSlotType": [
             {
-                "action": "lex:GetSlotType"
+                "action": "lex:GetSlotType",
+                "resource_mappings": {
+                    "SlotName": {
+                        "template": "${name}"
+                    },
+                    "SlotVersion": {
+                        "template": "${version}"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.GetSlotTypeVersions": [
             {
-                "action": "lex:GetSlotTypeVersions"
+                "action": "lex:GetSlotTypeVersions",
+                "resource_mappings": {
+                    "SlotName": {
+                        "template": "${name}"
+                    },
+                    "SlotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.GetSlotTypes": [
@@ -47057,7 +48370,15 @@
         ],
         "LexModelBuildingService.GetUtterancesView": [
             {
-                "action": "lex:GetUtterancesView"
+                "action": "lex:GetUtterancesView",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${botName}"
+                    },
+                    "BotVersion": {
+                        "template": "${botVersions}[]"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.ListTagsForResource": [
@@ -47073,7 +48394,15 @@
         ],
         "LexModelBuildingService.PutBot": [
             {
-                "action": "lex:PutBot"
+                "action": "lex:PutBot",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "${name}"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.PutBotAlias": [
@@ -47116,7 +48445,15 @@
         ],
         "LexModelBuildingService.PutSlotType": [
             {
-                "action": "lex:PutSlotType"
+                "action": "lex:PutSlotType",
+                "resource_mappings": {
+                    "SlotName": {
+                        "template": "${name}"
+                    },
+                    "SlotVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelBuildingService.StartImport": [
@@ -48669,7 +50006,12 @@
         ],
         "CloudHSMV2.CopyBackupToRegion": [
             {
-                "action": "cloudhsm:CopyBackupToRegion"
+                "action": "cloudhsm:CopyBackupToRegion",
+                "resource_mappings": {
+                    "CloudHsmBackupInstanceName": {
+                        "template": "${BackupId}"
+                    }
+                }
             }
         ],
         "CloudHSMV2.CreateCluster": [
@@ -50359,7 +51701,15 @@
         ],
         "MediaConvert.CreateJobTemplate": [
             {
-                "action": "mediaconvert:CreateJobTemplate"
+                "action": "mediaconvert:CreateJobTemplate",
+                "resource_mappings": {
+                    "PresetName": {
+                        "template": "*"
+                    },
+                    "QueueName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "MediaConvert.CreatePreset": [
@@ -50519,7 +51869,18 @@
         ],
         "MediaConvert.UpdateJobTemplate": [
             {
-                "action": "mediaconvert:UpdateJobTemplate"
+                "action": "mediaconvert:UpdateJobTemplate",
+                "resource_mappings": {
+                    "JobTemplateName": {
+                        "template": "${Name}"
+                    },
+                    "PresetName": {
+                        "template": "*"
+                    },
+                    "QueueName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "MediaConvert.UpdatePreset": [
@@ -53004,7 +54365,24 @@
         ],
         "SageMaker.AddAssociation": [
             {
-                "action": "sagemaker:AddAssociation"
+                "action": "sagemaker:AddAssociation",
+                "resource_mappings": {
+                    "ActionName": {
+                        "template": "*"
+                    },
+                    "HashOfArtifactSource": {
+                        "template": "*"
+                    },
+                    "ContextName": {
+                        "template": "*"
+                    },
+                    "ExperimentName": {
+                        "template": "*"
+                    },
+                    "TrialComponentName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SageMaker.AddTags": [
@@ -53670,7 +55048,24 @@
         ],
         "SageMaker.DeleteAssociation": [
             {
-                "action": "sagemaker:DeleteAssociation"
+                "action": "sagemaker:DeleteAssociation",
+                "resource_mappings": {
+                    "ActionName": {
+                        "template": "*"
+                    },
+                    "HashOfArtifactSource": {
+                        "template": "*"
+                    },
+                    "ContextName": {
+                        "template": "*"
+                    },
+                    "ExperimentName": {
+                        "template": "*"
+                    },
+                    "TrialComponentName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SageMaker.DeleteCodeRepository": [
@@ -62560,7 +63955,12 @@
         ],
         "PinpointEmail.CreateDedicatedIpPool": [
             {
-                "action": "ses:CreateDedicatedIpPool"
+                "action": "ses:CreateDedicatedIpPool",
+                "resource_mappings": {
+                    "CustomVerificationEmailTemplateName": {
+                        "template": "${PoolName}"
+                    }
+                }
             }
         ],
         "PinpointEmail.CreateDeliverabilityTestReport": [
@@ -62605,7 +64005,12 @@
         ],
         "PinpointEmail.DeleteDedicatedIpPool": [
             {
-                "action": "ses:DeleteDedicatedIpPool"
+                "action": "ses:DeleteDedicatedIpPool",
+                "resource_mappings": {
+                    "CustomVerificationEmailTemplateName": {
+                        "template": "${PoolName}"
+                    }
+                }
             }
         ],
         "PinpointEmail.DeleteEmailIdentity": [
@@ -62658,7 +64063,12 @@
         ],
         "PinpointEmail.GetDedicatedIps": [
             {
-                "action": "ses:GetDedicatedIps"
+                "action": "ses:GetDedicatedIps",
+                "resource_mappings": {
+                    "CustomVerificationEmailTemplateName": {
+                        "template": "${PoolName}"
+                    }
+                }
             }
         ],
         "PinpointEmail.GetDeliverabilityDashboardOptions": [
@@ -62669,7 +64079,12 @@
         ],
         "PinpointEmail.GetDeliverabilityTestReport": [
             {
-                "action": "ses:GetDeliverabilityTestReport"
+                "action": "ses:GetDeliverabilityTestReport",
+                "resource_mappings": {
+                    "CustomVerificationEmailTemplateName": {
+                        "template": "${ReportId}"
+                    }
+                }
             }
         ],
         "PinpointEmail.GetDomainStatisticsReport": [
@@ -62782,7 +64197,12 @@
         ],
         "PinpointEmail.PutDedicatedIpInPool": [
             {
-                "action": "ses:PutDedicatedIpInPool"
+                "action": "ses:PutDedicatedIpInPool",
+                "resource_mappings": {
+                    "CustomVerificationEmailTemplateName": {
+                        "template": "${DestinationPoolName}"
+                    }
+                }
             }
         ],
         "PinpointEmail.PutDedicatedIpWarmupAttributes": [
@@ -63500,7 +64920,12 @@
         ],
         "QuickSight.CreateDataSet": [
             {
-                "action": "quicksight:CreateDataSet"
+                "action": "quicksight:CreateDataSet",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "QuickSight.CreateDataSource": [
@@ -64612,7 +66037,12 @@
         ],
         "Amplify.GetArtifactUrl": [
             {
-                "action": "amplify:GetArtifactUrl"
+                "action": "amplify:GetArtifactUrl",
+                "resource_mappings": {
+                    "AppId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Amplify.GetBackendEnvironment": [
@@ -65180,7 +66610,11 @@
         ],
         "RoboMaker.CreateRobotApplicationVersion": [
             {
-                "action": "robomaker:CreateRobotApplicationVersion"
+                "action": "robomaker:CreateRobotApplicationVersion",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "robotApplication": "%%iftemplatematch%${application}%%"
+                }
             }
         ],
         "RoboMaker.CreateSimulationApplication": [
@@ -65191,7 +66625,11 @@
         ],
         "RoboMaker.CreateSimulationApplicationVersion": [
             {
-                "action": "robomaker:CreateSimulationApplicationVersion"
+                "action": "robomaker:CreateSimulationApplicationVersion",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "simulationApplication": "%%iftemplatematch%${application}%%"
+                }
             }
         ],
         "RoboMaker.CreateSimulationJob": [
@@ -65266,7 +66704,11 @@
         ],
         "RoboMaker.DeleteSimulationApplication": [
             {
-                "action": "robomaker:DeleteSimulationApplication"
+                "action": "robomaker:DeleteSimulationApplication",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "simulationApplication": "%%iftemplatematch%${application}%%"
+                }
             }
         ],
         "RoboMaker.DeleteWorldTemplate": [
@@ -65326,7 +66768,11 @@
         ],
         "RoboMaker.DescribeSimulationApplication": [
             {
-                "action": "robomaker:DescribeSimulationApplication"
+                "action": "robomaker:DescribeSimulationApplication",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "simulationApplication": "%%iftemplatematch%${application}%%"
+                }
             }
         ],
         "RoboMaker.DescribeSimulationJob": [
@@ -65505,7 +66951,11 @@
         ],
         "RoboMaker.SyncDeploymentJob": [
             {
-                "action": "robomaker:SyncDeploymentJob"
+                "action": "robomaker:SyncDeploymentJob",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "deploymentFleet": "%%iftemplatematch%${fleet}%%"
+                }
             }
         ],
         "RoboMaker.TagResource": [
@@ -65548,12 +66998,20 @@
         ],
         "RoboMaker.UpdateRobotApplication": [
             {
-                "action": "robomaker:UpdateRobotApplication"
+                "action": "robomaker:UpdateRobotApplication",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "robotApplication": "%%iftemplatematch%${application}%%"
+                }
             }
         ],
         "RoboMaker.UpdateSimulationApplication": [
             {
-                "action": "robomaker:UpdateSimulationApplication"
+                "action": "robomaker:UpdateSimulationApplication",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "simulationApplication": "%%iftemplatematch%${application}%%"
+                }
             }
         ],
         "RoboMaker.UpdateWorldTemplate": [
@@ -66743,7 +68201,15 @@
         ],
         "SecurityHub.BatchImportFindings": [
             {
-                "action": "securityhub:BatchImportFindings"
+                "action": "securityhub:BatchImportFindings",
+                "resource_mappings": {
+                    "Company": {
+                        "template": "*"
+                    },
+                    "ProductId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SecurityHub.BatchUpdateFindings": [
@@ -70343,7 +71809,12 @@
         ],
         "IoTEventsData.BatchUpdateDetector": [
             {
-                "action": "iotevents:BatchUpdateDetector"
+                "action": "iotevents:BatchUpdateDetector",
+                "resource_mappings": {
+                    "inputName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "IoTEventsData.DescribeDetector": [
@@ -71437,7 +72908,11 @@
         ],
         "EventBridge.StartReplay": [
             {
-                "action": "events:StartReplay"
+                "action": "events:StartReplay",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "archive": "%%iftemplatematch%${EventSourceArn}%%"
+                }
             }
         ],
         "EventBridge.TagResource": [
@@ -71590,7 +73065,12 @@
         ],
         "ForecastService.CreateDatasetGroup": [
             {
-                "action": "forecast:CreateDatasetGroup"
+                "action": "forecast:CreateDatasetGroup",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "ForecastService.CreateDatasetImportJob": [
@@ -72628,17 +74108,32 @@
         ],
         "SESV2.CreateDedicatedIpPool": [
             {
-                "action": "ses:CreateDedicatedIpPool"
+                "action": "ses:CreateDedicatedIpPool",
+                "resource_mappings": {
+                    "CustomVerificationEmailTemplateName": {
+                        "template": "${PoolName}"
+                    }
+                }
             }
         ],
         "SESV2.CreateDeliverabilityTestReport": [
             {
-                "action": "ses:CreateDeliverabilityTestReport"
+                "action": "ses:CreateDeliverabilityTestReport",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SESV2.CreateEmailIdentity": [
             {
-                "action": "ses:CreateEmailIdentity"
+                "action": "ses:CreateEmailIdentity",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SESV2.DeleteConfigurationSet": [
@@ -72669,12 +74164,22 @@
         ],
         "SESV2.DeleteDedicatedIpPool": [
             {
-                "action": "ses:DeleteDedicatedIpPool"
+                "action": "ses:DeleteDedicatedIpPool",
+                "resource_mappings": {
+                    "CustomVerificationEmailTemplateName": {
+                        "template": "${PoolName}"
+                    }
+                }
             }
         ],
         "SESV2.DeleteEmailIdentity": [
             {
-                "action": "ses:DeleteEmailIdentity"
+                "action": "ses:DeleteEmailIdentity",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SESV2.GetAccount": [
@@ -72723,7 +74228,12 @@
         ],
         "SESV2.GetDedicatedIps": [
             {
-                "action": "ses:GetDedicatedIps"
+                "action": "ses:GetDedicatedIps",
+                "resource_mappings": {
+                    "CustomVerificationEmailTemplateName": {
+                        "template": "${PoolName}"
+                    }
+                }
             }
         ],
         "SESV2.GetDeliverabilityDashboardOptions": [
@@ -72734,17 +74244,32 @@
         ],
         "SESV2.GetDeliverabilityTestReport": [
             {
-                "action": "ses:GetDeliverabilityTestReport"
+                "action": "ses:GetDeliverabilityTestReport",
+                "resource_mappings": {
+                    "CustomVerificationEmailTemplateName": {
+                        "template": "${ReportId}"
+                    }
+                }
             }
         ],
         "SESV2.GetDomainStatisticsReport": [
             {
-                "action": "ses:GetDomainStatisticsReport"
+                "action": "ses:GetDomainStatisticsReport",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SESV2.GetEmailIdentity": [
             {
-                "action": "ses:GetEmailIdentity"
+                "action": "ses:GetEmailIdentity",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SESV2.ListConfigurationSets": [
@@ -72843,7 +74368,12 @@
         ],
         "SESV2.PutDedicatedIpInPool": [
             {
-                "action": "ses:PutDedicatedIpInPool"
+                "action": "ses:PutDedicatedIpInPool",
+                "resource_mappings": {
+                    "CustomVerificationEmailTemplateName": {
+                        "template": "${DestinationPoolName}"
+                    }
+                }
             }
         ],
         "SESV2.PutDedicatedIpWarmupAttributes": [
@@ -72860,27 +74390,52 @@
         ],
         "SESV2.PutEmailIdentityDkimAttributes": [
             {
-                "action": "ses:PutEmailIdentityDkimAttributes"
+                "action": "ses:PutEmailIdentityDkimAttributes",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SESV2.PutEmailIdentityFeedbackAttributes": [
             {
-                "action": "ses:PutEmailIdentityFeedbackAttributes"
+                "action": "ses:PutEmailIdentityFeedbackAttributes",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SESV2.PutEmailIdentityMailFromAttributes": [
             {
-                "action": "ses:PutEmailIdentityMailFromAttributes"
+                "action": "ses:PutEmailIdentityMailFromAttributes",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SESV2.SendCustomVerificationEmail": [
             {
-                "action": "ses:SendCustomVerificationEmail"
+                "action": "ses:SendCustomVerificationEmail",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SESV2.SendEmail": [
             {
-                "action": "ses:SendEmail"
+                "action": "ses:SendEmail",
+                "resource_mappings": {
+                    "IdentityName": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "SESV2.TagResource": [
@@ -73089,7 +74644,18 @@
         ],
         "AppConfig.GetConfiguration": [
             {
-                "action": "appconfig:GetConfiguration"
+                "action": "appconfig:GetConfiguration",
+                "resource_mappings": {
+                    "ApplicationId": {
+                        "template": "*"
+                    },
+                    "ConfigurationProfileId": {
+                        "template": "*"
+                    },
+                    "EnvironmentId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "AppConfig.GetConfigurationProfile": [
@@ -73997,7 +75563,18 @@
         ],
         "Imagebuilder.CreateImage": [
             {
-                "action": "imagebuilder:CreateImage"
+                "action": "imagebuilder:CreateImage",
+                "resource_mappings": {
+                    "ImageName": {
+                        "template": "*"
+                    },
+                    "ImageVersion": {
+                        "template": "*"
+                    },
+                    "ImageBuildVersion": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "Imagebuilder.CreateImagePipeline": [
@@ -75379,7 +76956,12 @@
         ],
         "FraudDetector.DeleteDetectorVersion": [
             {
-                "action": "frauddetector:DeleteDetectorVersion"
+                "action": "frauddetector:DeleteDetectorVersion",
+                "resource_mappings": {
+                    "resourcePath": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "FraudDetector.DeleteEntityType": [
@@ -75440,7 +77022,12 @@
         ],
         "FraudDetector.DeleteModelVersion": [
             {
-                "action": "frauddetector:DeleteModelVersion"
+                "action": "frauddetector:DeleteModelVersion",
+                "resource_mappings": {
+                    "resourcePath": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "FraudDetector.DeleteOutcome": [
@@ -75485,12 +77072,22 @@
         ],
         "FraudDetector.DescribeModelVersions": [
             {
-                "action": "frauddetector:DescribeModelVersions"
+                "action": "frauddetector:DescribeModelVersions",
+                "resource_mappings": {
+                    "resourcePath": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "FraudDetector.GetDetectorVersion": [
             {
-                "action": "frauddetector:GetDetectorVersion"
+                "action": "frauddetector:GetDetectorVersion",
+                "resource_mappings": {
+                    "resourcePath": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "FraudDetector.GetDetectors": [
@@ -75557,7 +77154,12 @@
         ],
         "FraudDetector.GetModelVersion": [
             {
-                "action": "frauddetector:GetModelVersion"
+                "action": "frauddetector:GetModelVersion",
+                "resource_mappings": {
+                    "resourcePath": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "FraudDetector.GetModels": [
@@ -75741,12 +77343,22 @@
         ],
         "FraudDetector.UpdateDetectorVersionMetadata": [
             {
-                "action": "frauddetector:UpdateDetectorVersionMetadata"
+                "action": "frauddetector:UpdateDetectorVersionMetadata",
+                "resource_mappings": {
+                    "resourcePath": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "FraudDetector.UpdateDetectorVersionStatus": [
             {
-                "action": "frauddetector:UpdateDetectorVersionStatus"
+                "action": "frauddetector:UpdateDetectorVersionStatus",
+                "resource_mappings": {
+                    "resourcePath": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "FraudDetector.UpdateModel": [
@@ -83779,142 +85391,369 @@
         ],
         "LexModelsV2.BuildBotLocale": [
             {
-                "action": "lex:BuildBotLocale"
+                "action": "lex:BuildBotLocale",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.CreateBotLocale": [
             {
-                "action": "lex:CreateBotLocale"
+                "action": "lex:CreateBotLocale",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.CreateBotVersion": [
             {
-                "action": "lex:CreateBotVersion"
+                "action": "lex:CreateBotVersion",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "*"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.CreateSlot": [
             {
-                "action": "lex:CreateSlot"
+                "action": "lex:CreateSlot",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.DeleteBot": [
             {
-                "action": "lex:DeleteBot"
+                "action": "lex:DeleteBot",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "*"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "${botId}"
+                    },
+                    "BotAliasId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "LexModelsV2.DeleteBotAlias": [
             {
-                "action": "lex:DeleteBotAlias"
+                "action": "lex:DeleteBotAlias",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "*"
+                    },
+                    "BotAlias": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "${botId}"
+                    },
+                    "BotAliasId": {
+                        "template": "${botAliasId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.DeleteBotLocale": [
             {
-                "action": "lex:DeleteBotLocale"
+                "action": "lex:DeleteBotLocale",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.DeleteBotVersion": [
             {
-                "action": "lex:DeleteBotVersion"
+                "action": "lex:DeleteBotVersion",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "*"
+                    },
+                    "BotVersion": {
+                        "template": "${botVersion}"
+                    },
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.DeleteIntent": [
             {
-                "action": "lex:DeleteIntent"
+                "action": "lex:DeleteIntent",
+                "resource_mappings": {
+                    "IntentName": {
+                        "template": "*"
+                    },
+                    "IntentVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.DeleteSlot": [
             {
-                "action": "lex:DeleteSlot"
+                "action": "lex:DeleteSlot",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.DeleteSlotType": [
             {
-                "action": "lex:DeleteSlotType"
+                "action": "lex:DeleteSlotType",
+                "resource_mappings": {
+                    "SlotName": {
+                        "template": "*"
+                    },
+                    "SlotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.DescribeBot": [
             {
-                "action": "lex:DescribeBot"
+                "action": "lex:DescribeBot",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.DescribeBotAlias": [
             {
-                "action": "lex:DescribeBotAlias"
+                "action": "lex:DescribeBotAlias",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    },
+                    "BotAliasId": {
+                        "template": "${botAliasId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.DescribeBotLocale": [
             {
-                "action": "lex:DescribeBotLocale"
+                "action": "lex:DescribeBotLocale",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.DescribeBotVersion": [
             {
-                "action": "lex:DescribeBotVersion"
+                "action": "lex:DescribeBotVersion",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.DescribeSlot": [
             {
-                "action": "lex:DescribeSlot"
+                "action": "lex:DescribeSlot",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.ListBotAliases": [
             {
-                "action": "lex:ListBotAliases"
+                "action": "lex:ListBotAliases",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.ListBotLocales": [
             {
-                "action": "lex:ListBotLocales"
+                "action": "lex:ListBotLocales",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.ListSlots": [
             {
-                "action": "lex:ListSlots"
+                "action": "lex:ListSlots",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.ListTagsForResource": [
             {
-                "action": "lex:ListTagsForResource"
+                "action": "lex:ListTagsForResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "bot": "%%iftemplatematch%${resourceARN}%%",
+                    "bot alias": "%%iftemplatematch%${resourceARN}%%",
+                    "channel": "%%iftemplatematch%${resourceARN}%%"
+                }
             }
         ],
         "LexModelsV2.TagResource": [
             {
-                "action": "lex:TagResource"
+                "action": "lex:TagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "bot": "%%iftemplatematch%${resourceARN}%%",
+                    "bot alias": "%%iftemplatematch%${resourceARN}%%",
+                    "channel": "%%iftemplatematch%${resourceARN}%%"
+                }
             }
         ],
         "LexModelsV2.UntagResource": [
             {
-                "action": "lex:UntagResource"
+                "action": "lex:UntagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "bot": "%%iftemplatematch%${resourceARN}%%",
+                    "bot alias": "%%iftemplatematch%${resourceARN}%%",
+                    "channel": "%%iftemplatematch%${resourceARN}%%"
+                }
             }
         ],
         "LexModelsV2.UpdateBotLocale": [
             {
-                "action": "lex:UpdateBotLocale"
+                "action": "lex:UpdateBotLocale",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexModelsV2.UpdateSlot": [
             {
-                "action": "lex:UpdateSlot"
+                "action": "lex:UpdateSlot",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    }
+                }
             }
         ],
         "LexRuntimeV2.DeleteSession": [
             {
-                "action": "lex:DeleteSession"
+                "action": "lex:DeleteSession",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "*"
+                    },
+                    "BotAlias": {
+                        "template": "*"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "${botId}"
+                    },
+                    "BotAliasId": {
+                        "template": "${botAliasId}"
+                    }
+                }
             }
         ],
         "LexRuntimeV2.GetSession": [
             {
-                "action": "lex:GetSession"
+                "action": "lex:GetSession",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "*"
+                    },
+                    "BotAlias": {
+                        "template": "*"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "${botId}"
+                    },
+                    "BotAliasId": {
+                        "template": "${botAliasId}"
+                    }
+                }
             }
         ],
         "LexRuntimeV2.PutSession": [
             {
-                "action": "lex:PutSession"
+                "action": "lex:PutSession",
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "*"
+                    },
+                    "BotAlias": {
+                        "template": "*"
+                    },
+                    "BotVersion": {
+                        "template": "*"
+                    },
+                    "BotId": {
+                        "template": "${botId}"
+                    },
+                    "BotAliasId": {
+                        "template": "${botAliasId}"
+                    }
+                }
             }
         ],
         "LexRuntimeV2.RecognizeText": [
             {
-                "action": "lex:RecognizeText"
+                "action": "lex:RecognizeText",
+                "resource_mappings": {
+                    "BotId": {
+                        "template": "${botId}"
+                    },
+                    "BotAliasId": {
+                        "template": "${botAliasId}"
+                    }
+                }
             }
         ]
     },
