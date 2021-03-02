@@ -78,6 +78,8 @@ _Comprehensive Example (Proxy Mode)_
 iamlive --set-ini --mode proxy --profile myprofile --output-file policy.json --refresh-rate 1 --sort-alphabetical --bind-addr 127.0.0.1:10080 --ca-bundle ~/.iamlive/ca.pem --ca-key ~/.iamlive/ca.key --account-id 123456789012
 ```
 
+The arguments may also be specified in an INI file located at `~/.iamlive/config`.
+
 ### CSM Mode
 
 Client-side monitoring mode is the default behaviour and will use [metrics](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/metrics.html) delivered locally via UDP to capture policy statements with the `Action` key only (`Resource` is only available in proxy mode).
