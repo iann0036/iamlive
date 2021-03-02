@@ -115,8 +115,8 @@ func getPolicyDocument() []byte {
 
 		for i := 0; i < len(policy.Statement); i++ { // make any single wildcard resource a non-array
 			resource := policy.Statement[i].Resource.([]string)
-			if len(resource) == 1 && resource[0] == "*" {
-				policy.Statement[i].Resource = "*"
+			if len(resource) == 1 {
+				policy.Statement[i].Resource = resource[0]
 			}
 		}
 	}
