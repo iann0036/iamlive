@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/exec"
 	"runtime/pprof"
 
 	"github.com/mitchellh/go-homedir"
@@ -25,6 +26,7 @@ var bindAddrFlag *string
 var caBundleFlag *string
 var caKeyFlag *string
 var accountIDFlag *string
+var backgroundFlag *bool
 var cpuProfileFlag = flag.String("cpu-profile", "", "[experimental] write a CPU profile to this file (for performance testing purposes)")
 
 func parseConfig() {
@@ -40,6 +42,7 @@ func parseConfig() {
 	caBundle := "~/.iamlive/ca.pem"
 	caKey := "~/.iamlive/ca.key"
 	accountID := "123456789012"
+	background := false
 
 	cfgfile, err := homedir.Expand("~/.iamlive/config")
 	if err == nil {
@@ -81,6 +84,9 @@ func parseConfig() {
 			if cfg.Section("").HasKey("account-id") {
 				accountID = cfg.Section("").Key("account-id").String()
 			}
+			if cfg.Section("").HasKey("background") {
+				background, _ = cfg.Section("").Key("background").Bool()
+			}
 		}
 	}
 
@@ -96,12 +102,27 @@ func parseConfig() {
 	caBundleFlag = flag.String("ca-bundle", caBundle, "[experimental] the CA certificate bundle (PEM) to use for proxy mode")
 	caKeyFlag = flag.String("ca-key", caKey, "[experimental] the CA certificate key to use for proxy mode")
 	accountIDFlag = flag.String("account-id", accountID, "[experimental] the AWS account ID to use in policy outputs within proxy mode")
+	backgroundFlag = flag.Bool("background", background, "when set, the process will return the current PID and run in the background without output")
 }
 
 func main() {
 	parseConfig()
 
 	flag.Parse()
+
+	if *backgroundFlag {
+		args := os.Args[1:]
+		for i := 0; i < len(args); i++ {
+			if args[i] == "-background" || args[i] == "--background" {
+				args = append(args[:i], args[i+1:]...)
+				break
+			}
+		}
+		cmd := exec.Command(os.Args[0], args...)
+		cmd.Start()
+		fmt.Println(cmd.Process.Pid)
+		os.Exit(0)
+	}
 
 	if *cpuProfileFlag != "" {
 		f, err := os.Create(*cpuProfileFlag)

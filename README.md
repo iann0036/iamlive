@@ -44,6 +44,8 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--host:** host to listen on for CSM (_default: 127.0.0.1_)
 
+**--background:** when set, the process will return the current PID and run in the background without output (_default: false_)
+
 **--mode:** _[experimental]_ the listening mode (`csm`,`proxy`) (_default: csm_)
 
 **--bind-addr:** _[experimental]_ the bind address for proxy mode (_default: 127.0.0.1:10080_)
@@ -69,13 +71,13 @@ iamlive --set-ini --mode proxy
 _Comprehensive Example (CSM Mode)_
 
 ```
-iamlive --set-ini --profile myprofile --fails-only --output-file policy.json --refresh-rate 1 --sort-alphabetical --host 127.0.0.1
+iamlive --set-ini --profile myprofile --fails-only --output-file policy.json --refresh-rate 1 --sort-alphabetical --host 127.0.0.1 --background
 ```
 
 _Comprehensive Example (Proxy Mode)_
 
 ```
-iamlive --set-ini --mode proxy --profile myprofile --output-file policy.json --refresh-rate 1 --sort-alphabetical --bind-addr 127.0.0.1:10080 --ca-bundle ~/.iamlive/ca.pem --ca-key ~/.iamlive/ca.key --account-id 123456789012
+iamlive --set-ini --mode proxy --profile myprofile --output-file policy.json --refresh-rate 1 --sort-alphabetical --bind-addr 127.0.0.1:10080 --ca-bundle ~/.iamlive/ca.pem --ca-key ~/.iamlive/ca.key --account-id 123456789012 --background
 ```
 
 The arguments may also be specified in an INI file located at `~/.iamlive/config`.

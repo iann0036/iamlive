@@ -172,7 +172,7 @@ func countRune(s string, r rune) int {
 }
 
 func writePolicyToTerminal() {
-	if len(callLog) == 0 {
+	if len(callLog) == 0 || *backgroundFlag {
 		return
 	}
 
