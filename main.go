@@ -27,6 +27,7 @@ var caBundleFlag *string
 var caKeyFlag *string
 var accountIDFlag *string
 var backgroundFlag *bool
+var forceWildcardResourceFlag *bool
 var cpuProfileFlag = flag.String("cpu-profile", "", "[experimental] write a CPU profile to this file (for performance testing purposes)")
 
 func parseConfig() {
@@ -43,6 +44,7 @@ func parseConfig() {
 	caKey := "~/.iamlive/ca.key"
 	accountID := "123456789012"
 	background := false
+	forceWildcardResource := false
 
 	cfgfile, err := homedir.Expand("~/.iamlive/config")
 	if err == nil {
@@ -87,6 +89,9 @@ func parseConfig() {
 			if cfg.Section("").HasKey("background") {
 				background, _ = cfg.Section("").Key("background").Bool()
 			}
+			if cfg.Section("").HasKey("force-wildcard-resource") {
+				forceWildcardResource, _ = cfg.Section("").Key("force-wildcard-resource").Bool()
+			}
 		}
 	}
 
@@ -103,6 +108,7 @@ func parseConfig() {
 	caKeyFlag = flag.String("ca-key", caKey, "[experimental] the CA certificate key to use for proxy mode")
 	accountIDFlag = flag.String("account-id", accountID, "[experimental] the AWS account ID to use in policy outputs within proxy mode")
 	backgroundFlag = flag.Bool("background", background, "when set, the process will return the current PID and run in the background without output")
+	forceWildcardResourceFlag = flag.Bool("force-wildcard-resource", forceWildcardResource, "when set, the Resource will always be a wildcard")
 }
 
 func main() {

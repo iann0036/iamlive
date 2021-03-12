@@ -111,6 +111,12 @@ func getPolicyDocument() []byte {
 			policy.Statement = append(policy.Statement, getStatementsForProxyCall(entry)...)
 		}
 
+		if *forceWildcardResourceFlag {
+			for i, _ := range policy.Statement {
+				policy.Statement[i].Resource = []string{"*"}
+			}
+		}
+
 		policy = aggregatePolicy(policy)
 
 		for i := 0; i < len(policy.Statement); i++ { // make any single wildcard resource a non-array
