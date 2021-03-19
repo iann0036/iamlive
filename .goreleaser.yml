@@ -1,0 +1,94 @@
+builds:
+- binary: iamlive
+  env:
+  - CGO_ENABLED=0
+  id: windows
+  goos:
+  - windows
+  goarch:
+  - "386"
+  - amd64
+- binary: iamlive
+  env:
+  - CGO_ENABLED=0
+  id: linux
+  goos:
+  - linux
+  goarch:
+  - "386"
+  - amd64
+  - arm64
+- binary: iamlive
+  env:
+  - CGO_ENABLED=0
+  id: macos-amd64
+  goos:
+  - darwin
+  goarch:
+  - amd64
+  hooks:
+    post:
+    - gon .gon-amd64.json
+    - mv dist/iamlive-darwin-amd64.dmg dist/iamlive-v{{ .Version }}-darwin-amd64.dmg
+    - mv dist/iamlive-darwin-amd64.zip dist/iamlive-v{{ .Version }}-darwin-amd64.zip
+    - ls dist/
+- binary: iamlive
+  env:
+  - CGO_ENABLED=0
+  id: macos-arm64
+  goos:
+  - darwin
+  goarch:
+  - arm64
+  hooks:
+    post:
+    - gon .gon-arm64.json
+    - mv dist/iamlive-darwin-arm64.dmg dist/iamlive-v{{ .Version }}-darwin-arm64.dmg
+    - mv dist/iamlive-darwin-arm64.zip dist/iamlive-v{{ .Version }}-darwin-arm64.zip
+    - ls dist/
+archives:
+- id: linux-archive
+  builds:
+  - linux
+  format: tar.gz
+  name_template: "{{ .ProjectName }}-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+  files:
+  - none*
+- id: windows-archive
+  builds:
+  - windows
+  format: zip
+  name_template: "{{ .ProjectName }}-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+  files:
+  - none*
+- id: darwin-archive
+  builds:
+  - macos-amd64
+  - macos-arm64
+  format: tar.gz
+  name_template: "{{ .ProjectName }}-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
+  files:
+  - none*
+release:
+  ids:
+  - linux-archive
+  - windows-archive
+  extra_files:
+  - glob: ./dist/*.dmg
+  - glob: ./dist/*-darwin-amd64.zip
+  - glob: ./dist/*-darwin-arm64.zip
+brews:
+- name: iamlive
+  ids:
+  - darwin-archive
+  tap:
+    owner: iann0036
+    name: homebrew-iamlive
+    token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
+  url_template: "https://github.com/iann0036/iamlive/releases/download/{{ .Tag }}/iamlive-v{{ .Version }}-{{ .Os }}-{{ .Arch }}.zip"
+  commit_author:
+    name: Ian Mckay (BOT)
+    email: github-bot@ian.mn
+  homepage: "https://github.com/iann0036/iamlive"
+  description: "Generate an IAM policy from AWS calls using client-side monitoring (CSM) or embedded proxy."
+  license: "MIT"

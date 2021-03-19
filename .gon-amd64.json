@@ -1,0 +1,18 @@
+{
+    "source": ["./dist/macos-amd64_darwin_amd64/iamlive"],
+    "bundle_id": "com.iann0036.iamlive",
+    "apple_id": {
+        "username" : "apple@ian.mn",
+        "password":  "@env:AC_PASSWORD"
+    },
+    "sign": {
+        "application_identity" : "Developer ID Application: Ian McKay (R7ZQG222E8)"
+    },
+    "dmg" :{
+        "output_path":  "./dist/iamlive-darwin-amd64.dmg",
+        "volume_name":  "iamlive"
+    },
+    "zip" :{
+        "output_path":  "./dist/iamlive-darwin-amd64.zip"
+    }
+}

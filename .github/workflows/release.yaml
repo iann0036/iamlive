@@ -1,28 +1,35 @@
-on: 
-  release:
-    types: [created]
+name: Release
+
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
-  releases-matrix:
-    name: Release Go Binary
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # build and publish in parallel: linux/386, linux/amd64, linux/arm64, windows/386, windows/amd64, darwin/amd64, darwin/arm64
-        goos: [linux, windows, darwin]
-        goarch: ["386", amd64, arm64]
-        exclude:
-        - goos: darwin
-          goarch: "386"
-        - goos: windows
-          goarch: arm64
+  goreleaser:
+    runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: iann0036/go-release-action@v1.14
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        goos: ${{ matrix.goos }}
-        goarch: ${{ matrix.goarch }}
-        goversion: "https://golang.org/dl/go1.16.linux-amd64.tar.gz"
-        binary_name: "iamlive"
-        pre_command: export CGO_ENABLED=0
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Set up Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+      - name: Set up Gon
+        run: brew tap mitchellh/gon && brew install mitchellh/gon/gon
+      - name: Import Keychain Certs
+        uses: apple-actions/import-codesign-certs@v1
+        with: 
+          p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
+          p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v2
+        with:
+          version: latest
+          args: release --rm-dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
+          AC_PASSWORD: ${{ secrets.AC_PASSWORD }}
