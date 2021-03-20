@@ -77,18 +77,6 @@ release:
   - glob: ./dist/*.dmg
   - glob: ./dist/*-darwin-amd64.zip
   - glob: ./dist/*-darwin-arm64.zip
-brews:
-- name: iamlive
-  ids:
-  - darwin-archive
-  tap:
-    owner: iann0036
-    name: homebrew-iamlive
-    token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
-  url_template: "https://github.com/iann0036/iamlive/releases/download/{{ .Tag }}/iamlive-v{{ .Version }}-{{ .Os }}-{{ .Arch }}.zip"
-  commit_author:
-    name: Ian Mckay (BOT)
-    email: github-bot@ian.mn
-  homepage: "https://github.com/iann0036/iamlive"
-  description: "Generate an IAM policy from AWS calls using client-side monitoring (CSM) or embedded proxy."
-  license: "MIT"
+checksum:
+  disable: true
+
