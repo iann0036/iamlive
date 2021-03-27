@@ -10,7 +10,6 @@ import (
 	"embed"
 	"encoding/json"
 	"encoding/pem"
-	"encoding/xml"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -24,6 +23,7 @@ import (
 	"strings"
 	"time"
 
+	mxj "github.com/clbanning/mxj/v2"
 	"github.com/elazarl/goproxy"
 	"github.com/mitchellh/go-homedir"
 )
@@ -473,8 +473,8 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 
 						flatten(true, params, bodyJSON, "")
 					} else {
-						var bodyXML interface{}
-						err := xml.Unmarshal(body, &bodyXML)
+						mxjXML, err := mxj.NewMapXml(body)
+						bodyXML := map[string]interface{}(mxjXML)
 						if err != nil {
 							return
 						}
@@ -497,12 +497,17 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		var selectedActionCandidate ActionCandidate
 	ActionCandidateLoop:
 		for _, actionCandidate := range actionCandidates {
+		RequiredParamLoop:
 			for _, requiredParam := range actionCandidate.Operation.Input.Required { // check input requirements
-				if _, ok := actionCandidate.Params[requiredParam]; ok {
-					continue
+				for k := range actionCandidate.Params {
+					if k == requiredParam || k[:len(requiredParam)+2] == requiredParam+"[]" || k[:len(requiredParam)+1] == requiredParam+"." { // equals, or is array, or is map
+						continue RequiredParamLoop
+					}
 				}
-				if _, ok := actionCandidate.URIParams[requiredParam]; ok {
-					continue
+				for k := range actionCandidate.URIParams {
+					if k == requiredParam || k[:len(requiredParam)+2] == requiredParam+"[]" || k[:len(requiredParam)+1] == requiredParam+"." { // equals, or is array, or is map
+						continue RequiredParamLoop
+					}
 				}
 				continue ActionCandidateLoop // requirements not met
 			}
