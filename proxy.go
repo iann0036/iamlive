@@ -24,7 +24,7 @@ import (
 	"time"
 
 	mxj "github.com/clbanning/mxj/v2"
-	"github.com/elazarl/goproxy"
+	"github.com/iann0036/goproxy"
 	"github.com/mitchellh/go-homedir"
 )
 
