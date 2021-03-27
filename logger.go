@@ -479,9 +479,9 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 				// resourcearn_mappings
 				if len(mappedPriv.ResourceARNMappings) > 0 {
 					for _, service := range iamDef { // in the SAR
-						if service.Prefix == strings.ToLower(call.Service) { // find the service for the call
+						if service.Prefix == strings.ToLower(strings.Split(mappedPriv.Action, ":")[0]) { // find the service for the call
 							for _, servicePrivilege := range service.Privileges {
-								if strings.ToLower(call.Method) == strings.ToLower(servicePrivilege.Privilege) { // find the method for the call
+								if strings.ToLower(strings.Split(mappedPriv.Action, ":")[1]) == strings.ToLower(servicePrivilege.Privilege) { // find the method for the call
 									for _, resourceType := range servicePrivilege.ResourceTypes { // get all resource types for the privilege
 										for mapResType, mapResTemplate := range mappedPriv.ResourceARNMappings {
 											if strings.Replace(resourceType.ResourceType, "*", "", -1) == mapResType {
@@ -514,9 +514,9 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 				// resource_mappings
 				if len(resources) == 0 {
 					for _, service := range iamDef { // in the SAR
-						if service.Prefix == strings.ToLower(call.Service) { // find the service for the call
+						if service.Prefix == strings.ToLower(strings.Split(mappedPriv.Action, ":")[0]) { // find the service for the call
 							for _, servicePrivilege := range service.Privileges {
-								if strings.ToLower(call.Method) == strings.ToLower(servicePrivilege.Privilege) { // find the method for the call
+								if strings.ToLower(strings.Split(mappedPriv.Action, ":")[1]) == strings.ToLower(servicePrivilege.Privilege) { // find the method for the call
 									for _, resourceType := range servicePrivilege.ResourceTypes { // get all resource types for the privilege
 										for _, resource := range service.Resources { // go through the service resources
 											if resource.Resource == strings.Replace(resourceType.ResourceType, "*", "", -1) && resource.Resource != "" { // match the resource type (doesn't matter if mandatory)

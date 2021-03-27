@@ -4699,7 +4699,7 @@
                 },
                 "resource_mappings": {
                     "BucketName": {
-                        "parameter": "Bucket",
+                        "template": "${Bucket}",
                         "conditions": {
                             "lhs": "Bucket",
                             "op": "NotStartsWith",
@@ -4707,7 +4707,7 @@
                         }
                     },
                     "ObjectName": {
-                        "parameter": "Key"
+                        "template": "${Key}"
                     }
                 },
                 "condition_mappings": {
@@ -4732,7 +4732,7 @@
                 },
                 "resource_mappings": {
                     "BucketName": {
-                        "parameter": "Bucket",
+                        "template": "${Bucket}",
                         "conditions": {
                             "lhs": "Bucket",
                             "op": "NotStartsWith",
@@ -4740,7 +4740,7 @@
                         }
                     },
                     "ObjectName": {
-                        "parameter": "Key"
+                        "template": "${Key}"
                     }
                 },
                 "condition_mappings": {
