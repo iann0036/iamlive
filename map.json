@@ -2795,7 +2795,11 @@
         "Greengrass.GetThingRuntimeConfiguration": [
             {
                 "action": "greengrass:GetThingRuntimeConfiguration",
-                "undocumented": true
+                "resource_mappings": {
+                    "ThingName": {
+                        "template": "${ThingName}"
+                    }
+                }
             }
         ],
         "Greengrass.UpdateThingRuntimeConfiguration": [
@@ -3381,7 +3385,11 @@
         "FSx.AssociateFileSystemAliases": [
             {
                 "action": "fsx:AssociateFileSystemAliases",
-                "undocumented": true
+                "resource_mappings": {
+                    "FileSystemId": {
+                        "template": "${FileSystemId}"
+                    }
+                }
             }
         ],
         "FSx.DescribeFileSystemAliases": [
@@ -4598,11 +4606,7 @@
                 "action": "apigateway:GET",
                 "resource_mappings": {
                     "ApiGatewayResourcePath": {
-                        "template": "/apis/$APIID/exports/$SPECIFICATION",
-                        "variables": {
-                            "APIID": "ApiId",
-                            "SPECIFICATION": "Specification"
-                        }
+                        "template": "/apis/${ApiId}/exports/${Specification}"
                     }
                 }
             }
@@ -4612,10 +4616,7 @@
                 "action": "apigateway:GET",
                 "resource_mappings": {
                     "ApiGatewayResourcePath": {
-                        "template": "/apis/$APIID",
-                        "variables": {
-                            "APIID": "ApiId"
-                        }
+                        "template": "/apis/${ApiId}"
                     }
                 }
             }
@@ -4635,10 +4636,7 @@
                 "action": "apigateway:POST",
                 "resource_mappings": {
                     "ApiGatewayResourcePath": {
-                        "template": "/tags/%%urlencode%$RESOURCEARN%%",
-                        "variables": {
-                            "RESOURCEARN": "ResourceArn"
-                        }
+                        "template": "/tags/%%urlencode%${ResourceArn}%%"
                     }
                 }
             }
@@ -4648,10 +4646,7 @@
                 "action": "apigateway:DELETE",
                 "resource_mappings": {
                     "ApiGatewayResourcePath": {
-                        "template": "/tags/%%urlencode%$RESOURCEARN%%",
-                        "variables": {
-                            "RESOURCEARN": "ResourceArn"
-                        }
+                        "template": "/tags/%%urlencode%${ResourceArn}%%"
                     }
                 }
             }
@@ -4667,7 +4662,7 @@
                 "action": "s3:ListBucket",
                 "resource_mappings": {
                     "BucketName": {
-                        "parameter": "Bucket",
+                        "template": "${Bucket}",
                         "conditions": {
                             "lhs": "Bucket",
                             "op": "NotStartsWith",
@@ -4677,10 +4672,10 @@
                 },
                 "condition_mappings": {
                     "s3:ResourceAccount": {
-                        "parameter": "ExpectedBucketOwner"
+                        "template": "${ExpectedBucketOwner}"
                     },
                     "s3:DataAccessPointArn": {
-                        "parameter": "Bucket",
+                        "template": "${Bucket}",
                         "conditions": {
                             "lhs": "Bucket",
                             "op": "Contains",
@@ -4712,10 +4707,10 @@
                 },
                 "condition_mappings": {
                     "s3:ResourceAccount": {
-                        "parameter": "ExpectedBucketOwner"
+                        "template": "${ExpectedBucketOwner}"
                     },
                     "s3:DataAccessPointArn": {
-                        "parameter": "Bucket",
+                        "template": "${Bucket}",
                         "conditions": {
                             "lhs": "Bucket",
                             "op": "Contains",
@@ -4745,13 +4740,13 @@
                 },
                 "condition_mappings": {
                     "s3:versionid": {
-                        "parameter": "VersionId"
+                        "template": "${VersionId}"
                     },
                     "s3:ResourceAccount": {
-                        "parameter": "ExpectedBucketOwner"
+                        "template": "${ExpectedBucketOwner}"
                     },
                     "s3:DataAccessPointArn": {
-                        "parameter": "Bucket",
+                        "template": "${Bucket}",
                         "conditions": {
                             "lhs": "Bucket",
                             "op": "Contains",
@@ -18238,13 +18233,21 @@
         "EC2.CopyFpgaImage": [
             {
                 "action": "ec2:CopyFpgaImage",
-                "resource_mappings": {}
+                "resource_mappings": {
+                    "FpgaImageId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "EC2.CopyImage": [
             {
                 "action": "ec2:CopyImage",
-                "resource_mappings": {}
+                "resource_mappings": {
+                    "ImageId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "EC2.CopySnapshot": [
@@ -18312,7 +18315,11 @@
         "EC2.CreateCustomerGateway": [
             {
                 "action": "ec2:CreateCustomerGateway",
-                "resource_mappings": {}
+                "resource_mappings": {
+                    "CustomerGatewayId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "EC2.CreateDefaultSubnet": [
@@ -21095,7 +21102,11 @@
         "EC2.ImportKeyPair": [
             {
                 "action": "ec2:ImportKeyPair",
-                "resource_mappings": {}
+                "resource_mappings": {
+                    "KeyPairName": {
+                        "template": "${KeyName}"
+                    }
+                }
             }
         ],
         "EC2.ImportSnapshot": [
@@ -21673,7 +21684,11 @@
         "EC2.PurchaseReservedInstancesOffering": [
             {
                 "action": "ec2:PurchaseReservedInstancesOffering",
-                "resource_mappings": {}
+                "resource_mappings": {
+                    "ReservationId": {
+                        "template": "*"
+                    }
+                }
             }
         ],
         "EC2.PurchaseScheduledInstances": [
@@ -37350,6 +37365,7 @@
                     "og": "%%iftemplatematch%${ResourceName}%%",
                     "pg": "%%iftemplatematch%${ResourceName}%%",
                     "proxy": "%%iftemplatematch%${ResourceName}%%",
+                    "proxy-endpoint": "%%iftemplatematch%${ResourceName}%%",
                     "ri": "%%iftemplatematch%${ResourceName}%%",
                     "secgrp": "%%iftemplatematch%${ResourceName}%%",
                     "snapshot": "%%iftemplatematch%${ResourceName}%%",
@@ -37412,6 +37428,12 @@
                         "template": "%%many%${SourceDBClusterSnapshotIdentifier}%${TargetDBClusterSnapshotIdentifier}%%"
                     }
                 }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
+                }
             }
         ],
         "RDS.CopyDBParameterGroup": [
@@ -37421,6 +37443,12 @@
                     "ParameterGroupName": {
                         "template": "%%many%${SourceDBParameterGroupIdentifier}%${TargetDBParameterGroupIdentifier}%%"
                     }
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -37432,6 +37460,12 @@
                         "template": "%%many%${SourceDBSnapshotIdentifier}%${TargetDBSnapshotIdentifier}%%"
                     }
                 }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
+                }
             }
         ],
         "RDS.CopyOptionGroup": [
@@ -37441,6 +37475,12 @@
                     "OptionGroupName": {
                         "template": "%%many%${SourceOptionGroupIdentifier}%${TargetOptionGroupIdentifier}%%"
                     }
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -37472,6 +37512,12 @@
                 "action": "iam:PassRole",
                 "arn_override": {
                     "template": "%%iftruthy%${EnableIAMDatabaseAuthentication}%*%%%"
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -37543,6 +37589,12 @@
                 "arn_override": {
                     "template": "%%iftruthy%${EnableIAMDatabaseAuthentication}%*%%%"
                 }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
+                }
             }
         ],
         "RDS.CreateDBInstanceReadReplica": [
@@ -37570,6 +37622,12 @@
                 "action": "iam:PassRole",
                 "arn_override": {
                     "template": "%%iftruthy%${EnableIAMDatabaseAuthentication}%*%%%"
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -38190,6 +38248,7 @@
                     "og": "%%iftemplatematch%${ResourceName}%%",
                     "pg": "%%iftemplatematch%${ResourceName}%%",
                     "proxy": "%%iftemplatematch%${ResourceName}%%",
+                    "proxy-endpoint": "%%iftemplatematch%${ResourceName}%%",
                     "ri": "%%iftemplatematch%${ResourceName}%%",
                     "secgrp": "%%iftemplatematch%${ResourceName}%%",
                     "snapshot": "%%iftemplatematch%${ResourceName}%%",
@@ -38514,6 +38573,7 @@
                     "og": "%%iftemplatematch%${ResourceName}%%",
                     "pg": "%%iftemplatematch%${ResourceName}%%",
                     "proxy": "%%iftemplatematch%${ResourceName}%%",
+                    "proxy-endpoint": "%%iftemplatematch%${ResourceName}%%",
                     "ri": "%%iftemplatematch%${ResourceName}%%",
                     "secgrp": "%%iftemplatematch%${ResourceName}%%",
                     "snapshot": "%%iftemplatematch%${ResourceName}%%",
@@ -38562,6 +38622,12 @@
                 "arn_override": {
                     "template": "%%iftruthy%${EnableIAMDatabaseAuthentication}%*%%%"
                 }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
+                }
             }
         ],
         "RDS.RestoreDBClusterFromSnapshot": [
@@ -38590,6 +38656,12 @@
                 "arn_override": {
                     "template": "%%iftruthy%${EnableIAMDatabaseAuthentication}%*%%%"
                 }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
+                }
             }
         ],
         "RDS.RestoreDBClusterToPointInTime": [
@@ -38617,6 +38689,12 @@
                 "action": "iam:PassRole",
                 "arn_override": {
                     "template": "%%iftruthy%${EnableIAMDatabaseAuthentication}%*%%%"
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -38649,6 +38727,12 @@
                 "arn_override": {
                     "template": "%%iftruthy%${EnableIAMDatabaseAuthentication}%*%%%"
                 }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
+                }
             }
         ],
         "RDS.RestoreDBInstanceFromS3": [
@@ -38670,6 +38754,12 @@
                 "action": "iam:PassRole",
                 "arn_override": {
                     "template": "%%iftruthy%${EnableIAMDatabaseAuthentication}%*%%%"
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -38698,6 +38788,12 @@
                 "action": "iam:PassRole",
                 "arn_override": {
                     "template": "%%iftruthy%${EnableIAMDatabaseAuthentication}%*%%%"
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -44605,12 +44701,15 @@
             {
                 "action": "ssm:StartSession",
                 "resource_mappings": {
-                    "InstanceId": {
-                        "template": "${Target}"
-                    },
                     "DocumentName": {
                         "template": "${DocumentName}"
+                    },
+                    "TaskId": {
+                        "template": "*"
                     }
+                },
+                "resourcearn_mappings": {
+                    "instance": "${Target}"
                 }
             }
         ],
@@ -62190,6 +62289,12 @@
                         "template": "%%many%${SourceDBClusterSnapshotIdentifier}%${TargetDBClusterSnapshotIdentifier}%%"
                     }
                 }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
+                }
             }
         ],
         "Neptune.CopyDBParameterGroup": [
@@ -62199,6 +62304,12 @@
                     "ParameterGroupName": {
                         "template": "%%many%${SourceDBParameterGroupIdentifier}%${TargetDBParameterGroupIdentifier}%%"
                     }
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -62226,6 +62337,12 @@
                     "RoleNameWithPath": {
                         "template": "*"
                     }
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -62292,6 +62409,12 @@
                     "RoleNameWithPath": {
                         "template": "*"
                     }
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -62822,6 +62945,12 @@
                         "template": "*"
                     }
                 }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
+                }
             }
         ],
         "Neptune.RestoreDBClusterToPointInTime": [
@@ -62845,6 +62974,12 @@
                     "RoleNameWithPath": {
                         "template": "*"
                     }
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -63167,16 +63302,7 @@
                     "addon": "%%iftemplatematch%${resourceArn}%%",
                     "cluster": "%%iftemplatematch%${resourceArn}%%",
                     "fargateprofile": "%%iftemplatematch%${resourceArn}%%",
-                    "nodegroup": "%%iftemplatematch%${resourceArn}%%"
-                }
-            },
-            {
-                "action": "eks:ListTagsForResource",
-                "resource_mappings": {},
-                "resourcearn_mappings": {
-                    "addon": "%%iftemplatematch%${resourceArn}%%",
-                    "cluster": "%%iftemplatematch%${resourceArn}%%",
-                    "fargateprofile": "%%iftemplatematch%${resourceArn}%%",
+                    "identityproviderconfig": "%%iftemplatematch%${resourceArn}%%",
                     "nodegroup": "%%iftemplatematch%${resourceArn}%%"
                 }
             }
@@ -63208,6 +63334,7 @@
                     "addon": "%%iftemplatematch%${resourceArn}%%",
                     "cluster": "%%iftemplatematch%${resourceArn}%%",
                     "fargateprofile": "%%iftemplatematch%${resourceArn}%%",
+                    "identityproviderconfig": "%%iftemplatematch%${resourceArn}%%",
                     "nodegroup": "%%iftemplatematch%${resourceArn}%%"
                 }
             }
@@ -63220,6 +63347,7 @@
                     "addon": "%%iftemplatematch%${resourceArn}%%",
                     "cluster": "%%iftemplatematch%${resourceArn}%%",
                     "fargateprofile": "%%iftemplatematch%${resourceArn}%%",
+                    "identityproviderconfig": "%%iftemplatematch%${resourceArn}%%",
                     "nodegroup": "%%iftemplatematch%${resourceArn}%%"
                 }
             }
@@ -69202,7 +69330,11 @@
         "FSx.CancelDataRepositoryTask": [
             {
                 "action": "fsx:CancelDataRepositoryTask",
-                "resource_mappings": {}
+                "resource_mappings": {
+                    "TaskId": {
+                        "template": "${TaskId}"
+                    }
+                }
             }
         ],
         "FSx.CreateBackup": [
@@ -69420,6 +69552,10 @@
             {
                 "action": "securityhub:DisableOrganizationAdminAccount",
                 "resource_mappings": {}
+            },
+            {
+                "action": "organizations:DescribeOrganization",
+                "resource_mappings": {}
             }
         ],
         "SecurityHub.DisableSecurityHub": [
@@ -69449,6 +69585,18 @@
         "SecurityHub.EnableOrganizationAdminAccount": [
             {
                 "action": "securityhub:EnableOrganizationAdminAccount",
+                "resource_mappings": {}
+            },
+            {
+                "action": "organizations:DescribeOrganization",
+                "resource_mappings": {}
+            },
+            {
+                "action": "organizations:EnableAWSServiceAccess",
+                "resource_mappings": {}
+            },
+            {
+                "action": "organizations:RegisterDelegatedAdministrator",
                 "resource_mappings": {}
             }
         ],
@@ -69527,6 +69675,10 @@
         "SecurityHub.ListOrganizationAdminAccounts": [
             {
                 "action": "securityhub:ListOrganizationAdminAccounts",
+                "resource_mappings": {}
+            },
+            {
+                "action": "organizations:DescribeOrganization",
                 "resource_mappings": {}
             }
         ],
@@ -70657,6 +70809,12 @@
                         "template": "%%many%${SourceDBClusterParameterGroupIdentifier}%${TargetDBClusterParameterGroupIdentifier}%%"
                     }
                 }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
+                }
             }
         ],
         "DocDB.CopyDBClusterSnapshot": [
@@ -70666,6 +70824,12 @@
                     "ClusterSnapshotName": {
                         "template": "%%many%${SourceDBClusterSnapshotIdentifier}%${TargetDBClusterSnapshotIdentifier}%%"
                     }
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -70693,6 +70857,12 @@
                     "RoleNameWithPath": {
                         "template": "*"
                     }
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -70746,6 +70916,12 @@
                     "RoleNameWithPath": {
                         "template": "*"
                     }
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -71097,6 +71273,12 @@
                         "template": "*"
                     }
                 }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
+                }
             }
         ],
         "DocDB.RestoreDBClusterToPointInTime": [
@@ -71120,6 +71302,12 @@
                     "RoleNameWithPath": {
                         "template": "*"
                     }
+                }
+            },
+            {
+                "action": "rds:AddTagsToResource",
+                "arn_override": {
+                    "template": "*"
                 }
             }
         ],
@@ -77632,7 +77820,7 @@
             {
                 "action": "access-analyzer:CreateAnalyzer",
                 "resource_mappings": {
-                    "analyzerName": {
+                    "AnalyzerName": {
                         "template": "${analyzerName}"
                     }
                 }
@@ -77650,10 +77838,10 @@
             {
                 "action": "access-analyzer:CreateArchiveRule",
                 "resource_mappings": {
-                    "analyzerName": {
+                    "AnalyzerName": {
                         "template": "${analyzerName}"
                     },
-                    "ruleName": {
+                    "RuleName": {
                         "template": "${ruleName}"
                     }
                 }
@@ -77663,7 +77851,7 @@
             {
                 "action": "access-analyzer:DeleteAnalyzer",
                 "resource_mappings": {
-                    "analyzerName": {
+                    "AnalyzerName": {
                         "template": "${analyzerName}"
                     }
                 }
@@ -77673,10 +77861,10 @@
             {
                 "action": "access-analyzer:DeleteArchiveRule",
                 "resource_mappings": {
-                    "analyzerName": {
+                    "AnalyzerName": {
                         "template": "${analyzerName}"
                     },
-                    "ruleName": {
+                    "RuleName": {
                         "template": "${ruleName}"
                     }
                 }
@@ -77695,7 +77883,7 @@
             {
                 "action": "access-analyzer:GetAnalyzer",
                 "resource_mappings": {
-                    "analyzerName": {
+                    "AnalyzerName": {
                         "template": "${analyzerName}"
                     }
                 }
@@ -77705,10 +77893,10 @@
             {
                 "action": "access-analyzer:GetArchiveRule",
                 "resource_mappings": {
-                    "analyzerName": {
+                    "AnalyzerName": {
                         "template": "${analyzerName}"
                     },
-                    "ruleName": {
+                    "RuleName": {
                         "template": "${ruleName}"
                     }
                 }
@@ -77742,7 +77930,7 @@
             {
                 "action": "access-analyzer:ListArchiveRules",
                 "resource_mappings": {
-                    "analyzerName": {
+                    "AnalyzerName": {
                         "template": "${analyzerName}"
                     }
                 }
@@ -77797,10 +77985,10 @@
             {
                 "action": "access-analyzer:UpdateArchiveRule",
                 "resource_mappings": {
-                    "analyzerName": {
+                    "AnalyzerName": {
                         "template": "${analyzerName}"
                     },
-                    "ruleName": {
+                    "RuleName": {
                         "template": "${ruleName}"
                     }
                 }
@@ -87238,6 +87426,537 @@
                     "BotAliasId": {
                         "template": "${botAliasId}"
                     }
+                }
+            }
+        ],
+        "ACM.GetAccountConfiguration": [
+            {
+                "action": "acm:GetAccountConfiguration",
+                "resource_mappings": {}
+            }
+        ],
+        "ACM.PutAccountConfiguration": [
+            {
+                "action": "acm:PutAccountConfiguration",
+                "resource_mappings": {}
+            }
+        ],
+        "EC2.DescribeAddressesAttribute": [
+            {
+                "action": "ec2:DescribeAddressesAttribute",
+                "resource_mappings": {}
+            }
+        ],
+        "EC2.ModifyAddressAttribute": [
+            {
+                "action": "ec2:ModifyAddressAttribute",
+                "resource_mappings": {}
+            }
+        ],
+        "EC2.ResetAddressAttribute": [
+            {
+                "action": "ec2:ResetAddressAttribute",
+                "resource_mappings": {}
+            }
+        ],
+        "IAM.ListInstanceProfileTags": [
+            {
+                "action": "iam:ListInstanceProfileTags",
+                "resource_mappings": {
+                    "InstanceProfileNameWithPath": {
+                        "template": "${InstanceProfileName}"
+                    }
+                }
+            }
+        ],
+        "IAM.ListMFADeviceTags": [
+            {
+                "action": "iam:ListMFADeviceTags",
+                "resource_mappings": {
+                    "MfaTokenIdWithPath": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "IAM.ListOpenIDConnectProviderTags": [
+            {
+                "action": "iam:ListOpenIDConnectProviderTags",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "oidc-provider": "${OpenIDConnectProviderArn}"
+                }
+            }
+        ],
+        "IAM.ListPolicyTags": [
+            {
+                "action": "iam:ListPolicyTags",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "policy": "${PolicyArn}"
+                }
+            }
+        ],
+        "IAM.ListSAMLProviderTags": [
+            {
+                "action": "iam:ListSAMLProviderTags",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "saml-provider": "${SAMLProviderArn}"
+                }
+            }
+        ],
+        "IAM.ListServerCertificateTags": [
+            {
+                "action": "iam:ListServerCertificateTags",
+                "resource_mappings": {
+                    "CertificateNameWithPath": {
+                        "template": "${ServerCertificateName}"
+                    }
+                }
+            }
+        ],
+        "IAM.TagInstanceProfile": [
+            {
+                "action": "iam:TagInstanceProfile",
+                "resource_mappings": {
+                    "InstanceProfileNameWithPath": {
+                        "template": "${InstanceProfileName}"
+                    }
+                }
+            }
+        ],
+        "IAM.TagMFADevice": [
+            {
+                "action": "iam:TagMFADevice",
+                "resource_mappings": {
+                    "MfaTokenIdWithPath": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "IAM.TagOpenIDConnectProvider": [
+            {
+                "action": "iam:TagOpenIDConnectProvider",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "oidc-provider": "${OpenIDConnectProviderArn}"
+                }
+            }
+        ],
+        "IAM.TagPolicy": [
+            {
+                "action": "iam:TagPolicy",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "policy": "${PolicyArn}"
+                }
+            }
+        ],
+        "IAM.TagSAMLProvider": [
+            {
+                "action": "iam:TagSAMLProvider",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "saml-provider": "${SAMLProviderArn}"
+                }
+            }
+        ],
+        "IAM.TagServerCertificate": [
+            {
+                "action": "iam:TagServerCertificate",
+                "resource_mappings": {
+                    "CertificateNameWithPath": {
+                        "template": "${ServerCertificateName}"
+                    }
+                }
+            }
+        ],
+        "IAM.UntagInstanceProfile": [
+            {
+                "action": "iam:UntagInstanceProfile",
+                "resource_mappings": {
+                    "InstanceProfileNameWithPath": {
+                        "template": "${InstanceProfileName}"
+                    }
+                }
+            }
+        ],
+        "IAM.UntagMFADevice": [
+            {
+                "action": "iam:UntagMFADevice",
+                "resource_mappings": {
+                    "MfaTokenIdWithPath": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "IAM.UntagOpenIDConnectProvider": [
+            {
+                "action": "iam:UntagOpenIDConnectProvider",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "oidc-provider": "${OpenIDConnectProviderArn}"
+                }
+            }
+        ],
+        "IAM.UntagPolicy": [
+            {
+                "action": "iam:UntagPolicy",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "policy": "${PolicyArn}"
+                }
+            }
+        ],
+        "IAM.UntagSAMLProvider": [
+            {
+                "action": "iam:UntagSAMLProvider",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "saml-provider": "${SAMLProviderArn}"
+                }
+            }
+        ],
+        "IAM.UntagServerCertificate": [
+            {
+                "action": "iam:UntagServerCertificate",
+                "resource_mappings": {
+                    "CertificateNameWithPath": {
+                        "template": "${ServerCertificateName}"
+                    }
+                }
+            }
+        ],
+        "Athena.ListEngineVersions": [
+            {
+                "action": "athena:ListEngineVersions",
+                "resource_mappings": {}
+            }
+        ],
+        "Comprehend.ContainsPiiEntities": [
+            {
+                "action": "comprehend:ContainsPiiEntities",
+                "resource_mappings": {}
+            }
+        ],
+        "EKS.AssociateEncryptionConfig": [
+            {
+                "action": "eks:AssociateEncryptionConfig",
+                "resource_mappings": {
+                    "ClusterName": {
+                        "template": "${clusterName}"
+                    }
+                }
+            }
+        ],
+        "EKS.AssociateIdentityProviderConfig": [
+            {
+                "action": "eks:AssociateIdentityProviderConfig",
+                "resource_mappings": {
+                    "ClusterName": {
+                        "template": "${clusterName}"
+                    }
+                }
+            }
+        ],
+        "EKS.DescribeIdentityProviderConfig": [
+            {
+                "action": "eks:DescribeIdentityProviderConfig",
+                "resource_mappings": {
+                    "ClusterName": {
+                        "template": "${clusterName}"
+                    },
+                    "IdentityProviderType": {
+                        "template": "${identityProviderConfig.type}"
+                    },
+                    "IdentityProviderConfigName": {
+                        "template": "${identityProviderConfig.name}"
+                    },
+                    "UUID": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "EKS.DisassociateIdentityProviderConfig": [
+            {
+                "action": "eks:DisassociateIdentityProviderConfig",
+                "resource_mappings": {
+                    "ClusterName": {
+                        "template": "${clusterName}"
+                    },
+                    "IdentityProviderType": {
+                        "template": "${identityProviderConfig.type}"
+                    },
+                    "IdentityProviderConfigName": {
+                        "template": "${identityProviderConfig.name}"
+                    },
+                    "UUID": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "EKS.ListIdentityProviderConfigs": [
+            {
+                "action": "eks:ListIdentityProviderConfigs",
+                "resource_mappings": {
+                    "ClusterName": {
+                        "template": "${clusterName}"
+                    }
+                }
+            }
+        ],
+        "Imagebuilder.ListImagePackages": [
+            {
+                "action": "imagebuilder:ListImagePackages",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "image": "${imageBuildVersionArn}"
+                }
+            }
+        ],
+        "LookoutVision.ListTagsForResource": [
+            {
+                "action": "lookoutvision:ListTagsForResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "model": "%%iftemplatematch%${ResourceArn}%%"
+                }
+            }
+        ],
+        "LookoutVision.TagResource": [
+            {
+                "action": "lookoutvision:TagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "model": "%%iftemplatematch%${ResourceArn}%%"
+                }
+            }
+        ],
+        "LookoutVision.UntagResource": [
+            {
+                "action": "lookoutvision:UntagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "model": "%%iftemplatematch%${ResourceArn}%%"
+                }
+            }
+        ],
+        "WellArchitected.ListTagsForResource": [
+            {
+                "action": "wellarchitected:ListTagsForResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "workload": "${WorkloadArn}"
+                }
+            }
+        ],
+        "WellArchitected.TagResource": [
+            {
+                "action": "wellarchitected:TagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "workload": "${WorkloadArn}"
+                }
+            }
+        ],
+        "WellArchitected.UntagResource": [
+            {
+                "action": "wellarchitected:UntagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "workload": "${WorkloadArn}"
+                }
+            }
+        ],
+        "Fis.DeleteExperimentTemplate": [
+            {
+                "action": "fis:DeleteExperimentTemplate",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "${id}"
+                    }
+                }
+            }
+        ],
+        "Fis.GetAction": [
+            {
+                "action": "fis:GetAction",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "${id}"
+                    }
+                }
+            }
+        ],
+        "Fis.GetExperiment": [
+            {
+                "action": "fis:GetExperiment",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "${id}"
+                    }
+                }
+            }
+        ],
+        "Fis.GetExperimentTemplate": [
+            {
+                "action": "fis:GetExperimentTemplate",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "${id}"
+                    }
+                }
+            }
+        ],
+        "Fis.ListActions": [
+            {
+                "action": "fis:ListActions",
+                "resource_mappings": {}
+            }
+        ],
+        "Fis.ListExperimentTemplates": [
+            {
+                "action": "fis:ListExperimentTemplates",
+                "resource_mappings": {}
+            }
+        ],
+        "Fis.ListExperiments": [
+            {
+                "action": "fis:ListExperiments",
+                "resource_mappings": {}
+            }
+        ],
+        "Fis.ListTagsForResource": [
+            {
+                "action": "fis:ListTagsForResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "action": "%%iftemplatematch%${resourceArn}%%",
+                    "experiment": "%%iftemplatematch%${resourceArn}%%",
+                    "experiment-template": "%%iftemplatematch%${resourceArn}%%"
+                }
+            }
+        ],
+        "Fis.StartExperiment": [
+            {
+                "action": "fis:StartExperiment",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "${experimentTemplateId}"
+                    }
+                }
+            },
+            {
+                "action": "iam:CreateServiceLinkedRole",
+                "resource_mappings": {
+                    "RoleNameWithPath": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Fis.StopExperiment": [
+            {
+                "action": "fis:StopExperiment",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "${id}"
+                    }
+                }
+            }
+        ],
+        "Fis.TagResource": [
+            {
+                "action": "fis:TagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "action": "%%iftemplatematch%${resourceArn}%%",
+                    "experiment": "%%iftemplatematch%${resourceArn}%%",
+                    "experiment-template": "%%iftemplatematch%${resourceArn}%%"
+                }
+            }
+        ],
+        "Fis.UntagResource": [
+            {
+                "action": "fis:UntagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "action": "%%iftemplatematch%${resourceArn}%%",
+                    "experiment": "%%iftemplatematch%${resourceArn}%%",
+                    "experiment-template": "%%iftemplatematch%${resourceArn}%%"
+                }
+            }
+        ],
+        "RDS.CreateDBProxyEndpoint": [
+            {
+                "action": "rds:CreateDBProxyEndpoint",
+                "resource_mappings": {
+                    "DbProxyId": {
+                        "template": "*"
+                    },
+                    "DbProxyEndpointId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "RDS.DeleteDBProxyEndpoint": [
+            {
+                "action": "rds:DeleteDBProxyEndpoint",
+                "resource_mappings": {
+                    "DbProxyEndpointId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "RDS.DescribeDBProxyEndpoints": [
+            {
+                "action": "rds:DescribeDBProxyEndpoints",
+                "resource_mappings": {
+                    "DbProxyId": {
+                        "template": "*"
+                    },
+                    "DbProxyEndpointId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "RDS.FailoverGlobalCluster": [
+            {
+                "action": "rds:FailoverGlobalCluster",
+                "resource_mappings": {
+                    "DbClusterInstanceName": {
+                        "template": "${TargetDbClusterIdentifier}"
+                    },
+                    "GlobalCluster": {
+                        "template": "${GlobalClusterIdentifier}"
+                    }
+                }
+            }
+        ],
+        "RDS.ModifyDBProxyEndpoint": [
+            {
+                "action": "rds:ModifyDBProxyEndpoint",
+                "resource_mappings": {
+                    "DbProxyEndpointId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Backup.DisassociateRecoveryPoint": [
+            {
+                "action": "backup:DisassociateRecoveryPoint",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "recoveryPoint": "${RecoveryPointArn}"
                 }
             }
         ]
