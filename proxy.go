@@ -500,12 +500,12 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		RequiredParamLoop:
 			for _, requiredParam := range actionCandidate.Operation.Input.Required { // check input requirements
 				for k := range actionCandidate.Params {
-					if k == requiredParam || k[:len(requiredParam)+2] == requiredParam+"[]" || k[:len(requiredParam)+1] == requiredParam+"." { // equals, or is array, or is map
+					if k == requiredParam || (len(k) >= len(requiredParam)+2 && k[:len(requiredParam)+2] == requiredParam+"[]") || (len(k) >= len(requiredParam)+1 && k[:len(requiredParam)+1] == requiredParam+".") { // equals, or is array, or is map
 						continue RequiredParamLoop
 					}
 				}
 				for k := range actionCandidate.URIParams {
-					if k == requiredParam || k[:len(requiredParam)+2] == requiredParam+"[]" || k[:len(requiredParam)+1] == requiredParam+"." { // equals, or is array, or is map
+					if k == requiredParam || (len(k) >= len(requiredParam)+2 && k[:len(requiredParam)+2] == requiredParam+"[]") || (len(k) >= len(requiredParam)+1 && k[:len(requiredParam)+1] == requiredParam+".") { // equals, or is array, or is map
 						continue RequiredParamLoop
 					}
 				}
