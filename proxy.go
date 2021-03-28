@@ -308,7 +308,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		}
 		service = regexp.MustCompile(`(^Amazon|AWS\s*|\(.*|\s+|\W+)`).ReplaceAllString(service, "")
 		if service == "ElasticLoadBalancing" || service == "ElasticLoadBalancingv2" {
-			service = "ELBv2"
+			service = "ELB"
 		}
 	} else {
 		return
@@ -345,6 +345,14 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 			return
 		}
 		action = vals["Action"][0]
+		if service == "ELB" && vals["Version"][0] != "2012-06-01" { // exception
+			service = "ELBv2"
+			for _, serviceDefinition := range serviceDefinitions {
+				if serviceDefinition.Metadata.ServiceAbbreviation == "Elastic Load Balancing v2" {
+					serviceDef = serviceDefinition
+				}
+			}
+		}
 
 		if serviceDef.Operations[action].Input.Type == "structure" {
 			for k, v := range vals {
