@@ -198,15 +198,16 @@ type ServiceStructure struct {
 }
 
 type ServiceDefinitionMetadata struct {
-	APIVersion       string `json:"apiVersion"`
-	EndpointPrefix   string `json:"endpointPrefix"`
-	JSONVersion      string `json:"jsonVersion"`
-	Protocol         string `json:"protocol"`
-	ServiceFullName  string `json:"serviceFullName"`
-	ServiceID        string `json:"serviceId"`
-	SignatureVersion string `json:"signatureVersion"`
-	TargetPrefix     string `json:"targetPrefix"`
-	UID              string `json:"uid"`
+	APIVersion          string `json:"apiVersion"`
+	EndpointPrefix      string `json:"endpointPrefix"`
+	JSONVersion         string `json:"jsonVersion"`
+	Protocol            string `json:"protocol"`
+	ServiceFullName     string `json:"serviceFullName"`
+	ServiceAbbreviation string `json:"serviceAbbreviation"`
+	ServiceID           string `json:"serviceId"`
+	SignatureVersion    string `json:"signatureVersion"`
+	TargetPrefix        string `json:"targetPrefix"`
+	UID                 string `json:"uid"`
 }
 
 func readServiceFiles() {
@@ -282,6 +283,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	uri := req.RequestURI
 
 	var endpointUriPrefix string
+	var service string
 
 	var serviceDef ServiceDefinition
 	hostSplit := strings.Split(host, ".")
@@ -297,6 +299,16 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 			if serviceDefinition.Metadata.EndpointPrefix == endpointPrefix { // TODO: Ensure latest version
 				serviceDef = serviceDefinition
 			}
+		}
+
+		// Doc: https://github.com/aws/aws-sdk-js/blob/54f8555bd94d33a1754a44a35286f1d9e31c28a3/lib/model/api.js#L41
+		service = serviceDef.Metadata.ServiceAbbreviation
+		if service == "" {
+			service = serviceDef.Metadata.ServiceFullName
+		}
+		service = regexp.MustCompile(`(^Amazon|AWS\s*|\(.*|\s+|\W+)`).ReplaceAllString(service, "")
+		if service == "ElasticLoadBalancing" || service == "ElasticLoadBalancingv2" {
+			service = "ELBv2"
 		}
 	} else {
 		return
@@ -545,7 +557,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	callLog = append(callLog, Entry{
 		Region:              region,
 		Type:                "ProxyCall",
-		Service:             serviceDef.Metadata.ServiceID,
+		Service:             service,
 		Method:              action,
 		Parameters:          params,
 		URIParameters:       uriparams,
