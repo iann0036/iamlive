@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -13,37 +14,79 @@ import (
 	"syscall"
 
 	"github.com/mitchellh/go-homedir"
-	"gopkg.in/ini.v1"
 )
+
+func setConfigKey(filename, section, line string, unset bool) error {
+	fileinfo, err := os.Stat(filename)
+	if err != nil {
+		return err
+	}
+
+	file, err := os.OpenFile(filename, os.O_RDONLY, fileinfo.Mode().Perm())
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	var newLines []string
+	isCorrectSection := false
+
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		scannedLine := scanner.Text()
+		if scannedLine != line || !unset || !isCorrectSection { // write all but lines to be removed
+			newLines = append(newLines, scannedLine)
+		}
+		if scannedLine == fmt.Sprintf("[%s]", section) {
+			isCorrectSection = true
+			if !unset {
+				newLines = append(newLines, line)
+			}
+		}
+	}
+	if err := scanner.Err(); err != nil {
+		return err
+	}
+	file.Close()
+
+	file, err = os.OpenFile(filename, os.O_RDWR|os.O_CREATE|os.O_TRUNC, fileinfo.Mode().Perm())
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	writer := bufio.NewWriter(file)
+	for _, line := range newLines {
+		fmt.Fprintln(writer, line)
+	}
+	return writer.Flush()
+}
 
 func setINIConfigAndFileFlush() {
 	// set ini
 	if *setiniFlag {
 		cfgfile, err := homedir.Expand("~/.aws/config")
 		if err != nil {
-			return
-		}
-
-		cfg, err := ini.Load(cfgfile)
-		if err != nil {
-			return
+			log.Fatal(err)
 		}
 
 		if *profileFlag == "default" {
 			if *modeFlag == "csm" {
-				cfg.Section("default").Key("csm_enabled").SetValue("true")
+				err = setConfigKey(cfgfile, "default", "csm_enabled = true", false)
 			} else if *modeFlag == "proxy" {
-				cfg.Section("default").Key("ca_bundle").SetValue(*caBundleFlag)
+				err = setConfigKey(cfgfile, "default", fmt.Sprintf("ca_bundle = %s", *caBundleFlag), false)
 			}
 		} else {
 			if *modeFlag == "csm" {
-				cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).Key("csm_enabled").SetValue("true")
+				err = setConfigKey(cfgfile, fmt.Sprintf("profile %s", *profileFlag), "csm_enabled = true", false)
 			} else if *modeFlag == "proxy" {
-				cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).Key("ca_bundle").SetValue(*caBundleFlag)
+				err = setConfigKey(cfgfile, fmt.Sprintf("profile %s", *profileFlag), fmt.Sprintf("ca_bundle = %s", *caBundleFlag), false)
 			}
 		}
 
-		cfg.SaveTo(cfgfile)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
 	// listen for exit, cleanup and flush
@@ -71,25 +114,19 @@ func setINIConfigAndFileFlush() {
 						os.Exit(1)
 					}
 
-					cfg, err := ini.Load(cfgfile)
-					if err != nil {
-						os.Exit(1)
-					}
-
 					if *profileFlag == "default" {
 						if *modeFlag == "csm" {
-							cfg.Section("default").DeleteKey("csm_enabled")
+							setConfigKey(cfgfile, "default", "csm_enabled = true", true)
 						} else if *modeFlag == "proxy" {
-							cfg.Section("default").DeleteKey("ca_bundle")
+							setConfigKey(cfgfile, "default", fmt.Sprintf("ca_bundle = %s", *caBundleFlag), true)
 						}
 					} else {
 						if *modeFlag == "csm" {
-							cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).DeleteKey("csm_enabled")
+							setConfigKey(cfgfile, fmt.Sprintf("profile %s", *profileFlag), "csm_enabled = true", true)
 						} else if *modeFlag == "proxy" {
-							cfg.Section(fmt.Sprintf("profile %s", *profileFlag)).DeleteKey("ca_bundle")
+							setConfigKey(cfgfile, fmt.Sprintf("profile %s", *profileFlag), fmt.Sprintf("ca_bundle = %s", *caBundleFlag), true)
 						}
 					}
-					cfg.SaveTo(cfgfile)
 				}
 
 				pprof.StopCPUProfile()
