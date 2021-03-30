@@ -74,13 +74,21 @@ func setINIConfigAndFileFlush() {
 			if *modeFlag == "csm" {
 				err = setConfigKey(cfgfile, "default", "csm_enabled = true", false)
 			} else if *modeFlag == "proxy" {
-				err = setConfigKey(cfgfile, "default", fmt.Sprintf("ca_bundle = %s", *caBundleFlag), false)
+				caBundlePath, err := homedir.Expand(*caBundleFlag)
+				if err != nil {
+					log.Fatal(err)
+				}
+				err = setConfigKey(cfgfile, "default", fmt.Sprintf("ca_bundle = %s", caBundlePath), false)
 			}
 		} else {
 			if *modeFlag == "csm" {
 				err = setConfigKey(cfgfile, fmt.Sprintf("profile %s", *profileFlag), "csm_enabled = true", false)
 			} else if *modeFlag == "proxy" {
-				err = setConfigKey(cfgfile, fmt.Sprintf("profile %s", *profileFlag), fmt.Sprintf("ca_bundle = %s", *caBundleFlag), false)
+				caBundlePath, err := homedir.Expand(*caBundleFlag)
+				if err != nil {
+					log.Fatal(err)
+				}
+				err = setConfigKey(cfgfile, fmt.Sprintf("profile %s", *profileFlag), fmt.Sprintf("ca_bundle = %s", caBundlePath), false)
 			}
 		}
 
@@ -118,13 +126,15 @@ func setINIConfigAndFileFlush() {
 						if *modeFlag == "csm" {
 							setConfigKey(cfgfile, "default", "csm_enabled = true", true)
 						} else if *modeFlag == "proxy" {
-							setConfigKey(cfgfile, "default", fmt.Sprintf("ca_bundle = %s", *caBundleFlag), true)
+							caBundlePath, _ := homedir.Expand(*caBundleFlag)
+							setConfigKey(cfgfile, "default", fmt.Sprintf("ca_bundle = %s", caBundlePath), true)
 						}
 					} else {
 						if *modeFlag == "csm" {
 							setConfigKey(cfgfile, fmt.Sprintf("profile %s", *profileFlag), "csm_enabled = true", true)
 						} else if *modeFlag == "proxy" {
-							setConfigKey(cfgfile, fmt.Sprintf("profile %s", *profileFlag), fmt.Sprintf("ca_bundle = %s", *caBundleFlag), true)
+							caBundlePath, _ := homedir.Expand(*caBundleFlag)
+							setConfigKey(cfgfile, fmt.Sprintf("profile %s", *profileFlag), fmt.Sprintf("ca_bundle = %s", caBundlePath), true)
 						}
 					}
 				}
