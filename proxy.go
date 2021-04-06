@@ -144,6 +144,8 @@ func loadCAKeys() error {
 	return nil
 }
 
+var awsHostnameRegexp = regexp.MustCompile(`^.*\.amazonaws\.com(?:\.cn)?$`)
+
 func createProxy(addr string) {
 	err := loadCAKeys()
 	if err != nil {
@@ -153,17 +155,20 @@ func createProxy(addr string) {
 	proxy := goproxy.NewProxyHttpServer()
 	proxy.Logger = log.New(io.Discard, "", log.LstdFlags)
 	proxy.OnRequest().HandleConnect(goproxy.AlwaysMitm)
-	proxy.OnRequest().DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) { // TODO: Move to onResponse for HTTP response codes
+	proxy.OnRequest().DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) {
 		body, _ := ioutil.ReadAll(req.Body)
+		req.Body = ioutil.NopCloser(bytes.NewBuffer(body))
+		ctx.UserData = body
+		return req, nil
+	})
+	proxy.OnResponse().DoFunc(func(resp *http.Response, ctx *goproxy.ProxyCtx) *http.Response {
+		resp.Request.Body = ioutil.NopCloser(bytes.NewBuffer(ctx.UserData.([]byte)))
 
-		isAWSHostname, _ := regexp.MatchString(`^.*\.amazonaws\.com(?:\.cn)?$`, req.Host)
-		if isAWSHostname {
-			handleAWSRequest(req, body, 200)
+		if awsHostnameRegexp.MatchString(resp.Request.Host) {
+			handleAWSRequest(resp)
 		}
 
-		req.Body = ioutil.NopCloser(bytes.NewBuffer(body))
-
-		return req, nil
+		return resp
 	})
 	log.Fatal(http.ListenAndServe(addr, proxy))
 }
@@ -278,9 +283,12 @@ type ActionCandidate struct {
 	Operation ServiceOperation
 }
 
-func handleAWSRequest(req *http.Request, body []byte, respCode int) {
+func handleAWSRequest(resp *http.Response) {
+	req := resp.Request
 	host := req.Host
-	uri := req.RequestURI
+
+	body, _ := ioutil.ReadAll(req.Body)
+	req.Body = ioutil.NopCloser(bytes.NewBuffer(body))
 
 	var endpointUriPrefix string
 	var service string
@@ -391,21 +399,17 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		}
 	} else if serviceDef.Metadata.Protocol == "rest-json" || serviceDef.Metadata.Protocol == "rest-xml" {
 		// URL param schema
-		urlobj, err := url.ParseRequestURI(uri)
-		if err != nil {
-			return
-		}
-		vals := urlobj.Query()
+		vals := req.URL.Query()
 
 		actionCandidates := []ActionCandidate{}
 
 		// path part
 	OperationLoop:
 		for operationName, operation := range serviceDef.Operations {
-			path := urlobj.Path
+			path := req.URL.Path
 			if serviceDef.Metadata.EndpointPrefix == "s3" && strings.HasPrefix(operation.Http.RequestURI, "/{Bucket}") && endpointUriPrefix != "" { // https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html#VirtualHostingSpecifyBucket
-				if len(urlobj.Path) > 1 {
-					path = "/" + endpointUriPrefix + "/" + urlobj.Path[1:]
+				if len(req.URL.Path) > 1 {
+					path = "/" + endpointUriPrefix + "/" + req.URL.Path[1:]
 				} else {
 					path = "/" + endpointUriPrefix
 				}
@@ -596,7 +600,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		Method:              action,
 		Parameters:          params,
 		URIParameters:       uriparams,
-		FinalHTTPStatusCode: respCode,
+		FinalHTTPStatusCode: resp.StatusCode,
 		AccessKey:           accessKey,
 	})
 
