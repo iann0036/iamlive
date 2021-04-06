@@ -287,6 +287,14 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 
 	var serviceDef ServiceDefinition
 	hostSplit := strings.Split(host, ".")
+
+	if strings.HasPrefix(hostSplit[len(hostSplit)-3], "s3-") { // bucketname."s3-us-west-2".amazonaws.com
+		hostSplit[len(hostSplit)-3] = hostSplit[len(hostSplit)-3][3:]    // strip s3-
+		hostSplit = append(hostSplit, "")                                // make room
+		copy(hostSplit[len(hostSplit)-3:], hostSplit[len(hostSplit)-4:]) // shift over
+		hostSplit[len(hostSplit)-4] = "s3"                               // insert s3
+	}
+
 	if hostSplit[len(hostSplit)-1] == "com" && hostSplit[len(hostSplit)-2] == "amazonaws" {
 		endpointPrefix := hostSplit[len(hostSplit)-3] // "s3".amazonaws.com
 		if len(hostSplit) > 3 {
