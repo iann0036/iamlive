@@ -288,12 +288,20 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	var serviceDef ServiceDefinition
 	hostSplit := strings.Split(host, ".")
 	if hostSplit[len(hostSplit)-1] == "com" && hostSplit[len(hostSplit)-2] == "amazonaws" {
-		endpointPrefix := hostSplit[len(hostSplit)-3]
+		endpointPrefix := hostSplit[len(hostSplit)-3] // "s3".amazonaws.com
 		if len(hostSplit) > 3 {
-			endpointPrefix = hostSplit[len(hostSplit)-4]
+			endpointPrefix = hostSplit[len(hostSplit)-4] // "s3".us-east-1.amazonaws.com
 		}
 		if len(hostSplit) > 4 {
-			endpointUriPrefix = strings.Join(hostSplit[:len(hostSplit)-4], ".")
+			if endpointPrefix == "dualstack" {
+				endpointPrefix = hostSplit[len(hostSplit)-5] // "s3".dualstack.us-east-1.amazonaws.com
+				if len(hostSplit) > 5 {
+					endpointUriPrefix = strings.Join(hostSplit[:len(hostSplit)-5], ".") // "bucket.name".s3.dualstack.us-east-1.amazonaws.com
+				}
+			} else {
+				endpointUriPrefix = strings.Join(hostSplit[:len(hostSplit)-4], ".") // "bucket.name".s3.us-east-1.amazonaws.com
+			}
+
 		}
 		for _, serviceDefinition := range serviceDefinitions {
 			if serviceDefinition.Metadata.EndpointPrefix == endpointPrefix { // TODO: Ensure latest version
@@ -554,7 +562,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	}
 
 	region := "us-east-1"
-	re, _ := regexp.Compile(`\.(.+)\.amazonaws\.com(?:\.cn)?$`)
+	re, _ := regexp.Compile(`\.([^.]+)\.amazonaws\.com(?:\.cn)?$`)
 	matches := re.FindStringSubmatch(host)
 	if len(matches) == 2 {
 		if matches[1] != "s3" { // https://docs.aws.amazon.com/AmazonS3/latest/userguide/VirtualHosting.html#VirtualHostingBackwardsCompatibility
