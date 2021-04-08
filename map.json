@@ -61390,50 +61390,40 @@
         "SecretsManager.CancelRotateSecret": [
             {
                 "action": "secretsmanager:CancelRotateSecret",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.CreateSecret": [
             {
                 "action": "secretsmanager:CreateSecret",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "*"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.DeleteResourcePolicy": [
             {
                 "action": "secretsmanager:DeleteResourcePolicy",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.DeleteSecret": [
             {
                 "action": "secretsmanager:DeleteSecret",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.DescribeSecret": [
             {
                 "action": "secretsmanager:DescribeSecret",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
@@ -61446,30 +61436,24 @@
         "SecretsManager.GetResourcePolicy": [
             {
                 "action": "secretsmanager:GetResourcePolicy",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.GetSecretValue": [
             {
                 "action": "secretsmanager:GetSecretValue",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.ListSecretVersionIds": [
             {
                 "action": "secretsmanager:ListSecretVersionIds",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
@@ -61482,90 +61466,72 @@
         "SecretsManager.PutResourcePolicy": [
             {
                 "action": "secretsmanager:PutResourcePolicy",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.PutSecretValue": [
             {
                 "action": "secretsmanager:PutSecretValue",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.RestoreSecret": [
             {
                 "action": "secretsmanager:RestoreSecret",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.RotateSecret": [
             {
                 "action": "secretsmanager:RotateSecret",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.TagResource": [
             {
                 "action": "secretsmanager:TagResource",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.UntagResource": [
             {
                 "action": "secretsmanager:UntagResource",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.UpdateSecret": [
             {
                 "action": "secretsmanager:UpdateSecret",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.UpdateSecretVersionStage": [
             {
                 "action": "secretsmanager:UpdateSecretVersionStage",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
         "SecretsManager.ValidateResourcePolicy": [
             {
                 "action": "secretsmanager:ValidateResourcePolicy",
-                "resource_mappings": {
-                    "SecretId": {
-                        "template": "${SecretId}"
-                    }
+                "arn_override": {
+                    "template": "arn:${Partition}:secretsmanager:${Region}:${Account}:secret:%%regex%${SecretId}%/(?:arn.*:)?(.+)/g%%"
                 }
             }
         ],
