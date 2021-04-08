@@ -341,7 +341,7 @@ type resourceType struct {
 	ResourceType string `json:"resourceType"`
 }
 
-func resolveSpecials(arn string, call Entry, mandatory bool) []string {
+func resolveSpecials(arn string, call Entry, mandatory bool, resourceArnTemplate *string) []string {
 	startIndex := strings.Index(arn, "%%")
 	endIndex := strings.LastIndex(arn, "%%")
 
@@ -395,6 +395,23 @@ func resolveSpecials(arn string, call Entry, mandatory bool) []string {
 			}
 
 			return []string{arn[0:startIndex] + url.QueryEscape(arns[0]) + arn[endIndex+2:]}
+		case "iftemplatematch":
+			if len(parts) != 2 || resourceArnTemplate == nil {
+				return []string{arn[0:startIndex] + "*" + arn[endIndex+2:]}
+			}
+
+			fullyResolved, arns := subARNParameters(parts[1], call, true)
+			if len(arns) < 1 || arns[0] == "" || !fullyResolved {
+				return []string{arn[0:startIndex] + arn[endIndex+2:]}
+			}
+
+			template := regexp.MustCompile(`\\\$\\\{.+?\\\}`).ReplaceAllString(regexp.QuoteMeta(*resourceArnTemplate), ".*?")
+
+			if regexp.MustCompile(template).MatchString(arns[0]) {
+				return []string{arn[0:startIndex] + arns[0] + arn[endIndex+2:]}
+			}
+
+			return []string{arn[0:startIndex] + arn[endIndex+2:]}
 		case "many":
 			manyParts := []string{}
 
@@ -458,7 +475,7 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 
 				// arn_override
 				if mappedPriv.ArnOverride.Template != "" {
-					arns := resolveSpecials(mappedPriv.ArnOverride.Template, call, false)
+					arns := resolveSpecials(mappedPriv.ArnOverride.Template, call, false, nil)
 
 					if len(arns) == 0 || len(arns) > 1 || arns[0] != "" { // skip if empty after resolving specials
 						for _, arn := range arns {
@@ -483,16 +500,22 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 							for _, servicePrivilege := range service.Privileges {
 								if strings.ToLower(strings.Split(mappedPriv.Action, ":")[1]) == strings.ToLower(servicePrivilege.Privilege) { // find the method for the call
 									for _, resourceType := range servicePrivilege.ResourceTypes { // get all resource types for the privilege
+										resourceArnTemplate := ""
+										for _, resource := range service.Resources { // go through the service resources
+											if resource.Resource == strings.Replace(resourceType.ResourceType, "*", "", -1) && resource.Resource != "" { // match the resource type (doesn't matter if mandatory)
+												resourceArnTemplate = resource.Arn
+											}
+										}
 										for mapResType, mapResTemplate := range mappedPriv.ResourceARNMappings {
 											if strings.Replace(resourceType.ResourceType, "*", "", -1) == mapResType {
 												mandatory := strings.HasSuffix(resourceType.ResourceType, "*")
 
-												resARNMappingTemplates := resolveSpecials(mapResTemplate, call, false)
+												resARNMappingTemplates := resolveSpecials(mapResTemplate, call, false, &resourceArnTemplate)
 												if len(resARNMappingTemplates) == 1 && resARNMappingTemplates[0] == "" {
 													continue
 												}
 
-												if len(resARNMappingTemplates) == 0 && mandatory {
+												if len(resARNMappingTemplates) == 0 && mandatory && len(mappedPriv.ResourceMappings) == 0 {
 													resARNMappingTemplates = []string{"*"}
 												}
 
@@ -526,7 +549,7 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 
 												// substitute the resource_mappings
 												for resMappingVar, resMapping := range mappedPriv.ResourceMappings { // for each mapping
-													resMappingTemplates := resolveSpecials(resMapping.Template, call, false) // get a list of resolved template strings
+													resMappingTemplates := resolveSpecials(resMapping.Template, call, false, &resource.Arn) // get a list of resolved template strings
 
 													if len(resMappingTemplates) == 1 && resMappingTemplates[0] == "" {
 														continue
