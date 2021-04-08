@@ -9,10 +9,12 @@ import (
 	"reflect"
 	"regexp"
 	"sort"
+	"strconv"
 	"strings"
 	"time"
 
 	"github.com/buger/goterm"
+	"github.com/kenshaw/baseconv"
 )
 
 //go:embed map.json
@@ -35,7 +37,8 @@ type Entry struct {
 	Method              string `json:"Api"`
 	Parameters          map[string][]string
 	URIParameters       map[string]string
-	FinalHTTPStatusCode int `json:"FinalHttpStatusCode"`
+	FinalHTTPStatusCode int    `json:"FinalHttpStatusCode"`
+	AccessKey           string `json:"AccessKey"`
 }
 
 // Statement is a single statement within an IAM policy
@@ -602,6 +605,41 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 	return statements
 }
 
+func getAccountFromAccessKey(accessKeyId string) (string, error) {
+	base10 := "0123456789"
+	base32AwsFlavour := "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
+
+	offsetStr, err := baseconv.Convert("QAAAAAAA", base32AwsFlavour, base10)
+	if err != nil {
+		return "", err
+	}
+	offset, err := strconv.Atoi(offsetStr)
+	if err != nil {
+		return "", err
+	}
+
+	offsetAccountIdStr, err := baseconv.Convert(accessKeyId[4:12], base32AwsFlavour, base10)
+	if err != nil {
+		return "", err
+	}
+	offsetAccountId, err := strconv.Atoi(offsetAccountIdStr)
+	if err != nil {
+		return "", err
+	}
+
+	accountId := 2 * (offsetAccountId - offset)
+
+	if strings.Index(base32AwsFlavour, accessKeyId[12:13]) >= strings.Index(base32AwsFlavour, "Q") {
+		accountId++
+	}
+
+	if accountId < 0 {
+		return "", fmt.Errorf("negative account ID")
+	}
+
+	return fmt.Sprintf("%012d", accountId), nil
+}
+
 func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string) {
 	arns := []string{arn}
 
@@ -638,6 +676,15 @@ func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string
 	}
 
 	account := *accountIDFlag
+	var err error
+
+	if account == "" && call.AccessKey != "" {
+		account, err = getAccountFromAccessKey(call.AccessKey)
+		if err != nil || account == "" {
+			account = "123456789012"
+		}
+	}
+
 	partition := "aws"
 	if call.Region[0:3] == "cn-" {
 		partition = "aws-cn"

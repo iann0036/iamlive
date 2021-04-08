@@ -578,6 +578,17 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		}
 	}
 
+	// attempt to determine access key from auth header
+	accessKey := ""
+	authHeader := req.Header.Get("Authorization")
+	credOffset := strings.Index(authHeader, "Credential=")
+	if credOffset > 0 {
+		endOfKey := strings.Index(authHeader[credOffset:], "/")
+		if endOfKey > 0 {
+			accessKey = authHeader[credOffset+len("Credential=") : credOffset+endOfKey]
+		}
+	}
+
 	callLog = append(callLog, Entry{
 		Region:              region,
 		Type:                "ProxyCall",
@@ -586,6 +597,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		Parameters:          params,
 		URIParameters:       uriparams,
 		FinalHTTPStatusCode: respCode,
+		AccessKey:           accessKey,
 	})
 
 	handleLoggedCall()

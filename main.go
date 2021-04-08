@@ -42,7 +42,7 @@ func parseConfig() {
 	bindAddr := "127.0.0.1:10080"
 	caBundle := "~/.iamlive/ca.pem"
 	caKey := "~/.iamlive/ca.key"
-	accountID := "123456789012"
+	accountID := ""
 	background := false
 	forceWildcardResource := false
 

@@ -8,6 +8,8 @@ github.com/iann0036/goproxy v0.0.0-20210327130343-c3ec674b9022/go.mod h1:amSgpNk
 github.com/iann0036/goproxy/ext v0.0.0-20210327125723-db8542d80343 h1:oaTtJCbhCLSueJFpPwaxWZDKBBBkTv6+y5lprHPGFWs=
 github.com/iann0036/goproxy/ext v0.0.0-20210327125723-db8542d80343/go.mod h1:3SmG3m42N72tivanmYJdY5joEWn5/bEzgawDLBA7T6g=
 github.com/jtolds/gls v4.20.0+incompatible/go.mod h1:QJZ7F/aHp+rZTRtaJ1ow/lLfFfVYBRgL+9YlvaHOwJU=
+github.com/kenshaw/baseconv v0.1.0 h1:eZd+ZgNkU8jxjp/dTwAhPwI923cz1PE7ARRKUPXjZ5A=
+github.com/kenshaw/baseconv v0.1.0/go.mod h1:yy9zGmnnR6vgOxOQb702nVdAG30JhyYZpj/5/m0siRI=
 github.com/mitchellh/go-homedir v1.1.0 h1:lukF9ziXFxDFPkA1vsr5zpc1XuPDn/wFntq5mG+4E0Y=
 github.com/mitchellh/go-homedir v1.1.0/go.mod h1:SfyaCUpYCn1Vlf4IUYiD9fPX4A5wJrkLzIz1N1q0pr0=
 github.com/rogpeppe/go-charset v0.0.0-20180617210344-2471d30d28b4/go.mod h1:qgYeAmZ5ZIpBWTGllZSQnw97Dj+woV0toclVaRGI8pc=

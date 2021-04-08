@@ -7,6 +7,9 @@ github.com/clbanning/mxj/v2
 # github.com/iann0036/goproxy v0.0.0-20210327130343-c3ec674b9022
 ## explicit
 github.com/iann0036/goproxy
+# github.com/kenshaw/baseconv v0.1.0
+## explicit
+github.com/kenshaw/baseconv
 # github.com/mitchellh/go-homedir v1.1.0
 ## explicit
 github.com/mitchellh/go-homedir

@@ -64,7 +64,7 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--ca-key:** _[experimental]_ the CA certificate key to use for proxy mode (_default: ~/.iamlive/ca.key_)
 
-**--account-id:** _[experimental]_ the AWS account ID to use in policy outputs within proxy mode (_default: 123456789012_)
+**--account-id:** _[experimental]_ the AWS account ID to use in policy outputs within proxy mode (_default: 123456789012 unless detected_)
 
 _Basic Example (CSM Mode)_
 
