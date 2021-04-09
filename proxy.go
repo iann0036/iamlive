@@ -146,7 +146,7 @@ func loadCAKeys() error {
 
 var awsHostnameRegexp = regexp.MustCompile(`^.*\.amazonaws\.com(?:\.cn)?$`)
 
-func createProxy(addr string) {
+func createProxy() *goproxy.ProxyHttpServer {
 	err := loadCAKeys()
 	if err != nil {
 		log.Fatal(err)
@@ -170,7 +170,8 @@ func createProxy(addr string) {
 
 		return resp
 	})
-	log.Fatal(http.ListenAndServe(addr, proxy))
+
+	return proxy
 }
 
 type ServiceDefinition struct {
