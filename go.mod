@@ -9,6 +9,7 @@ require (
 	github.com/kenshaw/baseconv v0.1.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/smartystreets/goconvey v1.6.4 // indirect
+	github.com/stretchr/testify v1.7.0
 	golang.org/x/sys v0.0.0-20210124154548-22da62e12c0c // indirect
 	gopkg.in/ini.v1 v1.62.0
 )
