@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"os/exec"
 	"runtime/pprof"
@@ -151,7 +152,8 @@ func main() {
 		handleLoggedCall()
 	} else if *modeFlag == "proxy" {
 		readServiceFiles()
-		createProxy(*bindAddrFlag)
+		proxy := createProxy()
+		log.Fatal(http.ListenAndServe(*bindAddrFlag, proxy))
 	} else {
 		fmt.Println("ERROR: unknown mode")
 	}
