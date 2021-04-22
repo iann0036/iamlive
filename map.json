@@ -21479,7 +21479,7 @@
                         "template": "${TransitGatewayAttachmentId}"
                     },
                     "SubnetId": {
-                        "template": "%%many%${AddSubnetIds}[]%${RemoveSubnetIds}[]%%"
+                        "template": "%%many%${AddSubnetIds[]}%${RemoveSubnetIds[]}%%"
                     }
                 }
             }
@@ -21522,13 +21522,13 @@
                         "template": "${VpcEndpointId}"
                     },
                     "RouteTableId": {
-                        "template": "%%many%${AddRouteTableIds}[]%${RemoveRouteTableIds}[]%%"
+                        "template": "%%many%${AddRouteTableIds[]}%${RemoveRouteTableIds[]}%%"
                     },
                     "SecurityGroupId": {
-                        "template": "%%many%${AddSecurityGroupIds}[]%${RemoveSecurityGroupIds}[]%%"
+                        "template": "%%many%${AddSecurityGroupIds[]}%${RemoveSecurityGroupIds[]}%%"
                     },
                     "SubnetId": {
-                        "template": "%%many%${AddSubnetIds}[]%${RemoveSubnetIds}%%"
+                        "template": "%%many%${AddSubnetIds[]}%${RemoveSubnetIds}%%"
                     }
                 }
             }
@@ -23647,7 +23647,7 @@
                         "template": "*"
                     },
                     "SecurityGroupId": {
-                        "template": "${SecurityGroupIds}[]"
+                        "template": "${SecurityGroupIds[]}"
                     }
                 }
             }
@@ -23768,7 +23768,7 @@
                         "template": "*"
                     },
                     "SecurityGroupId": {
-                        "template": "${SecurityGroupIds}[]"
+                        "template": "${SecurityGroupIds[]}"
                     }
                 }
             }
@@ -24286,7 +24286,7 @@
                         "template": "*"
                     },
                     "SecurityGroupId": {
-                        "template": "${SecurityGroupIds}[]"
+                        "template": "${SecurityGroupIds[]}"
                     }
                 }
             }
@@ -25052,7 +25052,7 @@
                 "action": "elasticloadbalancing:AddTags",
                 "resource_mappings": {
                     "LoadBalancerName": {
-                        "template": "${LoadBalancerNames}[]"
+                        "template": "${LoadBalancerNames[]}"
                     },
                     "LoadBalancerId": {
                         "template": "*"
@@ -25064,7 +25064,7 @@
                         "template": "*"
                     },
                     "TargetGroupName": {
-                        "template": "${LoadBalancerNames}[]"
+                        "template": "${LoadBalancerNames[]}"
                     },
                     "TargetGroupId": {
                         "template": "*"
@@ -25239,7 +25239,7 @@
                 "action": "elasticloadbalancing:DescribeTags",
                 "resource_mappings": {
                     "LoadBalancerName": {
-                        "template": "${LoadBalancerNames}[]"
+                        "template": "${LoadBalancerNames[]}"
                     },
                     "LoadBalancerId": {
                         "template": "*"
@@ -25317,7 +25317,7 @@
                 "action": "elasticloadbalancing:RemoveTags",
                 "resource_mappings": {
                     "LoadBalancerName": {
-                        "template": "${LoadBalancerNames}[]"
+                        "template": "${LoadBalancerNames[]}"
                     },
                     "LoadBalancerId": {
                         "template": "*"
@@ -29350,8 +29350,8 @@
                     }
                 },
                 "resourcearn_mappings": {
-                    "thing": "%%iftemplatematch%${targets}[]%%",
-                    "thinggroup": "%%iftemplatematch%${targets}[]%%"
+                    "thing": "%%iftemplatematch%${targets[]}%%",
+                    "thinggroup": "%%iftemplatematch%${targets[]}%%"
                 }
             }
         ],
@@ -31203,7 +31203,7 @@
                         "template": "${thingName}"
                     },
                     "ThingGroupName": {
-                        "template": "%%many%${thingGroupsToAdd}[]%${thingGroupsToRemove}[]%%"
+                        "template": "%%many%${thingGroupsToAdd[]}%${thingGroupsToRemove[]}%%"
                     }
                 }
             }
@@ -38804,7 +38804,7 @@
                 "action": "redshift:BatchModifyClusterSnapshots",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "snapshot": "%%iftemplatematch%${SnapshotIdentifierList}[]%%"
+                    "snapshot": "%%iftemplatematch%${SnapshotIdentifierList[]}%%"
                 }
             }
         ],
@@ -48797,7 +48797,7 @@
                         "template": "${botName}"
                     },
                     "BotVersion": {
-                        "template": "${botVersions}[]"
+                        "template": "${botVersions[]}"
                     }
                 }
             }
@@ -53889,10 +53889,10 @@
                         "template": "*"
                     },
                     "SubnetId": {
-                        "template": "${SubnetIds}[]"
+                        "template": "${SubnetIds[]}"
                     },
                     "SecurityGroupId": {
-                        "template": "${SecurityGroups}[]"
+                        "template": "${SecurityGroups[]}"
                     }
                 }
             }
@@ -87301,7 +87301,7 @@
                 "action": "ec2:AcceptReservedInstancesExchangeQuote",
                 "resource_mappings": {
                     "ReservationId": {
-                        "template": "${ReservedInstanceIds}[]"
+                        "template": "${ReservedInstanceIds[]}"
                     }
                 }
             }
@@ -87329,7 +87329,7 @@
                 "action": "elasticache:CreateUserGroup",
                 "resource_mappings": {
                     "UserId": {
-                        "template": "${UserIds}[]"
+                        "template": "${UserIds[]}"
                     },
                     "UserGroupId": {
                         "template": "${UserGroupId}"
@@ -87647,7 +87647,7 @@
                 "action": "storagegateway:DescribeFileSystemAssociations",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
-                    "fs-association": "${FileSystemAssociationARNList}[]"
+                    "fs-association": "${FileSystemAssociationARNList[]}"
                 }
             }
         ],
@@ -89065,7 +89065,7 @@
                 "action": "mgn:StartCutover",
                 "resource_mappings": {
                     "sourceServerID": {
-                        "template": "${sourceServerIDs}[]"
+                        "template": "${sourceServerIDs[]}"
                     }
                 }
             },
@@ -89583,7 +89583,7 @@
                 "action": "mgn:StartTest",
                 "resource_mappings": {
                     "sourceServerID": {
-                        "template": "${sourceServerIDs}[]"
+                        "template": "${sourceServerIDs[]}"
                     }
                 }
             },
@@ -90107,7 +90107,7 @@
                 "action": "mgn:TerminateTargetInstances",
                 "resource_mappings": {
                     "sourceServerID": {
-                        "template": "${sourceServerIDs}[]"
+                        "template": "${sourceServerIDs[]}"
                     }
                 }
             },
@@ -90529,7 +90529,7 @@
                 "action": "cloudwatch:StartMetricStreams",
                 "resource_mappings": {
                     "MetricStreamName": {
-                        "template": "${Names}[]"
+                        "template": "${Names[]}"
                     }
                 }
             }
@@ -90539,7 +90539,7 @@
                 "action": "cloudwatch:StopMetricStreams",
                 "resource_mappings": {
                     "MetricStreamName": {
-                        "template": "${Names}[]"
+                        "template": "${Names[]}"
                     }
                 }
             }
