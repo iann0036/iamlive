@@ -171,9 +171,6 @@ docker run \
 Instruct tools that use AWS SDK, such as [aws-cli](https://aws.amazon.com/cli/) and [terraform](https://www.terraform.io/docs/cli/commands/index.html), to use the local proxy server - `iamlive` Docker container.
 
 ```bash
-export AWS_ACCESS_KEY_ID="AKIA_DUMMY_USER_ACCESS_KEY_ID"
-export AWS_SECRET_ACCESS_KEY="DUMMY_USER_SECRET_ACCESS_KEY"
-
 export HTTP_PROXY=http://127.0.0.1:80 \
        HTTPS_PROXY=http://127.0.0.1:443 \
        AWS_CA_BUNDLE="${HOME}/.iamlive/ca.pem"
@@ -217,10 +214,7 @@ unset HTTP_PROXY HTTPS_PROXY AWS_CA_BUNDLE
 terraform init
 # Terraform has been successfully initialized!
 
-
-export AWS_ACCESS_KEY_ID="AKIA_DUMMY_USER_ACCESS_KEY_ID"
-export AWS_SECRET_ACCESS_KEY="DUMMY_USER_SECRET_ACCESS_KEY"
-
+# Instruct CLIs to use iamlive local proxy server
 export HTTP_PROXY=http://127.0.0.1:80 \
        HTTPS_PROXY=http://127.0.0.1:443 \
        AWS_CA_BUNDLE="${HOME}/.iamlive/ca.pem"
