@@ -160,7 +160,7 @@ docker run \
   -p 80:10080 \
   -p 443:10080 \
   --name iamlive \
-  -it iamlive \
+  -t iamlive \
   --mode proxy \
   --bind-addr 0.0.0.0:10080 \
   --force-wildcard-resource \
@@ -207,7 +207,7 @@ Check the logs of the `iamlive` container, should look like this
 }
 ```
 
-It's important to mention that terraform init cannot be proxied via `iamlive` since it attempts to access [registry.terraform.io](registry.terraform.io), and it's not covered by `iamlive`. So first, unset the proxy settings, and then execute terraform init. Following that, execute `terraform apply` and check the logs of the `iamlive` container.
+It's important to mention that `terraform init` cannot be proxied via `iamlive` since it attempts to access [registry.terraform.io](registry.terraform.io), and it's not covered by `iamlive`. So first, unset the proxy settings, and then execute `terraform init`. Following that, execute `terraform apply` and check the logs of the `iamlive` container.
 
 ```bash
 unset HTTP_PROXY HTTPS_PROXY AWS_CA_BUNDLE
