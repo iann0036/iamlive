@@ -19,7 +19,7 @@ iamlive
 
 # Ignore hidden files
 .*
-!ignore
+!.*ignore*
 !.gon-*.json
 !.github/
 !.goreleaser.yml

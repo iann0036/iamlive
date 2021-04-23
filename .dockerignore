@@ -1,0 +1,10 @@
+**
+!LICENSE
+!service/
+!vendor/
+!.gon-*.json
+!map.json
+!iam_definition.json
+!*.go
+!*.mod
+!*.sum
