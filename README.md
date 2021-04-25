@@ -165,4 +165,4 @@ This project requires Go 1.16 or above to be built correctly (due to embedding f
 
 ## Acknowledgements
 
-This project makes heavy use of [Parliament](https://github.com/duo-labs/parliament) and was assisted by Scott Piper's [CSM explainer](https://summitroute.com/blog/2020/05/25/client_side_monitoring/). Thanks also to Noam Dahan's [research](https://ermetic.com/whats-new/blog/auditing-passrole-a-problematic-privilege-escalation-permission/) into missing `iam:PassRole` dependant actions.
+This project makes use of [Parliament](https://github.com/duo-labs/parliament) and was assisted by Scott Piper's [CSM explainer](https://summitroute.com/blog/2020/05/25/client_side_monitoring/). Thanks also to Noam Dahan's [research](https://ermetic.com/whats-new/blog/auditing-passrole-a-problematic-privilege-escalation-permission/) into missing `iam:PassRole` dependant actions.

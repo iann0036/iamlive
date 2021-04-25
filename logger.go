@@ -590,6 +590,9 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 
 				// default (last ditch)
 				if len(resources) == 0 {
+					if len(mappedPriv.ResourceARNMappings) > 0 { // skip if resourcearn_mapping was specified and didn't hit
+						continue
+					}
 					resources = []string{"*"}
 				}
 
