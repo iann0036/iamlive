@@ -155,3 +155,60 @@ func Run() {
 		fmt.Println("ERROR: unknown mode")
 	}
 }
+
+func RunWithArgs(setIni bool, profile string, failsOnly bool, outputFile string, refreshRate int, sortAlphabetical bool, host, mode, bindAddr, caBundle, caKey, accountID string, background, forceWildcardResource bool) {
+	setiniFlag = &setIni
+	profileFlag = &profile
+	failsonlyFlag = &failsOnly
+	outputFileFlag = &outputFile
+	refreshRateFlag = &refreshRate
+	sortAlphabeticalFlag = &sortAlphabetical
+	hostFlag = &host
+	modeFlag = &mode
+	bindAddrFlag = &bindAddr
+	caBundleFlag = &caBundle
+	caKeyFlag = &caKey
+	accountIDFlag = &accountID
+	backgroundFlag = &background
+	forceWildcardResourceFlag = &forceWildcardResource
+
+	if *backgroundFlag {
+		args := os.Args[1:]
+		for i := 0; i < len(args); i++ {
+			if args[i] == "-background" || args[i] == "--background" {
+				args = append(args[:i], args[i+1:]...)
+				break
+			}
+		}
+		cmd := exec.Command(os.Args[0], args...)
+		cmd.Start()
+		fmt.Println(cmd.Process.Pid)
+		os.Exit(0)
+	}
+
+	if *cpuProfileFlag != "" {
+		f, err := os.Create(*cpuProfileFlag)
+		if err != nil {
+			log.Fatal(err)
+		}
+		pprof.StartCPUProfile(f)
+		defer pprof.StopCPUProfile()
+	}
+
+	if *refreshRateFlag != 0 {
+		setTerminalRefresh()
+	}
+
+	setINIConfigAndFileFlush()
+	loadMaps()
+
+	if *modeFlag == "csm" {
+		listenForEvents()
+		handleLoggedCall()
+	} else if *modeFlag == "proxy" {
+		readServiceFiles()
+		createProxy(*bindAddrFlag)
+	} else {
+		fmt.Println("ERROR: unknown mode")
+	}
+}
