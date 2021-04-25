@@ -19046,6 +19046,13 @@
                         "template": "${Ipv6Pool}"
                     }
                 }
+            },
+            {
+                "action": "ec2:CreateTags",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "vpc": "%%iftruthy%${TagSpecifications[].ResourceType}%arn:${Partition}:ec2:${Region}:${Account}:vpc/*%%%"
+                }
             }
         ],
         "EC2.CreateVpcEndpoint": [
