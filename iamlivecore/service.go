@@ -172,20 +172,6 @@ func RunWithArgs(setIni bool, profile string, failsOnly bool, outputFile string,
 	backgroundFlag = &background
 	forceWildcardResourceFlag = &forceWildcardResource
 
-	if *backgroundFlag {
-		args := os.Args[1:]
-		for i := 0; i < len(args); i++ {
-			if args[i] == "-background" || args[i] == "--background" {
-				args = append(args[:i], args[i+1:]...)
-				break
-			}
-		}
-		cmd := exec.Command(os.Args[0], args...)
-		cmd.Start()
-		fmt.Println(cmd.Process.Pid)
-		os.Exit(0)
-	}
-
 	if *cpuProfileFlag != "" {
 		f, err := os.Create(*cpuProfileFlag)
 		if err != nil {
