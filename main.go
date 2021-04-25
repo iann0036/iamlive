@@ -3,9 +3,9 @@ package main
 import (
 	_ "embed"
 
-	iamlive "github.com/iann0036/iamlive/core"
+	"github.com/iann0036/iamlive/iamlivecore"
 )
 
 func main() {
-	iamlive.Run()
+	iamlivecore.Run()
 }

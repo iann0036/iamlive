@@ -1,4 +1,4 @@
-package iamlive
+package iamlivecore
 
 import (
 	"bytes"
