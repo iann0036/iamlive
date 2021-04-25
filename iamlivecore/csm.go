@@ -108,7 +108,7 @@ func setINIConfigAndFileFlush() {
 		for s := range sigc {
 			// flush to file
 			if *outputFileFlag != "" {
-				err := ioutil.WriteFile(*outputFileFlag, getPolicyDocument(), 0644)
+				err := ioutil.WriteFile(*outputFileFlag, GetPolicyDocument(), 0644)
 				if err != nil {
 					log.Fatalf("Error writing policy to %s", *outputFileFlag)
 				}

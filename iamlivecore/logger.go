@@ -66,7 +66,7 @@ func loadMaps() {
 	}
 }
 
-func getPolicyDocument() []byte {
+func GetPolicyDocument() []byte {
 	policy := IAMPolicy{
 		Version:   "2012-10-17",
 		Statement: []Statement{},
@@ -185,7 +185,7 @@ func writePolicyToTerminal() {
 		return
 	}
 
-	policyDoc := string(getPolicyDocument())
+	policyDoc := string(GetPolicyDocument())
 	policyHeight := countRune(policyDoc, '\n') + 1
 
 	goterm.Clear()
