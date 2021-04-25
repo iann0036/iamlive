@@ -1,0 +1,14 @@
+github.com/buger/goterm v1.0.0 h1:ZB6uUlY8+sjJyFGzz2WpRqX2XYPeXVgtZAOJMwOsTWM=
+github.com/buger/goterm v1.0.0/go.mod h1:16STi3LquiscTIHA8SXUNKEa/Cnu4ZHBH8NsCaWgso0=
+github.com/clbanning/mxj/v2 v2.5.5 h1:oT81vUeEiQQ/DcHbzSytRngP6Ky9O+L+0Bw0zSJag9E=
+github.com/clbanning/mxj/v2 v2.5.5/go.mod h1:hNiWqW14h+kc+MdF9C6/YoRfjEJoR3ou6tn/Qo+ve2s=
+github.com/iann0036/goproxy v0.0.0-20210327130343-c3ec674b9022 h1:CEm/EWm32SV+k85dmgF8KDXMeN5zsgplaz07utBYIsk=
+github.com/iann0036/goproxy v0.0.0-20210327130343-c3ec674b9022/go.mod h1:amSgpNkX5MQL0glEHvPGg0UKbKOhBVem3kNHGhlINS4=
+github.com/iann0036/goproxy/ext v0.0.0-20210327125723-db8542d80343/go.mod h1:3SmG3m42N72tivanmYJdY5joEWn5/bEzgawDLBA7T6g=
+github.com/kenshaw/baseconv v0.1.1 h1:oAu/C7ipUT2PqT9DT0mZDGDg4URIglizZMjPv9oCu0E=
+github.com/kenshaw/baseconv v0.1.1/go.mod h1:yy9zGmnnR6vgOxOQb702nVdAG30JhyYZpj/5/m0siRI=
+github.com/mitchellh/go-homedir v1.1.0/go.mod h1:SfyaCUpYCn1Vlf4IUYiD9fPX4A5wJrkLzIz1N1q0pr0=
+github.com/rogpeppe/go-charset v0.0.0-20180617210344-2471d30d28b4/go.mod h1:qgYeAmZ5ZIpBWTGllZSQnw97Dj+woV0toclVaRGI8pc=
+golang.org/x/sys v0.0.0-20210331175145-43e1dd70ce54 h1:rF3Ohx8DRyl8h2zw9qojyLHLhrJpEMgyPOImREEryf0=
+golang.org/x/sys v0.0.0-20210331175145-43e1dd70ce54/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
+gopkg.in/ini.v1 v1.62.0/go.mod h1:pNLf8WUiyNEtQjuu5G5vTm06TEv9tsIgeAvK8hOrP4k=
