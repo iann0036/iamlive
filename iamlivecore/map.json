@@ -18452,6 +18452,13 @@
                         "template": "*"
                     }
                 }
+            },
+            {
+                "action": "ec2:CreateTags",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "vpc": "%%iftruthy%${TagSpecifications[].ResourceType}%arn:${Partition}:ec2:${Region}:${Account}:internet-gateway/*%%%"
+                }
             }
         ],
         "EC2.CreateKeyPair": [
@@ -18783,6 +18790,13 @@
                     "VpcId": {
                         "template": "${VpcId}"
                     }
+                }
+            },
+            {
+                "action": "ec2:CreateTags",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "vpc": "%%iftruthy%${TagSpecifications[].ResourceType}%arn:${Partition}:ec2:${Region}:${Account}:subnet/*%%%"
                 }
             }
         ],
