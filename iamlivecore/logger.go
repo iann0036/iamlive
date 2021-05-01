@@ -66,6 +66,10 @@ func loadMaps() {
 	}
 }
 
+func ClearLog() {
+	callLog = []Entry{}
+}
+
 func GetPolicyDocument() []byte {
 	policy := IAMPolicy{
 		Version:   "2012-10-17",
