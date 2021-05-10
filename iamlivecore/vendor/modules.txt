@@ -4,7 +4,7 @@ github.com/buger/goterm
 # github.com/clbanning/mxj/v2 v2.5.5
 ## explicit
 github.com/clbanning/mxj/v2
-# github.com/iann0036/goproxy v0.0.0-20210327130343-c3ec674b9022
+# github.com/iann0036/goproxy v0.0.0-20210510114007-b2700d29a571
 ## explicit
 github.com/iann0036/goproxy
 # github.com/kenshaw/baseconv v0.1.1
