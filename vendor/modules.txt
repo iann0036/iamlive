@@ -1,0 +1,21 @@
+# github.com/buger/goterm v1.0.0
+github.com/buger/goterm
+# github.com/clbanning/mxj/v2 v2.5.5
+github.com/clbanning/mxj/v2
+# github.com/iann0036/goproxy v0.0.0-20210327130343-c3ec674b9022
+github.com/iann0036/goproxy
+# github.com/iann0036/iamlive/iamlivecore v0.0.0-20210425041633-1e948ef7ce75
+## explicit
+github.com/iann0036/iamlive/iamlivecore
+# github.com/kenshaw/baseconv v0.1.1
+github.com/kenshaw/baseconv
+# github.com/mitchellh/go-homedir v1.1.0
+github.com/mitchellh/go-homedir
+# github.com/smartystreets/goconvey v1.6.4
+## explicit
+# golang.org/x/sys v0.0.0-20210331175145-43e1dd70ce54
+golang.org/x/sys/internal/unsafeheader
+golang.org/x/sys/unix
+golang.org/x/sys/windows
+# gopkg.in/ini.v1 v1.62.0
+gopkg.in/ini.v1
