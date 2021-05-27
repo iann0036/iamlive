@@ -1255,114 +1255,6 @@
                 }
             }
         ],
-        "CloudDirectory.ListManagedSchemaArns": [
-            {
-                "action": "clouddirectory:ListManagedSchemaArns",
-                "undocumented": true
-            }
-        ],
-        "CloudFormation.RecordHandlerProgress": [
-            {
-                "action": "cloudformation:RecordHandlerProgress",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.CreateKeyGroup": [
-            {
-                "action": "cloudfront:CreateKeyGroup",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.CreateMonitoringSubscription": [
-            {
-                "action": "cloudfront:CreateMonitoringSubscription",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.CreateRealtimeLogConfig": [
-            {
-                "action": "cloudfront:CreateRealtimeLogConfig",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.DeleteKeyGroup": [
-            {
-                "action": "cloudfront:DeleteKeyGroup",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.DeleteMonitoringSubscription": [
-            {
-                "action": "cloudfront:DeleteMonitoringSubscription",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.DeleteRealtimeLogConfig": [
-            {
-                "action": "cloudfront:DeleteRealtimeLogConfig",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.GetKeyGroup": [
-            {
-                "action": "cloudfront:GetKeyGroup",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.GetKeyGroupConfig": [
-            {
-                "action": "cloudfront:GetKeyGroupConfig",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.GetMonitoringSubscription": [
-            {
-                "action": "cloudfront:GetMonitoringSubscription",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.GetRealtimeLogConfig": [
-            {
-                "action": "cloudfront:GetRealtimeLogConfig",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.ListDistributionsByKeyGroup": [
-            {
-                "action": "cloudfront:ListDistributionsByKeyGroup",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.ListDistributionsByRealtimeLogConfig": [
-            {
-                "action": "cloudfront:ListDistributionsByRealtimeLogConfig",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.ListKeyGroups": [
-            {
-                "action": "cloudfront:ListKeyGroups",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.ListRealtimeLogConfigs": [
-            {
-                "action": "cloudfront:ListRealtimeLogConfigs",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.UpdateKeyGroup": [
-            {
-                "action": "cloudfront:UpdateKeyGroup",
-                "undocumented": true
-            }
-        ],
-        "CloudFront.UpdateRealtimeLogConfig": [
-            {
-                "action": "cloudfront:UpdateRealtimeLogConfig",
-                "undocumented": true
-            }
-        ],
         "CloudSearchDomain.Search": [
             {
                 "action": "cloudsearch:search",
@@ -1387,78 +1279,6 @@
             {
                 "action": "cloudsearch:upload",
                 "resource_mappings": {}
-            }
-        ],
-        "CloudWatchLogs.DeleteQueryDefinition": [
-            {
-                "action": "logs:DeleteQueryDefinition",
-                "undocumented": true
-            }
-        ],
-        "CloudWatchLogs.DescribeQueryDefinitions": [
-            {
-                "action": "logs:DescribeQueryDefinitions",
-                "undocumented": true
-            }
-        ],
-        "CloudWatchLogs.PutQueryDefinition": [
-            {
-                "action": "logs:PutQueryDefinition",
-                "undocumented": true
-            }
-        ],
-        "CodeBuild.GetReportGroupTrend": [
-            {
-                "action": "codebuild:GetReportGroupTrend",
-                "undocumented": true
-            }
-        ],
-        "DirectoryService.AddRegion": [
-            {
-                "action": "ds:AddRegion",
-                "undocumented": true
-            }
-        ],
-        "DirectoryService.DescribeRegions": [
-            {
-                "action": "ds:DescribeRegions",
-                "undocumented": true
-            }
-        ],
-        "DirectoryService.DisableClientAuthentication": [
-            {
-                "action": "ds:DisableClientAuthentication",
-                "undocumented": true
-            }
-        ],
-        "DirectoryService.EnableClientAuthentication": [
-            {
-                "action": "ds:EnableClientAuthentication",
-                "undocumented": true
-            }
-        ],
-        "DirectoryService.RemoveRegion": [
-            {
-                "action": "ds:RemoveRegion",
-                "undocumented": true
-            }
-        ],
-        "DMS.DeleteConnection": [
-            {
-                "action": "dms:DeleteConnection",
-                "undocumented": true
-            }
-        ],
-        "DMS.DescribePendingMaintenanceActions": [
-            {
-                "action": "dms:DescribePendingMaintenanceActions",
-                "undocumented": true
-            }
-        ],
-        "DMS.MoveReplicationTask": [
-            {
-                "action": "dms:MoveReplicationTask",
-                "undocumented": true
             }
         ],
         "DynamoDB.BatchExecuteStatement": [
@@ -1603,282 +1423,6 @@
                 }
             }
         ],
-        "ECS.UpdateCapacityProvider": [
-            {
-                "action": "ecs:UpdateCapacityProvider",
-                "undocumented": true
-            }
-        ],
-        "EMR.CreateStudio": [
-            {
-                "action": "elasticmapreduce:CreateStudio",
-                "undocumented": true
-            }
-        ],
-        "EMR.CreateStudioSessionMapping": [
-            {
-                "action": "elasticmapreduce:CreateStudioSessionMapping",
-                "undocumented": true
-            }
-        ],
-        "EMR.DeleteStudio": [
-            {
-                "action": "elasticmapreduce:DeleteStudio",
-                "undocumented": true
-            }
-        ],
-        "EMR.DeleteStudioSessionMapping": [
-            {
-                "action": "elasticmapreduce:DeleteStudioSessionMapping",
-                "undocumented": true
-            }
-        ],
-        "EMR.DescribeNotebookExecution": [
-            {
-                "action": "elasticmapreduce:DescribeNotebookExecution",
-                "undocumented": true
-            }
-        ],
-        "EMR.DescribeStudio": [
-            {
-                "action": "elasticmapreduce:DescribeStudio",
-                "undocumented": true
-            }
-        ],
-        "EMR.GetStudioSessionMapping": [
-            {
-                "action": "elasticmapreduce:GetStudioSessionMapping",
-                "undocumented": true
-            }
-        ],
-        "EMR.ListNotebookExecutions": [
-            {
-                "action": "elasticmapreduce:ListNotebookExecutions",
-                "undocumented": true
-            }
-        ],
-        "EMR.ListStudioSessionMappings": [
-            {
-                "action": "elasticmapreduce:ListStudioSessionMappings",
-                "undocumented": true
-            }
-        ],
-        "EMR.ListStudios": [
-            {
-                "action": "elasticmapreduce:ListStudios",
-                "undocumented": true
-            }
-        ],
-        "EMR.StartNotebookExecution": [
-            {
-                "action": "elasticmapreduce:StartNotebookExecution",
-                "undocumented": true
-            }
-        ],
-        "EMR.StopNotebookExecution": [
-            {
-                "action": "elasticmapreduce:StopNotebookExecution",
-                "undocumented": true
-            }
-        ],
-        "EMR.UpdateStudioSessionMapping": [
-            {
-                "action": "elasticmapreduce:UpdateStudioSessionMapping",
-                "undocumented": true
-            }
-        ],
-        "ES.AssociatePackage": [
-            {
-                "action": "es:AssociatePackage",
-                "undocumented": true
-            }
-        ],
-        "ES.CancelElasticsearchServiceSoftwareUpdate": [
-            {
-                "action": "es:CancelElasticsearchServiceSoftwareUpdate",
-                "undocumented": true
-            }
-        ],
-        "ES.CreatePackage": [
-            {
-                "action": "es:CreatePackage",
-                "undocumented": true
-            }
-        ],
-        "ES.DeletePackage": [
-            {
-                "action": "es:DeletePackage",
-                "undocumented": true
-            }
-        ],
-        "ES.DescribePackages": [
-            {
-                "action": "es:DescribePackages",
-                "undocumented": true
-            }
-        ],
-        "ES.DissociatePackage": [
-            {
-                "action": "es:DissociatePackage",
-                "undocumented": true
-            }
-        ],
-        "ES.GetPackageVersionHistory": [
-            {
-                "action": "es:GetPackageVersionHistory",
-                "undocumented": true
-            }
-        ],
-        "ES.ListDomainsForPackage": [
-            {
-                "action": "es:ListDomainsForPackage",
-                "undocumented": true
-            }
-        ],
-        "ES.ListPackagesForDomain": [
-            {
-                "action": "es:ListPackagesForDomain",
-                "undocumented": true
-            }
-        ],
-        "ES.StartElasticsearchServiceSoftwareUpdate": [
-            {
-                "action": "es:StartElasticsearchServiceSoftwareUpdate",
-                "undocumented": true
-            }
-        ],
-        "ES.UpdatePackage": [
-            {
-                "action": "es:UpdatePackage",
-                "undocumented": true
-            }
-        ],
-        "Inspector.CreateExclusionsPreview": [
-            {
-                "action": "inspector:CreateExclusionsPreview",
-                "undocumented": true
-            }
-        ],
-        "Inspector.DescribeExclusions": [
-            {
-                "action": "inspector:DescribeExclusions",
-                "undocumented": true
-            }
-        ],
-        "Inspector.GetAssessmentReport": [
-            {
-                "action": "inspector:GetAssessmentReport",
-                "undocumented": true
-            }
-        ],
-        "Inspector.GetExclusionsPreview": [
-            {
-                "action": "inspector:GetExclusionsPreview",
-                "undocumented": true
-            }
-        ],
-        "Inspector.ListExclusions": [
-            {
-                "action": "inspector:ListExclusions",
-                "undocumented": true
-            }
-        ],
-        "Iot.CancelDetectMitigationActionsTask": [
-            {
-                "action": "iot:CancelDetectMitigationActionsTask",
-                "undocumented": true
-            }
-        ],
-        "Iot.CreateCustomMetric": [
-            {
-                "action": "iot:CreateCustomMetric",
-                "undocumented": true
-            }
-        ],
-        "Iot.CreateTopicRuleDestination": [
-            {
-                "action": "iot:CreateTopicRuleDestination",
-                "undocumented": true
-            }
-        ],
-        "Iot.DeleteCustomMetric": [
-            {
-                "action": "iot:DeleteCustomMetric",
-                "undocumented": true
-            }
-        ],
-        "Iot.DeleteTopicRuleDestination": [
-            {
-                "action": "iot:DeleteTopicRuleDestination",
-                "undocumented": true
-            }
-        ],
-        "Iot.DescribeCustomMetric": [
-            {
-                "action": "iot:DescribeCustomMetric",
-                "undocumented": true
-            }
-        ],
-        "Iot.DescribeDetectMitigationActionsTask": [
-            {
-                "action": "iot:DescribeDetectMitigationActionsTask",
-                "undocumented": true
-            }
-        ],
-        "Iot.GetBehaviorModelTrainingSummaries": [
-            {
-                "action": "iot:GetBehaviorModelTrainingSummaries",
-                "undocumented": true
-            }
-        ],
-        "Iot.GetTopicRuleDestination": [
-            {
-                "action": "iot:GetTopicRuleDestination",
-                "undocumented": true
-            }
-        ],
-        "Iot.ListCustomMetrics": [
-            {
-                "action": "iot:ListCustomMetrics",
-                "undocumented": true
-            }
-        ],
-        "Iot.ListDetectMitigationActionsExecutions": [
-            {
-                "action": "iot:ListDetectMitigationActionsExecutions",
-                "undocumented": true
-            }
-        ],
-        "Iot.ListDetectMitigationActionsTasks": [
-            {
-                "action": "iot:ListDetectMitigationActionsTasks",
-                "undocumented": true
-            }
-        ],
-        "Iot.ListTopicRuleDestinations": [
-            {
-                "action": "iot:ListTopicRuleDestinations",
-                "undocumented": true
-            }
-        ],
-        "Iot.StartDetectMitigationActionsTask": [
-            {
-                "action": "iot:StartDetectMitigationActionsTask",
-                "undocumented": true
-            }
-        ],
-        "Iot.UpdateCustomMetric": [
-            {
-                "action": "iot:UpdateCustomMetric",
-                "undocumented": true
-            }
-        ],
-        "Iot.UpdateTopicRuleDestination": [
-            {
-                "action": "iot:UpdateTopicRuleDestination",
-                "undocumented": true
-            }
-        ],
         "Lambda.GetLayerVersionByArn": [
             {
                 "action": "lambda:GetLayerVersion",
@@ -1896,384 +1440,6 @@
                         "template": "%%regex%${FunctionName}%/^(?:^arn\\:aws\\:.+function\\:|^[0-9]{12}\\:function\\:)?([^:]+?)(?:\\:[^:]+)?$/g%%"
                     }
                 }
-            }
-        ],
-        "Lightsail.AttachCertificateToDistribution": [
-            {
-                "action": "lightsail:AttachCertificateToDistribution",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.CreateCertificate": [
-            {
-                "action": "lightsail:CreateCertificate",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.CreateContactMethod": [
-            {
-                "action": "lightsail:CreateContactMethod",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.CreateContainerService": [
-            {
-                "action": "lightsail:CreateContainerService",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.CreateContainerServiceDeployment": [
-            {
-                "action": "lightsail:CreateContainerServiceDeployment",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.CreateContainerServiceRegistryLogin": [
-            {
-                "action": "lightsail:CreateContainerServiceRegistryLogin",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.CreateDistribution": [
-            {
-                "action": "lightsail:CreateDistribution",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.DeleteAlarm": [
-            {
-                "action": "lightsail:DeleteAlarm",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.DeleteAutoSnapshot": [
-            {
-                "action": "lightsail:DeleteAutoSnapshot",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.DeleteCertificate": [
-            {
-                "action": "lightsail:DeleteCertificate",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.DeleteContactMethod": [
-            {
-                "action": "lightsail:DeleteContactMethod",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.DeleteContainerImage": [
-            {
-                "action": "lightsail:DeleteContainerImage",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.DeleteContainerService": [
-            {
-                "action": "lightsail:DeleteContainerService",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.DeleteDistribution": [
-            {
-                "action": "lightsail:DeleteDistribution",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetAlarms": [
-            {
-                "action": "lightsail:GetAlarms",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetAutoSnapshots": [
-            {
-                "action": "lightsail:GetAutoSnapshots",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetCertificates": [
-            {
-                "action": "lightsail:GetCertificates",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetContactMethods": [
-            {
-                "action": "lightsail:GetContactMethods",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetContainerAPIMetadata": [
-            {
-                "action": "lightsail:GetContainerAPIMetadata",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetContainerImages": [
-            {
-                "action": "lightsail:GetContainerImages",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetContainerLog": [
-            {
-                "action": "lightsail:GetContainerLog",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetContainerServiceDeployments": [
-            {
-                "action": "lightsail:GetContainerServiceDeployments",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetContainerServiceMetricData": [
-            {
-                "action": "lightsail:GetContainerServiceMetricData",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetContainerServicePowers": [
-            {
-                "action": "lightsail:GetContainerServicePowers",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetContainerServices": [
-            {
-                "action": "lightsail:GetContainerServices",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetDistributionBundles": [
-            {
-                "action": "lightsail:GetDistributionBundles",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetDistributionLatestCacheReset": [
-            {
-                "action": "lightsail:GetDistributionLatestCacheReset",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetDistributionMetricData": [
-            {
-                "action": "lightsail:GetDistributionMetricData",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.GetDistributions": [
-            {
-                "action": "lightsail:GetDistributions",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.PutAlarm": [
-            {
-                "action": "lightsail:PutAlarm",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.RegisterContainerImage": [
-            {
-                "action": "lightsail:RegisterContainerImage",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.ResetDistributionCache": [
-            {
-                "action": "lightsail:ResetDistributionCache",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.SendContactMethodVerification": [
-            {
-                "action": "lightsail:SendContactMethodVerification",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.SetIpAddressType": [
-            {
-                "action": "lightsail:SetIpAddressType",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.TestAlarm": [
-            {
-                "action": "lightsail:TestAlarm",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.UpdateContainerService": [
-            {
-                "action": "lightsail:UpdateContainerService",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.UpdateDistribution": [
-            {
-                "action": "lightsail:UpdateDistribution",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.UpdateDistributionBundle": [
-            {
-                "action": "lightsail:UpdateDistributionBundle",
-                "undocumented": true
-            }
-        ],
-        "OpsWorks.DescribeOperatingSystems": [
-            {
-                "action": "opsworks:DescribeOperatingSystems",
-                "undocumented": true
-            }
-        ],
-        "OpsWorksCM.ExportServerEngineAttribute": [
-            {
-                "action": "opsworks-cm:ExportServerEngineAttribute",
-                "undocumented": true
-            }
-        ],
-        "Pinpoint.GetApplicationDateRangeKpi": [
-            {
-                "action": "mobiletargeting:GetApplicationDateRangeKpi",
-                "undocumented": true
-            }
-        ],
-        "Pinpoint.GetCampaignDateRangeKpi": [
-            {
-                "action": "mobiletargeting:GetCampaignDateRangeKpi",
-                "undocumented": true
-            }
-        ],
-        "Pinpoint.GetJourneyDateRangeKpi": [
-            {
-                "action": "mobiletargeting:GetJourneyDateRangeKpi",
-                "undocumented": true
-            }
-        ],
-        "Pinpoint.GetJourneyExecutionActivityMetrics": [
-            {
-                "action": "mobiletargeting:GetJourneyExecutionActivityMetrics",
-                "undocumented": true
-            }
-        ],
-        "Pinpoint.GetJourneyExecutionMetrics": [
-            {
-                "action": "mobiletargeting:GetJourneyExecutionMetrics",
-                "undocumented": true
-            }
-        ],
-        "RDS.CreateCustomAvailabilityZone": [
-            {
-                "action": "rds:CreateCustomAvailabilityZone",
-                "undocumented": true
-            }
-        ],
-        "RDS.DeleteCustomAvailabilityZone": [
-            {
-                "action": "rds:DeleteCustomAvailabilityZone",
-                "undocumented": true
-            }
-        ],
-        "RDS.DeleteInstallationMedia": [
-            {
-                "action": "rds:DeleteInstallationMedia",
-                "undocumented": true
-            }
-        ],
-        "RDS.DescribeCustomAvailabilityZones": [
-            {
-                "action": "rds:DescribeCustomAvailabilityZones",
-                "undocumented": true
-            }
-        ],
-        "RDS.DescribeInstallationMedia": [
-            {
-                "action": "rds:DescribeInstallationMedia",
-                "undocumented": true
-            }
-        ],
-        "RDS.ImportInstallationMedia": [
-            {
-                "action": "rds:ImportInstallationMedia",
-                "undocumented": true
-            }
-        ],
-        "RDS.ModifyCertificates": [
-            {
-                "action": "rds:ModifyCertificates",
-                "undocumented": true
-            }
-        ],
-        "RDS.StartDBInstanceAutomatedBackupsReplication": [
-            {
-                "action": "rds:StartDBInstanceAutomatedBackupsReplication",
-                "undocumented": true
-            }
-        ],
-        "RDS.StopDBInstanceAutomatedBackupsReplication": [
-            {
-                "action": "rds:StopDBInstanceAutomatedBackupsReplication",
-                "undocumented": true
-            }
-        ],
-        "Redshift.CreateUsageLimit": [
-            {
-                "action": "redshift:CreateUsageLimit",
-                "undocumented": true
-            }
-        ],
-        "Redshift.DeleteUsageLimit": [
-            {
-                "action": "redshift:DeleteUsageLimit",
-                "undocumented": true
-            }
-        ],
-        "Redshift.DescribeUsageLimits": [
-            {
-                "action": "redshift:DescribeUsageLimits",
-                "undocumented": true
-            }
-        ],
-        "Redshift.ModifyUsageLimit": [
-            {
-                "action": "redshift:ModifyUsageLimit",
-                "undocumented": true
-            }
-        ],
-        "Route53Domains.AcceptDomainTransferFromAnotherAwsAccount": [
-            {
-                "action": "route53domains:AcceptDomainTransferFromAnotherAwsAccount",
-                "undocumented": true
-            }
-        ],
-        "Route53Domains.CancelDomainTransferToAnotherAwsAccount": [
-            {
-                "action": "route53domains:CancelDomainTransferToAnotherAwsAccount",
-                "undocumented": true
-            }
-        ],
-        "Route53Domains.CheckDomainTransferability": [
-            {
-                "action": "route53domains:CheckDomainTransferability",
-                "undocumented": true
-            }
-        ],
-        "Route53Domains.RejectDomainTransferFromAnotherAwsAccount": [
-            {
-                "action": "route53domains:RejectDomainTransferFromAnotherAwsAccount",
-                "undocumented": true
-            }
-        ],
-        "Route53Domains.TransferDomainToAnotherAwsAccount": [
-            {
-                "action": "route53domains:TransferDomainToAnotherAwsAccount",
-                "undocumented": true
             }
         ],
         "S3.CopyObject": [
@@ -2762,36 +1928,6 @@
                 }
             }
         ],
-        "Snowball.CreateReturnShippingLabel": [
-            {
-                "action": "snowball:CreateReturnShippingLabel",
-                "undocumented": true
-            }
-        ],
-        "Snowball.DescribeReturnShippingLabel": [
-            {
-                "action": "snowball:DescribeReturnShippingLabel",
-                "undocumented": true
-            }
-        ],
-        "Snowball.GetSoftwareUpdates": [
-            {
-                "action": "snowball:GetSoftwareUpdates",
-                "undocumented": true
-            }
-        ],
-        "Snowball.ListCompatibleImages": [
-            {
-                "action": "snowball:ListCompatibleImages",
-                "undocumented": true
-            }
-        ],
-        "Snowball.UpdateJobShipmentState": [
-            {
-                "action": "snowball:UpdateJobShipmentState",
-                "undocumented": true
-            }
-        ],
         "Greengrass.GetThingRuntimeConfiguration": [
             {
                 "action": "greengrass:GetThingRuntimeConfiguration",
@@ -2800,30 +1936,6 @@
                         "template": "${ThingName}"
                     }
                 }
-            }
-        ],
-        "Greengrass.UpdateThingRuntimeConfiguration": [
-            {
-                "action": "greengrass:UpdateThingRuntimeConfiguration",
-                "undocumented": true
-            }
-        ],
-        "MigrationHub.ListApplicationStates": [
-            {
-                "action": "mgh:ListApplicationStates",
-                "undocumented": true
-            }
-        ],
-        "CloudHSMV2.ModifyBackupAttributes": [
-            {
-                "action": "cloudhsm:ModifyBackupAttributes",
-                "undocumented": true
-            }
-        ],
-        "CloudHSMV2.ModifyCluster": [
-            {
-                "action": "cloudhsm:ModifyCluster",
-                "undocumented": true
             }
         ],
         "Glue.BatchUpdatePartition": [
@@ -2930,18 +2042,6 @@
                 }
             }
         ],
-        "Glue.ResumeWorkflowRun": [
-            {
-                "action": "glue:ResumeWorkflowRun",
-                "undocumented": true
-            }
-        ],
-        "Glue.StopWorkflowRun": [
-            {
-                "action": "glue:StopWorkflowRun",
-                "undocumented": true
-            }
-        ],
         "Mobile.DescribeProject": [
             {
                 "action": "mobilehub:GetProject",
@@ -2962,426 +2062,6 @@
                 }
             }
         ],
-        "MediaPackage.RotateChannelCredentials": [
-            {
-                "action": "mediapackage:RotateChannelCredentials",
-                "undocumented": true
-            }
-        ],
-        "AppSync.CreateApiCache": [
-            {
-                "action": "appsync:CreateApiCache",
-                "undocumented": true
-            }
-        ],
-        "AppSync.DeleteApiCache": [
-            {
-                "action": "appsync:DeleteApiCache",
-                "undocumented": true
-            }
-        ],
-        "AppSync.FlushApiCache": [
-            {
-                "action": "appsync:FlushApiCache",
-                "undocumented": true
-            }
-        ],
-        "AppSync.GetApiCache": [
-            {
-                "action": "appsync:GetApiCache",
-                "undocumented": true
-            }
-        ],
-        "AppSync.UpdateApiCache": [
-            {
-                "action": "appsync:UpdateApiCache",
-                "undocumented": true
-            }
-        ],
-        "GuardDuty.GetMemberDetectors": [
-            {
-                "action": "guardduty:GetMemberDetectors",
-                "undocumented": true
-            }
-        ],
-        "GuardDuty.GetUsageStatistics": [
-            {
-                "action": "guardduty:GetUsageStatistics",
-                "undocumented": true
-            }
-        ],
-        "GuardDuty.UpdateMemberDetectors": [
-            {
-                "action": "guardduty:UpdateMemberDetectors",
-                "undocumented": true
-            }
-        ],
-        "SageMaker.DeleteHumanTaskUi": [
-            {
-                "action": "sagemaker:DeleteHumanTaskUi",
-                "undocumented": true
-            }
-        ],
-        "ResourceGroups.PutGroupConfiguration": [
-            {
-                "action": "resource-groups:PutGroupConfiguration",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.AssociateDeviceWithNetworkProfile": [
-            {
-                "action": "a4b:AssociateDeviceWithNetworkProfile",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.CreateGatewayGroup": [
-            {
-                "action": "a4b:CreateGatewayGroup",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.CreateNetworkProfile": [
-            {
-                "action": "a4b:CreateNetworkProfile",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.DeleteDeviceUsageData": [
-            {
-                "action": "a4b:DeleteDeviceUsageData",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.DeleteGatewayGroup": [
-            {
-                "action": "a4b:DeleteGatewayGroup",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.DeleteNetworkProfile": [
-            {
-                "action": "a4b:DeleteNetworkProfile",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.GetGateway": [
-            {
-                "action": "a4b:GetGateway",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.GetGatewayGroup": [
-            {
-                "action": "a4b:GetGatewayGroup",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.GetInvitationConfiguration": [
-            {
-                "action": "a4b:GetInvitationConfiguration",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.ListGatewayGroups": [
-            {
-                "action": "a4b:ListGatewayGroups",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.ListGateways": [
-            {
-                "action": "a4b:ListGateways",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.PutInvitationConfiguration": [
-            {
-                "action": "a4b:PutInvitationConfiguration",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.SendAnnouncement": [
-            {
-                "action": "a4b:SendAnnouncement",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.UpdateGateway": [
-            {
-                "action": "a4b:UpdateGateway",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.UpdateGatewayGroup": [
-            {
-                "action": "a4b:UpdateGatewayGroup",
-                "undocumented": true
-            }
-        ],
-        "AlexaForBusiness.UpdateNetworkProfile": [
-            {
-                "action": "a4b:UpdateNetworkProfile",
-                "undocumented": true
-            }
-        ],
-        "IoTAnalytics.ListDatasetContents": [
-            {
-                "action": "iotanalytics:ListDatasetContents",
-                "undocumented": true
-            }
-        ],
-        "PinpointEmail.GetDomainDeliverabilityCampaign": [
-            {
-                "action": "ses:GetDomainDeliverabilityCampaign",
-                "undocumented": true
-            }
-        ],
-        "PinpointEmail.ListDomainDeliverabilityCampaigns": [
-            {
-                "action": "ses:ListDomainDeliverabilityCampaigns",
-                "undocumented": true
-            }
-        ],
-        "Amplify.CreateWebhook": [
-            {
-                "action": "amplify:CreateWebhook",
-                "undocumented": true
-            }
-        ],
-        "Amplify.DeleteWebhook": [
-            {
-                "action": "amplify:DeleteWebhook",
-                "undocumented": true
-            }
-        ],
-        "Amplify.GetWebhook": [
-            {
-                "action": "amplify:GetWebhook",
-                "undocumented": true
-            }
-        ],
-        "Amplify.ListTagsForResource": [
-            {
-                "action": "amplify:ListTagsForResource",
-                "undocumented": true
-            }
-        ],
-        "Amplify.ListWebhooks": [
-            {
-                "action": "amplify:ListWebhooks",
-                "undocumented": true
-            }
-        ],
-        "Amplify.UpdateWebhook": [
-            {
-                "action": "amplify:UpdateWebhook",
-                "undocumented": true
-            }
-        ],
-        "DataSync.UpdateTaskExecution": [
-            {
-                "action": "datasync:UpdateTaskExecution",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.DescribeEntitiesDetectionV2Job": [
-            {
-                "action": "comprehendmedical:DescribeEntitiesDetectionV2Job",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.DescribeICD10CMInferenceJob": [
-            {
-                "action": "comprehendmedical:DescribeICD10CMInferenceJob",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.DescribePHIDetectionJob": [
-            {
-                "action": "comprehendmedical:DescribePHIDetectionJob",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.DescribeRxNormInferenceJob": [
-            {
-                "action": "comprehendmedical:DescribeRxNormInferenceJob",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.DetectEntitiesV2": [
-            {
-                "action": "comprehendmedical:DetectEntitiesV2",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.InferICD10CM": [
-            {
-                "action": "comprehendmedical:InferICD10CM",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.InferRxNorm": [
-            {
-                "action": "comprehendmedical:InferRxNorm",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.ListEntitiesDetectionV2Jobs": [
-            {
-                "action": "comprehendmedical:ListEntitiesDetectionV2Jobs",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.ListICD10CMInferenceJobs": [
-            {
-                "action": "comprehendmedical:ListICD10CMInferenceJobs",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.ListPHIDetectionJobs": [
-            {
-                "action": "comprehendmedical:ListPHIDetectionJobs",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.ListRxNormInferenceJobs": [
-            {
-                "action": "comprehendmedical:ListRxNormInferenceJobs",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.StartEntitiesDetectionV2Job": [
-            {
-                "action": "comprehendmedical:StartEntitiesDetectionV2Job",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.StartICD10CMInferenceJob": [
-            {
-                "action": "comprehendmedical:StartICD10CMInferenceJob",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.StartPHIDetectionJob": [
-            {
-                "action": "comprehendmedical:StartPHIDetectionJob",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.StartRxNormInferenceJob": [
-            {
-                "action": "comprehendmedical:StartRxNormInferenceJob",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.StopEntitiesDetectionV2Job": [
-            {
-                "action": "comprehendmedical:StopEntitiesDetectionV2Job",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.StopICD10CMInferenceJob": [
-            {
-                "action": "comprehendmedical:StopICD10CMInferenceJob",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.StopPHIDetectionJob": [
-            {
-                "action": "comprehendmedical:StopPHIDetectionJob",
-                "undocumented": true
-            }
-        ],
-        "ComprehendMedical.StopRxNormInferenceJob": [
-            {
-                "action": "comprehendmedical:StopRxNormInferenceJob",
-                "undocumented": true
-            }
-        ],
-        "KinesisAnalyticsV2.CreateApplicationPresignedUrl": [
-            {
-                "action": "kinesisanalytics:CreateApplicationPresignedUrl",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.AddFlowSources": [
-            {
-                "action": "mediaconnect:AddFlowSources",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.AddFlowVpcInterfaces": [
-            {
-                "action": "mediaconnect:AddFlowVpcInterfaces",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.DescribeOffering": [
-            {
-                "action": "mediaconnect:DescribeOffering",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.DescribeReservation": [
-            {
-                "action": "mediaconnect:DescribeReservation",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.ListOfferings": [
-            {
-                "action": "mediaconnect:ListOfferings",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.ListReservations": [
-            {
-                "action": "mediaconnect:ListReservations",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.ListTagsForResource": [
-            {
-                "action": "mediaconnect:ListTagsForResource",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.PurchaseOffering": [
-            {
-                "action": "mediaconnect:PurchaseOffering",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.RemoveFlowSource": [
-            {
-                "action": "mediaconnect:RemoveFlowSource",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.RemoveFlowVpcInterface": [
-            {
-                "action": "mediaconnect:RemoveFlowVpcInterface",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.TagResource": [
-            {
-                "action": "mediaconnect:TagResource",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.UntagResource": [
-            {
-                "action": "mediaconnect:UntagResource",
-                "undocumented": true
-            }
-        ],
-        "MediaConnect.UpdateFlow": [
-            {
-                "action": "mediaconnect:UpdateFlow",
-                "undocumented": true
-            }
-        ],
         "FSx.AssociateFileSystemAliases": [
             {
                 "action": "fsx:AssociateFileSystemAliases",
@@ -3390,24 +2070,6 @@
                         "template": "${FileSystemId}"
                     }
                 }
-            }
-        ],
-        "FSx.DescribeFileSystemAliases": [
-            {
-                "action": "fsx:DescribeFileSystemAliases",
-                "undocumented": true
-            }
-        ],
-        "FSx.DisassociateFileSystemAliases": [
-            {
-                "action": "fsx:DisassociateFileSystemAliases",
-                "undocumented": true
-            }
-        ],
-        "Kafka.UpdateBrokerType": [
-            {
-                "action": "kafka:UpdateBrokerType",
-                "undocumented": true
             }
         ],
         "ApiGatewayV2.CreateApiMapping": [
@@ -4040,384 +2702,6 @@
                 }
             }
         ],
-        "MediaPackageVod.UpdatePackagingGroup": [
-            {
-                "action": "mediapackage-vod:UpdatePackagingGroup",
-                "undocumented": true
-            }
-        ],
-        "SESV2.CreateContact": [
-            {
-                "action": "ses:CreateContact",
-                "undocumented": true
-            }
-        ],
-        "SESV2.CreateContactList": [
-            {
-                "action": "ses:CreateContactList",
-                "undocumented": true
-            }
-        ],
-        "SESV2.CreateEmailIdentityPolicy": [
-            {
-                "action": "ses:CreateEmailIdentityPolicy",
-                "undocumented": true
-            }
-        ],
-        "SESV2.CreateEmailTemplate": [
-            {
-                "action": "ses:CreateEmailTemplate",
-                "undocumented": true
-            }
-        ],
-        "SESV2.CreateImportJob": [
-            {
-                "action": "ses:CreateImportJob",
-                "undocumented": true
-            }
-        ],
-        "SESV2.DeleteContact": [
-            {
-                "action": "ses:DeleteContact",
-                "undocumented": true
-            }
-        ],
-        "SESV2.DeleteContactList": [
-            {
-                "action": "ses:DeleteContactList",
-                "undocumented": true
-            }
-        ],
-        "SESV2.DeleteEmailIdentityPolicy": [
-            {
-                "action": "ses:DeleteEmailIdentityPolicy",
-                "undocumented": true
-            }
-        ],
-        "SESV2.DeleteEmailTemplate": [
-            {
-                "action": "ses:DeleteEmailTemplate",
-                "undocumented": true
-            }
-        ],
-        "SESV2.DeleteSuppressedDestination": [
-            {
-                "action": "ses:DeleteSuppressedDestination",
-                "undocumented": true
-            }
-        ],
-        "SESV2.GetContact": [
-            {
-                "action": "ses:GetContact",
-                "undocumented": true
-            }
-        ],
-        "SESV2.GetContactList": [
-            {
-                "action": "ses:GetContactList",
-                "undocumented": true
-            }
-        ],
-        "SESV2.GetDomainDeliverabilityCampaign": [
-            {
-                "action": "ses:GetDomainDeliverabilityCampaign",
-                "undocumented": true
-            }
-        ],
-        "SESV2.GetEmailIdentityPolicies": [
-            {
-                "action": "ses:GetEmailIdentityPolicies",
-                "undocumented": true
-            }
-        ],
-        "SESV2.GetEmailTemplate": [
-            {
-                "action": "ses:GetEmailTemplate",
-                "undocumented": true
-            }
-        ],
-        "SESV2.GetImportJob": [
-            {
-                "action": "ses:GetImportJob",
-                "undocumented": true
-            }
-        ],
-        "SESV2.GetSuppressedDestination": [
-            {
-                "action": "ses:GetSuppressedDestination",
-                "undocumented": true
-            }
-        ],
-        "SESV2.ListContactLists": [
-            {
-                "action": "ses:ListContactLists",
-                "undocumented": true
-            }
-        ],
-        "SESV2.ListContacts": [
-            {
-                "action": "ses:ListContacts",
-                "undocumented": true
-            }
-        ],
-        "SESV2.ListDomainDeliverabilityCampaigns": [
-            {
-                "action": "ses:ListDomainDeliverabilityCampaigns",
-                "undocumented": true
-            }
-        ],
-        "SESV2.ListEmailTemplates": [
-            {
-                "action": "ses:ListEmailTemplates",
-                "undocumented": true
-            }
-        ],
-        "SESV2.ListImportJobs": [
-            {
-                "action": "ses:ListImportJobs",
-                "undocumented": true
-            }
-        ],
-        "SESV2.ListSuppressedDestinations": [
-            {
-                "action": "ses:ListSuppressedDestinations",
-                "undocumented": true
-            }
-        ],
-        "SESV2.PutAccountDetails": [
-            {
-                "action": "ses:PutAccountDetails",
-                "undocumented": true
-            }
-        ],
-        "SESV2.PutAccountSuppressionAttributes": [
-            {
-                "action": "ses:PutAccountSuppressionAttributes",
-                "undocumented": true
-            }
-        ],
-        "SESV2.PutConfigurationSetSuppressionOptions": [
-            {
-                "action": "ses:PutConfigurationSetSuppressionOptions",
-                "undocumented": true
-            }
-        ],
-        "SESV2.PutEmailIdentityConfigurationSetAttributes": [
-            {
-                "action": "ses:PutEmailIdentityConfigurationSetAttributes",
-                "undocumented": true
-            }
-        ],
-        "SESV2.PutEmailIdentityDkimSigningAttributes": [
-            {
-                "action": "ses:PutEmailIdentityDkimSigningAttributes",
-                "undocumented": true
-            }
-        ],
-        "SESV2.PutSuppressedDestination": [
-            {
-                "action": "ses:PutSuppressedDestination",
-                "undocumented": true
-            }
-        ],
-        "SESV2.SendBulkEmail": [
-            {
-                "action": "ses:SendBulkEmail",
-                "undocumented": true
-            }
-        ],
-        "SESV2.TestRenderEmailTemplate": [
-            {
-                "action": "ses:TestRenderEmailTemplate",
-                "undocumented": true
-            }
-        ],
-        "SESV2.UpdateContact": [
-            {
-                "action": "ses:UpdateContact",
-                "undocumented": true
-            }
-        ],
-        "SESV2.UpdateContactList": [
-            {
-                "action": "ses:UpdateContactList",
-                "undocumented": true
-            }
-        ],
-        "SESV2.UpdateEmailIdentityPolicy": [
-            {
-                "action": "ses:UpdateEmailIdentityPolicy",
-                "undocumented": true
-            }
-        ],
-        "SESV2.UpdateEmailTemplate": [
-            {
-                "action": "ses:UpdateEmailTemplate",
-                "undocumented": true
-            }
-        ],
-        "ElasticInference.DescribeAcceleratorOfferings": [
-            {
-                "action": "elastic-inference:DescribeAcceleratorOfferings",
-                "undocumented": true
-            }
-        ],
-        "ElasticInference.DescribeAcceleratorTypes": [
-            {
-                "action": "elastic-inference:DescribeAcceleratorTypes",
-                "undocumented": true
-            }
-        ],
-        "ElasticInference.DescribeAccelerators": [
-            {
-                "action": "elastic-inference:DescribeAccelerators",
-                "undocumented": true
-            }
-        ],
-        "ElasticInference.ListTagsForResource": [
-            {
-                "action": "elastic-inference:ListTagsForResource",
-                "undocumented": true
-            }
-        ],
-        "ElasticInference.TagResource": [
-            {
-                "action": "elastic-inference:TagResource",
-                "undocumented": true
-            }
-        ],
-        "ElasticInference.UntagResource": [
-            {
-                "action": "elastic-inference:UntagResource",
-                "undocumented": true
-            }
-        ],
-        "Imagebuilder.ImportComponent": [
-            {
-                "action": "imagebuilder:ImportComponent",
-                "undocumented": true
-            }
-        ],
-        "CodeGuruReviewer.CreateCodeReview": [
-            {
-                "action": "codeguru-reviewer:CreateCodeReview",
-                "undocumented": true
-            }
-        ],
-        "CodeGuruReviewer.ListTagsForResource": [
-            {
-                "action": "codeguru-reviewer:ListTagsForResource",
-                "undocumented": true
-            }
-        ],
-        "CodeGuruReviewer.TagResource": [
-            {
-                "action": "codeguru-reviewer:TagResource",
-                "undocumented": true
-            }
-        ],
-        "CodeGuruReviewer.UntagResource": [
-            {
-                "action": "codeguru-reviewer:UntagResource",
-                "undocumented": true
-            }
-        ],
-        "Synthetics.DescribeRuntimeVersions": [
-            {
-                "action": "synthetics:DescribeRuntimeVersions",
-                "undocumented": true
-            }
-        ],
-        "Synthetics.GetCanary": [
-            {
-                "action": "synthetics:GetCanary",
-                "undocumented": true
-            }
-        ],
-        "IoTSiteWise.DescribeDefaultEncryptionConfiguration": [
-            {
-                "action": "iotsitewise:DescribeDefaultEncryptionConfiguration",
-                "undocumented": true
-            }
-        ],
-        "IoTSiteWise.PutDefaultEncryptionConfiguration": [
-            {
-                "action": "iotsitewise:PutDefaultEncryptionConfiguration",
-                "undocumented": true
-            }
-        ],
-        "EMRcontainers.CreateManagedEndpoint": [
-            {
-                "action": "emr-containers:CreateManagedEndpoint",
-                "undocumented": true
-            }
-        ],
-        "EMRcontainers.DeleteManagedEndpoint": [
-            {
-                "action": "emr-containers:DeleteManagedEndpoint",
-                "undocumented": true
-            }
-        ],
-        "EMRcontainers.DescribeManagedEndpoint": [
-            {
-                "action": "emr-containers:DescribeManagedEndpoint",
-                "undocumented": true
-            }
-        ],
-        "EMRcontainers.ListManagedEndpoints": [
-            {
-                "action": "emr-containers:ListManagedEndpoints",
-                "undocumented": true
-            }
-        ],
-        "HealthLake.CreateFHIRDatastore": [
-            {
-                "action": "healthlake:CreateFHIRDatastore",
-                "undocumented": true
-            }
-        ],
-        "HealthLake.DeleteFHIRDatastore": [
-            {
-                "action": "healthlake:DeleteFHIRDatastore",
-                "undocumented": true
-            }
-        ],
-        "HealthLake.DescribeFHIRDatastore": [
-            {
-                "action": "healthlake:DescribeFHIRDatastore",
-                "undocumented": true
-            }
-        ],
-        "HealthLake.DescribeFHIRExportJob": [
-            {
-                "action": "healthlake:DescribeFHIRExportJob",
-                "undocumented": true
-            }
-        ],
-        "HealthLake.DescribeFHIRImportJob": [
-            {
-                "action": "healthlake:DescribeFHIRImportJob",
-                "undocumented": true
-            }
-        ],
-        "HealthLake.ListFHIRDatastores": [
-            {
-                "action": "healthlake:ListFHIRDatastores",
-                "undocumented": true
-            }
-        ],
-        "HealthLake.StartFHIRExportJob": [
-            {
-                "action": "healthlake:StartFHIRExportJob",
-                "undocumented": true
-            }
-        ],
-        "HealthLake.StartFHIRImportJob": [
-            {
-                "action": "healthlake:StartFHIRImportJob",
-                "undocumented": true
-            }
-        ],
         "LexModelsV2.CreateBot": [
             {
                 "action": "lex:PutBot",
@@ -4756,18 +3040,6 @@
                 }
             }
         ],
-        "CognitoIdentity.GetPrincipalTagAttributeMap": [
-            {
-                "action": "cognito-identity:GetPrincipalTagAttributeMap",
-                "undocumented": true
-            }
-        ],
-        "CognitoIdentity.SetPrincipalTagAttributeMap": [
-            {
-                "action": "cognito-identity:SetPrincipalTagAttributeMap",
-                "undocumented": true
-            }
-        ],
         "APIGateway.FlushStageAuthorizersCache": [
             {
                 "action": "apigateway:DELETE",
@@ -4858,144 +3130,6 @@
                 }
             }
         ],
-        "Lightsail.DisableAddOn": [
-            {
-                "action": "lightsail:DisableAddOn",
-                "undocumented": true
-            }
-        ],
-        "Lightsail.EnableAddOn": [
-            {
-                "action": "lightsail:EnableAddOn",
-                "undocumented": true
-            }
-        ],
-        "Shield.AssociateProactiveEngagementDetails": [
-            {
-                "action": "shield:AssociateProactiveEngagementDetails",
-                "undocumented": true
-            }
-        ],
-        "Shield.CreateProtectionGroup": [
-            {
-                "action": "shield:CreateProtectionGroup",
-                "undocumented": true
-            }
-        ],
-        "Shield.DeleteProtectionGroup": [
-            {
-                "action": "shield:DeleteProtectionGroup",
-                "undocumented": true
-            }
-        ],
-        "Shield.DescribeAttackStatistics": [
-            {
-                "action": "shield:DescribeAttackStatistics",
-                "undocumented": true
-            }
-        ],
-        "Shield.DescribeProtectionGroup": [
-            {
-                "action": "shield:DescribeProtectionGroup",
-                "undocumented": true
-            }
-        ],
-        "Shield.DisableProactiveEngagement": [
-            {
-                "action": "shield:DisableProactiveEngagement",
-                "undocumented": true
-            }
-        ],
-        "Shield.EnableProactiveEngagement": [
-            {
-                "action": "shield:EnableProactiveEngagement",
-                "undocumented": true
-            }
-        ],
-        "Shield.ListProtectionGroups": [
-            {
-                "action": "shield:ListProtectionGroups",
-                "undocumented": true
-            }
-        ],
-        "Shield.ListResourcesInProtectionGroup": [
-            {
-                "action": "shield:ListResourcesInProtectionGroup",
-                "undocumented": true
-            }
-        ],
-        "Shield.UpdateProtectionGroup": [
-            {
-                "action": "shield:UpdateProtectionGroup",
-                "undocumented": true
-            }
-        ],
-        "SWF.UndeprecateActivityType": [
-            {
-                "action": "swf:UndeprecateActivityType",
-                "undocumented": true
-            }
-        ],
-        "SWF.UndeprecateDomain": [
-            {
-                "action": "swf:UndeprecateDomain",
-                "undocumented": true
-            }
-        ],
-        "SWF.UndeprecateWorkflowType": [
-            {
-                "action": "swf:UndeprecateWorkflowType",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.CreateConnectionAlias": [
-            {
-                "action": "workspaces:CreateConnectionAlias",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.DescribeConnectionAliases": [
-            {
-                "action": "workspaces:DescribeConnectionAliases",
-                "undocumented": true
-            }
-        ],
-        "Connect.CreateIntegrationAssociation": [
-            {
-                "action": "connect:CreateIntegrationAssociation",
-                "undocumented": true
-            }
-        ],
-        "Connect.CreateUseCase": [
-            {
-                "action": "connect:CreateUseCase",
-                "undocumented": true
-            }
-        ],
-        "Connect.DeleteIntegrationAssociation": [
-            {
-                "action": "connect:DeleteIntegrationAssociation",
-                "undocumented": true
-            }
-        ],
-        "Connect.DeleteUseCase": [
-            {
-                "action": "connect:DeleteUseCase",
-                "undocumented": true
-            }
-        ],
-        "Connect.ListIntegrationAssociations": [
-            {
-                "action": "connect:ListIntegrationAssociations",
-                "undocumented": true
-            }
-        ],
-        "Connect.ListUseCases": [
-            {
-                "action": "connect:ListUseCases",
-                "undocumented": true
-            }
-        ],
         "ApiGatewayV2.ResetAuthorizersCache": [
             {
                 "action": "apigateway:DELETE",
@@ -5024,18 +3158,6 @@
                         "template": "/v2/apis/${ApiId}"
                     }
                 }
-            }
-        ],
-        "ConnectContactLens.ListRealtimeContactAnalysisSegments": [
-            {
-                "action": "connect:ListRealtimeContactAnalysisSegments",
-                "undocumented": true
-            }
-        ],
-        "GreengrassV2.GetComponentVersionArtifact": [
-            {
-                "action": "greengrass:GetComponentVersionArtifact",
-                "undocumented": true
             }
         ],
         "TimestreamQuery.Query": [
@@ -5369,54 +3491,6 @@
                 }
             }
         ],
-        "S3Control.DescribeJob": [
-            {
-                "action": "s3:DescribeJob",
-                "undocumented": true
-            }
-        ],
-        "S3Control.ListJobs": [
-            {
-                "action": "s3:ListJobs",
-                "undocumented": true
-            }
-        ],
-        "ServiceCatalog.DescribePortfolioShares": [
-            {
-                "action": "servicecatalog:DescribePortfolioShares",
-                "undocumented": true
-            }
-        ],
-        "ServiceCatalog.GetProvisionedProductOutputs": [
-            {
-                "action": "servicecatalog:GetProvisionedProductOutputs",
-                "undocumented": true
-            }
-        ],
-        "ServiceCatalog.UpdatePortfolioShare": [
-            {
-                "action": "servicecatalog:UpdatePortfolioShare",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.AssociateConnectionAlias": [
-            {
-                "action": "workspaces:AssociateConnectionAlias",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.CopyWorkspaceImage": [
-            {
-                "action": "workspaces:CopyWorkspaceImage",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.DisassociateConnectionAlias": [
-            {
-                "action": "workspaces:DisassociateConnectionAlias",
-                "undocumented": true
-            }
-        ],
         "S3Control.DeleteJobTagging": [
             {
                 "action": "s3:DeleteJobTagging",
@@ -5537,84 +3611,6 @@
                         "template": "${JobId}"
                     }
                 }
-            }
-        ],
-        "WorkSpaces.DeleteConnectionAlias": [
-            {
-                "action": "workspaces:DeleteConnectionAlias",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.DeregisterWorkspaceDirectory": [
-            {
-                "action": "workspaces:DeregisterWorkspaceDirectory",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.DescribeConnectionAliasPermissions": [
-            {
-                "action": "workspaces:DescribeConnectionAliasPermissions",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.DescribeWorkspaceImagePermissions": [
-            {
-                "action": "workspaces:DescribeWorkspaceImagePermissions",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.DescribeWorkspaceSnapshots": [
-            {
-                "action": "workspaces:DescribeWorkspaceSnapshots",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.MigrateWorkspace": [
-            {
-                "action": "workspaces:MigrateWorkspace",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.ModifySelfservicePermissions": [
-            {
-                "action": "workspaces:ModifySelfservicePermissions",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.ModifyWorkspaceAccessProperties": [
-            {
-                "action": "workspaces:ModifyWorkspaceAccessProperties",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.ModifyWorkspaceCreationProperties": [
-            {
-                "action": "workspaces:ModifyWorkspaceCreationProperties",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.RegisterWorkspaceDirectory": [
-            {
-                "action": "workspaces:RegisterWorkspaceDirectory",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.RestoreWorkspace": [
-            {
-                "action": "workspaces:RestoreWorkspace",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.UpdateConnectionAliasPermission": [
-            {
-                "action": "workspaces:UpdateConnectionAliasPermission",
-                "undocumented": true
-            }
-        ],
-        "WorkSpaces.UpdateWorkspaceImagePermission": [
-            {
-                "action": "workspaces:UpdateWorkspaceImagePermission",
-                "undocumented": true
             }
         ],
         "STS.AssumeRole": [
@@ -44435,26 +42431,6 @@
                 }
             }
         ],
-        "SSM.StartAutomationExecution": [
-            {
-                "action": "ssm:StartAutomationExecution",
-                "resource_mappings": {
-                    "AutomationDefinitionName:VersionId": {
-                        "template": "*"
-                    }
-                }
-            }
-        ],
-        "SSM.StartChangeRequestExecution": [
-            {
-                "action": "ssm:StartChangeRequestExecution",
-                "resource_mappings": {
-                    "AutomationDefinitionName:VersionId": {
-                        "template": "*"
-                    }
-                }
-            }
-        ],
         "SSM.StartSession": [
             {
                 "action": "ssm:StartSession",
@@ -48011,12 +45987,6 @@
                 "resource_mappings": {}
             }
         ],
-        "WorkSpaces.AssociateIpGroups": [
-            {
-                "action": "workspaces:AssociateIpGroups",
-                "resource_mappings": {}
-            }
-        ],
         "WorkSpaces.AuthorizeIpRules": [
             {
                 "action": "workspaces:AuthorizeIpRules",
@@ -48027,29 +45997,10 @@
                 }
             }
         ],
-        "WorkSpaces.CreateIpGroup": [
-            {
-                "action": "workspaces:CreateIpGroup",
-                "resource_mappings": {}
-            }
-        ],
         "WorkSpaces.CreateTags": [
             {
                 "action": "workspaces:CreateTags",
                 "resource_mappings": {}
-            }
-        ],
-        "WorkSpaces.CreateWorkspaces": [
-            {
-                "action": "workspaces:CreateWorkspaces",
-                "resource_mappings": {
-                    "DirectoryId": {
-                        "template": "${Workspaces[].DirectoryId}"
-                    },
-                    "BundleId": {
-                        "template": "${Workspaces[].BundleId}"
-                    }
-                }
             }
         ],
         "WorkSpaces.DeleteIpGroup": [
@@ -48065,12 +46016,6 @@
         "WorkSpaces.DeleteTags": [
             {
                 "action": "workspaces:DeleteTags",
-                "resource_mappings": {}
-            }
-        ],
-        "WorkSpaces.DeleteWorkspaceImage": [
-            {
-                "action": "workspaces:DeleteWorkspaceImage",
                 "resource_mappings": {}
             }
         ],
@@ -48112,16 +46057,6 @@
                 "resource_mappings": {}
             }
         ],
-        "WorkSpaces.DescribeWorkspaceBundles": [
-            {
-                "action": "workspaces:DescribeWorkspaceBundles",
-                "resource_mappings": {
-                    "BundleId": {
-                        "template": "${BundleIds[]}"
-                    }
-                }
-            }
-        ],
         "WorkSpaces.DescribeWorkspaceDirectories": [
             {
                 "action": "workspaces:DescribeWorkspaceDirectories",
@@ -48143,18 +46078,6 @@
         "WorkSpaces.DescribeWorkspacesConnectionStatus": [
             {
                 "action": "workspaces:DescribeWorkspacesConnectionStatus",
-                "resource_mappings": {}
-            }
-        ],
-        "WorkSpaces.DisassociateIpGroups": [
-            {
-                "action": "workspaces:DisassociateIpGroups",
-                "resource_mappings": {}
-            }
-        ],
-        "WorkSpaces.ImportWorkspaceImage": [
-            {
-                "action": "workspaces:ImportWorkspaceImage",
                 "resource_mappings": {}
             }
         ],
@@ -79370,15 +77293,6 @@
                 }
             }
         ],
-        "Detective.AcceptInvitation": [
-            {
-                "action": "detective:AcceptInvitation",
-                "resource_mappings": {},
-                "resourcearn_mappings": {
-                    "Graph": "${GraphArn}"
-                }
-            }
-        ],
         "Detective.CreateGraph": [
             {
                 "action": "detective:CreateGraph",
@@ -79412,15 +77326,6 @@
                 }
             }
         ],
-        "Detective.DisassociateMembership": [
-            {
-                "action": "detective:DisassociateMembership",
-                "resource_mappings": {},
-                "resourcearn_mappings": {
-                    "Graph": "${GraphArn}"
-                }
-            }
-        ],
         "Detective.GetMembers": [
             {
                 "action": "detective:GetMembers",
@@ -79445,15 +77350,6 @@
         "Detective.ListMembers": [
             {
                 "action": "detective:ListMembers",
-                "resource_mappings": {},
-                "resourcearn_mappings": {
-                    "Graph": "${GraphArn}"
-                }
-            }
-        ],
-        "Detective.RejectInvitation": [
-            {
-                "action": "detective:RejectInvitation",
                 "resource_mappings": {},
                 "resourcearn_mappings": {
                     "Graph": "${GraphArn}"
@@ -84818,16 +82714,6 @@
                 }
             }
         ],
-        "EMRcontainers.ListTagsForResource": [
-            {
-                "action": "emr-containers:ListTagsForResource",
-                "resource_mappings": {},
-                "resourcearn_mappings": {
-                    "jobRun": "%%iftemplatematch%${resourceArn}%%",
-                    "virtualCluster": "%%iftemplatematch%${resourceArn}%%"
-                }
-            }
-        ],
         "EMRcontainers.ListVirtualClusters": [
             {
                 "action": "emr-containers:ListVirtualClusters",
@@ -84837,26 +82723,6 @@
         "EMRcontainers.StartJobRun": [
             {
                 "action": "emr-containers:StartJobRun"
-            }
-        ],
-        "EMRcontainers.TagResource": [
-            {
-                "action": "emr-containers:TagResource",
-                "resource_mappings": {},
-                "resourcearn_mappings": {
-                    "jobRun": "%%iftemplatematch%${resourceArn}%%",
-                    "virtualCluster": "%%iftemplatematch%${resourceArn}%%"
-                }
-            }
-        ],
-        "EMRcontainers.UntagResource": [
-            {
-                "action": "emr-containers:UntagResource",
-                "resource_mappings": {},
-                "resourcearn_mappings": {
-                    "jobRun": "%%iftemplatematch%${resourceArn}%%",
-                    "virtualCluster": "%%iftemplatematch%${resourceArn}%%"
-                }
             }
         ],
         "SagemakerEdge.GetDeviceRegistration": [
@@ -85253,12 +83119,6 @@
                     "suitedefinition": "%%iftemplatematch%${resourceArn}%%",
                     "suiterun": "%%iftemplatematch%${resourceArn}%%"
                 }
-            }
-        ],
-        "IotDeviceAdvisor.ListTestCases": [
-            {
-                "action": "iotdeviceadvisor:ListTestCases",
-                "resource_mappings": {}
             }
         ],
         "IotDeviceAdvisor.StartSuiteRun": [
@@ -90726,6 +88586,3319 @@
                     "IdentityName": {
                         "template": "*"
                     }
+                }
+            }
+        ],
+        "AutoScaling.DeleteWarmPool": [
+            {
+                "action": "autoscaling:DeleteWarmPool",
+                "resource_mappings": {
+                    "GroupId": {
+                        "template": "*"
+                    },
+                    "GroupFriendlyName": {
+                        "template": "${AutoScalingGroupName}"
+                    }
+                }
+            }
+        ],
+        "AutoScaling.DescribeWarmPool": [
+            {
+                "action": "autoscaling:DescribeWarmPool",
+                "resource_mappings": {}
+            }
+        ],
+        "AutoScaling.PutWarmPool": [
+            {
+                "action": "autoscaling:PutWarmPool",
+                "resource_mappings": {
+                    "GroupId": {
+                        "template": "*"
+                    },
+                    "GroupFriendlyName": {
+                        "template": "${AutoScalingGroupName}"
+                    }
+                }
+            }
+        ],
+        "CloudDirectory.ListManagedSchemaArns": [
+            {
+                "action": "clouddirectory:ListManagedSchemaArns",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFormation.RecordHandlerProgress": [
+            {
+                "action": "cloudformation:RecordHandlerProgress",
+                "resource_mappings": {
+                    "StackName": {
+                        "template": "*"
+                    },
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "CloudFront.CreateKeyGroup": [
+            {
+                "action": "cloudfront:CreateKeyGroup",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.CreateMonitoringSubscription": [
+            {
+                "action": "cloudfront:CreateMonitoringSubscription",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.CreateRealtimeLogConfig": [
+            {
+                "action": "cloudfront:CreateRealtimeLogConfig",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.DeleteKeyGroup": [
+            {
+                "action": "cloudfront:DeleteKeyGroup",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.DeleteMonitoringSubscription": [
+            {
+                "action": "cloudfront:DeleteMonitoringSubscription",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.DeleteRealtimeLogConfig": [
+            {
+                "action": "cloudfront:DeleteRealtimeLogConfig",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.GetKeyGroup": [
+            {
+                "action": "cloudfront:GetKeyGroup",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.GetKeyGroupConfig": [
+            {
+                "action": "cloudfront:GetKeyGroupConfig",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.GetMonitoringSubscription": [
+            {
+                "action": "cloudfront:GetMonitoringSubscription",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.GetRealtimeLogConfig": [
+            {
+                "action": "cloudfront:GetRealtimeLogConfig",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.ListDistributionsByKeyGroup": [
+            {
+                "action": "cloudfront:ListDistributionsByKeyGroup",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.ListDistributionsByRealtimeLogConfig": [
+            {
+                "action": "cloudfront:ListDistributionsByRealtimeLogConfig",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.ListKeyGroups": [
+            {
+                "action": "cloudfront:ListKeyGroups",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.ListRealtimeLogConfigs": [
+            {
+                "action": "cloudfront:ListRealtimeLogConfigs",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.UpdateKeyGroup": [
+            {
+                "action": "cloudfront:UpdateKeyGroup",
+                "resource_mappings": {}
+            }
+        ],
+        "CloudFront.UpdateRealtimeLogConfig": [
+            {
+                "action": "cloudfront:UpdateRealtimeLogConfig",
+                "resource_mappings": {}
+            }
+        ],
+        "CodeBuild.GetReportGroupTrend": [
+            {
+                "action": "codebuild:GetReportGroupTrend",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "report-group": "${reportGroupArn}"
+                }
+            }
+        ],
+        "DMS.DeleteConnection": [
+            {
+                "action": "dms:DeleteConnection",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "Endpoint": "${EndpointArn}",
+                    "ReplicationInstance": "${ReplicationInstanceArn}"
+                }
+            }
+        ],
+        "DMS.MoveReplicationTask": [
+            {
+                "action": "dms:MoveReplicationTask",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "ReplicationInstance": "${TargetReplicationInstanceArn}",
+                    "ReplicationTask": "${ReplicationTaskArn}"
+                }
+            }
+        ],
+        "ECS.ExecuteCommand": [
+            {
+                "action": "ecs:ExecuteCommand",
+                "resource_mappings": {
+                    "ClusterName": {
+                        "template": "%%regex%${cluster}%/^(?:.+?\\/)?(.+)$/g%%"
+                    },
+                    "TaskId": {
+                        "template": "%%regex%${task}%/^(?:.+\\/)?(.+)$/g%%"
+                    }
+                }
+            }
+        ],
+        "ECS.UpdateCapacityProvider": [
+            {
+                "action": "ecs:UpdateCapacityProvider",
+                "resource_mappings": {
+                    "CapacityProviderName": {
+                        "template": "${name}"
+                    }
+                }
+            }
+        ],
+        "ECS.UpdateCluster": [
+            {
+                "action": "ecs:UpdateCluster",
+                "resource_mappings": {
+                    "ClusterName": {
+                        "template": "%%regex%${cluster}%/^(?:.+?\\/)?(.+)$/g%%"
+                    }
+                }
+            }
+        ],
+        "ES.AssociatePackage": [
+            {
+                "action": "es:AssociatePackage",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "ES.CancelElasticsearchServiceSoftwareUpdate": [
+            {
+                "action": "es:CancelElasticsearchServiceSoftwareUpdate",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "ES.CreatePackage": [
+            {
+                "action": "es:CreatePackage",
+                "resource_mappings": {}
+            }
+        ],
+        "ES.DeletePackage": [
+            {
+                "action": "es:DeletePackage",
+                "resource_mappings": {}
+            }
+        ],
+        "ES.DescribePackages": [
+            {
+                "action": "es:DescribePackages",
+                "resource_mappings": {}
+            }
+        ],
+        "ES.DissociatePackage": [
+            {
+                "action": "es:DissociatePackage",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "ES.GetPackageVersionHistory": [
+            {
+                "action": "es:GetPackageVersionHistory",
+                "resource_mappings": {}
+            }
+        ],
+        "ES.ListDomainsForPackage": [
+            {
+                "action": "es:ListDomainsForPackage",
+                "resource_mappings": {}
+            }
+        ],
+        "ES.ListPackagesForDomain": [
+            {
+                "action": "es:ListPackagesForDomain",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "ES.StartElasticsearchServiceSoftwareUpdate": [
+            {
+                "action": "es:StartElasticsearchServiceSoftwareUpdate",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "ES.UpdatePackage": [
+            {
+                "action": "es:UpdatePackage",
+                "resource_mappings": {}
+            }
+        ],
+        "Inspector.CreateExclusionsPreview": [
+            {
+                "action": "inspector:CreateExclusionsPreview",
+                "resource_mappings": {}
+            }
+        ],
+        "Inspector.DescribeExclusions": [
+            {
+                "action": "inspector:DescribeExclusions",
+                "resource_mappings": {}
+            }
+        ],
+        "Inspector.GetAssessmentReport": [
+            {
+                "action": "inspector:GetAssessmentReport",
+                "resource_mappings": {}
+            }
+        ],
+        "Inspector.GetExclusionsPreview": [
+            {
+                "action": "inspector:GetExclusionsPreview",
+                "resource_mappings": {}
+            }
+        ],
+        "Inspector.ListExclusions": [
+            {
+                "action": "inspector:ListExclusions",
+                "resource_mappings": {}
+            }
+        ],
+        "Iot.CancelDetectMitigationActionsTask": [
+            {
+                "action": "iot:CancelDetectMitigationActionsTask",
+                "resource_mappings": {}
+            }
+        ],
+        "Iot.CreateCustomMetric": [
+            {
+                "action": "iot:CreateCustomMetric",
+                "resource_mappings": {
+                    "MetricName": {
+                        "template": "${metricName}"
+                    }
+                }
+            }
+        ],
+        "Iot.CreateTopicRuleDestination": [
+            {
+                "action": "iot:CreateTopicRuleDestination",
+                "resource_mappings": {
+                    "destinationType": {
+                        "template": "*"
+                    },
+                    "uuid": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Iot.DeleteCustomMetric": [
+            {
+                "action": "iot:DeleteCustomMetric",
+                "resource_mappings": {
+                    "MetricName": {
+                        "template": "${metricName}"
+                    }
+                }
+            }
+        ],
+        "Iot.DeleteTopicRuleDestination": [
+            {
+                "action": "iot:DeleteTopicRuleDestination",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "destination": "${arn}"
+                }
+            }
+        ],
+        "Iot.DescribeCustomMetric": [
+            {
+                "action": "iot:DescribeCustomMetric",
+                "resource_mappings": {
+                    "MetricName": {
+                        "template": "${metricName}"
+                    }
+                }
+            }
+        ],
+        "Iot.DescribeDetectMitigationActionsTask": [
+            {
+                "action": "iot:DescribeDetectMitigationActionsTask",
+                "resource_mappings": {}
+            }
+        ],
+        "Iot.GetBehaviorModelTrainingSummaries": [
+            {
+                "action": "iot:GetBehaviorModelTrainingSummaries",
+                "resource_mappings": {
+                    "SecurityProfileName": {
+                        "template": "${securityProfileName}"
+                    }
+                }
+            }
+        ],
+        "Iot.GetTopicRuleDestination": [
+            {
+                "action": "iot:GetTopicRuleDestination",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "destination": "${arn}"
+                }
+            }
+        ],
+        "Iot.ListCustomMetrics": [
+            {
+                "action": "iot:ListCustomMetrics",
+                "resource_mappings": {}
+            }
+        ],
+        "Iot.ListDetectMitigationActionsExecutions": [
+            {
+                "action": "iot:ListDetectMitigationActionsExecutions",
+                "resource_mappings": {
+                    "ThingName": {
+                        "template": "${thingName}"
+                    }
+                }
+            }
+        ],
+        "Iot.ListDetectMitigationActionsTasks": [
+            {
+                "action": "iot:ListDetectMitigationActionsTasks",
+                "resource_mappings": {}
+            }
+        ],
+        "Iot.ListTopicRuleDestinations": [
+            {
+                "action": "iot:ListTopicRuleDestinations",
+                "resource_mappings": {}
+            }
+        ],
+        "Iot.StartDetectMitigationActionsTask": [
+            {
+                "action": "iot:StartDetectMitigationActionsTask",
+                "resource_mappings": {
+                    "SecurityProfileName": {
+                        "template": "${target.securityProfileName}"
+                    }
+                }
+            }
+        ],
+        "Iot.UpdateCustomMetric": [
+            {
+                "action": "iot:UpdateCustomMetric",
+                "resource_mappings": {
+                    "MetricName": {
+                        "template": "${metricName}"
+                    }
+                }
+            }
+        ],
+        "Iot.UpdateTopicRuleDestination": [
+            {
+                "action": "iot:UpdateTopicRuleDestination",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "destination": "${arn}"
+                }
+            }
+        ],
+        "Lightsail.AttachCertificateToDistribution": [
+            {
+                "action": "lightsail:AttachCertificateToDistribution",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.CreateCertificate": [
+            {
+                "action": "lightsail:CreateCertificate",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.CreateContactMethod": [
+            {
+                "action": "lightsail:CreateContactMethod",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.CreateContainerService": [
+            {
+                "action": "lightsail:CreateContainerService",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.CreateContainerServiceDeployment": [
+            {
+                "action": "lightsail:CreateContainerServiceDeployment",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.CreateContainerServiceRegistryLogin": [
+            {
+                "action": "lightsail:CreateContainerServiceRegistryLogin",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.CreateDistribution": [
+            {
+                "action": "lightsail:CreateDistribution",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.DeleteAlarm": [
+            {
+                "action": "lightsail:DeleteAlarm",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.DeleteAutoSnapshot": [
+            {
+                "action": "lightsail:DeleteAutoSnapshot",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.DeleteCertificate": [
+            {
+                "action": "lightsail:DeleteCertificate",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.DeleteContactMethod": [
+            {
+                "action": "lightsail:DeleteContactMethod",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.DeleteContainerImage": [
+            {
+                "action": "lightsail:DeleteContainerImage",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.DeleteContainerService": [
+            {
+                "action": "lightsail:DeleteContainerService",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.DeleteDistribution": [
+            {
+                "action": "lightsail:DeleteDistribution",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.DisableAddOn": [
+            {
+                "action": "lightsail:DisableAddOn",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.EnableAddOn": [
+            {
+                "action": "lightsail:EnableAddOn",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.GetAlarms": [
+            {
+                "action": "lightsail:GetAlarms",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetAutoSnapshots": [
+            {
+                "action": "lightsail:GetAutoSnapshots",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetCertificates": [
+            {
+                "action": "lightsail:GetCertificates",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetContactMethods": [
+            {
+                "action": "lightsail:GetContactMethods",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetContainerAPIMetadata": [
+            {
+                "action": "lightsail:GetContainerAPIMetadata",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetContainerImages": [
+            {
+                "action": "lightsail:GetContainerImages",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetContainerLog": [
+            {
+                "action": "lightsail:GetContainerLog",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetContainerServiceDeployments": [
+            {
+                "action": "lightsail:GetContainerServiceDeployments",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetContainerServiceMetricData": [
+            {
+                "action": "lightsail:GetContainerServiceMetricData",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetContainerServicePowers": [
+            {
+                "action": "lightsail:GetContainerServicePowers",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetContainerServices": [
+            {
+                "action": "lightsail:GetContainerServices",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetDistributionBundles": [
+            {
+                "action": "lightsail:GetDistributionBundles",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetDistributionLatestCacheReset": [
+            {
+                "action": "lightsail:GetDistributionLatestCacheReset",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetDistributionMetricData": [
+            {
+                "action": "lightsail:GetDistributionMetricData",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.GetDistributions": [
+            {
+                "action": "lightsail:GetDistributions",
+                "resource_mappings": {}
+            }
+        ],
+        "Lightsail.PutAlarm": [
+            {
+                "action": "lightsail:PutAlarm",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.RegisterContainerImage": [
+            {
+                "action": "lightsail:RegisterContainerImage",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.ResetDistributionCache": [
+            {
+                "action": "lightsail:ResetDistributionCache",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.SendContactMethodVerification": [
+            {
+                "action": "lightsail:SendContactMethodVerification",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.SetIpAddressType": [
+            {
+                "action": "lightsail:SetIpAddressType",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.TestAlarm": [
+            {
+                "action": "lightsail:TestAlarm",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.UpdateContainerService": [
+            {
+                "action": "lightsail:UpdateContainerService",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.UpdateDistribution": [
+            {
+                "action": "lightsail:UpdateDistribution",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Lightsail.UpdateDistributionBundle": [
+            {
+                "action": "lightsail:UpdateDistributionBundle",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "OpsWorks.DescribeOperatingSystems": [
+            {
+                "action": "opsworks:DescribeOperatingSystems",
+                "resource_mappings": {}
+            }
+        ],
+        "RDS.CreateCustomAvailabilityZone": [
+            {
+                "action": "rds:CreateCustomAvailabilityZone",
+                "resource_mappings": {}
+            }
+        ],
+        "RDS.DeleteCustomAvailabilityZone": [
+            {
+                "action": "rds:DeleteCustomAvailabilityZone",
+                "resource_mappings": {}
+            }
+        ],
+        "RDS.DeleteInstallationMedia": [
+            {
+                "action": "rds:DeleteInstallationMedia",
+                "resource_mappings": {}
+            }
+        ],
+        "RDS.DescribeCustomAvailabilityZones": [
+            {
+                "action": "rds:DescribeCustomAvailabilityZones",
+                "resource_mappings": {}
+            }
+        ],
+        "RDS.DescribeInstallationMedia": [
+            {
+                "action": "rds:DescribeInstallationMedia",
+                "resource_mappings": {}
+            }
+        ],
+        "RDS.ImportInstallationMedia": [
+            {
+                "action": "rds:ImportInstallationMedia",
+                "resource_mappings": {}
+            }
+        ],
+        "RDS.ModifyCertificates": [
+            {
+                "action": "rds:ModifyCertificates",
+                "resource_mappings": {}
+            }
+        ],
+        "RDS.StartDBInstanceAutomatedBackupsReplication": [
+            {
+                "action": "rds:StartDBInstanceAutomatedBackupsReplication",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "db": "${SourceDBInstanceArn}"
+                }
+            }
+        ],
+        "RDS.StopDBInstanceAutomatedBackupsReplication": [
+            {
+                "action": "rds:StopDBInstanceAutomatedBackupsReplication",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "db": "${SourceDBInstanceArn}"
+                }
+            }
+        ],
+        "Redshift.CreateUsageLimit": [
+            {
+                "action": "redshift:CreateUsageLimit",
+                "resource_mappings": {
+                    "UsageLimitId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Redshift.DeleteUsageLimit": [
+            {
+                "action": "redshift:DeleteUsageLimit",
+                "resource_mappings": {
+                    "UsageLimitId": {
+                        "template": "${UsageLimitId}"
+                    }
+                }
+            }
+        ],
+        "Redshift.DescribeUsageLimits": [
+            {
+                "action": "redshift:DescribeUsageLimits",
+                "resource_mappings": {
+                    "UsageLimitId": {
+                        "template": "${UsageLimitId}"
+                    }
+                }
+            }
+        ],
+        "Redshift.ModifyUsageLimit": [
+            {
+                "action": "redshift:ModifyUsageLimit",
+                "resource_mappings": {
+                    "UsageLimitId": {
+                        "template": "${UsageLimitId}"
+                    }
+                }
+            }
+        ],
+        "Route53Domains.AcceptDomainTransferFromAnotherAwsAccount": [
+            {
+                "action": "route53domains:AcceptDomainTransferFromAnotherAwsAccount",
+                "resource_mappings": {}
+            }
+        ],
+        "Route53Domains.CancelDomainTransferToAnotherAwsAccount": [
+            {
+                "action": "route53domains:CancelDomainTransferToAnotherAwsAccount",
+                "resource_mappings": {}
+            }
+        ],
+        "Route53Domains.CheckDomainTransferability": [
+            {
+                "action": "route53domains:CheckDomainTransferability",
+                "resource_mappings": {}
+            }
+        ],
+        "Route53Domains.RejectDomainTransferFromAnotherAwsAccount": [
+            {
+                "action": "route53domains:RejectDomainTransferFromAnotherAwsAccount",
+                "resource_mappings": {}
+            }
+        ],
+        "Route53Domains.TransferDomainToAnotherAwsAccount": [
+            {
+                "action": "route53domains:TransferDomainToAnotherAwsAccount",
+                "resource_mappings": {}
+            }
+        ],
+        "ServiceCatalog.DescribePortfolioShares": [
+            {
+                "action": "servicecatalog:DescribePortfolioShares",
+                "resource_mappings": {
+                    "PortfolioId": {
+                        "template": "${PortfolioId}"
+                    }
+                }
+            }
+        ],
+        "ServiceCatalog.GetProvisionedProductOutputs": [
+            {
+                "action": "servicecatalog:GetProvisionedProductOutputs",
+                "resource_mappings": {}
+            }
+        ],
+        "ServiceCatalog.UpdatePortfolioShare": [
+            {
+                "action": "servicecatalog:UpdatePortfolioShare",
+                "resource_mappings": {
+                    "PortfolioId": {
+                        "template": "${PortfolioId}"
+                    }
+                }
+            }
+        ],
+        "Shield.AssociateProactiveEngagementDetails": [
+            {
+                "action": "shield:AssociateProactiveEngagementDetails",
+                "resource_mappings": {}
+            }
+        ],
+        "Shield.CreateProtectionGroup": [
+            {
+                "action": "shield:CreateProtectionGroup",
+                "resource_mappings": {}
+            }
+        ],
+        "Shield.DeleteProtectionGroup": [
+            {
+                "action": "shield:DeleteProtectionGroup",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "${ProtectionGroupId}"
+                    }
+                }
+            }
+        ],
+        "Shield.DescribeAttackStatistics": [
+            {
+                "action": "shield:DescribeAttackStatistics",
+                "resource_mappings": {}
+            }
+        ],
+        "Shield.DescribeProtectionGroup": [
+            {
+                "action": "shield:DescribeProtectionGroup",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "${ProtectionGroupId}"
+                    }
+                }
+            }
+        ],
+        "Shield.DisableProactiveEngagement": [
+            {
+                "action": "shield:DisableProactiveEngagement",
+                "resource_mappings": {}
+            }
+        ],
+        "Shield.EnableProactiveEngagement": [
+            {
+                "action": "shield:EnableProactiveEngagement",
+                "resource_mappings": {}
+            }
+        ],
+        "Shield.ListProtectionGroups": [
+            {
+                "action": "shield:ListProtectionGroups",
+                "resource_mappings": {}
+            }
+        ],
+        "Shield.ListResourcesInProtectionGroup": [
+            {
+                "action": "shield:ListResourcesInProtectionGroup",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "${ProtectionGroupId}"
+                    }
+                }
+            }
+        ],
+        "Shield.UpdateProtectionGroup": [
+            {
+                "action": "shield:UpdateProtectionGroup",
+                "resource_mappings": {
+                    "Id": {
+                        "template": "${ProtectionGroupId}"
+                    }
+                }
+            }
+        ],
+        "Snowball.CreateReturnShippingLabel": [
+            {
+                "action": "snowball:CreateReturnShippingLabel",
+                "resource_mappings": {}
+            }
+        ],
+        "Snowball.DescribeReturnShippingLabel": [
+            {
+                "action": "snowball:DescribeReturnShippingLabel",
+                "resource_mappings": {}
+            }
+        ],
+        "Snowball.GetSoftwareUpdates": [
+            {
+                "action": "snowball:GetSoftwareUpdates",
+                "resource_mappings": {}
+            }
+        ],
+        "Snowball.ListCompatibleImages": [
+            {
+                "action": "snowball:ListCompatibleImages",
+                "resource_mappings": {}
+            }
+        ],
+        "Snowball.UpdateJobShipmentState": [
+            {
+                "action": "snowball:UpdateJobShipmentState",
+                "resource_mappings": {}
+            }
+        ],
+        "SSM.AssociateOpsItemRelatedItem": [
+            {
+                "action": "ssm:AssociateOpsItemRelatedItem",
+                "resource_mappings": {}
+            }
+        ],
+        "SSM.DisassociateOpsItemRelatedItem": [
+            {
+                "action": "ssm:DisassociateOpsItemRelatedItem",
+                "resource_mappings": {}
+            }
+        ],
+        "SSM.ListOpsItemRelatedItems": [
+            {
+                "action": "ssm:ListOpsItemRelatedItems",
+                "resource_mappings": {}
+            }
+        ],
+        "SSM.StartAutomationExecution": [
+            {
+                "action": "ssm:StartAutomationExecution",
+                "resource_mappings": {
+                    "AutomationDefinitionName": {
+                        "template": "*"
+                    },
+                    "VersionId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "SSM.StartChangeRequestExecution": [
+            {
+                "action": "ssm:StartChangeRequestExecution",
+                "resource_mappings": {
+                    "AutomationDefinitionName": {
+                        "template": "*"
+                    },
+                    "VersionId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "SWF.UndeprecateActivityType": [
+            {
+                "action": "swf:UndeprecateActivityType",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${domain}"
+                    }
+                }
+            }
+        ],
+        "SWF.UndeprecateDomain": [
+            {
+                "action": "swf:UndeprecateDomain",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${name}"
+                    }
+                }
+            }
+        ],
+        "SWF.UndeprecateWorkflowType": [
+            {
+                "action": "swf:UndeprecateWorkflowType",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${domain}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.AssociateConnectionAlias": [
+            {
+                "action": "workspaces:AssociateConnectionAlias",
+                "resource_mappings": {
+                    "ConnectionAliasId": {
+                        "template": "${AliasId}"
+                    },
+                    "DirectoryId": {
+                        "template": "${ResourceId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.AssociateIpGroups": [
+            {
+                "action": "workspaces:AssociateIpGroups",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${DirectoryId}"
+                    },
+                    "GroupId": {
+                        "template": "${GroupIds}[]"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.CopyWorkspaceImage": [
+            {
+                "action": "workspaces:CopyWorkspaceImage",
+                "resource_mappings": {
+                    "ImageId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "workspaces:DescribeWorkspaceImages",
+                "resource_mappings": {}
+            }
+        ],
+        "WorkSpaces.CreateConnectionAlias": [
+            {
+                "action": "workspaces:CreateConnectionAlias",
+                "resource_mappings": {}
+            }
+        ],
+        "WorkSpaces.CreateIpGroup": [
+            {
+                "action": "workspaces:CreateIpGroup",
+                "resource_mappings": {}
+            }
+        ],
+        "WorkSpaces.CreateWorkspaceBundle": [
+            {
+                "action": "workspaces:CreateWorkspaceBundle",
+                "resource_mappings": {
+                    "ImageId": {
+                        "template": "${ImageId}"
+                    }
+                }
+            },
+            {
+                "action": "workspaces:CreateTags",
+                "resource_mappings": {}
+            }
+        ],
+        "WorkSpaces.CreateWorkspaces": [
+            {
+                "action": "workspaces:CreateWorkspaces",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${Workspaces[].DirectoryId}"
+                    },
+                    "BundleId": {
+                        "template": "${Workspaces[].BundleId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.DeleteConnectionAlias": [
+            {
+                "action": "workspaces:DeleteConnectionAlias",
+                "resource_mappings": {
+                    "ConnectionAliasId": {
+                        "template": "${AliasId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.DeleteWorkspaceBundle": [
+            {
+                "action": "workspaces:DeleteWorkspaceBundle",
+                "resource_mappings": {
+                    "BundleId": {
+                        "template": "${BundleId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.DeleteWorkspaceImage": [
+            {
+                "action": "workspaces:DeleteWorkspaceImage",
+                "resource_mappings": {
+                    "ImageId": {
+                        "template": "${ImageId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.DeregisterWorkspaceDirectory": [
+            {
+                "action": "workspaces:DeregisterWorkspaceDirectory",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${DirectoryId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.DescribeConnectionAliasPermissions": [
+            {
+                "action": "workspaces:DescribeConnectionAliasPermissions",
+                "resource_mappings": {
+                    "ConnectionAliasId": {
+                        "template": "${AliasId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.DescribeConnectionAliases": [
+            {
+                "action": "workspaces:DescribeConnectionAliases",
+                "resource_mappings": {}
+            }
+        ],
+        "WorkSpaces.DescribeWorkspaceBundles": [
+            {
+                "action": "workspaces:DescribeWorkspaceBundles",
+                "resource_mappings": {}
+            }
+        ],
+        "WorkSpaces.DescribeWorkspaceImagePermissions": [
+            {
+                "action": "workspaces:DescribeWorkspaceImagePermissions",
+                "resource_mappings": {
+                    "ImageId": {
+                        "template": "${ImageId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.DescribeWorkspaceSnapshots": [
+            {
+                "action": "workspaces:DescribeWorkspaceSnapshots",
+                "resource_mappings": {
+                    "WorkspaceId": {
+                        "template": "${WorkspaceId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.DisassociateConnectionAlias": [
+            {
+                "action": "workspaces:DisassociateConnectionAlias",
+                "resource_mappings": {
+                    "ConnectionAliasId": {
+                        "template": "${AliasId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.DisassociateIpGroups": [
+            {
+                "action": "workspaces:DisassociateIpGroups",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${DirectoryId}"
+                    },
+                    "GroupId": {
+                        "template": "${GroupIds}[]"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.ImportWorkspaceImage": [
+            {
+                "action": "workspaces:ImportWorkspaceImage",
+                "resource_mappings": {}
+            },
+            {
+                "action": "ec2:DescribeImages",
+                "resource_mappings": {}
+            },
+            {
+                "action": "ec2:ModifyImageAttribute",
+                "resource_mappings": {
+                    "ImageId": {
+                        "template": "${Ec2ImageId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.MigrateWorkspace": [
+            {
+                "action": "workspaces:MigrateWorkspace",
+                "resource_mappings": {
+                    "BundleId": {
+                        "template": "${BundleId}"
+                    },
+                    "WorkspaceId": {
+                        "template": "${SourceWorkspaceId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.ModifySelfservicePermissions": [
+            {
+                "action": "workspaces:ModifySelfservicePermissions",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${ResourceId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.ModifyWorkspaceAccessProperties": [
+            {
+                "action": "workspaces:ModifyWorkspaceAccessProperties",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${ResourceId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.ModifyWorkspaceCreationProperties": [
+            {
+                "action": "workspaces:ModifyWorkspaceCreationProperties",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${ResourceId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.RegisterWorkspaceDirectory": [
+            {
+                "action": "workspaces:RegisterWorkspaceDirectory",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${DirectoryId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.RestoreWorkspace": [
+            {
+                "action": "workspaces:RestoreWorkspace",
+                "resource_mappings": {
+                    "WorkspaceId": {
+                        "template": "${WorkspaceId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.UpdateConnectionAliasPermission": [
+            {
+                "action": "workspaces:UpdateConnectionAliasPermission",
+                "resource_mappings": {
+                    "ConnectionAliasId": {
+                        "template": "${AliasId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.UpdateWorkspaceBundle": [
+            {
+                "action": "workspaces:UpdateWorkspaceBundle",
+                "resource_mappings": {
+                    "BundleId": {
+                        "template": "${BundleId}"
+                    },
+                    "ImageId": {
+                        "template": "${ImageId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.UpdateWorkspaceImagePermission": [
+            {
+                "action": "workspaces:UpdateWorkspaceImagePermission",
+                "resource_mappings": {
+                    "ImageId": {
+                        "template": "${ImageId}"
+                    }
+                }
+            }
+        ],
+        "Greengrass.UpdateThingRuntimeConfiguration": [
+            {
+                "action": "greengrass:UpdateThingRuntimeConfiguration",
+                "resource_mappings": {
+                    "ThingName": {
+                        "template": "${ThingName}"
+                    }
+                }
+            }
+        ],
+        "Glue.ResumeWorkflowRun": [
+            {
+                "action": "glue:ResumeWorkflowRun",
+                "resource_mappings": {}
+            }
+        ],
+        "Glue.StopWorkflowRun": [
+            {
+                "action": "glue:StopWorkflowRun",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaPackage.RotateChannelCredentials": [
+            {
+                "action": "mediapackage:RotateChannelCredentials",
+                "resource_mappings": {
+                    "ChannelIdentifier": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "AppSync.CreateApiCache": [
+            {
+                "action": "appsync:CreateApiCache",
+                "resource_mappings": {}
+            }
+        ],
+        "AppSync.DeleteApiCache": [
+            {
+                "action": "appsync:DeleteApiCache",
+                "resource_mappings": {}
+            }
+        ],
+        "AppSync.FlushApiCache": [
+            {
+                "action": "appsync:FlushApiCache",
+                "resource_mappings": {}
+            }
+        ],
+        "AppSync.GetApiCache": [
+            {
+                "action": "appsync:GetApiCache",
+                "resource_mappings": {}
+            }
+        ],
+        "AppSync.UpdateApiCache": [
+            {
+                "action": "appsync:UpdateApiCache",
+                "resource_mappings": {}
+            }
+        ],
+        "GuardDuty.GetMemberDetectors": [
+            {
+                "action": "guardduty:GetMemberDetectors",
+                "resource_mappings": {
+                    "DetectorId": {
+                        "template": "${DetectorId}"
+                    }
+                }
+            }
+        ],
+        "GuardDuty.GetUsageStatistics": [
+            {
+                "action": "guardduty:GetUsageStatistics",
+                "resource_mappings": {
+                    "DetectorId": {
+                        "template": "${DetectorId}"
+                    }
+                }
+            }
+        ],
+        "GuardDuty.UpdateMemberDetectors": [
+            {
+                "action": "guardduty:UpdateMemberDetectors",
+                "resource_mappings": {
+                    "DetectorId": {
+                        "template": "${DetectorId}"
+                    }
+                }
+            }
+        ],
+        "SageMaker.DeleteHumanTaskUi": [
+            {
+                "action": "sagemaker:DeleteHumanTaskUi",
+                "resource_mappings": {
+                    "HumanTaskUiName": {
+                        "template": "${HumanTaskUiName}"
+                    }
+                }
+            }
+        ],
+        "WorkMail.CreateMobileDeviceAccessRule": [
+            {
+                "action": "workmail:CreateMobileDeviceAccessRule",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${OrganizationId}"
+                    }
+                }
+            }
+        ],
+        "WorkMail.DeleteMobileDeviceAccessRule": [
+            {
+                "action": "workmail:DeleteMobileDeviceAccessRule",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${OrganizationId}"
+                    }
+                }
+            }
+        ],
+        "WorkMail.GetMobileDeviceAccessEffect": [
+            {
+                "action": "workmail:GetMobileDeviceAccessEffect",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${OrganizationId}"
+                    }
+                }
+            }
+        ],
+        "WorkMail.ListMobileDeviceAccessRules": [
+            {
+                "action": "workmail:ListMobileDeviceAccessRules",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${OrganizationId}"
+                    }
+                }
+            }
+        ],
+        "WorkMail.UpdateMobileDeviceAccessRule": [
+            {
+                "action": "workmail:UpdateMobileDeviceAccessRule",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${OrganizationId}"
+                    }
+                }
+            }
+        ],
+        "Connect.CreateIntegrationAssociation": [
+            {
+                "action": "connect:CreateIntegrationAssociation",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "IntegrationAssociationId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "app-integrations:CreateEventIntegrationAssociation",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "event-integration-association": "${IntegrationArn}"
+                }
+            },
+            {
+                "action": "connect:DescribeInstance",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:DescribeDirectories",
+                "resource_mappings": {}
+            },
+            {
+                "action": "events:PutRule",
+                "resource_mappings": {
+                    "EventBusName": {
+                        "template": "*"
+                    },
+                    "RuleName": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "events:PutTargets",
+                "resource_mappings": {
+                    "EventBusName": {
+                        "template": "*"
+                    },
+                    "RuleName": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Connect.CreateUseCase": [
+            {
+                "action": "connect:CreateUseCase",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "IntegrationAssociationId": {
+                        "template": "${IntegrationAssociationId}"
+                    },
+                    "UseCaseId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "connect:DescribeInstance",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:DescribeDirectories",
+                "resource_mappings": {}
+            }
+        ],
+        "Connect.DeleteIntegrationAssociation": [
+            {
+                "action": "connect:DeleteIntegrationAssociation",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "IntegrationAssociationId": {
+                        "template": "${IntegrationAssociationId}"
+                    }
+                }
+            },
+            {
+                "action": "app-integrations:DeleteEventIntegrationAssociation",
+                "resource_mappings": {
+                    "EventIntegrationName": {
+                        "template": "*"
+                    },
+                    "ResourceId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "connect:DescribeInstance",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:DescribeDirectories",
+                "resource_mappings": {}
+            },
+            {
+                "action": "events:DeleteRule",
+                "resource_mappings": {
+                    "EventBusName": {
+                        "template": "*"
+                    },
+                    "RuleName": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "events:ListTargetsByRule",
+                "resource_mappings": {
+                    "EventBusName": {
+                        "template": "*"
+                    },
+                    "RuleName": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "events:RemoveTargets",
+                "resource_mappings": {
+                    "EventBusName": {
+                        "template": "*"
+                    },
+                    "RuleName": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Connect.DeleteUseCase": [
+            {
+                "action": "connect:DeleteUseCase",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "UseCaseId": {
+                        "template": "${UseCaseId}"
+                    }
+                }
+            },
+            {
+                "action": "connect:DescribeInstance",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:DescribeDirectories",
+                "resource_mappings": {}
+            }
+        ],
+        "Connect.ListIntegrationAssociations": [
+            {
+                "action": "connect:ListIntegrationAssociations",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
+                }
+            },
+            {
+                "action": "connect:DescribeInstance",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:DescribeDirectories",
+                "resource_mappings": {}
+            }
+        ],
+        "Connect.ListUseCases": [
+            {
+                "action": "connect:ListUseCases",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
+                }
+            },
+            {
+                "action": "connect:DescribeInstance",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:DescribeDirectories",
+                "resource_mappings": {}
+            }
+        ],
+        "SecretsManager.RemoveRegionsFromReplication": [
+            {
+                "action": "secretsmanager:RemoveRegionsFromReplication",
+                "resource_mappings": {
+                    "SecretId": {
+                        "template": "${SecretId}"
+                    }
+                }
+            }
+        ],
+        "SecretsManager.ReplicateSecretToRegions": [
+            {
+                "action": "secretsmanager:ReplicateSecretToRegions",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "Secret": "arn:${Partition}:secretsmanager:${AddReplicaRegions[].Region}:${Account}:secret:${SecretId}"
+                }
+            }
+        ],
+        "SecretsManager.StopReplicationToReplica": [
+            {
+                "action": "secretsmanager:StopReplicationToReplica",
+                "resource_mappings": {
+                    "SecretId": {
+                        "template": "${SecretId}"
+                    }
+                }
+            }
+        ],
+        "IoTAnalytics.ListDatasetContents": [
+            {
+                "action": "iotanalytics:ListDatasetContents",
+                "resource_mappings": {
+                    "DatasetName": {
+                        "template": "${datasetName}"
+                    }
+                }
+            }
+        ],
+        "Chime.ListSupportedPhoneNumberCountries": [
+            {
+                "action": "chime:ListSupportedPhoneNumberCountries",
+                "resource_mappings": {}
+            }
+        ],
+        "Amplify.CreateWebhook": [
+            {
+                "action": "amplify:CreateWebHook",
+                "resource_mappings": {
+                    "AppId": {
+                        "template": "${appId}"
+                    },
+                    "BranchName": {
+                        "template": "${branchName}"
+                    }
+                }
+            }
+        ],
+        "Amplify.DeleteWebhook": [
+            {
+                "action": "amplify:DeleteWebHook",
+                "resource_mappings": {
+                    "AppId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Amplify.GetWebhook": [
+            {
+                "action": "amplify:GetWebHook",
+                "resource_mappings": {
+                    "AppId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Amplify.ListTagsForResource": [
+            {
+                "action": "amplify:ListTagsForResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "apps": "%%iftemplatematch%${resourceArn}%%",
+                    "branches": "%%iftemplatematch%${resourceArn}%%",
+                    "jobs": "%%iftemplatematch%${resourceArn}%%"
+                }
+            }
+        ],
+        "Amplify.ListWebhooks": [
+            {
+                "action": "amplify:ListWebHooks",
+                "resource_mappings": {
+                    "AppId": {
+                        "template": "${appId}"
+                    }
+                }
+            }
+        ],
+        "Amplify.UpdateWebhook": [
+            {
+                "action": "amplify:UpdateWebHook",
+                "resource_mappings": {
+                    "AppId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "DataSync.UpdateTaskExecution": [
+            {
+                "action": "datasync:UpdateTaskExecution",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "taskexecution": "${TaskExecutionArn}"
+                }
+            }
+        ],
+        "ComprehendMedical.DescribeEntitiesDetectionV2Job": [
+            {
+                "action": "comprehendmedical:DescribeEntitiesDetectionV2Job",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.DescribeICD10CMInferenceJob": [
+            {
+                "action": "comprehendmedical:DescribeICD10CMInferenceJob",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.DescribePHIDetectionJob": [
+            {
+                "action": "comprehendmedical:DescribePHIDetectionJob",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.DescribeRxNormInferenceJob": [
+            {
+                "action": "comprehendmedical:DescribeRxNormInferenceJob",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.DetectEntitiesV2": [
+            {
+                "action": "comprehendmedical:DetectEntitiesV2",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.InferICD10CM": [
+            {
+                "action": "comprehendmedical:InferICD10CM",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.InferRxNorm": [
+            {
+                "action": "comprehendmedical:InferRxNorm",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.ListEntitiesDetectionV2Jobs": [
+            {
+                "action": "comprehendmedical:ListEntitiesDetectionV2Jobs",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.ListICD10CMInferenceJobs": [
+            {
+                "action": "comprehendmedical:ListICD10CMInferenceJobs",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.ListPHIDetectionJobs": [
+            {
+                "action": "comprehendmedical:ListPHIDetectionJobs",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.ListRxNormInferenceJobs": [
+            {
+                "action": "comprehendmedical:ListRxNormInferenceJobs",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.StartEntitiesDetectionV2Job": [
+            {
+                "action": "comprehendmedical:StartEntitiesDetectionV2Job",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.StartICD10CMInferenceJob": [
+            {
+                "action": "comprehendmedical:StartICD10CMInferenceJob",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.StartPHIDetectionJob": [
+            {
+                "action": "comprehendmedical:StartPHIDetectionJob",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.StartRxNormInferenceJob": [
+            {
+                "action": "comprehendmedical:StartRxNormInferenceJob",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.StopEntitiesDetectionV2Job": [
+            {
+                "action": "comprehendmedical:StopEntitiesDetectionV2Job",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.StopICD10CMInferenceJob": [
+            {
+                "action": "comprehendmedical:StopICD10CMInferenceJob",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.StopPHIDetectionJob": [
+            {
+                "action": "comprehendmedical:StopPHIDetectionJob",
+                "resource_mappings": {}
+            }
+        ],
+        "ComprehendMedical.StopRxNormInferenceJob": [
+            {
+                "action": "comprehendmedical:StopRxNormInferenceJob",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.AddFlowSources": [
+            {
+                "action": "mediaconnect:AddFlowSources",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.AddFlowVpcInterfaces": [
+            {
+                "action": "mediaconnect:AddFlowVpcInterfaces",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.DescribeOffering": [
+            {
+                "action": "mediaconnect:DescribeOffering",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.DescribeReservation": [
+            {
+                "action": "mediaconnect:DescribeReservation",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.ListOfferings": [
+            {
+                "action": "mediaconnect:ListOfferings",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.ListReservations": [
+            {
+                "action": "mediaconnect:ListReservations",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.ListTagsForResource": [
+            {
+                "action": "mediaconnect:ListTagsForResource",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.PurchaseOffering": [
+            {
+                "action": "mediaconnect:PurchaseOffering",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.RemoveFlowSource": [
+            {
+                "action": "mediaconnect:RemoveFlowSource",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.RemoveFlowVpcInterface": [
+            {
+                "action": "mediaconnect:RemoveFlowVpcInterface",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.TagResource": [
+            {
+                "action": "mediaconnect:TagResource",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.UntagResource": [
+            {
+                "action": "mediaconnect:UntagResource",
+                "resource_mappings": {}
+            }
+        ],
+        "MediaConnect.UpdateFlow": [
+            {
+                "action": "mediaconnect:UpdateFlow",
+                "resource_mappings": {}
+            }
+        ],
+        "FSx.DescribeFileSystemAliases": [
+            {
+                "action": "fsx:DescribeFileSystemAliases",
+                "resource_mappings": {
+                    "FileSystemId": {
+                        "template": "${FileSystemId}"
+                    }
+                }
+            }
+        ],
+        "FSx.DisassociateFileSystemAliases": [
+            {
+                "action": "fsx:DisassociateFileSystemAliases",
+                "resource_mappings": {
+                    "FileSystemId": {
+                        "template": "${FileSystemId}"
+                    }
+                }
+            }
+        ],
+        "SecurityHub.AcceptAdministratorInvitation": [
+            {
+                "action": "securityhub:AcceptAdministratorInvitation",
+                "resource_mappings": {}
+            }
+        ],
+        "SecurityHub.DisassociateFromAdministratorAccount": [
+            {
+                "action": "securityhub:DisassociateFromAdministratorAccount",
+                "resource_mappings": {}
+            }
+        ],
+        "SecurityHub.GetAdministratorAccount": [
+            {
+                "action": "securityhub:GetAdministratorAccount",
+                "resource_mappings": {}
+            }
+        ],
+        "Kafka.UpdateBrokerType": [
+            {
+                "action": "kafka:UpdateBrokerType",
+                "resource_mappings": {}
+            }
+        ],
+        "Imagebuilder.ImportComponent": [
+            {
+                "action": "imagebuilder:ImportComponent",
+                "resource_mappings": {
+                    "ComponentName": {
+                        "template": "${name}"
+                    },
+                    "ComponentVersion": {
+                        "template": "*"
+                    },
+                    "ComponentBuildVersion": {
+                        "template": "*"
+                    },
+                    "KeyId": {
+                        "template": "${kmsKeyId}"
+                    }
+                }
+            },
+            {
+                "action": "iam:CreateServiceLinkedRole",
+                "resource_mappings": {
+                    "RoleNameWithPath": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "imagebuilder:TagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "component": "*",
+                    "containerRecipe": "*",
+                    "distributionConfiguration": "*",
+                    "image": "*",
+                    "imagePipeline": "*",
+                    "imageRecipe": "*",
+                    "infrastructureConfiguration": "*"
+                }
+            },
+            {
+                "action": "kms:Encrypt",
+                "resource_mappings": {
+                    "KeyId": {
+                        "template": "${kmsKeyId}"
+                    }
+                }
+            },
+            {
+                "action": "kms:GenerateDataKey",
+                "resource_mappings": {
+                    "KeyId": {
+                        "template": "${kmsKeyId}"
+                    }
+                }
+            },
+            {
+                "action": "kms:GenerateDataKeyWithoutPlaintext",
+                "resource_mappings": {
+                    "KeyId": {
+                        "template": "${kmsKeyId}"
+                    }
+                }
+            }
+        ],
+        "Detective.AcceptInvitation": [
+            {
+                "action": "detective:AcceptInvitation",
+                "resource_mappings": {}
+            }
+        ],
+        "Detective.DisassociateMembership": [
+            {
+                "action": "detective:DisassociateMembership",
+                "resource_mappings": {}
+            }
+        ],
+        "Detective.RejectInvitation": [
+            {
+                "action": "detective:RejectInvitation",
+                "resource_mappings": {}
+            }
+        ],
+        "Synthetics.DescribeRuntimeVersions": [
+            {
+                "action": "synthetics:DescribeRuntimeVersions",
+                "resource_mappings": {}
+            }
+        ],
+        "Synthetics.GetCanary": [
+            {
+                "action": "synthetics:GetCanary",
+                "resource_mappings": {
+                    "CanaryName": {
+                        "template": "${Name}"
+                    }
+                }
+            }
+        ],
+        "IoTSiteWise.DescribeDefaultEncryptionConfiguration": [
+            {
+                "action": "iotsitewise:DescribeDefaultEncryptionConfiguration",
+                "resource_mappings": {}
+            }
+        ],
+        "IoTSiteWise.PutDefaultEncryptionConfiguration": [
+            {
+                "action": "iotsitewise:PutDefaultEncryptionConfiguration",
+                "resource_mappings": {}
+            }
+        ],
+        "HealthLake.CreateFHIRDatastore": [
+            {
+                "action": "healthlake:CreateFHIRDatastore",
+                "resource_mappings": {}
+            }
+        ],
+        "HealthLake.DeleteFHIRDatastore": [
+            {
+                "action": "healthlake:DeleteFHIRDatastore",
+                "resource_mappings": {
+                    "AccountId": {
+                        "template": "${Account}"
+                    },
+                    "DatastoreId": {
+                        "template": "${DatastoreId}"
+                    }
+                }
+            }
+        ],
+        "HealthLake.DescribeFHIRDatastore": [
+            {
+                "action": "healthlake:DescribeFHIRDatastore",
+                "resource_mappings": {
+                    "AccountId": {
+                        "template": "${Account}"
+                    },
+                    "DatastoreId": {
+                        "template": "${DatastoreId}"
+                    }
+                }
+            }
+        ],
+        "HealthLake.DescribeFHIRExportJob": [
+            {
+                "action": "healthlake:DescribeFHIRExportJob",
+                "resource_mappings": {
+                    "AccountId": {
+                        "template": "${Account}"
+                    },
+                    "DatastoreId": {
+                        "template": "${DatastoreId}"
+                    }
+                }
+            }
+        ],
+        "HealthLake.DescribeFHIRImportJob": [
+            {
+                "action": "healthlake:DescribeFHIRImportJob",
+                "resource_mappings": {
+                    "AccountId": {
+                        "template": "${Account}"
+                    },
+                    "DatastoreId": {
+                        "template": "${DatastoreId}"
+                    }
+                }
+            }
+        ],
+        "HealthLake.ListFHIRDatastores": [
+            {
+                "action": "healthlake:ListFHIRDatastores",
+                "resource_mappings": {}
+            }
+        ],
+        "HealthLake.StartFHIRExportJob": [
+            {
+                "action": "healthlake:StartFHIRExportJob",
+                "resource_mappings": {
+                    "AccountId": {
+                        "template": "${Account}"
+                    },
+                    "DatastoreId": {
+                        "template": "${DatastoreId}"
+                    }
+                }
+            }
+        ],
+        "HealthLake.StartFHIRImportJob": [
+            {
+                "action": "healthlake:StartFHIRImportJob",
+                "resource_mappings": {
+                    "AccountId": {
+                        "template": "${Account}"
+                    },
+                    "DatastoreId": {
+                        "template": "${DatastoreId}"
+                    }
+                }
+            }
+        ],
+        "IotDeviceAdvisor.StopSuiteRun": [
+            {
+                "action": "iotdeviceadvisor:StopSuiteRun",
+                "resource_mappings": {
+                    "suiteDefinitionId": {
+                        "template": "${suiteDefinitionId}"
+                    },
+                    "suiteRunId": {
+                        "template": "${suiteRunId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.AcceptEulas": [
+            {
+                "action": "nimble:AcceptEulas",
+                "resource_mappings": {
+                    "eulaId": {
+                        "template": "${eulaIds}[]"
+                    }
+                }
+            }
+        ],
+        "Nimble.CreateLaunchProfile": [
+            {
+                "action": "nimble:CreateLaunchProfile",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            },
+            {
+                "action": "ec2:CreateNetworkInterfacePermission",
+                "resource_mappings": {
+                    "NetworkInterfaceId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:RunInstances",
+                "resource_mappings": {
+                    "ImageId": {
+                        "template": "${streamConfiguration.streamingImageIds}[]"
+                    },
+                    "InstanceId": {
+                        "template": "*"
+                    },
+                    "NetworkInterfaceId": {
+                        "template": "*"
+                    },
+                    "SecurityGroupId": {
+                        "template": "*"
+                    },
+                    "SubnetId": {
+                        "template": "${ec2SubnetIds}[]"
+                    },
+                    "VolumeId": {
+                        "template": "*"
+                    },
+                    "CapacityReservationId": {
+                        "template": "*"
+                    },
+                    "ElasticGpuId": {
+                        "template": "*"
+                    },
+                    "ElasticInferenceAcceleratorId": {
+                        "template": "*"
+                    },
+                    "KeyPairName": {
+                        "template": "*"
+                    },
+                    "LaunchTemplateId": {
+                        "template": "*"
+                    },
+                    "PlacementGroupName": {
+                        "template": "*"
+                    },
+                    "SnapshotId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Nimble.CreateStreamingImage": [
+            {
+                "action": "nimble:CreateStreamingImage",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            },
+            {
+                "action": "ec2:DescribeImages",
+                "resource_mappings": {}
+            },
+            {
+                "action": "ec2:DescribeSnapshots",
+                "resource_mappings": {}
+            },
+            {
+                "action": "ec2:ModifyInstanceAttribute",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "*"
+                    },
+                    "SecurityGroupId": {
+                        "template": "*"
+                    },
+                    "VolumeId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:ModifySnapshotAttribute",
+                "resource_mappings": {
+                    "SnapshotId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:RegisterImage",
+                "resource_mappings": {}
+            }
+        ],
+        "Nimble.CreateStreamingSession": [
+            {
+                "action": "nimble:CreateStreamingSession",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            },
+            {
+                "action": "ec2:CreateNetworkInterface",
+                "resource_mappings": {
+                    "NetworkInterfaceId": {
+                        "template": "*"
+                    },
+                    "SubnetId": {
+                        "template": "*"
+                    },
+                    "SecurityGroupId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:CreateNetworkInterfacePermission",
+                "resource_mappings": {
+                    "NetworkInterfaceId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "nimble:GetLaunchProfile",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            },
+            {
+                "action": "nimble:GetLaunchProfileInitialization",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            },
+            {
+                "action": "nimble:ListEulaAcceptances",
+                "resource_mappings": {
+                    "eulaAcceptanceId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Nimble.CreateStreamingSessionStream": [
+            {
+                "action": "nimble:CreateStreamingSessionStream",
+                "resource_mappings": {
+                    "streamingSessionId": {
+                        "template": "${sessionId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.CreateStudio": [
+            {
+                "action": "nimble:CreateStudio",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "iam:PassRole",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "role": "%%many%${adminRoleArn}%${userRoleArn}%%"
+                }
+            },
+            {
+                "action": "sso:CreateManagedApplicationInstance",
+                "resource_mappings": {}
+            }
+        ],
+        "Nimble.CreateStudioComponent": [
+            {
+                "action": "nimble:CreateStudioComponent",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:AuthorizeApplication",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${configuration.activeDirectoryConfiguration.directoryId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:DescribeDirectories",
+                "resource_mappings": {}
+            },
+            {
+                "action": "ec2:DescribeSecurityGroups",
+                "resource_mappings": {}
+            },
+            {
+                "action": "fsx:DescribeFileSystems",
+                "resource_mappings": {}
+            }
+        ],
+        "Nimble.DeleteLaunchProfile": [
+            {
+                "action": "nimble:DeleteLaunchProfile",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.DeleteLaunchProfileMember": [
+            {
+                "action": "nimble:DeleteLaunchProfileMember",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.DeleteStreamingImage": [
+            {
+                "action": "nimble:DeleteStreamingImage",
+                "resource_mappings": {
+                    "streamingImageId": {
+                        "template": "${streamingImageId}"
+                    }
+                }
+            },
+            {
+                "action": "ec2:DeleteSnapshot",
+                "resource_mappings": {
+                    "SnapshotId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:DeregisterImage",
+                "resource_mappings": {
+                    "ImageId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:ModifyInstanceAttribute",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "*"
+                    },
+                    "SecurityGroupId": {
+                        "template": "*"
+                    },
+                    "VolumeId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:ModifySnapshotAttribute",
+                "resource_mappings": {
+                    "SnapshotId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Nimble.DeleteStreamingSession": [
+            {
+                "action": "nimble:DeleteStreamingSession",
+                "resource_mappings": {
+                    "streamingSessionId": {
+                        "template": "${sessionId}"
+                    }
+                }
+            },
+            {
+                "action": "ec2:DeleteNetworkInterface",
+                "resource_mappings": {
+                    "NetworkInterfaceId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Nimble.DeleteStudio": [
+            {
+                "action": "nimble:DeleteStudio",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            },
+            {
+                "action": "sso:DeleteManagedApplicationInstance",
+                "resource_mappings": {}
+            }
+        ],
+        "Nimble.DeleteStudioComponent": [
+            {
+                "action": "nimble:DeleteStudioComponent",
+                "resource_mappings": {
+                    "studioComponentId": {
+                        "template": "${studioComponentId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:UnauthorizeApplication",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Nimble.DeleteStudioMember": [
+            {
+                "action": "nimble:DeleteStudioMember",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.GetEula": [
+            {
+                "action": "nimble:GetEula",
+                "resource_mappings": {
+                    "eulaId": {
+                        "template": "${eulaId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.GetLaunchProfile": [
+            {
+                "action": "nimble:GetLaunchProfile",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.GetLaunchProfileDetails": [
+            {
+                "action": "nimble:GetLaunchProfileDetails",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.GetLaunchProfileInitialization": [
+            {
+                "action": "nimble:GetLaunchProfileInitialization",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:DescribeDirectories",
+                "resource_mappings": {}
+            },
+            {
+                "action": "ec2:DescribeSecurityGroups",
+                "resource_mappings": {}
+            },
+            {
+                "action": "fsx:DescribeFileSystems",
+                "resource_mappings": {}
+            }
+        ],
+        "Nimble.GetLaunchProfileMember": [
+            {
+                "action": "nimble:GetLaunchProfileMember",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.GetStreamingImage": [
+            {
+                "action": "nimble:GetStreamingImage",
+                "resource_mappings": {
+                    "streamingImageId": {
+                        "template": "${streamingImageId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.GetStreamingSession": [
+            {
+                "action": "nimble:GetStreamingSession",
+                "resource_mappings": {
+                    "streamingSessionId": {
+                        "template": "${sessionId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.GetStreamingSessionStream": [
+            {
+                "action": "nimble:GetStreamingSessionStream",
+                "resource_mappings": {
+                    "streamingSessionId": {
+                        "template": "${sessionId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.GetStudio": [
+            {
+                "action": "nimble:GetStudio",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.GetStudioComponent": [
+            {
+                "action": "nimble:GetStudioComponent",
+                "resource_mappings": {
+                    "studioComponentId": {
+                        "template": "${studioComponentId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.GetStudioMember": [
+            {
+                "action": "nimble:GetStudioMember",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.ListEulas": [
+            {
+                "action": "nimble:ListEulas",
+                "resource_mappings": {
+                    "eulaId": {
+                        "template": "${eulaIds}[]"
+                    }
+                }
+            }
+        ],
+        "Nimble.ListLaunchProfileMembers": [
+            {
+                "action": "nimble:ListLaunchProfileMembers",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.ListLaunchProfiles": [
+            {
+                "action": "nimble:ListLaunchProfiles",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.ListStreamingImages": [
+            {
+                "action": "nimble:ListStreamingImages",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.ListStreamingSessions": [
+            {
+                "action": "nimble:ListStreamingSessions",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.ListStudioComponents": [
+            {
+                "action": "nimble:ListStudioComponents",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.ListStudioMembers": [
+            {
+                "action": "nimble:ListStudioMembers",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.ListStudios": [
+            {
+                "action": "nimble:ListStudios",
+                "resource_mappings": {}
+            }
+        ],
+        "Nimble.ListTagsForResource": [
+            {
+                "action": "nimble:ListTagsForResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "launch-profile": "%%iftemplatematch%${resourceArn}%%",
+                    "streaming-image": "%%iftemplatematch%${resourceArn}%%",
+                    "streaming-session": "%%iftemplatematch%${resourceArn}%%",
+                    "studio": "%%iftemplatematch%${resourceArn}%%",
+                    "studio-component": "%%iftemplatematch%${resourceArn}%%"
+                }
+            }
+        ],
+        "Nimble.PutLaunchProfileMembers": [
+            {
+                "action": "nimble:PutLaunchProfileMembers",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            },
+            {
+                "action": "sso-directory:DescribeUsers",
+                "resource_mappings": {}
+            }
+        ],
+        "Nimble.PutStudioMembers": [
+            {
+                "action": "nimble:PutStudioMembers",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            },
+            {
+                "action": "sso-directory:DescribeUsers",
+                "resource_mappings": {}
+            }
+        ],
+        "Nimble.StartStudioSSOConfigurationRepair": [
+            {
+                "action": "nimble:StartStudioSSOConfigurationRepair",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            },
+            {
+                "action": "sso:CreateManagedApplicationInstance",
+                "resource_mappings": {}
+            },
+            {
+                "action": "sso:GetManagedApplicationInstance",
+                "resource_mappings": {}
+            }
+        ],
+        "Nimble.TagResource": [
+            {
+                "action": "nimble:TagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "launch-profile": "%%iftemplatematch%${resourceArn}%%",
+                    "streaming-image": "%%iftemplatematch%${resourceArn}%%",
+                    "streaming-session": "%%iftemplatematch%${resourceArn}%%",
+                    "studio": "%%iftemplatematch%${resourceArn}%%",
+                    "studio-component": "%%iftemplatematch%${resourceArn}%%"
+                }
+            }
+        ],
+        "Nimble.UntagResource": [
+            {
+                "action": "nimble:UntagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "launch-profile": "%%iftemplatematch%${resourceArn}%%",
+                    "streaming-image": "%%iftemplatematch%${resourceArn}%%",
+                    "streaming-session": "%%iftemplatematch%${resourceArn}%%",
+                    "studio": "%%iftemplatematch%${resourceArn}%%",
+                    "studio-component": "%%iftemplatematch%${resourceArn}%%"
+                }
+            }
+        ],
+        "Nimble.UpdateLaunchProfile": [
+            {
+                "action": "nimble:UpdateLaunchProfile",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.UpdateLaunchProfileMember": [
+            {
+                "action": "nimble:UpdateLaunchProfileMember",
+                "resource_mappings": {
+                    "launchProfileId": {
+                        "template": "${launchProfileId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.UpdateStreamingImage": [
+            {
+                "action": "nimble:UpdateStreamingImage",
+                "resource_mappings": {
+                    "streamingImageId": {
+                        "template": "${streamingImageId}"
+                    }
+                }
+            }
+        ],
+        "Nimble.UpdateStudio": [
+            {
+                "action": "nimble:UpdateStudio",
+                "resource_mappings": {
+                    "studioId": {
+                        "template": "${studioId}"
+                    }
+                }
+            },
+            {
+                "action": "iam:PassRole",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "role": "%%many%${adminRoleArn}%${userRoleArn}%%"
+                }
+            }
+        ],
+        "Nimble.UpdateStudioComponent": [
+            {
+                "action": "nimble:UpdateStudioComponent",
+                "resource_mappings": {
+                    "studioComponentId": {
+                        "template": "${studioComponentId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:AuthorizeApplication",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${configuration.activeDirectoryConfiguration.directoryId}"
+                    }
+                }
+            },
+            {
+                "action": "ds:DescribeDirectories",
+                "resource_mappings": {}
+            },
+            {
+                "action": "ec2:DescribeSecurityGroups",
+                "resource_mappings": {}
+            },
+            {
+                "action": "fsx:DescribeFileSystems",
+                "resource_mappings": {}
+            }
+        ],
+        "AppRunner.AssociateCustomDomain": [
+            {
+                "action": "apprunner:AssociateCustomDomain",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "service": "${ServiceArn}"
+                }
+            }
+        ],
+        "AppRunner.CreateAutoScalingConfiguration": [
+            {
+                "action": "apprunner:CreateAutoScalingConfiguration",
+                "resource_mappings": {
+                    "AutoscalingConfigurationName": {
+                        "template": "${AutoScalingConfigurationName}"
+                    },
+                    "AutoscalingConfigurationVersion": {
+                        "template": "*"
+                    },
+                    "AutoscalingConfigurationId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "AppRunner.CreateConnection": [
+            {
+                "action": "apprunner:CreateConnection",
+                "resource_mappings": {
+                    "ConnectionName": {
+                        "template": "${ConnectionName}"
+                    },
+                    "ConnectionId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "AppRunner.CreateService": [
+            {
+                "action": "apprunner:CreateService",
+                "resource_mappings": {
+                    "ServiceName": {
+                        "template": "${ServiceName}"
+                    },
+                    "ServiceId": {
+                        "template": "*"
+                    }
+                },
+                "resourcearn_mappings": {
+                    "autoscalingconfiguration": "${AutoScalingConfigurationArn}",
+                    "connection": "${SourceConfiguration.AuthenticationConfiguration.ConnectionArn}"
+                }
+            }
+        ],
+        "AppRunner.DeleteAutoScalingConfiguration": [
+            {
+                "action": "apprunner:DeleteAutoScalingConfiguration",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "autoscalingconfiguration": "${AutoScalingConfigurationArn}"
+                }
+            }
+        ],
+        "AppRunner.DeleteConnection": [
+            {
+                "action": "apprunner:DeleteConnection",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "connection": "${ConnectionArn}"
+                }
+            }
+        ],
+        "AppRunner.DeleteService": [
+            {
+                "action": "apprunner:DeleteService",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "service": "${ServiceArn}"
+                }
+            }
+        ],
+        "AppRunner.DescribeAutoScalingConfiguration": [
+            {
+                "action": "apprunner:DescribeAutoScalingConfiguration",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "autoscalingconfiguration": "${AutoScalingConfigurationArn}"
+                }
+            }
+        ],
+        "AppRunner.DescribeCustomDomains": [
+            {
+                "action": "apprunner:DescribeCustomDomains",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "service": "${ServiceArn}"
+                }
+            }
+        ],
+        "AppRunner.DescribeService": [
+            {
+                "action": "apprunner:DescribeService",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "service": "${ServiceArn}"
+                }
+            }
+        ],
+        "AppRunner.DisassociateCustomDomain": [
+            {
+                "action": "apprunner:DisassociateCustomDomain",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "service": "${ServiceArn}"
+                }
+            }
+        ],
+        "AppRunner.ListAutoScalingConfigurations": [
+            {
+                "action": "apprunner:ListAutoScalingConfigurations",
+                "resource_mappings": {}
+            }
+        ],
+        "AppRunner.ListConnections": [
+            {
+                "action": "apprunner:ListConnections",
+                "resource_mappings": {}
+            }
+        ],
+        "AppRunner.ListOperations": [
+            {
+                "action": "apprunner:ListOperations",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "service": "${ServiceArn}"
+                }
+            }
+        ],
+        "AppRunner.ListServices": [
+            {
+                "action": "apprunner:ListServices",
+                "resource_mappings": {}
+            }
+        ],
+        "AppRunner.ListTagsForResource": [
+            {
+                "action": "apprunner:ListTagsForResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "autoscalingconfiguration": "%%iftemplatematch%${ResourceArn}%%",
+                    "connection": "%%iftemplatematch%${ResourceArn}%%",
+                    "service": "%%iftemplatematch%${ResourceArn}%%"
+                }
+            }
+        ],
+        "AppRunner.PauseService": [
+            {
+                "action": "apprunner:PauseService",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "service": "${ServiceArn}"
+                }
+            }
+        ],
+        "AppRunner.ResumeService": [
+            {
+                "action": "apprunner:ResumeService",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "service": "${ServiceArn}"
+                }
+            }
+        ],
+        "AppRunner.StartDeployment": [
+            {
+                "action": "apprunner:StartDeployment",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "service": "${ServiceArn}"
+                }
+            }
+        ],
+        "AppRunner.TagResource": [
+            {
+                "action": "apprunner:TagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "autoscalingconfiguration": "%%iftemplatematch%${ResourceArn}%%",
+                    "connection": "%%iftemplatematch%${ResourceArn}%%",
+                    "service": "%%iftemplatematch%${ResourceArn}%%"
+                }
+            }
+        ],
+        "AppRunner.UntagResource": [
+            {
+                "action": "apprunner:UntagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "autoscalingconfiguration": "%%iftemplatematch%${ResourceArn}%%",
+                    "connection": "%%iftemplatematch%${ResourceArn}%%",
+                    "service": "%%iftemplatematch%${ResourceArn}%%"
+                }
+            }
+        ],
+        "AppRunner.UpdateService": [
+            {
+                "action": "apprunner:UpdateService",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "service": "${ServiceArn}",
+                    "autoscalingconfiguration": "${AutoScalingConfigurationArn}",
+                    "connection": "${SourceConfiguration.AuthenticationConfiguration.ConnectionArn}"
                 }
             }
         ]
