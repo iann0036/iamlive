@@ -56,15 +56,15 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--force-wildcard-resource:** when set, the Resource will always be a wildcard (_default: false_)
 
-**--mode:** _[experimental]_ the listening mode (`csm`,`proxy`) (_default: csm_)
+**--mode:** the listening mode (`csm`,`proxy`) (_default: csm_)
 
-**--bind-addr:** _[experimental]_ the bind address for proxy mode (_default: 127.0.0.1:10080_)
+**--bind-addr:** the bind address for proxy mode (_default: 127.0.0.1:10080_)
 
-**--ca-bundle:** _[experimental]_ the CA certificate bundle (PEM) to use for proxy mode (_default: ~/.iamlive/ca.pem_)
+**--ca-bundle:** the CA certificate bundle (PEM) to use for proxy mode (_default: ~/.iamlive/ca.pem_)
 
-**--ca-key:** _[experimental]_ the CA certificate key to use for proxy mode (_default: ~/.iamlive/ca.key_)
+**--ca-key:** the CA certificate key to use for proxy mode (_default: ~/.iamlive/ca.key_)
 
-**--account-id:** _[experimental]_ the AWS account ID to use in policy outputs within proxy mode (_default: 123456789012 unless detected_)
+**--account-id:** the AWS account ID to use in policy outputs within proxy mode (_default: 123456789012 unless detected_)
 
 _Basic Example (CSM Mode)_
 

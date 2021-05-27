@@ -27,7 +27,7 @@ var caKeyFlag *string
 var accountIDFlag *string
 var backgroundFlag *bool
 var forceWildcardResourceFlag *bool
-var cpuProfileFlag = flag.String("cpu-profile", "", "[experimental] write a CPU profile to this file (for performance testing purposes)")
+var cpuProfileFlag = flag.String("cpu-profile", "", "write a CPU profile to this file (for performance testing purposes)")
 
 func parseConfig() {
 	setIni := false
@@ -101,11 +101,11 @@ func parseConfig() {
 	refreshRateFlag = flag.Int("refresh-rate", refreshRate, "instead of flushing to console every API call, do it this number of seconds")
 	sortAlphabeticalFlag = flag.Bool("sort-alphabetical", sortAlphabetical, "sort actions alphabetically")
 	hostFlag = flag.String("host", host, "host to listen on for CSM")
-	modeFlag = flag.String("mode", mode, "[experimental] the listening mode (csm,proxy)")
-	bindAddrFlag = flag.String("bind-addr", bindAddr, "[experimental] the bind address for proxy mode")
-	caBundleFlag = flag.String("ca-bundle", caBundle, "[experimental] the CA certificate bundle (PEM) to use for proxy mode")
-	caKeyFlag = flag.String("ca-key", caKey, "[experimental] the CA certificate key to use for proxy mode")
-	accountIDFlag = flag.String("account-id", accountID, "[experimental] the AWS account ID to use in policy outputs within proxy mode")
+	modeFlag = flag.String("mode", mode, "the listening mode (csm,proxy)")
+	bindAddrFlag = flag.String("bind-addr", bindAddr, "the bind address for proxy mode")
+	caBundleFlag = flag.String("ca-bundle", caBundle, "the CA certificate bundle (PEM) to use for proxy mode")
+	caKeyFlag = flag.String("ca-key", caKey, "the CA certificate key to use for proxy mode")
+	accountIDFlag = flag.String("account-id", accountID, "the AWS account ID to use in policy outputs within proxy mode")
 	backgroundFlag = flag.Bool("background", background, "when set, the process will return the current PID and run in the background without output")
 	forceWildcardResourceFlag = flag.Bool("force-wildcard-resource", forceWildcardResource, "when set, the Resource will always be a wildcard")
 }
