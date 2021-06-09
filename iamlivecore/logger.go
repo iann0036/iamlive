@@ -693,10 +693,10 @@ func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string
 	}
 
 	partition := "aws"
-	if call.Region[0:3] == "cn-" {
+	if strings.HasPrefix(call.Region, "cn") {
 		partition = "aws-cn"
 	}
-	if call.Region[0:7] == "us-gov-" {
+	if strings.HasPrefix(call.Region, "us-gov") {
 		partition = "aws-us-gov"
 	}
 
