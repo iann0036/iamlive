@@ -30,6 +30,11 @@ You may also install this application using a Homebrew tap with the following co
 brew install iann0036/iamlive/iamlive
 ```
 
+### Other Methods
+
+* [Lambda Extension](https://github.com/iann0036/iamlive-lambda-extension)
+* [Docker](https://meirg.co.il/2021/04/23/determining-aws-iam-policies-according-to-terraform-and-aws-cli/)
+
 ## Usage
 
 To start the listener, simply run `iamlive` in a separate window to your CLI / SDK application. You can use Ctrl+C to exit when you are done.
