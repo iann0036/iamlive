@@ -276,6 +276,7 @@ type ActionCandidate struct {
 	URIParams map[string]string
 	Params    map[string][]string
 	Operation ServiceOperation
+	Service   string
 }
 
 func handleAWSRequest(req *http.Request, body []byte, respCode int) {
@@ -291,6 +292,8 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	uriparams := make(map[string]string)
 	params := make(map[string][]string)
 	action := ""
+	actionMatch := false
+	var selectedCandidate ActionCandidate
 
 	if strings.HasPrefix(hostSplit[len(hostSplit)-3], "s3-") { // bucketname."s3-us-west-2".amazonaws.com
 		hostSplit[len(hostSplit)-3] = hostSplit[len(hostSplit)-3][3:]    // strip s3-
@@ -520,6 +523,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 								Params:    params,
 								URIParams: uriparams,
 								Operation: operation,
+								Service:   service,
 							})
 						}
 					}
@@ -555,10 +559,10 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 							continue
 						}
 					}
-					if action == "" {
-						action = selectedActionCandidate.Action
-						params = selectedActionCandidate.Params
-						uriparams = selectedActionCandidate.URIParams
+
+					if !actionMatch && selectedActionCandidate.Action != "" {
+						selectedCandidate = selectedActionCandidate
+						actionMatch = true
 					}
 				}
 			}
@@ -589,6 +593,13 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		if endOfKey > 0 {
 			accessKey = authHeader[credOffset+len("Credential=") : credOffset+endOfKey]
 		}
+	}
+
+	if selectedCandidate.Action != "" {
+		action = selectedCandidate.Action
+		params = selectedCandidate.Params
+		uriparams = selectedCandidate.URIParams
+		service = selectedCandidate.Service
 	}
 
 	callLog = append(callLog, Entry{
