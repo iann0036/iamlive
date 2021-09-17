@@ -5,1116 +5,6 @@
         "STS.GetCallerIdentity"
     ],
     "sdk_method_iam_mappings": {
-        "APIGateway.CreateApiKey": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/apikeys"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateAuthorizer": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/authorizers"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateBasePathMapping": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/domainnames/${domainName}/basepathmappings"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateDeployment": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/deployments"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateDocumentationPart": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/documentation/parts"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateDocumentationVersion": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/documentation/versions"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateDomainName": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/domainnames"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateModel": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/models"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateRequestValidator": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/requestvalidators"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateResource": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${parentId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateRestApi": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateStage": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/stages"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateUsagePlan": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/usageplans"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateUsagePlanKey": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/usageplans/${usageplanId}/keys"
-                    }
-                }
-            }
-        ],
-        "APIGateway.CreateVpcLink": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/vpclinks"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteApiKey": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/apikeys/${apiKey}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteAuthorizer": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/authorizers/${authorizerId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteBasePathMapping": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/domainnames/${domainName}/basepathmappings/${basePath}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteClientCertificate": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/clientcertificates/${clientCertificateId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteDeployment": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/deployments/${deploymentId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteDocumentationPart": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/documentation/parts/${documentationPartId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteDocumentationVersion": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/documentation/versions/${documentationVersion}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteDomainName": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/domainnames/${domainName}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteGatewayResponse": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/gatewayresponses/${responseType}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteIntegration": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteIntegrationResponse": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration/responses/${statusCode}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteMethod": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteMethodResponse": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/responses/${statusCode}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteModel": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/models/${modelName}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteRequestValidator": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/requestvalidators/${requestValidatorId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteResource": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteRestApi": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteStage": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/stages/${stageName}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteUsagePlan": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/usageplans/${usagePlanId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteUsagePlanKey": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/usageplans/${usagePlanId}/keys/${keyId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.DeleteVpcLink": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/vpclinks/${vpcLinkId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetAccount": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/account"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetApiKey": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/apikeys/${apiKey}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetApiKeys": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/apikeys"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetAuthorizer": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/authorizers/${authorizerId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetAuthorizers": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/authorizers"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetBasePathMapping": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/domainnames/${domainName}/basepathmappings/${basePath}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetBasePathMappings": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/domainnames/${domainName}/basepathmappings"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetClientCertificate": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/clientcertificates/${clientCertificateId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetClientCertificates": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/clientcertificates"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetDeployment": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/deployments/${deploymentId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetDeployments": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/deployments"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetDocumentationPart": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/documentation/parts/${documentationPartId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetDocumentationParts": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/documentation/parts"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetDocumentationVersion": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/documentation/versions/${documentationVersion}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetDocumentationVersions": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/documentation/versions"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetDomainName": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/domainnames/${domainName}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetDomainNames": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/domainnames"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetExport": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/stages/${stageName}/exports/${exportType}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetGatewayResponse": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/gatewayresponses/${responseType}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetGatewayResponses": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/gatewayresponses"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetIntegration": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetIntegrationResponse": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration/responses/${statusCode}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetMethod": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetMethodResponse": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/responses/${statusCode}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetModel": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/models/${modelName}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetModelTemplate": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/models/${modelName}/default_template"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetModels": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/models"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetRequestValidator": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/requestvalidators/${requestValidatorId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetRequestValidators": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/requestvalidators"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetResource": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetResources": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetRestApi": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetRestApis": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetSdk": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/stages/${stageName}/sdks/${sdkType}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetSdkType": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/sdktypes/${id}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetSdkTypes": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/sdktypes"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetStage": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/stages/${stageName}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetStages": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/stages"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetTags": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/tags/${resourceArn}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetUsage": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/usageplans/${usagePlanId}/usage"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetUsagePlan": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/usageplans/${usagePlanId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetUsagePlanKey": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/usageplans/${usagePlanId}/keys/${keyId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetUsagePlanKeys": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/usageplans/${usagePlanId}/keys"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetUsagePlans": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/usageplans"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetVpcLink": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/vpclinks/${vpcLinkId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GetVpcLinks": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/vpclinks"
-                    }
-                }
-            }
-        ],
-        "APIGateway.ImportDocumentationParts": [
-            {
-                "action": "apigateway:PUT",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/documentation/parts"
-                    }
-                }
-            }
-        ],
-        "APIGateway.PutGatewayResponse": [
-            {
-                "action": "apigateway:PUT",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/gatewayresponses/${responseType}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.PutIntegration": [
-            {
-                "action": "apigateway:PUT",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration"
-                    }
-                }
-            }
-        ],
-        "APIGateway.PutIntegrationResponse": [
-            {
-                "action": "apigateway:PUT",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration/responses/${statusCode}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.PutMethod": [
-            {
-                "action": "apigateway:PUT",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.PutMethodResponse": [
-            {
-                "action": "apigateway:PUT",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/responses/${statusCode}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.PutRestApi": [
-            {
-                "action": "apigateway:PUT",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateAccount": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/account"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateApiKey": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/apikeys/${apiKey}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateAuthorizer": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/authorizers/${authorizerId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateBasePathMapping": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/domainnames/${domainName}/basepathmappings/${basePath}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateClientCertificate": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/clientcertificates/${clientCertificateId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateDeployment": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/deployments/${deploymentId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateDocumentationPart": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/documentation/parts/${documentationPartId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateDocumentationVersion": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/documentation/versions/${documentationVersion}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateDomainName": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/domainnames/${domainName}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateGatewayResponse": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/gatewayresponses/${responseType}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateIntegration": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateIntegrationResponse": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration/responses/${statusCode}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateMethod": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateMethodResponse": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/responses/${statusCode}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateModel": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/models/${modelName}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateRequestValidator": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/requestvalidators/${requestValidatorId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateResource": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateRestApi": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateStage": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/stages/${stageName}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateUsage": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/usageplans/${usagePlanId}/keys/${keyId}/usage"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateUsagePlan": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/usageplans/${usagePlanId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UpdateVpcLink": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/vpclinks/${vpcLinkId}"
-                    }
-                }
-            }
-        ],
         "Budgets.CreateBudget": [
             {
                 "action": "budgets:ModifyBudget",
@@ -2072,636 +962,6 @@
                 }
             }
         ],
-        "ApiGatewayV2.CreateApiMapping": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/domainnames/${DomainName}/apimappings"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.CreateAuthorizer": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/authorizers"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.CreateDeployment": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/deployments"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.CreateDomainName": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/domainnames"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.CreateIntegration": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/integrations"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.CreateIntegrationResponse": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/integrations/${IntegrationId}/integrationresponses"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.CreateModel": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/models"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.CreateRoute": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/routes"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.CreateRouteResponse": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/routes/${RouteId}/routeresponses"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.CreateStage": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/stages"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.CreateVpcLink": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/vpclinks"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteAccessLogSettings": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/stages/${StageName}/accesslogsettings"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteApi": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteApiMapping": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/domainnames/${DomainName}/apimappings/${ApiMappingId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteAuthorizer": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/authorizers/${AuthorizerId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteCorsConfiguration": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/cors"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteDeployment": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/deployments/${DeploymentId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteDomainName": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/domainnames/${DomainName}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteIntegration": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/integrations/${IntegrationId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteIntegrationResponse": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/integrations/${IntegrationId}/integrationresponses/${IntegrationResponseId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteModel": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/models/${ModelId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteRoute": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/routes/${RouteId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteRouteRequestParameter": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/routes/${RouteId}/requestparameters/${RequestParameterKey}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteRouteResponse": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/routes/${RouteId}/routeresponses/${RouteResponseId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteRouteSettings": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/stages/${StageName}/routesettings/${RouteKey}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteStage": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/stages/${StageName}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.DeleteVpcLink": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/vpclinks/${VpcLinkId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetApiMapping": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/domainnames/${DomainName}/apimappings/${ApiMappingId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetApiMappings": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/domainnames/${DomainName}/apimappings"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetAuthorizer": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/authorizers/${AuthorizerId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetAuthorizers": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/authorizers"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetDeployment": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/deployments/${DeploymentId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetDeployments": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/deployments"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetDomainName": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/domainnames/${DomainName}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetDomainNames": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/domainnames"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetIntegration": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/integrations/${IntegrationId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetIntegrationResponse": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/integrations/${IntegrationId}/integrationresponses/${IntegrationResponseId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetIntegrationResponses": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/integrations/${IntegrationId}/integrationresponses"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetIntegrations": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/integrations"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetModel": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/models/${ModelId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetModelTemplate": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/models/${ModelId}/template"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetModels": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/models"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetRoute": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/routes/${RouteId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetRouteResponse": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/routes/${RouteId}/routeresponses/${RouteResponseId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetRouteResponses": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/routes/${RouteId}/routeresponses"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetRoutes": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/routes"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetStage": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/stages/${StageName}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetStages": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/stages"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetTags": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/tags/${ResourceArn}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetVpcLink": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/vpclinks/${VpcLinkId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetVpcLinks": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/vpclinks"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateApi": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateApiMapping": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/domainnames/${DomainName}/apimappings/${ApiMappingId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateAuthorizer": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/authorizers/${AuthorizerId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateDeployment": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/deployments/${DeploymentId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateDomainName": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/domainnames/${DomainName}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateIntegration": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/integrations/${IntegrationId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateIntegrationResponse": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/integrations/${IntegrationId}/integrationresponses/${IntegrationResponseId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateModel": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/models/${ModelId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateRoute": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/routes/${RouteId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateRouteResponse": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/routes/${RouteId}/routeresponses/${RouteResponseId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateStage": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/stages/${StageName}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UpdateVpcLink": [
-            {
-                "action": "apigateway:PATCH",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/vpclinks/${VpcLinkId}"
-                    }
-                }
-            }
-        ],
         "LexModelsV2.CreateBot": [
             {
                 "action": "lex:PutBot",
@@ -2875,66 +1135,6 @@
                 }
             }
         ],
-        "ApiGatewayV2.CreateApi": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/apis"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.ExportApi": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/apis/${ApiId}/exports/${Specification}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetApi": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/apis/${ApiId}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.GetApis": [
-            {
-                "action": "apigateway:GET",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/apis"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.TagResource": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/tags/%%urlencode%${ResourceArn}%%"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.UntagResource": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/tags/%%urlencode%${ResourceArn}%%"
-                    }
-                }
-            }
-        ],
         "S3.ListBuckets": [
             {
                 "action": "s3:ListAllMyBuckets",
@@ -3036,126 +1236,6 @@
                             "op": "Contains",
                             "rhs": ":accesspoint/"
                         }
-                    }
-                }
-            }
-        ],
-        "APIGateway.FlushStageAuthorizersCache": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/stages/${stageName}/cache/authorizers"
-                    }
-                }
-            }
-        ],
-        "APIGateway.FlushStageCache": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/stages/${stageName}/cache/data"
-                    }
-                }
-            }
-        ],
-        "APIGateway.GenerateClientCertificate": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/clientcertificates"
-                    }
-                }
-            }
-        ],
-        "APIGateway.ImportApiKeys": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/apikeys"
-                    }
-                }
-            }
-        ],
-        "APIGateway.ImportRestApi": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis"
-                    }
-                }
-            }
-        ],
-        "APIGateway.TagResource": [
-            {
-                "action": "apigateway:PUT",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/tags/${resourceArn}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.TestInvokeAuthorizer": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/authorizers/${authorizerId}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.TestInvokeMethod": [
-            {
-                "action": "apigateway:POST",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}"
-                    }
-                }
-            }
-        ],
-        "APIGateway.UntagResource": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/tags/${resourceArn}"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.ResetAuthorizersCache": [
-            {
-                "action": "apigateway:DELETE",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}/stages/${StageName}/cache/authorizers"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.ImportApi": [
-            {
-                "action": "apigateway:PUT",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis"
-                    }
-                }
-            }
-        ],
-        "ApiGatewayV2.ReimportApi": [
-            {
-                "action": "apigateway:PUT",
-                "resource_mappings": {
-                    "ApiGatewayResourcePath": {
-                        "template": "/v2/apis/${ApiId}"
                     }
                 }
             }
@@ -14457,6 +12537,14 @@
             }
         ],
         "DirectoryService.RegisterEventTopic": [
+            {
+                "action": "ds:RegisterEventTopic",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${DirectoryId}"
+                    }
+                }
+            },
             {
                 "action": "sns:GetTopicAttributes",
                 "resource_mappings": {
@@ -29467,19 +27555,6 @@
                 }
             }
         ],
-        "Kinesis.StartStreamEncryption": [
-            {
-                "action": "kinesis:StartStreamEncryption",
-                "resource_mappings": {
-                    "KeyId": {
-                        "template": "${KeyId}"
-                    },
-                    "StreamName": {
-                        "template": "${StreamName}"
-                    }
-                }
-            }
-        ],
         "Kinesis.StopStreamEncryption": [
             {
                 "action": "kinesis:StopStreamEncryption",
@@ -37706,24 +35781,6 @@
                 }
             }
         ],
-        "Rekognition.DeleteProject": [
-            {
-                "action": "rekognition:DeleteProject",
-                "resource_mappings": {},
-                "resourcearn_mappings": {
-                    "project": "${ProjectArn}"
-                }
-            }
-        ],
-        "Rekognition.DeleteProjectVersion": [
-            {
-                "action": "rekognition:DeleteProjectVersion",
-                "resource_mappings": {},
-                "resourcearn_mappings": {
-                    "projectversion": "${ProjectVersionArn}"
-                }
-            }
-        ],
         "Rekognition.DeleteStreamProcessor": [
             {
                 "action": "rekognition:DeleteStreamProcessor",
@@ -40380,10 +38437,6 @@
             }
         ],
         "Shield.AssociateDRTLogBucket": [
-            {
-                "action": "ses:VerifyEmailIdentity",
-                "resource_mappings": {}
-            },
             {
                 "action": "shield:AssociateDRTLogBucket",
                 "resource_mappings": {}
@@ -68046,10 +66099,6 @@
         ],
         "Kafka.BatchAssociateScramSecret": [
             {
-                "action": "license-manager:UpdateServiceSettings",
-                "resource_mappings": {}
-            },
-            {
                 "action": "kafka:BatchAssociateScramSecret",
                 "resource_mappings": {}
             }
@@ -75338,10 +73387,6 @@
         ],
         "CodeGuruProfiler.AddNotificationChannels": [
             {
-                "action": "codeguru-reviewer:PutRecommendationFeedback",
-                "resource_mappings": {}
-            },
-            {
                 "action": "codeguru-profiler:AddNotificationChannels",
                 "resource_mappings": {
                     "profilingGroupName": {
@@ -75654,10 +73699,6 @@
             }
         ],
         "FraudDetector.BatchCreateVariable": [
-            {
-                "action": "compute-optimizer:UpdateEnrollmentStatus",
-                "resource_mappings": {}
-            },
             {
                 "action": "frauddetector:BatchCreateVariable",
                 "resource_mappings": {}
@@ -93215,25 +91256,35 @@
         "Personalize.CreateDatasetExportJob": [
             {
                 "action": "personalize:CreateDatasetExportJob",
-                "undocumented": true
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${jobName}"
+                    }
+                }
             }
         ],
         "Personalize.DescribeDatasetExportJob": [
             {
                 "action": "personalize:DescribeDatasetExportJob",
-                "undocumented": true
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "datasetExportJob": "${datasetExportJobArn}"
+                }
             }
         ],
         "Personalize.ListDatasetExportJobs": [
             {
                 "action": "personalize:ListDatasetExportJobs",
-                "undocumented": true
+                "resource_mappings": {}
             }
         ],
         "Personalize.StopSolutionVersionCreation": [
             {
                 "action": "personalize:StopSolutionVersionCreation",
-                "undocumented": true
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "solution": "${solutionVersionArn}"
+                }
             }
         ],
         "Transfer.CreateAccess": [
@@ -93281,204 +91332,224 @@
         "MediaTailor.CreateChannel": [
             {
                 "action": "mediatailor:CreateChannel",
-                "undocumented": true
+                "resource_mappings": {}
             }
         ],
         "MediaTailor.CreateProgram": [
             {
                 "action": "mediatailor:CreateProgram",
-                "undocumented": true
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ChannelName}"
+                    }
+                }
             }
         ],
         "MediaTailor.CreateSourceLocation": [
             {
                 "action": "mediatailor:CreateSourceLocation",
-                "undocumented": true
+                "resource_mappings": {}
             }
         ],
         "MediaTailor.CreateVodSource": [
             {
                 "action": "mediatailor:CreateVodSource",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:vodSource/${SourceLocationName}/${VodSourceName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${SourceLocationName}"
+                    }
                 }
             }
         ],
         "MediaTailor.DeleteChannel": [
             {
                 "action": "mediatailor:DeleteChannel",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:channel/${ChannelName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ChannelName}"
+                    }
                 }
             }
         ],
         "MediaTailor.DeleteChannelPolicy": [
             {
                 "action": "mediatailor:DeleteChannelPolicy",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:channel/${ChannelName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ChannelName}"
+                    }
                 }
             }
         ],
         "MediaTailor.DeleteProgram": [
             {
                 "action": "mediatailor:DeleteProgram",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:program/${ChannelName}/${ProgramName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ProgramName}"
+                    }
                 }
             }
         ],
         "MediaTailor.DeleteSourceLocation": [
             {
                 "action": "mediatailor:DeleteSourceLocation",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:sourceLocation/${SourceLocationName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${SourceLocationName}"
+                    }
                 }
             }
         ],
         "MediaTailor.DeleteVodSource": [
             {
                 "action": "mediatailor:DeleteVodSource",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:vodSource/${SourceLocationName}/${VodSourceName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${VodSourceName}"
+                    }
                 }
             }
         ],
         "MediaTailor.DescribeChannel": [
             {
                 "action": "mediatailor:DescribeChannel",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:channel/${ChannelName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ChannelName}"
+                    }
                 }
             }
         ],
         "MediaTailor.DescribeProgram": [
             {
                 "action": "mediatailor:DescribeProgram",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:program/${ChannelName}/${ProgramName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ProgramName}"
+                    }
                 }
             }
         ],
         "MediaTailor.DescribeSourceLocation": [
             {
                 "action": "mediatailor:DescribeSourceLocation",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:sourceLocation/${SourceLocationName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${SourceLocationName}"
+                    }
                 }
             }
         ],
         "MediaTailor.DescribeVodSource": [
             {
                 "action": "mediatailor:DescribeVodSource",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:vodSource/${SourceLocationName}/${VodSourceName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${VodSourceName}"
+                    }
                 }
             }
         ],
         "MediaTailor.GetChannelPolicy": [
             {
                 "action": "mediatailor:GetChannelPolicy",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:channel/${ChannelName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ChannelName}"
+                    }
                 }
             }
         ],
         "MediaTailor.GetChannelSchedule": [
             {
                 "action": "mediatailor:GetChannelSchedule",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:channel/${ChannelName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ChannelName}"
+                    }
                 }
             }
         ],
         "MediaTailor.ListChannels": [
             {
                 "action": "mediatailor:ListChannels",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:channel/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "MediaTailor.ListSourceLocations": [
             {
                 "action": "mediatailor:ListSourceLocations",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:sourceLocation/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "MediaTailor.ListVodSources": [
             {
                 "action": "mediatailor:ListVodSources",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:vodSource/${SourceLocationName}/*"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${SourceLocationName}"
+                    }
                 }
             }
         ],
         "MediaTailor.PutChannelPolicy": [
             {
                 "action": "mediatailor:PutChannelPolicy",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:channel/${ChannelName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ChannelName}"
+                    }
                 }
             }
         ],
         "MediaTailor.StartChannel": [
             {
                 "action": "mediatailor:StartChannel",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:channel/${ChannelName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ChannelName}"
+                    }
                 }
             }
         ],
         "MediaTailor.StopChannel": [
             {
                 "action": "mediatailor:StopChannel",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:channel/${ChannelName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ChannelName}"
+                    }
                 }
             }
         ],
         "MediaTailor.UpdateChannel": [
             {
                 "action": "mediatailor:UpdateChannel",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:channel/${ChannelName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${ChannelName}"
+                    }
                 }
             }
         ],
         "MediaTailor.UpdateSourceLocation": [
             {
                 "action": "mediatailor:UpdateSourceLocation",
-                "undocumented": true
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${SourceLocationName}"
+                    }
+                }
             }
         ],
         "MediaTailor.UpdateVodSource": [
             {
                 "action": "mediatailor:UpdateVodSource",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:vodSource/${SourceLocationName}/${VodSourceName}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${VodSourceName}"
+                    }
                 }
             }
         ],
@@ -94526,27 +92597,22 @@
         "MediaLive.CreatePartnerInput": [
             {
                 "action": "medialive:CreatePartnerInput",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:medialive:${Region}:${Account}:input:${InputId}"
-                }
+                "resource_mappings": {}
             }
         ],
         "MediaTailor.ListAlerts": [
             {
                 "action": "mediatailor:ListAlerts",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:alerts/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "KinesisAnalyticsV2.ListApplicationVersions": [
             {
                 "action": "kinesisanalytics:ListApplicationVersions",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kinesisanalytics:${Region}:${Account}:application/${ApplicationName}"
+                "resource_mappings": {
+                    "ApplicationName": {
+                        "template": "${ApplicationName}"
+                    }
                 }
             }
         ],
@@ -94565,10 +92631,7 @@
         "IoTSiteWise.DescribeStorageConfiguration": [
             {
                 "action": "iotsitewise:DescribeStorageConfiguration",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "*"
-                }
+                "resource_mappings": {}
             }
         ],
         "AmplifyBackend.ImportBackendAuth": [
@@ -94584,10 +92647,7 @@
         "CustomerProfiles.GetMatches": [
             {
                 "action": "profile:GetMatches",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:profile:${Region}:${Account}:/domains/${DomainName}/matches"
-                }
+                "resource_mappings": {}
             }
         ],
         "GreengrassV2.BatchAssociateClientDeviceWithCoreDevice": [
@@ -96053,18 +94113,20 @@
         "KinesisAnalyticsV2.DescribeApplicationVersion": [
             {
                 "action": "kinesisanalytics:DescribeApplicationVersion",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kinesisanalytics:${Region}:${Account}:application/${ApplicationName}"
+                "resource_mappings": {
+                    "ApplicationName": {
+                        "template": "${ApplicationName}"
+                    }
                 }
             }
         ],
         "KinesisAnalyticsV2.RollbackApplication": [
             {
                 "action": "kinesisanalytics:RollbackApplication",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kinesisanalytics:${Region}:${Account}:application/${ApplicationName}"
+                "resource_mappings": {
+                    "ApplicationName": {
+                        "template": "${ApplicationName}"
+                    }
                 }
             }
         ],
@@ -96080,10 +94142,7 @@
         "CustomerProfiles.MergeProfiles": [
             {
                 "action": "profile:MergeProfiles",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:profile:${Region}:${Account}:/domains/${DomainName}/profiles/objects/merge"
-                }
+                "resource_mappings": {}
             }
         ],
         "MediaPackageVod.ConfigureLogs": [
@@ -96827,9 +94886,13 @@
         "Kendra.DeletePrincipalMapping": [
             {
                 "action": "kendra:DeletePrincipalMapping",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    },
+                    "DataSourceId": {
+                        "template": "${DataSourceId}"
+                    }
                 }
             }
         ],
@@ -96875,45 +94938,50 @@
         "QuickSight.CreateFolder": [
             {
                 "action": "quicksight:CreateFolder",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/${FolderId}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${FolderId}"
+                    }
                 }
             }
         ],
         "QuickSight.ListFolders": [
             {
                 "action": "quicksight:ListFolders",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/*"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "*"
+                    }
                 }
             }
         ],
         "QuickSight.DeleteFolder": [
             {
                 "action": "quicksight:DeleteFolder",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/${FolderId}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${FolderId}"
+                    }
                 }
             }
         ],
         "QuickSight.DescribeFolder": [
             {
                 "action": "quicksight:DescribeFolder",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/${FolderId}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${FolderId}"
+                    }
                 }
             }
         ],
         "QuickSight.UpdateFolder": [
             {
                 "action": "quicksight:UpdateFolder",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/${FolderId}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${FolderId}"
+                    }
                 }
             }
         ],
@@ -96993,27 +95061,27 @@
         "DataSync.UpdateLocationNfs": [
             {
                 "action": "datasync:UpdateLocationNfs",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "${LocationArn}"
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "location": "${LocationArn}"
                 }
             }
         ],
         "DataSync.UpdateLocationObjectStorage": [
             {
                 "action": "datasync:UpdateLocationObjectStorage",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "${LocationArn}"
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "location": "${LocationArn}"
                 }
             }
         ],
         "DataSync.UpdateLocationSmb": [
             {
                 "action": "datasync:UpdateLocationSmb",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "${LocationArn}"
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "location": "${LocationArn}"
                 }
             }
         ],
@@ -97045,7 +95113,7 @@
         "IoTSiteWise.PutStorageConfiguration": [
             {
                 "action": "iotsitewise:PutStorageConfiguration",
-                "undocumented": true
+                "resource_mappings": {}
             }
         ],
         "LexModelsV2.CreateResourcePolicyStatement": [
@@ -97285,9 +95353,10 @@
         "QuickSight.SearchFolders": [
             {
                 "action": "quicksight:SearchFolders",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/*"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "*"
+                    }
                 }
             }
         ],
@@ -97479,9 +95548,13 @@
         "LexModelBuildingService.StartMigration": [
             {
                 "action": "lex:StartMigration",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:lex:${Region}:${Account}:bot:${v1BotName}:${v1BotVersion}"
+                "resource_mappings": {
+                    "BotName": {
+                        "template": "%%many%${v1BotName}%${v2BotName}%%"
+                    },
+                    "BotVersion": {
+                        "template": "${v1BotVersion}"
+                    }
                 }
             }
         ],
@@ -97545,63 +95618,70 @@
         "QuickSight.CreateFolderMembership": [
             {
                 "action": "quicksight:CreateFolderMembership",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/${FolderId}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "*"
+                    }
                 }
             }
         ],
         "QuickSight.DeleteFolderMembership": [
             {
                 "action": "quicksight:DeleteFolderMembership",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/${FolderId}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "*"
+                    }
                 }
             }
         ],
         "QuickSight.DescribeFolderPermissions": [
             {
                 "action": "quicksight:DescribeFolderPermissions",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/${FolderId}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${FolderId}"
+                    }
                 }
             }
         ],
         "QuickSight.DescribeFolderResolvedPermissions": [
             {
                 "action": "quicksight:DescribeFolderResolvedPermissions",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/${FolderId}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${FolderId}"
+                    }
                 }
             }
         ],
         "QuickSight.ListFolderMembers": [
             {
                 "action": "quicksight:ListFolderMembers",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/${FolderId}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${FolderId}"
+                    }
                 }
             }
         ],
         "QuickSight.UpdateFolderPermissions": [
             {
                 "action": "quicksight:UpdateFolderPermissions",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:quicksight:${Region}:${Account}:folder/${FolderId}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${FolderId}"
+                    }
                 }
             }
         ],
         "KinesisAnalyticsV2.UpdateApplicationMaintenanceConfiguration": [
             {
                 "action": "kinesisanalytics:UpdateApplicationMaintenanceConfiguration",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kinesisanalytics:${Region}:${Account}:application/${ApplicationName}"
+                "resource_mappings": {
+                    "ApplicationName": {
+                        "template": "${ApplicationName}"
+                    }
                 }
             }
         ],
@@ -97731,15 +95811,6 @@
                     "Id": {
                         "template": "*"
                     }
-                }
-            }
-        ],
-        "CodeBuild.UpdateProjectVisibility": [
-            {
-                "action": "codebuild:UpdateProjectVisibility",
-                "resource_mappings": {},
-                "resourcearn_mappings": {
-                    "project": "${projectArn}"
                 }
             }
         ],
@@ -99198,25 +97269,6 @@
                 }
             }
         ],
-        "MemoryDB.UpdateUser": [
-            {
-                "action": "memorydb:UpdateUser",
-                "resource_mappings": {
-                    "UserName": {
-                        "template": "${UserName}"
-                    }
-                }
-            }
-        ],
-        "CloudFormation.RollbackStack": [
-            {
-                "action": "cloudformation:RollbackStack",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:cloudformation:${Region}:${Account}:stack/${StackName}/*"
-                }
-            }
-        ],
         "EMR.DescribeReleaseLabel": [
             {
                 "action": "elasticmapreduce:DescribeReleaseLabel",
@@ -99328,9 +97380,10 @@
         "SageMakerRuntime.InvokeEndpointAsync": [
             {
                 "action": "sagemaker:InvokeEndpointAsync",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:sagemaker:${Region}:${Account}:endpoint/${endpointname}"
+                "resource_mappings": {
+                    "EndpointName": {
+                        "template": "${EndpointName}"
+                    }
                 }
             }
         ],
@@ -99466,6 +97519,2026 @@
                 "undocumented": true,
                 "arn_override": {
                     "template": "*"
+                }
+            }
+        ],
+        "S3Control.CreateMultiRegionAccessPoint": [
+            {
+                "action": "s3:CreateMultiRegionAccessPoint",
+                "resource_mappings": {
+                    "AccessPointName": {
+                        "template": "${Details.Name}"
+                    }
+                }
+            }
+        ],
+        "S3Control.DeleteMultiRegionAccessPoint": [
+            {
+                "action": "s3:DeleteMultiRegionAccessPoint",
+                "resource_mappings": {
+                    "AccessPointName": {
+                        "template": "${Details.Name}"
+                    }
+                }
+            }
+        ],
+        "S3Control.GetMultiRegionAccessPoint": [
+            {
+                "action": "s3:GetMultiRegionAccessPoint",
+                "resource_mappings": {
+                    "AccessPointName": {
+                        "template": "${Name}"
+                    }
+                }
+            }
+        ],
+        "S3Control.GetMultiRegionAccessPointPolicy": [
+            {
+                "action": "s3:GetMultiRegionAccessPointPolicy",
+                "resource_mappings": {
+                    "AccessPointName": {
+                        "template": "${Name}"
+                    }
+                }
+            }
+        ],
+        "S3Control.GetMultiRegionAccessPointPolicyStatus": [
+            {
+                "action": "s3:GetMultiRegionAccessPointPolicyStatus",
+                "resource_mappings": {
+                    "AccessPointName": {
+                        "template": "${Name}"
+                    }
+                }
+            }
+        ],
+        "S3Control.ListMultiRegionAccessPoints": [
+            {
+                "action": "s3:ListMultiRegionAccessPoints",
+                "resource_mappings": {}
+            }
+        ],
+        "S3Control.PutMultiRegionAccessPointPolicy": [
+            {
+                "action": "s3:PutMultiRegionAccessPointPolicy",
+                "resource_mappings": {
+                    "AccessPointName": {
+                        "template": "${Details.Name}"
+                    }
+                }
+            }
+        ],
+        "Chime.StartMeetingTranscription": [
+            {
+                "action": "chime:StartMeetingTranscription",
+                "resource_mappings": {}
+            }
+        ],
+        "Chime.StopMeetingTranscription": [
+            {
+                "action": "chime:StopMeetingTranscription",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.AcceptInboundConnection": [
+            {
+                "action": "es:AcceptInboundConnection",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.AddTags": [
+            {
+                "action": "es:AddTags",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "domain": "${ARN}"
+                }
+            }
+        ],
+        "OpenSearch.AssociatePackage": [
+            {
+                "action": "es:AssociatePackage",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.CreateDomain": [
+            {
+                "action": "es:CreateDomain",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.CreateOutboundConnection": [
+            {
+                "action": "es:CreateOutboundConnection",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "%%many%${LocalDomainInfo.AWSDomainInformation.DomainName}%${RemoteDomainInfo.AWSDomainInformation.DomainName}%%"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.CreatePackage": [
+            {
+                "action": "es:CreatePackage",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.DeleteDomain": [
+            {
+                "action": "es:DeleteDomain",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.DeleteInboundConnection": [
+            {
+                "action": "es:DeleteInboundConnection",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.DeleteOutboundConnection": [
+            {
+                "action": "es:DeleteOutboundConnection",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.DeletePackage": [
+            {
+                "action": "es:DeletePackage",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.DescribeDomain": [
+            {
+                "action": "es:DescribeDomain",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.DescribeDomainConfig": [
+            {
+                "action": "es:DescribeDomainConfig",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.DescribeDomains": [
+            {
+                "action": "es:DescribeDomains",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainNames[]}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.DescribeInboundConnections": [
+            {
+                "action": "es:DescribeInboundConnections",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.DescribeInstanceTypeLimits": [
+            {
+                "action": "es:DescribeInstanceTypeLimits",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.DescribeOutboundConnections": [
+            {
+                "action": "es:DescribeOutboundConnections",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.DescribePackages": [
+            {
+                "action": "es:DescribePackages",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.DescribeReservedInstanceOfferings": [
+            {
+                "action": "es:DescribeReservedInstanceOfferings",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.DescribeReservedInstances": [
+            {
+                "action": "es:DescribeReservedInstances",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.DissociatePackage": [
+            {
+                "action": "es:DissociatePackage",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.GetCompatibleVersions": [
+            {
+                "action": "es:GetCompatibleVersions",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.GetPackageVersionHistory": [
+            {
+                "action": "es:GetPackageVersionHistory",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.GetUpgradeHistory": [
+            {
+                "action": "es:GetUpgradeHistory",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.GetUpgradeStatus": [
+            {
+                "action": "es:GetUpgradeStatus",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.ListDomainNames": [
+            {
+                "action": "es:ListDomainNames",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.ListDomainsForPackage": [
+            {
+                "action": "es:ListDomainsForPackage",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.ListInstanceTypeDetails": [
+            {
+                "action": "es:ListInstanceTypeDetails",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.ListPackagesForDomain": [
+            {
+                "action": "es:ListPackagesForDomain",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.ListTags": [
+            {
+                "action": "es:ListTags",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "domain": "${ARN}"
+                }
+            }
+        ],
+        "OpenSearch.ListVersions": [
+            {
+                "action": "es:ListVersions",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.PurchaseReservedInstanceOffering": [
+            {
+                "action": "es:PurchaseReservedInstanceOffering",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.RejectInboundConnection": [
+            {
+                "action": "es:RejectInboundConnection",
+                "resource_mappings": {}
+            }
+        ],
+        "OpenSearch.RemoveTags": [
+            {
+                "action": "es:RemoveTags",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "domain": "${ARN}"
+                }
+            }
+        ],
+        "OpenSearch.UpdateDomainConfig": [
+            {
+                "action": "es:UpdateDomainConfig",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "OpenSearch.UpdatePackage": [
+            {
+                "action": "es:UpdatePackage",
+                "resource_mappings": {}
+            }
+        ],
+        "CodeBuild.UpdateProjectVisibility": [
+            {
+                "action": "codebuild:UpdateProjectVisibility",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "project": "${projectArn}"
+                }
+            }
+        ],
+        "Rekognition.DeleteProjectVersion": [
+            {
+                "action": "rekognition:DeleteProjectVersion",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "projectversion": "${ProjectVersionArn}"
+                }
+            }
+        ],
+        "MemoryDB.UpdateUser": [
+            {
+                "action": "memorydb:UpdateUser",
+                "resource_mappings": {
+                    "UserName": {
+                        "template": "${UserName}"
+                    }
+                }
+            }
+        ],
+        "CloudFormation.RollbackStack": [
+            {
+                "action": "cloudformation:RollbackStack",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:cloudformation:${Region}:${Account}:stack/${StackName}/*"
+                }
+            }
+        ],
+        "Pinpoint.CreateInAppTemplate": [
+            {
+                "action": "mobiletargeting:CreateInAppTemplate",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:mobiletargeting:${Region}:${Account}:templates/${TemplateName}/INAPP"
+                }
+            }
+        ],
+        "Pinpoint.DeleteInAppTemplate": [
+            {
+                "action": "mobiletargeting:DeleteInAppTemplate",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:mobiletargeting:${Region}:${Account}:templates/${TemplateName}/INAPP"
+                }
+            }
+        ],
+        "Pinpoint.GetInAppMessages": [
+            {
+                "action": "mobiletargeting:GetInAppMessages",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:mobiletargeting:${Region}:${Account}:apps/${ApplicationId}"
+                }
+            }
+        ],
+        "Pinpoint.GetInAppTemplate": [
+            {
+                "action": "mobiletargeting:GetInAppTemplate",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:mobiletargeting:${Region}:${Account}:templates/${TemplateName}/INAPP"
+                }
+            }
+        ],
+        "Pinpoint.UpdateInAppTemplate": [
+            {
+                "action": "mobiletargeting:UpdateInAppTemplate",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:mobiletargeting:${Region}:${Account}:templates/${TemplateName}/INAPP"
+                }
+            }
+        ],
+        "SageMaker.DeleteStudioLifecycleConfig": [
+            {
+                "action": "sagemaker:DeleteStudioLifecycleConfig",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:sagemaker:${Region}:${Account}:studio-lifecycle-config/${studiolifecycleconfigname}"
+                }
+            }
+        ],
+        "SageMaker.DescribeStudioLifecycleConfig": [
+            {
+                "action": "sagemaker:DescribeStudioLifecycleConfig",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:sagemaker:${Region}:${Account}:studio-lifecycle-config/${studiolifecycleconfigname}"
+                }
+            }
+        ],
+        "SageMaker.ListStudioLifecycleConfigs": [
+            {
+                "action": "sagemaker:ListStudioLifecycleConfigs",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:sagemaker:${Region}:${Account}:studio-lifecycle-config/*"
+                }
+            }
+        ],
+        "EKS.DeregisterCluster": [
+            {
+                "action": "eks:DeregisterCluster",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:eks:${Region}:${Account}:cluster/${name}"
+                }
+            }
+        ],
+        "Macie2.ListManagedDataIdentifiers": [
+            {
+                "action": "macie2:ListManagedDataIdentifiers",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:macie2:${Region}:${Account}:*"
+                }
+            }
+        ],
+        "KafkaConnect.CreateWorkerConfiguration": [
+            {
+                "action": "kafkaconnect:CreateWorkerConfiguration",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:kafkaconnect:${Region}:${Account}:worker-configuration/${name}"
+                }
+            }
+        ],
+        "KafkaConnect.DeleteConnector": [
+            {
+                "action": "kafkaconnect:DeleteConnector",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:kafkaconnect:${Region}:${Account}:$arn{${connectorArn}}"
+                }
+            }
+        ],
+        "KafkaConnect.DescribeConnector": [
+            {
+                "action": "kafkaconnect:DescribeConnector",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:kafkaconnect:${Region}:${Account}:$arn{${connectorArn}}"
+                }
+            }
+        ],
+        "KafkaConnect.DescribeCustomPlugin": [
+            {
+                "action": "kafkaconnect:DescribeCustomPlugin",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:kafkaconnect:${Region}:${Account}:$arn{${customPluginArn}}"
+                }
+            }
+        ],
+        "KafkaConnect.DescribeWorkerConfiguration": [
+            {
+                "action": "kafkaconnect:DescribeWorkerConfiguration",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:kafkaconnect:${Region}:${Account}:$arn{${workerConfigurationArn}}"
+                }
+            }
+        ],
+        "KafkaConnect.ListConnectors": [
+            {
+                "action": "kafkaconnect:ListConnectors",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:kafkaconnect:${Region}:${Account}:/v1/connectors"
+                }
+            }
+        ],
+        "KafkaConnect.ListCustomPlugins": [
+            {
+                "action": "kafkaconnect:ListCustomPlugins",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:kafkaconnect:${Region}:${Account}:/v1/custom-plugins"
+                }
+            }
+        ],
+        "KafkaConnect.ListWorkerConfigurations": [
+            {
+                "action": "kafkaconnect:ListWorkerConfigurations",
+                "undocumented": true,
+                "arn_override": {
+                    "template": "arn:${Partition}:kafkaconnect:${Region}:${Account}:/v1/worker-configurations"
+                }
+            }
+        ],
+        "APIGateway.CreateApiKey": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apikeys"
+                }
+            }
+        ],
+        "APIGateway.CreateBasePathMapping": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${domainName}/basepathmappings"
+                }
+            }
+        ],
+        "APIGateway.CreateDeployment": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/deployments"
+                }
+            }
+        ],
+        "APIGateway.CreateDocumentationVersion": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/documentation/versions"
+                }
+            }
+        ],
+        "APIGateway.CreateDomainName": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames"
+                }
+            }
+        ],
+        "APIGateway.CreateModel": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/models"
+                }
+            }
+        ],
+        "APIGateway.CreateRequestValidator": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/requestvalidators"
+                }
+            }
+        ],
+        "APIGateway.CreateResource": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${parentId}"
+                }
+            }
+        ],
+        "APIGateway.CreateRestApi": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis"
+                }
+            }
+        ],
+        "APIGateway.CreateStage": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/stages"
+                }
+            }
+        ],
+        "APIGateway.CreateUsagePlan": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/usageplans"
+                }
+            }
+        ],
+        "APIGateway.CreateUsagePlanKey": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/usageplans/${usagePlanId}/keys"
+                }
+            }
+        ],
+        "APIGateway.CreateVpcLink": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/vpclinks"
+                }
+            }
+        ],
+        "APIGateway.DeleteApiKey": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apikeys/${apiKey}"
+                }
+            }
+        ],
+        "APIGateway.DeleteAuthorizer": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/authorizers/${authorizerId}"
+                }
+            }
+        ],
+        "APIGateway.DeleteBasePathMapping": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${domainName}/basepathmappings/${basePath}"
+                }
+            }
+        ],
+        "APIGateway.DeleteClientCertificate": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/clientcertificates/${clientCertificateId}"
+                }
+            }
+        ],
+        "APIGateway.DeleteDeployment": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/deployments/${deploymentId}"
+                }
+            }
+        ],
+        "APIGateway.DeleteDocumentationPart": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/documentation/parts/${documentationPartId}"
+                }
+            }
+        ],
+        "APIGateway.DeleteDocumentationVersion": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/documentation/versions/${documentationVersion}"
+                }
+            }
+        ],
+        "APIGateway.DeleteDomainName": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${domainName}"
+                }
+            }
+        ],
+        "APIGateway.DeleteGatewayResponse": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/gatewayresponses/${responseType}"
+                }
+            }
+        ],
+        "APIGateway.DeleteIntegration": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration"
+                }
+            }
+        ],
+        "APIGateway.DeleteIntegrationResponse": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration/responses/${statusCode}"
+                }
+            }
+        ],
+        "APIGateway.DeleteMethod": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}"
+                }
+            }
+        ],
+        "APIGateway.DeleteMethodResponse": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/responses/${statusCode}"
+                }
+            }
+        ],
+        "APIGateway.DeleteModel": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/models/${modelName}"
+                }
+            }
+        ],
+        "APIGateway.DeleteRequestValidator": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/requestvalidators/${requestValidatorId}"
+                }
+            }
+        ],
+        "APIGateway.DeleteResource": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}"
+                }
+            }
+        ],
+        "APIGateway.DeleteRestApi": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}"
+                }
+            }
+        ],
+        "APIGateway.DeleteStage": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/stages/${stageName}"
+                }
+            }
+        ],
+        "APIGateway.DeleteUsagePlan": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/usageplans/${usagePlanId}"
+                }
+            }
+        ],
+        "APIGateway.DeleteUsagePlanKey": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/usageplans/${usagePlanId}/keys/${keyId}"
+                }
+            }
+        ],
+        "APIGateway.DeleteVpcLink": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/vpclinks/${vpcLinkId}"
+                }
+            }
+        ],
+        "APIGateway.FlushStageAuthorizersCache": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/stages/${stageName}/cache/authorizers"
+                }
+            }
+        ],
+        "APIGateway.FlushStageCache": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/stages/${stageName}/cache/data"
+                }
+            }
+        ],
+        "APIGateway.GenerateClientCertificate": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/clientcertificates"
+                }
+            }
+        ],
+        "APIGateway.GetAccount": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/account"
+                }
+            }
+        ],
+        "APIGateway.GetApiKey": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apikeys/${apiKey}"
+                }
+            }
+        ],
+        "APIGateway.GetApiKeys": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apikeys"
+                }
+            }
+        ],
+        "APIGateway.GetAuthorizer": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/authorizers/${authorizerId}"
+                }
+            }
+        ],
+        "APIGateway.GetAuthorizers": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/authorizers"
+                }
+            }
+        ],
+        "APIGateway.GetBasePathMapping": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${domainName}/basepathmappings/${basePath}"
+                }
+            }
+        ],
+        "APIGateway.GetBasePathMappings": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${domainName}/basepathmappings"
+                }
+            }
+        ],
+        "APIGateway.GetClientCertificate": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/clientcertificates/${clientCertificateId}"
+                }
+            }
+        ],
+        "APIGateway.GetClientCertificates": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/clientcertificates"
+                }
+            }
+        ],
+        "APIGateway.GetDeployment": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/deployments/${deploymentId}"
+                }
+            }
+        ],
+        "APIGateway.GetDeployments": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/deployments"
+                }
+            }
+        ],
+        "APIGateway.GetDocumentationPart": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/documentation/parts/${documentationPartId}"
+                }
+            }
+        ],
+        "APIGateway.GetDocumentationParts": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/documentation/parts"
+                }
+            }
+        ],
+        "APIGateway.GetDocumentationVersion": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/documentation/versions/${documentationVersion}"
+                }
+            }
+        ],
+        "APIGateway.GetDocumentationVersions": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/documentation/versions"
+                }
+            }
+        ],
+        "APIGateway.GetDomainName": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${domainName}"
+                }
+            }
+        ],
+        "APIGateway.GetDomainNames": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames"
+                }
+            }
+        ],
+        "APIGateway.GetExport": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/stages/${stageName}/exports/${exportType}"
+                }
+            }
+        ],
+        "APIGateway.GetGatewayResponse": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/gatewayresponses/${responseType}"
+                }
+            }
+        ],
+        "APIGateway.GetGatewayResponses": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/gatewayresponses"
+                }
+            }
+        ],
+        "APIGateway.GetIntegration": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration"
+                }
+            }
+        ],
+        "APIGateway.GetIntegrationResponse": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration/responses/${statusCode}"
+                }
+            }
+        ],
+        "APIGateway.GetMethod": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}"
+                }
+            }
+        ],
+        "APIGateway.GetMethodResponse": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/responses/${statusCode}"
+                }
+            }
+        ],
+        "APIGateway.GetModel": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/models/${modelName}"
+                }
+            }
+        ],
+        "APIGateway.GetModelTemplate": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/models/${modelName}/default_template"
+                }
+            }
+        ],
+        "APIGateway.GetModels": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/models"
+                }
+            }
+        ],
+        "APIGateway.GetRequestValidator": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/requestvalidators/${requestValidatorId}"
+                }
+            }
+        ],
+        "APIGateway.GetRequestValidators": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/requestvalidators"
+                }
+            }
+        ],
+        "APIGateway.GetResource": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}"
+                }
+            }
+        ],
+        "APIGateway.GetResources": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources"
+                }
+            }
+        ],
+        "APIGateway.GetRestApi": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}"
+                }
+            }
+        ],
+        "APIGateway.GetRestApis": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis"
+                }
+            }
+        ],
+        "APIGateway.GetSdk": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/stages/${stageName}/sdks/${sdkType}"
+                }
+            }
+        ],
+        "APIGateway.GetSdkType": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/sdktypes/${id}"
+                }
+            }
+        ],
+        "APIGateway.GetSdkTypes": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/sdktypes"
+                }
+            }
+        ],
+        "APIGateway.GetStage": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/stages/${stageName}"
+                }
+            }
+        ],
+        "APIGateway.GetStages": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/stages"
+                }
+            }
+        ],
+        "APIGateway.GetTags": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/tags/${resourceArn}"
+                }
+            }
+        ],
+        "APIGateway.GetUsage": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/usageplans/${usagePlanId}/usage"
+                }
+            }
+        ],
+        "APIGateway.GetUsagePlan": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/usageplans/${usagePlanId}"
+                }
+            }
+        ],
+        "APIGateway.GetUsagePlanKey": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/usageplans/${usagePlanId}/keys/${keyId}"
+                }
+            }
+        ],
+        "APIGateway.GetUsagePlanKeys": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/usageplans/${usagePlanId}/keys"
+                }
+            }
+        ],
+        "APIGateway.GetUsagePlans": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/usageplans"
+                }
+            }
+        ],
+        "APIGateway.GetVpcLink": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/vpclinks/${vpcLinkId}"
+                }
+            }
+        ],
+        "APIGateway.GetVpcLinks": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/vpclinks"
+                }
+            }
+        ],
+        "APIGateway.ImportApiKeys": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apikeys"
+                }
+            }
+        ],
+        "APIGateway.ImportDocumentationParts": [
+            {
+                "action": "apigateway:PUT",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/documentation/parts"
+                }
+            }
+        ],
+        "APIGateway.PutGatewayResponse": [
+            {
+                "action": "apigateway:PUT",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/gatewayresponses/${responseType}"
+                }
+            }
+        ],
+        "APIGateway.PutIntegration": [
+            {
+                "action": "apigateway:PUT",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration"
+                }
+            }
+        ],
+        "APIGateway.PutIntegrationResponse": [
+            {
+                "action": "apigateway:PUT",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration/responses/${statusCode}"
+                }
+            }
+        ],
+        "APIGateway.PutMethod": [
+            {
+                "action": "apigateway:PUT",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}"
+                }
+            }
+        ],
+        "APIGateway.PutMethodResponse": [
+            {
+                "action": "apigateway:PUT",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/responses/${statusCode}"
+                }
+            }
+        ],
+        "APIGateway.TestInvokeAuthorizer": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/authorizers/${authorizerId}"
+                }
+            }
+        ],
+        "APIGateway.TestInvokeMethod": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}"
+                }
+            }
+        ],
+        "APIGateway.UntagResource": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/tags/${resourceArn}"
+                }
+            }
+        ],
+        "APIGateway.UpdateAccount": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/account"
+                }
+            }
+        ],
+        "APIGateway.UpdateApiKey": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apikeys/${apiKey}"
+                }
+            }
+        ],
+        "APIGateway.UpdateAuthorizer": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/authorizers/${authorizerId}"
+                }
+            }
+        ],
+        "APIGateway.UpdateBasePathMapping": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${domainName}/basepathmappings/${basePath}"
+                }
+            }
+        ],
+        "APIGateway.UpdateClientCertificate": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/clientcertificates/${clientCertificateId}"
+                }
+            }
+        ],
+        "APIGateway.UpdateDeployment": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/deployments/${deploymentId}"
+                }
+            }
+        ],
+        "APIGateway.UpdateDocumentationPart": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/documentation/parts/${documentationPartId}"
+                }
+            }
+        ],
+        "APIGateway.UpdateDocumentationVersion": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/documentation/versions/${documentationVersion}"
+                }
+            }
+        ],
+        "APIGateway.UpdateDomainName": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${domainName}"
+                }
+            }
+        ],
+        "APIGateway.UpdateGatewayResponse": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/gatewayresponses/${responseType}"
+                }
+            }
+        ],
+        "APIGateway.UpdateIntegration": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration"
+                }
+            }
+        ],
+        "APIGateway.UpdateIntegrationResponse": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/integration/responses/${statusCode}"
+                }
+            }
+        ],
+        "APIGateway.UpdateMethod": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}"
+                }
+            }
+        ],
+        "APIGateway.UpdateMethodResponse": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}/methods/${httpMethod}/responses/${statusCode}"
+                }
+            }
+        ],
+        "APIGateway.UpdateModel": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/models/${modelName}"
+                }
+            }
+        ],
+        "APIGateway.UpdateRequestValidator": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/requestvalidators/${requestValidatorId}"
+                }
+            }
+        ],
+        "APIGateway.UpdateResource": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/resources/${resourceId}"
+                }
+            }
+        ],
+        "APIGateway.UpdateStage": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/restapis/${restApiId}/stages/${stageName}"
+                }
+            }
+        ],
+        "APIGateway.UpdateUsage": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/usageplans/${usagePlanId}/keys/${keyId}/usage"
+                }
+            }
+        ],
+        "APIGateway.UpdateUsagePlan": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/usageplans/${usagePlanId}"
+                }
+            }
+        ],
+        "APIGateway.UpdateVpcLink": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/vpclinks/${vpcLinkId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.CreateApi": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis"
+                }
+            }
+        ],
+        "ApiGatewayV2.CreateApiMapping": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${DomainName}/apimappings"
+                }
+            }
+        ],
+        "ApiGatewayV2.CreateDeployment": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/deployments"
+                }
+            }
+        ],
+        "ApiGatewayV2.CreateDomainName": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames"
+                }
+            }
+        ],
+        "ApiGatewayV2.CreateIntegration": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/integrations"
+                }
+            }
+        ],
+        "ApiGatewayV2.CreateIntegrationResponse": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/integrations/${IntegrationId}/integrationresponses"
+                }
+            }
+        ],
+        "ApiGatewayV2.CreateModel": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/models"
+                }
+            }
+        ],
+        "ApiGatewayV2.CreateRoute": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/routes"
+                }
+            }
+        ],
+        "ApiGatewayV2.CreateRouteResponse": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/routes/${RouteId}/routeresponses"
+                }
+            }
+        ],
+        "ApiGatewayV2.CreateStage": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/stages"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteAccessLogSettings": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/stages/${StageName}/accesslogsettings"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteApi": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteApiMapping": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${DomainName}/apimappings/${ApiMappingId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteAuthorizer": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/authorizers/${AuthorizerId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteCorsConfiguration": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/cors"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteDeployment": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/deployments/${DeploymentId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteDomainName": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${DomainName}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteIntegration": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/integrations/${IntegrationId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteIntegrationResponse": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/integrations/${IntegrationId}/integrationresponses/${IntegrationResponseId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteModel": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/models/${ModelId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteRoute": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/routes/${RouteId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteRouteRequestParameter": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/routes/${RouteId}/requestparameters/${RequestParameterKey}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteRouteResponse": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/routes/${RouteId}/routeresponses/${RouteResponseId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteRouteSettings": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/stages/${StageName}/routesettings/${RouteKey}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteStage": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/stages/${StageName}"
+                }
+            }
+        ],
+        "ApiGatewayV2.DeleteVpcLink": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/vpclinks/${VpcLinkId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.ExportApi": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/exports/${Specification}"
+                }
+            }
+        ],
+        "ApiGatewayV2.ResetAuthorizersCache": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/stages/${StageName}/cache/authorizers"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetApi": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetApiMapping": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${DomainName}/apimappings/${ApiMappingId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetApiMappings": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${DomainName}/apimappings"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetApis": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetAuthorizer": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/authorizers/${AuthorizerId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetAuthorizers": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/authorizers"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetDeployment": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/deployments/${DeploymentId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetDeployments": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/deployments"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetDomainName": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${DomainName}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetDomainNames": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetIntegration": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/integrations/${IntegrationId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetIntegrationResponse": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/integrations/${IntegrationId}/integrationresponses/${IntegrationResponseId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetIntegrationResponses": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/integrations/${IntegrationId}/integrationresponses"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetIntegrations": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/integrations"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetModel": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/models/${ModelId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetModelTemplate": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/models/${ModelId}/template"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetModels": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/models"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetRoute": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/routes/${RouteId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetRouteResponse": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/routes/${RouteId}/routeresponses/${RouteResponseId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetRouteResponses": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/routes/${RouteId}/routeresponses"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetRoutes": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/routes"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetStage": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/stages/${StageName}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetStages": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/stages"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetTags": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/tags/${ResourceArn}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetVpcLink": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/vpclinks/${VpcLinkId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.GetVpcLinks": [
+            {
+                "action": "apigateway:GET",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/vpclinks"
+                }
+            }
+        ],
+        "ApiGatewayV2.ImportApi": [
+            {
+                "action": "apigateway:PUT",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis"
+                }
+            }
+        ],
+        "ApiGatewayV2.ReimportApi": [
+            {
+                "action": "apigateway:PUT",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.TagResource": [
+            {
+                "action": "apigateway:POST",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/tags/${ResourceArn}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UntagResource": [
+            {
+                "action": "apigateway:DELETE",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/tags/${ResourceArn}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateApi": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateApiMapping": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${DomainName}/apimappings/${ApiMappingId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateAuthorizer": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/authorizers/${AuthorizerId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateDeployment": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/deployments/${DeploymentId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateDomainName": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/domainnames/${DomainName}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateIntegration": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/integrations/${IntegrationId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateIntegrationResponse": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/integrations/${IntegrationId}/integrationresponses/${IntegrationResponseId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateModel": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/models/${ModelId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateRoute": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/routes/${RouteId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateRouteResponse": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/routes/${RouteId}/routeresponses/${RouteResponseId}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateStage": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/apis/${ApiId}/stages/${StageName}"
+                }
+            }
+        ],
+        "ApiGatewayV2.UpdateVpcLink": [
+            {
+                "action": "apigateway:PATCH",
+                "arn_override": {
+                    "template": "arn:${Partition}:apigateway:${Region}::/vpclinks/${VpcLinkId}"
                 }
             }
         ]
@@ -99660,6 +99733,7 @@
         "Network Firewall": "network-firewall",
         "NetworkFirewall": "network-firewall",
         "NetworkManager": "networkmanager",
+        "OpenSearch": "es",
         "OpsWorksCM": "opsworks-cm",
         "Outposts": "outposts",
         "PI": "pi",
