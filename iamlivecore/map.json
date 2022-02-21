@@ -39480,7 +39480,7 @@
         ],
         "SQS.SendMessageBatch": [
             {
-                "action": "sqs:SendMessageBatch",
+                "action": "sqs:SendMessage",
                 "resource_mappings": {
                     "QueueName": {
                         "template": "%%regex%${QueueUrl}%/^.+\\/(.+?)$/g%%"
@@ -91718,100 +91718,67 @@
         "Redshift.AddPartner": [
             {
                 "action": "redshift:AddPartner",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "*"
-                }
+                "resource_mappings": {}
             }
         ],
         "Redshift.AuthorizeEndpointAccess": [
             {
                 "action": "redshift:AuthorizeEndpointAccess",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:redshift:${Region}:${Account}:cluster:*"
-                }
+                "resource_mappings": {}
             }
         ],
         "Redshift.CreateEndpointAccess": [
             {
                 "action": "redshift:CreateEndpointAccess",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:redshift:${Region}:${Account}:managedvpcendpoint:${EndpointName}"
-                }
+                "resource_mappings": {}
             }
         ],
         "Redshift.DeleteEndpointAccess": [
             {
                 "action": "redshift:DeleteEndpointAccess",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:redshift:${Region}:${Account}:managedvpcendpoint:${EndpointName}"
-                }
+                "resource_mappings": {}
             }
         ],
         "Redshift.DeletePartner": [
             {
                 "action": "redshift:DeletePartner",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "*"
-                }
+                "resource_mappings": {}
             }
         ],
         "Redshift.DescribeEndpointAccess": [
             {
                 "action": "redshift:DescribeEndpointAccess",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:redshift:${Region}:${Account}:managedvpcendpoint:*"
-                }
+                "resource_mappings": {}
             }
         ],
         "Redshift.DescribeEndpointAuthorization": [
             {
                 "action": "redshift:DescribeEndpointAuthorization",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:redshift:${Region}:${Account}:cluster:*"
-                }
+                "resource_mappings": {}
             }
         ],
         "Redshift.DescribePartners": [
             {
                 "action": "redshift:DescribePartners",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "*"
-                }
+                "resource_mappings": {}
             }
         ],
         "Redshift.ModifyEndpointAccess": [
             {
                 "action": "redshift:ModifyEndpointAccess",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:redshift:${Region}:${Account}:managedvpcendpoint:${EndpointName}"
-                }
+                "resource_mappings": {}
             }
         ],
         "Redshift.RevokeEndpointAccess": [
             {
                 "action": "redshift:RevokeEndpointAccess",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:redshift:${Region}:${Account}:cluster:*"
-                }
+                "resource_mappings": {}
             }
         ],
         "Redshift.UpdatePartnerStatus": [
             {
                 "action": "redshift:UpdatePartnerStatus",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "*"
-                }
+                "resource_mappings": {}
             }
         ],
         "KMS.ReplicateKey": [
@@ -95106,9 +95073,10 @@
         "SSM.UnlabelParameterVersion": [
             {
                 "action": "ssm:UnlabelParameterVersion",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:ssm:${Region}:${Account}:parameter/${Name}"
+                "resource_mappings": {
+                    "ParameterNameWithoutLeadingSlash": {
+                        "template": "${Name}"
+                    }
                 }
             }
         ],
@@ -98030,18 +97998,19 @@
         "Pinpoint.CreateInAppTemplate": [
             {
                 "action": "mobiletargeting:CreateInAppTemplate",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mobiletargeting:${Region}:${Account}:templates/${TemplateName}/INAPP"
-                }
+                "resource_mappings": {}
             }
         ],
         "Pinpoint.DeleteInAppTemplate": [
             {
                 "action": "mobiletargeting:DeleteInAppTemplate",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mobiletargeting:${Region}:${Account}:templates/${TemplateName}/INAPP"
+                "resource_mappings": {
+                    "TemplateName": {
+                        "template": "${TemplateName}"
+                    },
+                    "ChannelType": {
+                        "template": "*"
+                    }
                 }
             }
         ],
@@ -98058,18 +98027,26 @@
         "Pinpoint.GetInAppTemplate": [
             {
                 "action": "mobiletargeting:GetInAppTemplate",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mobiletargeting:${Region}:${Account}:templates/${TemplateName}/INAPP"
+                "resource_mappings": {
+                    "TemplateName": {
+                        "template": "${TemplateName}"
+                    },
+                    "ChannelType": {
+                        "template": "*"
+                    }
                 }
             }
         ],
         "Pinpoint.UpdateInAppTemplate": [
             {
                 "action": "mobiletargeting:UpdateInAppTemplate",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mobiletargeting:${Region}:${Account}:templates/${TemplateName}/INAPP"
+                "resource_mappings": {
+                    "TemplateName": {
+                        "template": "${TemplateName}"
+                    },
+                    "ChannelType": {
+                        "template": "*"
+                    }
                 }
             }
         ],
@@ -100442,10 +100419,7 @@
         "Iot.PutVerificationStateOnViolation": [
             {
                 "action": "iot:PutVerificationStateOnViolation",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "*"
-                }
+                "resource_mappings": {}
             }
         ],
         "CloudControl.CancelResourceRequest": [
@@ -101449,10 +101423,7 @@
         "MediaLive.ClaimDevice": [
             {
                 "action": "medialive:ClaimDevice",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:medialive:${Region}:${Account}:claimDevice:*"
-                }
+                "resource_mappings": {}
             }
         ],
         "SageMaker.UpdateProject": [
@@ -101468,36 +101439,40 @@
         "Connect.StopContactStreaming": [
             {
                 "action": "connect:StopContactStreaming",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:connect:${Region}:${Account}:instance/${InstanceId}/contact/${ContactId}"
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
                 }
             }
         ],
         "MediaTailor.DeletePrefetchSchedule": [
             {
                 "action": "mediatailor:DeletePrefetchSchedule",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:prefetchSchedule/${PlaybackConfigurationName}/${Name}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${Name}"
+                    }
                 }
             }
         ],
         "MediaTailor.GetPrefetchSchedule": [
             {
                 "action": "mediatailor:GetPrefetchSchedule",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:prefetchSchedule/${PlaybackConfigurationName}/${Name}"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${Name}"
+                    }
                 }
             }
         ],
         "MediaTailor.ListPrefetchSchedules": [
             {
                 "action": "mediatailor:ListPrefetchSchedules",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:mediatailor:${Region}:${Account}:prefetchSchedule/*"
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${PlaybackConfigurationName}"
+                    }
                 }
             }
         ],
@@ -106456,28 +106431,311 @@
         "Kafka.CreateClusterV2": [
             {
                 "action": "kafka:CreateClusterV2",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kafka:${Region}:${Account}:cluster/${ClusterName}"
+                "resource_mappings": {}
+            },
+            {
+                "action": "ec2:CreateTags",
+                "resource_mappings": {
+                    "CapacityReservationId": {
+                        "template": "*"
+                    },
+                    "CapacityReservationFleetId": {
+                        "template": "*"
+                    },
+                    "ClientVpnEndpointId": {
+                        "template": "*"
+                    },
+                    "CustomerGatewayId": {
+                        "template": "*"
+                    },
+                    "DedicatedHostId": {
+                        "template": "*"
+                    },
+                    "DhcpOptionsId": {
+                        "template": "*"
+                    },
+                    "EgressOnlyInternetGatewayId": {
+                        "template": "*"
+                    },
+                    "ElasticGpuId": {
+                        "template": "*"
+                    },
+                    "AllocationId": {
+                        "template": "*"
+                    },
+                    "ExportImageTaskId": {
+                        "template": "*"
+                    },
+                    "ExportTaskId": {
+                        "template": "*"
+                    },
+                    "FleetId": {
+                        "template": "*"
+                    },
+                    "FpgaImageId": {
+                        "template": "*"
+                    },
+                    "HostReservationId": {
+                        "template": "*"
+                    },
+                    "ImageId": {
+                        "template": "*"
+                    },
+                    "ImportImageTaskId": {
+                        "template": "*"
+                    },
+                    "ImportSnapshotTaskId": {
+                        "template": "*"
+                    },
+                    "InstanceId": {
+                        "template": "*"
+                    },
+                    "InstanceEventWindowId": {
+                        "template": "*"
+                    },
+                    "InternetGatewayId": {
+                        "template": "*"
+                    },
+                    "IpamId": {
+                        "template": "*"
+                    },
+                    "IpamPoolId": {
+                        "template": "*"
+                    },
+                    "IpamScopeId": {
+                        "template": "*"
+                    },
+                    "Ipv4PoolEc2Id": {
+                        "template": "*"
+                    },
+                    "Ipv6PoolEc2Id": {
+                        "template": "*"
+                    },
+                    "KeyPairName": {
+                        "template": "*"
+                    },
+                    "LaunchTemplateId": {
+                        "template": "*"
+                    },
+                    "LocalGatewayId": {
+                        "template": "*"
+                    },
+                    "LocalGatewayRoutetableId": {
+                        "template": "*"
+                    },
+                    "LocalGatewayRouteTableVirtualInterfaceGroupAssociationId": {
+                        "template": "*"
+                    },
+                    "LocalGatewayRouteTableVpcAssociationId": {
+                        "template": "*"
+                    },
+                    "LocalGatewayVirtualInterfaceId": {
+                        "template": "*"
+                    },
+                    "LocalGatewayVirtualInterfaceGroupId": {
+                        "template": "*"
+                    },
+                    "NatGatewayId": {
+                        "template": "*"
+                    },
+                    "NaclId": {
+                        "template": "*"
+                    },
+                    "NetworkInsightsAccessScopeId": {
+                        "template": "*"
+                    },
+                    "NetworkInsightsAccessScopeAnalysisId": {
+                        "template": "*"
+                    },
+                    "NetworkInterfaceId": {
+                        "template": "*"
+                    },
+                    "PlacementGroupName": {
+                        "template": "*"
+                    },
+                    "PrefixListId": {
+                        "template": "*"
+                    },
+                    "ReplaceRootVolumeTaskId": {
+                        "template": "*"
+                    },
+                    "ReservationId": {
+                        "template": "*"
+                    },
+                    "RouteTableId": {
+                        "template": "*"
+                    },
+                    "SecurityGroupId": {
+                        "template": "*"
+                    },
+                    "SecurityGroupRuleId": {
+                        "template": "*"
+                    },
+                    "SnapshotId": {
+                        "template": "*"
+                    },
+                    "SpotFleetRequestId": {
+                        "template": "*"
+                    },
+                    "SpotInstanceRequestId": {
+                        "template": "*"
+                    },
+                    "SubnetId": {
+                        "template": "*"
+                    },
+                    "TrafficMirrorFilterId": {
+                        "template": "*"
+                    },
+                    "TrafficMirrorSessionId": {
+                        "template": "*"
+                    },
+                    "TrafficMirrorTargetId": {
+                        "template": "*"
+                    },
+                    "TransitGatewayId": {
+                        "template": "*"
+                    },
+                    "TransitGatewayAttachmentId": {
+                        "template": "*"
+                    },
+                    "TransitGatewayConnectPeerId": {
+                        "template": "*"
+                    },
+                    "TransitGatewayMulticastDomainId": {
+                        "template": "*"
+                    },
+                    "TransitGatewayRouteTableId": {
+                        "template": "*"
+                    },
+                    "VolumeId": {
+                        "template": "*"
+                    },
+                    "VpcId": {
+                        "template": "*"
+                    },
+                    "VpcEndpointId": {
+                        "template": "*"
+                    },
+                    "VpcEndpointServiceId": {
+                        "template": "*"
+                    },
+                    "VpcFlowLogId": {
+                        "template": "*"
+                    },
+                    "VpcPeeringConnectionId": {
+                        "template": "*"
+                    },
+                    "VpnConnectionId": {
+                        "template": "*"
+                    },
+                    "VpnGatewayId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:CreateVpcEndpoint",
+                "resource_mappings": {
+                    "VpcId": {
+                        "template": "*"
+                    },
+                    "VpcEndpointId": {
+                        "template": "*"
+                    },
+                    "RouteTableId": {
+                        "template": "*"
+                    },
+                    "SecurityGroupId": {
+                        "template": "*"
+                    },
+                    "SubnetId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:DeleteVpcEndpoints",
+                "resource_mappings": {
+                    "VpcEndpointId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:DescribeSecurityGroups",
+                "resource_mappings": {}
+            },
+            {
+                "action": "ec2:DescribeSubnets",
+                "resource_mappings": {}
+            },
+            {
+                "action": "ec2:DescribeVpcAttribute",
+                "resource_mappings": {
+                    "VpcId": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:DescribeVpcEndpoints",
+                "resource_mappings": {}
+            },
+            {
+                "action": "ec2:DescribeVpcs",
+                "resource_mappings": {}
+            },
+            {
+                "action": "iam:AttachRolePolicy",
+                "resource_mappings": {
+                    "RoleNameWithPath": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "iam:CreateServiceLinkedRole",
+                "resource_mappings": {
+                    "RoleNameWithPath": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "iam:PutRolePolicy",
+                "resource_mappings": {
+                    "RoleNameWithPath": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "kms:CreateGrant",
+                "resource_mappings": {
+                    "KeyId": {
+                        "template": "${Provisioned.EncryptionInfo.EncryptionAtRest.DataVolumeKMSKeyId}"
+                    }
+                }
+            },
+            {
+                "action": "kms:DescribeKey",
+                "resource_mappings": {
+                    "KeyId": {
+                        "template": "${Provisioned.EncryptionInfo.EncryptionAtRest.DataVolumeKMSKeyId}"
+                    }
                 }
             }
         ],
         "Kafka.DescribeClusterV2": [
             {
                 "action": "kafka:DescribeClusterV2",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kafka:${Region}:${Account}:$arn{${ClusterArn}}"
-                }
+                "resource_mappings": {}
             }
         ],
         "Kafka.ListClustersV2": [
             {
                 "action": "kafka:ListClustersV2",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kafka:${Region}:${Account}:/api/v2/clusters"
-                }
+                "resource_mappings": {}
             }
         ],
         "Textract.AnalyzeID": [
@@ -106596,108 +106854,144 @@
         "Kendra.AssociateEntitiesToExperience": [
             {
                 "action": "kendra:AssociateEntitiesToExperience",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    },
+                    "ExperienceId": {
+                        "template": "${Id}"
+                    }
                 }
             }
         ],
         "Kendra.AssociatePersonasToEntities": [
             {
                 "action": "kendra:AssociatePersonasToEntities",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    },
+                    "ExperienceId": {
+                        "template": "${Id}"
+                    }
                 }
             }
         ],
         "Kendra.CreateExperience": [
             {
                 "action": "kendra:CreateExperience",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    }
                 }
             }
         ],
         "Kendra.DeleteExperience": [
             {
                 "action": "kendra:DeleteExperience",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    },
+                    "ExperienceId": {
+                        "template": "${Id}"
+                    }
                 }
             }
         ],
         "Kendra.DescribeExperience": [
             {
                 "action": "kendra:DescribeExperience",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    },
+                    "ExperienceId": {
+                        "template": "${Id}"
+                    }
                 }
             }
         ],
         "Kendra.DisassociateEntitiesFromExperience": [
             {
                 "action": "kendra:DisassociateEntitiesFromExperience",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    },
+                    "ExperienceId": {
+                        "template": "${Id}"
+                    }
                 }
             }
         ],
         "Kendra.DisassociatePersonasFromEntities": [
             {
                 "action": "kendra:DisassociatePersonasFromEntities",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    },
+                    "ExperienceId": {
+                        "template": "${Id}"
+                    }
                 }
             }
         ],
         "Kendra.GetSnapshots": [
             {
                 "action": "kendra:GetSnapshots",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    }
                 }
             }
         ],
         "Kendra.ListEntityPersonas": [
             {
                 "action": "kendra:ListEntityPersonas",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    },
+                    "ExperienceId": {
+                        "template": "${Id}"
+                    }
                 }
             }
         ],
         "Kendra.ListExperienceEntities": [
             {
                 "action": "kendra:ListExperienceEntities",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    },
+                    "ExperienceId": {
+                        "template": "${Id}"
+                    }
                 }
             }
         ],
         "Kendra.ListExperiences": [
             {
                 "action": "kendra:ListExperiences",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    }
                 }
             }
         ],
         "Kendra.UpdateExperience": [
             {
                 "action": "kendra:UpdateExperience",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:kendra:${Region}:${Account}:index/${IndexId}"
+                "resource_mappings": {
+                    "IndexId": {
+                        "template": "${IndexId}"
+                    }
                 }
             }
         ],
@@ -106722,10 +107016,7 @@
         "Outposts.GetOrder": [
             {
                 "action": "outposts:GetOrder",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:outposts:${Region}:${Account}:/orders/${OrderId}"
-                }
+                "resource_mappings": {}
             }
         ],
         "Outposts.GetSite": [
@@ -106881,18 +107172,20 @@
         "Proton.ListEnvironmentOutputs": [
             {
                 "action": "proton:ListEnvironmentOutputs",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:proton:${Region}:${Account}:environment/${environmentName}"
+                "resource_mappings": {
+                    "Name": {
+                        "template": "${environmentName}"
+                    }
                 }
             }
         ],
         "Proton.ListEnvironmentProvisionedResources": [
             {
                 "action": "proton:ListEnvironmentProvisionedResources",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:proton:${Region}:${Account}:environment/${environmentName}"
+                "resource_mappings": {
+                    "Name": {
+                        "template": "${environmentName}"
+                    }
                 }
             }
         ],
@@ -106905,36 +107198,46 @@
         "Proton.ListServiceInstanceOutputs": [
             {
                 "action": "proton:ListServiceInstanceOutputs",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:proton:${Region}:${Account}:service/${serviceName}/service-instance/${serviceInstanceName}"
+                "resource_mappings": {
+                    "Name": {
+                        "template": "${serviceInstanceName}"
+                    },
+                    "ServiceName": {
+                        "template": "${serviceName}"
+                    }
                 }
             }
         ],
         "Proton.ListServiceInstanceProvisionedResources": [
             {
                 "action": "proton:ListServiceInstanceProvisionedResources",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:proton:${Region}:${Account}:service/${serviceName}/service-instance/${serviceInstanceName}"
+                "resource_mappings": {
+                    "Name": {
+                        "template": "${serviceInstanceName}"
+                    },
+                    "ServiceName": {
+                        "template": "${serviceName}"
+                    }
                 }
             }
         ],
         "Proton.ListServicePipelineOutputs": [
             {
                 "action": "proton:ListServicePipelineOutputs",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:proton:${Region}:${Account}:service/${serviceName}/pipeline"
+                "resource_mappings": {
+                    "Name": {
+                        "template": "${serviceName}"
+                    }
                 }
             }
         ],
         "Proton.ListServicePipelineProvisionedResources": [
             {
                 "action": "proton:ListServicePipelineProvisionedResources",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:proton:${Region}:${Account}:service/${serviceName}/pipeline"
+                "resource_mappings": {
+                    "Name": {
+                        "template": "${serviceName}"
+                    }
                 }
             }
         ],
@@ -106975,19 +107278,13 @@
         "Evidently.ListTagsForResource": [
             {
                 "action": "evidently:ListTagsForResource",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:evidently:${Region}:${Account}:project/${resourceArn}"
-                }
+                "resource_mappings": {}
             }
         ],
         "Evidently.UntagResource": [
             {
                 "action": "evidently:UntagResource",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:evidently:${Region}:${Account}:project/${resourceArn}"
-                }
+                "resource_mappings": {}
             }
         ],
         "Route53RecoveryCluster.GetRoutingControlState": [
@@ -110965,28 +111262,27 @@
         "AppStream.AssociateApplicationToEntitlement": [
             {
                 "action": "appstream:AssociateApplicationToEntitlement",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:appstream:${Region}:${Account}:stack/${StackName}"
+                "resource_mappings": {
+                    "StackName": {
+                        "template": "${StackName}"
+                    }
                 }
             }
         ],
         "AppStream.DisassociateApplicationFromEntitlement": [
             {
                 "action": "appstream:DisassociateApplicationFromEntitlement",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:appstream:${Region}:${Account}:stack/${StackName}"
+                "resource_mappings": {
+                    "StackName": {
+                        "template": "${StackName}"
+                    }
                 }
             }
         ],
         "RAM.ListPermissionVersions": [
             {
                 "action": "ram:ListPermissionVersions",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:ram:${Region}:${Account}:permission/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "DataSync.CreateLocationFsxLustre": [
@@ -111001,9 +111297,28 @@
         "Imagebuilder.ImportVmImage": [
             {
                 "action": "imagebuilder:ImportVmImage",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:imagebuilder:${Region}:${Account}:import-vm/*"
+                "resource_mappings": {
+                    "ImageName": {
+                        "template": "${name}"
+                    },
+                    "ImageVersion": {
+                        "template": "${semanticVersion}"
+                    },
+                    "ImageBuildVersion": {
+                        "template": "*"
+                    }
+                }
+            },
+            {
+                "action": "ec2:DescribeImportImageTasks",
+                "resource_mappings": {}
+            },
+            {
+                "action": "iam:CreateServiceLinkedRole",
+                "resource_mappings": {
+                    "RoleNameWithPath": {
+                        "template": "*"
+                    }
                 }
             }
         ],
@@ -111064,81 +111379,61 @@
         "IoTWireless.CreateMulticastGroup": [
             {
                 "action": "iotwireless:CreateMulticastGroup",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:iotwireless:${Region}:${Account}:MulticastGroup/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "IoTWireless.DeleteQueuedMessages": [
             {
                 "action": "iotwireless:DeleteQueuedMessages",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:iotwireless:${Region}:${Account}:WirelessDevice/${Id}"
-                }
+                "resource_mappings": {}
             }
         ],
         "IoTWireless.GetNetworkAnalyzerConfiguration": [
             {
                 "action": "iotwireless:GetNetworkAnalyzerConfiguration",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "*"
-                }
+                "resource_mappings": {}
             }
         ],
         "IoTWireless.ListFuotaTasks": [
             {
                 "action": "iotwireless:ListFuotaTasks",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:iotwireless:${Region}:${Account}:FuotaTask/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "IoTWireless.ListMulticastGroups": [
             {
                 "action": "iotwireless:ListMulticastGroups",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:iotwireless:${Region}:${Account}:MulticastGroup/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "IoTWireless.ListQueuedMessages": [
             {
                 "action": "iotwireless:ListQueuedMessages",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:iotwireless:${Region}:${Account}:WirelessDevice/${Id}"
-                }
+                "resource_mappings": {}
             }
         ],
         "IoTWireless.UpdateNetworkAnalyzerConfiguration": [
             {
                 "action": "iotwireless:UpdateNetworkAnalyzerConfiguration",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "*"
-                }
+                "resource_mappings": {}
             }
         ],
         "ChimeSDKIdentity.CreateAppInstance": [
             {
                 "action": "chime:CreateAppInstance",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:chime:${Region}:${Account}:app-instance/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "ChimeSDKIdentity.ListAppInstances": [
             {
                 "action": "chime:ListAppInstances",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:chime:${Region}:${Account}:app-instance/*"
+                "resource_mappings": {
+                    "AccountId": {
+                        "template": "${Account}"
+                    },
+                    "AppInstanceId": {
+                        "template": "*"
+                    }
                 }
             }
         ],
@@ -111253,181 +111548,199 @@
         "MigrationHubRefactorSpaces.CreateApplication": [
             {
                 "action": "refactor-spaces:CreateApplication",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "MigrationHubRefactorSpaces.CreateEnvironment": [
             {
                 "action": "refactor-spaces:CreateEnvironment",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "MigrationHubRefactorSpaces.CreateRoute": [
             {
                 "action": "refactor-spaces:CreateRoute",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/${ApplicationIdentifier}/route/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "MigrationHubRefactorSpaces.CreateService": [
             {
                 "action": "refactor-spaces:CreateService",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/${ApplicationIdentifier}/service/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "MigrationHubRefactorSpaces.DeleteApplication": [
             {
                 "action": "refactor-spaces:DeleteApplication",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/${ApplicationIdentifier}"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    },
+                    "ApplicationId": {
+                        "template": "${ApplicationIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.DeleteEnvironment": [
             {
                 "action": "refactor-spaces:DeleteEnvironment",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.DeleteResourcePolicy": [
             {
                 "action": "refactor-spaces:DeleteResourcePolicy",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "MigrationHubRefactorSpaces.DeleteRoute": [
             {
                 "action": "refactor-spaces:DeleteRoute",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/${ApplicationIdentifier}/route/${RouteIdentifier}"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    },
+                    "ApplicationId": {
+                        "template": "${ApplicationIdentifier}"
+                    },
+                    "RouteId": {
+                        "template": "${RouteIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.DeleteService": [
             {
                 "action": "refactor-spaces:DeleteService",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/${ApplicationIdentifier}/service/${ServiceIdentifier}"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    },
+                    "ApplicationId": {
+                        "template": "${ApplicationIdentifier}"
+                    },
+                    "ServiceId": {
+                        "template": "${ServiceIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.GetApplication": [
             {
                 "action": "refactor-spaces:GetApplication",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/${ApplicationIdentifier}"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    },
+                    "ApplicationId": {
+                        "template": "${ApplicationIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.GetEnvironment": [
             {
                 "action": "refactor-spaces:GetEnvironment",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.GetResourcePolicy": [
             {
                 "action": "refactor-spaces:GetResourcePolicy",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "MigrationHubRefactorSpaces.GetRoute": [
             {
                 "action": "refactor-spaces:GetRoute",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/${ApplicationIdentifier}/route/${RouteIdentifier}"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    },
+                    "ApplicationId": {
+                        "template": "${ApplicationIdentifier}"
+                    },
+                    "RouteId": {
+                        "template": "${RouteIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.GetService": [
             {
                 "action": "refactor-spaces:GetService",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/${ApplicationIdentifier}/service/${ServiceIdentifier}"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    },
+                    "ApplicationId": {
+                        "template": "${ApplicationIdentifier}"
+                    },
+                    "ServiceId": {
+                        "template": "${ServiceIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.ListApplications": [
             {
                 "action": "refactor-spaces:ListApplications",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/*"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.ListEnvironmentVpcs": [
             {
                 "action": "refactor-spaces:ListEnvironmentVpcs",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/vpc/*"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.ListEnvironments": [
             {
                 "action": "refactor-spaces:ListEnvironments",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "MigrationHubRefactorSpaces.ListRoutes": [
             {
                 "action": "refactor-spaces:ListRoutes",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/${ApplicationIdentifier}/route/*"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.ListServices": [
             {
                 "action": "refactor-spaces:ListServices",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/${EnvironmentIdentifier}/application/${ApplicationIdentifier}/service/*"
+                "resource_mappings": {
+                    "EnvironmentId": {
+                        "template": "${EnvironmentIdentifier}"
+                    }
                 }
             }
         ],
         "MigrationHubRefactorSpaces.PutResourcePolicy": [
             {
                 "action": "refactor-spaces:PutResourcePolicy",
-                "undocumented": true,
-                "arn_override": {
-                    "template": "arn:${Partition}:refactor-spaces:${Region}:${Account}:environment/*"
-                }
+                "resource_mappings": {}
             }
         ],
         "AmplifyUIBuilder.UpdateComponent": [
@@ -111437,6 +111750,937 @@
                 "arn_override": {
                     "template": "arn:${Partition}:amplifyuibuilder:${Region}:${Account}:component/${id}"
                 }
+            }
+        ],
+        "CognitoIdentityServiceProvider.RevokeToken": [
+            {
+                "action": "cognito-idp:RevokeToken",
+                "resource_mappings": {}
+            },
+            {
+                "action": "cognito-idp:RevokeToken",
+                "resource_mappings": {}
+            }
+        ],
+        "DirectoryService.DescribeClientAuthenticationSettings": [
+            {
+                "action": "ds:DescribeClientAuthenticationSettings",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${DirectoryId}"
+                    }
+                }
+            }
+        ],
+        "EFS.CreateReplicationConfiguration": [
+            {
+                "action": "elasticfilesystem:CreateReplicationConfiguration",
+                "resource_mappings": {
+                    "FileSystemId": {
+                        "template": "${SourceFileSystemId}"
+                    }
+                }
+            }
+        ],
+        "EFS.DeleteReplicationConfiguration": [
+            {
+                "action": "elasticfilesystem:DeleteReplicationConfiguration",
+                "resource_mappings": {
+                    "FileSystemId": {
+                        "template": "${SourceFileSystemId}"
+                    }
+                }
+            }
+        ],
+        "EFS.DescribeReplicationConfigurations": [
+            {
+                "action": "elasticfilesystem:DescribeReplicationConfigurations",
+                "resource_mappings": {
+                    "FileSystemId": {
+                        "template": "${FileSystemId}"
+                    }
+                }
+            }
+        ],
+        "ES.DescribeDomainChangeProgress": [
+            {
+                "action": "es:DescribeDomainChangeProgress",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "Kinesis.UpdateStreamMode": [
+            {
+                "action": "kinesis:UpdateStreamMode",
+                "resource_mappings": {}
+            }
+        ],
+        "Pinpoint.VerifyOTPMessage": [
+            {
+                "action": "mobiletargeting:VerifyOTPMessage",
+                "resource_mappings": {
+                    "AppId": {
+                        "template": "${ApplicationId}"
+                    }
+                }
+            }
+        ],
+        "StorageGateway.UpdateSMBLocalGroups": [
+            {
+                "action": "storagegateway:UpdateSMBLocalGroups",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "gateway": "${GatewayARN}"
+                }
+            }
+        ],
+        "WorkSpaces.CreateConnectClientAddIn": [
+            {
+                "action": "workspaces:CreateConnectClientAddIn",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${ResourceId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.DeleteConnectClientAddIn": [
+            {
+                "action": "workspaces:DeleteConnectClientAddIn",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${ResourceId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.DescribeConnectClientAddIns": [
+            {
+                "action": "workspaces:DescribeConnectClientAddIns",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${ResourceId}"
+                    }
+                }
+            }
+        ],
+        "WorkSpaces.UpdateConnectClientAddIn": [
+            {
+                "action": "workspaces:UpdateConnectClientAddIn",
+                "resource_mappings": {
+                    "DirectoryId": {
+                        "template": "${ResourceId}"
+                    }
+                }
+            }
+        ],
+        "WorkMail.DeleteEmailMonitoringConfiguration": [
+            {
+                "action": "workmail:DeleteEmailMonitoringConfiguration",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${OrganizationId}"
+                    }
+                }
+            }
+        ],
+        "WorkMail.DescribeEmailMonitoringConfiguration": [
+            {
+                "action": "workmail:DescribeEmailMonitoringConfiguration",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${OrganizationId}"
+                    }
+                }
+            }
+        ],
+        "WorkMail.PutEmailMonitoringConfiguration": [
+            {
+                "action": "workmail:PutEmailMonitoringConfiguration",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${OrganizationId}"
+                    }
+                }
+            }
+        ],
+        "Connect.AssociateDefaultVocabulary": [
+            {
+                "action": "connect:AssociateDefaultVocabulary",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
+                }
+            }
+        ],
+        "Connect.CreateVocabulary": [
+            {
+                "action": "connect:CreateVocabulary",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "VocabularyId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Connect.DeleteVocabulary": [
+            {
+                "action": "connect:DeleteVocabulary",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "VocabularyId": {
+                        "template": "${VocabularyId}"
+                    }
+                }
+            }
+        ],
+        "Connect.DescribeVocabulary": [
+            {
+                "action": "connect:DescribeVocabulary",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "VocabularyId": {
+                        "template": "${VocabularyId}"
+                    }
+                }
+            }
+        ],
+        "Connect.ListDefaultVocabularies": [
+            {
+                "action": "connect:ListDefaultVocabularies",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
+                }
+            }
+        ],
+        "Connect.SearchVocabularies": [
+            {
+                "action": "connect:SearchVocabularies",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    },
+                    "VocabularyId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Connect.StartContactStreaming": [
+            {
+                "action": "connect:StartContactStreaming",
+                "resource_mappings": {
+                    "InstanceId": {
+                        "template": "${InstanceId}"
+                    }
+                }
+            }
+        ],
+        "MediaTailor.ConfigureLogsForPlaybackConfiguration": [
+            {
+                "action": "mediatailor:ConfigureLogsForPlaybackConfiguration",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${PlaybackConfigurationName}"
+                    }
+                }
+            },
+            {
+                "action": "iam:CreateServiceLinkedRole",
+                "resource_mappings": {
+                    "RoleNameWithPath": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "MediaTailor.CreatePrefetchSchedule": [
+            {
+                "action": "mediatailor:CreatePrefetchSchedule",
+                "resource_mappings": {
+                    "ResourceId": {
+                        "template": "${PlaybackConfigurationName}"
+                    }
+                }
+            }
+        ],
+        "FSx.ReleaseFileSystemNfsV3Locks": [
+            {
+                "action": "fsx:ReleaseFileSystemNfsV3Locks",
+                "resource_mappings": {
+                    "FileSystemId": {
+                        "template": "${FileSystemId}"
+                    }
+                }
+            }
+        ],
+        "ForecastService.DescribeExplainability": [
+            {
+                "action": "forecast:DescribeExplainability",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "explainability": "${ExplainabilityArn}"
+                }
+            }
+        ],
+        "WAFV2.ListAvailableManagedRuleGroupVersions": [
+            {
+                "action": "wafv2:ListAvailableManagedRuleGroupVersions",
+                "resource_mappings": {}
+            }
+        ],
+        "FraudDetector.GetEventPredictionMetadata": [
+            {
+                "action": "frauddetector:GetEventPredictionMetadata",
+                "resource_mappings": {
+                    "ResourcePath": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "FraudDetector.ListEventPredictions": [
+            {
+                "action": "frauddetector:ListEventPredictions",
+                "resource_mappings": {
+                    "ResourcePath": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Honeycode.ListTagsForResource": [
+            {
+                "action": "honeycode:ListTagsForResource",
+                "resource_mappings": {}
+            }
+        ],
+        "Honeycode.TagResource": [
+            {
+                "action": "honeycode:TagResource",
+                "resource_mappings": {}
+            }
+        ],
+        "Honeycode.UntagResource": [
+            {
+                "action": "honeycode:UntagResource",
+                "resource_mappings": {}
+            }
+        ],
+        "Appflow.DescribeConnector": [
+            {
+                "action": "appflow:DescribeConnector",
+                "resource_mappings": {
+                    "ConnectorLabel": {
+                        "template": "${connectorLabel}"
+                    }
+                }
+            }
+        ],
+        "Appflow.ListConnectors": [
+            {
+                "action": "appflow:ListConnectors",
+                "resource_mappings": {
+                    "ConnectorLabel": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "Appflow.RegisterConnector": [
+            {
+                "action": "appflow:RegisterConnector",
+                "resource_mappings": {}
+            }
+        ],
+        "Appflow.UnregisterConnector": [
+            {
+                "action": "appflow:UnRegisterConnector",
+                "resource_mappings": {
+                    "ConnectorLabel": {
+                        "template": "${connectorLabel}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.AssociateMulticastGroupWithFuotaTask": [
+            {
+                "action": "iotwireless:AssociateMulticastGroupWithFuotaTask",
+                "resource_mappings": {
+                    "FuotaTaskId": {
+                        "template": "${Id}"
+                    },
+                    "MulticastGroupId": {
+                        "template": "${MulticastGroupId}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.AssociateWirelessDeviceWithFuotaTask": [
+            {
+                "action": "iotwireless:AssociateWirelessDeviceWithFuotaTask",
+                "resource_mappings": {
+                    "FuotaTaskId": {
+                        "template": "${Id}"
+                    },
+                    "WirelessDeviceId": {
+                        "template": "${WirelessDeviceId}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.AssociateWirelessDeviceWithMulticastGroup": [
+            {
+                "action": "iotwireless:AssociateWirelessDeviceWithMulticastGroup",
+                "resource_mappings": {
+                    "MulticastGroupId": {
+                        "template": "${Id}"
+                    },
+                    "WirelessDeviceId": {
+                        "template": "${WirelessDeviceId}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.CancelMulticastGroupSession": [
+            {
+                "action": "iotwireless:CancelMulticastGroupSession",
+                "resource_mappings": {
+                    "MulticastGroupId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.CreateFuotaTask": [
+            {
+                "action": "iotwireless:CreateFuotaTask",
+                "resource_mappings": {}
+            }
+        ],
+        "IoTWireless.DeleteFuotaTask": [
+            {
+                "action": "iotwireless:DeleteFuotaTask",
+                "resource_mappings": {
+                    "FuotaTaskId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.DeleteMulticastGroup": [
+            {
+                "action": "iotwireless:DeleteMulticastGroup",
+                "resource_mappings": {
+                    "MulticastGroupId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.DisassociateMulticastGroupFromFuotaTask": [
+            {
+                "action": "iotwireless:DisassociateMulticastGroupFromFuotaTask",
+                "resource_mappings": {
+                    "FuotaTaskId": {
+                        "template": "${Id}"
+                    },
+                    "MulticastGroupId": {
+                        "template": "${MulticastGroupId}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.DisassociateWirelessDeviceFromFuotaTask": [
+            {
+                "action": "iotwireless:DisassociateWirelessDeviceFromFuotaTask",
+                "resource_mappings": {
+                    "FuotaTaskId": {
+                        "template": "${Id}"
+                    },
+                    "WirelessDeviceId": {
+                        "template": "${WirelessDeviceId}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.DisassociateWirelessDeviceFromMulticastGroup": [
+            {
+                "action": "iotwireless:DisassociateWirelessDeviceFromMulticastGroup",
+                "resource_mappings": {
+                    "MulticastGroupId": {
+                        "template": "${Id}"
+                    },
+                    "WirelessDeviceId": {
+                        "template": "${WirelessDeviceId}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.GetFuotaTask": [
+            {
+                "action": "iotwireless:GetFuotaTask",
+                "resource_mappings": {
+                    "FuotaTaskId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.GetMulticastGroup": [
+            {
+                "action": "iotwireless:GetMulticastGroup",
+                "resource_mappings": {
+                    "MulticastGroupId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.GetMulticastGroupSession": [
+            {
+                "action": "iotwireless:GetMulticastGroupSession",
+                "resource_mappings": {
+                    "MulticastGroupId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.GetResourceEventConfiguration": [
+            {
+                "action": "iotwireless:GetResourceEventConfiguration",
+                "resource_mappings": {
+                    "SidewalkAccountId": {
+                        "template": "${Identifier}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.ListMulticastGroupsByFuotaTask": [
+            {
+                "action": "iotwireless:ListMulticastGroupsByFuotaTask",
+                "resource_mappings": {
+                    "FuotaTaskId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.SendDataToMulticastGroup": [
+            {
+                "action": "iotwireless:SendDataToMulticastGroup",
+                "resource_mappings": {
+                    "MulticastGroupId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.StartBulkAssociateWirelessDeviceWithMulticastGroup": [
+            {
+                "action": "iotwireless:StartBulkAssociateWirelessDeviceWithMulticastGroup",
+                "resource_mappings": {
+                    "MulticastGroupId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.StartBulkDisassociateWirelessDeviceFromMulticastGroup": [
+            {
+                "action": "iotwireless:StartBulkDisassociateWirelessDeviceFromMulticastGroup",
+                "resource_mappings": {
+                    "MulticastGroupId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.StartFuotaTask": [
+            {
+                "action": "iotwireless:StartFuotaTask",
+                "resource_mappings": {
+                    "FuotaTaskId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.StartMulticastGroupSession": [
+            {
+                "action": "iotwireless:StartMulticastGroupSession",
+                "resource_mappings": {
+                    "MulticastGroupId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.UpdateFuotaTask": [
+            {
+                "action": "iotwireless:UpdateFuotaTask",
+                "resource_mappings": {
+                    "FuotaTaskId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.UpdateMulticastGroup": [
+            {
+                "action": "iotwireless:UpdateMulticastGroup",
+                "resource_mappings": {
+                    "MulticastGroupId": {
+                        "template": "${Id}"
+                    }
+                }
+            }
+        ],
+        "IoTWireless.UpdateResourceEventConfiguration": [
+            {
+                "action": "iotwireless:UpdateResourceEventConfiguration",
+                "resource_mappings": {
+                    "SidewalkAccountId": {
+                        "template": "${Identifier}"
+                    }
+                }
+            }
+        ],
+        "Location.CalculateRouteMatrix": [
+            {
+                "action": "geo:CalculateRouteMatrix",
+                "resource_mappings": {
+                    "CalculatorName": {
+                        "template": "${CalculatorName}"
+                    }
+                }
+            }
+        ],
+        "Fis.GetTargetResourceType": [
+            {
+                "action": "fis:GetTargetResourceType",
+                "resource_mappings": {}
+            }
+        ],
+        "Fis.ListTargetResourceTypes": [
+            {
+                "action": "fis:ListTargetResourceTypes",
+                "resource_mappings": {}
+            }
+        ],
+        "AppRunner.CreateVpcConnector": [
+            {
+                "action": "apprunner:CreateVpcConnector",
+                "resource_mappings": {
+                    "VpcConnectorName": {
+                        "template": "${VpcConnectorName}"
+                    },
+                    "VpcConnectorVersion": {
+                        "template": "*"
+                    },
+                    "VpcConnectorId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "AppRunner.DeleteVpcConnector": [
+            {
+                "action": "apprunner:DeleteVpcConnector",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "vpcconnector": "${VpcConnectorArn}"
+                }
+            }
+        ],
+        "AppRunner.DescribeVpcConnector": [
+            {
+                "action": "apprunner:DescribeVpcConnector",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "vpcconnector": "${VpcConnectorArn}"
+                }
+            }
+        ],
+        "AppRunner.ListVpcConnectors": [
+            {
+                "action": "apprunner:ListVpcConnectors",
+                "resource_mappings": {}
+            }
+        ],
+        "ChimeSDKIdentity.CreateAppInstanceAdmin": [
+            {
+                "action": "chime:CreateAppInstanceAdmin",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance": "${AppInstanceArn}",
+                    "app-instance-user": "${AppInstanceAdminArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.CreateAppInstanceUser": [
+            {
+                "action": "chime:CreateAppInstanceUser",
+                "resource_mappings": {}
+            }
+        ],
+        "ChimeSDKIdentity.DeleteAppInstance": [
+            {
+                "action": "chime:DeleteAppInstance",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance": "${AppInstanceArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.DeleteAppInstanceAdmin": [
+            {
+                "action": "chime:DeleteAppInstanceAdmin",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance": "${AppInstanceArn}",
+                    "app-instance-user": "${AppInstanceAdminArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.DeleteAppInstanceUser": [
+            {
+                "action": "chime:DeleteAppInstanceUser",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance-user": "${AppInstanceUserArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.DeregisterAppInstanceUserEndpoint": [
+            {
+                "action": "chime:DeregisterAppInstanceUserEndpoint",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance-user": "${AppInstanceUserArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.DescribeAppInstance": [
+            {
+                "action": "chime:DescribeAppInstance",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance": "${AppInstanceArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.DescribeAppInstanceAdmin": [
+            {
+                "action": "chime:DescribeAppInstanceAdmin",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance": "${AppInstanceArn}",
+                    "app-instance-user": "${AppInstanceAdminArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.DescribeAppInstanceUser": [
+            {
+                "action": "chime:DescribeAppInstanceUser",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance-user": "${AppInstanceUserArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.DescribeAppInstanceUserEndpoint": [
+            {
+                "action": "chime:DescribeAppInstanceUserEndpoint",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance-user": "${AppInstanceUserArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.GetAppInstanceRetentionSettings": [
+            {
+                "action": "chime:GetAppInstanceRetentionSettings",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance": "${AppInstanceArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.ListAppInstanceAdmins": [
+            {
+                "action": "chime:ListAppInstanceAdmins",
+                "resource_mappings": {
+                    "AccountId": {
+                        "template": "*"
+                    },
+                    "AppInstanceId": {
+                        "template": "*"
+                    },
+                    "AppInstanceUserId": {
+                        "template": "*"
+                    }
+                },
+                "resourcearn_mappings": {
+                    "app-instance": "${AppInstanceArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.ListAppInstanceUserEndpoints": [
+            {
+                "action": "chime:ListAppInstanceUserEndpoints",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance-user": "${AppInstanceUserArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.ListAppInstanceUsers": [
+            {
+                "action": "chime:ListAppInstanceUsers",
+                "resource_mappings": {
+                    "AccountId": {
+                        "template": "*"
+                    },
+                    "AppInstanceId": {
+                        "template": "*"
+                    },
+                    "AppInstanceUserId": {
+                        "template": "*"
+                    }
+                }
+            }
+        ],
+        "ChimeSDKIdentity.ListTagsForResource": [
+            {
+                "action": "chime:ListTagsForResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "channel": "%%iftruthy%${ResourceARN}%%"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.PutAppInstanceRetentionSettings": [
+            {
+                "action": "chime:PutAppInstanceRetentionSettings",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance": "${AppInstanceArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.RegisterAppInstanceUserEndpoint": [
+            {
+                "action": "chime:RegisterAppInstanceUserEndpoint",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance-user": "${AppInstanceUserArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.TagResource": [
+            {
+                "action": "chime:TagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "channel": "%%iftruthy%${ResourceARN}%%"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.UntagResource": [
+            {
+                "action": "chime:UntagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "channel": "%%iftruthy%${ResourceARN}%%"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.UpdateAppInstance": [
+            {
+                "action": "chime:UpdateAppInstance",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance": "${AppInstanceArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.UpdateAppInstanceUser": [
+            {
+                "action": "chime:UpdateAppInstanceUser",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance-user": "${AppInstanceUserArn}"
+                }
+            }
+        ],
+        "ChimeSDKIdentity.UpdateAppInstanceUserEndpoint": [
+            {
+                "action": "chime:UpdateAppInstanceUserEndpoint",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "app-instance-user": "${AppInstanceUserArn}"
+                }
+            }
+        ],
+        "OpenSearch.DescribeDomainChangeProgress": [
+            {
+                "action": "es:DescribeDomainChangeProgress",
+                "resource_mappings": {
+                    "DomainName": {
+                        "template": "${DomainName}"
+                    }
+                }
+            }
+        ],
+        "MigrationHubRefactorSpaces.ListTagsForResource": [
+            {
+                "action": "refactor-spaces:ListTagsForResource",
+                "resource_mappings": {}
+            }
+        ],
+        "MigrationHubRefactorSpaces.TagResource": [
+            {
+                "action": "refactor-spaces:TagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "application": "%%iftruthy%${ResourceArn}%%",
+                    "environment": "%%iftruthy%${ResourceArn}%%",
+                    "route": "%%iftruthy%${ResourceArn}%%",
+                    "service": "%%iftruthy%${ResourceArn}%%"
+                }
+            }
+        ],
+        "MigrationHubRefactorSpaces.UntagResource": [
+            {
+                "action": "refactor-spaces:UntagResource",
+                "resource_mappings": {},
+                "resourcearn_mappings": {
+                    "application": "%%iftruthy%${ResourceArn}%%",
+                    "environment": "%%iftruthy%${ResourceArn}%%",
+                    "route": "%%iftruthy%${ResourceArn}%%",
+                    "service": "%%iftruthy%${ResourceArn}%%"
+                }
+            }
+        ],
+        "Evidently.TagResource": [
+            {
+                "action": "evidently:TagResource",
+                "resource_mappings": {}
             }
         ]
     },
@@ -111567,7 +112811,7 @@
         "IoT Events Data": "iotevents",
         "IoT Events": "iotevents",
         "IoT Jobs Data Plane": "iot",
-        "IoTWireless": "iot",
+        "IoTWireless": "iotwireless",
         "IoT Wireless": "iot",
         "IoT": "iot",
         "IoT1ClickDevicesService": "iot1click",
@@ -111581,7 +112825,6 @@
         "IoTThingsGraph": "iotthingsgraph",
         "IotData": "iot",
         "IotDeviceAdvisor": "iotdeviceadvisor",
-        "IoTWireless": "iotwireless",
         "Kafka": "kafka",
         "Kinesis Analytics": "kinesisanalytics",
         "Kinesis Analytics V2": "kinesisanalytics",
