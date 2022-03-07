@@ -647,27 +647,44 @@ func getAccountFromAccessKey(accessKeyId string) (string, error) {
 	return fmt.Sprintf("%012d", accountId), nil
 }
 
+type uniqueStringList struct {
+	list []string
+	set  map[string]bool
+}
+
+func newUniqueStringList() *uniqueStringList {
+	return &uniqueStringList{set: map[string]bool{}}
+}
+func (s *uniqueStringList) add(newArn string) {
+	if _, ok := s.set[newArn]; !ok {
+		s.list = append(s.list, newArn)
+		s.set[newArn] = true
+	}
+}
+
+func (s *uniqueStringList) addParam(arns []string, paramVarName, param string) {
+	for _, arn := range arns {
+		newArn := regexp.MustCompile(`\$\{`+strings.ReplaceAll(strings.ReplaceAll(paramVarName, "[", "\\["), "]", "\\]")+`\}`).ReplaceAllString(arn, param)
+		s.add(newArn)
+	}
+}
+
 func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string) {
 	arns := []string{arn}
-
 	// parameter substitution
 	for paramVarName, params := range call.Parameters {
-		newArns := []string{}
+		newArns := newUniqueStringList()
 		for _, param := range params {
-			for _, arn := range arns {
-				newArns = append(newArns, regexp.MustCompile(`\$\{`+strings.ReplaceAll(strings.ReplaceAll(paramVarName, "[", "\\["), "]", "\\]")+`\}`).ReplaceAllString(arn, param)) // might have dupes but resolved out later
-			}
+			newArns.addParam(arns, paramVarName, param)
 		}
-		arns = newArns
+		arns = newArns.list
 	}
 
 	// URI parameter substitution
 	for paramVarName, param := range call.URIParameters {
-		newArns := []string{}
-		for _, arn := range arns {
-			newArns = append(newArns, regexp.MustCompile(`\$\{`+strings.ReplaceAll(strings.ReplaceAll(paramVarName, "[", "\\["), "]", "\\]")+`\}`).ReplaceAllString(arn, param)) // might have dupes but resolved out later
-		}
-		arns = newArns
+		newArns := newUniqueStringList()
+		newArns.addParam(arns, paramVarName, param)
+		arns = newArns.list
 	}
 
 	if specialsOnly {
