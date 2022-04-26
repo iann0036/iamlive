@@ -27,6 +27,7 @@ var caKeyFlag *string
 var accountIDFlag *string
 var backgroundFlag *bool
 var forceWildcardResourceFlag *bool
+var proxyEndpointPatternFlag *string
 var cpuProfileFlag = flag.String("cpu-profile", "", "write a CPU profile to this file (for performance testing purposes)")
 
 func parseConfig() {
@@ -42,6 +43,7 @@ func parseConfig() {
 	caBundle := "~/.iamlive/ca.pem"
 	caKey := "~/.iamlive/ca.key"
 	accountID := ""
+	proxyEndpointPattern := `^.*\.amazonaws\.com(?:\.cn)?$`
 	background := false
 	forceWildcardResource := false
 
@@ -88,6 +90,9 @@ func parseConfig() {
 			if cfg.Section("").HasKey("background") {
 				background, _ = cfg.Section("").Key("background").Bool()
 			}
+			if cfg.Section("").HasKey("proxy-endpoint-pattern") {
+				proxyEndpointPattern = cfg.Section("").Key("proxy-endpoint-pattern").String()
+			}
 			if cfg.Section("").HasKey("force-wildcard-resource") {
 				forceWildcardResource, _ = cfg.Section("").Key("force-wildcard-resource").Bool()
 			}
@@ -107,6 +112,7 @@ func parseConfig() {
 	caKeyFlag = flag.String("ca-key", caKey, "the CA certificate key to use for proxy mode")
 	accountIDFlag = flag.String("account-id", accountID, "the AWS account ID to use in policy outputs within proxy mode")
 	backgroundFlag = flag.Bool("background", background, "when set, the process will return the current PID and run in the background without output")
+	proxyEndpointPatternFlag = flag.String("proxy-endpoint-pattern", proxyEndpointPattern, "the proxy endpoint to process when in proxy mode, a regex")
 	forceWildcardResourceFlag = flag.Bool("force-wildcard-resource", forceWildcardResource, "when set, the Resource will always be a wildcard")
 }
 
@@ -156,7 +162,7 @@ func Run() {
 	}
 }
 
-func RunWithArgs(setIni bool, profile string, failsOnly bool, outputFile string, refreshRate int, sortAlphabetical bool, host, mode, bindAddr, caBundle, caKey, accountID string, background, forceWildcardResource bool) {
+func RunWithArgs(setIni bool, profile string, failsOnly bool, outputFile string, refreshRate int, sortAlphabetical bool, host, mode, bindAddr, caBundle, caKey, accountID string, background, forceWildcardResource bool, proxyEndpointPattern string) {
 	setiniFlag = &setIni
 	profileFlag = &profile
 	failsonlyFlag = &failsOnly
@@ -170,6 +176,7 @@ func RunWithArgs(setIni bool, profile string, failsOnly bool, outputFile string,
 	caKeyFlag = &caKey
 	accountIDFlag = &accountID
 	backgroundFlag = &background
+	proxyEndpointPatternFlag = &proxyEndpointPattern
 	forceWildcardResourceFlag = &forceWildcardResource
 
 	if *cpuProfileFlag != "" {
