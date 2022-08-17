@@ -78,5 +78,3 @@ release:
   - glob: ./dist/*-darwin-amd64.zip
   - glob: ./dist/*-darwin-arm64.zip
 checksum:
-  disable: true
-
