@@ -156,7 +156,7 @@ func createProxy(addr string) {
 	proxy.OnRequest().DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) { // TODO: Move to onResponse for HTTP response codes
 		body, _ := ioutil.ReadAll(req.Body)
 
-		isAWSHostname, _ := regexp.MatchString(`^.*\.amazonaws\.com(?:\.cn)?$`, req.Host)
+		isAWSHostname, _ := regexp.MatchString(`^[^.]*\.amazonaws\.com(?:\.cn)?$`, req.Host)
 		if isAWSHostname {
 			handleAWSRequest(req, body, 200)
 		}
