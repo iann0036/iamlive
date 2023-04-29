@@ -34,7 +34,7 @@ func setConfigKey(filename, section, line string, unset bool) error {
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		scannedLine := scanner.Text()
-		if scannedLine != line || !unset || !isCorrectSection { // write all but lines to be removed
+		if scannedLine != line || !isCorrectSection { // write all but lines to be removed
 			newLines = append(newLines, scannedLine)
 		}
 		if scannedLine == fmt.Sprintf("[%s]", section) {
@@ -42,6 +42,8 @@ func setConfigKey(filename, section, line string, unset bool) error {
 			if !unset {
 				newLines = append(newLines, line)
 			}
+		} else if strings.HasPrefix(scannedLine, "[") && strings.HasSuffix(scannedLine, "]") {
+			isCorrectSection = false
 		}
 	}
 	if err := scanner.Err(); err != nil {
