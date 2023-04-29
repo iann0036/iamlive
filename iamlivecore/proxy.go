@@ -331,6 +331,9 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 				if service == "ElasticLoadBalancing" || service == "ElasticLoadBalancingv2" {
 					service = "ELB"
 				}
+				if service == "CognitoIdentityProvider" {
+					service = "CognitoIdentityServiceProvider"
+				}
 
 				if serviceDef.Metadata.Protocol == "json" {
 					// JSON schema
