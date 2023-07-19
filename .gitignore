@@ -16,3 +16,10 @@
 
 # Custom
 iamlive
+
+# Ignore hidden files
+.*
+!.*ignore*
+!.gon-*.json
+!.github/
+!.goreleaser.yml
