@@ -1,9 +1,9 @@
 # iamlive
 
-> Generate an IAM policy from AWS, Azure, or Google Cloud (GCP) calls using client-side monitoring (CSM) or embedded proxy
-
 > [!IMPORTANT]  
 > The Azure and Google Cloud providers are in preview and may produce incorrect outputs at this time
+
+> Generate an IAM policy from AWS, Azure, or Google Cloud (GCP) calls using client-side monitoring (CSM) or embedded proxy
 
 ![](https://raw.githubusercontent.com/iann0036/iamlive/assets/iamlive.gif)
 
