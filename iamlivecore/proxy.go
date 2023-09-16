@@ -26,12 +26,28 @@ import (
 	mxj "github.com/clbanning/mxj/v2"
 	"github.com/iann0036/goproxy"
 	"github.com/mitchellh/go-homedir"
+	"github.com/ucarion/urlpath"
 )
 
 //go:embed service/*
 var serviceFiles embed.FS
 
+/*
+Replace all data except that which is needed needed with the following:
+
+```
+cd iamlivecore/google-api-go-client
+rm -rf .github .git google-api-go-generator internal
+find . ! -name "*.json" -type f -delete
+find . -empty -type d -delete
+find . ! -name "api-list.json" -type f -exec sh -c "cat <<< \$(jq -c '{basePath,rootUrl,resources: .resources} | del(.. | .description?)' {}) > {}" \;
+```
+*/
+//go:embed google-api-go-client/*
+var gcpServiceFiles embed.FS
+
 var serviceDefinitions []ServiceDefinition
+var gcpServiceDefinitions []GCPServiceDefinition
 
 func loadCAKeys() error {
 	var caCert []byte
@@ -157,8 +173,16 @@ func createProxy(addr string) {
 		body, _ := ioutil.ReadAll(req.Body)
 
 		isAWSHostname, _ := regexp.MatchString(`^.*\.amazonaws\.com(?:\.cn)?$`, req.Host)
-		if isAWSHostname {
+		if isAWSHostname && *providerFlag == "aws" {
 			handleAWSRequest(req, body, 200)
+		}
+		isAzureHostname, _ := regexp.MatchString(`^(?:management\.azure\.com)|(?:management\.core\.windows\.net)$`, req.Host)
+		if isAzureHostname && *providerFlag == "azure" {
+			handleAzureRequest(req, body, 200)
+		}
+		isGCPHostname, _ := regexp.MatchString(`^.*\.googleapis\.com$`, req.Host)
+		if isGCPHostname && *providerFlag == "gcp" {
+			handleGCPRequest(req, body, 200)
 		}
 
 		req.Body = ioutil.NopCloser(bytes.NewBuffer(body))
@@ -210,14 +234,71 @@ type ServiceDefinitionMetadata struct {
 	UID                 string `json:"uid"`
 }
 
-func readServiceFiles() {
-	files, err := serviceFiles.ReadDir("service")
-	if err != nil {
-		panic(err)
-	}
+type AzureTemplate struct {
+	Resources []AzureTemplateResource `json:"resources"`
+}
 
-	for _, dirEntry := range files {
-		file, err := serviceFiles.Open("service/" + dirEntry.Name())
+type AzureTemplateResource struct {
+	Name string `json:"name"`
+	Type string `json:"type"`
+	Properties interface{} `json:"properties"`
+}
+
+type GCPAPIListFile struct {
+	Items []GCPAPIListItem `json:"items"`
+}
+
+type GCPAPIListItem struct {
+	Name string `json:"name"`
+	Version string `json:"version"`
+}
+
+type GCPServiceDefinition struct {
+	RootURL string `json:"rootUrl"`
+	BasePath string `json:"basePath"`
+	RootDomain string
+	Resources map[string]GCPResourceDefinition `json:"resources"`
+}
+
+type GCPResourceDefinition struct {
+	Methods map[string]GCPMethodDefinition `json:"methods"`
+	Resources map[string]GCPResourceDefinition `json:"resources"`
+}
+
+type GCPMethodDefinition struct {
+	FlatPath string `json:"flatPath"`
+	HTTPMethod string `json:"httpMethod"`
+	ID string `json:"id"`
+}
+
+func readServiceFiles() {
+	if *providerFlag == "aws" {
+		files, err := serviceFiles.ReadDir("service")
+		if err != nil {
+			panic(err)
+		}
+
+		for _, dirEntry := range files {
+			file, err := serviceFiles.Open("service/" + dirEntry.Name())
+			if err != nil {
+				panic(err)
+			}
+
+			data, err := ioutil.ReadAll(file)
+			if err != nil {
+				panic(err)
+			}
+
+			var def ServiceDefinition
+			if json.Unmarshal(data, &def) != nil {
+				panic(err)
+			}
+
+			serviceDefinitions = append(serviceDefinitions, def)
+		}
+	}
+	if *providerFlag == "gcp" {
+		file, err := gcpServiceFiles.Open("google-api-go-client/api-list.json")
 		if err != nil {
 			panic(err)
 		}
@@ -227,12 +308,39 @@ func readServiceFiles() {
 			panic(err)
 		}
 
-		var def ServiceDefinition
-		if json.Unmarshal(data, &def) != nil {
+		var apiList GCPAPIListFile
+		if json.Unmarshal(data, &apiList) != nil {
 			panic(err)
 		}
 
-		serviceDefinitions = append(serviceDefinitions, def)
+		for _, apiItem := range apiList.Items {
+			version := strings.ToLower(strings.ReplaceAll(apiItem.Version, "_", "/"))
+			if version == "alpha" {
+				version = "v0.alpha"
+			} else if version == "beta" {
+				version = "v0.beta"
+			}
+
+			file, err := gcpServiceFiles.Open("google-api-go-client/" + strings.ToLower(apiItem.Name) + "/" + version + "/" + strings.ToLower(apiItem.Name) + "-api.json")
+			if err != nil {
+				panic(err)
+			}
+
+			data, err := ioutil.ReadAll(file)
+			if err != nil {
+				panic(err)
+			}
+
+			var def GCPServiceDefinition
+			if json.Unmarshal(data, &def) != nil {
+				panic(err)
+			}
+
+			url, _ := url.Parse(def.RootURL)
+			def.RootDomain = url.Hostname()
+
+			gcpServiceDefinitions = append(gcpServiceDefinitions, def)
+		}
 	}
 }
 
@@ -615,6 +723,136 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		FinalHTTPStatusCode: respCode,
 		AccessKey:           accessKey,
 	})
+
+	handleLoggedCall()
+}
+
+func handleAzureRequest(req *http.Request, body []byte, respCode int) {
+	host := req.Host
+
+	if host != "management.azure.com" { //} else if host == "management.core.windows.net" {
+		return
+	}
+
+	azureCallLog = append(azureCallLog, AzureEntry{
+		HTTPMethod: req.Method,
+		Path: req.URL.Path,
+		Parameters: req.URL.Query(),
+		Body: body,
+	})
+
+	// Handle AzureRM deployments (inline only)
+	if req.Method == "PUT" { // TODO: other similar methods
+		pathmatch := urlpath.New("/subscriptions/:subscriptionId/resourcegroups/:resourceGroupName/providers/Microsoft.Resources/deployments/:deploymentName")
+		_, ok := pathmatch.Match(req.URL.Path)
+		if ok {
+			data := struct {
+				Properties struct {
+					Template interface{} `json:"template"`
+				} `json:"properties"`
+			}{}
+			err := json.Unmarshal(body, &data)
+			if err != nil {
+				return
+			}
+
+			var template AzureTemplate
+
+			templateString, ok := data.Properties.Template.(string)
+			if ok {
+				err := json.Unmarshal([]byte(templateString), &template)
+				if err != nil {
+					return
+				}
+			} else {
+				templateJSON, _ := json.Marshal(data.Properties.Template)
+				err = json.Unmarshal(templateJSON, &template)
+				if err != nil {
+					return
+				}
+			}
+
+		ResourceLoop:
+			for _, azureResource := range template.Resources {
+				fmt.Println(azureResource.Name)
+				fmt.Println(azureResource.Type)
+
+				for pathName, pathObj := range azureIamMap["PUT"] {
+					for permissionName := range pathObj {
+						if fmt.Sprintf("%s/write", azureResource.Type) == permissionName {
+							resourceJSON, _ := json.Marshal(azureResource)
+
+							azureCallLog = append(azureCallLog, AzureEntry{
+								HTTPMethod: "PUT",
+								Path: pathName,
+								Body: resourceJSON,
+							})
+
+							continue ResourceLoop
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	handleLoggedCall()
+}
+
+func gcpProcessResource(req *http.Request, gcpResource GCPResourceDefinition, basePath string) string {
+	for _, gcpSubresource := range gcpResource.Resources {
+		apiID := gcpProcessResource(req, gcpSubresource, basePath)
+		if apiID != "" {
+			return apiID
+		}
+	}
+
+	for _, gcpMethod := range gcpResource.Methods {
+		if req.Method == gcpMethod.HTTPMethod {
+			pathtemplate := "/" + strings.ReplaceAll(strings.ReplaceAll(basePath + gcpMethod.FlatPath, "{", ":"), "}", "")
+			if pathtemplate[0:2] == "//" {
+				pathtemplate = pathtemplate[1:]
+			}
+			pathmatch := urlpath.New(pathtemplate)
+			
+			_, ok := pathmatch.Match(req.URL.Path)
+			if ok {
+				return gcpMethod.ID
+			}
+		}
+	}
+
+	return ""
+}
+
+func handleGCPRequest(req *http.Request, body []byte, respCode int) {
+	host := req.Host
+	hostSplit := strings.Split(host, ".")
+	apiID := ""
+
+	if hostSplit[len(hostSplit)-1] != "com" || hostSplit[len(hostSplit)-2] != "googleapis" {
+		return
+	}
+
+	for _, gcpService := range gcpServiceDefinitions {
+		if req.Host == gcpService.RootDomain {
+			for _, gcpResource := range gcpService.Resources {
+				apiID = gcpProcessResource(req, gcpResource, gcpService.BasePath)
+				if apiID != "" {
+					break
+				}
+			}
+		}
+		if apiID != "" {
+			break
+		}
+	}
+
+	if apiID == "" {
+		return
+	}
+
+	gcpCallLog = append(gcpCallLog, apiID)
 
 	handleLoggedCall()
 }

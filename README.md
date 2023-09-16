@@ -1,6 +1,9 @@
 # iamlive
 
-> Generate an IAM policy from AWS calls using client-side monitoring (CSM) or embedded proxy
+> Generate an IAM policy from AWS, Azure, or Google Cloud (GCP) calls using client-side monitoring (CSM) or embedded proxy
+
+> [!IMPORTANT]  
+> The Azure and Google Cloud providers are in preview and may produce incorrect outputs at this time
 
 ![](https://raw.githubusercontent.com/iann0036/iamlive/assets/iamlive.gif)
 
@@ -32,7 +35,7 @@ brew install iann0036/iamlive/iamlive
 
 ### Other Methods
 
-* [Lambda Extension](https://github.com/iann0036/iamlive-lambda-extension)
+* [Lambda Extension](https://github.com/iann0036/iamlive-lambda-extension) _(AWS only)_
 * [Docker](https://meirg.co.il/2021/04/23/determining-aws-iam-policies-according-to-terraform-and-aws-cli/)
 * [GitHub Action (with Terraform)](https://github.com/scott-doyland-burrows/gha-composite-terraform-iamlive)
 
@@ -44,25 +47,27 @@ To start the listener, simply run `iamlive` in a separate window to your CLI / S
 
 You can optionally also include the following arguments to the `iamlive` command:
 
-**--set-ini:** when set, the `.aws/config` file will be updated to use the CSM monitoring or CA bundle and removed when exiting (_default: false_)
+**--provider:** the cloud service provider to intercept calls for (`aws`,`azure`,`gcp`) (_default: aws_)
 
-**--profile:** use the specified profile when combined with `--set-ini` (_default: default_)
+**--set-ini:** when set, the `.aws/config` file will be updated to use the CSM monitoring or CA bundle and removed when exiting (_default: false_) (_AWS only_)
 
-**--fails-only:** when set, only failed AWS calls will be added to the policy, csm mode only (_default: false_)
+**--profile:** use the specified profile when combined with `--set-ini` (_default: default_) (_AWS only_)
+
+**--fails-only:** when set, only failed AWS calls will be added to the policy, csm mode only (_default: false_) (_AWS only_)
 
 **--output-file:** specify a file that will be written to on SIGHUP or exit (_default: unset_)
 
 **--refresh-rate:** instead of flushing to console every API call, do it this number of seconds (_default: 0_)
 
-**--sort-alphabetical:** sort actions alphabetically (_default: false_)
+**--sort-alphabetical:** sort actions alphabetically (_default: false for AWS, otherwise true_)
 
 **--host:** host to listen on for CSM (_default: 127.0.0.1_)
 
 **--background:** when set, the process will return the current PID and run in the background without output (_default: false_)
 
-**--force-wildcard-resource:** when set, the Resource will always be a wildcard (_default: false_)
+**--force-wildcard-resource:** when set, the Resource will always be a wildcard (_default: false_) (_AWS only_)
 
-**--mode:** the listening mode (`csm`,`proxy`) (_default: csm_)
+**--mode:** the listening mode (`csm`,`proxy`) (_default: csm for aws, otherwise proxy_)
 
 **--bind-addr:** the bind address for proxy mode (_default: 127.0.0.1:10080_)
 
@@ -70,7 +75,7 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--ca-key:** the CA certificate key to use for proxy mode (_default: ~/.iamlive/ca.key_)
 
-**--account-id:** the AWS account ID to use in policy outputs within proxy mode (_default: 123456789012 unless detected_)
+**--account-id:** the AWS account ID to use in policy outputs within proxy mode (_default: 123456789012 unless detected_) (_AWS only_)
 
 _Basic Example (CSM Mode)_
 
@@ -82,6 +87,18 @@ _Basic Example (Proxy Mode)_
 
 ```
 iamlive --set-ini --mode proxy
+```
+
+_Basic Example (Azure)_
+
+```
+iamlive --provider azure
+```
+
+_Basic Example (Google Cloud)_
+
+```
+iamlive --provider gcp
 ```
 
 _Comprehensive Example (CSM Mode)_
@@ -100,7 +117,9 @@ The arguments may also be specified in an INI file located at `~/.iamlive/config
 
 ### CSM Mode
 
-Client-side monitoring mode is the default behaviour and will use [metrics](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/metrics.html) delivered locally via UDP to capture policy statements with the `Action` key only (`Resource` is only available in proxy mode).
+Client-side monitoring mode is the default behaviour for AWS and will use [metrics](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/metrics.html) delivered locally via UDP to capture policy statements with the `Action` key only (`Resource` is only available in proxy mode).
+
+CSM mode is only available for the AWS provider.
 
 #### CLI
 
@@ -128,9 +147,9 @@ export AWS_CSM_HOST=127.0.0.1
 
 ### Proxy Mode
 
-Proxy mode will serve a local HTTP(S) server (by default at `http://127.0.0.1:10080`) that will inspect requests sent to the AWS endpoints before forwarding on to generate IAM policy statements with both `Action` and `Resource` keys. The CA key/certificate pair will be automatically generated and stored within `~/.iamlive/` by default.
+Proxy mode will serve a local HTTP(S) server (by default at `http://127.0.0.1:10080`) that will inspect requests sent to the AWS endpoints before forwarding on to generate IAM policy statements. The CA key/certificate pair will be automatically generated and stored within `~/.iamlive/` by default.
 
-#### CLI
+#### AWS CLI
 
 To set the appropriate CA bundle in the AWS CLI, you should either use the `--set-ini` option or add the following to the relevant profile in `.aws/config`:
 
@@ -151,9 +170,11 @@ export HTTP_PROXY=http://127.0.0.1:10080
 export HTTPS_PROXY=http://127.0.0.1:10080
 ```
 
-#### SDKs
+#### AWS SDKs
 
-To enable CSM in the various AWS SDKs, you can run the following in the window executing your application prior to it starting:
+To enable proxy mode in the various AWS SDKs, you can run the following in the window executing your application prior to it starting:
+
+For AWS SDKs:
 
 ```
 export HTTP_PROXY=http://127.0.0.1:10080
@@ -162,6 +183,27 @@ export AWS_CA_BUNDLE=~/.iamlive/ca.pem
 ```
 
 Check the [official docs](https://docs.aws.amazon.com/credref/latest/refdocs/setting-global-ca_bundle.html) for further details on setting the CA bundle.
+
+#### Azure CLI and SDKs
+
+To enable proxy mode in the Azure CLI or SDK, you can run the following in the window executing your application prior to it starting:
+
+```
+export HTTP_PROXY=http://127.0.0.1:10080
+export HTTPS_PROXY=http://127.0.0.1:10080
+export REQUESTS_CA_BUNDLE=~/.iamlive/ca.pem
+```
+
+#### Google Cloud CLI and SDKs
+
+To enable proxy mode in the Google Cloud CLI or SDKs, you can run the following in the window executing your application prior to it starting:
+
+```
+gcloud config set proxy/type http
+gcloud config set proxy/address 127.0.0.1
+gcloud config set proxy/port 10080
+gcloud config set core/custom_ca_certs_file ~/.iamlive/ca.pem
+```
 
 ## FAQs
 

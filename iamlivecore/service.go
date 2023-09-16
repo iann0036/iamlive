@@ -13,6 +13,7 @@ import (
 )
 
 // CLI args
+var providerFlag *string
 var setiniFlag *bool
 var profileFlag *string
 var failsonlyFlag *bool
@@ -30,6 +31,7 @@ var forceWildcardResourceFlag *bool
 var cpuProfileFlag = flag.String("cpu-profile", "", "write a CPU profile to this file (for performance testing purposes)")
 
 func parseConfig() {
+	provider := "aws"
 	setIni := false
 	profile := "default"
 	failsOnly := false
@@ -49,6 +51,9 @@ func parseConfig() {
 	if err == nil {
 		cfg, err := ini.Load(cfgfile)
 		if err == nil {
+			if cfg.Section("").HasKey("provider") {
+				provider = cfg.Section("").Key("provider").String()
+			}
 			if cfg.Section("").HasKey("set-ini") {
 				setIni, _ = cfg.Section("").Key("set-ini").Bool()
 			}
@@ -94,6 +99,7 @@ func parseConfig() {
 		}
 	}
 
+	providerFlag = flag.String("provider", provider, "the cloud service provider to intercept calls for")
 	setiniFlag = flag.Bool("set-ini", setIni, "when set, the .aws/config file will be updated to use the CSM monitoring or CA bundle and removed when exiting")
 	profileFlag = flag.String("profile", profile, "use the specified profile when combined with --set-ini")
 	failsonlyFlag = flag.Bool("fails-only", failsOnly, "when set, only failed AWS calls will be added to the policy, csm mode only")
@@ -114,6 +120,10 @@ func Run() {
 	parseConfig()
 
 	flag.Parse()
+
+	if *providerFlag != "aws" {
+		*modeFlag = "proxy"
+	}
 
 	if *backgroundFlag {
 		args := os.Args[1:]
@@ -138,14 +148,17 @@ func Run() {
 		defer pprof.StopCPUProfile()
 	}
 
-	if *refreshRateFlag != 0 {
+	if *refreshRateFlag != 0 && *providerFlag == "aws" {
 		setTerminalRefresh()
 	}
 
-	setINIConfigAndFileFlush()
+	if *providerFlag == "aws" {
+		setINIConfigAndFileFlush()
+	}
+	
 	loadMaps()
 
-	if *modeFlag == "csm" {
+	if *modeFlag == "csm" && *providerFlag == "aws" {
 		listenForEvents()
 		handleLoggedCall()
 	} else if *modeFlag == "proxy" {
@@ -156,7 +169,8 @@ func Run() {
 	}
 }
 
-func RunWithArgs(setIni bool, profile string, failsOnly bool, outputFile string, refreshRate int, sortAlphabetical bool, host, mode, bindAddr, caBundle, caKey, accountID string, background, forceWildcardResource bool) {
+func RunWithArgs(provider string, setIni bool, profile string, failsOnly bool, outputFile string, refreshRate int, sortAlphabetical bool, host, mode, bindAddr, caBundle, caKey, accountID string, background, forceWildcardResource bool) {
+	providerFlag = &provider
 	setiniFlag = &setIni
 	profileFlag = &profile
 	failsonlyFlag = &failsOnly
@@ -181,14 +195,17 @@ func RunWithArgs(setIni bool, profile string, failsOnly bool, outputFile string,
 		defer pprof.StopCPUProfile()
 	}
 
-	if *refreshRateFlag != 0 {
+	if *refreshRateFlag != 0 && *providerFlag == "aws" {
 		setTerminalRefresh()
 	}
 
-	setINIConfigAndFileFlush()
+	if *providerFlag == "aws" {
+		setINIConfigAndFileFlush()
+	}
+
 	loadMaps()
 
-	if *modeFlag == "csm" {
+	if *modeFlag == "csm" && *providerFlag == "aws" {
 		listenForEvents()
 		handleLoggedCall()
 	} else if *modeFlag == "proxy" {

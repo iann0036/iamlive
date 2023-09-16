@@ -13,8 +13,18 @@ github.com/kenshaw/baseconv
 # github.com/mitchellh/go-homedir v1.1.0
 ## explicit
 github.com/mitchellh/go-homedir
+# github.com/oliveagle/jsonpath v0.0.0-20180606110733-2e52cf6e6852
+## explicit
+github.com/oliveagle/jsonpath
 # github.com/smartystreets/goconvey v1.6.4
 ## explicit
+# github.com/tidwall/gjson v1.16.0
+## explicit
+# github.com/tidwall/pretty v1.2.1
+## explicit
+# github.com/ucarion/urlpath v0.0.0-20200424170820-7ccc79b76bbb
+## explicit
+github.com/ucarion/urlpath
 # golang.org/x/sys v0.0.0-20210331175145-43e1dd70ce54
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix

@@ -1,0 +1,1 @@
+{"basePath":"","rootUrl":"https://sts.googleapis.com/","resources":{"v1beta":{"methods":{"token":{"flatPath":"v1beta/token","httpMethod":"POST","id":"sts.token","parameterOrder":[],"parameters":{},"path":"v1beta/token","request":{"$ref":"GoogleIdentityStsV1betaExchangeTokenRequest"},"response":{"$ref":"GoogleIdentityStsV1betaExchangeTokenResponse"}}}}}}

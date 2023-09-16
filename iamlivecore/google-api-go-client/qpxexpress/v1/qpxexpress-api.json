@@ -1,0 +1,1 @@
+{"basePath":"/qpxExpress/v1/trips/","rootUrl":"https://www.googleapis.com/","resources":{"trips":{"methods":{"search":{"id":"qpxExpress.trips.search","path":"search","httpMethod":"POST","request":{"$ref":"TripsSearchRequest"},"response":{"$ref":"TripsSearchResponse"}}}}}}
