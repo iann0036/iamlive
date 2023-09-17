@@ -6989,11 +6989,6 @@
     "/providers/Microsoft.Resources/deployments/{deploymentName}/operationStatuses/{operationStatusName}": {
       "Microsoft.Resources/deployments/operationStatuses/read": {}
     },
-    "/providers/Microsoft.RecoveryServices/operations": {
-      "Microsoft.RecoveryServices/operations/read": {
-        "automated": true
-      }
-    },
     "/providers": {
       "Microsoft.Resources/providers/read": {
         "automated": true
