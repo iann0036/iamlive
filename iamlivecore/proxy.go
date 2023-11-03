@@ -239,8 +239,8 @@ type AzureTemplate struct {
 }
 
 type AzureTemplateResource struct {
-	Name string `json:"name"`
-	Type string `json:"type"`
+	Name       string      `json:"name"`
+	Type       string      `json:"type"`
 	Properties interface{} `json:"properties"`
 }
 
@@ -249,26 +249,26 @@ type GCPAPIListFile struct {
 }
 
 type GCPAPIListItem struct {
-	Name string `json:"name"`
+	Name    string `json:"name"`
 	Version string `json:"version"`
 }
 
 type GCPServiceDefinition struct {
-	RootURL string `json:"rootUrl"`
-	BasePath string `json:"basePath"`
+	RootURL    string `json:"rootUrl"`
+	BasePath   string `json:"basePath"`
 	RootDomain string
-	Resources map[string]GCPResourceDefinition `json:"resources"`
+	Resources  map[string]GCPResourceDefinition `json:"resources"`
 }
 
 type GCPResourceDefinition struct {
-	Methods map[string]GCPMethodDefinition `json:"methods"`
+	Methods   map[string]GCPMethodDefinition   `json:"methods"`
 	Resources map[string]GCPResourceDefinition `json:"resources"`
 }
 
 type GCPMethodDefinition struct {
-	FlatPath string `json:"flatPath"`
+	FlatPath   string `json:"flatPath"`
 	HTTPMethod string `json:"httpMethod"`
-	ID string `json:"id"`
+	ID         string `json:"id"`
 }
 
 func readServiceFiles() {
@@ -421,6 +421,8 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 				if len(hostSplit) > 5 {
 					endpointUriPrefix = strings.Join(hostSplit[:len(hostSplit)-5], ".") // "bucket.name".s3.dualstack.us-east-1.amazonaws.com
 				}
+			} else if endpointPrefix == "ecr" { // api.ecr.us-east-1.amazonaws.com
+				endpointPrefix = "api.ecr"
 			} else {
 				endpointUriPrefix = strings.Join(hostSplit[:len(hostSplit)-4], ".") // "bucket.name".s3.us-east-1.amazonaws.com
 			}
@@ -736,9 +738,9 @@ func handleAzureRequest(req *http.Request, body []byte, respCode int) {
 
 	azureCallLog = append(azureCallLog, AzureEntry{
 		HTTPMethod: req.Method,
-		Path: req.URL.Path,
+		Path:       req.URL.Path,
 		Parameters: req.URL.Query(),
-		Body: body,
+		Body:       body,
 	})
 
 	// Handle AzureRM deployments (inline only)
@@ -784,8 +786,8 @@ func handleAzureRequest(req *http.Request, body []byte, respCode int) {
 
 							azureCallLog = append(azureCallLog, AzureEntry{
 								HTTPMethod: "PUT",
-								Path: pathName,
-								Body: resourceJSON,
+								Path:       pathName,
+								Body:       resourceJSON,
 							})
 
 							continue ResourceLoop
@@ -795,7 +797,7 @@ func handleAzureRequest(req *http.Request, body []byte, respCode int) {
 			}
 		}
 	}
-	
+
 	handleLoggedCall()
 }
 
@@ -809,12 +811,12 @@ func gcpProcessResource(req *http.Request, gcpResource GCPResourceDefinition, ba
 
 	for _, gcpMethod := range gcpResource.Methods {
 		if req.Method == gcpMethod.HTTPMethod {
-			pathtemplate := "/" + strings.ReplaceAll(strings.ReplaceAll(basePath + gcpMethod.FlatPath, "{", ":"), "}", "")
+			pathtemplate := "/" + strings.ReplaceAll(strings.ReplaceAll(basePath+gcpMethod.FlatPath, "{", ":"), "}", "")
 			if pathtemplate[0:2] == "//" {
 				pathtemplate = pathtemplate[1:]
 			}
 			pathmatch := urlpath.New(pathtemplate)
-			
+
 			_, ok := pathmatch.Match(req.URL.Path)
 			if ok {
 				return gcpMethod.ID
