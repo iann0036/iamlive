@@ -324,15 +324,20 @@ func writePolicyToTerminal() {
 	}
 
 	policyDoc := string(GetPolicyDocument())
-	policyHeight := countRune(policyDoc, '\n') + 1
 
-	goterm.Clear()
-	goterm.MoveCursor(1, 1)
-	if goterm.Height() < policyHeight {
-		fmt.Println("\n\n" + policyDoc)
+	if *debugFlag {
+		fmt.Println(policyDoc)
 	} else {
-		goterm.Println(policyDoc)
-		goterm.Flush()
+		policyHeight := countRune(policyDoc, '\n') + 1
+
+		goterm.Clear()
+		goterm.MoveCursor(1, 1)
+		if goterm.Height() < policyHeight {
+			fmt.Println("\n\n" + policyDoc)
+		} else {
+			goterm.Println(policyDoc)
+			goterm.Flush()
+		}
 	}
 }
 

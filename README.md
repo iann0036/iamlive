@@ -77,6 +77,8 @@ You can optionally also include the following arguments to the `iamlive` command
 
 **--account-id:** the AWS account ID to use in policy outputs within proxy mode (_default: 123456789012 unless detected_) (_AWS only_)
 
+**--debug:** dumps associated HTTP requests when set in proxy mode (_default: false_)
+
 _Basic Example (CSM Mode)_
 
 ```

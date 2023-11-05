@@ -27,6 +27,7 @@ var caBundleFlag *string
 var caKeyFlag *string
 var accountIDFlag *string
 var backgroundFlag *bool
+var debugFlag *bool
 var forceWildcardResourceFlag *bool
 var cpuProfileFlag = flag.String("cpu-profile", "", "write a CPU profile to this file (for performance testing purposes)")
 
@@ -45,6 +46,7 @@ func parseConfig() {
 	caKey := "~/.iamlive/ca.key"
 	accountID := ""
 	background := false
+	debug := false
 	forceWildcardResource := false
 
 	cfgfile, err := homedir.Expand("~/.iamlive/config")
@@ -93,6 +95,9 @@ func parseConfig() {
 			if cfg.Section("").HasKey("background") {
 				background, _ = cfg.Section("").Key("background").Bool()
 			}
+			if cfg.Section("").HasKey("debug") {
+				debug, _ = cfg.Section("").Key("debug").Bool()
+			}
 			if cfg.Section("").HasKey("force-wildcard-resource") {
 				forceWildcardResource, _ = cfg.Section("").Key("force-wildcard-resource").Bool()
 			}
@@ -113,6 +118,7 @@ func parseConfig() {
 	caKeyFlag = flag.String("ca-key", caKey, "the CA certificate key to use for proxy mode")
 	accountIDFlag = flag.String("account-id", accountID, "the AWS account ID to use in policy outputs within proxy mode")
 	backgroundFlag = flag.Bool("background", background, "when set, the process will return the current PID and run in the background without output")
+	debugFlag = flag.Bool("debug", debug, "dumps associated HTTP requests when set in proxy mode")
 	forceWildcardResourceFlag = flag.Bool("force-wildcard-resource", forceWildcardResource, "when set, the Resource will always be a wildcard")
 }
 
@@ -169,7 +175,7 @@ func Run() {
 	}
 }
 
-func RunWithArgs(provider string, setIni bool, profile string, failsOnly bool, outputFile string, refreshRate int, sortAlphabetical bool, host, mode, bindAddr, caBundle, caKey, accountID string, background, forceWildcardResource bool) {
+func RunWithArgs(provider string, setIni bool, profile string, failsOnly bool, outputFile string, refreshRate int, sortAlphabetical bool, host, mode, bindAddr, caBundle, caKey, accountID string, background, debug, forceWildcardResource bool) {
 	providerFlag = &provider
 	setiniFlag = &setIni
 	profileFlag = &profile
@@ -184,6 +190,7 @@ func RunWithArgs(provider string, setIni bool, profile string, failsOnly bool, o
 	caKeyFlag = &caKey
 	accountIDFlag = &accountID
 	backgroundFlag = &background
+	debugFlag = &debug
 	forceWildcardResourceFlag = &forceWildcardResource
 
 	if *cpuProfileFlag != "" {

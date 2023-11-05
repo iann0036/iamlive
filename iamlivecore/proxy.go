@@ -16,6 +16,7 @@ import (
 	"log"
 	"math/big"
 	"net/http"
+	"net/http/httputil"
 	"net/url"
 	"os"
 	"path/filepath"
@@ -160,6 +161,11 @@ func loadCAKeys() error {
 	return nil
 }
 
+func dumpReq(req *http.Request) {
+	dump, _ := httputil.DumpRequestOut(req, true)
+	fmt.Printf("%v\n", string(dump))
+}
+
 func createProxy(addr string) {
 	err := loadCAKeys()
 	if err != nil {
@@ -170,19 +176,32 @@ func createProxy(addr string) {
 	proxy.Logger = log.New(io.Discard, "", log.LstdFlags)
 	proxy.OnRequest().HandleConnect(goproxy.AlwaysMitm)
 	proxy.OnRequest().DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) { // TODO: Move to onResponse for HTTP response codes
-		body, _ := ioutil.ReadAll(req.Body)
+		var body []byte
 
 		isAWSHostname, _ := regexp.MatchString(`^.*\.amazonaws\.com(?:\.cn)?$`, req.Host)
-		if isAWSHostname && *providerFlag == "aws" {
-			handleAWSRequest(req, body, 200)
-		}
 		isAzureHostname, _ := regexp.MatchString(`^(?:management\.azure\.com)|(?:management\.core\.windows\.net)$`, req.Host)
-		if isAzureHostname && *providerFlag == "azure" {
-			handleAzureRequest(req, body, 200)
-		}
 		isGCPHostname, _ := regexp.MatchString(`^.*\.googleapis\.com$`, req.Host)
-		if isGCPHostname && *providerFlag == "gcp" {
+
+		if isAWSHostname && *providerFlag == "aws" {
+			if *debugFlag {
+				dumpReq(req)
+			}
+			body, _ = ioutil.ReadAll(req.Body)
+			handleAWSRequest(req, body, 200)
+		} else if isAzureHostname && *providerFlag == "azure" {
+			if *debugFlag {
+				dumpReq(req)
+			}
+			body, _ = ioutil.ReadAll(req.Body)
+			handleAzureRequest(req, body, 200)
+		} else if isGCPHostname && *providerFlag == "gcp" {
+			if *debugFlag {
+				dumpReq(req)
+			}
+			body, _ = ioutil.ReadAll(req.Body)
 			handleGCPRequest(req, body, 200)
+		} else {
+			return req, nil
 		}
 
 		req.Body = ioutil.NopCloser(bytes.NewBuffer(body))
