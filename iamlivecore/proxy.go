@@ -27,7 +27,6 @@ import (
 	mxj "github.com/clbanning/mxj/v2"
 	"github.com/iann0036/goproxy"
 	"github.com/mitchellh/go-homedir"
-	"github.com/ucarion/urlpath"
 )
 
 //go:embed service/*
@@ -587,7 +586,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 
 							pathMatches := regexp.MustCompile(regexStr).FindAllStringSubmatch(path, -1)
 
-							if len(pathMatches) > 0 && len(pathMatches) > 0 && len(templateMatches) == len(pathMatches[0])-1 {
+							if len(pathMatches) > 0 && len(templateMatches) > 0 && len(templateMatches) == len(pathMatches[0])-1 {
 								for i := 0; i < len(templateMatches); i++ {
 									uriparams[templateMatches[i][1]] = pathMatches[0][1:][i]
 								}
@@ -748,6 +747,8 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	handleLoggedCall()
 }
 
+var azurermregex = regexp.MustCompile(`^/subscriptions/.+/resourcegroups/.+/providers/Microsoft\.Resources/deployments/.+`)
+
 func handleAzureRequest(req *http.Request, body []byte, respCode int) {
 	host := req.Host
 
@@ -764,9 +765,7 @@ func handleAzureRequest(req *http.Request, body []byte, respCode int) {
 
 	// Handle AzureRM deployments (inline only)
 	if req.Method == "PUT" { // TODO: other similar methods
-		pathmatch := urlpath.New("/subscriptions/:subscriptionId/resourcegroups/:resourceGroupName/providers/Microsoft.Resources/deployments/:deploymentName")
-		_, ok := pathmatch.Match(req.URL.Path)
-		if ok {
+		if azurermregex.MatchString(req.URL.Path) {
 			data := struct {
 				Properties struct {
 					Template interface{} `json:"template"`
@@ -820,6 +819,27 @@ func handleAzureRequest(req *http.Request, body []byte, respCode int) {
 	handleLoggedCall()
 }
 
+func generateMethodTemplate(path string) string {
+	path = regexp.QuoteMeta(path)
+	i := strings.Index(path, "\\{")
+	for i != -1 {
+		j := strings.Index(path[i:], "\\}")
+		if j != -1 {
+			path = path[:i] + ".+" + path[i+j+len("\\}"):]
+		} else {
+			break
+		}
+		i = strings.Index(path, "\\{")
+	}
+
+	pathtemplate := "^/" + path
+	if pathtemplate[0:3] == "^//" {
+		pathtemplate = "^" + pathtemplate[2:]
+	}
+
+	return pathtemplate
+}
+
 func gcpProcessResource(req *http.Request, gcpResource GCPResourceDefinition, basePath string) string {
 	for _, gcpSubresource := range gcpResource.Resources {
 		apiID := gcpProcessResource(req, gcpSubresource, basePath)
@@ -830,14 +850,10 @@ func gcpProcessResource(req *http.Request, gcpResource GCPResourceDefinition, ba
 
 	for _, gcpMethod := range gcpResource.Methods {
 		if req.Method == gcpMethod.HTTPMethod {
-			pathtemplate := "/" + strings.ReplaceAll(strings.ReplaceAll(basePath+gcpMethod.FlatPath, "{", ":"), "}", "")
-			if pathtemplate[0:2] == "//" {
-				pathtemplate = pathtemplate[1:]
-			}
-			pathmatch := urlpath.New(pathtemplate)
+			pathtemplate := generateMethodTemplate(basePath+gcpMethod.FlatPath)
 
-			_, ok := pathmatch.Match(req.URL.Path)
-			if ok {
+			r, err := regexp.Compile(pathtemplate)
+			if err == nil && r.MatchString(req.URL.Path) {
 				return gcpMethod.ID
 			}
 		}
