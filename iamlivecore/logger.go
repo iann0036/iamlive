@@ -293,7 +293,13 @@ func aggregatePolicy(policy IAMPolicy) IAMPolicy {
 			}
 		}
 
-		policy.Statement[i].Action = uniqueSlice(policy.Statement[i].Action)
+		actions := uniqueSlice(policy.Statement[i].Action)
+
+		if *sortAlphabeticalFlag {
+			sort.Strings(actions)
+		}
+
+		policy.Statement[i].Action = actions
 		policy.Statement[i].Resource = uniqueSlice(policy.Statement[i].Resource.([]string))
 	}
 
