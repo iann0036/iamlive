@@ -154,7 +154,7 @@ func listenForEvents() {
 	var iamMap iamMapBase
 
 	addr := net.UDPAddr{
-		Port: 31000,
+		Port: *csmPortFlag,
 		IP:   net.ParseIP(*hostFlag),
 	}
 	conn, err := net.ListenUDP("udp", &addr)
