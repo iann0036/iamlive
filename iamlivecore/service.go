@@ -30,6 +30,7 @@ var backgroundFlag *bool
 var debugFlag *bool
 var forceWildcardResourceFlag *bool
 var cpuProfileFlag = flag.String("cpu-profile", "", "write a CPU profile to this file (for performance testing purposes)")
+var csmPortFlag *int
 
 func parseConfig() {
 	provider := "aws"
@@ -48,6 +49,7 @@ func parseConfig() {
 	background := false
 	debug := false
 	forceWildcardResource := false
+	csmPort := 31000
 
 	cfgfile, err := homedir.Expand("~/.iamlive/config")
 	if err == nil {
@@ -120,6 +122,7 @@ func parseConfig() {
 	backgroundFlag = flag.Bool("background", background, "when set, the process will return the current PID and run in the background without output")
 	debugFlag = flag.Bool("debug", debug, "dumps associated HTTP requests when set in proxy mode")
 	forceWildcardResourceFlag = flag.Bool("force-wildcard-resource", forceWildcardResource, "when set, the Resource will always be a wildcard")
+	csmPortFlag = flag.Int("csm-port", csmPort, "port to listen on for CSM")
 }
 
 func Run() {
@@ -161,7 +164,7 @@ func Run() {
 	if *providerFlag == "aws" {
 		setINIConfigAndFileFlush()
 	}
-	
+
 	loadMaps()
 
 	if *modeFlag == "csm" && *providerFlag == "aws" {
