@@ -165,7 +165,7 @@ func dumpReq(req *http.Request) {
 	fmt.Printf("%v\n", string(dump))
 }
 
-func createProxy(addr string) {
+func createProxy(addr string, awsRedirectHost string) {
 	err := loadCAKeys()
 	if err != nil {
 		log.Fatal(err)
@@ -187,6 +187,11 @@ func createProxy(addr string) {
 			}
 			body, _ = ioutil.ReadAll(req.Body)
 			handleAWSRequest(req, body, 200)
+
+			if awsRedirectHost != "" {
+				req.URL.Host = awsRedirectHost
+				req.Host = awsRedirectHost
+			}
 		} else if isAzureHostname && *providerFlag == "azure" {
 			if *debugFlag {
 				dumpReq(req)
