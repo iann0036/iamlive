@@ -38,6 +38,7 @@ brew install iann0036/iamlive/iamlive
 * [Lambda Extension](https://github.com/iann0036/iamlive-lambda-extension) _(AWS only)_
 * [Docker](https://meirg.co.il/2021/04/23/determining-aws-iam-policies-according-to-terraform-and-aws-cli/)
 * [GitHub Action (with Terraform)](https://github.com/scott-doyland-burrows/gha-composite-terraform-iamlive)
+* [LocalStack](https://github.com/rulio/iamlive-localstack/)
 
 ## Usage
 
