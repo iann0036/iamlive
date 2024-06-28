@@ -105,8 +105,8 @@ func parseConfig() {
 			if cfg.Section("").HasKey("force-wildcard-resource") {
 				forceWildcardResource, _ = cfg.Section("").Key("force-wildcard-resource").Bool()
 			}
-			if cfg.Section("").HasKey("aws-redire4ct") {
-				awsRedirectHost = cfg.Section("").Key("aws-redirect").String()
+			if cfg.Section("").HasKey("aws-redirect-host") {
+				awsRedirectHost = cfg.Section("").Key("aws-redirect-host").String()
 			}
 
 		}
