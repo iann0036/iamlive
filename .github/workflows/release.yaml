@@ -18,7 +18,7 @@ jobs:
         with:
           go-version: 1.16
       - name: Set up Gon
-        run: brew tap mitchellh/gon && brew install mitchellh/gon/gon
+        run: brew install Bearer/tap/gon
       - name: Import Keychain Certs
         uses: apple-actions/import-codesign-certs@v1
         with: 
