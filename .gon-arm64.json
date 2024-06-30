@@ -3,7 +3,8 @@
     "bundle_id": "com.iann0036.iamlive",
     "apple_id": {
         "username" : "apple@ian.mn",
-        "password":  "@env:AC_PASSWORD"
+        "password":  "@env:AC_PASSWORD",
+        "provider": "R7ZQG222E8"
     },
     "sign": {
         "application_identity" : "Developer ID Application: Ian McKay (R7ZQG222E8)"
