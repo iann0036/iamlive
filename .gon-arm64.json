@@ -3,7 +3,6 @@
     "bundle_id": "com.iann0036.iamlive",
     "apple_id": {
         "username" : "apple@ian.mn",
-        "password": "@env:AC_PASSWORD",
         "provider": "R7ZQG222E8"
     },
     "sign": {
