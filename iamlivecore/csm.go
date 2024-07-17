@@ -65,9 +65,14 @@ func setConfigKey(filename, section, line string, unset bool) error {
 }
 
 func setINIConfigAndFileFlush() {
+	cfgfilepath := "~/.aws/config"
+	if os.Getenv("AWS_CONFIG_FILE") != "" {
+		cfgfilepath = os.Getenv("AWS_CONFIG_FILE")
+	}
+
 	// set ini
 	if *setiniFlag {
-		cfgfile, err := homedir.Expand("~/.aws/config")
+		cfgfile, err := homedir.Expand(cfgfilepath)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -119,7 +124,7 @@ func setINIConfigAndFileFlush() {
 			if s == syscall.SIGINT || s == syscall.SIGTERM || s == syscall.SIGQUIT {
 				if *setiniFlag {
 					// revert ini
-					cfgfile, err := homedir.Expand("~/.aws/config") // need to redeclare
+					cfgfile, err := homedir.Expand(cfgfilepath) // need to redeclare
 					if err != nil {
 						os.Exit(1)
 					}
