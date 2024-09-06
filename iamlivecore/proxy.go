@@ -435,22 +435,26 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 
 	if hostSplit[len(hostSplit)-1] == "com" && hostSplit[len(hostSplit)-2] == "amazonaws" {
 		endpointPrefix := hostSplit[len(hostSplit)-3] // "s3".amazonaws.com
-		if len(hostSplit) > 3 {
-			endpointPrefix = hostSplit[len(hostSplit)-4] // "s3".us-east-1.amazonaws.com
-		}
-		if len(hostSplit) > 4 {
-			if endpointPrefix == "dualstack" {
-				endpointPrefix = hostSplit[len(hostSplit)-5] // "s3".dualstack.us-east-1.amazonaws.com
-				if len(hostSplit) > 5 {
-					endpointUriPrefix = strings.Join(hostSplit[:len(hostSplit)-5], ".") // "bucket.name".s3.dualstack.us-east-1.amazonaws.com
-				}
-			} else if endpointPrefix == "ecr" { // api.ecr.us-east-1.amazonaws.com
-				endpointPrefix = "api.ecr"
-			} else {
-				endpointUriPrefix = strings.Join(hostSplit[:len(hostSplit)-4], ".") // "bucket.name".s3.us-east-1.amazonaws.com
+		if endpointPrefix == "s3" && len(hostSplit) > 3 {
+			endpointUriPrefix = strings.Join(hostSplit[:len(hostSplit)-3], ".") // "bucket.name".s3.amazonaws.com
+		} else {
+			if len(hostSplit) > 3 {
+				endpointPrefix = hostSplit[len(hostSplit)-4] // "s3".us-east-1.amazonaws.com
 			}
-
+			if len(hostSplit) > 4 {
+				if endpointPrefix == "dualstack" {
+					endpointPrefix = hostSplit[len(hostSplit)-5] // "s3".dualstack.us-east-1.amazonaws.com
+					if len(hostSplit) > 5 {
+						endpointUriPrefix = strings.Join(hostSplit[:len(hostSplit)-5], ".") // "bucket.name".s3.dualstack.us-east-1.amazonaws.com
+					}
+				} else if endpointPrefix == "ecr" { // api.ecr.us-east-1.amazonaws.com
+					endpointPrefix = "api.ecr"
+				} else {
+					endpointUriPrefix = strings.Join(hostSplit[:len(hostSplit)-4], ".") // "bucket.name".s3.us-east-1.amazonaws.com
+				}
+			}
 		}
+
 		for _, serviceDefinition := range serviceDefinitions {
 			if serviceDefinition.Metadata.EndpointPrefix == endpointPrefix { // TODO: Ensure latest version
 				serviceDef = serviceDefinition
@@ -855,7 +859,7 @@ func gcpProcessResource(req *http.Request, gcpResource GCPResourceDefinition, ba
 
 	for _, gcpMethod := range gcpResource.Methods {
 		if req.Method == gcpMethod.HTTPMethod {
-			pathtemplate := generateMethodTemplate(basePath+gcpMethod.FlatPath)
+			pathtemplate := generateMethodTemplate(basePath + gcpMethod.FlatPath)
 
 			r, err := regexp.Compile(pathtemplate)
 			if err == nil && r.MatchString(req.URL.Path) {
