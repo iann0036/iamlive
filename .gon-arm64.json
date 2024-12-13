@@ -1,5 +1,5 @@
 {
-    "source": ["./dist/macos-arm64_darwin_arm64/iamlive"],
+    "source": ["./dist/macos-arm64_darwin_arm64_v8.0/iamlive"],
     "bundle_id": "com.iann0036.iamlive",
     "apple_id": {
         "username" : "apple@ian.mn",
