@@ -29,7 +29,17 @@ import (
 	"github.com/mitchellh/go-homedir"
 )
 
-//go:embed service/*
+/*
+Update 2024-12-14: Now using the aws-sdk-ruby source
+Replace all data except that which is needed needed with the following:
+
+```
+cd iamlivecore/apis
+find . ! -name "api-2.json" -type f -delete
+find . -empty -type d -delete
+```
+*/
+//go:embed apis/*
 var serviceFiles embed.FS
 
 /*
@@ -296,13 +306,25 @@ type GCPMethodDefinition struct {
 
 func readServiceFiles() {
 	if *providerFlag == "aws" {
-		files, err := serviceFiles.ReadDir("service")
+		serviceDirs, err := serviceFiles.ReadDir("apis")
 		if err != nil {
 			panic(err)
 		}
 
-		for _, dirEntry := range files {
-			file, err := serviceFiles.Open("service/" + dirEntry.Name())
+		for _, serviceEntry := range serviceDirs {
+			versionDirs, err := serviceFiles.ReadDir("apis/" + serviceEntry.Name())
+			if err != nil {
+				panic(err)
+			}
+
+			latestDir := ""
+			for _, versionEntry := range versionDirs {
+				if latestDir == "" || versionEntry.Name() > latestDir {
+					latestDir = versionEntry.Name()
+				}
+			}
+
+			file, err := serviceFiles.Open("apis/" + serviceEntry.Name() + "/" + latestDir + "/api-2.json")
 			if err != nil {
 				panic(err)
 			}

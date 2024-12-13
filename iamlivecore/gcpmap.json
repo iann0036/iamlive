@@ -690,6 +690,9 @@
       },
       "restUrl": "https://developers.google.com/domains/acme-dns/reference/rest"
     },
+    "addressvalidation": {
+      "methods": {}
+    },
     "adexchangebuyer2": {
       "methods": {
         "adexchangebuyer2.accounts.clients.create": {},
@@ -905,6 +908,16 @@
             }
           ]
         },
+        "advisorynotifications.projects.locations.getSettings": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "advisorynotifications.settings.get"
+            }
+          ]
+        },
         "advisorynotifications.projects.locations.notifications.get": {
           "permissions": [
             {
@@ -924,12 +937,34 @@
               "name": "advisorynotifications.notifications.list"
             }
           ]
+        },
+        "advisorynotifications.projects.locations.updateSettings": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "advisorynotifications.settings.update"
+            }
+          ]
         }
       },
       "restUrl": "https://cloud.google.com/advisory-notifications/docs/reference/rest"
     },
     "aiplatform": {
       "methods": {
+        "aiplatform.media.upload": {},
+        "aiplatform.projects.getCacheConfig": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "aiplatform.cacheConfigs.get",
+              "undocumented": true
+            }
+          ]
+        },
         "aiplatform.projects.locations.batchPredictionJobs.cancel": {
           "permissions": [
             {
@@ -2775,6 +2810,9 @@
       "sourceUrl": "https://cloud.google.com/vertex-ai/docs/general/iam-permissions",
       "sourceUrlAuthoritive": true
     },
+    "airquality": {
+      "methods": {}
+    },
     "alertcenter": {
       "methods": {
         "alertcenter.alerts.batchDelete": {},
@@ -3283,6 +3321,11 @@
         "analyticsadmin.properties.googleAdsLinks.delete": {},
         "analyticsadmin.properties.googleAdsLinks.list": {},
         "analyticsadmin.properties.googleAdsLinks.patch": {},
+        "analyticsadmin.properties.keyEvents.create": {},
+        "analyticsadmin.properties.keyEvents.delete": {},
+        "analyticsadmin.properties.keyEvents.get": {},
+        "analyticsadmin.properties.keyEvents.list": {},
+        "analyticsadmin.properties.keyEvents.patch": {},
         "analyticsadmin.properties.list": {},
         "analyticsadmin.properties.listConnectedSiteTags": {},
         "analyticsadmin.properties.patch": {},
@@ -3389,6 +3432,13 @@
                 "restcrawliamblockv1"
               ],
               "name": "analyticshub.listings.getIamPolicy"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.subscriptions.getIamPolicy",
+              "undocumented": true
             }
           ]
         },
@@ -3446,6 +3496,13 @@
                 "restcrawliamblockv1"
               ],
               "name": "analyticshub.listings.getIamPolicy"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.subscriptions.getIamPolicy",
+              "undocumented": true
             }
           ]
         },
@@ -3483,6 +3540,13 @@
                 "restcrawliamblockv1"
               ],
               "name": "analyticshub.listings.setIamPolicy"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.subscriptions.setIamPolicy",
+              "undocumented": true
             }
           ]
         },
@@ -3522,10 +3586,32 @@
                 "restcrawliamblockv1"
               ],
               "name": "analyticshub.listings.setIamPolicy"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.subscriptions.setIamPolicy",
+              "undocumented": true
             }
           ]
         },
-        "analyticshub.projects.locations.dataExchanges.subscribe": {},
+        "analyticshub.projects.locations.dataExchanges.subscribe": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.subscriptions.create"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.dataExchanges.subscribe"
+            }
+          ]
+        },
         "analyticshub.projects.locations.dataExchanges.testIamPermissions": {
           "permissions": []
         },
@@ -3533,7 +3619,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawliamblockv1"
               ],
               "name": "analyticshub.subscriptions.delete"
             }
@@ -3543,9 +3630,33 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawliamblockv1"
               ],
               "name": "analyticshub.subscriptions.get"
+            }
+          ]
+        },
+        "analyticshub.projects.locations.subscriptions.getIamPolicy": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.dataExchanges.getIamPolicy"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.listings.getIamPolicy"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.subscriptions.getIamPolicy",
+              "undocumented": true
             }
           ]
         },
@@ -3553,14 +3664,47 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawliamblockv1"
               ],
               "name": "analyticshub.subscriptions.list"
             }
           ]
         },
-        "analyticshub.projects.locations.subscriptions.refresh": {},
-        "analyticshub.projects.locations.subscriptions.revoke": {}
+        "analyticshub.projects.locations.subscriptions.refresh": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.subscriptions.update"
+            }
+          ]
+        },
+        "analyticshub.projects.locations.subscriptions.revoke": {},
+        "analyticshub.projects.locations.subscriptions.setIamPolicy": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.dataExchanges.setIamPolicy"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.listings.setIamPolicy"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "analyticshub.subscriptions.setIamPolicy",
+              "undocumented": true
+            }
+          ]
+        }
       },
       "restUrl": "https://cloud.google.com/bigquery/docs/reference/analytics-hub/rest"
     },
@@ -7477,8 +7621,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "apikeys.keys.create",
               "parameterName": "parent",
@@ -7490,8 +7634,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "apikeys.keys.delete",
               "parameterName": "name",
@@ -7503,8 +7647,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "apikeys.keys.get",
               "parameterName": "name",
@@ -7516,8 +7660,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "apikeys.keys.getKeyString",
               "parameterName": "name",
@@ -7529,8 +7673,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "apikeys.keys.list",
               "parameterName": "parent",
@@ -7552,8 +7696,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "apikeys.keys.undelete",
               "parameterName": "name",
@@ -7565,6 +7709,9 @@
       "restUrl": "https://cloud.google.com/api-keys/docs/reference/rest",
       "sourceUrl": "https://cloud.google.com/api-keys/docs/access-control",
       "sourceUrlAuthoritive": true
+    },
+    "apim": {
+      "methods": {}
     },
     "appengine": {
       "methods": {
@@ -8185,6 +8332,32 @@
             }
           ]
         },
+        "artifactregistry.projects.locations.repositories.files.delete": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "artifactregistry.files.delete",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "artifactregistry.projects.locations.repositories.files.download": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "artifactregistry.files.get",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
         "artifactregistry.projects.locations.repositories.files.get": {
           "permissions": [
             {
@@ -8205,6 +8378,19 @@
                 "restcrawlv1"
               ],
               "name": "artifactregistry.files.list",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "artifactregistry.projects.locations.repositories.genericArtifacts.upload": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "artifactregistry.repositories.uploadArtifacts",
               "parameterName": "parent",
               "parameterType": "path",
               "resourceType": "parent"
@@ -8280,8 +8466,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "artifactregistry.kfpartifacts.create",
               "parameterName": "parent",
@@ -8397,6 +8583,7 @@
             }
           ]
         },
+        "artifactregistry.projects.locations.repositories.packages.patch": {},
         "artifactregistry.projects.locations.repositories.packages.tags.create": {
           "permissions": [
             {
@@ -8639,8 +8826,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "assuredworkloads.workload.create",
               "parameterName": "parent",
@@ -8652,8 +8839,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "assuredworkloads.workload.delete",
               "parameterName": "name",
@@ -8665,8 +8852,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "assuredworkloads.workload.update",
               "parameterName": "name",
@@ -8678,8 +8865,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "assuredworkloads.workload.get",
               "parameterName": "name",
@@ -8691,8 +8878,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "assuredworkloads.workload.list",
               "parameterName": "parent",
@@ -8704,8 +8891,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "assuredworkloads.workload.update",
               "parameterName": "name",
@@ -8747,8 +8934,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "assuredworkloads.violations.get",
               "parameterName": "name",
@@ -8760,8 +8947,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "assuredworkloads.violations.list",
               "parameterName": "parent",
@@ -8774,6 +8961,7 @@
     },
     "authorizedbuyersmarketplace": {
       "methods": {
+        "authorizedbuyersmarketplace.bidders.auctionPackages.list": {},
         "authorizedbuyersmarketplace.bidders.finalizedDeals.list": {},
         "authorizedbuyersmarketplace.buyers.auctionPackages.get": {},
         "authorizedbuyersmarketplace.buyers.auctionPackages.list": {},
@@ -9749,6 +9937,7 @@
             }
           ]
         },
+        "bigquery.datasets.undelete": {},
         "bigquery.datasets.update": {
           "permissions": [
             {
@@ -10308,6 +10497,16 @@
               "parameterName": "parent",
               "parameterType": "path",
               "resourceType": "parent"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "bigtable.clusters.create",
+              "parameterFormat": "projects/{project}",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
             }
           ]
         },
@@ -10356,6 +10555,68 @@
         },
         "bigtableadmin.projects.instances.partialUpdateInstance": {},
         "bigtableadmin.projects.instances.setIamPolicy": {},
+        "bigtableadmin.projects.instances.tables.authorizedViews.create": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "bigtable.authorizedViews.create",
+              "parameterFormat": "projects/{project}/instances/{instance}/tables/{table}",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "bigtableadmin.projects.instances.tables.authorizedViews.delete": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "bigtable.authorizedView.delete",
+              "parameterFormat": "projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorizedView}",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name",
+              "undocumented": true
+            }
+          ]
+        },
+        "bigtableadmin.projects.instances.tables.authorizedViews.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "bigtable.authorizedView.get",
+              "parameterFormat": "projects/{project}/instances/{instance}/tables/{table}/authorizedViews/{authorizedView}",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name",
+              "undocumented": true
+            }
+          ]
+        },
+        "bigtableadmin.projects.instances.tables.authorizedViews.getIamPolicy": {},
+        "bigtableadmin.projects.instances.tables.authorizedViews.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "bigtable.authorizedViews.list",
+              "parameterFormat": "projects/{project}/instances/{instance}/tables/{table}",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "bigtableadmin.projects.instances.tables.authorizedViews.patch": {},
+        "bigtableadmin.projects.instances.tables.authorizedViews.setIamPolicy": {},
+        "bigtableadmin.projects.instances.tables.authorizedViews.testIamPermissions": {},
         "bigtableadmin.projects.instances.tables.checkConsistency": {
           "permissions": [
             {
@@ -10718,6 +10979,21 @@
               "lowConfidence": true,
               "name": "binaryauthorization.policy.get",
               "parameterFormat": "policy",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "binaryauthorization.projects.platforms.gke.policies.evaluate": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "binaryauthorization.platformPolicies.evaluatePolicy",
+              "parameterFormat": "platform policy",
               "parameterName": "name",
               "parameterType": "path",
               "resourceType": "name"
@@ -11468,6 +11744,7 @@
         "chat.spaces.members.delete": {},
         "chat.spaces.members.get": {},
         "chat.spaces.members.list": {},
+        "chat.spaces.members.patch": {},
         "chat.spaces.messages.attachments.get": {},
         "chat.spaces.messages.create": {},
         "chat.spaces.messages.delete": {},
@@ -11479,7 +11756,12 @@
         "chat.spaces.messages.reactions.list": {},
         "chat.spaces.messages.update": {},
         "chat.spaces.patch": {},
-        "chat.spaces.setup": {}
+        "chat.spaces.setup": {},
+        "chat.spaces.spaceEvents.get": {},
+        "chat.spaces.spaceEvents.list": {},
+        "chat.users.spaces.getSpaceReadState": {},
+        "chat.users.spaces.threads.getThreadReadState": {},
+        "chat.users.spaces.updateSpaceReadState": {}
       },
       "restUrl": "https://developers.google.com/chat/api/reference/rest"
     },
@@ -11491,8 +11773,11 @@
         "chromemanagement.customers.apps.android.get": {},
         "chromemanagement.customers.apps.chrome.get": {},
         "chromemanagement.customers.apps.countChromeAppRequests": {},
+        "chromemanagement.customers.apps.fetchDevicesRequestingExtension": {},
+        "chromemanagement.customers.apps.fetchUsersRequestingExtension": {},
         "chromemanagement.customers.apps.web.get": {},
         "chromemanagement.customers.reports.countChromeBrowsersNeedingAttention": {},
+        "chromemanagement.customers.reports.countChromeCrashEvents": {},
         "chromemanagement.customers.reports.countChromeDevicesReachingAutoExpirationDate": {},
         "chromemanagement.customers.reports.countChromeDevicesThatNeedAttention": {},
         "chromemanagement.customers.reports.countChromeHardwareFleetDevices": {},
@@ -12208,7 +12493,17 @@
             }
           ]
         },
-        "cloudbuild.projects.locations.connections.processWebhook": {},
+        "cloudbuild.projects.locations.connections.processWebhook": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "iam.permissions.none",
+              "undocumented": true
+            }
+          ]
+        },
         "cloudbuild.projects.locations.connections.repositories.accessReadToken": {
           "permissions": [
             {
@@ -12303,6 +12598,21 @@
           "permissions": []
         },
         "cloudbuild.projects.locations.get": {},
+        "cloudbuild.projects.locations.getDefaultServiceAccount": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "cloudbuild.builds.get",
+              "parameterFormat": "DefaultServiceAccount",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
         "cloudbuild.projects.locations.gitLabConfigs.connectedRepositories.batchCreate": {},
         "cloudbuild.projects.locations.gitLabConfigs.create": {
           "permissions": [
@@ -12770,6 +13080,12 @@
       },
       "restUrl": "https://cloud.google.com/channel/docs/reference/rest"
     },
+    "cloudcommerceprocurement": {
+      "methods": {}
+    },
+    "cloudcontrolspartner": {
+      "methods": {}
+    },
     "clouddeploy": {
       "methods": {
         "clouddeploy.projects.locations.customTargetTypes.create": {
@@ -12802,6 +13118,7 @@
             }
           ]
         },
+        "clouddeploy.projects.locations.customTargetTypes.getIamPolicy": {},
         "clouddeploy.projects.locations.customTargetTypes.list": {
           "permissions": [
             {
@@ -12822,6 +13139,7 @@
             }
           ]
         },
+        "clouddeploy.projects.locations.customTargetTypes.setIamPolicy": {},
         "clouddeploy.projects.locations.deliveryPipelines.automationRuns.cancel": {
           "permissions": [
             {
@@ -13647,6 +13965,26 @@
     },
     "cloudkms": {
       "methods": {
+        "cloudkms.folders.getAutokeyConfig": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "cloudkms.autokeyConfigs.get"
+            }
+          ]
+        },
+        "cloudkms.folders.updateAutokeyConfig": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "cloudkms.autokeyConfigs.update"
+            }
+          ]
+        },
         "cloudkms.projects.locations.ekmConfig.getIamPolicy": {
           "permissions": [
             {
@@ -13801,6 +14139,36 @@
               "parameterName": "name",
               "parameterType": "path",
               "resourceType": "name"
+            }
+          ]
+        },
+        "cloudkms.projects.locations.keyHandles.create": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "cloudkms.keyHandles.create"
+            }
+          ]
+        },
+        "cloudkms.projects.locations.keyHandles.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "cloudkms.keyHandles.get"
+            }
+          ]
+        },
+        "cloudkms.projects.locations.keyHandles.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "cloudkms.keyHandles.list"
             }
           ]
         },
@@ -14280,6 +14648,16 @@
             }
           ]
         },
+        "cloudkms.projects.locations.operations.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "cloudkms.operations.get"
+            }
+          ]
+        },
         "cloudkms.projects.locations.updateEkmConfig": {
           "permissions": [
             {
@@ -14287,6 +14665,16 @@
                 "manual"
               ],
               "name": "cloudkms.ekmConfigs.update"
+            }
+          ]
+        },
+        "cloudkms.projects.showEffectiveAutokeyConfig": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "cloudkms.projects.showEffectiveAutokeyConfig"
             }
           ]
         }
@@ -15293,6 +15681,7 @@
           ]
         },
         "cloudsupport.cases.search": {},
+        "cloudsupport.cases.showFeed": {},
         "cloudsupport.media.download": {},
         "cloudsupport.media.upload": {}
       },
@@ -22601,6 +22990,9 @@
       },
       "restUrl": "https://cloud.google.com/compute/docs/reference/rest"
     },
+    "config": {
+      "methods": {}
+    },
     "connectors": {
       "methods": {
         "connectors.projects.locations.connections.actions.execute": {
@@ -23142,6 +23534,13 @@
                 "restcrawliamblockv1"
               ],
               "name": "contactcenterinsights.analyses.create"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.authorizedAnalyses.create",
+              "undocumented": true
             }
           ]
         },
@@ -23172,6 +23571,13 @@
                 "restcrawliamblockv1"
               ],
               "name": "contactcenterinsights.analyses.list"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.authorizedAnalyses.list",
+              "undocumented": true
             }
           ]
         },
@@ -23202,6 +23608,13 @@
                 "restcrawliamblockv1"
               ],
               "name": "contactcenterinsights.conversations.list"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.authorizedConversations.list",
+              "undocumented": true
             }
           ]
         },
@@ -23212,6 +23625,13 @@
                 "restcrawliamblockv1"
               ],
               "name": "contactcenterinsights.conversations.create"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.authorizedConversations.create",
+              "undocumented": true
             }
           ]
         },
@@ -23252,6 +23672,13 @@
                 "restcrawliamblockv1"
               ],
               "name": "contactcenterinsights.conversations.list"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.authorizedConversations.list",
+              "undocumented": true
             }
           ]
         },
@@ -23272,6 +23699,13 @@
                 "restcrawliamblockv1"
               ],
               "name": "contactcenterinsights.conversations.upload"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.authorizedConversations.upload",
+              "undocumented": true
             }
           ]
         },
@@ -23335,6 +23769,16 @@
             }
           ]
         },
+        "contactcenterinsights.projects.locations.issueModels.export": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.issueModels.export"
+            }
+          ]
+        },
         "contactcenterinsights.projects.locations.issueModels.get": {
           "permissions": [
             {
@@ -23342,6 +23786,22 @@
                 "restcrawliamblockv1"
               ],
               "name": "contactcenterinsights.issueModels.get"
+            }
+          ]
+        },
+        "contactcenterinsights.projects.locations.issueModels.import": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.issueModels.create"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.issueModels.import"
             }
           ]
         },
@@ -23415,7 +23875,24 @@
             }
           ]
         },
-        "contactcenterinsights.projects.locations.operations.cancel": {},
+        "contactcenterinsights.projects.locations.operations.cancel": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.operations.cancel",
+              "undocumented": true
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.authorizedOperations.cancel",
+              "undocumented": true
+            }
+          ]
+        },
         "contactcenterinsights.projects.locations.operations.get": {
           "permissions": [
             {
@@ -23423,6 +23900,13 @@
                 "restcrawliamblockv1"
               ],
               "name": "contactcenterinsights.operations.get"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.authorizedOperations.get",
+              "undocumented": true
             }
           ]
         },
@@ -23433,6 +23917,13 @@
                 "restcrawliamblockv1"
               ],
               "name": "contactcenterinsights.operations.list"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "contactcenterinsights.authorizedOperations.list",
+              "undocumented": true
             }
           ]
         },
@@ -24128,6 +24619,15 @@
     },
     "containeranalysis": {
       "methods": {
+        "containeranalysis.projects.locations.notes.get": {},
+        "containeranalysis.projects.locations.notes.list": {},
+        "containeranalysis.projects.locations.notes.occurrences.list": {},
+        "containeranalysis.projects.locations.occurrences.get": {},
+        "containeranalysis.projects.locations.occurrences.getNotes": {},
+        "containeranalysis.projects.locations.occurrences.getVulnerabilitySummary": {},
+        "containeranalysis.projects.locations.occurrences.list": {},
+        "containeranalysis.projects.locations.resources.exportSBOM": {},
+        "containeranalysis.projects.locations.resources.generatePackagesSummary": {},
         "containeranalysis.projects.notes.batchCreate": {
           "permissions": [
             {
@@ -25084,8 +25584,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.repositories.commit",
               "parameterName": "name",
@@ -25097,8 +25597,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.compilationResults.create",
               "parameterName": "parent",
@@ -25110,8 +25610,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.compilationResults.get",
               "parameterName": "name",
@@ -25123,8 +25623,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.compilationResults.list",
               "parameterName": "parent",
@@ -25136,8 +25636,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.compilationResults.query",
               "parameterName": "name",
@@ -25149,8 +25649,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.repositories.computeAccessTokenStatus",
               "parameterName": "name",
@@ -25182,8 +25682,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.repositories.delete",
               "parameterName": "name",
@@ -25195,8 +25695,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.repositories.fetchHistory",
               "parameterName": "name",
@@ -25208,8 +25708,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.repositories.fetchRemoteBranches",
               "parameterName": "name",
@@ -25221,8 +25721,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.repositories.get",
               "parameterName": "name",
@@ -25244,8 +25744,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.repositories.list",
               "parameterName": "parent",
@@ -25267,8 +25767,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.repositories.queryDirectoryContents",
               "parameterName": "name",
@@ -25280,8 +25780,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.repositories.readFile",
               "parameterName": "name",
@@ -25293,8 +25793,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.releaseConfigs.create",
               "parameterName": "parent",
@@ -25306,8 +25806,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.releaseConfigs.delete",
               "parameterName": "name",
@@ -25319,8 +25819,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.releaseConfigs.get",
               "parameterName": "name",
@@ -25332,8 +25832,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.releaseConfigs.list",
               "parameterName": "parent",
@@ -25368,8 +25868,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workflowConfigs.create",
               "parameterName": "parent",
@@ -25381,8 +25881,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workflowConfigs.delete",
               "parameterName": "name",
@@ -25394,8 +25894,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workflowConfigs.get",
               "parameterName": "name",
@@ -25407,8 +25907,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workflowConfigs.list",
               "parameterName": "parent",
@@ -25430,8 +25930,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workflowInvocations.cancel",
               "parameterName": "name",
@@ -25443,8 +25943,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workflowInvocations.create",
               "parameterName": "parent",
@@ -25456,8 +25956,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workflowInvocations.delete",
               "parameterName": "name",
@@ -25469,8 +25969,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workflowInvocations.get",
               "parameterName": "name",
@@ -25482,8 +25982,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workflowInvocations.list",
               "parameterName": "parent",
@@ -25495,8 +25995,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workflowInvocations.query",
               "parameterName": "name",
@@ -25508,8 +26008,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.commit",
               "parameterName": "name",
@@ -25521,8 +26021,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.create",
               "parameterName": "parent",
@@ -25534,8 +26034,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.delete",
               "parameterName": "name",
@@ -25547,8 +26047,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.fetchFileDiff",
               "parameterName": "workspace",
@@ -25560,8 +26060,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.fetchFileGitStatuses",
               "parameterName": "name",
@@ -25573,8 +26073,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.fetchGitAheadBehind",
               "parameterName": "name",
@@ -25586,8 +26086,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.get",
               "parameterName": "name",
@@ -25609,8 +26109,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.installNpmPackages",
               "parameterName": "workspace",
@@ -25622,8 +26122,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.list",
               "parameterName": "parent",
@@ -25635,8 +26135,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.makeDirectory",
               "parameterName": "workspace",
@@ -25648,8 +26148,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.moveDirectory",
               "parameterName": "workspace",
@@ -25661,8 +26161,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.moveFile",
               "parameterName": "workspace",
@@ -25674,8 +26174,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.pull",
               "parameterName": "name",
@@ -25687,8 +26187,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.push",
               "parameterName": "name",
@@ -25700,8 +26200,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.queryDirectoryContents",
               "parameterName": "workspace",
@@ -25713,8 +26213,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.readFile",
               "parameterName": "workspace",
@@ -25726,8 +26226,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.removeDirectory",
               "parameterName": "workspace",
@@ -25739,8 +26239,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.removeFile",
               "parameterName": "workspace",
@@ -25752,8 +26252,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.reset",
               "parameterName": "name",
@@ -25765,8 +26265,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.searchFiles",
               "parameterName": "workspace",
@@ -25791,8 +26291,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "dataform.workspaces.writeFile",
               "parameterName": "workspace",
@@ -27113,13 +27613,82 @@
     },
     "dataplex": {
       "methods": {
+        "dataplex.projects.locations.aspectTypes.create": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.aspectTypes.create",
+              "parameterName": "parent",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.aspectTypes.delete": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.aspectTypes.delete",
+              "parameterName": "name",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.aspectTypes.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.aspectTypes.get",
+              "parameterName": "name",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.aspectTypes.getIamPolicy": {},
+        "dataplex.projects.locations.aspectTypes.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "lowConfidence": true,
+              "name": "dataplex.aspectTypes.list",
+              "parameterName": "parent",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.aspectTypes.patch": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.aspectTypes.update"
+            }
+          ]
+        },
+        "dataplex.projects.locations.aspectTypes.setIamPolicy": {},
+        "dataplex.projects.locations.aspectTypes.testIamPermissions": {},
         "dataplex.projects.locations.dataAttributeBindings.create": {
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.dataAttributeBindings.create"
+              "name": "dataplex.dataAttributeBindings.create",
+              "parameterName": "parent",
+              "parameterType": "path"
             }
           ]
         },
@@ -27127,9 +27696,12 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.dataAttributeBindings.delete"
+              "name": "dataplex.dataAttributeBindings.delete",
+              "parameterName": "name",
+              "parameterType": "path"
             }
           ]
         },
@@ -27137,9 +27709,12 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.dataAttributeBindings.get"
+              "name": "dataplex.dataAttributeBindings.get",
+              "parameterName": "name",
+              "parameterType": "path"
             }
           ]
         },
@@ -27157,9 +27732,12 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.dataAttributeBindings.list"
+              "name": "dataplex.dataAttributeBindings.list",
+              "parameterName": "parent",
+              "parameterType": "path"
             }
           ]
         },
@@ -27189,13 +27767,18 @@
             }
           ]
         },
+        "dataplex.projects.locations.dataAttributeBindings.testIamPermissions": {},
         "dataplex.projects.locations.dataScans.create": {
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.datascans.create"
+              "lowConfidence": true,
+              "name": "dataplex.datascans.create",
+              "parameterName": "parent",
+              "parameterType": "path"
             }
           ]
         },
@@ -27203,12 +27786,17 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.datascans.delete"
+              "lowConfidence": true,
+              "name": "dataplex.datascans.delete",
+              "parameterName": "name",
+              "parameterType": "path"
             }
           ]
         },
+        "dataplex.projects.locations.dataScans.generateDataQualityRules": {},
         "dataplex.projects.locations.dataScans.get": {
           "permissions": [
             {
@@ -27216,6 +27804,18 @@
                 "manual"
               ],
               "name": "dataplex.datascans.get"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "iam.permissions.none",
+              "parameterFormat": "projects/{project}/locations/{locationId}/dataScans/{dataScanId}",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name",
+              "undocumented": true
             }
           ]
         },
@@ -27229,13 +27829,49 @@
             }
           ]
         },
+        "dataplex.projects.locations.dataScans.jobs.generateDataQualityRules": {},
+        "dataplex.projects.locations.dataScans.jobs.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "iam.permissions.none",
+              "parameterFormat": "projects/{project}/locations/{locationId}/dataScans/{dataScanId}/jobs/{data_scan_job_id}",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name",
+              "undocumented": true
+            }
+          ]
+        },
+        "dataplex.projects.locations.dataScans.jobs.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "dataplex.datascans.get",
+              "parameterFormat": "projects/{project}/locations/{locationId}/dataScans/{dataScanId}",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
         "dataplex.projects.locations.dataScans.list": {
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.datascans.list"
+              "lowConfidence": true,
+              "name": "dataplex.datascans.list",
+              "parameterName": "parent",
+              "parameterType": "path"
             }
           ]
         },
@@ -27259,9 +27895,13 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.datascans.run"
+              "lowConfidence": true,
+              "name": "dataplex.datascans.run",
+              "parameterName": "name",
+              "parameterType": "path"
             }
           ]
         },
@@ -27275,13 +27915,73 @@
             }
           ]
         },
+        "dataplex.projects.locations.dataScans.testIamPermissions": {},
+        "dataplex.projects.locations.dataTaxonomies.attributes.create": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "dataplex.dataAttributes.create",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "dataplex.projects.locations.dataTaxonomies.attributes.delete": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "dataplex.dataAttributes.delete",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "dataplex.projects.locations.dataTaxonomies.attributes.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "dataplex.dataAttributes.get",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "dataplex.projects.locations.dataTaxonomies.attributes.getIamPolicy": {},
+        "dataplex.projects.locations.dataTaxonomies.attributes.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "dataplex.dataAttributes.list",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "dataplex.projects.locations.dataTaxonomies.attributes.patch": {},
+        "dataplex.projects.locations.dataTaxonomies.attributes.setIamPolicy": {},
+        "dataplex.projects.locations.dataTaxonomies.attributes.testIamPermissions": {},
         "dataplex.projects.locations.dataTaxonomies.create": {
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.dataTaxonomies.create"
+              "name": "dataplex.dataTaxonomies.create",
+              "parameterName": "parent",
+              "parameterType": "path"
             }
           ]
         },
@@ -27289,9 +27989,12 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.dataTaxonomies.delete"
+              "name": "dataplex.dataTaxonomies.delete",
+              "parameterName": "name",
+              "parameterType": "path"
             }
           ]
         },
@@ -27299,9 +28002,12 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.dataTaxonomies.get"
+              "name": "dataplex.dataTaxonomies.get",
+              "parameterName": "name",
+              "parameterType": "path"
             }
           ]
         },
@@ -27319,9 +28025,12 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "dataplex.dataTaxonomies.list"
+              "name": "dataplex.dataTaxonomies.list",
+              "parameterName": "parent",
+              "parameterType": "path"
             }
           ]
         },
@@ -27351,6 +28060,280 @@
             }
           ]
         },
+        "dataplex.projects.locations.dataTaxonomies.testIamPermissions": {},
+        "dataplex.projects.locations.entryGroups.create": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.create",
+              "parameterName": "parent",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryGroups.delete": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.delete",
+              "parameterName": "name",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryGroups.entries.create": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.aspectTypes.use"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entries.create"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.useContactsAspect"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.useGenericAspect"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.useGenericEntry"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.useOverviewAspect"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.useSchemaAspect"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryTypes.use"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryGroups.entries.delete": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entries.delete"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryGroups.entries.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entries.get"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryGroups.entries.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entries.list"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryGroups.entries.patch": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.aspectTypes.use"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entries.create"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entries.update"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.useContactsAspect"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.useGenericAspect"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.useGenericEntry"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.useOverviewAspect"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.useSchemaAspect"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryTypes.use"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryGroups.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.get",
+              "parameterName": "name",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryGroups.getIamPolicy": {},
+        "dataplex.projects.locations.entryGroups.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "lowConfidence": true,
+              "name": "dataplex.entryGroups.list",
+              "parameterName": "parent",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryGroups.patch": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryGroups.update"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryGroups.setIamPolicy": {},
+        "dataplex.projects.locations.entryGroups.testIamPermissions": {},
+        "dataplex.projects.locations.entryTypes.create": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryTypes.create",
+              "parameterName": "parent",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryTypes.delete": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryTypes.delete",
+              "parameterName": "name",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryTypes.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryTypes.get",
+              "parameterName": "name",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryTypes.getIamPolicy": {},
+        "dataplex.projects.locations.entryTypes.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1",
+                "restcrawliamblockv1"
+              ],
+              "lowConfidence": true,
+              "name": "dataplex.entryTypes.list",
+              "parameterName": "parent",
+              "parameterType": "path"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryTypes.patch": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "dataplex.entryTypes.update"
+            }
+          ]
+        },
+        "dataplex.projects.locations.entryTypes.setIamPolicy": {},
+        "dataplex.projects.locations.entryTypes.testIamPermissions": {},
+        "dataplex.projects.locations.get": {},
         "dataplex.projects.locations.lakes.content.create": {
           "permissions": [
             {
@@ -29521,6 +30504,9 @@
       },
       "restUrl": "https://cloud.google.com/deployment-manager/docs/reference"
     },
+    "developerconnect": {
+      "methods": {}
+    },
     "dfareporting": {
       "methods": {
         "dfareporting.accountActiveAdSummaries.get": {},
@@ -31001,6 +31987,16 @@
               "parameterName": "parent",
               "parameterType": "path",
               "resourceType": "parent"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "dialogflow.messages.list",
+              "parameterFormat": "projects/<Project ID>/locations/<Location          ID>/conversations/<Conversation ID>",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
             }
           ]
         },
@@ -31146,6 +32142,21 @@
             }
           ]
         },
+        "dialogflow.projects.conversations.participants.suggestions.suggestKnowledgeAssist": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "dialogflow.suggestions.list",
+              "parameterFormat": "projects/<Project ID>/locations/<Location          ID>/conversations/<Conversation ID>/participants/<Participant ID>",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent",
+              "undocumented": true
+            }
+          ]
+        },
         "dialogflow.projects.conversations.participants.suggestions.suggestSmartReplies": {
           "permissions": [
             {
@@ -31176,6 +32187,8 @@
             }
           ]
         },
+        "dialogflow.projects.generators.create": {},
+        "dialogflow.projects.generators.list": {},
         "dialogflow.projects.getAgent": {
           "permissions": [
             {
@@ -34378,6 +35391,50 @@
             }
           ]
         },
+        "dlp.organizations.locations.columnDataProfiles.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "dlp.columnDataProfiles.get",
+              "parameterFormat": "organizations/12345/locations/us/columnDataProfiles/53234423",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "dlp.organizations.locations.columnDataProfiles.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "dlp.columnDataProfiles.list",
+              "parameterFormat": "organizations/433245324/locations/europe",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "dlp.organizations.locations.connections.search": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "dlp.connections.search",
+              "parameterFormat": "organizations/433245324/locations/-",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
         "dlp.organizations.locations.deidentifyTemplates.create": {
           "permissions": [
             {
@@ -34477,6 +35534,16 @@
               "parameterType": "path",
               "resourceType": "name",
               "undocumented": true
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "dlp.jobTriggers.delete",
+              "parameterFormat": "projects/dlp-test-project/discoveryConfigs/53234423",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
             }
           ]
         },
@@ -35356,6 +36423,7 @@
             }
           ]
         },
+        "dns.managedZones.testIamPermissions": {},
         "dns.managedZones.update": {
           "permissions": [
             {
@@ -35796,6 +36864,21 @@
             }
           ]
         },
+        "domains.projects.locations.registrations.initiatePushTransfer": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "domains.registrations.configureManagement",
+              "parameterFormat": "Registration",
+              "parameterName": "registration",
+              "parameterType": "path",
+              "resourceType": "registration"
+            }
+          ]
+        },
         "domains.projects.locations.registrations.list": {
           "permissions": [
             {
@@ -35839,6 +36922,21 @@
               "parameterName": "parent",
               "parameterType": "path",
               "resourceType": "parent"
+            }
+          ]
+        },
+        "domains.projects.locations.registrations.renewDomain": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "domains.registrations.configureManagement",
+              "parameterFormat": "Registration",
+              "parameterName": "registration",
+              "parameterType": "path",
+              "resourceType": "registration"
             }
           ]
         },
@@ -35964,7 +37062,14 @@
       "methods": {
         "domainsrdap.autnum.get": {},
         "domainsrdap.domain.get": {},
-        "domainsrdap.entity.get": {}
+        "domainsrdap.entity.get": {},
+        "domainsrdap.getDomains": {},
+        "domainsrdap.getEntities": {},
+        "domainsrdap.getHelp": {},
+        "domainsrdap.getIp": {},
+        "domainsrdap.getNameservers": {},
+        "domainsrdap.ip.get": {},
+        "domainsrdap.nameserver.get": {}
       },
       "restUrl": "https://developers.google.com/domains/rdap/reference/rest"
     },
@@ -36641,6 +37746,7 @@
     },
     "factchecktools": {
       "methods": {
+        "factchecktools.claims.imageSearch": {},
         "factchecktools.claims.search": {},
         "factchecktools.pages.create": {},
         "factchecktools.pages.delete": {},
@@ -36909,6 +38015,10 @@
     "firebaseappcheck": {
       "methods": {
         "firebaseappcheck.jwks.get": {},
+        "firebaseappcheck.oauthClients.exchangeAppAttestAssertion": {},
+        "firebaseappcheck.oauthClients.exchangeAppAttestAttestation": {},
+        "firebaseappcheck.oauthClients.exchangeDebugToken": {},
+        "firebaseappcheck.oauthClients.generateAppAttestChallenge": {},
         "firebaseappcheck.projects.apps.appAttestConfig.batchGet": {
           "permissions": [
             {
@@ -36945,6 +38055,8 @@
             }
           ]
         },
+        "firebaseappcheck.projects.apps.debugTokens.create": {},
+        "firebaseappcheck.projects.apps.debugTokens.delete": {},
         "firebaseappcheck.projects.apps.debugTokens.get": {
           "permissions": [
             {
@@ -36955,6 +38067,7 @@
             }
           ]
         },
+        "firebaseappcheck.projects.apps.debugTokens.list": {},
         "firebaseappcheck.projects.apps.debugTokens.patch": {
           "permissions": [
             {
@@ -37007,6 +38120,18 @@
             }
           ]
         },
+        "firebaseappcheck.projects.apps.exchangeAppAttestAssertion": {},
+        "firebaseappcheck.projects.apps.exchangeAppAttestAttestation": {},
+        "firebaseappcheck.projects.apps.exchangeCustomToken": {},
+        "firebaseappcheck.projects.apps.exchangeDebugToken": {},
+        "firebaseappcheck.projects.apps.exchangeDeviceCheckToken": {},
+        "firebaseappcheck.projects.apps.exchangePlayIntegrityToken": {},
+        "firebaseappcheck.projects.apps.exchangeRecaptchaEnterpriseToken": {},
+        "firebaseappcheck.projects.apps.exchangeRecaptchaToken": {},
+        "firebaseappcheck.projects.apps.exchangeRecaptchaV3Token": {},
+        "firebaseappcheck.projects.apps.exchangeSafetyNetToken": {},
+        "firebaseappcheck.projects.apps.generateAppAttestChallenge": {},
+        "firebaseappcheck.projects.apps.generatePlayIntegrityChallenge": {},
         "firebaseappcheck.projects.apps.playIntegrityConfig.batchGet": {
           "permissions": [
             {
@@ -37043,6 +38168,9 @@
             }
           ]
         },
+        "firebaseappcheck.projects.apps.recaptchaConfig.batchGet": {},
+        "firebaseappcheck.projects.apps.recaptchaConfig.get": {},
+        "firebaseappcheck.projects.apps.recaptchaConfig.patch": {},
         "firebaseappcheck.projects.apps.recaptchaEnterpriseConfig.batchGet": {
           "permissions": [
             {
@@ -37177,6 +38305,7 @@
             }
           ]
         },
+        "firebaseappcheck.projects.services.list": {},
         "firebaseappcheck.projects.services.patch": {
           "permissions": [
             {
@@ -37192,7 +38321,14 @@
               "name": "firebaseappcheck.services.update"
             }
           ]
-        }
+        },
+        "firebaseappcheck.projects.services.resourcePolicies.batchUpdate": {},
+        "firebaseappcheck.projects.services.resourcePolicies.create": {},
+        "firebaseappcheck.projects.services.resourcePolicies.delete": {},
+        "firebaseappcheck.projects.services.resourcePolicies.get": {},
+        "firebaseappcheck.projects.services.resourcePolicies.list": {},
+        "firebaseappcheck.projects.services.resourcePolicies.patch": {},
+        "firebaseappcheck.projects.verifyAppCheckToken": {}
       },
       "restUrl": "https://firebase.google.com/docs/reference/appcheck/rest"
     },
@@ -37478,8 +38614,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "firebasestorage.buckets.addFirebase",
               "parameterName": "bucket",
@@ -37491,8 +38627,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "firebasestorage.buckets.get",
               "parameterName": "name",
@@ -37504,8 +38640,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "firebasestorage.buckets.list",
               "parameterName": "parent",
@@ -37517,8 +38653,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawliamblockv1",
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "firebasestorage.buckets.removeFirebase",
               "parameterName": "bucket",
@@ -37807,6 +38943,19 @@
             }
           ]
         },
+        "gkebackup.projects.locations.backupPlans.backups.getBackupIndexDownloadUrl": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "gkebackup.backups.getBackupIndex",
+              "parameterName": "backup",
+              "parameterType": "path",
+              "resourceType": "backup"
+            }
+          ]
+        },
         "gkebackup.projects.locations.backupPlans.backups.getIamPolicy": {},
         "gkebackup.projects.locations.backupPlans.backups.list": {
           "permissions": [
@@ -38010,6 +39159,7 @@
             }
           ]
         },
+        "gkebackup.projects.locations.operations.delete": {},
         "gkebackup.projects.locations.operations.get": {
           "permissions": [
             {
@@ -39001,6 +40151,35 @@
               "parameterName": "parent",
               "parameterType": "path",
               "resourceType": "parent"
+            }
+          ]
+        },
+        "gkehub.projects.locations.scopes.listMemberships": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "gkehub.scopes.listBoundMemberships",
+              "parameterFormat": "projects/*/locations/global/scopes/*",
+              "parameterName": "scopeName",
+              "parameterType": "path",
+              "resourceType": "scopeName"
+            }
+          ]
+        },
+        "gkehub.projects.locations.scopes.listPermitted": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "iam.permissions.none",
+              "parameterFormat": "projects/*/locations/*",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent",
+              "undocumented": true
             }
           ]
         },
@@ -40735,6 +41914,9 @@
             }
           ]
         },
+        "healthcare.projects.locations.datasets.dataMapperWorkspaces.getIamPolicy": {},
+        "healthcare.projects.locations.datasets.dataMapperWorkspaces.setIamPolicy": {},
+        "healthcare.projects.locations.datasets.dataMapperWorkspaces.testIamPermissions": {},
         "healthcare.projects.locations.datasets.deidentify": {},
         "healthcare.projects.locations.datasets.delete": {
           "permissions": [
@@ -41319,6 +42501,20 @@
             }
           ]
         },
+        "healthcare.projects.locations.datasets.fhirStores.exportHistory": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "healthcare.fhirStores.export",
+              "parameterFormat": "projects/{projectId}/locations/{locationId}/datasets/{datasetId}/fhirStores/{fhirStoreId}",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
         "healthcare.projects.locations.datasets.fhirStores.fhir.ConceptMap-search-translate": {
           "permissions": [
             {
@@ -41658,6 +42854,20 @@
           ]
         },
         "healthcare.projects.locations.datasets.fhirStores.import": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "healthcare.fhirStores.import",
+              "parameterFormat": "projects/{projectId}/locations/{locationId}/datasets/{datasetId}/fhirStores/{fhirStoreId}",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "healthcare.projects.locations.datasets.fhirStores.importHistory": {
           "permissions": [
             {
               "discoveryMethodologies": [
@@ -43091,7 +44301,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "iap.tunnelDestGroups.create",
               "parameterFormat": "projects/{projectNumber/id}/iap_tunnel/locations/{location}",
@@ -43105,7 +44316,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "iap.tunnelDestGroups.delete",
               "parameterFormat": "projects/{projectNumber/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}",
@@ -43119,7 +44331,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "name": "iap.tunnelDestGroups.get",
               "parameterFormat": "projects/{projectNumber/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}",
@@ -43133,7 +44346,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1"
+                "restcrawlv1",
+                "restcrawliamblockv1"
               ],
               "lowConfidence": true,
               "name": "iap.tunnelDestGroups.list",
@@ -43144,7 +44358,16 @@
             }
           ]
         },
-        "iap.projects.iap_tunnel.locations.destGroups.patch": {},
+        "iap.projects.iap_tunnel.locations.destGroups.patch": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "iap.tunnelDestGroups.update"
+            }
+          ]
+        },
         "iap.setIamPolicy": {},
         "iap.testIamPermissions": {
           "permissions": []
@@ -44110,6 +45333,17 @@
               "lowConfidence": true,
               "name": "logging.cmekSettings.get",
               "parameterFormat": "\"projects/[PROJECT_ID]/settings\"\n\"organizations/[ORGANIZATION_ID]/settings\"\n\"billingAccounts/[BILLING_ACCOUNT_ID]/settings\"\n\"folders/[FOLDER_ID]/settings\"\n",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            },
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "logging.settings.get",
+              "parameterFormat": "\"projects/[PROJECT_ID]/settings\" \"organizations/[ORGANIZATION_ID]/settings\" \"billingAccounts/[BILLING_ACCOUNT_ID]/settings\" \"folders/[FOLDER_ID]/settings\" ",
               "parameterName": "name",
               "parameterType": "path",
               "resourceType": "name"
@@ -46535,6 +47769,9 @@
       },
       "restUrl": "https://developers.google.com/manufacturers/reference/rest"
     },
+    "marketingplatformadmin": {
+      "methods": {}
+    },
     "memcache": {
       "methods": {
         "memcache.projects.locations.get": {
@@ -46870,6 +48107,20 @@
             }
           ]
         },
+        "metastore.projects.locations.services.alterTableProperties": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "metastore.services.mutateMetadata",
+              "parameterFormat": "projects/{projectId}/locations/{locationId}/services/{serviceId}",
+              "parameterName": "service",
+              "parameterType": "path",
+              "resourceType": "service"
+            }
+          ]
+        },
         "metastore.projects.locations.services.backups.create": {
           "permissions": [
             {
@@ -46948,6 +48199,34 @@
         },
         "metastore.projects.locations.services.backups.testIamPermissions": {
           "permissions": []
+        },
+        "metastore.projects.locations.services.cancelMigration": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "metastore.migrations.cancel",
+              "parameterFormat": "projects/{projectId}/locations/{locationId}/services/{serviceId}",
+              "parameterName": "service",
+              "parameterType": "path",
+              "resourceType": "service"
+            }
+          ]
+        },
+        "metastore.projects.locations.services.completeMigration": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "metastore.migrations.complete",
+              "parameterFormat": "projects/{projectId}/locations/{locationId}/services/{serviceId}",
+              "parameterName": "service",
+              "parameterType": "path",
+              "resourceType": "service"
+            }
+          ]
         },
         "metastore.projects.locations.services.create": {
           "permissions": [
@@ -47133,6 +48412,48 @@
             }
           ]
         },
+        "metastore.projects.locations.services.migrationExecutions.delete": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "metastore.migrations.delete",
+              "parameterFormat": "projects/{projectNumber}/locations/{locationId}/services/{serviceId}/migrationExecutions/{migration_execution_id}",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "metastore.projects.locations.services.migrationExecutions.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "metastore.migrations.get",
+              "parameterFormat": "projects/{projectNumber}/locations/{locationId}/services/{serviceId}/migrationExecutions/{migration_execution_id}",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "metastore.projects.locations.services.migrationExecutions.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "metastore.migrations.list",
+              "parameterFormat": "projects/{projectNumber}/locations/{locationId}/services/{serviceId}/migrationExecutions",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
         "metastore.projects.locations.services.moveTableToDatabase": {
           "permissions": [
             {
@@ -47199,6 +48520,20 @@
                 "manual"
               ],
               "name": "metastore.services.setIamPolicy"
+            }
+          ]
+        },
+        "metastore.projects.locations.services.startMigration": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "metastore.migrations.start",
+              "parameterFormat": "projects/{projectId}/locations/{locationId}/services/{serviceId}",
+              "parameterName": "service",
+              "parameterType": "path",
+              "resourceType": "service"
             }
           ]
         },
@@ -47293,6 +48628,17 @@
             }
           ]
         },
+        "migrationcenter.projects.locations.assetsExportJobs.create": {},
+        "migrationcenter.projects.locations.assetsExportJobs.delete": {},
+        "migrationcenter.projects.locations.assetsExportJobs.get": {},
+        "migrationcenter.projects.locations.assetsExportJobs.list": {},
+        "migrationcenter.projects.locations.assetsExportJobs.run": {},
+        "migrationcenter.projects.locations.discoveryClients.create": {},
+        "migrationcenter.projects.locations.discoveryClients.delete": {},
+        "migrationcenter.projects.locations.discoveryClients.get": {},
+        "migrationcenter.projects.locations.discoveryClients.list": {},
+        "migrationcenter.projects.locations.discoveryClients.patch": {},
+        "migrationcenter.projects.locations.discoveryClients.sendHeartbeat": {},
         "migrationcenter.projects.locations.get": {
           "permissions": [
             {
@@ -48908,6 +50254,21 @@
             }
           ]
         },
+        "networkconnectivity.projects.locations.global.hubs.groups.patch": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "networkconnectivity.groups.update",
+              "parameterName": "updateMask",
+              "parameterType": "query",
+              "resourceType": "updateMask",
+              "undocumented": true
+            }
+          ]
+        },
         "networkconnectivity.projects.locations.global.hubs.groups.setIamPolicy": {
           "permissions": [
             {
@@ -49031,8 +50392,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1",
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
               "name": "networkconnectivity.policyBasedRoutes.create",
               "parameterName": "parent",
@@ -49044,8 +50405,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1",
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
               "name": "networkconnectivity.policyBasedRoutes.delete",
               "parameterName": "name",
@@ -49057,8 +50418,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1",
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
               "name": "networkconnectivity.policyBasedRoutes.get",
               "parameterName": "name",
@@ -49080,9 +50441,12 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "networkconnectivity.policyBasedRoutes.list"
+              "name": "networkconnectivity.policyBasedRoutes.list",
+              "parameterName": "parent",
+              "parameterType": "path"
             }
           ]
         },
@@ -49096,6 +50460,7 @@
             }
           ]
         },
+        "networkconnectivity.projects.locations.global.policyBasedRoutes.testIamPermissions": {},
         "networkconnectivity.projects.locations.internalRanges.create": {
           "permissions": [
             {
@@ -51123,9 +52488,12 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "notebooks.instances.diagnose"
+              "name": "notebooks.instances.diagnose",
+              "parameterName": "name",
+              "parameterType": "path"
             }
           ]
         },
@@ -52017,6 +53385,26 @@
             }
           ]
         },
+        "osconfig.projects.locations.global.getProjectFeatureSettings": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "osconfig.projectFeatureSettings.get"
+            }
+          ]
+        },
+        "osconfig.projects.locations.global.updateProjectFeatureSettings": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "osconfig.projectFeatureSettings.update"
+            }
+          ]
+        },
         "osconfig.projects.locations.instanceOSPoliciesCompliances.get": {
           "permissions": [
             {
@@ -52486,11 +53874,13 @@
     },
     "policysimulator": {
       "methods": {
+        "policysimulator.folders.locations.orgPolicyViolationsPreviews.operations.get": {},
         "policysimulator.folders.locations.replays.create": {
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawliamblockv1"
               ],
               "name": "policysimulator.replays.create"
             }
@@ -52500,7 +53890,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawliamblockv1"
               ],
               "name": "policysimulator.replays.get"
             }
@@ -52510,12 +53901,27 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawliamblockv1"
               ],
               "name": "policysimulator.replays.list"
             }
           ]
         },
+        "policysimulator.folders.locations.replays.operations.get": {},
+        "policysimulator.folders.locations.replays.operations.list": {},
+        "policysimulator.folders.locations.replays.results.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "policysimulator.replayResults.list"
+            }
+          ]
+        },
+        "policysimulator.operations.get": {},
+        "policysimulator.operations.list": {},
         "policysimulator.organizations.locations.orgPolicyViolationsPreviews.get": {
           "permissions": [
             {
@@ -52624,6 +54030,9 @@
         "policytroubleshooter.iam.troubleshoot": {}
       },
       "restUrl": "https://cloud.google.com/policy-intelligence/docs/reference/policytroubleshooter/rest"
+    },
+    "pollen": {
+      "methods": {}
     },
     "poly": {
       "methods": {}
@@ -55782,6 +57191,16 @@
     "retail": {
       "methods": {
         "retail.projects.enrollSolution": {},
+        "retail.projects.getAlertConfig": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "retail.alertConfigs.get"
+            }
+          ]
+        },
         "retail.projects.getLoggingConfig": {},
         "retail.projects.getRetailProject": {
           "permissions": [
@@ -55831,6 +57250,28 @@
                 "restcrawliamblockv1"
               ],
               "name": "retail.attributesConfigs.replaceCatalogAttribute"
+            }
+          ]
+        },
+        "retail.projects.locations.catalogs.branches.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "retail.branches.get",
+              "undocumented": true
+            }
+          ]
+        },
+        "retail.projects.locations.catalogs.branches.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "retail.branches.list",
+              "undocumented": true
             }
           ]
         },
@@ -56044,6 +57485,16 @@
             }
           ]
         },
+        "retail.projects.locations.catalogs.exportAnalyticsMetrics": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "retail.catalogs.exportAnalyticsMetrics"
+            }
+          ]
+        },
         "retail.projects.locations.catalogs.getAttributesConfig": {
           "permissions": [
             {
@@ -56055,7 +57506,17 @@
           ]
         },
         "retail.projects.locations.catalogs.getCompletionConfig": {},
-        "retail.projects.locations.catalogs.getDefaultBranch": {},
+        "retail.projects.locations.catalogs.getDefaultBranch": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "retail.catalogs.get",
+              "undocumented": true
+            }
+          ]
+        },
         "retail.projects.locations.catalogs.list": {
           "permissions": [
             {
@@ -56415,7 +57876,27 @@
             }
           ]
         },
-        "retail.projects.retailProject.acceptTerms": {},
+        "retail.projects.retailProject.acceptTerms": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "retail.retailProjects.acceptDataTerms",
+              "undocumented": true
+            }
+          ]
+        },
+        "retail.projects.updateAlertConfig": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawliamblockv1"
+              ],
+              "name": "retail.alertConfigs.update"
+            }
+          ]
+        },
         "retail.projects.updateLoggingConfig": {}
       },
       "restUrl": "https://cloud.google.com/retail/docs/reference/rest"
@@ -57494,6 +58975,177 @@
             }
           ]
         },
+        "secretmanager.projects.locations.secrets.addVersion": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "secretmanager.versions.add",
+              "parameterFormat": "Secret",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "secretmanager.projects.locations.secrets.create": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "secretmanager.secrets.create",
+              "parameterFormat": "Secret",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "secretmanager.projects.locations.secrets.delete": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "secretmanager.secrets.delete",
+              "parameterFormat": "Secret",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "secretmanager.projects.locations.secrets.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "secretmanager.secrets.get",
+              "parameterFormat": "Secret",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "secretmanager.projects.locations.secrets.getIamPolicy": {},
+        "secretmanager.projects.locations.secrets.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "secretmanager.secrets.list",
+              "parameterFormat": "Secrets",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "secretmanager.projects.locations.secrets.patch": {},
+        "secretmanager.projects.locations.secrets.setIamPolicy": {},
+        "secretmanager.projects.locations.secrets.testIamPermissions": {},
+        "secretmanager.projects.locations.secrets.versions.access": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "secretmanager.versions.access",
+              "parameterFormat": "SecretVersion",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "secretmanager.projects.locations.secrets.versions.destroy": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "secretmanager.versions.destroy",
+              "parameterFormat": "SecretVersion",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "secretmanager.projects.locations.secrets.versions.disable": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "secretmanager.secrets.disable",
+              "parameterFormat": "SecretVersion",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name",
+              "undocumented": true
+            }
+          ]
+        },
+        "secretmanager.projects.locations.secrets.versions.enable": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "secretmanager.secrets.enable",
+              "parameterFormat": "SecretVersion",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name",
+              "undocumented": true
+            }
+          ]
+        },
+        "secretmanager.projects.locations.secrets.versions.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "secretmanager.versions.get",
+              "parameterFormat": "SecretVersion",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "secretmanager.projects.locations.secrets.versions.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "lowConfidence": true,
+              "name": "secretmanager.versions.list",
+              "parameterFormat": "Secret",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
         "secretmanager.projects.secrets.addVersion": {
           "permissions": [
             {
@@ -57814,6 +59466,16 @@
         "securitycenter.folders.findings.bulkMute": {},
         "securitycenter.folders.getContainerThreatDetectionSettings": {},
         "securitycenter.folders.getEventThreatDetectionSettings": {},
+        "securitycenter.folders.getRapidVulnerabilityDetectionSettings": {},
+        "securitycenter.folders.getSecurityCenterSettings": {},
+        "securitycenter.folders.getSecurityHealthAnalyticsSettings": {},
+        "securitycenter.folders.getVirtualMachineThreatDetectionSettings": {},
+        "securitycenter.folders.getWebSecurityScannerSettings": {},
+        "securitycenter.folders.locations.muteConfigs.create": {},
+        "securitycenter.folders.locations.muteConfigs.delete": {},
+        "securitycenter.folders.locations.muteConfigs.get": {},
+        "securitycenter.folders.locations.muteConfigs.list": {},
+        "securitycenter.folders.locations.muteConfigs.patch": {},
         "securitycenter.folders.muteConfigs.create": {
           "permissions": [
             {
@@ -57936,6 +59598,17 @@
             }
           ]
         },
+        "securitycenter.folders.securityHealthAnalyticsSettings.calculate": {},
+        "securitycenter.folders.securityHealthAnalyticsSettings.customModules.create": {},
+        "securitycenter.folders.securityHealthAnalyticsSettings.customModules.delete": {},
+        "securitycenter.folders.securityHealthAnalyticsSettings.customModules.get": {},
+        "securitycenter.folders.securityHealthAnalyticsSettings.customModules.list": {},
+        "securitycenter.folders.securityHealthAnalyticsSettings.customModules.listDescendant": {},
+        "securitycenter.folders.securityHealthAnalyticsSettings.customModules.patch": {},
+        "securitycenter.folders.securityHealthAnalyticsSettings.customModules.simulate": {},
+        "securitycenter.folders.securityHealthAnalyticsSettings.effectiveCustomModules.get": {},
+        "securitycenter.folders.securityHealthAnalyticsSettings.effectiveCustomModules.list": {},
+        "securitycenter.folders.sources.findings.externalSystems.patch": {},
         "securitycenter.folders.sources.findings.group": {
           "permissions": [
             {
@@ -57956,6 +59629,7 @@
             }
           ]
         },
+        "securitycenter.folders.sources.findings.patch": {},
         "securitycenter.folders.sources.findings.setMute": {
           "permissions": [
             {
@@ -57986,6 +59660,19 @@
             }
           ]
         },
+        "securitycenter.folders.sources.list": {},
+        "securitycenter.folders.updateContainerThreatDetectionSettings": {},
+        "securitycenter.folders.updateEventThreatDetectionSettings": {},
+        "securitycenter.folders.updateRapidVulnerabilityDetectionSettings": {},
+        "securitycenter.folders.updateSecurityHealthAnalyticsSettings": {},
+        "securitycenter.folders.updateVirtualMachineThreatDetectionSettings": {},
+        "securitycenter.folders.updateWebSecurityScannerSettings": {},
+        "securitycenter.folders.virtualMachineThreatDetectionSettings.calculate": {},
+        "securitycenter.folders.webSecurityScannerSettings.calculate": {},
+        "securitycenter.organizations.assets.group": {},
+        "securitycenter.organizations.assets.list": {},
+        "securitycenter.organizations.assets.runDiscovery": {},
+        "securitycenter.organizations.assets.updateSecurityMarks": {},
         "securitycenter.organizations.bigQueryExports.create": {
           "permissions": [
             {
@@ -58042,6 +59729,32 @@
             }
           ]
         },
+        "securitycenter.organizations.containerThreatDetectionSettings.calculate": {},
+        "securitycenter.organizations.eventThreatDetectionSettings.calculate": {},
+        "securitycenter.organizations.eventThreatDetectionSettings.customModules.create": {},
+        "securitycenter.organizations.eventThreatDetectionSettings.customModules.delete": {},
+        "securitycenter.organizations.eventThreatDetectionSettings.customModules.get": {},
+        "securitycenter.organizations.eventThreatDetectionSettings.customModules.list": {},
+        "securitycenter.organizations.eventThreatDetectionSettings.customModules.listDescendant": {},
+        "securitycenter.organizations.eventThreatDetectionSettings.customModules.patch": {},
+        "securitycenter.organizations.eventThreatDetectionSettings.effectiveCustomModules.get": {},
+        "securitycenter.organizations.eventThreatDetectionSettings.effectiveCustomModules.list": {},
+        "securitycenter.organizations.eventThreatDetectionSettings.validateCustomModule": {},
+        "securitycenter.organizations.findings.bulkMute": {},
+        "securitycenter.organizations.getContainerThreatDetectionSettings": {},
+        "securitycenter.organizations.getEventThreatDetectionSettings": {},
+        "securitycenter.organizations.getOrganizationSettings": {},
+        "securitycenter.organizations.getRapidVulnerabilityDetectionSettings": {},
+        "securitycenter.organizations.getSecurityCenterSettings": {},
+        "securitycenter.organizations.getSecurityHealthAnalyticsSettings": {},
+        "securitycenter.organizations.getSubscription": {},
+        "securitycenter.organizations.getVirtualMachineThreatDetectionSettings": {},
+        "securitycenter.organizations.getWebSecurityScannerSettings": {},
+        "securitycenter.organizations.locations.muteConfigs.create": {},
+        "securitycenter.organizations.locations.muteConfigs.delete": {},
+        "securitycenter.organizations.locations.muteConfigs.get": {},
+        "securitycenter.organizations.locations.muteConfigs.list": {},
+        "securitycenter.organizations.locations.muteConfigs.patch": {},
         "securitycenter.organizations.muteConfigs.create": {
           "permissions": [
             {
@@ -58154,6 +59867,36 @@
             }
           ]
         },
+        "securitycenter.organizations.operations.cancel": {},
+        "securitycenter.organizations.operations.delete": {},
+        "securitycenter.organizations.operations.get": {},
+        "securitycenter.organizations.operations.list": {},
+        "securitycenter.organizations.rapidVulnerabilityDetectionSettings.calculate": {},
+        "securitycenter.organizations.resourceValueConfigs.batchCreate": {},
+        "securitycenter.organizations.resourceValueConfigs.delete": {},
+        "securitycenter.organizations.resourceValueConfigs.get": {},
+        "securitycenter.organizations.resourceValueConfigs.list": {},
+        "securitycenter.organizations.resourceValueConfigs.patch": {},
+        "securitycenter.organizations.securityHealthAnalyticsSettings.calculate": {},
+        "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.create": {},
+        "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.delete": {},
+        "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.get": {},
+        "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.list": {},
+        "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.listDescendant": {},
+        "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.patch": {},
+        "securitycenter.organizations.securityHealthAnalyticsSettings.customModules.simulate": {},
+        "securitycenter.organizations.securityHealthAnalyticsSettings.effectiveCustomModules.get": {},
+        "securitycenter.organizations.securityHealthAnalyticsSettings.effectiveCustomModules.list": {},
+        "securitycenter.organizations.simulations.attackExposureResults.attackPaths.list": {},
+        "securitycenter.organizations.simulations.attackExposureResults.valuedResources.list": {},
+        "securitycenter.organizations.simulations.attackPaths.list": {},
+        "securitycenter.organizations.simulations.get": {},
+        "securitycenter.organizations.simulations.valuedResources.attackPaths.list": {},
+        "securitycenter.organizations.simulations.valuedResources.get": {},
+        "securitycenter.organizations.simulations.valuedResources.list": {},
+        "securitycenter.organizations.sources.create": {},
+        "securitycenter.organizations.sources.findings.create": {},
+        "securitycenter.organizations.sources.findings.externalSystems.patch": {},
         "securitycenter.organizations.sources.findings.group": {
           "permissions": [
             {
@@ -58174,6 +59917,7 @@
             }
           ]
         },
+        "securitycenter.organizations.sources.findings.patch": {},
         "securitycenter.organizations.sources.findings.setMute": {
           "permissions": [
             {
@@ -58204,6 +59948,24 @@
             }
           ]
         },
+        "securitycenter.organizations.sources.get": {},
+        "securitycenter.organizations.sources.getIamPolicy": {},
+        "securitycenter.organizations.sources.list": {},
+        "securitycenter.organizations.sources.patch": {},
+        "securitycenter.organizations.sources.setIamPolicy": {},
+        "securitycenter.organizations.sources.testIamPermissions": {},
+        "securitycenter.organizations.updateContainerThreatDetectionSettings": {},
+        "securitycenter.organizations.updateEventThreatDetectionSettings": {},
+        "securitycenter.organizations.updateOrganizationSettings": {},
+        "securitycenter.organizations.updateRapidVulnerabilityDetectionSettings": {},
+        "securitycenter.organizations.updateSecurityHealthAnalyticsSettings": {},
+        "securitycenter.organizations.updateVirtualMachineThreatDetectionSettings": {},
+        "securitycenter.organizations.updateWebSecurityScannerSettings": {},
+        "securitycenter.organizations.virtualMachineThreatDetectionSettings.calculate": {},
+        "securitycenter.organizations.webSecurityScannerSettings.calculate": {},
+        "securitycenter.projects.assets.group": {},
+        "securitycenter.projects.assets.list": {},
+        "securitycenter.projects.assets.updateSecurityMarks": {},
         "securitycenter.projects.bigQueryExports.create": {
           "permissions": [
             {
@@ -58214,6 +59976,37 @@
             }
           ]
         },
+        "securitycenter.projects.bigQueryExports.delete": {},
+        "securitycenter.projects.bigQueryExports.get": {},
+        "securitycenter.projects.bigQueryExports.list": {},
+        "securitycenter.projects.bigQueryExports.patch": {},
+        "securitycenter.projects.containerThreatDetectionSettings.calculate": {},
+        "securitycenter.projects.eventThreatDetectionSettings.calculate": {},
+        "securitycenter.projects.eventThreatDetectionSettings.customModules.create": {},
+        "securitycenter.projects.eventThreatDetectionSettings.customModules.delete": {},
+        "securitycenter.projects.eventThreatDetectionSettings.customModules.get": {},
+        "securitycenter.projects.eventThreatDetectionSettings.customModules.list": {},
+        "securitycenter.projects.eventThreatDetectionSettings.customModules.listDescendant": {},
+        "securitycenter.projects.eventThreatDetectionSettings.customModules.patch": {},
+        "securitycenter.projects.eventThreatDetectionSettings.effectiveCustomModules.get": {},
+        "securitycenter.projects.eventThreatDetectionSettings.effectiveCustomModules.list": {},
+        "securitycenter.projects.eventThreatDetectionSettings.validateCustomModule": {},
+        "securitycenter.projects.findings.bulkMute": {},
+        "securitycenter.projects.getContainerThreatDetectionSettings": {},
+        "securitycenter.projects.getEventThreatDetectionSettings": {},
+        "securitycenter.projects.getRapidVulnerabilityDetectionSettings": {},
+        "securitycenter.projects.getSecurityCenterSettings": {},
+        "securitycenter.projects.getSecurityHealthAnalyticsSettings": {},
+        "securitycenter.projects.getVirtualMachineThreatDetectionSettings": {},
+        "securitycenter.projects.getWebSecurityScannerSettings": {},
+        "securitycenter.projects.locations.clusters.containerThreatDetectionSettings.calculate": {},
+        "securitycenter.projects.locations.clusters.getContainerThreatDetectionSettings": {},
+        "securitycenter.projects.locations.clusters.updateContainerThreatDetectionSettings": {},
+        "securitycenter.projects.locations.muteConfigs.create": {},
+        "securitycenter.projects.locations.muteConfigs.delete": {},
+        "securitycenter.projects.locations.muteConfigs.get": {},
+        "securitycenter.projects.locations.muteConfigs.list": {},
+        "securitycenter.projects.locations.muteConfigs.patch": {},
         "securitycenter.projects.muteConfigs.create": {
           "permissions": [
             {
@@ -58326,6 +60119,18 @@
             }
           ]
         },
+        "securitycenter.projects.rapidVulnerabilityDetectionSettings.calculate": {},
+        "securitycenter.projects.securityHealthAnalyticsSettings.calculate": {},
+        "securitycenter.projects.securityHealthAnalyticsSettings.customModules.create": {},
+        "securitycenter.projects.securityHealthAnalyticsSettings.customModules.delete": {},
+        "securitycenter.projects.securityHealthAnalyticsSettings.customModules.get": {},
+        "securitycenter.projects.securityHealthAnalyticsSettings.customModules.list": {},
+        "securitycenter.projects.securityHealthAnalyticsSettings.customModules.listDescendant": {},
+        "securitycenter.projects.securityHealthAnalyticsSettings.customModules.patch": {},
+        "securitycenter.projects.securityHealthAnalyticsSettings.customModules.simulate": {},
+        "securitycenter.projects.securityHealthAnalyticsSettings.effectiveCustomModules.get": {},
+        "securitycenter.projects.securityHealthAnalyticsSettings.effectiveCustomModules.list": {},
+        "securitycenter.projects.sources.findings.externalSystems.patch": {},
         "securitycenter.projects.sources.findings.group": {
           "permissions": [
             {
@@ -58346,6 +60151,7 @@
             }
           ]
         },
+        "securitycenter.projects.sources.findings.patch": {},
         "securitycenter.projects.sources.findings.setMute": {
           "permissions": [
             {
@@ -58375,7 +60181,16 @@
               "name": "securitycenter.findingsecuritymarks.update"
             }
           ]
-        }
+        },
+        "securitycenter.projects.sources.list": {},
+        "securitycenter.projects.updateContainerThreatDetectionSettings": {},
+        "securitycenter.projects.updateEventThreatDetectionSettings": {},
+        "securitycenter.projects.updateRapidVulnerabilityDetectionSettings": {},
+        "securitycenter.projects.updateSecurityHealthAnalyticsSettings": {},
+        "securitycenter.projects.updateVirtualMachineThreatDetectionSettings": {},
+        "securitycenter.projects.updateWebSecurityScannerSettings": {},
+        "securitycenter.projects.virtualMachineThreatDetectionSettings.calculate": {},
+        "securitycenter.projects.webSecurityScannerSettings.calculate": {}
       },
       "restUrl": "https://cloud.google.com/security-command-center/docs/reference/rest"
     },
@@ -59181,8 +60996,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1",
-                "fuzzv1"
+                "fuzzv1",
+                "restcrawlv1"
               ],
               "lowConfidence": true,
               "name": "serviceusage.services.enable",
@@ -59364,8 +61179,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1",
-                "fuzzv1"
+                "fuzzv1",
+                "restcrawlv1"
               ],
               "name": "serviceusage.quotas.get",
               "parameterName": "name",
@@ -59378,8 +61193,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1",
-                "fuzzv1"
+                "fuzzv1",
+                "restcrawlv1"
               ],
               "lowConfidence": true,
               "name": "serviceusage.quotas.get",
@@ -59393,8 +61208,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1",
-                "fuzzv1"
+                "fuzzv1",
+                "restcrawlv1"
               ],
               "lowConfidence": true,
               "name": "serviceusage.services.disable",
@@ -59408,8 +61223,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1",
-                "fuzzv1"
+                "fuzzv1",
+                "restcrawlv1"
               ],
               "lowConfidence": true,
               "name": "serviceusage.services.enable",
@@ -59424,8 +61239,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1",
-                "fuzzv1"
+                "fuzzv1",
+                "restcrawlv1"
               ],
               "lowConfidence": true,
               "name": "serviceusage.services.get",
@@ -59439,8 +61254,8 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "restcrawlv1",
-                "fuzzv1"
+                "fuzzv1",
+                "restcrawlv1"
               ],
               "lowConfidence": true,
               "name": "serviceusage.services.list",
@@ -59491,6 +61306,9 @@
       "restUrl": "https://developers.google.com/slides/api/reference/rest"
     },
     "smartdevicemanagement": {
+      "methods": {}
+    },
+    "solar": {
       "methods": {}
     },
     "sourcerepo": {
@@ -60540,6 +62358,7 @@
             }
           ]
         },
+        "storage.buckets.getStorageLayout": {},
         "storage.buckets.insert": {
           "permissions": [
             {
@@ -62219,6 +64038,26 @@
             }
           ]
         },
+        "vmmigration.projects.locations.imageImports.create": {},
+        "vmmigration.projects.locations.imageImports.delete": {},
+        "vmmigration.projects.locations.imageImports.get": {},
+        "vmmigration.projects.locations.imageImports.imageImportJobs.cancel": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "vmmigration.imageImportJobs.cancel",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name",
+              "undocumented": true
+            }
+          ]
+        },
+        "vmmigration.projects.locations.imageImports.imageImportJobs.get": {},
+        "vmmigration.projects.locations.imageImports.imageImportJobs.list": {},
+        "vmmigration.projects.locations.imageImports.list": {},
         "vmmigration.projects.locations.list": {
           "permissions": [
             {
@@ -62915,22 +64754,121 @@
     },
     "websecurityscanner": {
       "methods": {
-        "websecurityscanner.projects.scanConfigs.create": {},
-        "websecurityscanner.projects.scanConfigs.delete": {},
-        "websecurityscanner.projects.scanConfigs.get": {},
-        "websecurityscanner.projects.scanConfigs.list": {},
+        "websecurityscanner.projects.scanConfigs.create": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "cloudsecurityscanner.scans.create",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "websecurityscanner.projects.scanConfigs.delete": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "cloudsecurityscanner.scans.delete",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "websecurityscanner.projects.scanConfigs.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "cloudsecurityscanner.scans.get",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "websecurityscanner.projects.scanConfigs.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "cloudsecurityscanner.scans.list",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
         "websecurityscanner.projects.scanConfigs.patch": {},
-        "websecurityscanner.projects.scanConfigs.scanRuns.crawledUrls.list": {},
-        "websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list": {},
-        "websecurityscanner.projects.scanConfigs.scanRuns.findings.get": {},
-        "websecurityscanner.projects.scanConfigs.scanRuns.findings.list": {},
+        "websecurityscanner.projects.scanConfigs.scanRuns.crawledUrls.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "cloudsecurityscanner.crawledurls.list",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "cloudsecurityscanner.scanruns.getSummary",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
+        "websecurityscanner.projects.scanConfigs.scanRuns.findings.get": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "cloudsecurityscanner.results.get",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        },
+        "websecurityscanner.projects.scanConfigs.scanRuns.findings.list": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "cloudsecurityscanner.results.list",
+              "parameterName": "parent",
+              "parameterType": "path",
+              "resourceType": "parent"
+            }
+          ]
+        },
         "websecurityscanner.projects.scanConfigs.scanRuns.get": {
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "cloudsecurityscanner.scanruns.get"
+              "name": "cloudsecurityscanner.scanruns.get",
+              "parameterName": "name",
+              "parameterType": "path"
             },
             {
               "discoveryMethodologies": [
@@ -62944,9 +64882,12 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "cloudsecurityscanner.scanruns.list"
+              "name": "cloudsecurityscanner.scanruns.list",
+              "parameterName": "parent",
+              "parameterType": "path"
             }
           ]
         },
@@ -62954,13 +64895,28 @@
           "permissions": [
             {
               "discoveryMethodologies": [
-                "manual"
+                "manual",
+                "restcrawlv1"
               ],
-              "name": "cloudsecurityscanner.scanruns.stop"
+              "name": "cloudsecurityscanner.scanruns.stop",
+              "parameterName": "name",
+              "parameterType": "path"
             }
           ]
         },
-        "websecurityscanner.projects.scanConfigs.start": {}
+        "websecurityscanner.projects.scanConfigs.start": {
+          "permissions": [
+            {
+              "discoveryMethodologies": [
+                "restcrawlv1"
+              ],
+              "name": "cloudsecurityscanner.scans.run",
+              "parameterName": "name",
+              "parameterType": "path",
+              "resourceType": "name"
+            }
+          ]
+        }
       },
       "restUrl": "https://cloud.google.com/security-command-center/docs/reference/web-security-scanner/rest"
     },
