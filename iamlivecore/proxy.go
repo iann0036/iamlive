@@ -746,8 +746,9 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		}
 	}
 
-	// attempt to determine access key from auth header
+	// attempt to determine access key and/or session token from auth header
 	accessKey := ""
+	sessionToken := ""
 	authHeader := req.Header.Get("Authorization")
 	credOffset := strings.Index(authHeader, "Credential=")
 	if credOffset > 0 {
@@ -755,6 +756,14 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		if endOfKey > 0 {
 			accessKey = authHeader[credOffset+len("Credential=") : credOffset+endOfKey]
 		}
+	}
+
+	sessionTokenHeader := req.Header.Get("X-Amz-Security-Token")
+	sessionTokenQuery := req.URL.Query().Get("X-Amz-Security-Token")
+	if sessionTokenHeader != "" {
+		sessionToken = sessionTokenHeader
+	} else if sessionTokenQuery != "" {
+		sessionToken = sessionTokenQuery
 	}
 
 	if selectedCandidate.Action != "" {
@@ -773,6 +782,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		URIParameters:       uriparams,
 		FinalHTTPStatusCode: respCode,
 		AccessKey:           accessKey,
+		SessionToken:        sessionToken,
 	})
 
 	handleLoggedCall()

@@ -2,6 +2,7 @@ package iamlivecore
 
 import (
 	_ "embed"
+	b64 "encoding/base64"
 	"encoding/json"
 	"fmt"
 	"log"
@@ -15,8 +16,9 @@ import (
 
 	"github.com/buger/goterm"
 	"github.com/kenshaw/baseconv"
-	"github.com/ucarion/urlpath"
 	"github.com/oliveagle/jsonpath"
+	"github.com/ucarion/urlpath"
+	"google.golang.org/protobuf/proto"
 )
 
 //go:embed map.json
@@ -36,10 +38,10 @@ var gcpCallLog []string
 var azureCallLog []AzureEntry
 
 type AzureEntry struct {
-	HTTPMethod          string
-	Path                string
-	Parameters          map[string][]string
-	Body []byte
+	HTTPMethod string
+	Path       string
+	Parameters map[string][]string
+	Body       []byte
 }
 
 // JSON maps
@@ -58,6 +60,7 @@ type Entry struct {
 	URIParameters       map[string]string
 	FinalHTTPStatusCode int    `json:"FinalHttpStatusCode"`
 	AccessKey           string `json:"AccessKey"`
+	SessionToken        string `json:"SessionToken"`
 }
 
 // Statement is a single statement within an IAM policy
@@ -74,12 +77,12 @@ type IAMPolicy struct {
 }
 
 type AzureIAMPolicy struct {
-	Name string `json:"Name"`
-	IsCustom bool `json:"IsCustom"`
-	Description string `json:"Description"`
-	Actions []string `json:"Actions"`
-	DataActions []string `json:"DataActions"`
-	NotDataActions []string `json:"NotDataActions"`
+	Name             string   `json:"Name"`
+	IsCustom         bool     `json:"IsCustom"`
+	Description      string   `json:"Description"`
+	Actions          []string `json:"Actions"`
+	DataActions      []string `json:"DataActions"`
+	NotDataActions   []string `json:"NotDataActions"`
 	AssignableScopes []string `json:"AssignableScopes"`
 }
 
@@ -234,11 +237,11 @@ func GetPolicyDocument() []byte {
 		sort.Strings(dataActionsList)
 
 		returnPolicy := AzureIAMPolicy{
-			Actions: actionsList,
-			DataActions: dataActionsList,
-			NotDataActions: make([]string, 0),
+			Actions:          actionsList,
+			DataActions:      dataActionsList,
+			NotDataActions:   make([]string, 0),
 			AssignableScopes: make([]string, 0),
-			IsCustom: true,
+			IsCustom:         true,
 		}
 
 		doc, err := json.MarshalIndent(returnPolicy, "", "    ")
@@ -375,14 +378,14 @@ type AzurePath map[string]AzurePermission
 type AzurePermission map[string]AzurePermissionDetail
 
 type AzurePermissionDetail struct {
-	Automated bool `json:"automated"`
-	IsDataAction bool `json:"isDataAction"`
-	Condition AzureCondition `json:"condition"`
+	Automated    bool           `json:"automated"`
+	IsDataAction bool           `json:"isDataAction"`
+	Condition    AzureCondition `json:"condition"`
 }
 
 type AzureCondition struct {
-	PathEquals map[string]string `json:"pathEquals"`
-	BodyPathExists string `json:"bodyPathExists"`
+	PathEquals     map[string]string `json:"pathEquals"`
+	BodyPathExists string            `json:"bodyPathExists"`
 }
 
 type gcpIamMapBase struct {
@@ -790,6 +793,31 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 	return statements
 }
 
+func getAccountAndRegionFromSessionToken(sessionToken string) (string, string, error) {
+	in, err := b64.StdEncoding.DecodeString(sessionToken)
+	if err != nil {
+		return "", "", err
+	}
+
+	msgType := in[0]
+	in = in[1:]
+
+	if msgType == 33 || msgType == 2 {
+		var t33Msg SessionType33Message
+		if err := proto.Unmarshal(in, &t33Msg); err != nil {
+			return "", "", err
+		}
+
+		return t33Msg.GetUser().GetAccountId(), t33Msg.GetRegion(), nil
+	} else if msgType == 23 {
+		return "", "", nil
+	} else if msgType == 21 {
+		return "", "", nil
+	}
+
+	return "", "", fmt.Errorf("unknown session token type")
+}
+
 func getAccountFromAccessKey(accessKeyId string) (string, error) {
 	base10 := "0123456789"
 	base32AwsFlavour := "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
@@ -887,11 +915,25 @@ func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string
 		}
 	}
 
+	region := call.Region
+
+	if call.SessionToken != "" {
+		newAccount, newRegion, err := getAccountAndRegionFromSessionToken(call.SessionToken)
+		if err == nil {
+			if newAccount != "" {
+				account = newAccount
+			}
+			if newRegion != "" {
+				region = newRegion
+			}
+		}
+	}
+
 	partition := "aws"
-	if strings.HasPrefix(call.Region, "cn") {
+	if strings.HasPrefix(region, "cn") {
 		partition = "aws-cn"
 	}
-	if strings.HasPrefix(call.Region, "us-gov") {
+	if strings.HasPrefix(region, "us-gov") {
 		partition = "aws-us-gov"
 	}
 
@@ -899,7 +941,7 @@ func subARNParameters(arn string, call Entry, specialsOnly bool) (bool, []string
 	result := []string{}
 	for _, arn := range arns {
 		arn = regexp.MustCompile(`\$\{Partition\}`).ReplaceAllString(arn, partition)
-		arn = regexp.MustCompile(`\$\{Region\}`).ReplaceAllString(arn, call.Region)
+		arn = regexp.MustCompile(`\$\{Region\}`).ReplaceAllString(arn, region)
 		arn = regexp.MustCompile(`\$\{Account\}`).ReplaceAllString(arn, account)
 		unresolvedArn := arn
 		arn = regexp.MustCompile(`\$\{.+?\}`).ReplaceAllString(arn, "*") // TODO: preserve ${aws:*} variables
