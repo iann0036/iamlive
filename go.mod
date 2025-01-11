@@ -1,6 +1,6 @@
 module github.com/iann0036/iamlive
 
-go 1.21
+go 1.23
 
 require (
 	github.com/buger/goterm v1.0.0
