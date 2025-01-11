@@ -2,8 +2,6 @@ module github.com/iann0036/iamlive
 
 go 1.21
 
-toolchain go1.23.0
-
 require (
 	github.com/buger/goterm v1.0.0
 	github.com/clbanning/mxj/v2 v2.5.5
