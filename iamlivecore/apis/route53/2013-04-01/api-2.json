@@ -1566,7 +1566,9 @@
         "ap-southeast-4",
         "il-central-1",
         "ca-west-1",
-        "ap-southeast-5"
+        "ap-southeast-5",
+        "mx-central-1",
+        "ap-southeast-7"
       ],
       "max":64,
       "min":1
@@ -4218,7 +4220,9 @@
         "ap-southeast-4",
         "il-central-1",
         "ca-west-1",
-        "ap-southeast-5"
+        "ap-southeast-5",
+        "mx-central-1",
+        "ap-southeast-7"
       ],
       "max":64,
       "min":1
@@ -4841,7 +4845,9 @@
         "ap-southeast-4",
         "il-central-1",
         "ca-west-1",
-        "ap-southeast-5"
+        "ap-southeast-5",
+        "mx-central-1",
+        "ap-southeast-7"
       ],
       "max":64,
       "min":1

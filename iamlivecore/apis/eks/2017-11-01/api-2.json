@@ -382,6 +382,20 @@
         {"shape":"ServiceUnavailableException"}
       ]
     },
+    "DescribeClusterVersions":{
+      "name":"DescribeClusterVersions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/cluster-versions"
+      },
+      "input":{"shape":"DescribeClusterVersionsRequest"},
+      "output":{"shape":"DescribeClusterVersionsResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "DescribeEksAnywhereSubscription":{
       "name":"DescribeEksAnywhereSubscription",
       "http":{
@@ -990,6 +1004,17 @@
         "podIdentityAssociations":{"shape":"StringList"}
       }
     },
+    "AddonCompatibilityDetail":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"String"},
+        "compatibleVersions":{"shape":"StringList"}
+      }
+    },
+    "AddonCompatibilityDetails":{
+      "type":"list",
+      "member":{"shape":"AddonCompatibilityDetail"}
+    },
     "AddonHealth":{
       "type":"structure",
       "members":{
@@ -1370,6 +1395,32 @@
         "PENDING"
       ]
     },
+    "ClusterVersionInformation":{
+      "type":"structure",
+      "members":{
+        "clusterVersion":{"shape":"String"},
+        "clusterType":{"shape":"String"},
+        "defaultPlatformVersion":{"shape":"String"},
+        "defaultVersion":{"shape":"Boolean"},
+        "releaseDate":{"shape":"Timestamp"},
+        "endOfStandardSupportDate":{"shape":"Timestamp"},
+        "endOfExtendedSupportDate":{"shape":"Timestamp"},
+        "status":{"shape":"ClusterVersionStatus"},
+        "kubernetesPatchVersion":{"shape":"String"}
+      }
+    },
+    "ClusterVersionList":{
+      "type":"list",
+      "member":{"shape":"ClusterVersionInformation"}
+    },
+    "ClusterVersionStatus":{
+      "type":"string",
+      "enum":[
+        "unsupported",
+        "standard-support",
+        "extended-support"
+      ]
+    },
     "Compatibilities":{
       "type":"list",
       "member":{"shape":"Compatibility"}
@@ -1634,6 +1685,7 @@
         },
         "launchTemplate":{"shape":"LaunchTemplateSpecification"},
         "updateConfig":{"shape":"NodegroupUpdateConfig"},
+        "nodeRepairConfig":{"shape":"NodeRepairConfig"},
         "capacityType":{"shape":"CapacityTypes"},
         "version":{"shape":"String"},
         "releaseVersion":{"shape":"String"}
@@ -2015,6 +2067,59 @@
       "type":"structure",
       "members":{
         "cluster":{"shape":"Cluster"}
+      }
+    },
+    "DescribeClusterVersionMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "DescribeClusterVersionsRequest":{
+      "type":"structure",
+      "members":{
+        "clusterType":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"clusterType"
+        },
+        "maxResults":{
+          "shape":"DescribeClusterVersionMaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "defaultOnly":{
+          "shape":"BoxedBoolean",
+          "location":"querystring",
+          "locationName":"defaultOnly"
+        },
+        "includeAll":{
+          "shape":"BoxedBoolean",
+          "location":"querystring",
+          "locationName":"includeAll"
+        },
+        "clusterVersions":{
+          "shape":"StringList",
+          "location":"querystring",
+          "locationName":"clusterVersions"
+        },
+        "status":{
+          "shape":"ClusterVersionStatus",
+          "location":"querystring",
+          "locationName":"status"
+        }
+      }
+    },
+    "DescribeClusterVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "nextToken":{"shape":"String"},
+        "clusterVersions":{"shape":"ClusterVersionList"}
       }
     },
     "DescribeEksAnywhereSubscriptionRequest":{
@@ -2479,7 +2584,8 @@
     "InsightCategorySpecificSummary":{
       "type":"structure",
       "members":{
-        "deprecationDetails":{"shape":"DeprecationDetails"}
+        "deprecationDetails":{"shape":"DeprecationDetails"},
+        "addonCompatibilityDetails":{"shape":"AddonCompatibilityDetails"}
       }
     },
     "InsightResourceDetail":{
@@ -3086,6 +3192,12 @@
         "productUrl":{"shape":"String"}
       }
     },
+    "NodeRepairConfig":{
+      "type":"structure",
+      "members":{
+        "enabled":{"shape":"BoxedBoolean"}
+      }
+    },
     "Nodegroup":{
       "type":"structure",
       "members":{
@@ -3110,6 +3222,7 @@
         "diskSize":{"shape":"BoxedInteger"},
         "health":{"shape":"NodegroupHealth"},
         "updateConfig":{"shape":"NodegroupUpdateConfig"},
+        "nodeRepairConfig":{"shape":"NodeRepairConfig"},
         "launchTemplate":{"shape":"LaunchTemplateSpecification"},
         "tags":{"shape":"TagMap"}
       }
@@ -3192,8 +3305,16 @@
       "type":"structure",
       "members":{
         "maxUnavailable":{"shape":"NonZeroInteger"},
-        "maxUnavailablePercentage":{"shape":"PercentCapacity"}
+        "maxUnavailablePercentage":{"shape":"PercentCapacity"},
+        "updateStrategy":{"shape":"NodegroupUpdateStrategies"}
       }
+    },
+    "NodegroupUpdateStrategies":{
+      "type":"string",
+      "enum":[
+        "DEFAULT",
+        "MINIMAL"
+      ]
     },
     "NonZeroInteger":{
       "type":"integer",
@@ -3765,6 +3886,7 @@
         "taints":{"shape":"UpdateTaintsPayload"},
         "scalingConfig":{"shape":"NodegroupScalingConfig"},
         "updateConfig":{"shape":"NodegroupUpdateConfig"},
+        "nodeRepairConfig":{"shape":"NodeRepairConfig"},
         "clientRequestToken":{
           "shape":"String",
           "idempotencyToken":true
@@ -3843,6 +3965,8 @@
         "ResolveConflicts",
         "MaxUnavailable",
         "MaxUnavailablePercentage",
+        "NodeRepairEnabled",
+        "UpdateStrategy",
         "ConfigurationValues",
         "SecurityGroups",
         "Subnets",

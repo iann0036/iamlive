@@ -1147,7 +1147,8 @@
         "SigningAlgorithm":{"shape":"SigningAlg"},
         "MdnSigningAlgorithm":{"shape":"MdnSigningAlg"},
         "MdnResponse":{"shape":"MdnResponse"},
-        "BasicAuthSecretId":{"shape":"As2ConnectorSecretId"}
+        "BasicAuthSecretId":{"shape":"As2ConnectorSecretId"},
+        "PreserveContentType":{"shape":"PreserveContentType"}
       }
     },
     "As2ConnectorSecretId":{
@@ -1326,7 +1327,6 @@
         "ServerId",
         "LocalProfileId",
         "PartnerProfileId",
-        "BaseDirectory",
         "AccessRole"
       ],
       "members":{
@@ -1337,7 +1337,10 @@
         "BaseDirectory":{"shape":"HomeDirectory"},
         "AccessRole":{"shape":"Role"},
         "Status":{"shape":"AgreementStatusType"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "PreserveFilename":{"shape":"PreserveFilenameType"},
+        "EnforceMessageSigning":{"shape":"EnforceMessageSigningType"},
+        "CustomDirectories":{"shape":"CustomDirectoriesType"}
       }
     },
     "CreateAgreementResponse":{
@@ -1482,6 +1485,23 @@
       "required":["WorkflowId"],
       "members":{
         "WorkflowId":{"shape":"WorkflowId"}
+      }
+    },
+    "CustomDirectoriesType":{
+      "type":"structure",
+      "required":[
+        "FailedFilesDirectory",
+        "MdnFilesDirectory",
+        "PayloadFilesDirectory",
+        "StatusFilesDirectory",
+        "TemporaryFilesDirectory"
+      ],
+      "members":{
+        "FailedFilesDirectory":{"shape":"HomeDirectory"},
+        "MdnFilesDirectory":{"shape":"HomeDirectory"},
+        "PayloadFilesDirectory":{"shape":"HomeDirectory"},
+        "StatusFilesDirectory":{"shape":"HomeDirectory"},
+        "TemporaryFilesDirectory":{"shape":"HomeDirectory"}
       }
     },
     "CustomStepDetails":{
@@ -1879,7 +1899,10 @@
         "PartnerProfileId":{"shape":"ProfileId"},
         "BaseDirectory":{"shape":"HomeDirectory"},
         "AccessRole":{"shape":"Role"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "PreserveFilename":{"shape":"PreserveFilenameType"},
+        "EnforceMessageSigning":{"shape":"EnforceMessageSigningType"},
+        "CustomDirectories":{"shape":"CustomDirectoriesType"}
       }
     },
     "DescribedCertificate":{
@@ -2147,6 +2170,13 @@
         "PUBLIC",
         "VPC",
         "VPC_ENDPOINT"
+      ]
+    },
+    "EnforceMessageSigningType":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
       ]
     },
     "ExecutionError":{
@@ -3000,6 +3030,20 @@
       "min":0,
       "pattern":"[\\x09-\\x0D\\x20-\\x7E]*"
     },
+    "PreserveContentType":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "PreserveFilenameType":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "PrivateKeyType":{
       "type":"string",
       "max":16384,
@@ -3627,7 +3671,10 @@
         "LocalProfileId":{"shape":"ProfileId"},
         "PartnerProfileId":{"shape":"ProfileId"},
         "BaseDirectory":{"shape":"HomeDirectory"},
-        "AccessRole":{"shape":"Role"}
+        "AccessRole":{"shape":"Role"},
+        "PreserveFilename":{"shape":"PreserveFilenameType"},
+        "EnforceMessageSigning":{"shape":"EnforceMessageSigningType"},
+        "CustomDirectories":{"shape":"CustomDirectoriesType"}
       }
     },
     "UpdateAgreementResponse":{
