@@ -27,6 +27,7 @@ var caBundleFlag *string
 var caKeyFlag *string
 var accountIDFlag *string
 var backgroundFlag *bool
+var overrideAwsMapFlag *string
 var debugFlag *bool
 var forceWildcardResourceFlag *bool
 var cpuProfileFlag = flag.String("cpu-profile", "", "write a CPU profile to this file (for performance testing purposes)")
@@ -48,6 +49,7 @@ func parseConfig() {
 	caKey := "~/.iamlive/ca.key"
 	accountID := ""
 	background := false
+	overrideAwsMap := ""
 	debug := false
 	forceWildcardResource := false
 	csmPort := 31000
@@ -99,6 +101,9 @@ func parseConfig() {
 			if cfg.Section("").HasKey("background") {
 				background, _ = cfg.Section("").Key("background").Bool()
 			}
+			if cfg.Section("").HasKey("override-aws-map") {
+				overrideAwsMap = cfg.Section("").Key("override-aws-map").String()
+			}
 			if cfg.Section("").HasKey("debug") {
 				debug, _ = cfg.Section("").Key("debug").Bool()
 			}
@@ -126,6 +131,7 @@ func parseConfig() {
 	caKeyFlag = flag.String("ca-key", caKey, "the CA certificate key to use for proxy mode")
 	accountIDFlag = flag.String("account-id", accountID, "the AWS account ID to use in policy outputs within proxy mode")
 	backgroundFlag = flag.Bool("background", background, "when set, the process will return the current PID and run in the background without output")
+	overrideAwsMapFlag = flag.String("override-aws-map", overrideAwsMap, "overrides the embedded AWS mapping JSON file with the filepath provided")
 	debugFlag = flag.Bool("debug", debug, "dumps associated HTTP requests when set in proxy mode")
 	forceWildcardResourceFlag = flag.Bool("force-wildcard-resource", forceWildcardResource, "when set, the Resource will always be a wildcard")
 	csmPortFlag = flag.Int("csm-port", csmPort, "port to listen on for CSM")

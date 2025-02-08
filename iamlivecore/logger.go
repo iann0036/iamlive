@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"net/url"
+	"os"
 	"reflect"
 	"regexp"
 	"sort"
@@ -88,11 +89,22 @@ type AzureIAMPolicy struct {
 
 func loadMaps() {
 	if *providerFlag == "aws" {
-		err := json.Unmarshal(bIAMMap, &iamMap)
-		if err != nil {
-			log.Fatal(err)
+		if *overrideAwsMapFlag != "" {
+			bIAMMap, err := os.ReadFile(*overrideAwsMapFlag)
+			if err != nil {
+				log.Fatal(err)
+			}
+			err = json.Unmarshal(bIAMMap, &iamMap)
+			if err != nil {
+				log.Fatal(err)
+			}
+		} else {
+			err := json.Unmarshal(bIAMMap, &iamMap)
+			if err != nil {
+				log.Fatal(err)
+			}
 		}
-		err = json.Unmarshal(bIAMSAR, &iamDef)
+		err := json.Unmarshal(bIAMSAR, &iamDef)
 		if err != nil {
 			panic(err)
 		}
