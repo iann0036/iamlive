@@ -679,6 +679,9 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 				if strings.HasPrefix(mappedPriv.Action, "s3:") && len(iamMapMethods) > 1 && strings.HasPrefix(call.Host, "s3express-control.") {
 					continue
 				}
+				if strings.HasPrefix(mappedPriv.Action, "s3:") && strings.Contains(call.Host, ".s3express-") {
+					continue // Zonal API actions
+				}
 
 				resources := []string{}
 
