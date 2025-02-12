@@ -671,6 +671,11 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 	for iamMapMethodName, iamMapMethods := range iamMap.SDKMethodIAMMappings {
 		if strings.ToLower(iamMapMethodName) == lowerPriv {
 			for mappedPrivIndex, mappedPriv := range iamMapMethods {
+				// special override for S3 express
+				if strings.HasPrefix(mappedPriv.Action, "s3express:") && len(iamMapMethods) > 1 {
+					continue
+				}
+
 				resources := []string{}
 
 				// arn_override
