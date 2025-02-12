@@ -183,7 +183,8 @@ func createProxy(addr string, awsRedirectHost string) {
 
 	proxy := goproxy.NewProxyHttpServer()
 	proxy.Logger = log.New(io.Discard, "", log.LstdFlags)
-	proxy.OnRequest().HandleConnect(goproxy.AlwaysMitm)
+	proxy.OnRequest(goproxy.ReqHostMatches(regexp.MustCompile(`^(?:.*\.amazonaws\.com(?:\.cn)?)|(?:management\.azure\.com)|(?:management\.core\.windows\.net)|(?:.*\.googleapis\.com)$`))).HandleConnect(goproxy.AlwaysMitm)
+	//proxy.OnRequest().HandleConnect(goproxy.AlwaysMitm)
 	proxy.OnRequest().DoFunc(func(req *http.Request, ctx *goproxy.ProxyCtx) (*http.Request, *http.Response) { // TODO: Move to onResponse for HTTP response codes
 		var body []byte
 
