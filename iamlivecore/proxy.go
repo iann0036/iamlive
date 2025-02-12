@@ -448,11 +448,23 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	actionMatch := false
 	var selectedCandidate ActionCandidate
 
+	if len(hostSplit) == 4 {
+		if hostSplit[0] == "s3express-control" {
+			hostSplit[0] = "s3"
+		}
+	}
+
 	if strings.HasPrefix(hostSplit[len(hostSplit)-3], "s3-") { // bucketname."s3-us-west-2".amazonaws.com
 		hostSplit[len(hostSplit)-3] = hostSplit[len(hostSplit)-3][3:]    // strip s3-
 		hostSplit = append(hostSplit, "")                                // make room
 		copy(hostSplit[len(hostSplit)-3:], hostSplit[len(hostSplit)-4:]) // shift over
 		hostSplit[len(hostSplit)-4] = "s3"                               // insert s3
+	}
+
+	if len(hostSplit) == 5 {
+		if strings.HasPrefix(hostSplit[1], "s3express-") { // bucketname--usw2-az1--x-s3."s3express-usw2-az1".ap-southeast-2.amazonaws.com
+			hostSplit[1] = "s3"
+		}
 	}
 
 	if hostSplit[len(hostSplit)-1] == "com" && hostSplit[len(hostSplit)-2] == "amazonaws" {
@@ -783,6 +795,7 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 		FinalHTTPStatusCode: respCode,
 		AccessKey:           accessKey,
 		SessionToken:        sessionToken,
+		Host:                host,
 	})
 
 	handleLoggedCall()

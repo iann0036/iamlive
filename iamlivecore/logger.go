@@ -62,6 +62,7 @@ type Entry struct {
 	FinalHTTPStatusCode int    `json:"FinalHttpStatusCode"`
 	AccessKey           string `json:"AccessKey"`
 	SessionToken        string `json:"SessionToken"`
+	Host                string `json:"_Host"`
 }
 
 // Statement is a single statement within an IAM policy
@@ -671,8 +672,11 @@ func getStatementsForProxyCall(call Entry) (statements []Statement) {
 	for iamMapMethodName, iamMapMethods := range iamMap.SDKMethodIAMMappings {
 		if strings.ToLower(iamMapMethodName) == lowerPriv {
 			for mappedPrivIndex, mappedPriv := range iamMapMethods {
-				// special override for S3 express
-				if strings.HasPrefix(mappedPriv.Action, "s3express:") && len(iamMapMethods) > 1 {
+				// special handling for S3 express
+				if strings.HasPrefix(mappedPriv.Action, "s3express:") && len(iamMapMethods) > 1 && !strings.HasPrefix(call.Host, "s3express-control.") {
+					continue
+				}
+				if strings.HasPrefix(mappedPriv.Action, "s3:") && len(iamMapMethods) > 1 && strings.HasPrefix(call.Host, "s3express-control.") {
 					continue
 				}
 
