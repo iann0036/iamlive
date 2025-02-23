@@ -344,8 +344,7 @@
       "output":{"shape":"DeleteEventSubscriptionResponse"},
       "errors":[
         {"shape":"ResourceNotFoundFault"},
-        {"shape":"InvalidResourceStateFault"},
-        {"shape":"AccessDeniedFault"}
+        {"shape":"InvalidResourceStateFault"}
       ]
     },
     "DeleteFleetAdvisorCollector":{
@@ -443,8 +442,7 @@
       "output":{"shape":"DeleteReplicationSubnetGroupResponse"},
       "errors":[
         {"shape":"InvalidResourceStateFault"},
-        {"shape":"ResourceNotFoundFault"},
-        {"shape":"AccessDeniedFault"}
+        {"shape":"ResourceNotFoundFault"}
       ]
     },
     "DeleteReplicationTask":{
@@ -992,8 +990,7 @@
       "output":{"shape":"DescribeTableStatisticsResponse"},
       "errors":[
         {"shape":"ResourceNotFoundFault"},
-        {"shape":"InvalidResourceStateFault"},
-        {"shape":"AccessDeniedFault"}
+        {"shape":"InvalidResourceStateFault"}
       ]
     },
     "ExportMetadataModelAssessment":{
@@ -1110,8 +1107,7 @@
         {"shape":"KMSDisabledFault"},
         {"shape":"KMSInvalidStateFault"},
         {"shape":"KMSNotFoundFault"},
-        {"shape":"KMSThrottlingFault"},
-        {"shape":"AccessDeniedFault"}
+        {"shape":"KMSThrottlingFault"}
       ]
     },
     "ModifyInstanceProfile":{
@@ -2085,7 +2081,7 @@
       "members":{
         "ReplicationInstanceIdentifier":{"shape":"String"},
         "AllocatedStorage":{"shape":"IntegerOptional"},
-        "ReplicationInstanceClass":{"shape":"ReplicationInstanceClass"},
+        "ReplicationInstanceClass":{"shape":"String"},
         "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
         "AvailabilityZone":{"shape":"String"},
         "ReplicationSubnetGroupIdentifier":{"shape":"String"},
@@ -2098,8 +2094,7 @@
         "PubliclyAccessible":{"shape":"BooleanOptional"},
         "DnsNameServers":{"shape":"String"},
         "ResourceIdentifier":{"shape":"String"},
-        "NetworkType":{"shape":"String"},
-        "KerberosAuthenticationSettings":{"shape":"KerberosAuthenticationSettings"}
+        "NetworkType":{"shape":"String"}
       }
     },
     "CreateReplicationInstanceResponse":{
@@ -3763,8 +3758,7 @@
         "SaslPassword":{"shape":"SecretString"},
         "NoHexPrefix":{"shape":"BooleanOptional"},
         "SaslMechanism":{"shape":"KafkaSaslMechanism"},
-        "SslEndpointIdentificationAlgorithm":{"shape":"KafkaSslEndpointIdentificationAlgorithm"},
-        "UseLargeIntegerValue":{"shape":"BooleanOptional"}
+        "SslEndpointIdentificationAlgorithm":{"shape":"KafkaSslEndpointIdentificationAlgorithm"}
       }
     },
     "KafkaSslEndpointIdentificationAlgorithm":{
@@ -3773,14 +3767,6 @@
         "none",
         "https"
       ]
-    },
-    "KerberosAuthenticationSettings":{
-      "type":"structure",
-      "members":{
-        "KeyCacheSecretId":{"shape":"String"},
-        "KeyCacheSecretIamArn":{"shape":"String"},
-        "Krb5FileContents":{"shape":"String"}
-      }
     },
     "KeyList":{
       "type":"list",
@@ -3798,8 +3784,7 @@
         "IncludeTableAlterOperations":{"shape":"BooleanOptional"},
         "IncludeControlDetails":{"shape":"BooleanOptional"},
         "IncludeNullAndEmpty":{"shape":"BooleanOptional"},
-        "NoHexPrefix":{"shape":"BooleanOptional"},
-        "UseLargeIntegerValue":{"shape":"BooleanOptional"}
+        "NoHexPrefix":{"shape":"BooleanOptional"}
       }
     },
     "Limitation":{
@@ -3879,8 +3864,7 @@
         "SecretsManagerSecretId":{"shape":"String"},
         "TrimSpaceInChar":{"shape":"BooleanOptional"},
         "TlogAccessMode":{"shape":"TlogAccessMode"},
-        "ForceLobLookup":{"shape":"BooleanOptional"},
-        "AuthenticationMethod":{"shape":"SqlServerAuthenticationMethod"}
+        "ForceLobLookup":{"shape":"BooleanOptional"}
       }
     },
     "MicrosoftSqlServerDataProviderSettings":{
@@ -4107,7 +4091,7 @@
         "ReplicationInstanceArn":{"shape":"String"},
         "AllocatedStorage":{"shape":"IntegerOptional"},
         "ApplyImmediately":{"shape":"Boolean"},
-        "ReplicationInstanceClass":{"shape":"ReplicationInstanceClass"},
+        "ReplicationInstanceClass":{"shape":"String"},
         "VpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
         "PreferredMaintenanceWindow":{"shape":"String"},
         "MultiAZ":{"shape":"BooleanOptional"},
@@ -4115,8 +4099,7 @@
         "AllowMajorVersionUpgrade":{"shape":"Boolean"},
         "AutoMinorVersionUpgrade":{"shape":"BooleanOptional"},
         "ReplicationInstanceIdentifier":{"shape":"String"},
-        "NetworkType":{"shape":"String"},
-        "KerberosAuthenticationSettings":{"shape":"KerberosAuthenticationSettings"}
+        "NetworkType":{"shape":"String"}
       }
     },
     "ModifyReplicationInstanceResponse":{
@@ -4267,13 +4250,6 @@
         "one"
       ]
     },
-    "OracleAuthenticationMethod":{
-      "type":"string",
-      "enum":[
-        "password",
-        "kerberos"
-      ]
-    },
     "OracleDataProviderSettings":{
       "type":"structure",
       "members":{
@@ -4334,15 +4310,14 @@
         "SecretsManagerOracleAsmSecretId":{"shape":"String"},
         "TrimSpaceInChar":{"shape":"BooleanOptional"},
         "ConvertTimestampWithZoneToUTC":{"shape":"BooleanOptional"},
-        "OpenTransactionWindow":{"shape":"IntegerOptional"},
-        "AuthenticationMethod":{"shape":"OracleAuthenticationMethod"}
+        "OpenTransactionWindow":{"shape":"IntegerOptional"}
       }
     },
     "OrderableReplicationInstance":{
       "type":"structure",
       "members":{
         "EngineVersion":{"shape":"String"},
-        "ReplicationInstanceClass":{"shape":"ReplicationInstanceClass"},
+        "ReplicationInstanceClass":{"shape":"String"},
         "StorageType":{"shape":"String"},
         "MinAllocatedStorage":{"shape":"Integer"},
         "MaxAllocatedStorage":{"shape":"Integer"},
@@ -4423,8 +4398,7 @@
         "MapJsonbAsClob":{"shape":"BooleanOptional"},
         "MapLongVarcharAs":{"shape":"LongVarcharMappingType"},
         "DatabaseMode":{"shape":"DatabaseMode"},
-        "BabelfishDatabaseName":{"shape":"String"},
-        "DisableUnicodeSourceFilter":{"shape":"BooleanOptional"}
+        "BabelfishDatabaseName":{"shape":"String"}
       }
     },
     "PostgreSqlDataProviderSettings":{
@@ -4758,7 +4732,7 @@
       "type":"structure",
       "members":{
         "ReplicationInstanceIdentifier":{"shape":"String"},
-        "ReplicationInstanceClass":{"shape":"ReplicationInstanceClass"},
+        "ReplicationInstanceClass":{"shape":"String"},
         "ReplicationInstanceStatus":{"shape":"String"},
         "AllocatedStorage":{"shape":"Integer"},
         "InstanceCreateTime":{"shape":"TStamp"},
@@ -4787,13 +4761,8 @@
         "SecondaryAvailabilityZone":{"shape":"String"},
         "FreeUntil":{"shape":"TStamp"},
         "DnsNameServers":{"shape":"String"},
-        "NetworkType":{"shape":"String"},
-        "KerberosAuthenticationSettings":{"shape":"KerberosAuthenticationSettings"}
+        "NetworkType":{"shape":"String"}
       }
-    },
-    "ReplicationInstanceClass":{
-      "type":"string",
-      "max":30
     },
     "ReplicationInstanceIpv6AddressList":{
       "type":"list",
@@ -4830,7 +4799,7 @@
     "ReplicationPendingModifiedValues":{
       "type":"structure",
       "members":{
-        "ReplicationInstanceClass":{"shape":"ReplicationInstanceClass"},
+        "ReplicationInstanceClass":{"shape":"String"},
         "AllocatedStorage":{"shape":"IntegerOptional"},
         "MultiAZ":{"shape":"BooleanOptional"},
         "EngineVersion":{"shape":"String"},
@@ -4912,7 +4881,7 @@
         "AssessmentStatus":{"shape":"String"},
         "AssessmentResultsFile":{"shape":"String"},
         "AssessmentResults":{"shape":"String"},
-        "S3ObjectUrl":{"shape":"SecretString"}
+        "S3ObjectUrl":{"shape":"String"}
       }
     },
     "ReplicationTaskAssessmentResultList":{
@@ -5193,13 +5162,6 @@
     "SourceType":{
       "type":"string",
       "enum":["replication-instance"]
-    },
-    "SqlServerAuthenticationMethod":{
-      "type":"string",
-      "enum":[
-        "password",
-        "kerberos"
-      ]
     },
     "SslSecurityProtocolValue":{
       "type":"string",

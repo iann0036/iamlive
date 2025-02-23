@@ -88,22 +88,6 @@
         {"shape":"ServiceQuotaExceededException"}
       ]
     },
-    "ListCustomerAgreements":{
-      "name":"ListCustomerAgreements",
-      "http":{
-        "method":"GET",
-        "requestUri":"/v1/customer-agreement/list",
-        "responseCode":200
-      },
-      "input":{"shape":"ListCustomerAgreementsRequest"},
-      "output":{"shape":"ListCustomerAgreementsResponse"},
-      "errors":[
-        {"shape":"ThrottlingException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"}
-      ]
-    },
     "ListReports":{
       "name":"ListReports",
       "http":{
@@ -169,20 +153,6 @@
         "notificationSubscriptionStatus":{"shape":"NotificationSubscriptionStatus"}
       }
     },
-    "AgreementTerms":{
-      "type":"list",
-      "member":{"shape":"LongStringAttribute"},
-      "max":10,
-      "min":0
-    },
-    "AgreementType":{
-      "type":"string",
-      "enum":[
-        "CUSTOM",
-        "DEFAULT",
-        "MODIFIED"
-      ]
-    },
     "ConflictException":{
       "type":"structure",
       "required":[
@@ -200,40 +170,6 @@
         "senderFault":true
       },
       "exception":true
-    },
-    "CustomerAgreementIdAttribute":{
-      "type":"string",
-      "pattern":"customer-agreement-[a-zA-Z0-9]{16}"
-    },
-    "CustomerAgreementList":{
-      "type":"list",
-      "member":{"shape":"CustomerAgreementSummary"}
-    },
-    "CustomerAgreementState":{
-      "type":"string",
-      "enum":[
-        "ACTIVE",
-        "CUSTOMER_TERMINATED",
-        "AWS_TERMINATED"
-      ]
-    },
-    "CustomerAgreementSummary":{
-      "type":"structure",
-      "members":{
-        "name":{"shape":"LongStringAttribute"},
-        "arn":{"shape":"LongStringAttribute"},
-        "id":{"shape":"CustomerAgreementIdAttribute"},
-        "agreementArn":{"shape":"LongStringAttribute"},
-        "awsAccountId":{"shape":"ShortStringAttribute"},
-        "organizationArn":{"shape":"LongStringAttribute"},
-        "effectiveStart":{"shape":"TimestampAttribute"},
-        "effectiveEnd":{"shape":"TimestampAttribute"},
-        "state":{"shape":"CustomerAgreementState"},
-        "description":{"shape":"LongStringAttribute"},
-        "acceptanceTerms":{"shape":"AgreementTerms"},
-        "terminateTerms":{"shape":"AgreementTerms"},
-        "type":{"shape":"AgreementType"}
-      }
     },
     "GetAccountSettingsRequest":{
       "type":"structure",
@@ -350,29 +286,6 @@
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
-    },
-    "ListCustomerAgreementsRequest":{
-      "type":"structure",
-      "members":{
-        "maxResults":{
-          "shape":"MaxResultsAttribute",
-          "location":"querystring",
-          "locationName":"maxResults"
-        },
-        "nextToken":{
-          "shape":"NextTokenAttribute",
-          "location":"querystring",
-          "locationName":"nextToken"
-        }
-      }
-    },
-    "ListCustomerAgreementsResponse":{
-      "type":"structure",
-      "required":["customerAgreements"],
-      "members":{
-        "customerAgreements":{"shape":"CustomerAgreementList"},
-        "nextToken":{"shape":"NextTokenAttribute"}
-      }
     },
     "ListReportsRequest":{
       "type":"structure",

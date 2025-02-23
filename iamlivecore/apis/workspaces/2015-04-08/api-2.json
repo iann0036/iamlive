@@ -1333,36 +1333,6 @@
     }
   },
   "shapes":{
-    "AGAModeForDirectoryEnum":{
-      "type":"string",
-      "enum":[
-        "ENABLED_AUTO",
-        "DISABLED"
-      ]
-    },
-    "AGAModeForWorkSpaceEnum":{
-      "type":"string",
-      "enum":[
-        "ENABLED_AUTO",
-        "DISABLED",
-        "INHERITED"
-      ]
-    },
-    "AGAPreferredProtocolForDirectory":{
-      "type":"string",
-      "enum":[
-        "TCP",
-        "NONE"
-      ]
-    },
-    "AGAPreferredProtocolForWorkSpace":{
-      "type":"string",
-      "enum":[
-        "TCP",
-        "NONE",
-        "INHERITED"
-      ]
-    },
     "ARN":{
       "type":"string",
       "pattern":"^arn:aws[a-z-]{0,7}:[A-Za-z0-9][A-za-z0-9_/.-]{0,62}:[A-za-z0-9_/.-]{0,63}:[A-za-z0-9_/.-]{0,63}:[A-Za-z0-9][A-Za-z0-9:_/+=,@.\\\\-]{0,1023}$"
@@ -1822,8 +1792,6 @@
         "POWER",
         "GRAPHICS",
         "POWERPRO",
-        "GENERALPURPOSE_4XLARGE",
-        "GENERALPURPOSE_8XLARGE",
         "GRAPHICSPRO",
         "GRAPHICS_G4DN",
         "GRAPHICSPRO_G4DN"
@@ -3035,22 +3003,6 @@
         "AccountLink":{"shape":"AccountLink"}
       }
     },
-    "GlobalAcceleratorForDirectory":{
-      "type":"structure",
-      "required":["Mode"],
-      "members":{
-        "Mode":{"shape":"AGAModeForDirectoryEnum"},
-        "PreferredProtocol":{"shape":"AGAPreferredProtocolForDirectory"}
-      }
-    },
-    "GlobalAcceleratorForWorkSpace":{
-      "type":"structure",
-      "required":["Mode"],
-      "members":{
-        "Mode":{"shape":"AGAModeForWorkSpaceEnum"},
-        "PreferredProtocol":{"shape":"AGAPreferredProtocolForWorkSpace"}
-      }
-    },
     "IDCConfig":{
       "type":"structure",
       "members":{
@@ -4071,8 +4023,7 @@
       "members":{
         "StreamingExperiencePreferredProtocol":{"shape":"StreamingExperiencePreferredProtocolEnum"},
         "UserSettings":{"shape":"UserSettings"},
-        "StorageConnectors":{"shape":"StorageConnectors"},
-        "GlobalAccelerator":{"shape":"GlobalAcceleratorForDirectory"}
+        "StorageConnectors":{"shape":"StorageConnectors"}
       }
     },
     "String2048":{
@@ -4753,8 +4704,7 @@
         "UserVolumeSizeGib":{"shape":"UserVolumeSizeGib"},
         "ComputeTypeName":{"shape":"Compute"},
         "Protocols":{"shape":"ProtocolList"},
-        "OperatingSystemName":{"shape":"OperatingSystemName"},
-        "GlobalAccelerator":{"shape":"GlobalAcceleratorForWorkSpace"}
+        "OperatingSystemName":{"shape":"OperatingSystemName"}
       }
     },
     "WorkspaceRequest":{

@@ -704,8 +704,7 @@
         "DataAccessRoleArn":{"shape":"DataAccessRoleArn"},
         "IdentifiedLanguageScore":{"shape":"IdentifiedLanguageScore"},
         "Settings":{"shape":"CallAnalyticsJobSettings"},
-        "ChannelDefinitions":{"shape":"ChannelDefinitions"},
-        "Tags":{"shape":"TagList"}
+        "ChannelDefinitions":{"shape":"ChannelDefinitions"}
       }
     },
     "CallAnalyticsJobDetails":{
@@ -791,7 +790,6 @@
         "Rules":{"shape":"RuleList"},
         "CreateTime":{"shape":"DateTime"},
         "LastUpdateTime":{"shape":"DateTime"},
-        "Tags":{"shape":"TagList"},
         "InputType":{"shape":"InputType"}
       }
     },
@@ -845,7 +843,6 @@
       "members":{
         "CategoryName":{"shape":"CategoryName"},
         "Rules":{"shape":"RuleList"},
-        "Tags":{"shape":"TagList"},
         "InputType":{"shape":"InputType"}
       }
     },
@@ -1955,7 +1952,6 @@
         "OutputEncryptionKMSKeyId":{"shape":"KMSKeyId"},
         "DataAccessRoleArn":{"shape":"DataAccessRoleArn"},
         "Settings":{"shape":"CallAnalyticsJobSettings"},
-        "Tags":{"shape":"TagList"},
         "ChannelDefinitions":{"shape":"ChannelDefinitions"}
       }
     },

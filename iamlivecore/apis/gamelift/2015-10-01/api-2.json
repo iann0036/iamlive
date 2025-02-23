@@ -1492,8 +1492,7 @@
         {"shape":"InternalServiceException"},
         {"shape":"InvalidRequestException"},
         {"shape":"NotFoundException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"UnsupportedRegionException"}
+        {"shape":"UnauthorizedException"}
       ]
     },
     "StartMatchBackfill":{
@@ -1601,23 +1600,6 @@
         {"shape":"TaggingFailedException"},
         {"shape":"InternalServiceException"},
         {"shape":"UnsupportedRegionException"}
-      ]
-    },
-    "TerminateGameSession":{
-      "name":"TerminateGameSession",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"TerminateGameSessionInput"},
-      "output":{"shape":"TerminateGameSessionOutput"},
-      "errors":[
-        {"shape":"InternalServiceException"},
-        {"shape":"InvalidRequestException"},
-        {"shape":"NotFoundException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"InvalidGameSessionStatusException"},
-        {"shape":"NotReadyException"}
       ]
     },
     "UntagResource":{
@@ -2223,7 +2205,7 @@
       "members":{
         "FleetId":{"shape":"FleetId"},
         "FleetArn":{"shape":"FleetArn"},
-        "FleetRoleArn":{"shape":"IamRoleArn"},
+        "FleetRoleArn":{"shape":"ArnStringModel"},
         "GameServerContainerGroupDefinitionName":{"shape":"ContainerGroupDefinitionName"},
         "GameServerContainerGroupDefinitionArn":{"shape":"ContainerGroupDefinitionArn"},
         "PerInstanceContainerGroupDefinitionName":{"shape":"ContainerGroupDefinitionName"},
@@ -2522,7 +2504,7 @@
       "type":"structure",
       "required":["FleetRoleArn"],
       "members":{
-        "FleetRoleArn":{"shape":"IamRoleArn"},
+        "FleetRoleArn":{"shape":"ArnStringModel"},
         "Description":{"shape":"NonZeroAndMaxString"},
         "GameServerContainerGroupDefinitionName":{"shape":"ContainerGroupDefinitionNameOrArn"},
         "PerInstanceContainerGroupDefinitionName":{"shape":"ContainerGroupDefinitionNameOrArn"},
@@ -4537,8 +4519,7 @@
         "Port":{"shape":"PortNumber"},
         "PlacedPlayerSessions":{"shape":"PlacedPlayerSessionList"},
         "GameSessionData":{"shape":"LargeGameSessionData"},
-        "MatchmakerData":{"shape":"MatchmakerData"},
-        "PriorityConfigurationOverride":{"shape":"PriorityConfigurationOverride"}
+        "MatchmakerData":{"shape":"MatchmakerData"}
       }
     },
     "GameSessionPlacementState":{
@@ -4613,11 +4594,7 @@
     },
     "GameSessionStatusReason":{
       "type":"string",
-      "enum":[
-        "INTERRUPTED",
-        "TRIGGERED_ON_PROCESS_TERMINATE",
-        "FORCE_TERMINATED"
-      ]
+      "enum":["INTERRUPTED"]
     },
     "GetComputeAccessInput":{
       "type":"structure",
@@ -5199,12 +5176,6 @@
       "type":"list",
       "member":{"shape":"LocationModel"}
     },
-    "LocationOrderOverrideList":{
-      "type":"list",
-      "member":{"shape":"LocationStringModel"},
-      "max":10,
-      "min":1
-    },
     "LocationState":{
       "type":"structure",
       "members":{
@@ -5517,13 +5488,6 @@
       "type":"list",
       "member":{"shape":"PlacedPlayerSession"}
     },
-    "PlacementFallbackStrategy":{
-      "type":"string",
-      "enum":[
-        "DEFAULT_AFTER_SINGLE_PASS",
-        "NONE"
-      ]
-    },
     "Player":{
       "type":"structure",
       "members":{
@@ -5674,14 +5638,6 @@
       "members":{
         "PriorityOrder":{"shape":"PriorityTypeList"},
         "LocationOrder":{"shape":"LocationList"}
-      }
-    },
-    "PriorityConfigurationOverride":{
-      "type":"structure",
-      "required":["LocationOrder"],
-      "members":{
-        "PlacementFallbackStrategy":{"shape":"PlacementFallbackStrategy"},
-        "LocationOrder":{"shape":"LocationOrderOverrideList"}
       }
     },
     "PriorityType":{
@@ -6053,8 +6009,7 @@
         "GameSessionName":{"shape":"NonZeroAndMaxString"},
         "PlayerLatencies":{"shape":"PlayerLatencyList"},
         "DesiredPlayerSessions":{"shape":"DesiredPlayerSessionList"},
-        "GameSessionData":{"shape":"LargeGameSessionData"},
-        "PriorityConfigurationOverride":{"shape":"PriorityConfigurationOverride"}
+        "GameSessionData":{"shape":"LargeGameSessionData"}
       }
     },
     "StartGameSessionPlacementOutput":{
@@ -6289,30 +6244,6 @@
         "Message":{"shape":"NonEmptyString"}
       },
       "exception":true
-    },
-    "TerminateGameSessionInput":{
-      "type":"structure",
-      "required":[
-        "GameSessionId",
-        "TerminationMode"
-      ],
-      "members":{
-        "GameSessionId":{"shape":"ArnStringModel"},
-        "TerminationMode":{"shape":"TerminationMode"}
-      }
-    },
-    "TerminateGameSessionOutput":{
-      "type":"structure",
-      "members":{
-        "GameSession":{"shape":"GameSession"}
-      }
-    },
-    "TerminationMode":{
-      "type":"string",
-      "enum":[
-        "TRIGGER_ON_PROCESS_TERMINATE",
-        "FORCE_TERMINATE"
-      ]
     },
     "Timestamp":{"type":"timestamp"},
     "UnauthorizedException":{

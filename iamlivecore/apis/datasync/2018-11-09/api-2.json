@@ -717,71 +717,6 @@
         {"shape":"InternalException"}
       ]
     },
-    "UpdateLocationEfs":{
-      "name":"UpdateLocationEfs",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"UpdateLocationEfsRequest"},
-      "output":{"shape":"UpdateLocationEfsResponse"},
-      "errors":[
-        {"shape":"InvalidRequestException"},
-        {"shape":"InternalException"}
-      ]
-    },
-    "UpdateLocationFsxLustre":{
-      "name":"UpdateLocationFsxLustre",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"UpdateLocationFsxLustreRequest"},
-      "output":{"shape":"UpdateLocationFsxLustreResponse"},
-      "errors":[
-        {"shape":"InvalidRequestException"},
-        {"shape":"InternalException"}
-      ]
-    },
-    "UpdateLocationFsxOntap":{
-      "name":"UpdateLocationFsxOntap",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"UpdateLocationFsxOntapRequest"},
-      "output":{"shape":"UpdateLocationFsxOntapResponse"},
-      "errors":[
-        {"shape":"InvalidRequestException"},
-        {"shape":"InternalException"}
-      ]
-    },
-    "UpdateLocationFsxOpenZfs":{
-      "name":"UpdateLocationFsxOpenZfs",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"UpdateLocationFsxOpenZfsRequest"},
-      "output":{"shape":"UpdateLocationFsxOpenZfsResponse"},
-      "errors":[
-        {"shape":"InvalidRequestException"},
-        {"shape":"InternalException"}
-      ]
-    },
-    "UpdateLocationFsxWindows":{
-      "name":"UpdateLocationFsxWindows",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"UpdateLocationFsxWindowsRequest"},
-      "output":{"shape":"UpdateLocationFsxWindowsResponse"},
-      "errors":[
-        {"shape":"InvalidRequestException"},
-        {"shape":"InternalException"}
-      ]
-    },
     "UpdateLocationHdfs":{
       "name":"UpdateLocationHdfs",
       "http":{
@@ -816,19 +751,6 @@
       },
       "input":{"shape":"UpdateLocationObjectStorageRequest"},
       "output":{"shape":"UpdateLocationObjectStorageResponse"},
-      "errors":[
-        {"shape":"InvalidRequestException"},
-        {"shape":"InternalException"}
-      ]
-    },
-    "UpdateLocationS3":{
-      "name":"UpdateLocationS3",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"UpdateLocationS3Request"},
-      "output":{"shape":"UpdateLocationS3Response"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"InternalException"}
@@ -1289,6 +1211,8 @@
       "required":[
         "Subdirectory",
         "ServerHostname",
+        "User",
+        "Password",
         "AgentArns"
       ],
       "members":{
@@ -1299,12 +1223,7 @@
         "Password":{"shape":"SmbPassword"},
         "AgentArns":{"shape":"AgentArnList"},
         "MountOptions":{"shape":"SmbMountOptions"},
-        "Tags":{"shape":"InputTagList"},
-        "AuthenticationType":{"shape":"SmbAuthenticationType"},
-        "DnsIpAddresses":{"shape":"DnsIpList"},
-        "KerberosPrincipal":{"shape":"KerberosPrincipal"},
-        "KerberosKeytab":{"shape":"KerberosKeytabFile"},
-        "KerberosKrb5Conf":{"shape":"KerberosKrb5ConfFile"}
+        "Tags":{"shape":"InputTagList"}
       }
     },
     "CreateLocationSmbResponse":{
@@ -1628,10 +1547,7 @@
         "User":{"shape":"SmbUser"},
         "Domain":{"shape":"SmbDomain"},
         "MountOptions":{"shape":"SmbMountOptions"},
-        "CreationTime":{"shape":"Time"},
-        "DnsIpAddresses":{"shape":"DnsIpList"},
-        "KerberosPrincipal":{"shape":"KerberosPrincipal"},
-        "AuthenticationType":{"shape":"SmbAuthenticationType"}
+        "CreationTime":{"shape":"Time"}
       }
     },
     "DescribeStorageSystemRequest":{
@@ -1854,11 +1770,6 @@
       "enum":["NetAppONTAP"]
     },
     "DiscoveryTime":{"type":"timestamp"},
-    "DnsIpList":{
-      "type":"list",
-      "member":{"shape":"ServerIpAddress"},
-      "max":2
-    },
     "Duration":{
       "type":"long",
       "min":0
@@ -2014,22 +1925,6 @@
       ],
       "members":{
         "Domain":{"shape":"SmbDomain"},
-        "MountOptions":{"shape":"SmbMountOptions"},
-        "Password":{"shape":"SmbPassword"},
-        "User":{"shape":"SmbUser"}
-      }
-    },
-    "FsxUpdateProtocol":{
-      "type":"structure",
-      "members":{
-        "NFS":{"shape":"FsxProtocolNfs"},
-        "SMB":{"shape":"FsxUpdateProtocolSmb"}
-      }
-    },
-    "FsxUpdateProtocolSmb":{
-      "type":"structure",
-      "members":{
-        "Domain":{"shape":"UpdateSmbDomain"},
         "MountOptions":{"shape":"SmbMountOptions"},
         "Password":{"shape":"SmbPassword"},
         "User":{"shape":"SmbUser"}
@@ -2544,7 +2439,7 @@
       "type":"string",
       "max":63,
       "min":3,
-      "pattern":"^[a-zA-Z0-9_\\-\\+\\.\\(\\)\\$\\p{Zs}]+$"
+      "pattern":"^[a-zA-Z0-9_\\-\\+\\./\\(\\)\\$\\p{Zs}]+$"
     },
     "ObjectStorageCertificate":{
       "type":"blob",
@@ -2942,19 +2837,6 @@
       "max":255,
       "pattern":"^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])$"
     },
-    "ServerIpAddress":{
-      "type":"string",
-      "max":15,
-      "min":7,
-      "pattern":"\\A(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)(\\.(25[0-5]|2[0-4]\\d|[0-1]?\\d?\\d)){3}\\z"
-    },
-    "SmbAuthenticationType":{
-      "type":"string",
-      "enum":[
-        "NTLM",
-        "KERBEROS"
-      ]
-    },
     "SmbDomain":{
       "type":"string",
       "max":253,
@@ -2988,7 +2870,7 @@
     "SmbUser":{
       "type":"string",
       "max":104,
-      "pattern":"^[^\\x22\\x5B\\x5D/\\\\:;|=,+*?\\x3C\\x3E]{1,104}$"
+      "pattern":"^[^\\x5B\\x5D\\\\/:;|=,+*?]{1,104}$"
     },
     "SmbVersion":{
       "type":"string",
@@ -3383,79 +3265,6 @@
       "members":{
       }
     },
-    "UpdateLocationEfsRequest":{
-      "type":"structure",
-      "required":["LocationArn"],
-      "members":{
-        "LocationArn":{"shape":"LocationArn"},
-        "Subdirectory":{"shape":"EfsSubdirectory"},
-        "AccessPointArn":{"shape":"UpdatedEfsAccessPointArn"},
-        "FileSystemAccessRoleArn":{"shape":"UpdatedEfsIamRoleArn"},
-        "InTransitEncryption":{"shape":"EfsInTransitEncryption"}
-      }
-    },
-    "UpdateLocationEfsResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "UpdateLocationFsxLustreRequest":{
-      "type":"structure",
-      "required":["LocationArn"],
-      "members":{
-        "LocationArn":{"shape":"LocationArn"},
-        "Subdirectory":{"shape":"SmbSubdirectory"}
-      }
-    },
-    "UpdateLocationFsxLustreResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "UpdateLocationFsxOntapRequest":{
-      "type":"structure",
-      "required":["LocationArn"],
-      "members":{
-        "LocationArn":{"shape":"LocationArn"},
-        "Protocol":{"shape":"FsxUpdateProtocol"},
-        "Subdirectory":{"shape":"FsxOntapSubdirectory"}
-      }
-    },
-    "UpdateLocationFsxOntapResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "UpdateLocationFsxOpenZfsRequest":{
-      "type":"structure",
-      "required":["LocationArn"],
-      "members":{
-        "LocationArn":{"shape":"LocationArn"},
-        "Protocol":{"shape":"FsxProtocol"},
-        "Subdirectory":{"shape":"SmbSubdirectory"}
-      }
-    },
-    "UpdateLocationFsxOpenZfsResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "UpdateLocationFsxWindowsRequest":{
-      "type":"structure",
-      "required":["LocationArn"],
-      "members":{
-        "LocationArn":{"shape":"LocationArn"},
-        "Subdirectory":{"shape":"FsxWindowsSubdirectory"},
-        "Domain":{"shape":"UpdateSmbDomain"},
-        "User":{"shape":"SmbUser"},
-        "Password":{"shape":"SmbPassword"}
-      }
-    },
-    "UpdateLocationFsxWindowsResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
     "UpdateLocationHdfsRequest":{
       "type":"structure",
       "required":["LocationArn"],
@@ -3514,21 +3323,6 @@
       "members":{
       }
     },
-    "UpdateLocationS3Request":{
-      "type":"structure",
-      "required":["LocationArn"],
-      "members":{
-        "LocationArn":{"shape":"LocationArn"},
-        "Subdirectory":{"shape":"S3Subdirectory"},
-        "S3StorageClass":{"shape":"S3StorageClass"},
-        "S3Config":{"shape":"S3Config"}
-      }
-    },
-    "UpdateLocationS3Response":{
-      "type":"structure",
-      "members":{
-      }
-    },
     "UpdateLocationSmbRequest":{
       "type":"structure",
       "required":["LocationArn"],
@@ -3539,23 +3333,13 @@
         "Domain":{"shape":"SmbDomain"},
         "Password":{"shape":"SmbPassword"},
         "AgentArns":{"shape":"AgentArnList"},
-        "MountOptions":{"shape":"SmbMountOptions"},
-        "AuthenticationType":{"shape":"SmbAuthenticationType"},
-        "DnsIpAddresses":{"shape":"DnsIpList"},
-        "KerberosPrincipal":{"shape":"KerberosPrincipal"},
-        "KerberosKeytab":{"shape":"KerberosKeytabFile"},
-        "KerberosKrb5Conf":{"shape":"KerberosKrb5ConfFile"}
+        "MountOptions":{"shape":"SmbMountOptions"}
       }
     },
     "UpdateLocationSmbResponse":{
       "type":"structure",
       "members":{
       }
-    },
-    "UpdateSmbDomain":{
-      "type":"string",
-      "max":253,
-      "pattern":"^([A-Za-z0-9]((\\.|-+)?[A-Za-z0-9]){0,252})?$"
     },
     "UpdateStorageSystemRequest":{
       "type":"structure",
@@ -3609,16 +3393,6 @@
       "type":"structure",
       "members":{
       }
-    },
-    "UpdatedEfsAccessPointArn":{
-      "type":"string",
-      "max":128,
-      "pattern":"(^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):elasticfilesystem:[a-z\\-0-9]+:[0-9]{12}:access-point/fsap-[0-9a-f]{8,40}$)|(^$)"
-    },
-    "UpdatedEfsIamRoleArn":{
-      "type":"string",
-      "max":2048,
-      "pattern":"(^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):iam::[0-9]{12}:role/.*$)|(^$)"
     },
     "VerifyMode":{
       "type":"string",

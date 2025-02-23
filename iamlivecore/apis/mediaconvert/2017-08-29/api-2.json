@@ -1548,7 +1548,7 @@
           "locationName": "audioNormalizationSettings"
         },
         "AudioSourceName": {
-          "shape": "__stringMax2048",
+          "shape": "__string",
           "locationName": "audioSourceName"
         },
         "AudioType": {
@@ -2181,10 +2181,6 @@
         "OutlineSize": {
           "shape": "__integerMin0Max10",
           "locationName": "outlineSize"
-        },
-        "RemoveRubyReserveAttributes": {
-          "shape": "RemoveRubyReserveAttributes",
-          "locationName": "removeRubyReserveAttributes"
         },
         "ShadowColor": {
           "shape": "BurninSubtitleShadowColor",
@@ -4202,38 +4198,6 @@
         "NO_DISPLAY_WINDOW"
       ]
     },
-    "DynamicAudioSelector": {
-      "type": "structure",
-      "members": {
-        "AudioDurationCorrection": {
-          "shape": "AudioDurationCorrection",
-          "locationName": "audioDurationCorrection"
-        },
-        "ExternalAudioFileInput": {
-          "shape": "__stringPatternS3Https",
-          "locationName": "externalAudioFileInput"
-        },
-        "LanguageCode": {
-          "shape": "LanguageCode",
-          "locationName": "languageCode"
-        },
-        "Offset": {
-          "shape": "__integerMinNegative2147483648Max2147483647",
-          "locationName": "offset"
-        },
-        "SelectorType": {
-          "shape": "DynamicAudioSelectorType",
-          "locationName": "selectorType"
-        }
-      }
-    },
-    "DynamicAudioSelectorType": {
-      "type": "string",
-      "enum": [
-        "ALL_TRACKS",
-        "LANGUAGE_CODE"
-      ]
-    },
     "Eac3AtmosBitstreamMode": {
       "type": "string",
       "enum": [
@@ -5347,10 +5311,6 @@
         "UnregisteredSeiTimecode": {
           "shape": "H264UnregisteredSeiTimecode",
           "locationName": "unregisteredSeiTimecode"
-        },
-        "WriteMp4PackagingType": {
-          "shape": "H264WriteMp4PackagingType",
-          "locationName": "writeMp4PackagingType"
         }
       }
     },
@@ -5395,13 +5355,6 @@
       "enum": [
         "DISABLED",
         "ENABLED"
-      ]
-    },
-    "H264WriteMp4PackagingType": {
-      "type": "string",
-      "enum": [
-        "AVC1",
-        "AVC3"
       ]
     },
     "H265AdaptiveQuantization": {
@@ -5453,13 +5406,6 @@
         "MAIN_422_8BIT_HIGH",
         "MAIN_422_10BIT_MAIN",
         "MAIN_422_10BIT_HIGH"
-      ]
-    },
-    "H265Deblocking": {
-      "type": "string",
-      "enum": [
-        "ENABLED",
-        "DISABLED"
       ]
     },
     "H265DynamicSubGop": {
@@ -5612,10 +5558,6 @@
         "CodecProfile": {
           "shape": "H265CodecProfile",
           "locationName": "codecProfile"
-        },
-        "Deblocking": {
-          "shape": "H265Deblocking",
-          "locationName": "deblocking"
         },
         "DynamicSubGop": {
           "shape": "H265DynamicSubGop",
@@ -6484,12 +6426,8 @@
           "shape": "__stringMin14PatternS3XmlXMLHttpsXmlXML",
           "locationName": "dolbyVisionMetadataXml"
         },
-        "DynamicAudioSelectors": {
-          "shape": "__mapOfDynamicAudioSelector",
-          "locationName": "dynamicAudioSelectors"
-        },
         "FileInput": {
-          "shape": "__stringMax2048PatternS3Https",
+          "shape": "__stringPatternS3Https",
           "locationName": "fileInput"
         },
         "FilterEnable": {
@@ -6683,10 +6621,6 @@
         "DolbyVisionMetadataXml": {
           "shape": "__stringMin14PatternS3XmlXMLHttpsXmlXML",
           "locationName": "dolbyVisionMetadataXml"
-        },
-        "DynamicAudioSelectors": {
-          "shape": "__mapOfDynamicAudioSelector",
-          "locationName": "dynamicAudioSelectors"
         },
         "FilterEnable": {
           "shape": "InputFilterEnable",
@@ -7205,7 +7139,7 @@
           "locationName": "contentReference"
         },
         "CredentialsSecretName": {
-          "shape": "__stringMin1Max2048PatternArnAZSecretsmanagerWD12SecretAZAZ09",
+          "shape": "__stringMin1Max2048PatternArnAwsAwsUsGovAwsCnSecretsmanagerUsGovApCaCnEuSaCentralNorthSouthEastWestDD12SecretAZAZ09",
           "locationName": "credentialsSecretName"
         },
         "FileOffset": {
@@ -9136,7 +9070,7 @@
           "locationName": "containerSettings"
         },
         "Extension": {
-          "shape": "__stringMax256",
+          "shape": "__string",
           "locationName": "extension"
         },
         "NameModifier": {
@@ -9195,7 +9129,7 @@
           "locationName": "customName"
         },
         "Name": {
-          "shape": "__stringMax2048",
+          "shape": "__string",
           "locationName": "name"
         },
         "OutputGroupSettings": {
@@ -9694,13 +9628,6 @@
           "locationName": "channelsOut"
         }
       }
-    },
-    "RemoveRubyReserveAttributes": {
-      "type": "string",
-      "enum": [
-        "DISABLED",
-        "ENABLED"
-      ]
     },
     "RenewalType": {
       "type": "string",
@@ -10211,13 +10138,6 @@
         "EMBEDDED",
         "ZEROBASED",
         "SPECIFIEDSTART"
-      ]
-    },
-    "TimecodeTrack": {
-      "type": "string",
-      "enum": [
-        "DISABLED",
-        "ENABLED"
       ]
     },
     "TimedMetadata": {
@@ -10773,10 +10693,6 @@
         "TimecodeInsertion": {
           "shape": "VideoTimecodeInsertion",
           "locationName": "timecodeInsertion"
-        },
-        "TimecodeTrack": {
-          "shape": "TimecodeTrack",
-          "locationName": "timecodeTrack"
         },
         "VideoPreprocessors": {
           "shape": "VideoPreprocessor",
@@ -12498,15 +12414,6 @@
         "shape": "CaptionSelector"
       }
     },
-    "__mapOfDynamicAudioSelector": {
-      "type": "map",
-      "key": {
-        "shape": "__string"
-      },
-      "value": {
-        "shape": "DynamicAudioSelector"
-      }
-    },
     "__mapOf__string": {
       "type": "map",
       "key": {
@@ -12522,19 +12429,6 @@
     "__stringMax1000": {
       "type": "string",
       "max": 1000
-    },
-    "__stringMax2048": {
-      "type": "string",
-      "max": 2048
-    },
-    "__stringMax2048PatternS3Https": {
-      "type": "string",
-      "max": 2048,
-      "pattern": "^s3://([^\\/]+\\/+)+((([^\\/]*)))|^https?://[^\\/].*[^&]$"
-    },
-    "__stringMax256": {
-      "type": "string",
-      "max": 256
     },
     "__stringMin0": {
       "type": "string",
@@ -12596,11 +12490,11 @@
       "min": 1,
       "max": 20
     },
-    "__stringMin1Max2048PatternArnAZSecretsmanagerWD12SecretAZAZ09": {
+    "__stringMin1Max2048PatternArnAwsAwsUsGovAwsCnSecretsmanagerUsGovApCaCnEuSaCentralNorthSouthEastWestDD12SecretAZAZ09": {
       "type": "string",
       "min": 1,
       "max": 2048,
-      "pattern": "^(arn:[a-z-]+:secretsmanager:[\\w-]+:\\d{12}:secret:)?[a-zA-Z0-9_\\/_+=.@-]*$"
+      "pattern": "^(arn:(aws|aws-us-gov|aws-cn):secretsmanager:(us(-gov)?|ap|ca|cn|eu|sa)-(central|(north|south)?(east|west)?)-\\d:\\d{12}:secret:)?[a-zA-Z0-9_\\/_+=.@-]*$"
     },
     "__stringMin1Max256": {
       "type": "string",

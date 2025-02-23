@@ -3460,8 +3460,7 @@
     "BucketMetadataErrorCode": {
       "type": "string",
       "enum": [
-        "ACCESS_DENIED",
-        "BUCKET_COUNT_EXCEEDS_QUOTA"
+        "ACCESS_DENIED"
       ]
     },
     "BucketPermissionConfiguration": {

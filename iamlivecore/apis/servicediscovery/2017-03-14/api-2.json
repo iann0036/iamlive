@@ -108,19 +108,6 @@
         {"shape":"ResourceInUse"}
       ]
     },
-    "DeleteServiceAttributes":{
-      "name":"DeleteServiceAttributes",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DeleteServiceAttributesRequest"},
-      "output":{"shape":"DeleteServiceAttributesResponse"},
-      "errors":[
-        {"shape":"InvalidInput"},
-        {"shape":"ServiceNotFound"}
-      ]
-    },
     "DeregisterInstance":{
       "name":"DeregisterInstance",
       "http":{
@@ -231,19 +218,6 @@
       },
       "input":{"shape":"GetServiceRequest"},
       "output":{"shape":"GetServiceResponse"},
-      "errors":[
-        {"shape":"InvalidInput"},
-        {"shape":"ServiceNotFound"}
-      ]
-    },
-    "GetServiceAttributes":{
-      "name":"GetServiceAttributes",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"GetServiceAttributesRequest"},
-      "output":{"shape":"GetServiceAttributesResponse"},
       "errors":[
         {"shape":"InvalidInput"},
         {"shape":"ServiceNotFound"}
@@ -426,20 +400,6 @@
         {"shape":"InvalidInput"},
         {"shape":"ServiceNotFound"}
       ]
-    },
-    "UpdateServiceAttributes":{
-      "name":"UpdateServiceAttributes",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"UpdateServiceAttributesRequest"},
-      "output":{"shape":"UpdateServiceAttributesResponse"},
-      "errors":[
-        {"shape":"InvalidInput"},
-        {"shape":"ServiceNotFound"},
-        {"shape":"ServiceAttributesLimitExceededException"}
-      ]
     }
   },
   "shapes":{
@@ -580,22 +540,6 @@
       "type":"structure",
       "members":{
         "OperationId":{"shape":"OperationId"}
-      }
-    },
-    "DeleteServiceAttributesRequest":{
-      "type":"structure",
-      "required":[
-        "ServiceId",
-        "Attributes"
-      ],
-      "members":{
-        "ServiceId":{"shape":"ResourceId"},
-        "Attributes":{"shape":"ServiceAttributeKeyList"}
-      }
-    },
-    "DeleteServiceAttributesResponse":{
-      "type":"structure",
-      "members":{
       }
     },
     "DeleteServiceRequest":{
@@ -803,19 +747,6 @@
       "type":"structure",
       "members":{
         "Operation":{"shape":"Operation"}
-      }
-    },
-    "GetServiceAttributesRequest":{
-      "type":"structure",
-      "required":["ServiceId"],
-      "members":{
-        "ServiceId":{"shape":"ResourceId"}
-      }
-    },
-    "GetServiceAttributesResponse":{
-      "type":"structure",
-      "members":{
-        "ServiceAttributes":{"shape":"ServiceAttributes"}
       }
     },
     "GetServiceRequest":{
@@ -1080,8 +1011,7 @@
     },
     "NamespaceName":{
       "type":"string",
-      "max":1024,
-      "pattern":"^[!-~]{1,1024}$"
+      "max":1024
     },
     "NamespaceNameHttp":{
       "type":"string",
@@ -1431,41 +1361,6 @@
       },
       "exception":true
     },
-    "ServiceAttributeKey":{
-      "type":"string",
-      "max":255
-    },
-    "ServiceAttributeKeyList":{
-      "type":"list",
-      "member":{"shape":"ServiceAttributeKey"},
-      "max":30,
-      "min":1
-    },
-    "ServiceAttributeValue":{
-      "type":"string",
-      "max":1024
-    },
-    "ServiceAttributes":{
-      "type":"structure",
-      "members":{
-        "ServiceArn":{"shape":"Arn"},
-        "Attributes":{"shape":"ServiceAttributesMap"}
-      }
-    },
-    "ServiceAttributesLimitExceededException":{
-      "type":"structure",
-      "members":{
-        "Message":{"shape":"ErrorMessage"}
-      },
-      "exception":true
-    },
-    "ServiceAttributesMap":{
-      "type":"map",
-      "key":{"shape":"ServiceAttributeKey"},
-      "value":{"shape":"ServiceAttributeValue"},
-      "max":30,
-      "min":1
-    },
     "ServiceChange":{
       "type":"structure",
       "members":{
@@ -1684,22 +1579,6 @@
       "type":"structure",
       "members":{
         "OperationId":{"shape":"OperationId"}
-      }
-    },
-    "UpdateServiceAttributesRequest":{
-      "type":"structure",
-      "required":[
-        "ServiceId",
-        "Attributes"
-      ],
-      "members":{
-        "ServiceId":{"shape":"ResourceId"},
-        "Attributes":{"shape":"ServiceAttributesMap"}
-      }
-    },
-    "UpdateServiceAttributesResponse":{
-      "type":"structure",
-      "members":{
       }
     },
     "UpdateServiceRequest":{

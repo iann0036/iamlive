@@ -3054,8 +3054,7 @@
         "proxyConfiguration":{"shape":"ProxyConfiguration"},
         "inferenceAccelerators":{"shape":"InferenceAccelerators"},
         "ephemeralStorage":{"shape":"EphemeralStorage"},
-        "runtimePlatform":{"shape":"RuntimePlatform"},
-        "enableFaultInjection":{"shape":"BoxedBoolean"}
+        "runtimePlatform":{"shape":"RuntimePlatform"}
       }
     },
     "RegisterTaskDefinitionResponse":{
@@ -3842,8 +3841,7 @@
         "registeredAt":{"shape":"Timestamp"},
         "deregisteredAt":{"shape":"Timestamp"},
         "registeredBy":{"shape":"String"},
-        "ephemeralStorage":{"shape":"EphemeralStorage"},
-        "enableFaultInjection":{"shape":"BoxedBoolean"}
+        "ephemeralStorage":{"shape":"EphemeralStorage"}
       }
     },
     "TaskDefinitionFamilyStatus":{

@@ -1696,7 +1696,7 @@
     "UserAgent":{
       "type":"string",
       "max":500,
-      "min":1
+      "min":0
     },
     "ValidationException":{
       "type":"structure",

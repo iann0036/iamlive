@@ -7278,20 +7278,6 @@
       "max":2000,
       "min":0
     },
-    "DataQualityEncryption":{
-      "type":"structure",
-      "members":{
-        "DataQualityEncryptionMode":{"shape":"DataQualityEncryptionMode"},
-        "KmsKeyArn":{"shape":"KmsKeyArn"}
-      }
-    },
-    "DataQualityEncryptionMode":{
-      "type":"string",
-      "enum":[
-        "DISABLED",
-        "SSE-KMS"
-      ]
-    },
     "DataQualityEvaluationRunAdditionalRunOptions":{
       "type":"structure",
       "members":{
@@ -8510,8 +8496,7 @@
       "members":{
         "S3Encryption":{"shape":"S3EncryptionList"},
         "CloudWatchEncryption":{"shape":"CloudWatchEncryption"},
-        "JobBookmarksEncryption":{"shape":"JobBookmarksEncryption"},
-        "DataQualityEncryption":{"shape":"DataQualityEncryption"}
+        "JobBookmarksEncryption":{"shape":"JobBookmarksEncryption"}
       }
     },
     "Entity":{
@@ -9054,8 +9039,7 @@
         "ParentCatalogId":{"shape":"CatalogIdString"},
         "NextToken":{"shape":"Token"},
         "MaxResults":{"shape":"PageSize"},
-        "Recursive":{"shape":"Boolean"},
-        "IncludeRoot":{"shape":"NullableBoolean"}
+        "Recursive":{"shape":"Boolean"}
       }
     },
     "GetCatalogsResponse":{

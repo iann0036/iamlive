@@ -2419,9 +2419,7 @@
       "members":{
         "evaluationResult":{"shape":"EvaluationResult"},
         "error":{"shape":"EvaluateCodeErrorDetail"},
-        "logs":{"shape":"Logs"},
-        "stash":{"shape":"Stash"},
-        "outErrors":{"shape":"OutErrors"}
+        "logs":{"shape":"Logs"}
       }
     },
     "EvaluateMappingTemplateRequest":{
@@ -2440,9 +2438,7 @@
       "members":{
         "evaluationResult":{"shape":"EvaluationResult"},
         "error":{"shape":"ErrorDetail"},
-        "logs":{"shape":"Logs"},
-        "stash":{"shape":"Stash"},
-        "outErrors":{"shape":"OutErrors"}
+        "logs":{"shape":"Logs"}
       }
     },
     "EvaluationResult":{
@@ -3471,10 +3467,6 @@
         "DISABLED"
       ]
     },
-    "OutErrors":{
-      "type":"string",
-      "pattern":"^[\\s\\S]*$"
-    },
     "OutputType":{
       "type":"string",
       "enum":[
@@ -3778,10 +3770,6 @@
       "members":{
         "sourceApiAssociationStatus":{"shape":"SourceApiAssociationStatus"}
       }
-    },
-    "Stash":{
-      "type":"string",
-      "pattern":"^[\\s\\S]*$"
     },
     "String":{"type":"string"},
     "SyncConfig":{
@@ -4101,8 +4089,7 @@
       "type":"structure",
       "required":[
         "apiId",
-        "name",
-        "authenticationType"
+        "name"
       ],
       "members":{
         "apiId":{

@@ -4189,8 +4189,7 @@
       "members":{
         "S3DataType":{"shape":"AdditionalS3DataSourceDataType"},
         "S3Uri":{"shape":"S3Uri"},
-        "CompressionType":{"shape":"CompressionType"},
-        "ETag":{"shape":"String"}
+        "CompressionType":{"shape":"CompressionType"}
       }
     },
     "AdditionalS3DataSourceDataType":{
@@ -6245,7 +6244,6 @@
     },
     "ClusterInstanceCount":{
       "type":"integer",
-      "max":6758,
       "min":0
     },
     "ClusterInstanceGroupDetails":{
@@ -6403,34 +6401,7 @@
         "ml.g6e.48xlarge",
         "ml.p5e.48xlarge",
         "ml.p5en.48xlarge",
-        "ml.trn2.48xlarge",
-        "ml.c6i.large",
-        "ml.c6i.xlarge",
-        "ml.c6i.2xlarge",
-        "ml.c6i.4xlarge",
-        "ml.c6i.8xlarge",
-        "ml.c6i.12xlarge",
-        "ml.c6i.16xlarge",
-        "ml.c6i.24xlarge",
-        "ml.c6i.32xlarge",
-        "ml.m6i.large",
-        "ml.m6i.xlarge",
-        "ml.m6i.2xlarge",
-        "ml.m6i.4xlarge",
-        "ml.m6i.8xlarge",
-        "ml.m6i.12xlarge",
-        "ml.m6i.16xlarge",
-        "ml.m6i.24xlarge",
-        "ml.m6i.32xlarge",
-        "ml.r6i.large",
-        "ml.r6i.xlarge",
-        "ml.r6i.2xlarge",
-        "ml.r6i.4xlarge",
-        "ml.r6i.8xlarge",
-        "ml.r6i.12xlarge",
-        "ml.r6i.16xlarge",
-        "ml.r6i.24xlarge",
-        "ml.r6i.32xlarge"
+        "ml.trn2.48xlarge"
       ]
     },
     "ClusterLifeCycleConfig":{
@@ -6474,7 +6445,6 @@
         "ThreadsPerCore":{"shape":"ClusterThreadsPerCore"},
         "InstanceStorageConfigs":{"shape":"ClusterInstanceStorageConfigs"},
         "PrivatePrimaryIp":{"shape":"ClusterPrivatePrimaryIp"},
-        "PrivatePrimaryIpv6":{"shape":"ClusterPrivatePrimaryIpv6"},
         "PrivateDnsHostname":{"shape":"ClusterPrivateDnsHostname"},
         "Placement":{"shape":"ClusterInstancePlacement"}
       }
@@ -6545,7 +6515,6 @@
       "type":"string",
       "pattern":"^((25[0-5]|(2[0-4]|1\\d|[1-9]|)\\d)\\.?\\b){4}$"
     },
-    "ClusterPrivatePrimaryIpv6":{"type":"string"},
     "ClusterSchedulerConfigArn":{
       "type":"string",
       "max":256,
@@ -17706,11 +17675,11 @@
         "Projects",
         "InferenceOptimization",
         "PerformanceEvaluation",
+        "HyperPodClusters",
         "LakeraGuard",
         "Comet",
         "DeepchecksLLMEvaluation",
-        "Fiddler",
-        "HyperPodClusters"
+        "Fiddler"
       ]
     },
     "MlflowVersion":{
@@ -18335,8 +18304,7 @@
         "Framework":{"shape":"String"},
         "FrameworkVersion":{"shape":"ModelPackageFrameworkVersion"},
         "NearestModelName":{"shape":"String"},
-        "AdditionalS3DataSource":{"shape":"AdditionalS3DataSource"},
-        "ModelDataETag":{"shape":"String"}
+        "AdditionalS3DataSource":{"shape":"AdditionalS3DataSource"}
       }
     },
     "ModelPackageContainerDefinitionList":{
@@ -20842,7 +20810,6 @@
         "ml.inf2.48xlarge",
         "ml.p5.48xlarge",
         "ml.p5e.48xlarge",
-        "ml.p5en.48xlarge",
         "ml.m7i.large",
         "ml.m7i.xlarge",
         "ml.m7i.2xlarge",
@@ -21793,7 +21760,6 @@
         "ml.p5.48xlarge",
         "ml.p5e.48xlarge",
         "ml.p5en.48xlarge",
-        "ml.trn1.32xlarge",
         "ml.trn2.48xlarge"
       ]
     },
@@ -22178,9 +22144,7 @@
         "CompressionType":{"shape":"ModelCompressionType"},
         "ModelAccessConfig":{"shape":"ModelAccessConfig"},
         "HubAccessConfig":{"shape":"InferenceHubAccessConfig"},
-        "ManifestS3Uri":{"shape":"S3ModelUri"},
-        "ETag":{"shape":"String"},
-        "ManifestEtag":{"shape":"String"}
+        "ManifestS3Uri":{"shape":"S3ModelUri"}
       }
     },
     "S3ModelDataType":{
@@ -22808,7 +22772,6 @@
       "members":{
         "ModelDataUrl":{"shape":"Url"},
         "ModelDataSource":{"shape":"ModelDataSource"},
-        "ModelDataETag":{"shape":"String"},
         "AlgorithmName":{"shape":"ArnOrName"}
       }
     },
@@ -24555,8 +24518,6 @@
         "ml.g5.16xlarge",
         "ml.g5.24xlarge",
         "ml.g5.48xlarge",
-        "ml.trn1.2xlarge",
-        "ml.trn1.32xlarge",
         "ml.inf2.xlarge",
         "ml.inf2.8xlarge",
         "ml.inf2.24xlarge",

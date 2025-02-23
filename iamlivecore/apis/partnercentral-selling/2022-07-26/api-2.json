@@ -24,7 +24,6 @@
       "input":{"shape":"AcceptEngagementInvitationRequest"},
       "errors":[
         {"shape":"ThrottlingException"},
-        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
@@ -160,7 +159,6 @@
       "input":{"shape":"DeleteResourceSnapshotJobRequest"},
       "errors":[
         {"shape":"ThrottlingException"},
-        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
@@ -408,8 +406,7 @@
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
-        {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
+        {"shape":"ValidationException"}
       ]
     },
     "ListResourceSnapshots":{
@@ -442,22 +439,6 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
-    "ListTagsForResource":{
-      "name":"ListTagsForResource",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"ListTagsForResourceRequest"},
-      "output":{"shape":"ListTagsForResourceResponse"},
-      "errors":[
-        {"shape":"ThrottlingException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
-      ]
-    },
     "PutSellingSystemSettings":{
       "name":"PutSellingSystemSettings",
       "http":{
@@ -483,7 +464,6 @@
       "input":{"shape":"RejectEngagementInvitationRequest"},
       "errors":[
         {"shape":"ThrottlingException"},
-        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"},
@@ -570,42 +550,6 @@
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"}
       ]
-    },
-    "TagResource":{
-      "name":"TagResource",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"TagResourceRequest"},
-      "output":{"shape":"TagResourceResponse"},
-      "errors":[
-        {"shape":"ThrottlingException"},
-        {"shape":"ConflictException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
-      ],
-      "idempotent":true
-    },
-    "UntagResource":{
-      "name":"UntagResource",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"UntagResourceRequest"},
-      "output":{"shape":"UntagResourceResponse"},
-      "errors":[
-        {"shape":"ThrottlingException"},
-        {"shape":"ConflictException"},
-        {"shape":"AccessDeniedException"},
-        {"shape":"InternalServerException"},
-        {"shape":"ValidationException"},
-        {"shape":"ResourceNotFoundException"}
-      ],
-      "idempotent":true
     },
     "UpdateOpportunity":{
       "name":"UpdateOpportunity",
@@ -1520,8 +1464,7 @@
         "EngagementIdentifier":{"shape":"EngagementIdentifier"},
         "ResourceIdentifier":{"shape":"ResourceIdentifier"},
         "ResourceSnapshotTemplateIdentifier":{"shape":"ResourceTemplateName"},
-        "ResourceType":{"shape":"ResourceType"},
-        "Tags":{"shape":"TagList"}
+        "ResourceType":{"shape":"ResourceType"}
       }
     },
     "CreateResourceSnapshotJobRequestClientTokenString":{
@@ -2986,20 +2929,6 @@
         "SolutionSummaries":{"shape":"SolutionList"}
       }
     },
-    "ListTagsForResourceRequest":{
-      "type":"structure",
-      "required":["ResourceArn"],
-      "members":{
-        "ResourceArn":{"shape":"TaggableResourceArn"}
-      }
-    },
-    "ListTagsForResourceResponse":{
-      "type":"structure",
-      "required":["Tags"],
-      "members":{
-        "Tags":{"shape":"TagList"}
-      }
-    },
     "ListTasksSortBase":{
       "type":"structure",
       "required":[
@@ -3374,12 +3303,12 @@
         "EngagementConflict",
         "OpportunitySubmissionFailed",
         "EngagementInvitationConflict",
-        "InternalError",
         "OpportunityValidationFailed",
         "OpportunityConflict",
         "ResourceSnapshotAccessDenied",
         "ResourceSnapshotValidationFailed",
         "ResourceSnapshotConflict",
+        "InternalError",
         "ServiceQuotaExceeded",
         "RequestThrottled"
       ]
@@ -3726,8 +3655,7 @@
           "shape":"StartEngagementByAcceptingInvitationTaskRequestClientTokenString",
           "idempotencyToken":true
         },
-        "Identifier":{"shape":"EngagementInvitationArnOrIdentifier"},
-        "Tags":{"shape":"TagList"}
+        "Identifier":{"shape":"EngagementInvitationArnOrIdentifier"}
       }
     },
     "StartEngagementByAcceptingInvitationTaskRequestClientTokenString":{
@@ -3764,8 +3692,7 @@
           "shape":"StartEngagementFromOpportunityTaskRequestClientTokenString",
           "idempotencyToken":true
         },
-        "Identifier":{"shape":"OpportunityIdentifier"},
-        "Tags":{"shape":"TagList"}
+        "Identifier":{"shape":"OpportunityIdentifier"}
       }
     },
     "StartEngagementFromOpportunityTaskRequestClientTokenString":{
@@ -3825,63 +3752,6 @@
         "Visibility":{"shape":"Visibility"}
       }
     },
-    "Tag":{
-      "type":"structure",
-      "required":[
-        "Key",
-        "Value"
-      ],
-      "members":{
-        "Key":{"shape":"TagKey"},
-        "Value":{"shape":"TagValue"}
-      }
-    },
-    "TagKey":{
-      "type":"string",
-      "max":128,
-      "min":1,
-      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
-    },
-    "TagKeyList":{
-      "type":"list",
-      "member":{"shape":"TagKey"},
-      "max":50,
-      "min":1
-    },
-    "TagList":{
-      "type":"list",
-      "member":{"shape":"Tag"},
-      "max":200,
-      "min":1
-    },
-    "TagResourceRequest":{
-      "type":"structure",
-      "required":[
-        "ResourceArn",
-        "Tags"
-      ],
-      "members":{
-        "ResourceArn":{"shape":"TaggableResourceArn"},
-        "Tags":{"shape":"TagList"}
-      }
-    },
-    "TagResourceResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "TagValue":{
-      "type":"string",
-      "max":256,
-      "min":0,
-      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
-    },
-    "TaggableResourceArn":{
-      "type":"string",
-      "max":1000,
-      "min":1,
-      "pattern":"^arn:[\\w+=/,.@-]+:partnercentral:[\\w+=/,.@-]*:[0-9]{12}:catalog/([a-zA-Z]+)/[\\w+=,.@-]+(/[\\w+=,.@-]+)*$"
-    },
     "TaskArn":{
       "type":"string",
       "pattern":"^arn:.*"
@@ -3920,22 +3790,6 @@
         "Message":{"shape":"String"}
       },
       "exception":true
-    },
-    "UntagResourceRequest":{
-      "type":"structure",
-      "required":[
-        "ResourceArn",
-        "TagKeys"
-      ],
-      "members":{
-        "ResourceArn":{"shape":"TaggableResourceArn"},
-        "TagKeys":{"shape":"TagKeyList"}
-      }
-    },
-    "UntagResourceResponse":{
-      "type":"structure",
-      "members":{
-      }
     },
     "UpdateOpportunityRequest":{
       "type":"structure",

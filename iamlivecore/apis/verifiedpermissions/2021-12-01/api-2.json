@@ -737,10 +737,6 @@
       "box":true,
       "sensitive":true
     },
-    "CedarJson":{
-      "type":"string",
-      "sensitive":true
-    },
     "Claim":{
       "type":"string",
       "min":1,
@@ -854,8 +850,7 @@
     "ContextDefinition":{
       "type":"structure",
       "members":{
-        "contextMap":{"shape":"ContextMap"},
-        "cedarJson":{"shape":"CedarJson"}
+        "contextMap":{"shape":"ContextMap"}
       },
       "union":true
     },
@@ -1084,8 +1079,7 @@
     "EntitiesDefinition":{
       "type":"structure",
       "members":{
-        "entityList":{"shape":"EntityList"},
-        "cedarJson":{"shape":"CedarJson"}
+        "entityList":{"shape":"EntityList"}
       },
       "union":true
     },

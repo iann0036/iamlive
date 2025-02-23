@@ -2974,7 +2974,6 @@
       "type":"structure",
       "members":{
         "PointInTimeRecoveryStatus":{"shape":"PointInTimeRecoveryStatus"},
-        "RecoveryPeriodInDays":{"shape":"RecoveryPeriodInDays"},
         "EarliestRestorableDateTime":{"shape":"Date"},
         "LatestRestorableDateTime":{"shape":"Date"}
       }
@@ -2983,8 +2982,7 @@
       "type":"structure",
       "required":["PointInTimeRecoveryEnabled"],
       "members":{
-        "PointInTimeRecoveryEnabled":{"shape":"BooleanObject"},
-        "RecoveryPeriodInDays":{"shape":"RecoveryPeriodInDays"}
+        "PointInTimeRecoveryEnabled":{"shape":"BooleanObject"}
       }
     },
     "PointInTimeRecoveryStatus":{
@@ -3186,11 +3184,6 @@
         "LastEvaluatedKey":{"shape":"Key"},
         "ConsumedCapacity":{"shape":"ConsumedCapacity"}
       }
-    },
-    "RecoveryPeriodInDays":{
-      "type":"integer",
-      "max":35,
-      "min":1
     },
     "RegionName":{"type":"string"},
     "Replica":{

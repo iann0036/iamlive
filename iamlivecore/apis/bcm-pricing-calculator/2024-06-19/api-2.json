@@ -83,7 +83,6 @@
       "input":{"shape":"BatchDeleteBillScenarioCommitmentModificationRequest"},
       "output":{"shape":"BatchDeleteBillScenarioCommitmentModificationResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"DataUnavailableException"},
         {"shape":"InternalServerException"},
@@ -102,7 +101,6 @@
       "input":{"shape":"BatchDeleteBillScenarioUsageModificationRequest"},
       "output":{"shape":"BatchDeleteBillScenarioUsageModificationResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"DataUnavailableException"},
         {"shape":"ServiceQuotaExceededException"},
@@ -141,7 +139,6 @@
       "input":{"shape":"BatchUpdateBillScenarioCommitmentModificationRequest"},
       "output":{"shape":"BatchUpdateBillScenarioCommitmentModificationResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"DataUnavailableException"},
         {"shape":"InternalServerException"},
@@ -160,7 +157,6 @@
       "input":{"shape":"BatchUpdateBillScenarioUsageModificationRequest"},
       "output":{"shape":"BatchUpdateBillScenarioUsageModificationResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"DataUnavailableException"},
         {"shape":"ServiceQuotaExceededException"},
@@ -256,7 +252,6 @@
       "input":{"shape":"DeleteBillEstimateRequest"},
       "output":{"shape":"DeleteBillEstimateResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"DataUnavailableException"},
         {"shape":"InternalServerException"},
@@ -274,7 +269,6 @@
       "input":{"shape":"DeleteBillScenarioRequest"},
       "output":{"shape":"DeleteBillScenarioResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"DataUnavailableException"},
         {"shape":"InternalServerException"},

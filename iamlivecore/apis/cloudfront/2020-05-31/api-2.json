@@ -9937,9 +9937,7 @@
       "type":"structure",
       "required":["VpcOriginId"],
       "members":{
-        "VpcOriginId":{"shape":"string"},
-        "OriginReadTimeout":{"shape":"integer"},
-        "OriginKeepaliveTimeout":{"shape":"integer"}
+        "VpcOriginId":{"shape":"string"}
       }
     },
     "VpcOriginEndpointConfig":{

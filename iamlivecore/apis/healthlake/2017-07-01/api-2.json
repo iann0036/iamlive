@@ -229,7 +229,6 @@
       "type":"string",
       "enum":[
         "SMART_ON_FHIR_V1",
-        "SMART_ON_FHIR",
         "AWS_AUTH"
       ]
     },
@@ -569,7 +568,6 @@
       "type":"string",
       "enum":[
         "SUBMITTED",
-        "QUEUED",
         "IN_PROGRESS",
         "COMPLETED_WITH_ERRORS",
         "COMPLETED",
@@ -734,7 +732,8 @@
       "required":[
         "OutputDataConfig",
         "DatastoreId",
-        "DataAccessRoleArn"
+        "DataAccessRoleArn",
+        "ClientToken"
       ],
       "members":{
         "JobName":{"shape":"JobName"},
@@ -765,7 +764,8 @@
         "InputDataConfig",
         "JobOutputDataConfig",
         "DatastoreId",
-        "DataAccessRoleArn"
+        "DataAccessRoleArn",
+        "ClientToken"
       ],
       "members":{
         "JobName":{"shape":"JobName"},

@@ -1835,10 +1835,6 @@
           "shape": "__string",
           "locationName": "multicastIp"
         },
-        "MulticastSourceSettings": {
-          "shape": "MulticastSourceSettings",
-          "locationName": "multicastSourceSettings"
-        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -2258,15 +2254,6 @@
         "aes256"
       ]
     },
-    "AudioMonitoringSetting": {
-      "type": "structure",
-      "members": {
-        "SilentAudio": {
-          "shape": "SilentAudio",
-          "locationName": "silentAudio"
-        }
-      }
-    },
     "BadRequestException": {
       "type": "structure",
       "members": {
@@ -2281,19 +2268,6 @@
       "exception": true,
       "error": {
         "httpStatusCode": 400
-      }
-    },
-    "BlackFrames": {
-      "type": "structure",
-      "members": {
-        "State": {
-          "shape": "State",
-          "locationName": "state"
-        },
-        "ThresholdSeconds": {
-          "shape": "__integer",
-          "locationName": "thresholdSeconds"
-        }
       }
     },
     "Bridge": {
@@ -2438,10 +2412,6 @@
           "shape": "__string",
           "locationName": "multicastIp"
         },
-        "MulticastSourceSettings": {
-          "shape": "MulticastSourceSettings",
-          "locationName": "multicastSourceSettings"
-        },
         "Name": {
           "shape": "__string",
           "locationName": "name"
@@ -2550,13 +2520,6 @@
       "enum": [
         "CONNECTED",
         "DISCONNECTED"
-      ]
-    },
-    "ContentQualityAnalysisState": {
-      "type": "string",
-      "enum": [
-        "ENABLED",
-        "DISABLED"
       ]
     },
     "CreateBridge420Exception": {
@@ -3465,19 +3428,6 @@
         "FrameWidth",
         "FrameHeight"
       ]
-    },
-    "FrozenFrames": {
-      "type": "structure",
-      "members": {
-        "State": {
-          "shape": "State",
-          "locationName": "state"
-        },
-        "ThresholdSeconds": {
-          "shape": "__integer",
-          "locationName": "thresholdSeconds"
-        }
-      }
     },
     "Gateway": {
       "type": "structure",
@@ -4422,27 +4372,6 @@
         "ThumbnailState": {
           "shape": "ThumbnailState",
           "locationName": "thumbnailState"
-        },
-        "AudioMonitoringSettings": {
-          "shape": "__listOfAudioMonitoringSetting",
-          "locationName": "audioMonitoringSettings"
-        },
-        "ContentQualityAnalysisState": {
-          "shape": "ContentQualityAnalysisState",
-          "locationName": "contentQualityAnalysisState"
-        },
-        "VideoMonitoringSettings": {
-          "shape": "__listOfVideoMonitoringSetting",
-          "locationName": "videoMonitoringSettings"
-        }
-      }
-    },
-    "MulticastSourceSettings": {
-      "type": "structure",
-      "members": {
-        "MulticastSourceIp": {
-          "shape": "__string",
-          "locationName": "multicastSourceIp"
         }
       }
     },
@@ -5134,19 +5063,6 @@
         }
       }
     },
-    "SilentAudio": {
-      "type": "structure",
-      "members": {
-        "State": {
-          "shape": "State",
-          "locationName": "state"
-        },
-        "ThresholdSeconds": {
-          "shape": "__integer",
-          "locationName": "thresholdSeconds"
-        }
-      }
-    },
     "Source": {
       "type": "structure",
       "members": {
@@ -5597,10 +5513,6 @@
         "MulticastIp": {
           "shape": "__string",
           "locationName": "multicastIp"
-        },
-        "MulticastSourceSettings": {
-          "shape": "MulticastSourceSettings",
-          "locationName": "multicastSourceSettings"
         },
         "NetworkName": {
           "shape": "__string",
@@ -6250,19 +6162,6 @@
         }
       }
     },
-    "VideoMonitoringSetting": {
-      "type": "structure",
-      "members": {
-        "BlackFrames": {
-          "shape": "BlackFrames",
-          "locationName": "blackFrames"
-        },
-        "FrozenFrames": {
-          "shape": "FrozenFrames",
-          "locationName": "frozenFrames"
-        }
-      }
-    },
     "VpcInterface": {
       "type": "structure",
       "members": {
@@ -6371,12 +6270,6 @@
       "type": "list",
       "member": {
         "shape": "AddOutputRequest"
-      }
-    },
-    "__listOfAudioMonitoringSetting": {
-      "type": "list",
-      "member": {
-        "shape": "AudioMonitoringSetting"
       }
     },
     "__listOfBridgeOutput": {
@@ -6539,12 +6432,6 @@
       "type": "list",
       "member": {
         "shape": "TransportStreamProgram"
-      }
-    },
-    "__listOfVideoMonitoringSetting": {
-      "type": "list",
-      "member": {
-        "shape": "VideoMonitoringSetting"
       }
     },
     "__listOfVpcInterface": {

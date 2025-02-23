@@ -525,7 +525,6 @@
       "members":{
         "DeliveryStreamName":{"shape":"DeliveryStreamName"},
         "DeliveryStreamType":{"shape":"DeliveryStreamType"},
-        "DirectPutSourceConfiguration":{"shape":"DirectPutSourceConfiguration"},
         "KinesisStreamSourceConfiguration":{"shape":"KinesisStreamSourceConfiguration"},
         "DeliveryStreamEncryptionConfigurationInput":{"shape":"DeliveryStreamEncryptionConfigurationInput"},
         "S3DestinationConfiguration":{
@@ -946,19 +945,6 @@
     "DestinationTableConfigurationList":{
       "type":"list",
       "member":{"shape":"DestinationTableConfiguration"}
-    },
-    "DirectPutSourceConfiguration":{
-      "type":"structure",
-      "required":["ThroughputHintInMBs"],
-      "members":{
-        "ThroughputHintInMBs":{"shape":"ThroughputHintInMBs"}
-      }
-    },
-    "DirectPutSourceDescription":{
-      "type":"structure",
-      "members":{
-        "ThroughputHintInMBs":{"shape":"ThroughputHintInMBs"}
-      }
     },
     "DocumentIdOptions":{
       "type":"structure",
@@ -1417,7 +1403,6 @@
         "S3BackupMode":{"shape":"IcebergS3BackupMode"},
         "RetryOptions":{"shape":"RetryOptions"},
         "RoleARN":{"shape":"RoleARN"},
-        "AppendOnly":{"shape":"BooleanObject"},
         "CatalogConfiguration":{"shape":"CatalogConfiguration"},
         "S3Configuration":{"shape":"S3DestinationConfiguration"}
       }
@@ -1434,7 +1419,6 @@
         "S3BackupMode":{"shape":"IcebergS3BackupMode"},
         "RetryOptions":{"shape":"RetryOptions"},
         "RoleARN":{"shape":"RoleARN"},
-        "AppendOnly":{"shape":"BooleanObject"},
         "CatalogConfiguration":{"shape":"CatalogConfiguration"},
         "S3DestinationDescription":{"shape":"S3DestinationDescription"}
       }
@@ -1451,7 +1435,6 @@
         "S3BackupMode":{"shape":"IcebergS3BackupMode"},
         "RetryOptions":{"shape":"RetryOptions"},
         "RoleARN":{"shape":"RoleARN"},
-        "AppendOnly":{"shape":"BooleanObject"},
         "CatalogConfiguration":{"shape":"CatalogConfiguration"},
         "S3Configuration":{"shape":"S3DestinationConfiguration"}
       }
@@ -2384,7 +2367,6 @@
     "SourceDescription":{
       "type":"structure",
       "members":{
-        "DirectPutSourceDescription":{"shape":"DirectPutSourceDescription"},
         "KinesisStreamSourceDescription":{"shape":"KinesisStreamSourceDescription"},
         "MSKSourceDescription":{"shape":"MSKSourceDescription"},
         "DatabaseSourceDescription":{"shape":"DatabaseSourceDescription"}
@@ -2569,11 +2551,6 @@
       "max":256,
       "min":0,
       "pattern":"^[\\p{L}\\p{Z}\\p{N}_.:\\/=+\\-@%]*$"
-    },
-    "ThroughputHintInMBs":{
-      "type":"integer",
-      "max":100,
-      "min":1
     },
     "Timestamp":{"type":"timestamp"},
     "TopicName":{

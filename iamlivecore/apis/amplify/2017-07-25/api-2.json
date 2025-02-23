@@ -640,9 +640,7 @@
         "autoBranchCreationPatterns":{"shape":"AutoBranchCreationPatterns"},
         "autoBranchCreationConfig":{"shape":"AutoBranchCreationConfig"},
         "repositoryCloneMethod":{"shape":"RepositoryCloneMethod"},
-        "cacheConfig":{"shape":"CacheConfig"},
-        "webhookCreateTime":{"shape":"webhookCreateTime"},
-        "wafConfiguration":{"shape":"WafConfiguration"}
+        "cacheConfig":{"shape":"CacheConfig"}
       }
     },
     "AppArn":{
@@ -1661,7 +1659,6 @@
     "JobStatus":{
       "type":"string",
       "enum":[
-        "CREATED",
         "PENDING",
         "PROVISIONING",
         "RUNNING",
@@ -2536,30 +2533,6 @@
       "max":1000
     },
     "Verified":{"type":"boolean"},
-    "WafConfiguration":{
-      "type":"structure",
-      "members":{
-        "webAclArn":{"shape":"WebAclArn"},
-        "wafStatus":{"shape":"WafStatus"},
-        "statusReason":{"shape":"StatusReason"}
-      }
-    },
-    "WafStatus":{
-      "type":"string",
-      "enum":[
-        "ASSOCIATING",
-        "ASSOCIATION_FAILED",
-        "ASSOCIATION_SUCCESS",
-        "DISASSOCIATING",
-        "DISASSOCIATION_FAILED"
-      ]
-    },
-    "WebAclArn":{
-      "type":"string",
-      "max":512,
-      "min":0,
-      "pattern":"^arn:aws:wafv2:.*"
-    },
     "Webhook":{
       "type":"structure",
       "required":[
@@ -2597,7 +2570,6 @@
     "Webhooks":{
       "type":"list",
       "member":{"shape":"Webhook"}
-    },
-    "webhookCreateTime":{"type":"timestamp"}
+    }
   }
 }

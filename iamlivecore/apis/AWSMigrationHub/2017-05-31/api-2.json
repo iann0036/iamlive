@@ -55,25 +55,6 @@
         {"shape":"HomeRegionNotSetException"}
       ]
     },
-    "AssociateSourceResource":{
-      "name":"AssociateSourceResource",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"AssociateSourceResourceRequest"},
-      "output":{"shape":"AssociateSourceResourceResult"},
-      "errors":[
-        {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"InternalServerError"},
-        {"shape":"ServiceUnavailableException"},
-        {"shape":"DryRunOperation"},
-        {"shape":"UnauthorizedOperation"},
-        {"shape":"InvalidInputException"},
-        {"shape":"ResourceNotFoundException"}
-      ]
-    },
     "CreateProgressUpdateStream":{
       "name":"CreateProgressUpdateStream",
       "http":{
@@ -190,25 +171,6 @@
         {"shape":"HomeRegionNotSetException"}
       ]
     },
-    "DisassociateSourceResource":{
-      "name":"DisassociateSourceResource",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"DisassociateSourceResourceRequest"},
-      "output":{"shape":"DisassociateSourceResourceResult"},
-      "errors":[
-        {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"InternalServerError"},
-        {"shape":"ServiceUnavailableException"},
-        {"shape":"DryRunOperation"},
-        {"shape":"UnauthorizedOperation"},
-        {"shape":"InvalidInputException"},
-        {"shape":"ResourceNotFoundException"}
-      ]
-    },
     "ImportMigrationTask":{
       "name":"ImportMigrationTask",
       "http":{
@@ -282,23 +244,6 @@
         {"shape":"HomeRegionNotSetException"}
       ]
     },
-    "ListMigrationTaskUpdates":{
-      "name":"ListMigrationTaskUpdates",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"ListMigrationTaskUpdatesRequest"},
-      "output":{"shape":"ListMigrationTaskUpdatesResult"},
-      "errors":[
-        {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"InternalServerError"},
-        {"shape":"ServiceUnavailableException"},
-        {"shape":"InvalidInputException"},
-        {"shape":"ResourceNotFoundException"}
-      ]
-    },
     "ListMigrationTasks":{
       "name":"ListMigrationTasks",
       "http":{
@@ -333,23 +278,6 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"InvalidInputException"},
         {"shape":"HomeRegionNotSetException"}
-      ]
-    },
-    "ListSourceResources":{
-      "name":"ListSourceResources",
-      "http":{
-        "method":"POST",
-        "requestUri":"/"
-      },
-      "input":{"shape":"ListSourceResourcesRequest"},
-      "output":{"shape":"ListSourceResourcesResult"},
-      "errors":[
-        {"shape":"AccessDeniedException"},
-        {"shape":"ThrottlingException"},
-        {"shape":"InternalServerError"},
-        {"shape":"ServiceUnavailableException"},
-        {"shape":"InvalidInputException"},
-        {"shape":"ResourceNotFoundException"}
       ]
     },
     "NotifyApplicationState":{
@@ -494,25 +422,6 @@
       "members":{
       }
     },
-    "AssociateSourceResourceRequest":{
-      "type":"structure",
-      "required":[
-        "ProgressUpdateStream",
-        "MigrationTaskName",
-        "SourceResource"
-      ],
-      "members":{
-        "ProgressUpdateStream":{"shape":"ProgressUpdateStream"},
-        "MigrationTaskName":{"shape":"MigrationTaskName"},
-        "SourceResource":{"shape":"SourceResource"},
-        "DryRun":{"shape":"DryRun"}
-      }
-    },
-    "AssociateSourceResourceResult":{
-      "type":"structure",
-      "members":{
-      }
-    },
     "ConfigurationId":{
       "type":"string",
       "max":1600,
@@ -634,25 +543,6 @@
       }
     },
     "DisassociateDiscoveredResourceResult":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "DisassociateSourceResourceRequest":{
-      "type":"structure",
-      "required":[
-        "ProgressUpdateStream",
-        "MigrationTaskName",
-        "SourceResourceName"
-      ],
-      "members":{
-        "ProgressUpdateStream":{"shape":"ProgressUpdateStream"},
-        "MigrationTaskName":{"shape":"MigrationTaskName"},
-        "SourceResourceName":{"shape":"SourceResourceName"},
-        "DryRun":{"shape":"DryRun"}
-      }
-    },
-    "DisassociateSourceResourceResult":{
       "type":"structure",
       "members":{
       }
@@ -784,26 +674,6 @@
         "DiscoveredResourceList":{"shape":"DiscoveredResourceList"}
       }
     },
-    "ListMigrationTaskUpdatesRequest":{
-      "type":"structure",
-      "required":[
-        "ProgressUpdateStream",
-        "MigrationTaskName"
-      ],
-      "members":{
-        "ProgressUpdateStream":{"shape":"ProgressUpdateStream"},
-        "MigrationTaskName":{"shape":"MigrationTaskName"},
-        "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"MaxResults"}
-      }
-    },
-    "ListMigrationTaskUpdatesResult":{
-      "type":"structure",
-      "members":{
-        "NextToken":{"shape":"Token"},
-        "MigrationTaskUpdateList":{"shape":"MigrationTaskUpdateList"}
-      }
-    },
     "ListMigrationTasksRequest":{
       "type":"structure",
       "members":{
@@ -833,26 +703,6 @@
         "NextToken":{"shape":"Token"}
       }
     },
-    "ListSourceResourcesRequest":{
-      "type":"structure",
-      "required":[
-        "ProgressUpdateStream",
-        "MigrationTaskName"
-      ],
-      "members":{
-        "ProgressUpdateStream":{"shape":"ProgressUpdateStream"},
-        "MigrationTaskName":{"shape":"MigrationTaskName"},
-        "NextToken":{"shape":"Token"},
-        "MaxResults":{"shape":"MaxResultsSourceResources"}
-      }
-    },
-    "ListSourceResourcesResult":{
-      "type":"structure",
-      "members":{
-        "NextToken":{"shape":"Token"},
-        "SourceResourceList":{"shape":"SourceResourceList"}
-      }
-    },
     "MaxResults":{
       "type":"integer",
       "box":true,
@@ -866,12 +716,6 @@
       "min":1
     },
     "MaxResultsResources":{
-      "type":"integer",
-      "box":true,
-      "max":10,
-      "min":1
-    },
-    "MaxResultsSourceResources":{
       "type":"integer",
       "box":true,
       "max":10,
@@ -907,18 +751,6 @@
     "MigrationTaskSummaryList":{
       "type":"list",
       "member":{"shape":"MigrationTaskSummary"}
-    },
-    "MigrationTaskUpdate":{
-      "type":"structure",
-      "members":{
-        "UpdateDateTime":{"shape":"UpdateDateTime"},
-        "UpdateType":{"shape":"UpdateType"},
-        "MigrationTaskState":{"shape":"Task"}
-      }
-    },
-    "MigrationTaskUpdateList":{
-      "type":"list",
-      "member":{"shape":"MigrationTaskUpdate"}
     },
     "NextUpdateSeconds":{
       "type":"integer",
@@ -1073,30 +905,6 @@
       "exception":true,
       "fault":true
     },
-    "SourceResource":{
-      "type":"structure",
-      "required":["Name"],
-      "members":{
-        "Name":{"shape":"SourceResourceName"},
-        "Description":{"shape":"SourceResourceDescription"},
-        "StatusDetail":{"shape":"StatusDetail"}
-      }
-    },
-    "SourceResourceDescription":{
-      "type":"string",
-      "max":500,
-      "min":0,
-      "pattern":"^.{0,500}$"
-    },
-    "SourceResourceList":{
-      "type":"list",
-      "member":{"shape":"SourceResource"}
-    },
-    "SourceResourceName":{
-      "type":"string",
-      "max":1600,
-      "min":1
-    },
     "Status":{
       "type":"string",
       "enum":[
@@ -1108,9 +916,9 @@
     },
     "StatusDetail":{
       "type":"string",
-      "max":2500,
+      "max":500,
       "min":0,
-      "pattern":"^.{0,2500}$"
+      "pattern":"^.{0,500}$"
     },
     "Task":{
       "type":"structure",
@@ -1143,10 +951,6 @@
       },
       "exception":true
     },
-    "UpdateDateTime":{"type":"timestamp"},
-    "UpdateType":{
-      "type":"string",
-      "enum":["MIGRATION_TASK_STATE_UPDATED"]
-    }
+    "UpdateDateTime":{"type":"timestamp"}
   }
 }

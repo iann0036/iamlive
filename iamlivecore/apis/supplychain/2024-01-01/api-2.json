@@ -599,7 +599,6 @@
         "instanceName":{"shape":"InstanceName"},
         "instanceDescription":{"shape":"InstanceDescription"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
-        "webAppDnsDomain":{"shape":"InstanceWebAppDnsDomain"},
         "tags":{"shape":"TagMap"},
         "clientToken":{
           "shape":"ClientToken",
@@ -1214,7 +1213,7 @@
     },
     "InstanceWebAppDnsDomain":{
       "type":"string",
-      "pattern":"(?![-])[a-zA-Z0-9-]{1,62}[a-zA-Z0-9]"
+      "pattern":"[A-Za-z0-9]+(.[A-Za-z0-9]+)+"
     },
     "InternalServerException":{
       "type":"structure",

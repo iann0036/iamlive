@@ -806,8 +806,7 @@
       "type":"structure",
       "members":{
         "maximumBuildsAllowed":{"shape":"WrapperInt"},
-        "computeTypesAllowed":{"shape":"ComputeTypesAllowed"},
-        "fleetsAllowed":{"shape":"FleetsAllowed"}
+        "computeTypesAllowed":{"shape":"ComputeTypesAllowed"}
       }
     },
     "Boolean":{"type":"boolean"},
@@ -1636,10 +1635,6 @@
       "member":{"shape":"Fleet"},
       "max":100,
       "min":1
-    },
-    "FleetsAllowed":{
-      "type":"list",
-      "member":{"shape":"NonEmptyString"}
     },
     "GetReportGroupTrendInput":{
       "type":"structure",
@@ -2976,8 +2971,7 @@
       "type":"string",
       "enum":[
         "BUILD",
-        "BUILD_BATCH",
-        "RUNNER_BUILDKITE_BUILD"
+        "BUILD_BATCH"
       ]
     },
     "WebhookFilter":{

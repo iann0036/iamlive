@@ -1000,8 +1000,7 @@
       "members":{
         "dataSource":{"shape":"S3ConfigMap"},
         "roleArn":{"shape":"IamRoleArn"},
-        "sqlParameters":{"shape":"ProtectedQuerySQLParameters"},
-        "sqlComputeConfiguration":{"shape":"ComputeConfiguration"}
+        "sqlParameters":{"shape":"ProtectedQuerySQLParameters"}
       }
     },
     "AudienceGenerationJobList":{

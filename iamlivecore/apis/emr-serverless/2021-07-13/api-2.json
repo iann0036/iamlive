@@ -599,7 +599,7 @@
     },
     "EntryPointPath":{
       "type":"string",
-      "max":4096,
+      "max":256,
       "min":1,
       "pattern":".*\\S.*",
       "sensitive":true
@@ -643,11 +643,6 @@
           "shape":"AttemptNumber",
           "location":"querystring",
           "locationName":"attempt"
-        },
-        "accessSystemProfileLogs":{
-          "shape":"Boolean",
-          "location":"querystring",
-          "locationName":"accessSystemProfileLogs"
         }
       }
     },
@@ -732,7 +727,7 @@
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"([0-9]{12})\\.dkr\\.ecr\\.([a-z0-9-]+).([a-z0-9._-]+)\\/((?:[a-z0-9]+(?:[-._][a-z0-9]+)*/)*[a-z0-9]+(?:[-._][a-z0-9]+)*)(?::([a-zA-Z0-9_]+[a-zA-Z0-9-._]*)|@(sha256:[0-9a-f]{64}))"
+      "pattern":"([a-z0-9]+[a-z0-9-.]*)\\/((?:[a-z0-9]+(?:[._-][a-z0-9]+)*\\/)*[a-z0-9]+(?:[._-][a-z0-9]+)*)(?:\\:([a-zA-Z0-9_][a-zA-Z0-9-._]{0,299})|@(sha256:[0-9a-f]{64}))"
     },
     "InitScriptPath":{
       "type":"string",

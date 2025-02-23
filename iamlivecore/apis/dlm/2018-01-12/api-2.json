@@ -609,8 +609,7 @@
       "type":"string",
       "enum":[
         "CLOUD",
-        "OUTPOST_LOCAL",
-        "LOCAL_ZONE"
+        "OUTPOST_LOCAL"
       ]
     },
     "NoReboot":{"type":"boolean"},
@@ -695,8 +694,7 @@
       "type":"string",
       "enum":[
         "CLOUD",
-        "OUTPOST",
-        "LOCAL_ZONE"
+        "OUTPOST"
       ]
     },
     "ResourceNotFoundException":{

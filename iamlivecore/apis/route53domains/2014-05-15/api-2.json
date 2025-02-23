@@ -1353,7 +1353,7 @@
     },
     "LangCode":{
       "type":"string",
-      "pattern":"|[A-Za-z]{2,3}"
+      "max":3
     },
     "ListDomainsAttributeName":{
       "type":"string",
@@ -1512,14 +1512,13 @@
         "INTERNAL_TRANSFER_OUT_DOMAIN",
         "INTERNAL_TRANSFER_IN_DOMAIN",
         "RELEASE_TO_GANDI",
-        "TRANSFER_ON_RENEW",
-        "RESTORE_DOMAIN"
+        "TRANSFER_ON_RENEW"
       ]
     },
     "OperationTypeList":{
       "type":"list",
       "member":{"shape":"OperationType"},
-      "max":21
+      "max":20
     },
     "Operator":{
       "type":"string",
@@ -1541,10 +1540,7 @@
       "type":"string",
       "sensitive":true
     },
-    "Price":{
-      "type":"double",
-      "min":0.0
-    },
+    "Price":{"type":"double"},
     "PriceWithCurrency":{
       "type":"structure",
       "required":[

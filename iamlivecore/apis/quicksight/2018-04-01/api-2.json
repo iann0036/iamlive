@@ -6922,8 +6922,7 @@
         "Tags":{"shape":"TagList"},
         "DataSetUsageConfiguration":{"shape":"DataSetUsageConfiguration"},
         "DatasetParameters":{"shape":"DatasetParameterList"},
-        "FolderArns":{"shape":"FolderArnList"},
-        "PerformanceConfiguration":{"shape":"PerformanceConfiguration"}
+        "FolderArns":{"shape":"FolderArnList"}
       }
     },
     "CreateDataSetResponse":{
@@ -8258,8 +8257,7 @@
         "RowLevelPermissionTagConfiguration":{"shape":"RowLevelPermissionTagConfiguration"},
         "ColumnLevelPermissionRules":{"shape":"ColumnLevelPermissionRuleList"},
         "DataSetUsageConfiguration":{"shape":"DataSetUsageConfiguration"},
-        "DatasetParameters":{"shape":"DatasetParameterList"},
-        "PerformanceConfiguration":{"shape":"PerformanceConfiguration"}
+        "DatasetParameters":{"shape":"DatasetParameterList"}
       }
     },
     "DataSetArnsList":{
@@ -11830,13 +11828,6 @@
         "SourceField":{"shape":"FieldId"},
         "SourceColumn":{"shape":"ColumnIdentifier"}
       }
-    },
-    "DigitGroupingStyle":{
-      "type":"string",
-      "enum":[
-        "DEFAULT",
-        "LAKHS"
-      ]
     },
     "DimensionField":{
       "type":"structure",
@@ -17001,9 +16992,7 @@
         "THOUSANDS",
         "MILLIONS",
         "BILLIONS",
-        "TRILLIONS",
-        "LAKHS",
-        "CRORES"
+        "TRILLIONS"
       ]
     },
     "NumericAxisOptions":{
@@ -17523,12 +17512,6 @@
       "type":"double",
       "max":100,
       "min":0
-    },
-    "PerformanceConfiguration":{
-      "type":"structure",
-      "members":{
-        "UniqueKeys":{"shape":"UniqueKeyList"}
-      }
     },
     "PeriodOverPeriodComputation":{
       "type":"structure",
@@ -20995,7 +20978,7 @@
     "TableFieldOptionList":{
       "type":"list",
       "member":{"shape":"TableFieldOption"},
-      "max":201
+      "max":100
     },
     "TableFieldOptions":{
       "type":"structure",
@@ -21116,15 +21099,10 @@
         "SCROLLED"
       ]
     },
-    "TableUnaggregatedFieldList":{
-      "type":"list",
-      "member":{"shape":"UnaggregatedField"},
-      "max":201
-    },
     "TableUnaggregatedFieldWells":{
       "type":"structure",
       "members":{
-        "Values":{"shape":"TableUnaggregatedFieldList"}
+        "Values":{"shape":"UnaggregatedFieldList"}
       }
     },
     "TableVisual":{
@@ -21529,8 +21507,7 @@
       "type":"structure",
       "members":{
         "Symbol":{"shape":"NumericSeparatorSymbol"},
-        "Visibility":{"shape":"Visibility"},
-        "GroupingStyle":{"shape":"DigitGroupingStyle"}
+        "Visibility":{"shape":"Visibility"}
       }
     },
     "ThrottlingException":{
@@ -22521,25 +22498,6 @@
       "type":"string",
       "pattern":"^[^\\u0000-\\u00FF]$"
     },
-    "UniqueKey":{
-      "type":"structure",
-      "required":["ColumnNames"],
-      "members":{
-        "ColumnNames":{"shape":"UniqueKeyColumnNameList"}
-      }
-    },
-    "UniqueKeyColumnNameList":{
-      "type":"list",
-      "member":{"shape":"ColumnName"},
-      "max":1,
-      "min":1
-    },
-    "UniqueKeyList":{
-      "type":"list",
-      "member":{"shape":"UniqueKey"},
-      "max":1,
-      "min":1
-    },
     "UniqueValuesComputation":{
       "type":"structure",
       "required":["ComputationId"],
@@ -23112,8 +23070,7 @@
         "RowLevelPermissionTagConfiguration":{"shape":"RowLevelPermissionTagConfiguration"},
         "ColumnLevelPermissionRules":{"shape":"ColumnLevelPermissionRuleList"},
         "DataSetUsageConfiguration":{"shape":"DataSetUsageConfiguration"},
-        "DatasetParameters":{"shape":"DatasetParameterList"},
-        "PerformanceConfiguration":{"shape":"PerformanceConfiguration"}
+        "DatasetParameters":{"shape":"DatasetParameterList"}
       }
     },
     "UpdateDataSetResponse":{

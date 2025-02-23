@@ -322,11 +322,6 @@
       },
       "sensitive":true
     },
-    "ClusterIndex":{
-      "type":"integer",
-      "box":true,
-      "min":0
-    },
     "Corridor":{
       "type":"structure",
       "required":[
@@ -902,7 +897,6 @@
       "required":["Origin"],
       "members":{
         "Avoid":{"shape":"WaypointOptimizationAvoidanceOptions"},
-        "Clustering":{"shape":"WaypointOptimizationClusteringOptions"},
         "DepartureTime":{"shape":"TimestampWithTimezoneOffset"},
         "Destination":{"shape":"Position"},
         "DestinationOptions":{"shape":"WaypointOptimizationDestinationOptions"},
@@ -1461,8 +1455,7 @@
         "NoSchedule",
         "Other",
         "ViolatedAvoidFerry",
-        "ViolatedAvoidRailFerry",
-        "SeasonalClosure"
+        "ViolatedAvoidRailFerry"
       ]
     },
     "RouteFerryNoticeList":{
@@ -1652,8 +1645,7 @@
         "Ferry",
         "Pedestrian",
         "Scooter",
-        "Truck",
-        "CarShuttleTrain"
+        "Truck"
       ]
     },
     "RouteLegType":{
@@ -3700,21 +3692,6 @@
       "max":20,
       "min":0
     },
-    "WaypointOptimizationClusteringAlgorithm":{
-      "type":"string",
-      "enum":[
-        "DrivingDistance",
-        "TopologySegment"
-      ]
-    },
-    "WaypointOptimizationClusteringOptions":{
-      "type":"structure",
-      "required":["Algorithm"],
-      "members":{
-        "Algorithm":{"shape":"WaypointOptimizationClusteringAlgorithm"},
-        "DrivingDistanceOptions":{"shape":"WaypointOptimizationDrivingDistanceOptions"}
-      }
-    },
     "WaypointOptimizationConnection":{
       "type":"structure",
       "required":[
@@ -3766,13 +3743,6 @@
         "RestCycles":{"shape":"WaypointOptimizationRestCycles"},
         "RestProfile":{"shape":"WaypointOptimizationRestProfile"},
         "TreatServiceTimeAs":{"shape":"WaypointOptimizationServiceTimeTreatment"}
-      }
-    },
-    "WaypointOptimizationDrivingDistanceOptions":{
-      "type":"structure",
-      "required":["DrivingDistance"],
-      "members":{
-        "DrivingDistance":{"shape":"DistanceMeters"}
       }
     },
     "WaypointOptimizationExclusionOptions":{
@@ -3839,7 +3809,6 @@
       ],
       "members":{
         "ArrivalTime":{"shape":"TimestampWithTimezoneOffset"},
-        "ClusterIndex":{"shape":"ClusterIndex"},
         "DepartureTime":{"shape":"TimestampWithTimezoneOffset"},
         "Id":{"shape":"WaypointId"},
         "Position":{"shape":"Position"}
