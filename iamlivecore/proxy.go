@@ -369,7 +369,10 @@ func readServiceFiles() {
 
 			file, err := gcpServiceFiles.Open("google-api-go-client/" + strings.ToLower(apiItem.Name) + "/" + version + "/" + strings.ToLower(apiItem.Name) + "-api.json")
 			if err != nil {
-				panic(err)
+				file, err = gcpServiceFiles.Open("google-api-go-client/" + strings.ToLower(apiItem.Name) + "/" + strings.ToLower(apiItem.Version) + "/" + strings.ToLower(apiItem.Name) + "-api.json")
+				if err != nil {
+					panic(err)
+				}
 			}
 
 			data, err := ioutil.ReadAll(file)
@@ -379,7 +382,7 @@ func readServiceFiles() {
 
 			var def GCPServiceDefinition
 			if json.Unmarshal(data, &def) != nil {
-				panic(err)
+				panic("bad json")
 			}
 
 			url, _ := url.Parse(def.RootURL)
