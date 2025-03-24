@@ -846,6 +846,10 @@ func getAccountFromAccessKey(accessKeyId string) (string, error) {
 	base10 := "0123456789"
 	base32AwsFlavour := "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567"
 
+	if len(accessKeyId) < 14 {
+		return "", fmt.Errorf("access key ID too short")
+	}
+
 	offsetStr, err := baseconv.Convert("QAAAAAAA", base32AwsFlavour, base10)
 	if err != nil {
 		return "", err
