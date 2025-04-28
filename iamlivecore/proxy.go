@@ -688,7 +688,11 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 									mxjXML, err := mxj.NewMapXml(body)
 									bodyXML := map[string]interface{}(mxjXML)
 									if err != nil {
-										return
+										// last chance effort to parse as JSON
+										err := json.Unmarshal(body, &bodyXML)
+										if err != nil {
+											return
+										}
 									}
 
 									flatten(true, params, bodyXML, "")
