@@ -509,6 +509,9 @@ func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 				if service == "CognitoIdentityProvider" {
 					service = "CognitoIdentityServiceProvider"
 				}
+				if service == "AgentsforAmazonBedrockRuntime" {
+					service = "BedrockAgentRuntime"
+				}
 
 				if serviceDef.Metadata.Protocol == "json" {
 					// JSON schema
@@ -1005,6 +1008,10 @@ func resolvePropertyName(obj ServiceStructure, searchProp string, path string, l
 	case "list":
 		newPath := fmt.Sprintf("%s[]", path)
 		newLocationPath := fmt.Sprintf("%s[]", locationPath)
+
+		if strings.Count(newLocationPath, ".") > 10 { // prevent infinite recursion
+			return ""
+		}
 
 		ret = resolvePropertyName(*obj.Member, searchProp, newPath, newLocationPath, shapes)
 		if ret != "" {
