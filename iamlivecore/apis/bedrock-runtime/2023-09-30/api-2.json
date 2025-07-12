@@ -2,9 +2,13 @@
   "version":"2.0",
   "metadata":{
     "apiVersion":"2023-09-30",
-    "auth":["aws.auth#sigv4"],
+    "auth":[
+      "aws.auth#sigv4",
+      "smithy.api#httpBearerAuth"
+    ],
     "endpointPrefix":"bedrock-runtime",
     "protocol":"rest-json",
+    "protocolSettings":{"h2":"optional"},
     "protocols":["rest-json"],
     "serviceFullName":"Amazon Bedrock Runtime",
     "serviceId":"Bedrock Runtime",
@@ -42,8 +46,8 @@
       "output":{"shape":"ConverseResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ModelTimeoutException"},
         {"shape":"InternalServerException"},
         {"shape":"ServiceUnavailableException"},
@@ -63,8 +67,8 @@
       "output":{"shape":"ConverseStreamResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ModelTimeoutException"},
         {"shape":"InternalServerException"},
         {"shape":"ServiceUnavailableException"},
@@ -106,8 +110,31 @@
         {"shape":"InternalServerException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ValidationException"},
-        {"shape":"ModelNotReadyException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ModelNotReadyException"},
+        {"shape":"ModelErrorException"}
+      ]
+    },
+    "InvokeModelWithBidirectionalStream":{
+      "name":"InvokeModelWithBidirectionalStream",
+      "http":{
+        "method":"POST",
+        "requestUri":"/model/{modelId}/invoke-with-bidirectional-stream",
+        "responseCode":200
+      },
+      "input":{"shape":"InvokeModelWithBidirectionalStreamRequest"},
+      "output":{"shape":"InvokeModelWithBidirectionalStreamResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ModelTimeoutException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ModelStreamErrorException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ModelNotReadyException"},
         {"shape":"ModelErrorException"}
       ]
     },
@@ -129,8 +156,8 @@
         {"shape":"ServiceUnavailableException"},
         {"shape":"ModelStreamErrorException"},
         {"shape":"ValidationException"},
-        {"shape":"ModelNotReadyException"},
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ModelNotReadyException"},
         {"shape":"ModelErrorException"}
       ]
     },
@@ -161,8 +188,8 @@
       "output":{"shape":"StartAsyncInvokeResponse"},
       "errors":[
         {"shape":"AccessDeniedException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ValidationException"},
@@ -213,7 +240,8 @@
           "locationName":"guardrailVersion"
         },
         "source":{"shape":"GuardrailContentSource"},
-        "content":{"shape":"GuardrailContentBlockList"}
+        "content":{"shape":"GuardrailContentBlockList"},
+        "outputScope":{"shape":"GuardrailOutputScope"}
       }
     },
     "ApplyGuardrailResponse":{
@@ -227,6 +255,7 @@
       "members":{
         "usage":{"shape":"GuardrailUsage"},
         "action":{"shape":"GuardrailAction"},
+        "actionReason":{"shape":"String"},
         "outputs":{"shape":"GuardrailOutputContentList"},
         "assessments":{"shape":"GuardrailAssessmentList"},
         "guardrailCoverage":{"shape":"GuardrailCoverage"}
@@ -309,11 +338,118 @@
       "members":{
       }
     },
+    "BidirectionalInputPayloadPart":{
+      "type":"structure",
+      "members":{
+        "bytes":{"shape":"PartBody"}
+      },
+      "event":true,
+      "sensitive":true
+    },
+    "BidirectionalOutputPayloadPart":{
+      "type":"structure",
+      "members":{
+        "bytes":{"shape":"PartBody"}
+      },
+      "event":true,
+      "sensitive":true
+    },
+    "Blob":{"type":"blob"},
     "Body":{
       "type":"blob",
       "max":25000000,
       "min":0,
       "sensitive":true
+    },
+    "Boolean":{
+      "type":"boolean",
+      "box":true
+    },
+    "CachePointBlock":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "type":{"shape":"CachePointType"}
+      }
+    },
+    "CachePointType":{
+      "type":"string",
+      "enum":["default"]
+    },
+    "Citation":{
+      "type":"structure",
+      "members":{
+        "title":{"shape":"String"},
+        "sourceContent":{"shape":"CitationSourceContentList"},
+        "location":{"shape":"CitationLocation"}
+      }
+    },
+    "CitationGeneratedContent":{
+      "type":"structure",
+      "members":{
+        "text":{"shape":"String"}
+      },
+      "union":true
+    },
+    "CitationGeneratedContentList":{
+      "type":"list",
+      "member":{"shape":"CitationGeneratedContent"}
+    },
+    "CitationLocation":{
+      "type":"structure",
+      "members":{
+        "documentChar":{"shape":"DocumentCharLocation"},
+        "documentPage":{"shape":"DocumentPageLocation"},
+        "documentChunk":{"shape":"DocumentChunkLocation"}
+      },
+      "union":true
+    },
+    "CitationSourceContent":{
+      "type":"structure",
+      "members":{
+        "text":{"shape":"String"}
+      },
+      "union":true
+    },
+    "CitationSourceContentDelta":{
+      "type":"structure",
+      "members":{
+        "text":{"shape":"String"}
+      }
+    },
+    "CitationSourceContentList":{
+      "type":"list",
+      "member":{"shape":"CitationSourceContent"}
+    },
+    "CitationSourceContentListDelta":{
+      "type":"list",
+      "member":{"shape":"CitationSourceContentDelta"}
+    },
+    "Citations":{
+      "type":"list",
+      "member":{"shape":"Citation"}
+    },
+    "CitationsConfig":{
+      "type":"structure",
+      "required":["enabled"],
+      "members":{
+        "enabled":{"shape":"Boolean"}
+      }
+    },
+    "CitationsContentBlock":{
+      "type":"structure",
+      "members":{
+        "content":{"shape":"CitationGeneratedContentList"},
+        "citations":{"shape":"Citations"}
+      }
+    },
+    "CitationsDelta":{
+      "type":"structure",
+      "members":{
+        "title":{"shape":"String"},
+        "sourceContent":{"shape":"CitationSourceContentListDelta"},
+        "location":{"shape":"CitationLocation"}
+      }
     },
     "ConflictException":{
       "type":"structure",
@@ -335,7 +471,10 @@
         "video":{"shape":"VideoBlock"},
         "toolUse":{"shape":"ToolUseBlock"},
         "toolResult":{"shape":"ToolResultBlock"},
-        "guardContent":{"shape":"GuardrailConverseContentBlock"}
+        "guardContent":{"shape":"GuardrailConverseContentBlock"},
+        "cachePoint":{"shape":"CachePointBlock"},
+        "reasoningContent":{"shape":"ReasoningContentBlock"},
+        "citationsContent":{"shape":"CitationsContentBlock"}
       },
       "union":true
     },
@@ -343,7 +482,9 @@
       "type":"structure",
       "members":{
         "text":{"shape":"String"},
-        "toolUse":{"shape":"ToolUseBlockDelta"}
+        "toolUse":{"shape":"ToolUseBlockDelta"},
+        "reasoningContent":{"shape":"ReasoningContentBlockDelta"},
+        "citation":{"shape":"CitationsDelta"}
       },
       "union":true
     },
@@ -401,7 +542,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:imported-model/[a-z0-9]{12})|([0-9]{12}:provisioned-model/[a-z0-9]{12})|([0-9]{12}:(inference-profile|application-inference-profile)/[a-zA-Z0-9-:.]+)))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)|([a-zA-Z0-9-:.]+)|(^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:prompt/[0-9a-zA-Z]{10}(?::[0-9]{1,5})?))$|(^arn:aws:sagemaker:[a-z0-9-]+:[0-9]{12}:endpoint/[a-zA-Z0-9-]+$)|(^arn:aws(-[^:]+)?:bedrock:([0-9a-z-]{1,20}):([0-9]{12}):default-prompt-router/[a-zA-Z0-9-:.]+$)"
+      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:imported-model/[a-z0-9]{12})|([0-9]{12}:provisioned-model/[a-z0-9]{12})|([0-9]{12}:(inference-profile|application-inference-profile)/[a-zA-Z0-9-:.]+)))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)|([a-zA-Z0-9-:.]+)|(^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:prompt/[0-9a-zA-Z]{10}(?::[0-9]{1,5})?))$|(^arn:aws:sagemaker:[a-z0-9-]+:[0-9]{12}:endpoint/[a-zA-Z0-9-]+$)|(^arn:aws(-[^:]+)?:bedrock:([0-9a-z-]{1,20}):([0-9]{12}):(default-)?prompt-router/[a-zA-Z0-9-:.]+$)"
     },
     "ConverseMetrics":{
       "type":"structure",
@@ -567,20 +708,78 @@
     "DocumentBlock":{
       "type":"structure",
       "required":[
-        "format",
         "name",
         "source"
       ],
       "members":{
         "format":{"shape":"DocumentFormat"},
         "name":{"shape":"DocumentBlockNameString"},
-        "source":{"shape":"DocumentSource"}
+        "source":{"shape":"DocumentSource"},
+        "context":{"shape":"String"},
+        "citations":{"shape":"CitationsConfig"}
       }
     },
     "DocumentBlockNameString":{
       "type":"string",
       "max":200,
       "min":1
+    },
+    "DocumentCharLocation":{
+      "type":"structure",
+      "members":{
+        "documentIndex":{"shape":"DocumentCharLocationDocumentIndexInteger"},
+        "start":{"shape":"DocumentCharLocationStartInteger"},
+        "end":{"shape":"DocumentCharLocationEndInteger"}
+      }
+    },
+    "DocumentCharLocationDocumentIndexInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "DocumentCharLocationEndInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "DocumentCharLocationStartInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "DocumentChunkLocation":{
+      "type":"structure",
+      "members":{
+        "documentIndex":{"shape":"DocumentChunkLocationDocumentIndexInteger"},
+        "start":{"shape":"DocumentChunkLocationStartInteger"},
+        "end":{"shape":"DocumentChunkLocationEndInteger"}
+      }
+    },
+    "DocumentChunkLocationDocumentIndexInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "DocumentChunkLocationEndInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "DocumentChunkLocationStartInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "DocumentContentBlock":{
+      "type":"structure",
+      "members":{
+        "text":{"shape":"String"}
+      },
+      "union":true
+    },
+    "DocumentContentBlocks":{
+      "type":"list",
+      "member":{"shape":"DocumentContentBlock"}
     },
     "DocumentFormat":{
       "type":"string",
@@ -596,10 +795,36 @@
         "md"
       ]
     },
+    "DocumentPageLocation":{
+      "type":"structure",
+      "members":{
+        "documentIndex":{"shape":"DocumentPageLocationDocumentIndexInteger"},
+        "start":{"shape":"DocumentPageLocationStartInteger"},
+        "end":{"shape":"DocumentPageLocationEndInteger"}
+      }
+    },
+    "DocumentPageLocationDocumentIndexInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "DocumentPageLocationEndInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "DocumentPageLocationStartInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
     "DocumentSource":{
       "type":"structure",
       "members":{
-        "bytes":{"shape":"DocumentSourceBytesBlob"}
+        "bytes":{"shape":"DocumentSourceBytesBlob"},
+        "s3Location":{"shape":"S3Location"},
+        "text":{"shape":"String"},
+        "content":{"shape":"DocumentContentBlocks"}
       },
       "union":true
     },
@@ -706,7 +931,8 @@
         "type":{"shape":"GuardrailContentFilterType"},
         "confidence":{"shape":"GuardrailContentFilterConfidence"},
         "filterStrength":{"shape":"GuardrailContentFilterStrength"},
-        "action":{"shape":"GuardrailContentPolicyAction"}
+        "action":{"shape":"GuardrailContentPolicyAction"},
+        "detected":{"shape":"Boolean"}
       }
     },
     "GuardrailContentFilterConfidence":{
@@ -744,7 +970,10 @@
     },
     "GuardrailContentPolicyAction":{
       "type":"string",
-      "enum":["BLOCKED"]
+      "enum":[
+        "BLOCKED",
+        "NONE"
+      ]
     },
     "GuardrailContentPolicyAssessment":{
       "type":"structure",
@@ -752,6 +981,10 @@
       "members":{
         "filters":{"shape":"GuardrailContentFilterList"}
       }
+    },
+    "GuardrailContentPolicyImageUnitsProcessed":{
+      "type":"integer",
+      "box":true
     },
     "GuardrailContentPolicyUnitsProcessed":{
       "type":"integer",
@@ -788,7 +1021,8 @@
         "type":{"shape":"GuardrailContextualGroundingFilterType"},
         "threshold":{"shape":"GuardrailContextualGroundingFilterThresholdDouble"},
         "score":{"shape":"GuardrailContextualGroundingFilterScoreDouble"},
-        "action":{"shape":"GuardrailContextualGroundingPolicyAction"}
+        "action":{"shape":"GuardrailContextualGroundingPolicyAction"},
+        "detected":{"shape":"Boolean"}
       }
     },
     "GuardrailContextualGroundingFilterScoreDouble":{
@@ -905,7 +1139,8 @@
       ],
       "members":{
         "match":{"shape":"String"},
-        "action":{"shape":"GuardrailWordPolicyAction"}
+        "action":{"shape":"GuardrailWordPolicyAction"},
+        "detected":{"shape":"Boolean"}
       }
     },
     "GuardrailCustomWordList":{
@@ -974,7 +1209,8 @@
       "members":{
         "match":{"shape":"String"},
         "type":{"shape":"GuardrailManagedWordType"},
-        "action":{"shape":"GuardrailWordPolicyAction"}
+        "action":{"shape":"GuardrailWordPolicyAction"},
+        "detected":{"shape":"Boolean"}
       }
     },
     "GuardrailManagedWordList":{
@@ -995,6 +1231,13 @@
       "type":"list",
       "member":{"shape":"GuardrailOutputContent"}
     },
+    "GuardrailOutputScope":{
+      "type":"string",
+      "enum":[
+        "INTERVENTIONS",
+        "FULL"
+      ]
+    },
     "GuardrailOutputText":{"type":"string"},
     "GuardrailPiiEntityFilter":{
       "type":"structure",
@@ -1006,7 +1249,8 @@
       "members":{
         "match":{"shape":"String"},
         "type":{"shape":"GuardrailPiiEntityType"},
-        "action":{"shape":"GuardrailSensitiveInformationPolicyAction"}
+        "action":{"shape":"GuardrailSensitiveInformationPolicyAction"},
+        "detected":{"shape":"Boolean"}
       }
     },
     "GuardrailPiiEntityFilterList":{
@@ -1060,7 +1304,8 @@
         "name":{"shape":"String"},
         "match":{"shape":"String"},
         "regex":{"shape":"String"},
-        "action":{"shape":"GuardrailSensitiveInformationPolicyAction"}
+        "action":{"shape":"GuardrailSensitiveInformationPolicyAction"},
+        "detected":{"shape":"Boolean"}
       }
     },
     "GuardrailRegexFilterList":{
@@ -1071,7 +1316,8 @@
       "type":"string",
       "enum":[
         "ANONYMIZED",
-        "BLOCKED"
+        "BLOCKED",
+        "NONE"
       ]
     },
     "GuardrailSensitiveInformationPolicyAssessment":{
@@ -1138,7 +1384,8 @@
       "members":{
         "name":{"shape":"String"},
         "type":{"shape":"GuardrailTopicType"},
-        "action":{"shape":"GuardrailTopicPolicyAction"}
+        "action":{"shape":"GuardrailTopicPolicyAction"},
+        "detected":{"shape":"Boolean"}
       }
     },
     "GuardrailTopicList":{
@@ -1147,7 +1394,10 @@
     },
     "GuardrailTopicPolicyAction":{
       "type":"string",
-      "enum":["BLOCKED"]
+      "enum":[
+        "BLOCKED",
+        "NONE"
+      ]
     },
     "GuardrailTopicPolicyAssessment":{
       "type":"structure",
@@ -1168,7 +1418,8 @@
       "type":"string",
       "enum":[
         "enabled",
-        "disabled"
+        "disabled",
+        "enabled_full"
       ]
     },
     "GuardrailTraceAssessment":{
@@ -1176,7 +1427,8 @@
       "members":{
         "modelOutput":{"shape":"ModelOutputs"},
         "inputAssessment":{"shape":"GuardrailAssessmentMap"},
-        "outputAssessments":{"shape":"GuardrailAssessmentListMap"}
+        "outputAssessments":{"shape":"GuardrailAssessmentListMap"},
+        "actionReason":{"shape":"String"}
       }
     },
     "GuardrailUsage":{
@@ -1195,7 +1447,8 @@
         "wordPolicyUnits":{"shape":"GuardrailWordPolicyUnitsProcessed"},
         "sensitiveInformationPolicyUnits":{"shape":"GuardrailSensitiveInformationPolicyUnitsProcessed"},
         "sensitiveInformationPolicyFreeUnits":{"shape":"GuardrailSensitiveInformationPolicyFreeUnitsProcessed"},
-        "contextualGroundingPolicyUnits":{"shape":"GuardrailContextualGroundingPolicyUnitsProcessed"}
+        "contextualGroundingPolicyUnits":{"shape":"GuardrailContextualGroundingPolicyUnitsProcessed"},
+        "contentPolicyImageUnits":{"shape":"GuardrailContentPolicyImageUnitsProcessed"}
       }
     },
     "GuardrailVersion":{
@@ -1204,7 +1457,10 @@
     },
     "GuardrailWordPolicyAction":{
       "type":"string",
-      "enum":["BLOCKED"]
+      "enum":[
+        "BLOCKED",
+        "NONE"
+      ]
     },
     "GuardrailWordPolicyAssessment":{
       "type":"structure",
@@ -1244,7 +1500,8 @@
     "ImageSource":{
       "type":"structure",
       "members":{
-        "bytes":{"shape":"ImageSourceBytesBlob"}
+        "bytes":{"shape":"ImageSourceBytesBlob"},
+        "s3Location":{"shape":"S3Location"}
       },
       "union":true
     },
@@ -1311,7 +1568,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:imported-model/[a-z0-9]{12})|([0-9]{12}:provisioned-model/[a-z0-9]{12})|([0-9]{12}:(inference-profile|application-inference-profile)/[a-zA-Z0-9-:.]+)))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)|([a-zA-Z0-9-:.]+)$|(^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:prompt/[0-9a-zA-Z]{10}(?::[0-9]{1,5})?))$|(^arn:aws:sagemaker:[a-z0-9-]+:[0-9]{12}:endpoint/[a-zA-Z0-9-]+$)|(^arn:aws(-[^:]+)?:bedrock:([0-9a-z-]{1,20}):([0-9]{12}):default-prompt-router/[a-zA-Z0-9-:.]+$)"
+      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:imported-model/[a-z0-9]{12})|([0-9]{12}:provisioned-model/[a-z0-9]{12})|([0-9]{12}:(inference-profile|application-inference-profile)/[a-zA-Z0-9-:.]+)))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)|([a-zA-Z0-9-:.]+)$|(^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:prompt/[0-9a-zA-Z]{10}(?::[0-9]{1,5})?))$|(^arn:aws:sagemaker:[a-z0-9-]+:[0-9]{12}:endpoint/[a-zA-Z0-9-]+$)|(^arn:aws(-[^:]+)?:bedrock:([0-9a-z-]{1,20}):([0-9]{12}):(default-)?prompt-router/[a-zA-Z0-9-:.]+$)"
     },
     "InvokeModelRequest":{
       "type":"structure",
@@ -1374,6 +1631,50 @@
           "location":"header",
           "locationName":"X-Amzn-Bedrock-PerformanceConfig-Latency"
         }
+      },
+      "payload":"body"
+    },
+    "InvokeModelWithBidirectionalStreamInput":{
+      "type":"structure",
+      "members":{
+        "chunk":{"shape":"BidirectionalInputPayloadPart"}
+      },
+      "eventstream":true
+    },
+    "InvokeModelWithBidirectionalStreamOutput":{
+      "type":"structure",
+      "members":{
+        "chunk":{"shape":"BidirectionalOutputPayloadPart"},
+        "internalServerException":{"shape":"InternalServerException"},
+        "modelStreamErrorException":{"shape":"ModelStreamErrorException"},
+        "validationException":{"shape":"ValidationException"},
+        "throttlingException":{"shape":"ThrottlingException"},
+        "modelTimeoutException":{"shape":"ModelTimeoutException"},
+        "serviceUnavailableException":{"shape":"ServiceUnavailableException"}
+      },
+      "eventstream":true
+    },
+    "InvokeModelWithBidirectionalStreamRequest":{
+      "type":"structure",
+      "required":[
+        "modelId",
+        "body"
+      ],
+      "members":{
+        "modelId":{
+          "shape":"InvokeModelIdentifier",
+          "location":"uri",
+          "locationName":"modelId"
+        },
+        "body":{"shape":"InvokeModelWithBidirectionalStreamInput"}
+      },
+      "payload":"body"
+    },
+    "InvokeModelWithBidirectionalStreamResponse":{
+      "type":"structure",
+      "required":["body"],
+      "members":{
+        "body":{"shape":"InvokeModelWithBidirectionalStreamOutput"}
       },
       "payload":"body"
     },
@@ -1666,6 +1967,34 @@
       },
       "union":true
     },
+    "ReasoningContentBlock":{
+      "type":"structure",
+      "members":{
+        "reasoningText":{"shape":"ReasoningTextBlock"},
+        "redactedContent":{"shape":"Blob"}
+      },
+      "sensitive":true,
+      "union":true
+    },
+    "ReasoningContentBlockDelta":{
+      "type":"structure",
+      "members":{
+        "text":{"shape":"String"},
+        "redactedContent":{"shape":"Blob"},
+        "signature":{"shape":"String"}
+      },
+      "sensitive":true,
+      "union":true
+    },
+    "ReasoningTextBlock":{
+      "type":"structure",
+      "required":["text"],
+      "members":{
+        "text":{"shape":"String"},
+        "signature":{"shape":"String"}
+      },
+      "sensitive":true
+    },
     "RequestMetadata":{
       "type":"map",
       "key":{"shape":"RequestMetadataKeyString"},
@@ -1809,7 +2138,8 @@
       "type":"structure",
       "members":{
         "text":{"shape":"NonEmptyString"},
-        "guardContent":{"shape":"GuardrailConverseContentBlock"}
+        "guardContent":{"shape":"GuardrailConverseContentBlock"},
+        "cachePoint":{"shape":"CachePointBlock"}
       },
       "union":true
     },
@@ -1879,8 +2209,20 @@
       "members":{
         "inputTokens":{"shape":"TokenUsageInputTokensInteger"},
         "outputTokens":{"shape":"TokenUsageOutputTokensInteger"},
-        "totalTokens":{"shape":"TokenUsageTotalTokensInteger"}
+        "totalTokens":{"shape":"TokenUsageTotalTokensInteger"},
+        "cacheReadInputTokens":{"shape":"TokenUsageCacheReadInputTokensInteger"},
+        "cacheWriteInputTokens":{"shape":"TokenUsageCacheWriteInputTokensInteger"}
       }
+    },
+    "TokenUsageCacheReadInputTokensInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "TokenUsageCacheWriteInputTokensInteger":{
+      "type":"integer",
+      "box":true,
+      "min":0
     },
     "TokenUsageInputTokensInteger":{
       "type":"integer",
@@ -1900,7 +2242,8 @@
     "Tool":{
       "type":"structure",
       "members":{
-        "toolSpec":{"shape":"ToolSpecification"}
+        "toolSpec":{"shape":"ToolSpecification"},
+        "cachePoint":{"shape":"CachePointBlock"}
       },
       "union":true
     },
@@ -1937,7 +2280,7 @@
       "type":"string",
       "max":64,
       "min":1,
-      "pattern":"[a-zA-Z][a-zA-Z0-9_]*"
+      "pattern":"[a-zA-Z0-9_-]+"
     },
     "ToolResultBlock":{
       "type":"structure",
@@ -2026,7 +2369,8 @@
       "type":"string",
       "enum":[
         "ENABLED",
-        "DISABLED"
+        "DISABLED",
+        "ENABLED_FULL"
       ]
     },
     "ValidationException":{

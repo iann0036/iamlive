@@ -187,7 +187,23 @@
         {"shape":"BillExpirationException"},
         {"shape":"DataUnavailableException"},
         {"shape":"InvalidNextTokenException"},
-        {"shape":"RequestChangedException"}
+        {"shape":"RequestChangedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetCostAndUsageComparisons":{
+      "name":"GetCostAndUsageComparisons",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCostAndUsageComparisonsRequest"},
+      "output":{"shape":"GetCostAndUsageComparisonsResponse"},
+      "errors":[
+        {"shape":"DataUnavailableException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetCostAndUsageWithResources":{
@@ -203,7 +219,8 @@
         {"shape":"LimitExceededException"},
         {"shape":"BillExpirationException"},
         {"shape":"InvalidNextTokenException"},
-        {"shape":"RequestChangedException"}
+        {"shape":"RequestChangedException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetCostCategories":{
@@ -219,7 +236,23 @@
         {"shape":"BillExpirationException"},
         {"shape":"DataUnavailableException"},
         {"shape":"InvalidNextTokenException"},
-        {"shape":"RequestChangedException"}
+        {"shape":"RequestChangedException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetCostComparisonDrivers":{
+      "name":"GetCostComparisonDrivers",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCostComparisonDriversRequest"},
+      "output":{"shape":"GetCostComparisonDriversResponse"},
+      "errors":[
+        {"shape":"DataUnavailableException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetCostForecast":{
@@ -232,7 +265,8 @@
       "output":{"shape":"GetCostForecastResponse"},
       "errors":[
         {"shape":"LimitExceededException"},
-        {"shape":"DataUnavailableException"}
+        {"shape":"DataUnavailableException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetDimensionValues":{
@@ -248,7 +282,8 @@
         {"shape":"BillExpirationException"},
         {"shape":"DataUnavailableException"},
         {"shape":"InvalidNextTokenException"},
-        {"shape":"RequestChangedException"}
+        {"shape":"RequestChangedException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetReservationCoverage":{
@@ -386,7 +421,8 @@
         {"shape":"BillExpirationException"},
         {"shape":"DataUnavailableException"},
         {"shape":"InvalidNextTokenException"},
-        {"shape":"RequestChangedException"}
+        {"shape":"RequestChangedException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "GetUsageForecast":{
@@ -400,7 +436,8 @@
       "errors":[
         {"shape":"LimitExceededException"},
         {"shape":"DataUnavailableException"},
-        {"shape":"UnresolvableUsageUnitException"}
+        {"shape":"UnresolvableUsageUnitException"},
+        {"shape":"ResourceNotFoundException"}
       ]
     },
     "ListCommitmentPurchaseAnalyses":{
@@ -837,11 +874,31 @@
       },
       "exception":true
     },
+    "BillingViewArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws[a-z-]*:(billing)::[0-9]{12}:billingview/[-a-zA-Z0-9/:_+=.-@]{1,43}$"
+    },
     "CommitmentPurchaseAnalysisConfiguration":{
       "type":"structure",
       "members":{
         "SavingsPlansPurchaseAnalysisConfiguration":{"shape":"SavingsPlansPurchaseAnalysisConfiguration"}
       }
+    },
+    "ComparisonMetricValue":{
+      "type":"structure",
+      "members":{
+        "BaselineTimePeriodAmount":{"shape":"GenericString"},
+        "ComparisonTimePeriodAmount":{"shape":"GenericString"},
+        "Difference":{"shape":"GenericString"},
+        "Unit":{"shape":"GenericString"}
+      }
+    },
+    "ComparisonMetrics":{
+      "type":"map",
+      "key":{"shape":"MetricName"},
+      "value":{"shape":"ComparisonMetricValue"}
     },
     "Context":{
       "type":"string",
@@ -936,6 +993,23 @@
     "CostAllocationTagsMaxResults":{
       "type":"integer",
       "max":1000,
+      "min":1
+    },
+    "CostAndUsageComparison":{
+      "type":"structure",
+      "members":{
+        "CostAndUsageSelector":{"shape":"Expression"},
+        "Metrics":{"shape":"ComparisonMetrics"}
+      }
+    },
+    "CostAndUsageComparisons":{
+      "type":"list",
+      "member":{"shape":"CostAndUsageComparison"}
+    },
+    "CostAndUsageComparisonsMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":2000,
       "min":1
     },
     "CostCategory":{
@@ -1132,6 +1206,36 @@
       "type":"list",
       "member":{"shape":"CostCategoryValue"}
     },
+    "CostComparisonDriver":{
+      "type":"structure",
+      "members":{
+        "CostSelector":{"shape":"Expression"},
+        "Metrics":{"shape":"ComparisonMetrics"},
+        "CostDrivers":{"shape":"CostDrivers"}
+      }
+    },
+    "CostComparisonDrivers":{
+      "type":"list",
+      "member":{"shape":"CostComparisonDriver"}
+    },
+    "CostComparisonDriversMaxResults":{
+      "type":"integer",
+      "box":true,
+      "max":10,
+      "min":1
+    },
+    "CostDriver":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"GenericString"},
+        "Name":{"shape":"GenericString"},
+        "Metrics":{"shape":"ComparisonMetrics"}
+      }
+    },
+    "CostDrivers":{
+      "type":"list",
+      "member":{"shape":"CostDriver"}
+    },
     "Coverage":{
       "type":"structure",
       "members":{
@@ -1275,8 +1379,7 @@
     },
     "DeleteAnomalyMonitorResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteAnomalySubscriptionRequest":{
       "type":"structure",
@@ -1287,8 +1390,7 @@
     },
     "DeleteAnomalySubscriptionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteCostCategoryDefinitionRequest":{
       "type":"structure",
@@ -1578,7 +1680,10 @@
         "Feedback":{"shape":"AnomalyFeedbackType"},
         "TotalImpact":{"shape":"TotalImpactFilter"},
         "NextPageToken":{"shape":"NextPageToken"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{
+          "shape":"PageSize",
+          "box":true
+        }
       }
     },
     "GetAnomaliesResponse":{
@@ -1594,7 +1699,10 @@
       "members":{
         "MonitorArnList":{"shape":"Values"},
         "NextPageToken":{"shape":"NextPageToken"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{
+          "shape":"PageSize",
+          "box":true
+        }
       }
     },
     "GetAnomalyMonitorsResponse":{
@@ -1611,7 +1719,10 @@
         "SubscriptionArnList":{"shape":"Values"},
         "MonitorArn":{"shape":"GenericString"},
         "NextPageToken":{"shape":"NextPageToken"},
-        "MaxResults":{"shape":"PageSize"}
+        "MaxResults":{
+          "shape":"PageSize",
+          "box":true
+        }
       }
     },
     "GetAnomalySubscriptionsResponse":{
@@ -1669,6 +1780,35 @@
         "CommitmentPurchaseAnalysisConfiguration":{"shape":"CommitmentPurchaseAnalysisConfiguration"}
       }
     },
+    "GetCostAndUsageComparisonsRequest":{
+      "type":"structure",
+      "required":[
+        "BaselineTimePeriod",
+        "ComparisonTimePeriod",
+        "MetricForComparison"
+      ],
+      "members":{
+        "BillingViewArn":{"shape":"BillingViewArn"},
+        "BaselineTimePeriod":{"shape":"DateInterval"},
+        "ComparisonTimePeriod":{"shape":"DateInterval"},
+        "MetricForComparison":{"shape":"MetricName"},
+        "Filter":{"shape":"Expression"},
+        "GroupBy":{"shape":"GroupDefinitions"},
+        "MaxResults":{
+          "shape":"CostAndUsageComparisonsMaxResults",
+          "box":true
+        },
+        "NextPageToken":{"shape":"NextPageToken"}
+      }
+    },
+    "GetCostAndUsageComparisonsResponse":{
+      "type":"structure",
+      "members":{
+        "CostAndUsageComparisons":{"shape":"CostAndUsageComparisons"},
+        "TotalCostAndUsage":{"shape":"ComparisonMetrics"},
+        "NextPageToken":{"shape":"NextPageToken"}
+      }
+    },
     "GetCostAndUsageRequest":{
       "type":"structure",
       "required":[
@@ -1682,6 +1822,7 @@
         "Filter":{"shape":"Expression"},
         "Metrics":{"shape":"MetricNames"},
         "GroupBy":{"shape":"GroupDefinitions"},
+        "BillingViewArn":{"shape":"BillingViewArn"},
         "NextPageToken":{"shape":"NextPageToken"}
       }
     },
@@ -1707,6 +1848,7 @@
         "Filter":{"shape":"Expression"},
         "Metrics":{"shape":"MetricNames"},
         "GroupBy":{"shape":"GroupDefinitions"},
+        "BillingViewArn":{"shape":"BillingViewArn"},
         "NextPageToken":{"shape":"NextPageToken"}
       }
     },
@@ -1728,6 +1870,7 @@
         "CostCategoryName":{"shape":"CostCategoryName"},
         "Filter":{"shape":"Expression"},
         "SortBy":{"shape":"SortDefinitions"},
+        "BillingViewArn":{"shape":"BillingViewArn"},
         "MaxResults":{"shape":"MaxResults"},
         "NextPageToken":{"shape":"NextPageToken"}
       }
@@ -1746,6 +1889,34 @@
         "TotalSize":{"shape":"PageSize"}
       }
     },
+    "GetCostComparisonDriversRequest":{
+      "type":"structure",
+      "required":[
+        "BaselineTimePeriod",
+        "ComparisonTimePeriod",
+        "MetricForComparison"
+      ],
+      "members":{
+        "BillingViewArn":{"shape":"BillingViewArn"},
+        "BaselineTimePeriod":{"shape":"DateInterval"},
+        "ComparisonTimePeriod":{"shape":"DateInterval"},
+        "MetricForComparison":{"shape":"MetricName"},
+        "Filter":{"shape":"Expression"},
+        "GroupBy":{"shape":"GroupDefinitions"},
+        "MaxResults":{
+          "shape":"CostComparisonDriversMaxResults",
+          "box":true
+        },
+        "NextPageToken":{"shape":"NextPageToken"}
+      }
+    },
+    "GetCostComparisonDriversResponse":{
+      "type":"structure",
+      "members":{
+        "CostComparisonDrivers":{"shape":"CostComparisonDrivers"},
+        "NextPageToken":{"shape":"NextPageToken"}
+      }
+    },
     "GetCostForecastRequest":{
       "type":"structure",
       "required":[
@@ -1758,6 +1929,7 @@
         "Metric":{"shape":"Metric"},
         "Granularity":{"shape":"Granularity"},
         "Filter":{"shape":"Expression"},
+        "BillingViewArn":{"shape":"BillingViewArn"},
         "PredictionIntervalLevel":{"shape":"PredictionIntervalLevel"}
       }
     },
@@ -1781,6 +1953,7 @@
         "Context":{"shape":"Context"},
         "Filter":{"shape":"Expression"},
         "SortBy":{"shape":"SortDefinitions"},
+        "BillingViewArn":{"shape":"BillingViewArn"},
         "MaxResults":{"shape":"MaxResults"},
         "NextPageToken":{"shape":"NextPageToken"}
       }
@@ -2016,6 +2189,7 @@
         "TagKey":{"shape":"TagKey"},
         "Filter":{"shape":"Expression"},
         "SortBy":{"shape":"SortDefinitions"},
+        "BillingViewArn":{"shape":"BillingViewArn"},
         "MaxResults":{"shape":"MaxResults"},
         "NextPageToken":{"shape":"NextPageToken"}
       }
@@ -2046,6 +2220,7 @@
         "Metric":{"shape":"Metric"},
         "Granularity":{"shape":"Granularity"},
         "Filter":{"shape":"Expression"},
+        "BillingViewArn":{"shape":"BillingViewArn"},
         "PredictionIntervalLevel":{"shape":"PredictionIntervalLevel"}
       }
     },
@@ -3130,8 +3305,7 @@
     },
     "StartSavingsPlansPurchaseRecommendationGenerationRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "StartSavingsPlansPurchaseRecommendationGenerationResponse":{
       "type":"structure",
@@ -3204,8 +3378,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValues":{
       "type":"structure",
@@ -3310,8 +3483,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UnusedHours":{"type":"string"},
     "UnusedUnits":{"type":"string"},

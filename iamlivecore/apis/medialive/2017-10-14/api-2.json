@@ -4160,6 +4160,231 @@
           "shape": "ConflictException"
         }
       ]
+    },
+    "ListVersions": {
+      "name": "ListVersions",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/versions",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListVersionsRequest"
+      },
+      "output": {
+        "shape": "ListVersionsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "CreateSdiSource": {
+      "name": "CreateSdiSource",
+      "http": {
+        "method": "POST",
+        "requestUri": "/prod/sdiSources",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateSdiSourceRequest"
+      },
+      "output": {
+        "shape": "CreateSdiSourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "DeleteSdiSource": {
+      "name": "DeleteSdiSource",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/prod/sdiSources/{sdiSourceId}",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "DeleteSdiSourceRequest"
+      },
+      "output": {
+        "shape": "DeleteSdiSourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
+    },
+    "DescribeSdiSource": {
+      "name": "DescribeSdiSource",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/sdiSources/{sdiSourceId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeSdiSourceRequest"
+      },
+      "output": {
+        "shape": "DescribeSdiSourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "ListSdiSources": {
+      "name": "ListSdiSources",
+      "http": {
+        "method": "GET",
+        "requestUri": "/prod/sdiSources",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListSdiSourcesRequest"
+      },
+      "output": {
+        "shape": "ListSdiSourcesResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "UpdateSdiSource": {
+      "name": "UpdateSdiSource",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/prod/sdiSources/{sdiSourceId}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateSdiSourceRequest"
+      },
+      "output": {
+        "shape": "UpdateSdiSourceResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "BadGatewayException"
+        },
+        {
+          "shape": "GatewayTimeoutException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        }
+      ]
     }
   },
   "shapes": {
@@ -4361,8 +4586,7 @@
     },
     "AcceptInputDeviceTransferResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "AccessDenied": {
       "type": "structure",
@@ -4486,13 +4710,11 @@
     },
     "AribDestinationSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "AribSourceSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "AudioChannelMapping": {
       "type": "structure",
@@ -5441,8 +5663,7 @@
     },
     "CancelInputDeviceTransferResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "CaptionDescription": {
       "type": "structure",
@@ -5740,6 +5961,10 @@
         "AnywhereSettings": {
           "shape": "DescribeAnywhereSettings",
           "locationName": "anywhereSettings"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionResponse",
+          "locationName": "channelEngineVersion"
         }
       }
     },
@@ -5858,6 +6083,14 @@
         "AnywhereSettings": {
           "shape": "DescribeAnywhereSettings",
           "locationName": "anywhereSettings"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionResponse",
+          "locationName": "channelEngineVersion"
+        },
+        "UsedChannelEngineVersions": {
+          "shape": "__listOfChannelEngineVersionResponse",
+          "locationName": "usedChannelEngineVersions"
         }
       }
     },
@@ -5872,8 +6105,7 @@
     },
     "ClaimDeviceResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "ColorCorrection": {
       "type": "structure",
@@ -5920,8 +6152,7 @@
     },
     "ColorSpacePassthroughSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "ConflictException": {
       "type": "structure",
@@ -6000,6 +6231,14 @@
         "AnywhereSettings": {
           "shape": "AnywhereSettings",
           "locationName": "anywhereSettings"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionRequest",
+          "locationName": "channelEngineVersion"
+        },
+        "DryRun": {
+          "shape": "__boolean",
+          "locationName": "dryRun"
         }
       }
     },
@@ -6067,6 +6306,14 @@
         "AnywhereSettings": {
           "shape": "AnywhereSettings",
           "locationName": "anywhereSettings"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionRequest",
+          "locationName": "channelEngineVersion"
+        },
+        "DryRun": {
+          "shape": "__boolean",
+          "locationName": "dryRun"
         }
       }
     },
@@ -6147,6 +6394,14 @@
         "MulticastSettings": {
           "shape": "MulticastSettingsCreateRequest",
           "locationName": "multicastSettings"
+        },
+        "Smpte2110ReceiverGroupSettings": {
+          "shape": "Smpte2110ReceiverGroupSettings",
+          "locationName": "smpte2110ReceiverGroupSettings"
+        },
+        "SdiSources": {
+          "shape": "InputSdiSources",
+          "locationName": "sdiSources"
         }
       }
     },
@@ -6209,6 +6464,14 @@
         "MulticastSettings": {
           "shape": "MulticastSettingsCreateRequest",
           "locationName": "multicastSettings"
+        },
+        "Smpte2110ReceiverGroupSettings": {
+          "shape": "Smpte2110ReceiverGroupSettings",
+          "locationName": "smpte2110ReceiverGroupSettings"
+        },
+        "SdiSources": {
+          "shape": "InputSdiSources",
+          "locationName": "sdiSources"
         }
       }
     },
@@ -6575,6 +6838,10 @@
         "AnywhereSettings": {
           "shape": "DescribeAnywhereSettings",
           "locationName": "anywhereSettings"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionResponse",
+          "locationName": "channelEngineVersion"
         }
       }
     },
@@ -6593,8 +6860,7 @@
     },
     "DeleteInputResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "DeleteInputSecurityGroupRequest": {
       "type": "structure",
@@ -6611,8 +6877,7 @@
     },
     "DeleteInputSecurityGroupResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "DeleteMultiplexProgramRequest": {
       "type": "structure",
@@ -6825,8 +7090,7 @@
     },
     "DeleteScheduleResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "DeleteTagsRequest": {
       "type": "structure",
@@ -6849,8 +7113,7 @@
     },
     "DescribeAccountConfigurationRequest": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "DescribeAccountConfigurationResponse": {
       "type": "structure",
@@ -6961,6 +7224,10 @@
         "AnywhereSettings": {
           "shape": "DescribeAnywhereSettings",
           "locationName": "anywhereSettings"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionResponse",
+          "locationName": "channelEngineVersion"
         }
       }
     },
@@ -7186,6 +7453,14 @@
         "MulticastSettings": {
           "shape": "MulticastSettings",
           "locationName": "multicastSettings"
+        },
+        "Smpte2110ReceiverGroupSettings": {
+          "shape": "Smpte2110ReceiverGroupSettings",
+          "locationName": "smpte2110ReceiverGroupSettings"
+        },
+        "SdiSources": {
+          "shape": "InputSdiSources",
+          "locationName": "sdiSources"
         }
       }
     },
@@ -7599,8 +7874,7 @@
     },
     "DolbyVision81Settings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "DvbNitSettings": {
       "type": "structure",
@@ -8092,6 +8366,14 @@
         "StyleControl": {
           "shape": "EbuTtDDestinationStyleControl",
           "locationName": "styleControl"
+        },
+        "DefaultFontSize": {
+          "shape": "__integerMin1Max800",
+          "locationName": "defaultFontSize"
+        },
+        "DefaultLineHeight": {
+          "shape": "__integerMin80Max800",
+          "locationName": "defaultLineHeight"
         }
       }
     },
@@ -8118,13 +8400,11 @@
     },
     "EmbeddedDestinationSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "EmbeddedPlusScte20DestinationSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "EmbeddedScte20Detection": {
       "type": "string",
@@ -8156,8 +8436,7 @@
     },
     "Empty": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "EncoderSettings": {
       "type": "structure",
@@ -8472,8 +8751,7 @@
     },
     "FrameCaptureHlsSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "FrameCaptureIntervalUnit": {
       "type": "string",
@@ -8588,7 +8866,8 @@
       "type": "string",
       "enum": [
         "EPOCH_LOCKING",
-        "PIPELINE_LOCKING"
+        "PIPELINE_LOCKING",
+        "DISABLED"
       ]
     },
     "GlobalConfigurationOutputTimingSource": {
@@ -9915,8 +10194,7 @@
     },
     "HtmlMotionGraphicsSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "IFrameOnlyPlaylistType": {
       "type": "string",
@@ -9927,8 +10205,7 @@
     },
     "ImmediateModeScheduleActionStartSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "IncludeFillerNalUnits": {
       "type": "string",
@@ -10016,6 +10293,14 @@
         "MulticastSettings": {
           "shape": "MulticastSettings",
           "locationName": "multicastSettings"
+        },
+        "Smpte2110ReceiverGroupSettings": {
+          "shape": "Smpte2110ReceiverGroupSettings",
+          "locationName": "smpte2110ReceiverGroupSettings"
+        },
+        "SdiSources": {
+          "shape": "InputSdiSources",
+          "locationName": "sdiSources"
         }
       }
     },
@@ -10282,6 +10567,10 @@
         "AudioChannelPairs": {
           "shape": "__listOfInputDeviceConfigurableAudioChannelPairConfig",
           "locationName": "audioChannelPairs"
+        },
+        "InputResolution": {
+          "shape": "__string",
+          "locationName": "inputResolution"
         }
       }
     },
@@ -10601,6 +10890,10 @@
         "AudioChannelPairs": {
           "shape": "__listOfInputDeviceUhdAudioChannelPairConfig",
           "locationName": "audioChannelPairs"
+        },
+        "InputResolution": {
+          "shape": "__string",
+          "locationName": "inputResolution"
         }
       }
     },
@@ -10958,7 +11251,9 @@
         "AWS_CDI",
         "TS_FILE",
         "SRT_CALLER",
-        "MULTICAST"
+        "MULTICAST",
+        "SMPTE_2110_RECEIVER_GROUP",
+        "SDI"
       ]
     },
     "InputVpcRequest": {
@@ -12112,13 +12407,20 @@
         "ChannelId": {
           "shape": "__stringMin1",
           "locationName": "channelId"
+        },
+        "ChannelGroup": {
+          "shape": "__stringMin1",
+          "locationName": "channelGroup"
+        },
+        "ChannelName": {
+          "shape": "__stringMin1",
+          "locationName": "channelName"
         }
       }
     },
     "MediaPackageOutputSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "MotionGraphicsActivateScheduleActionSettings": {
       "type": "structure",
@@ -12159,8 +12461,7 @@
     },
     "MotionGraphicsDeactivateScheduleActionSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "MotionGraphicsInsertion": {
       "type": "string",
@@ -12511,8 +12812,7 @@
     },
     "MultiplexGroupSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "MultiplexMediaConnectOutputDestinationSettings": {
       "type": "structure",
@@ -13102,6 +13402,10 @@
         "SrtSettings": {
           "shape": "__listOfSrtOutputDestinationSettings",
           "locationName": "srtSettings"
+        },
+        "LogicalInterfaceNames": {
+          "shape": "__listOf__string",
+          "locationName": "logicalInterfaceNames"
         }
       }
     },
@@ -13261,8 +13565,7 @@
     },
     "PassThroughSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "PauseStateScheduleActionSettings": {
       "type": "structure",
@@ -13295,6 +13598,10 @@
         "PipelineId": {
           "shape": "__string",
           "locationName": "pipelineId"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionResponse",
+          "locationName": "channelEngineVersion"
         }
       }
     },
@@ -13307,8 +13614,7 @@
     },
     "PipelineLockingSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "PipelinePauseStateSettings": {
       "type": "structure",
@@ -13422,8 +13728,7 @@
     },
     "RawSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "RebootInputDevice": {
       "type": "structure",
@@ -13460,18 +13765,15 @@
     },
     "RebootInputDeviceResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "Rec601Settings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "Rec709Settings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "RejectInputDeviceTransferRequest": {
       "type": "structure",
@@ -13488,8 +13790,7 @@
     },
     "RejectInputDeviceTransferResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "RemixSettings": {
       "type": "structure",
@@ -13761,8 +14062,7 @@
     },
     "RtmpCaptionInfoDestinationSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "RtmpGroupSettings": {
       "type": "structure",
@@ -13925,6 +14225,14 @@
         "StaticImageOutputDeactivateSettings": {
           "shape": "StaticImageOutputDeactivateScheduleActionSettings",
           "locationName": "staticImageOutputDeactivateSettings"
+        },
+        "Id3SegmentTaggingSettings": {
+          "shape": "Id3SegmentTaggingScheduleActionSettings",
+          "locationName": "id3SegmentTaggingSettings"
+        },
+        "TimedMetadataSettings": {
+          "shape": "TimedMetadataScheduleActionSettings",
+          "locationName": "timedMetadataSettings"
         }
       }
     },
@@ -13947,8 +14255,7 @@
     },
     "ScheduleDeleteResultModel": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "ScheduleDescribeResultModel": {
       "type": "structure",
@@ -13975,8 +14282,7 @@
     },
     "Scte20PlusEmbeddedDestinationSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "Scte20SourceSettings": {
       "type": "structure",
@@ -13993,8 +14299,7 @@
     },
     "Scte27DestinationSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "Scte27OcrLanguage": {
       "type": "string",
@@ -14353,8 +14658,7 @@
     },
     "SmpteTtDestinationSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "StandardHlsSettings": {
       "type": "structure",
@@ -14463,6 +14767,10 @@
         "AnywhereSettings": {
           "shape": "DescribeAnywhereSettings",
           "locationName": "anywhereSettings"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionResponse",
+          "locationName": "channelEngineVersion"
         }
       }
     },
@@ -14481,8 +14789,7 @@
     },
     "StartInputDeviceMaintenanceWindowResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "StartInputDeviceRequest": {
       "type": "structure",
@@ -14499,8 +14806,7 @@
     },
     "StartInputDeviceResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "StartMultiplexRequest": {
       "type": "structure",
@@ -14810,6 +15116,10 @@
         "AnywhereSettings": {
           "shape": "DescribeAnywhereSettings",
           "locationName": "anywhereSettings"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionResponse",
+          "locationName": "channelEngineVersion"
         }
       }
     },
@@ -14828,8 +15138,7 @@
     },
     "StopInputDeviceResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "StopMultiplexRequest": {
       "type": "structure",
@@ -14922,8 +15231,7 @@
     },
     "TeletextDestinationSettings": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "TeletextSourceSettings": {
       "type": "structure",
@@ -15038,8 +15346,7 @@
     },
     "ThumbnailNoData": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "ThumbnailState": {
       "type": "string",
@@ -15180,8 +15487,7 @@
     },
     "TransferInputDeviceResponse": {
       "type": "structure",
-      "members": {
-      }
+      "members": {}
     },
     "TransferringInputDeviceSummary": {
       "type": "structure",
@@ -15370,6 +15676,18 @@
         "RoleArn": {
           "shape": "__string",
           "locationName": "roleArn"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionRequest",
+          "locationName": "channelEngineVersion"
+        },
+        "DryRun": {
+          "shape": "__boolean",
+          "locationName": "dryRun"
+        },
+        "AnywhereSettings": {
+          "shape": "AnywhereSettings",
+          "locationName": "anywhereSettings"
         }
       }
     },
@@ -15463,6 +15781,18 @@
         "RoleArn": {
           "shape": "__string",
           "locationName": "roleArn"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionRequest",
+          "locationName": "channelEngineVersion"
+        },
+        "DryRun": {
+          "shape": "__boolean",
+          "locationName": "dryRun"
+        },
+        "AnywhereSettings": {
+          "shape": "AnywhereSettings",
+          "locationName": "anywhereSettings"
         }
       },
       "required": [
@@ -15525,6 +15855,14 @@
         "MulticastSettings": {
           "shape": "MulticastSettingsUpdateRequest",
           "locationName": "multicastSettings"
+        },
+        "Smpte2110ReceiverGroupSettings": {
+          "shape": "Smpte2110ReceiverGroupSettings",
+          "locationName": "smpte2110ReceiverGroupSettings"
+        },
+        "SdiSources": {
+          "shape": "InputSdiSources",
+          "locationName": "sdiSources"
         }
       }
     },
@@ -15690,6 +16028,14 @@
         "MulticastSettings": {
           "shape": "MulticastSettingsUpdateRequest",
           "locationName": "multicastSettings"
+        },
+        "Smpte2110ReceiverGroupSettings": {
+          "shape": "Smpte2110ReceiverGroupSettings",
+          "locationName": "smpte2110ReceiverGroupSettings"
+        },
+        "SdiSources": {
+          "shape": "InputSdiSources",
+          "locationName": "sdiSources"
         }
       },
       "required": [
@@ -17086,6 +17432,10 @@
         "AnywhereSettings": {
           "shape": "DescribeAnywhereSettings",
           "locationName": "anywhereSettings"
+        },
+        "ChannelEngineVersion": {
+          "shape": "ChannelEngineVersionResponse",
+          "locationName": "channelEngineVersion"
         }
       }
     },
@@ -17159,6 +17509,46 @@
         "SendDelayMs": {
           "shape": "__integerMin0Max2000",
           "locationName": "sendDelayMs"
+        },
+        "KlvBehavior": {
+          "shape": "CmafKLVBehavior",
+          "locationName": "klvBehavior"
+        },
+        "KlvNameModifier": {
+          "shape": "__stringMax100",
+          "locationName": "klvNameModifier"
+        },
+        "NielsenId3NameModifier": {
+          "shape": "__stringMax100",
+          "locationName": "nielsenId3NameModifier"
+        },
+        "Scte35NameModifier": {
+          "shape": "__stringMax100",
+          "locationName": "scte35NameModifier"
+        },
+        "Id3Behavior": {
+          "shape": "CmafId3Behavior",
+          "locationName": "id3Behavior"
+        },
+        "Id3NameModifier": {
+          "shape": "__stringMax100",
+          "locationName": "id3NameModifier"
+        },
+        "CaptionLanguageMappings": {
+          "shape": "__listOfCmafIngestCaptionLanguageMapping",
+          "locationName": "captionLanguageMappings"
+        },
+        "TimedMetadataId3Frame": {
+          "shape": "CmafTimedMetadataId3Frame",
+          "locationName": "timedMetadataId3Frame"
+        },
+        "TimedMetadataId3Period": {
+          "shape": "__integerMin0Max10000",
+          "locationName": "timedMetadataId3Period"
+        },
+        "TimedMetadataPassthrough": {
+          "shape": "CmafTimedMetadataPassthrough",
+          "locationName": "timedMetadataPassthrough"
         }
       },
       "required": [
@@ -17421,7 +17811,8 @@
         "MEDIAPACKAGE_CHANNEL",
         "MEDIAPACKAGE_ORIGIN_ENDPOINT",
         "MEDIACONNECT_FLOW",
-        "S3_BUCKET"
+        "S3_BUCKET",
+        "MEDIATAILOR_PLAYBACK_CONFIGURATION"
       ]
     },
     "CloudWatchAlarmTemplateTreatMissingData": {
@@ -17456,6 +17847,11 @@
         "Tags": {
           "shape": "TagMap",
           "locationName": "tags"
+        },
+        "RequestId": {
+          "shape": "__stringMin1Max256PatternS",
+          "locationName": "requestId",
+          "idempotencyToken": true
         }
       },
       "required": [
@@ -17476,6 +17872,11 @@
         "Tags": {
           "shape": "TagMap",
           "locationName": "tags"
+        },
+        "RequestId": {
+          "shape": "__stringMin1Max256PatternS",
+          "locationName": "requestId",
+          "idempotencyToken": true
         }
       },
       "required": [
@@ -17608,6 +18009,11 @@
         "TreatMissingData": {
           "shape": "CloudWatchAlarmTemplateTreatMissingData",
           "locationName": "treatMissingData"
+        },
+        "RequestId": {
+          "shape": "__stringMin1Max256PatternS",
+          "locationName": "requestId",
+          "idempotencyToken": true
         }
       },
       "required": [
@@ -17677,6 +18083,11 @@
         "TreatMissingData": {
           "shape": "CloudWatchAlarmTemplateTreatMissingData",
           "locationName": "treatMissingData"
+        },
+        "RequestId": {
+          "shape": "__stringMin1Max256PatternS",
+          "locationName": "requestId",
+          "idempotencyToken": true
         }
       },
       "required": [
@@ -17867,6 +18278,11 @@
         "Tags": {
           "shape": "TagMap",
           "locationName": "tags"
+        },
+        "RequestId": {
+          "shape": "__stringMin1Max256PatternS",
+          "locationName": "requestId",
+          "idempotencyToken": true
         }
       },
       "required": [
@@ -17887,6 +18303,11 @@
         "Tags": {
           "shape": "TagMap",
           "locationName": "tags"
+        },
+        "RequestId": {
+          "shape": "__stringMin1Max256PatternS",
+          "locationName": "requestId",
+          "idempotencyToken": true
         }
       },
       "required": [
@@ -17991,6 +18412,11 @@
         "Tags": {
           "shape": "TagMap",
           "locationName": "tags"
+        },
+        "RequestId": {
+          "shape": "__stringMin1Max256PatternS",
+          "locationName": "requestId",
+          "idempotencyToken": true
         }
       },
       "required": [
@@ -18025,6 +18451,11 @@
         "Tags": {
           "shape": "TagMap",
           "locationName": "tags"
+        },
+        "RequestId": {
+          "shape": "__stringMin1Max256PatternS",
+          "locationName": "requestId",
+          "idempotencyToken": true
         }
       },
       "required": [
@@ -18157,6 +18588,11 @@
         "Tags": {
           "shape": "TagMap",
           "locationName": "tags"
+        },
+        "RequestId": {
+          "shape": "__stringMin1Max256PatternS",
+          "locationName": "requestId",
+          "idempotencyToken": true
         }
       },
       "required": [
@@ -18190,6 +18626,11 @@
         "Tags": {
           "shape": "TagMap",
           "locationName": "tags"
+        },
+        "RequestId": {
+          "shape": "__stringMin1Max256PatternS",
+          "locationName": "requestId",
+          "idempotencyToken": true
         }
       },
       "required": [
@@ -21286,6 +21727,14 @@
         "TimecodeBurninSettings": {
           "shape": "TimecodeBurninSettings",
           "locationName": "timecodeBurninSettings"
+        },
+        "Bitrate": {
+          "shape": "__integerMin50000Max8000000",
+          "locationName": "bitrate"
+        },
+        "RateControlMode": {
+          "shape": "Av1RateControlMode",
+          "locationName": "rateControlMode"
         }
       },
       "required": [
@@ -21678,6 +22127,10 @@
         "State": {
           "shape": "NodeState",
           "locationName": "state"
+        },
+        "SdiSourceMappings": {
+          "shape": "SdiSourceMappings",
+          "locationName": "sdiSourceMappings"
         }
       }
     },
@@ -21890,6 +22343,10 @@
         "State": {
           "shape": "NodeState",
           "locationName": "state"
+        },
+        "SdiSourceMappings": {
+          "shape": "SdiSourceMappings",
+          "locationName": "sdiSourceMappings"
         }
       }
     },
@@ -22321,6 +22778,10 @@
         "State": {
           "shape": "NodeState",
           "locationName": "state"
+        },
+        "SdiSourceMappings": {
+          "shape": "SdiSourceMappings",
+          "locationName": "sdiSourceMappings"
         }
       }
     },
@@ -22366,6 +22827,10 @@
         "State": {
           "shape": "NodeState",
           "locationName": "state"
+        },
+        "SdiSourceMappings": {
+          "shape": "SdiSourceMappings",
+          "locationName": "sdiSourceMappings"
         }
       }
     },
@@ -22415,6 +22880,10 @@
         "State": {
           "shape": "NodeState",
           "locationName": "state"
+        },
+        "SdiSourceMappings": {
+          "shape": "SdiSourceMappings",
+          "locationName": "sdiSourceMappings"
         }
       }
     },
@@ -23240,6 +23709,10 @@
         "Role": {
           "shape": "NodeRole",
           "locationName": "role"
+        },
+        "SdiSourceMappings": {
+          "shape": "SdiSourceMappingsUpdateRequest",
+          "locationName": "sdiSourceMappings"
         }
       },
       "required": [
@@ -23289,6 +23762,10 @@
         "State": {
           "shape": "NodeState",
           "locationName": "state"
+        },
+        "SdiSourceMappings": {
+          "shape": "SdiSourceMappings",
+          "locationName": "sdiSourceMappings"
         }
       }
     },
@@ -23364,6 +23841,10 @@
         "State": {
           "shape": "NodeState",
           "locationName": "state"
+        },
+        "SdiSourceMappings": {
+          "shape": "SdiSourceMappings",
+          "locationName": "sdiSourceMappings"
         }
       }
     },
@@ -23615,6 +24096,498 @@
       "enum": [
         "DISABLED",
         "ENABLED"
+      ]
+    },
+    "CmafKLVBehavior": {
+      "type": "string",
+      "enum": [
+        "NO_PASSTHROUGH",
+        "PASSTHROUGH"
+      ]
+    },
+    "__stringMax100": {
+      "type": "string",
+      "max": 100
+    },
+    "ChannelEngineVersionRequest": {
+      "type": "structure",
+      "members": {
+        "Version": {
+          "shape": "__string",
+          "locationName": "version"
+        }
+      }
+    },
+    "ChannelEngineVersionResponse": {
+      "type": "structure",
+      "members": {
+        "ExpirationDate": {
+          "shape": "__timestampIso8601",
+          "locationName": "expirationDate"
+        },
+        "Version": {
+          "shape": "__string",
+          "locationName": "version"
+        }
+      }
+    },
+    "ListVersionsRequest": {
+      "type": "structure",
+      "members": {}
+    },
+    "ListVersionsResponse": {
+      "type": "structure",
+      "members": {
+        "Versions": {
+          "shape": "__listOfChannelEngineVersionResponse",
+          "locationName": "versions"
+        }
+      }
+    },
+    "__listOfChannelEngineVersionResponse": {
+      "type": "list",
+      "member": {
+        "shape": "ChannelEngineVersionResponse"
+      }
+    },
+    "CmafId3Behavior": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "Id3SegmentTaggingScheduleActionSettings": {
+      "type": "structure",
+      "members": {
+        "Id3": {
+          "shape": "__string",
+          "locationName": "id3"
+        },
+        "Tag": {
+          "shape": "__string",
+          "locationName": "tag"
+        }
+      }
+    },
+    "TimedMetadataScheduleActionSettings": {
+      "type": "structure",
+      "members": {
+        "Id3": {
+          "shape": "__string",
+          "locationName": "id3"
+        }
+      },
+      "required": [
+        "Id3"
+      ]
+    },
+    "__stringMin1Max256PatternS": {
+      "type": "string",
+      "min": 1,
+      "max": 256,
+      "pattern": "^[\\S]+$"
+    },
+    "__integerMin1Max800": {
+      "type": "integer",
+      "min": 1,
+      "max": 800
+    },
+    "__integerMin80Max800": {
+      "type": "integer",
+      "min": 80,
+      "max": 800
+    },
+    "InputSdpLocation": {
+      "type": "structure",
+      "members": {
+        "MediaIndex": {
+          "shape": "__integer",
+          "locationName": "mediaIndex"
+        },
+        "SdpUrl": {
+          "shape": "__string",
+          "locationName": "sdpUrl"
+        }
+      }
+    },
+    "Smpte2110ReceiverGroup": {
+      "type": "structure",
+      "members": {
+        "SdpSettings": {
+          "shape": "Smpte2110ReceiverGroupSdpSettings",
+          "locationName": "sdpSettings"
+        }
+      }
+    },
+    "Smpte2110ReceiverGroupSdpSettings": {
+      "type": "structure",
+      "members": {
+        "AncillarySdps": {
+          "shape": "__listOfInputSdpLocation",
+          "locationName": "ancillarySdps"
+        },
+        "AudioSdps": {
+          "shape": "__listOfInputSdpLocation",
+          "locationName": "audioSdps"
+        },
+        "VideoSdp": {
+          "shape": "InputSdpLocation",
+          "locationName": "videoSdp"
+        }
+      }
+    },
+    "Smpte2110ReceiverGroupSettings": {
+      "type": "structure",
+      "members": {
+        "Smpte2110ReceiverGroups": {
+          "shape": "__listOfSmpte2110ReceiverGroup",
+          "locationName": "smpte2110ReceiverGroups"
+        }
+      }
+    },
+    "__listOfInputSdpLocation": {
+      "type": "list",
+      "member": {
+        "shape": "InputSdpLocation"
+      }
+    },
+    "__listOfSmpte2110ReceiverGroup": {
+      "type": "list",
+      "member": {
+        "shape": "Smpte2110ReceiverGroup"
+      }
+    },
+    "CreateSdiSourceRequest": {
+      "type": "structure",
+      "members": {
+        "Mode": {
+          "shape": "SdiSourceMode",
+          "locationName": "mode"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "RequestId": {
+          "shape": "__string",
+          "locationName": "requestId",
+          "idempotencyToken": true
+        },
+        "Tags": {
+          "shape": "Tags",
+          "locationName": "tags"
+        },
+        "Type": {
+          "shape": "SdiSourceType",
+          "locationName": "type"
+        }
+      }
+    },
+    "CreateSdiSourceResponse": {
+      "type": "structure",
+      "members": {
+        "SdiSource": {
+          "shape": "SdiSource",
+          "locationName": "sdiSource"
+        }
+      }
+    },
+    "DeleteSdiSourceRequest": {
+      "type": "structure",
+      "members": {
+        "SdiSourceId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "sdiSourceId"
+        }
+      },
+      "required": [
+        "SdiSourceId"
+      ]
+    },
+    "DeleteSdiSourceResponse": {
+      "type": "structure",
+      "members": {
+        "SdiSource": {
+          "shape": "SdiSource",
+          "locationName": "sdiSource"
+        }
+      }
+    },
+    "DescribeSdiSourceRequest": {
+      "type": "structure",
+      "members": {
+        "SdiSourceId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "sdiSourceId"
+        }
+      },
+      "required": [
+        "SdiSourceId"
+      ]
+    },
+    "DescribeSdiSourceResponse": {
+      "type": "structure",
+      "members": {
+        "SdiSource": {
+          "shape": "SdiSource",
+          "locationName": "sdiSource"
+        }
+      }
+    },
+    "InputSdiSources": {
+      "type": "list",
+      "member": {
+        "shape": "__string"
+      }
+    },
+    "ListSdiSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "MaxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "ListSdiSourcesResponse": {
+      "type": "structure",
+      "members": {
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        },
+        "SdiSources": {
+          "shape": "__listOfSdiSourceSummary",
+          "locationName": "sdiSources"
+        }
+      }
+    },
+    "SdiSource": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "Inputs": {
+          "shape": "__listOf__string",
+          "locationName": "inputs"
+        },
+        "Mode": {
+          "shape": "SdiSourceMode",
+          "locationName": "mode"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "State": {
+          "shape": "SdiSourceState",
+          "locationName": "state"
+        },
+        "Type": {
+          "shape": "SdiSourceType",
+          "locationName": "type"
+        }
+      }
+    },
+    "SdiSourceMapping": {
+      "type": "structure",
+      "members": {
+        "CardNumber": {
+          "shape": "__integer",
+          "locationName": "cardNumber"
+        },
+        "ChannelNumber": {
+          "shape": "__integer",
+          "locationName": "channelNumber"
+        },
+        "SdiSource": {
+          "shape": "__string",
+          "locationName": "sdiSource"
+        }
+      }
+    },
+    "SdiSourceMappingUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "CardNumber": {
+          "shape": "__integer",
+          "locationName": "cardNumber"
+        },
+        "ChannelNumber": {
+          "shape": "__integer",
+          "locationName": "channelNumber"
+        },
+        "SdiSource": {
+          "shape": "__string",
+          "locationName": "sdiSource"
+        }
+      }
+    },
+    "SdiSourceMappings": {
+      "type": "list",
+      "member": {
+        "shape": "SdiSourceMapping"
+      }
+    },
+    "SdiSourceMappingsUpdateRequest": {
+      "type": "list",
+      "member": {
+        "shape": "SdiSourceMappingUpdateRequest"
+      }
+    },
+    "SdiSourceMode": {
+      "type": "string",
+      "enum": [
+        "QUADRANT",
+        "INTERLEAVE"
+      ]
+    },
+    "SdiSourceState": {
+      "type": "string",
+      "enum": [
+        "IDLE",
+        "IN_USE",
+        "DELETED"
+      ]
+    },
+    "SdiSourceSummary": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string",
+          "locationName": "arn"
+        },
+        "Id": {
+          "shape": "__string",
+          "locationName": "id"
+        },
+        "Inputs": {
+          "shape": "__listOf__string",
+          "locationName": "inputs"
+        },
+        "Mode": {
+          "shape": "SdiSourceMode",
+          "locationName": "mode"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "State": {
+          "shape": "SdiSourceState",
+          "locationName": "state"
+        },
+        "Type": {
+          "shape": "SdiSourceType",
+          "locationName": "type"
+        }
+      }
+    },
+    "SdiSourceType": {
+      "type": "string",
+      "enum": [
+        "SINGLE",
+        "QUAD"
+      ]
+    },
+    "UpdateSdiSourceRequest": {
+      "type": "structure",
+      "members": {
+        "Mode": {
+          "shape": "SdiSourceMode",
+          "locationName": "mode"
+        },
+        "Name": {
+          "shape": "__string",
+          "locationName": "name"
+        },
+        "SdiSourceId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "sdiSourceId"
+        },
+        "Type": {
+          "shape": "SdiSourceType",
+          "locationName": "type"
+        }
+      },
+      "required": [
+        "SdiSourceId"
+      ]
+    },
+    "UpdateSdiSourceResponse": {
+      "type": "structure",
+      "members": {
+        "SdiSource": {
+          "shape": "SdiSource",
+          "locationName": "sdiSource"
+        }
+      }
+    },
+    "__listOfSdiSourceSummary": {
+      "type": "list",
+      "member": {
+        "shape": "SdiSourceSummary"
+      }
+    },
+    "CmafIngestCaptionLanguageMapping": {
+      "type": "structure",
+      "members": {
+        "CaptionChannel": {
+          "shape": "__integerMin1Max4",
+          "locationName": "captionChannel"
+        },
+        "LanguageCode": {
+          "shape": "__stringMin3Max3",
+          "locationName": "languageCode"
+        }
+      },
+      "required": [
+        "LanguageCode",
+        "CaptionChannel"
+      ]
+    },
+    "CmafTimedMetadataId3Frame": {
+      "type": "string",
+      "enum": [
+        "NONE",
+        "PRIV",
+        "TDRL"
+      ]
+    },
+    "CmafTimedMetadataPassthrough": {
+      "type": "string",
+      "enum": [
+        "DISABLED",
+        "ENABLED"
+      ]
+    },
+    "__listOfCmafIngestCaptionLanguageMapping": {
+      "type": "list",
+      "member": {
+        "shape": "CmafIngestCaptionLanguageMapping"
+      }
+    },
+    "Av1RateControlMode": {
+      "type": "string",
+      "enum": [
+        "CBR",
+        "QVBR"
       ]
     }
   }

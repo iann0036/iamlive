@@ -1093,8 +1093,7 @@
     },
     "AcceptAdministratorInvitationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "AcceptInvitationRequest":{
       "type":"structure",
@@ -1123,8 +1122,7 @@
     },
     "AcceptInvitationResponse":{
       "type":"structure",
-      "members":{
-      },
+      "members":{},
       "deprecated":true,
       "deprecatedMessage":"This output is deprecated, use AcceptAdministratorInvitationResponse instead"
     },
@@ -1351,6 +1349,10 @@
         "Session":{
           "shape":"Session",
           "locationName":"session"
+        },
+        "Process":{
+          "shape":"ActorProcess",
+          "locationName":"process"
         }
       }
     },
@@ -1359,10 +1361,35 @@
       "member":{"shape":"String"},
       "max":400
     },
+    "ActorProcess":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Path"
+      ],
+      "members":{
+        "Name":{
+          "shape":"ProcessName",
+          "locationName":"name"
+        },
+        "Path":{
+          "shape":"ProcessPath",
+          "locationName":"path"
+        },
+        "Sha256":{
+          "shape":"ProcessSha256",
+          "locationName":"sha256"
+        }
+      }
+    },
     "Actors":{
       "type":"list",
       "member":{"shape":"Actor"},
       "max":400
+    },
+    "AdditionalSequenceTypes":{
+      "type":"list",
+      "member":{"shape":"FindingType"}
     },
     "AddonDetails":{
       "type":"structure",
@@ -1518,8 +1545,7 @@
     },
     "ArchiveFindingsResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "AutoEnableMembers":{
       "type":"string",
@@ -1683,6 +1709,17 @@
         }
       }
     },
+    "ClusterStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "DELETING",
+        "FAILED",
+        "UPDATING",
+        "PENDING"
+      ]
+    },
     "Condition":{
       "type":"structure",
       "members":{
@@ -1790,6 +1827,25 @@
         }
       }
     },
+    "ContainerFindingResource":{
+      "type":"structure",
+      "required":["Image"],
+      "members":{
+        "Image":{
+          "shape":"String",
+          "locationName":"image"
+        },
+        "ImageUid":{
+          "shape":"ContainerImageUid",
+          "locationName":"imageUid"
+        }
+      }
+    },
+    "ContainerImageUid":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
     "ContainerInstanceDetails":{
       "type":"structure",
       "members":{
@@ -1802,6 +1858,15 @@
           "locationName":"compatibleContainerInstances"
         }
       }
+    },
+    "ContainerUid":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "ContainerUids":{
+      "type":"list",
+      "member":{"shape":"ContainerUid"}
     },
     "Containers":{
       "type":"list",
@@ -2371,8 +2436,7 @@
     },
     "CreateSampleFindingsResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateThreatIntelSetRequest":{
       "type":"structure",
@@ -2634,8 +2698,7 @@
     },
     "DeleteDetectorResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteFilterRequest":{
       "type":"structure",
@@ -2658,8 +2721,7 @@
     },
     "DeleteFilterResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteIPSetRequest":{
       "type":"structure",
@@ -2682,8 +2744,7 @@
     },
     "DeleteIPSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteInvitationsRequest":{
       "type":"structure",
@@ -2765,8 +2826,7 @@
     },
     "DeletePublishingDestinationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteThreatIntelSetRequest":{
       "type":"structure",
@@ -2789,8 +2849,7 @@
     },
     "DeleteThreatIntelSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DescribeMalwareScansRequest":{
       "type":"structure",
@@ -3140,8 +3199,7 @@
     },
     "DisableOrganizationAdminAccountResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DisassociateFromAdministratorAccountRequest":{
       "type":"structure",
@@ -3156,8 +3214,7 @@
     },
     "DisassociateFromAdministratorAccountResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DisassociateFromMasterAccountRequest":{
       "type":"structure",
@@ -3174,8 +3231,7 @@
     },
     "DisassociateFromMasterAccountResponse":{
       "type":"structure",
-      "members":{
-      },
+      "members":{},
       "deprecated":true,
       "deprecatedMessage":"This output is deprecated, use DisassociateFromAdministratorAccountResponse instead"
     },
@@ -3342,6 +3398,17 @@
         }
       }
     },
+    "Ec2InstanceUid":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
+    "Ec2InstanceUids":{
+      "type":"list",
+      "member":{"shape":"Ec2InstanceUid"},
+      "max":25,
+      "min":0
+    },
     "Ec2NetworkInterface":{
       "type":"structure",
       "members":{
@@ -3461,6 +3528,31 @@
         }
       }
     },
+    "EksCluster":{
+      "type":"structure",
+      "members":{
+        "Arn":{
+          "shape":"String",
+          "locationName":"arn"
+        },
+        "CreatedAt":{
+          "shape":"Timestamp",
+          "locationName":"createdAt"
+        },
+        "Status":{
+          "shape":"ClusterStatus",
+          "locationName":"status"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        },
+        "Ec2InstanceUids":{
+          "shape":"Ec2InstanceUids",
+          "locationName":"ec2InstanceUids"
+        }
+      }
+    },
     "EksClusterDetails":{
       "type":"structure",
       "members":{
@@ -3493,7 +3585,8 @@
     "Email":{
       "type":"string",
       "max":64,
-      "min":1,
+      "min":6,
+      "pattern":"See rules in parameter description",
       "sensitive":true
     },
     "EnableOrganizationAdminAccountRequest":{
@@ -3508,8 +3601,7 @@
     },
     "EnableOrganizationAdminAccountResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "EndpointIds":{
       "type":"list",
@@ -3763,7 +3855,10 @@
         "EC2_NETWORK_INTERFACE",
         "S3_BUCKET",
         "S3_OBJECT",
-        "ACCESS_KEY"
+        "ACCESS_KEY",
+        "EKS_CLUSTER",
+        "KUBERNETES_WORKLOAD",
+        "CONTAINER"
       ]
     },
     "FindingStatisticType":{
@@ -4191,8 +4286,7 @@
     },
     "GetInvitationsCountRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "GetInvitationsCountResponse":{
       "type":"structure",
@@ -4630,7 +4724,13 @@
         "ATTACK_TECHNIQUE",
         "UNUSUAL_API_FOR_ACCOUNT",
         "UNUSUAL_ASN_FOR_ACCOUNT",
-        "UNUSUAL_ASN_FOR_USER"
+        "UNUSUAL_ASN_FOR_USER",
+        "SUSPICIOUS_PROCESS",
+        "MALICIOUS_DOMAIN",
+        "MALICIOUS_PROCESS",
+        "CRYPTOMINING_IP",
+        "CRYPTOMINING_DOMAIN",
+        "CRYPTOMINING_PROCESS"
       ]
     },
     "IndicatorValueString":{
@@ -4986,6 +5086,19 @@
         }
       }
     },
+    "KubernetesResourcesTypes":{
+      "type":"string",
+      "enum":[
+        "PODS",
+        "JOBS",
+        "CRONJOBS",
+        "DEPLOYMENTS",
+        "DAEMONSETS",
+        "STATEFULSETS",
+        "REPLICASETS",
+        "REPLICATIONCONTROLLERS"
+      ]
+    },
     "KubernetesRoleBindingDetails":{
       "type":"structure",
       "members":{
@@ -5050,6 +5163,23 @@
         "ImpersonatedUser":{
           "shape":"ImpersonatedUser",
           "locationName":"impersonatedUser"
+        }
+      }
+    },
+    "KubernetesWorkload":{
+      "type":"structure",
+      "members":{
+        "ContainerUids":{
+          "shape":"ContainerUids",
+          "locationName":"containerUids"
+        },
+        "Namespace":{
+          "shape":"String",
+          "locationName":"namespace"
+        },
+        "KubernetesResourcesTypes":{
+          "shape":"KubernetesResourcesTypes",
+          "locationName":"type"
         }
       }
     },
@@ -6647,6 +6777,21 @@
         }
       }
     },
+    "ProcessName":{
+      "type":"string",
+      "max":4096,
+      "min":0
+    },
+    "ProcessPath":{
+      "type":"string",
+      "max":4096,
+      "min":0
+    },
+    "ProcessSha256":{
+      "type":"string",
+      "max":1024,
+      "min":0
+    },
     "ProductCode":{
       "type":"structure",
       "members":{
@@ -6978,6 +7123,18 @@
         "S3Object":{
           "shape":"S3Object",
           "locationName":"s3Object"
+        },
+        "EksCluster":{
+          "shape":"EksCluster",
+          "locationName":"eksCluster"
+        },
+        "KubernetesWorkload":{
+          "shape":"KubernetesWorkload",
+          "locationName":"kubernetesWorkload"
+        },
+        "Container":{
+          "shape":"ContainerFindingResource",
+          "locationName":"container"
         }
       }
     },
@@ -7693,6 +7850,10 @@
         "SequenceIndicators":{
           "shape":"Indicators",
           "locationName":"sequenceIndicators"
+        },
+        "AdditionalSequenceTypes":{
+          "shape":"AdditionalSequenceTypes",
+          "locationName":"additionalSequenceTypes"
         }
       }
     },
@@ -7904,14 +8065,18 @@
       "enum":[
         "FINDING",
         "CLOUD_TRAIL",
-        "S3_DATA_EVENTS"
+        "S3_DATA_EVENTS",
+        "EKS_AUDIT_LOGS",
+        "FLOW_LOGS",
+        "DNS_LOGS",
+        "RUNTIME_MONITORING"
       ]
     },
     "Signals":{
       "type":"list",
       "member":{"shape":"Signal"},
       "max":100,
-      "min":2
+      "min":1
     },
     "SortCriteria":{
       "type":"structure",
@@ -8066,8 +8231,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValue":{
       "type":"string",
@@ -8233,8 +8397,7 @@
     },
     "UnarchiveFindingsResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UnprocessedAccount":{
       "type":"structure",
@@ -8289,8 +8452,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateDetectorRequest":{
       "type":"structure",
@@ -8323,8 +8485,7 @@
     },
     "UpdateDetectorResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateFilterRequest":{
       "type":"structure",
@@ -8400,8 +8561,7 @@
     },
     "UpdateFindingsFeedbackResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateIPSetRequest":{
       "type":"structure",
@@ -8436,8 +8596,7 @@
     },
     "UpdateIPSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateMalwareProtectionPlanRequest":{
       "type":"structure",
@@ -8483,8 +8642,7 @@
     },
     "UpdateMalwareScanSettingsResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateMemberDetectorsRequest":{
       "type":"structure",
@@ -8557,8 +8715,7 @@
     },
     "UpdateOrganizationConfigurationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateProtectedResource":{
       "type":"structure",
@@ -8594,8 +8751,7 @@
     },
     "UpdatePublishingDestinationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateS3BucketResource":{
       "type":"structure",
@@ -8639,8 +8795,7 @@
     },
     "UpdateThreatIntelSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UsageAccountResult":{
       "type":"structure",

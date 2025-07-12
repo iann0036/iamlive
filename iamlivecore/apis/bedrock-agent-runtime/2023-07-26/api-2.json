@@ -14,6 +14,45 @@
     "auth":["aws.auth#sigv4"]
   },
   "operations":{
+    "CreateInvocation":{
+      "name":"CreateInvocation",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/sessions/{sessionIdentifier}/invocations/",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateInvocationRequest"},
+      "output":{"shape":"CreateInvocationResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
+    "CreateSession":{
+      "name":"CreateSession",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/sessions/",
+        "responseCode":201
+      },
+      "input":{"shape":"CreateSessionRequest"},
+      "output":{"shape":"CreateSessionResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
     "DeleteAgentMemory":{
       "name":"DeleteAgentMemory",
       "http":{
@@ -24,8 +63,8 @@
       "input":{"shape":"DeleteAgentMemoryRequest"},
       "output":{"shape":"DeleteAgentMemoryResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"DependencyFailedException"},
@@ -33,6 +72,44 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteSession":{
+      "name":"DeleteSession",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/sessions/{sessionIdentifier}/",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteSessionRequest"},
+      "output":{"shape":"DeleteSessionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
+    "EndSession":{
+      "name":"EndSession",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/sessions/{sessionIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"EndSessionRequest"},
+      "output":{"shape":"EndSessionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ],
       "idempotent":true
     },
@@ -46,8 +123,8 @@
       "input":{"shape":"GenerateQueryRequest"},
       "output":{"shape":"GenerateQueryResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"DependencyFailedException"},
@@ -67,8 +144,8 @@
       "input":{"shape":"GetAgentMemoryRequest"},
       "output":{"shape":"GetAgentMemoryResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"DependencyFailedException"},
@@ -76,6 +153,74 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "GetExecutionFlowSnapshot":{
+      "name":"GetExecutionFlowSnapshot",
+      "http":{
+        "method":"GET",
+        "requestUri":"/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}/flowsnapshot",
+        "responseCode":200
+      },
+      "input":{"shape":"GetExecutionFlowSnapshotRequest"},
+      "output":{"shape":"GetExecutionFlowSnapshotResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetFlowExecution":{
+      "name":"GetFlowExecution",
+      "http":{
+        "method":"GET",
+        "requestUri":"/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetFlowExecutionRequest"},
+      "output":{"shape":"GetFlowExecutionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetInvocationStep":{
+      "name":"GetInvocationStep",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sessions/{sessionIdentifier}/invocationSteps/{invocationStepId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetInvocationStepRequest"},
+      "output":{"shape":"GetInvocationStepResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetSession":{
+      "name":"GetSession",
+      "http":{
+        "method":"GET",
+        "requestUri":"/sessions/{sessionIdentifier}/",
+        "responseCode":200
+      },
+      "input":{"shape":"GetSessionRequest"},
+      "output":{"shape":"GetSessionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "InvokeAgent":{
@@ -88,8 +233,9 @@
       "input":{"shape":"InvokeAgentRequest"},
       "output":{"shape":"InvokeAgentResponse"},
       "errors":[
-        {"shape":"ConflictException"},
+        {"shape":"ModelNotReadyException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"DependencyFailedException"},
@@ -109,8 +255,8 @@
       "input":{"shape":"InvokeFlowRequest"},
       "output":{"shape":"InvokeFlowResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"DependencyFailedException"},
@@ -130,8 +276,8 @@
       "input":{"shape":"InvokeInlineAgentRequest"},
       "output":{"shape":"InvokeInlineAgentResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"DependencyFailedException"},
@@ -139,6 +285,107 @@
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "ListFlowExecutionEvents":{
+      "name":"ListFlowExecutionEvents",
+      "http":{
+        "method":"GET",
+        "requestUri":"/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}/events",
+        "responseCode":200
+      },
+      "input":{"shape":"ListFlowExecutionEventsRequest"},
+      "output":{"shape":"ListFlowExecutionEventsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListFlowExecutions":{
+      "name":"ListFlowExecutions",
+      "http":{
+        "method":"GET",
+        "requestUri":"/flows/{flowIdentifier}/executions",
+        "responseCode":200
+      },
+      "input":{"shape":"ListFlowExecutionsRequest"},
+      "output":{"shape":"ListFlowExecutionsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListInvocationSteps":{
+      "name":"ListInvocationSteps",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sessions/{sessionIdentifier}/invocationSteps/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListInvocationStepsRequest"},
+      "output":{"shape":"ListInvocationStepsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListInvocations":{
+      "name":"ListInvocations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sessions/{sessionIdentifier}/invocations/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListInvocationsRequest"},
+      "output":{"shape":"ListInvocationsResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListSessions":{
+      "name":"ListSessions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/sessions/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListSessionsRequest"},
+      "output":{"shape":"ListSessionsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "OptimizePrompt":{
@@ -159,6 +406,26 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "PutInvocationStep":{
+      "name":"PutInvocationStep",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/sessions/{sessionIdentifier}/invocationSteps/",
+        "responseCode":201
+      },
+      "input":{"shape":"PutInvocationStepRequest"},
+      "output":{"shape":"PutInvocationStepResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
     "Rerank":{
       "name":"Rerank",
       "http":{
@@ -169,8 +436,8 @@
       "input":{"shape":"RerankRequest"},
       "output":{"shape":"RerankResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"DependencyFailedException"},
@@ -190,8 +457,8 @@
       "input":{"shape":"RetrieveRequest"},
       "output":{"shape":"RetrieveResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"DependencyFailedException"},
@@ -211,8 +478,8 @@
       "input":{"shape":"RetrieveAndGenerateRequest"},
       "output":{"shape":"RetrieveAndGenerateResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"DependencyFailedException"},
@@ -232,8 +499,8 @@
       "input":{"shape":"RetrieveAndGenerateStreamRequest"},
       "output":{"shape":"RetrieveAndGenerateStreamResponse"},
       "errors":[
-        {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"InternalServerException"},
         {"shape":"DependencyFailedException"},
@@ -242,6 +509,102 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ServiceQuotaExceededException"}
       ]
+    },
+    "StartFlowExecution":{
+      "name":"StartFlowExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions",
+        "responseCode":200
+      },
+      "input":{"shape":"StartFlowExecutionRequest"},
+      "output":{"shape":"StartFlowExecutionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"DependencyFailedException"},
+        {"shape":"BadGatewayException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "StopFlowExecution":{
+      "name":"StopFlowExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/flows/{flowIdentifier}/aliases/{flowAliasIdentifier}/executions/{executionIdentifier}/stop",
+        "responseCode":200
+      },
+      "input":{"shape":"StopFlowExecutionRequest"},
+      "output":{"shape":"StopFlowExecutionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"DependencyFailedException"},
+        {"shape":"BadGatewayException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
+    },
+    "UpdateSession":{
+      "name":"UpdateSession",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/sessions/{sessionIdentifier}/",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateSessionRequest"},
+      "output":{"shape":"UpdateSessionResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "idempotent":true
     }
   },
   "shapes":{
@@ -294,6 +657,7 @@
     "ActionGroupInvocationOutput":{
       "type":"structure",
       "members":{
+        "metadata":{"shape":"Metadata"},
         "text":{"shape":"ActionGroupOutputString"}
       }
     },
@@ -309,8 +673,26 @@
       "type":"string",
       "enum":[
         "AMAZON.UserInput",
-        "AMAZON.CodeInterpreter"
+        "AMAZON.CodeInterpreter",
+        "ANTHROPIC.Computer",
+        "ANTHROPIC.Bash",
+        "ANTHROPIC.TextEditor"
       ]
+    },
+    "ActionGroupSignatureParams":{
+      "type":"map",
+      "key":{"shape":"ActionGroupSignatureParamsKeyString"},
+      "value":{"shape":"ActionGroupSignatureParamsValueString"}
+    },
+    "ActionGroupSignatureParamsKeyString":{
+      "type":"string",
+      "max":100,
+      "min":0
+    },
+    "ActionGroupSignatureParamsValueString":{
+      "type":"string",
+      "max":100,
+      "min":0
     },
     "ActionInvocationType":{
       "type":"string",
@@ -345,7 +727,8 @@
         "apiSchema":{"shape":"APISchema"},
         "description":{"shape":"ResourceDescription"},
         "functionSchema":{"shape":"FunctionSchema"},
-        "parentActionGroupSignature":{"shape":"ActionGroupSignature"}
+        "parentActionGroupSignature":{"shape":"ActionGroupSignature"},
+        "parentActionGroupSignatureParams":{"shape":"ActionGroupSignatureParams"}
       }
     },
     "AgentActionGroups":{
@@ -363,6 +746,14 @@
       "max":10,
       "min":0,
       "pattern":"^[0-9a-zA-Z]+$"
+    },
+    "AgentCollaboration":{
+      "type":"string",
+      "enum":[
+        "SUPERVISOR",
+        "SUPERVISOR_ROUTER",
+        "DISABLED"
+      ]
     },
     "AgentCollaboratorInputPayload":{
       "type":"structure",
@@ -385,6 +776,7 @@
       "members":{
         "agentCollaboratorAliasArn":{"shape":"AgentAliasArn"},
         "agentCollaboratorName":{"shape":"String"},
+        "metadata":{"shape":"Metadata"},
         "output":{"shape":"AgentCollaboratorOutputPayload"}
       }
     },
@@ -512,6 +904,12 @@
       "min":1,
       "pattern":"^(arn:aws(-[^:]+)?:(bedrock|sagemaker):[a-z0-9-]{1,20}:([0-9]{12})?:([a-z-]+/)?)?([a-z0-9.-]{1,63}){0,2}(([:][a-z0-9-]{1,63}){0,2})?(/[a-z0-9]{1,12})?$"
     },
+    "BedrockModelConfigurations":{
+      "type":"structure",
+      "members":{
+        "performanceConfig":{"shape":"PerformanceConfiguration"}
+      }
+    },
     "BedrockRerankingConfiguration":{
       "type":"structure",
       "required":["modelConfiguration"],
@@ -540,6 +938,25 @@
         "modelArn":{"shape":"BedrockModelArn"}
       }
     },
+    "BedrockSessionContentBlock":{
+      "type":"structure",
+      "members":{
+        "image":{"shape":"ImageBlock"},
+        "text":{"shape":"BedrockSessionContentBlockTextString"}
+      },
+      "sensitive":true,
+      "union":true
+    },
+    "BedrockSessionContentBlockTextString":{
+      "type":"string",
+      "min":1
+    },
+    "BedrockSessionContentBlocks":{
+      "type":"list",
+      "member":{"shape":"BedrockSessionContentBlock"},
+      "min":1
+    },
+    "Blob":{"type":"blob"},
     "Boolean":{
       "type":"boolean",
       "box":true
@@ -595,7 +1012,13 @@
     "CitationEvent":{
       "type":"structure",
       "members":{
-        "citation":{"shape":"Citation"}
+        "citation":{
+          "shape":"Citation",
+          "deprecated":true,
+          "deprecatedMessage":"Citation is deprecated. Please use GeneratedResponsePart and RetrievedReferences for citation event."
+        },
+        "generatedResponsePart":{"shape":"GeneratedResponsePart"},
+        "retrievedReferences":{"shape":"RetrievedReferences"}
       },
       "event":true
     },
@@ -616,8 +1039,70 @@
         "executionError":{"shape":"String"},
         "executionOutput":{"shape":"String"},
         "executionTimeout":{"shape":"Boolean"},
-        "files":{"shape":"Files"}
+        "files":{"shape":"Files"},
+        "metadata":{"shape":"Metadata"}
       }
+    },
+    "CollaborationInstruction":{
+      "type":"string",
+      "max":4000,
+      "min":1,
+      "sensitive":true
+    },
+    "Collaborator":{
+      "type":"structure",
+      "required":[
+        "foundationModel",
+        "instruction"
+      ],
+      "members":{
+        "actionGroups":{"shape":"AgentActionGroups"},
+        "agentCollaboration":{"shape":"AgentCollaboration"},
+        "agentName":{"shape":"Name"},
+        "collaboratorConfigurations":{"shape":"CollaboratorConfigurations"},
+        "customerEncryptionKeyArn":{"shape":"KmsKeyArn"},
+        "foundationModel":{"shape":"ModelIdentifier"},
+        "guardrailConfiguration":{"shape":"GuardrailConfigurationWithArn"},
+        "idleSessionTTLInSeconds":{"shape":"SessionTTL"},
+        "instruction":{"shape":"Instruction"},
+        "knowledgeBases":{"shape":"KnowledgeBases"},
+        "promptOverrideConfiguration":{"shape":"PromptOverrideConfiguration"}
+      }
+    },
+    "CollaboratorConfiguration":{
+      "type":"structure",
+      "required":[
+        "collaboratorInstruction",
+        "collaboratorName"
+      ],
+      "members":{
+        "agentAliasArn":{"shape":"AgentAliasArn"},
+        "collaboratorInstruction":{"shape":"CollaborationInstruction"},
+        "collaboratorName":{"shape":"Name"},
+        "relayConversationHistory":{"shape":"RelayConversationHistory"}
+      }
+    },
+    "CollaboratorConfigurations":{
+      "type":"list",
+      "member":{"shape":"CollaboratorConfiguration"}
+    },
+    "Collaborators":{
+      "type":"list",
+      "member":{"shape":"Collaborator"}
+    },
+    "ConditionResultEvent":{
+      "type":"structure",
+      "required":[
+        "nodeName",
+        "satisfiedConditions",
+        "timestamp"
+      ],
+      "members":{
+        "nodeName":{"shape":"NodeName"},
+        "satisfiedConditions":{"shape":"SatisfiedConditions"},
+        "timestamp":{"shape":"DateTimestamp"}
+      },
+      "sensitive":true
     },
     "ConfirmationState":{
       "type":"string",
@@ -652,7 +1137,8 @@
     "ContentBody":{
       "type":"structure",
       "members":{
-        "body":{"shape":"String"}
+        "body":{"shape":"String"},
+        "images":{"shape":"ImageInputs"}
       }
     },
     "ContentMap":{
@@ -677,6 +1163,55 @@
         "assistant"
       ]
     },
+    "CreateInvocationRequest":{
+      "type":"structure",
+      "required":["sessionIdentifier"],
+      "members":{
+        "description":{"shape":"InvocationDescription"},
+        "invocationId":{"shape":"Uuid"},
+        "sessionIdentifier":{
+          "shape":"SessionIdentifier",
+          "location":"uri",
+          "locationName":"sessionIdentifier"
+        }
+      }
+    },
+    "CreateInvocationResponse":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "invocationId",
+        "sessionId"
+      ],
+      "members":{
+        "createdAt":{"shape":"DateTimestamp"},
+        "invocationId":{"shape":"Uuid"},
+        "sessionId":{"shape":"Uuid"}
+      }
+    },
+    "CreateSessionRequest":{
+      "type":"structure",
+      "members":{
+        "encryptionKeyArn":{"shape":"KmsKeyArn"},
+        "sessionMetadata":{"shape":"SessionMetadataMap"},
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "CreateSessionResponse":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "sessionArn",
+        "sessionId",
+        "sessionStatus"
+      ],
+      "members":{
+        "createdAt":{"shape":"DateTimestamp"},
+        "sessionArn":{"shape":"SessionArn"},
+        "sessionId":{"shape":"Uuid"},
+        "sessionStatus":{"shape":"SessionStatus"}
+      }
+    },
     "CreationMode":{
       "type":"string",
       "enum":[
@@ -687,6 +1222,12 @@
     "CustomControlMethod":{
       "type":"string",
       "enum":["RETURN_CONTROL"]
+    },
+    "CustomOrchestration":{
+      "type":"structure",
+      "members":{
+        "executor":{"shape":"OrchestrationExecutor"}
+      }
     },
     "CustomOrchestrationTrace":{
       "type":"structure",
@@ -728,10 +1269,31 @@
           "shape":"MemoryId",
           "location":"querystring",
           "locationName":"memoryId"
+        },
+        "sessionId":{
+          "shape":"SessionId",
+          "location":"querystring",
+          "locationName":"sessionId"
         }
       }
     },
     "DeleteAgentMemoryResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "DeleteSessionRequest":{
+      "type":"structure",
+      "required":["sessionIdentifier"],
+      "members":{
+        "sessionIdentifier":{
+          "shape":"SessionIdentifier",
+          "location":"uri",
+          "locationName":"sessionIdentifier"
+        }
+      }
+    },
+    "DeleteSessionResponse":{
       "type":"structure",
       "members":{
       }
@@ -757,6 +1319,30 @@
     "Double":{
       "type":"double",
       "box":true
+    },
+    "EndSessionRequest":{
+      "type":"structure",
+      "required":["sessionIdentifier"],
+      "members":{
+        "sessionIdentifier":{
+          "shape":"SessionIdentifier",
+          "location":"uri",
+          "locationName":"sessionIdentifier"
+        }
+      }
+    },
+    "EndSessionResponse":{
+      "type":"structure",
+      "required":[
+        "sessionArn",
+        "sessionId",
+        "sessionStatus"
+      ],
+      "members":{
+        "sessionArn":{"shape":"SessionArn"},
+        "sessionId":{"shape":"Uuid"},
+        "sessionStatus":{"shape":"SessionStatus"}
+      }
     },
     "ExecutionType":{
       "type":"string",
@@ -793,6 +1379,7 @@
         "additionalModelRequestFields":{"shape":"AdditionalModelRequestFields"},
         "guardrailConfiguration":{"shape":"GuardrailConfiguration"},
         "inferenceConfig":{"shape":"InferenceConfig"},
+        "performanceConfig":{"shape":"PerformanceConfiguration"},
         "promptTemplate":{"shape":"PromptTemplate"}
       }
     },
@@ -815,7 +1402,9 @@
     "FailureTrace":{
       "type":"structure",
       "members":{
+        "failureCode":{"shape":"Integer"},
         "failureReason":{"shape":"FailureReasonString"},
+        "metadata":{"shape":"Metadata"},
         "traceId":{"shape":"TraceId"}
       },
       "sensitive":true
@@ -904,6 +1493,7 @@
     "FinalResponse":{
       "type":"structure",
       "members":{
+        "metadata":{"shape":"Metadata"},
         "text":{"shape":"FinalResponseString"}
       }
     },
@@ -932,7 +1522,170 @@
     },
     "FlowCompletionReason":{
       "type":"string",
-      "enum":["SUCCESS"]
+      "enum":[
+        "SUCCESS",
+        "INPUT_REQUIRED"
+      ]
+    },
+    "FlowErrorCode":{
+      "type":"string",
+      "enum":[
+        "VALIDATION",
+        "INTERNAL_SERVER",
+        "NODE_EXECUTION_FAILED"
+      ]
+    },
+    "FlowExecutionContent":{
+      "type":"structure",
+      "members":{
+        "document":{"shape":"Document"}
+      },
+      "sensitive":true,
+      "union":true
+    },
+    "FlowExecutionError":{
+      "type":"structure",
+      "members":{
+        "error":{"shape":"FlowExecutionErrorType"},
+        "message":{"shape":"String"},
+        "nodeName":{"shape":"NodeName"}
+      }
+    },
+    "FlowExecutionErrorType":{
+      "type":"string",
+      "enum":["ExecutionTimedOut"]
+    },
+    "FlowExecutionErrors":{
+      "type":"list",
+      "member":{"shape":"FlowExecutionError"}
+    },
+    "FlowExecutionEvent":{
+      "type":"structure",
+      "members":{
+        "conditionResultEvent":{"shape":"ConditionResultEvent"},
+        "flowFailureEvent":{"shape":"FlowFailureEvent"},
+        "flowInputEvent":{"shape":"FlowExecutionInputEvent"},
+        "flowOutputEvent":{"shape":"FlowExecutionOutputEvent"},
+        "nodeFailureEvent":{"shape":"NodeFailureEvent"},
+        "nodeInputEvent":{"shape":"NodeInputEvent"},
+        "nodeOutputEvent":{"shape":"NodeOutputEvent"}
+      },
+      "union":true
+    },
+    "FlowExecutionEventType":{
+      "type":"string",
+      "enum":[
+        "Node",
+        "Flow"
+      ]
+    },
+    "FlowExecutionEvents":{
+      "type":"list",
+      "member":{"shape":"FlowExecutionEvent"},
+      "max":10,
+      "min":0
+    },
+    "FlowExecutionId":{
+      "type":"string",
+      "max":100,
+      "min":2,
+      "pattern":"^[0-9a-zA-Z._:-]+$"
+    },
+    "FlowExecutionIdentifier":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9-]{1,36}$|^(arn:aws:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:flow/[0-9a-zA-Z]{10}/alias/[0-9a-zA-Z]{10}/execution/[a-zA-Z0-9-]{1,36})$"
+    },
+    "FlowExecutionInputEvent":{
+      "type":"structure",
+      "required":[
+        "fields",
+        "nodeName",
+        "timestamp"
+      ],
+      "members":{
+        "fields":{"shape":"FlowInputFields"},
+        "nodeName":{"shape":"NodeName"},
+        "timestamp":{"shape":"DateTimestamp"}
+      },
+      "sensitive":true
+    },
+    "FlowExecutionName":{
+      "type":"string",
+      "max":36,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9-]{1,36}$"
+    },
+    "FlowExecutionOutputEvent":{
+      "type":"structure",
+      "required":[
+        "fields",
+        "nodeName",
+        "timestamp"
+      ],
+      "members":{
+        "fields":{"shape":"FlowOutputFields"},
+        "nodeName":{"shape":"NodeName"},
+        "timestamp":{"shape":"DateTimestamp"}
+      },
+      "sensitive":true
+    },
+    "FlowExecutionRoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"^arn:aws(-[^:]+)?:iam::([0-9]{12})?:role/(service-role/)?.+$"
+    },
+    "FlowExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "Running",
+        "Succeeded",
+        "Failed",
+        "TimedOut",
+        "Aborted"
+      ]
+    },
+    "FlowExecutionSummaries":{
+      "type":"list",
+      "member":{"shape":"FlowExecutionSummary"},
+      "max":10,
+      "min":0
+    },
+    "FlowExecutionSummary":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "executionArn",
+        "flowAliasIdentifier",
+        "flowIdentifier",
+        "flowVersion",
+        "status"
+      ],
+      "members":{
+        "createdAt":{"shape":"DateTimestamp"},
+        "endedAt":{"shape":"DateTimestamp"},
+        "executionArn":{"shape":"FlowExecutionIdentifier"},
+        "flowAliasIdentifier":{"shape":"FlowAliasIdentifier"},
+        "flowIdentifier":{"shape":"FlowIdentifier"},
+        "flowVersion":{"shape":"Version"},
+        "status":{"shape":"FlowExecutionStatus"}
+      }
+    },
+    "FlowFailureEvent":{
+      "type":"structure",
+      "required":[
+        "errorCode",
+        "errorMessage",
+        "timestamp"
+      ],
+      "members":{
+        "errorCode":{"shape":"FlowErrorCode"},
+        "errorMessage":{"shape":"String"},
+        "timestamp":{"shape":"DateTimestamp"}
+      },
+      "sensitive":true
     },
     "FlowIdentifier":{
       "type":"string",
@@ -944,11 +1697,11 @@
       "type":"structure",
       "required":[
         "content",
-        "nodeName",
-        "nodeOutputName"
+        "nodeName"
       ],
       "members":{
         "content":{"shape":"FlowInputContent"},
+        "nodeInputName":{"shape":"NodeInputName"},
         "nodeName":{"shape":"NodeName"},
         "nodeOutputName":{"shape":"NodeOutputName"}
       }
@@ -961,11 +1714,51 @@
       "sensitive":true,
       "union":true
     },
+    "FlowInputField":{
+      "type":"structure",
+      "required":[
+        "content",
+        "name"
+      ],
+      "members":{
+        "content":{"shape":"FlowExecutionContent"},
+        "name":{"shape":"NodeInputName"}
+      },
+      "sensitive":true
+    },
+    "FlowInputFields":{
+      "type":"list",
+      "member":{"shape":"FlowInputField"},
+      "max":5,
+      "min":1
+    },
     "FlowInputs":{
       "type":"list",
       "member":{"shape":"FlowInput"},
       "max":1,
       "min":1
+    },
+    "FlowMultiTurnInputContent":{
+      "type":"structure",
+      "members":{
+        "document":{"shape":"Document"}
+      },
+      "union":true
+    },
+    "FlowMultiTurnInputRequestEvent":{
+      "type":"structure",
+      "required":[
+        "content",
+        "nodeName",
+        "nodeType"
+      ],
+      "members":{
+        "content":{"shape":"FlowMultiTurnInputContent"},
+        "nodeName":{"shape":"NodeName"},
+        "nodeType":{"shape":"NodeType"}
+      },
+      "event":true,
+      "sensitive":true
     },
     "FlowOutputContent":{
       "type":"structure",
@@ -989,6 +1782,24 @@
       "event":true,
       "sensitive":true
     },
+    "FlowOutputField":{
+      "type":"structure",
+      "required":[
+        "content",
+        "name"
+      ],
+      "members":{
+        "content":{"shape":"FlowExecutionContent"},
+        "name":{"shape":"NodeOutputName"}
+      },
+      "sensitive":true
+    },
+    "FlowOutputFields":{
+      "type":"list",
+      "member":{"shape":"FlowOutputField"},
+      "max":5,
+      "min":1
+    },
     "FlowResponseStream":{
       "type":"structure",
       "members":{
@@ -997,6 +1808,7 @@
         "conflictException":{"shape":"ConflictException"},
         "dependencyFailedException":{"shape":"DependencyFailedException"},
         "flowCompletionEvent":{"shape":"FlowCompletionEvent"},
+        "flowMultiTurnInputRequestEvent":{"shape":"FlowMultiTurnInputRequestEvent"},
         "flowOutputEvent":{"shape":"FlowOutputEvent"},
         "flowTraceEvent":{"shape":"FlowTraceEvent"},
         "internalServerException":{"shape":"InternalServerException"},
@@ -1011,6 +1823,7 @@
       "type":"structure",
       "members":{
         "conditionNodeResultTrace":{"shape":"FlowTraceConditionNodeResultEvent"},
+        "nodeActionTrace":{"shape":"FlowTraceNodeActionEvent"},
         "nodeInputTrace":{"shape":"FlowTraceNodeInputEvent"},
         "nodeOutputTrace":{"shape":"FlowTraceNodeOutputEvent"}
       },
@@ -1052,6 +1865,24 @@
         "trace":{"shape":"FlowTrace"}
       },
       "event":true
+    },
+    "FlowTraceNodeActionEvent":{
+      "type":"structure",
+      "required":[
+        "nodeName",
+        "operationName",
+        "requestId",
+        "serviceName",
+        "timestamp"
+      ],
+      "members":{
+        "nodeName":{"shape":"NodeName"},
+        "operationName":{"shape":"String"},
+        "requestId":{"shape":"String"},
+        "serviceName":{"shape":"String"},
+        "timestamp":{"shape":"DateTimestamp"}
+      },
+      "sensitive":true
     },
     "FlowTraceNodeInputContent":{
       "type":"structure",
@@ -1244,6 +2075,7 @@
         "additionalModelRequestFields":{"shape":"AdditionalModelRequestFields"},
         "guardrailConfiguration":{"shape":"GuardrailConfiguration"},
         "inferenceConfig":{"shape":"InferenceConfig"},
+        "performanceConfig":{"shape":"PerformanceConfiguration"},
         "promptTemplate":{"shape":"PromptTemplate"}
       }
     },
@@ -1293,6 +2125,153 @@
       "members":{
         "memoryContents":{"shape":"Memories"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetExecutionFlowSnapshotRequest":{
+      "type":"structure",
+      "required":[
+        "executionIdentifier",
+        "flowAliasIdentifier",
+        "flowIdentifier"
+      ],
+      "members":{
+        "executionIdentifier":{
+          "shape":"FlowExecutionIdentifier",
+          "location":"uri",
+          "locationName":"executionIdentifier"
+        },
+        "flowAliasIdentifier":{
+          "shape":"FlowAliasIdentifier",
+          "location":"uri",
+          "locationName":"flowAliasIdentifier"
+        },
+        "flowIdentifier":{
+          "shape":"FlowIdentifier",
+          "location":"uri",
+          "locationName":"flowIdentifier"
+        }
+      }
+    },
+    "GetExecutionFlowSnapshotResponse":{
+      "type":"structure",
+      "required":[
+        "definition",
+        "executionRoleArn",
+        "flowAliasIdentifier",
+        "flowIdentifier",
+        "flowVersion"
+      ],
+      "members":{
+        "customerEncryptionKeyArn":{"shape":"KmsKeyArn"},
+        "definition":{"shape":"String"},
+        "executionRoleArn":{"shape":"FlowExecutionRoleArn"},
+        "flowAliasIdentifier":{"shape":"FlowAliasIdentifier"},
+        "flowIdentifier":{"shape":"FlowIdentifier"},
+        "flowVersion":{"shape":"Version"}
+      }
+    },
+    "GetFlowExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "executionIdentifier",
+        "flowAliasIdentifier",
+        "flowIdentifier"
+      ],
+      "members":{
+        "executionIdentifier":{
+          "shape":"FlowExecutionIdentifier",
+          "location":"uri",
+          "locationName":"executionIdentifier"
+        },
+        "flowAliasIdentifier":{
+          "shape":"FlowAliasIdentifier",
+          "location":"uri",
+          "locationName":"flowAliasIdentifier"
+        },
+        "flowIdentifier":{
+          "shape":"FlowIdentifier",
+          "location":"uri",
+          "locationName":"flowIdentifier"
+        }
+      }
+    },
+    "GetFlowExecutionResponse":{
+      "type":"structure",
+      "required":[
+        "executionArn",
+        "flowAliasIdentifier",
+        "flowIdentifier",
+        "flowVersion",
+        "startedAt",
+        "status"
+      ],
+      "members":{
+        "endedAt":{"shape":"DateTimestamp"},
+        "errors":{"shape":"FlowExecutionErrors"},
+        "executionArn":{"shape":"FlowExecutionIdentifier"},
+        "flowAliasIdentifier":{"shape":"FlowAliasIdentifier"},
+        "flowIdentifier":{"shape":"FlowIdentifier"},
+        "flowVersion":{"shape":"Version"},
+        "startedAt":{"shape":"DateTimestamp"},
+        "status":{"shape":"FlowExecutionStatus"}
+      }
+    },
+    "GetInvocationStepRequest":{
+      "type":"structure",
+      "required":[
+        "invocationIdentifier",
+        "invocationStepId",
+        "sessionIdentifier"
+      ],
+      "members":{
+        "invocationIdentifier":{"shape":"InvocationIdentifier"},
+        "invocationStepId":{
+          "shape":"Uuid",
+          "location":"uri",
+          "locationName":"invocationStepId"
+        },
+        "sessionIdentifier":{
+          "shape":"SessionIdentifier",
+          "location":"uri",
+          "locationName":"sessionIdentifier"
+        }
+      }
+    },
+    "GetInvocationStepResponse":{
+      "type":"structure",
+      "required":["invocationStep"],
+      "members":{
+        "invocationStep":{"shape":"InvocationStep"}
+      }
+    },
+    "GetSessionRequest":{
+      "type":"structure",
+      "required":["sessionIdentifier"],
+      "members":{
+        "sessionIdentifier":{
+          "shape":"SessionIdentifier",
+          "location":"uri",
+          "locationName":"sessionIdentifier"
+        }
+      }
+    },
+    "GetSessionResponse":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "lastUpdatedAt",
+        "sessionArn",
+        "sessionId",
+        "sessionStatus"
+      ],
+      "members":{
+        "createdAt":{"shape":"DateTimestamp"},
+        "encryptionKeyArn":{"shape":"KmsKeyArn"},
+        "lastUpdatedAt":{"shape":"DateTimestamp"},
+        "sessionArn":{"shape":"SessionArn"},
+        "sessionId":{"shape":"Uuid"},
+        "sessionMetadata":{"shape":"SessionMetadataMap"},
+        "sessionStatus":{"shape":"SessionStatus"}
       }
     },
     "GuadrailAction":{
@@ -1560,6 +2539,7 @@
       "members":{
         "action":{"shape":"GuardrailAction"},
         "inputAssessments":{"shape":"GuardrailAssessmentList"},
+        "metadata":{"shape":"Metadata"},
         "outputAssessments":{"shape":"GuardrailAssessmentList"},
         "traceId":{"shape":"TraceId"}
       },
@@ -1588,6 +2568,73 @@
       "max":1024,
       "min":1,
       "sensitive":true
+    },
+    "ImageBlock":{
+      "type":"structure",
+      "required":[
+        "format",
+        "source"
+      ],
+      "members":{
+        "format":{"shape":"ImageFormat"},
+        "source":{"shape":"ImageSource"}
+      }
+    },
+    "ImageFormat":{
+      "type":"string",
+      "enum":[
+        "png",
+        "jpeg",
+        "gif",
+        "webp"
+      ]
+    },
+    "ImageInput":{
+      "type":"structure",
+      "required":[
+        "format",
+        "source"
+      ],
+      "members":{
+        "format":{"shape":"ImageInputFormat"},
+        "source":{"shape":"ImageInputSource"}
+      }
+    },
+    "ImageInputFormat":{
+      "type":"string",
+      "enum":[
+        "png",
+        "jpeg",
+        "gif",
+        "webp"
+      ]
+    },
+    "ImageInputSource":{
+      "type":"structure",
+      "members":{
+        "bytes":{"shape":"ImageInputSourceBytesBlob"}
+      },
+      "union":true
+    },
+    "ImageInputSourceBytesBlob":{
+      "type":"blob",
+      "min":1
+    },
+    "ImageInputs":{
+      "type":"list",
+      "member":{"shape":"ImageInput"}
+    },
+    "ImageSource":{
+      "type":"structure",
+      "members":{
+        "bytes":{"shape":"ImageSourceBytesBlob"},
+        "s3Location":{"shape":"S3Location"}
+      },
+      "union":true
+    },
+    "ImageSourceBytesBlob":{
+      "type":"blob",
+      "min":1
     },
     "ImplicitFilterConfiguration":{
       "type":"structure",
@@ -1663,15 +2710,25 @@
     "InlineAgentTracePart":{
       "type":"structure",
       "members":{
+        "callerChain":{"shape":"CallerChain"},
+        "collaboratorName":{"shape":"Name"},
+        "eventTime":{"shape":"SyntheticTimestamp_date_time"},
         "sessionId":{"shape":"SessionId"},
         "trace":{"shape":"Trace"}
       },
       "event":true,
       "sensitive":true
     },
+    "InlineBedrockModelConfigurations":{
+      "type":"structure",
+      "members":{
+        "performanceConfig":{"shape":"PerformanceConfiguration"}
+      }
+    },
     "InlineSessionState":{
       "type":"structure",
       "members":{
+        "conversationHistory":{"shape":"ConversationHistory"},
         "files":{"shape":"InputFiles"},
         "invocationId":{"shape":"String"},
         "promptSessionAttributes":{"shape":"PromptSessionAttributesMap"},
@@ -1725,11 +2782,21 @@
     "InternalServerException":{
       "type":"structure",
       "members":{
-        "message":{"shape":"NonBlankString"}
+        "message":{"shape":"NonBlankString"},
+        "reason":{"shape":"String"}
       },
       "error":{"httpStatusCode":500},
       "exception":true,
       "fault":true
+    },
+    "InvocationDescription":{
+      "type":"string",
+      "max":200,
+      "min":1
+    },
+    "InvocationIdentifier":{
+      "type":"string",
+      "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
     },
     "InvocationInput":{
       "type":"structure",
@@ -1765,6 +2832,66 @@
       },
       "union":true
     },
+    "InvocationStep":{
+      "type":"structure",
+      "required":[
+        "invocationId",
+        "invocationStepId",
+        "invocationStepTime",
+        "payload",
+        "sessionId"
+      ],
+      "members":{
+        "invocationId":{"shape":"Uuid"},
+        "invocationStepId":{"shape":"Uuid"},
+        "invocationStepTime":{"shape":"DateTimestamp"},
+        "payload":{"shape":"InvocationStepPayload"},
+        "sessionId":{"shape":"Uuid"}
+      }
+    },
+    "InvocationStepPayload":{
+      "type":"structure",
+      "members":{
+        "contentBlocks":{"shape":"BedrockSessionContentBlocks"}
+      },
+      "union":true
+    },
+    "InvocationStepSummaries":{
+      "type":"list",
+      "member":{"shape":"InvocationStepSummary"}
+    },
+    "InvocationStepSummary":{
+      "type":"structure",
+      "required":[
+        "invocationId",
+        "invocationStepId",
+        "invocationStepTime",
+        "sessionId"
+      ],
+      "members":{
+        "invocationId":{"shape":"Uuid"},
+        "invocationStepId":{"shape":"Uuid"},
+        "invocationStepTime":{"shape":"DateTimestamp"},
+        "sessionId":{"shape":"Uuid"}
+      }
+    },
+    "InvocationSummaries":{
+      "type":"list",
+      "member":{"shape":"InvocationSummary"}
+    },
+    "InvocationSummary":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "invocationId",
+        "sessionId"
+      ],
+      "members":{
+        "createdAt":{"shape":"DateTimestamp"},
+        "invocationId":{"shape":"Uuid"},
+        "sessionId":{"shape":"Uuid"}
+      }
+    },
     "InvocationType":{
       "type":"string",
       "enum":[
@@ -1793,10 +2920,12 @@
           "location":"uri",
           "locationName":"agentId"
         },
+        "bedrockModelConfigurations":{"shape":"BedrockModelConfigurations"},
         "enableTrace":{"shape":"Boolean"},
         "endSession":{"shape":"Boolean"},
         "inputText":{"shape":"InputText"},
         "memoryId":{"shape":"MemoryId"},
+        "promptCreationConfigurations":{"shape":"PromptCreationConfigurations"},
         "sessionId":{
           "shape":"SessionId",
           "location":"uri",
@@ -1847,6 +2976,7 @@
       ],
       "members":{
         "enableTrace":{"shape":"Boolean"},
+        "executionId":{"shape":"FlowExecutionId"},
         "flowAliasIdentifier":{
           "shape":"FlowAliasIdentifier",
           "location":"uri",
@@ -1857,13 +2987,19 @@
           "location":"uri",
           "locationName":"flowIdentifier"
         },
-        "inputs":{"shape":"FlowInputs"}
+        "inputs":{"shape":"FlowInputs"},
+        "modelPerformanceConfiguration":{"shape":"ModelPerformanceConfiguration"}
       }
     },
     "InvokeFlowResponse":{
       "type":"structure",
       "required":["responseStream"],
       "members":{
+        "executionId":{
+          "shape":"FlowExecutionId",
+          "location":"header",
+          "locationName":"x-amz-bedrock-flow-execution-id"
+        },
         "responseStream":{"shape":"FlowResponseStream"}
       },
       "payload":"responseStream"
@@ -1877,6 +3013,12 @@
       ],
       "members":{
         "actionGroups":{"shape":"AgentActionGroups"},
+        "agentCollaboration":{"shape":"AgentCollaboration"},
+        "agentName":{"shape":"Name"},
+        "bedrockModelConfigurations":{"shape":"InlineBedrockModelConfigurations"},
+        "collaboratorConfigurations":{"shape":"CollaboratorConfigurations"},
+        "collaborators":{"shape":"Collaborators"},
+        "customOrchestration":{"shape":"CustomOrchestration"},
         "customerEncryptionKeyArn":{"shape":"KmsKeyArn"},
         "enableTrace":{"shape":"Boolean"},
         "endSession":{"shape":"Boolean"},
@@ -1887,12 +3029,15 @@
         "inputText":{"shape":"InputText"},
         "instruction":{"shape":"Instruction"},
         "knowledgeBases":{"shape":"KnowledgeBases"},
+        "orchestrationType":{"shape":"OrchestrationType"},
+        "promptCreationConfigurations":{"shape":"PromptCreationConfigurations"},
         "promptOverrideConfiguration":{"shape":"PromptOverrideConfiguration"},
         "sessionId":{
           "shape":"SessionId",
           "location":"uri",
           "locationName":"sessionId"
-        }
+        },
+        "streamingConfigurations":{"shape":"StreamingConfigurations"}
       }
     },
     "InvokeInlineAgentResponse":{
@@ -1977,6 +3122,7 @@
     "KnowledgeBaseLookupOutput":{
       "type":"structure",
       "members":{
+        "metadata":{"shape":"Metadata"},
         "retrievedReferences":{"shape":"RetrievedReferences"}
       }
     },
@@ -2059,6 +3205,192 @@
       "min":0,
       "pattern":"^arn:(aws[a-zA-Z-]*)?:lambda:[a-z]{2}(-gov)?-[a-z]+-\\d{1}:\\d{12}:function:[a-zA-Z0-9-_\\.]+(:(\\$LATEST|[a-zA-Z0-9-_]+))?$"
     },
+    "ListFlowExecutionEventsRequest":{
+      "type":"structure",
+      "required":[
+        "eventType",
+        "executionIdentifier",
+        "flowAliasIdentifier",
+        "flowIdentifier"
+      ],
+      "members":{
+        "eventType":{
+          "shape":"FlowExecutionEventType",
+          "location":"querystring",
+          "locationName":"eventType"
+        },
+        "executionIdentifier":{
+          "shape":"FlowExecutionIdentifier",
+          "location":"uri",
+          "locationName":"executionIdentifier"
+        },
+        "flowAliasIdentifier":{
+          "shape":"FlowAliasIdentifier",
+          "location":"uri",
+          "locationName":"flowAliasIdentifier"
+        },
+        "flowIdentifier":{
+          "shape":"FlowIdentifier",
+          "location":"uri",
+          "locationName":"flowIdentifier"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListFlowExecutionEventsResponse":{
+      "type":"structure",
+      "required":["flowExecutionEvents"],
+      "members":{
+        "flowExecutionEvents":{"shape":"FlowExecutionEvents"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListFlowExecutionsRequest":{
+      "type":"structure",
+      "required":["flowIdentifier"],
+      "members":{
+        "flowAliasIdentifier":{
+          "shape":"FlowAliasIdentifier",
+          "location":"querystring",
+          "locationName":"flowAliasIdentifier"
+        },
+        "flowIdentifier":{
+          "shape":"FlowIdentifier",
+          "location":"uri",
+          "locationName":"flowIdentifier"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListFlowExecutionsResponse":{
+      "type":"structure",
+      "required":["flowExecutionSummaries"],
+      "members":{
+        "flowExecutionSummaries":{"shape":"FlowExecutionSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListInvocationStepsRequest":{
+      "type":"structure",
+      "required":["sessionIdentifier"],
+      "members":{
+        "invocationIdentifier":{"shape":"InvocationIdentifier"},
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "sessionIdentifier":{
+          "shape":"SessionIdentifier",
+          "location":"uri",
+          "locationName":"sessionIdentifier"
+        }
+      }
+    },
+    "ListInvocationStepsResponse":{
+      "type":"structure",
+      "required":["invocationStepSummaries"],
+      "members":{
+        "invocationStepSummaries":{"shape":"InvocationStepSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListInvocationsRequest":{
+      "type":"structure",
+      "required":["sessionIdentifier"],
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "sessionIdentifier":{
+          "shape":"SessionIdentifier",
+          "location":"uri",
+          "locationName":"sessionIdentifier"
+        }
+      }
+    },
+    "ListInvocationsResponse":{
+      "type":"structure",
+      "required":["invocationSummaries"],
+      "members":{
+        "invocationSummaries":{"shape":"InvocationSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListSessionsRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "ListSessionsResponse":{
+      "type":"structure",
+      "required":["sessionSummaries"],
+      "members":{
+        "nextToken":{"shape":"NextToken"},
+        "sessionSummaries":{"shape":"SessionSummaries"}
+      }
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"TaggableResourcesArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "Long":{
+      "type":"long",
+      "box":true
+    },
     "MaxResults":{
       "type":"integer",
       "box":true,
@@ -2074,7 +3406,7 @@
     "MaximumLength":{
       "type":"integer",
       "box":true,
-      "max":4096,
+      "max":8192,
       "min":0
     },
     "Memories":{
@@ -2126,6 +3458,11 @@
     "Metadata":{
       "type":"structure",
       "members":{
+        "clientRequestId":{"shape":"String"},
+        "endTime":{"shape":"SyntheticTimestamp_date_time"},
+        "operationTotalTimeMs":{"shape":"Long"},
+        "startTime":{"shape":"SyntheticTimestamp_date_time"},
+        "totalTimeMs":{"shape":"Long"},
         "usage":{"shape":"Usage"}
       },
       "sensitive":true
@@ -2191,6 +3528,23 @@
       },
       "sensitive":true
     },
+    "ModelNotReadyException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"NonBlankString"}
+      },
+      "error":{
+        "httpStatusCode":424,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "ModelPerformanceConfiguration":{
+      "type":"structure",
+      "members":{
+        "performanceConfig":{"shape":"PerformanceConfiguration"}
+      }
+    },
     "Name":{
       "type":"string",
       "pattern":"^([0-9a-zA-Z][_-]?){1,100}$",
@@ -2202,6 +3556,71 @@
       "min":1,
       "pattern":"^\\S*$"
     },
+    "NodeErrorCode":{
+      "type":"string",
+      "enum":[
+        "VALIDATION",
+        "DEPENDENCY_FAILED",
+        "BAD_GATEWAY",
+        "INTERNAL_SERVER"
+      ]
+    },
+    "NodeExecutionContent":{
+      "type":"structure",
+      "members":{
+        "document":{"shape":"Document"}
+      },
+      "sensitive":true,
+      "union":true
+    },
+    "NodeFailureEvent":{
+      "type":"structure",
+      "required":[
+        "errorCode",
+        "errorMessage",
+        "nodeName",
+        "timestamp"
+      ],
+      "members":{
+        "errorCode":{"shape":"NodeErrorCode"},
+        "errorMessage":{"shape":"String"},
+        "nodeName":{"shape":"NodeName"},
+        "timestamp":{"shape":"DateTimestamp"}
+      },
+      "sensitive":true
+    },
+    "NodeInputEvent":{
+      "type":"structure",
+      "required":[
+        "fields",
+        "nodeName",
+        "timestamp"
+      ],
+      "members":{
+        "fields":{"shape":"NodeInputFields"},
+        "nodeName":{"shape":"NodeName"},
+        "timestamp":{"shape":"DateTimestamp"}
+      },
+      "sensitive":true
+    },
+    "NodeInputField":{
+      "type":"structure",
+      "required":[
+        "content",
+        "name"
+      ],
+      "members":{
+        "content":{"shape":"NodeExecutionContent"},
+        "name":{"shape":"NodeInputName"}
+      },
+      "sensitive":true
+    },
+    "NodeInputFields":{
+      "type":"list",
+      "member":{"shape":"NodeInputField"},
+      "max":5,
+      "min":1
+    },
     "NodeInputName":{
       "type":"string",
       "pattern":"^[a-zA-Z]([_]?[0-9a-zA-Z]){0,99}$"
@@ -2209,6 +3628,38 @@
     "NodeName":{
       "type":"string",
       "pattern":"^[a-zA-Z]([_]?[0-9a-zA-Z]){0,99}$"
+    },
+    "NodeOutputEvent":{
+      "type":"structure",
+      "required":[
+        "fields",
+        "nodeName",
+        "timestamp"
+      ],
+      "members":{
+        "fields":{"shape":"NodeOutputFields"},
+        "nodeName":{"shape":"NodeName"},
+        "timestamp":{"shape":"DateTimestamp"}
+      },
+      "sensitive":true
+    },
+    "NodeOutputField":{
+      "type":"structure",
+      "required":[
+        "content",
+        "name"
+      ],
+      "members":{
+        "content":{"shape":"NodeExecutionContent"},
+        "name":{"shape":"NodeOutputName"}
+      },
+      "sensitive":true
+    },
+    "NodeOutputFields":{
+      "type":"list",
+      "member":{"shape":"NodeOutputField"},
+      "max":2,
+      "min":1
     },
     "NodeOutputName":{
       "type":"string",
@@ -2303,15 +3754,24 @@
       "members":{
         "additionalModelRequestFields":{"shape":"AdditionalModelRequestFields"},
         "inferenceConfig":{"shape":"InferenceConfig"},
+        "performanceConfig":{"shape":"PerformanceConfiguration"},
         "promptTemplate":{"shape":"PromptTemplate"},
         "queryTransformationConfiguration":{"shape":"QueryTransformationConfiguration"}
       }
+    },
+    "OrchestrationExecutor":{
+      "type":"structure",
+      "members":{
+        "lambda":{"shape":"LambdaArn"}
+      },
+      "union":true
     },
     "OrchestrationModelInvocationOutput":{
       "type":"structure",
       "members":{
         "metadata":{"shape":"Metadata"},
         "rawResponse":{"shape":"RawResponse"},
+        "reasoningContent":{"shape":"ReasoningContentBlock"},
         "traceId":{"shape":"TraceId"}
       },
       "sensitive":true
@@ -2327,6 +3787,13 @@
       },
       "sensitive":true,
       "union":true
+    },
+    "OrchestrationType":{
+      "type":"string",
+      "enum":[
+        "DEFAULT",
+        "CUSTOM_ORCHESTRATION"
+      ]
     },
     "OutputFile":{
       "type":"structure",
@@ -2422,12 +3889,26 @@
         "RETURN_CONTROL"
       ]
     },
+    "PerformanceConfigLatency":{
+      "type":"string",
+      "enum":[
+        "standard",
+        "optimized"
+      ]
+    },
+    "PerformanceConfiguration":{
+      "type":"structure",
+      "members":{
+        "latency":{"shape":"PerformanceConfigLatency"}
+      }
+    },
     "PostProcessingModelInvocationOutput":{
       "type":"structure",
       "members":{
         "metadata":{"shape":"Metadata"},
         "parsedResponse":{"shape":"PostProcessingParsedResponse"},
         "rawResponse":{"shape":"RawResponse"},
+        "reasoningContent":{"shape":"ReasoningContentBlock"},
         "traceId":{"shape":"TraceId"}
       },
       "sensitive":true
@@ -2454,6 +3935,7 @@
         "metadata":{"shape":"Metadata"},
         "parsedResponse":{"shape":"PreProcessingParsedResponse"},
         "rawResponse":{"shape":"RawResponse"},
+        "reasoningContent":{"shape":"ReasoningContentBlock"},
         "traceId":{"shape":"TraceId"}
       },
       "sensitive":true
@@ -2478,7 +3960,9 @@
     "PromptConfiguration":{
       "type":"structure",
       "members":{
+        "additionalModelRequestFields":{"shape":"Document"},
         "basePromptTemplate":{"shape":"BasePromptTemplate"},
+        "foundationModel":{"shape":"ModelIdentifier"},
         "inferenceConfiguration":{"shape":"InferenceConfiguration"},
         "parserMode":{"shape":"CreationMode"},
         "promptCreationMode":{"shape":"CreationMode"},
@@ -2490,6 +3974,18 @@
       "type":"list",
       "member":{"shape":"PromptConfiguration"},
       "max":10,
+      "min":0
+    },
+    "PromptCreationConfigurations":{
+      "type":"structure",
+      "members":{
+        "excludePreviousThinkingSteps":{"shape":"Boolean"},
+        "previousConversationTurnsToInclude":{"shape":"PromptCreationConfigurationsPreviousConversationTurnsToIncludeInteger"}
+      }
+    },
+    "PromptCreationConfigurationsPreviousConversationTurnsToIncludeInteger":{
+      "type":"integer",
+      "box":true,
       "min":0
     },
     "PromptOverrideConfiguration":{
@@ -2537,6 +4033,33 @@
       "type":"structure",
       "members":{
         "properties":{"shape":"ParameterList"}
+      }
+    },
+    "PutInvocationStepRequest":{
+      "type":"structure",
+      "required":[
+        "invocationIdentifier",
+        "invocationStepTime",
+        "payload",
+        "sessionIdentifier"
+      ],
+      "members":{
+        "invocationIdentifier":{"shape":"InvocationIdentifier"},
+        "invocationStepId":{"shape":"Uuid"},
+        "invocationStepTime":{"shape":"DateTimestamp"},
+        "payload":{"shape":"InvocationStepPayload"},
+        "sessionIdentifier":{
+          "shape":"SessionIdentifier",
+          "location":"uri",
+          "locationName":"sessionIdentifier"
+        }
+      }
+    },
+    "PutInvocationStepResponse":{
+      "type":"structure",
+      "required":["invocationStepId"],
+      "members":{
+        "invocationStepId":{"shape":"Uuid"}
       }
     },
     "QueryGenerationInput":{
@@ -2600,6 +4123,31 @@
         "content":{"shape":"String"}
       },
       "sensitive":true
+    },
+    "ReasoningContentBlock":{
+      "type":"structure",
+      "members":{
+        "reasoningText":{"shape":"ReasoningTextBlock"},
+        "redactedContent":{"shape":"Blob"}
+      },
+      "sensitive":true,
+      "union":true
+    },
+    "ReasoningTextBlock":{
+      "type":"structure",
+      "required":["text"],
+      "members":{
+        "signature":{"shape":"String"},
+        "text":{"shape":"String"}
+      },
+      "sensitive":true
+    },
+    "RelayConversationHistory":{
+      "type":"string",
+      "enum":[
+        "TO_COLLABORATOR",
+        "DISABLED"
+      ]
     },
     "RepromptResponse":{
       "type":"structure",
@@ -2738,7 +4286,7 @@
     },
     "RerankTextDocumentTextString":{
       "type":"string",
-      "max":9000,
+      "max":32000,
       "min":1
     },
     "RerankingConfiguration":{
@@ -2815,6 +4363,7 @@
         "dependencyFailedException":{"shape":"DependencyFailedException"},
         "files":{"shape":"FilePart"},
         "internalServerException":{"shape":"InternalServerException"},
+        "modelNotReadyException":{"shape":"ModelNotReadyException"},
         "resourceNotFoundException":{"shape":"ResourceNotFoundException"},
         "returnControl":{"shape":"ReturnControlPayload"},
         "serviceQuotaExceededException":{"shape":"ServiceQuotaExceededException"},
@@ -3201,6 +4750,13 @@
         "s3ObjectKey":{"shape":"S3ObjectKey"}
       }
     },
+    "S3Location":{
+      "type":"structure",
+      "required":["uri"],
+      "members":{
+        "uri":{"shape":"S3Uri"}
+      }
+    },
     "S3ObjectDoc":{
       "type":"structure",
       "required":["uri"],
@@ -3227,6 +4783,20 @@
       "min":1,
       "pattern":"^s3://[a-z0-9][a-z0-9.-]{1,61}[a-z0-9]/.{1,1024}$"
     },
+    "SatisfiedCondition":{
+      "type":"structure",
+      "required":["conditionName"],
+      "members":{
+        "conditionName":{"shape":"String"}
+      },
+      "sensitive":true
+    },
+    "SatisfiedConditions":{
+      "type":"list",
+      "member":{"shape":"SatisfiedCondition"},
+      "max":5,
+      "min":1
+    },
     "SearchType":{
       "type":"string",
       "enum":[
@@ -3245,6 +4815,10 @@
       },
       "exception":true
     },
+    "SessionArn":{
+      "type":"string",
+      "pattern":"^arn:aws(-[^:]+)?:bedrock:[a-z0-9-]+:[0-9]{12}:session/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+    },
     "SessionAttributesMap":{
       "type":"map",
       "key":{"shape":"String"},
@@ -3256,6 +4830,27 @@
       "min":2,
       "pattern":"^[0-9a-zA-Z._:-]+$"
     },
+    "SessionIdentifier":{
+      "type":"string",
+      "pattern":"^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]+:[0-9]{12}:session/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})|([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})$"
+    },
+    "SessionMetadataKey":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "SessionMetadataMap":{
+      "type":"map",
+      "key":{"shape":"SessionMetadataKey"},
+      "value":{"shape":"SessionMetadataValue"},
+      "max":50,
+      "min":0
+    },
+    "SessionMetadataValue":{
+      "type":"string",
+      "max":5000,
+      "min":0
+    },
     "SessionState":{
       "type":"structure",
       "members":{
@@ -3266,6 +4861,35 @@
         "promptSessionAttributes":{"shape":"PromptSessionAttributesMap"},
         "returnControlInvocationResults":{"shape":"ReturnControlInvocationResults"},
         "sessionAttributes":{"shape":"SessionAttributesMap"}
+      }
+    },
+    "SessionStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "EXPIRED",
+        "ENDED"
+      ]
+    },
+    "SessionSummaries":{
+      "type":"list",
+      "member":{"shape":"SessionSummary"}
+    },
+    "SessionSummary":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "lastUpdatedAt",
+        "sessionArn",
+        "sessionId",
+        "sessionStatus"
+      ],
+      "members":{
+        "createdAt":{"shape":"DateTimestamp"},
+        "lastUpdatedAt":{"shape":"DateTimestamp"},
+        "sessionArn":{"shape":"SessionArn"},
+        "sessionId":{"shape":"Uuid"},
+        "sessionStatus":{"shape":"SessionStatus"}
       }
     },
     "SessionTTL":{
@@ -3300,6 +4924,68 @@
       "box":true,
       "min":0
     },
+    "StartFlowExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "flowAliasIdentifier",
+        "flowIdentifier",
+        "inputs"
+      ],
+      "members":{
+        "flowAliasIdentifier":{
+          "shape":"FlowAliasIdentifier",
+          "location":"uri",
+          "locationName":"flowAliasIdentifier"
+        },
+        "flowExecutionName":{"shape":"FlowExecutionName"},
+        "flowIdentifier":{
+          "shape":"FlowIdentifier",
+          "location":"uri",
+          "locationName":"flowIdentifier"
+        },
+        "inputs":{"shape":"FlowInputs"},
+        "modelPerformanceConfiguration":{"shape":"ModelPerformanceConfiguration"}
+      }
+    },
+    "StartFlowExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "executionArn":{"shape":"FlowExecutionIdentifier"}
+      }
+    },
+    "StopFlowExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "executionIdentifier",
+        "flowAliasIdentifier",
+        "flowIdentifier"
+      ],
+      "members":{
+        "executionIdentifier":{
+          "shape":"FlowExecutionIdentifier",
+          "location":"uri",
+          "locationName":"executionIdentifier"
+        },
+        "flowAliasIdentifier":{
+          "shape":"FlowAliasIdentifier",
+          "location":"uri",
+          "locationName":"flowAliasIdentifier"
+        },
+        "flowIdentifier":{
+          "shape":"FlowIdentifier",
+          "location":"uri",
+          "locationName":"flowIdentifier"
+        }
+      }
+    },
+    "StopFlowExecutionResponse":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "executionArn":{"shape":"FlowExecutionIdentifier"},
+        "status":{"shape":"FlowExecutionStatus"}
+      }
+    },
     "StopSequences":{
       "type":"list",
       "member":{"shape":"String"},
@@ -3323,6 +5009,61 @@
       "type":"string",
       "max":25000000,
       "min":0
+    },
+    "SyntheticTimestamp_date_time":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9\\s._:/=+@-]*$"
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":1
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"TaggableResourcesArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^[a-zA-Z0-9\\s._:/=+@-]*$"
+    },
+    "TaggableResourcesArn":{
+      "type":"string",
+      "max":1011,
+      "min":20,
+      "pattern":"(^arn:aws(-[^:]+)?:bedrock:[a-zA-Z0-9-]+:[0-9]{12}:(session)/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$)"
+    },
+    "TagsMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":200,
+      "min":1
     },
     "Temperature":{
       "type":"float",
@@ -3439,6 +5180,7 @@
         "agentVersion":{"shape":"AgentVersion"},
         "callerChain":{"shape":"CallerChain"},
         "collaboratorName":{"shape":"Name"},
+        "eventTime":{"shape":"SyntheticTimestamp_date_time"},
         "sessionId":{"shape":"SessionId"},
         "trace":{"shape":"Trace"}
       },
@@ -3464,6 +5206,59 @@
         "REPROMPT"
       ]
     },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"TaggableResourcesArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeyList",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "UpdateSessionRequest":{
+      "type":"structure",
+      "required":["sessionIdentifier"],
+      "members":{
+        "sessionIdentifier":{
+          "shape":"SessionIdentifier",
+          "location":"uri",
+          "locationName":"sessionIdentifier"
+        },
+        "sessionMetadata":{"shape":"SessionMetadataMap"}
+      }
+    },
+    "UpdateSessionResponse":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "lastUpdatedAt",
+        "sessionArn",
+        "sessionId",
+        "sessionStatus"
+      ],
+      "members":{
+        "createdAt":{"shape":"DateTimestamp"},
+        "lastUpdatedAt":{"shape":"DateTimestamp"},
+        "sessionArn":{"shape":"SessionArn"},
+        "sessionId":{"shape":"Uuid"},
+        "sessionStatus":{"shape":"SessionStatus"}
+      }
+    },
     "Usage":{
       "type":"structure",
       "members":{
@@ -3471,6 +5266,10 @@
         "outputTokens":{"shape":"Integer"}
       },
       "sensitive":true
+    },
+    "Uuid":{
+      "type":"string",
+      "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
     },
     "ValidationException":{
       "type":"structure",
@@ -3521,6 +5320,12 @@
     "Verb":{
       "type":"string",
       "sensitive":true
+    },
+    "Version":{
+      "type":"string",
+      "max":5,
+      "min":1,
+      "pattern":"^(DRAFT|[0-9]{0,4}[1-9][0-9]{0,4})$"
     }
   }
 }

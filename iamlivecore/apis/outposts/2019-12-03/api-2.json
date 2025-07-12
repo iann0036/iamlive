@@ -554,6 +554,8 @@
     "Address":{
       "type":"structure",
       "required":[
+        "ContactName",
+        "ContactPhoneNumber",
         "AddressLine1",
         "City",
         "StateOrRegion",
@@ -609,6 +611,12 @@
       "max":100,
       "min":1,
       "pattern":"^(\\w+)$"
+    },
+    "AssetIdInput":{
+      "type":"string",
+      "max":10,
+      "min":10,
+      "pattern":"\\d{10}"
     },
     "AssetIdList":{
       "type":"list",
@@ -742,8 +750,7 @@
     },
     "CancelCapacityTaskOutput":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CancelOrderInput":{
       "type":"structure",
@@ -758,8 +765,7 @@
     },
     "CancelOrderOutput":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CapacityTaskFailure":{
       "type":"structure",
@@ -815,6 +821,7 @@
         "CapacityTaskId":{"shape":"CapacityTaskId"},
         "OutpostId":{"shape":"OutpostId"},
         "OrderId":{"shape":"OrderId"},
+        "AssetId":{"shape":"AssetId"},
         "CapacityTaskStatus":{"shape":"CapacityTaskStatus"},
         "CreationDate":{"shape":"ISO8601Timestamp"},
         "CompletionDate":{"shape":"ISO8601Timestamp"},
@@ -1014,8 +1021,7 @@
     },
     "DeleteOutpostOutput":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteSiteInput":{
       "type":"structure",
@@ -1030,8 +1036,7 @@
     },
     "DeleteSiteOutput":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeviceSerialNumber":{
       "type":"string",
@@ -1106,6 +1111,7 @@
         "CapacityTaskId":{"shape":"CapacityTaskId"},
         "OutpostId":{"shape":"OutpostId"},
         "OrderId":{"shape":"OrderId"},
+        "AssetId":{"shape":"AssetId"},
         "RequestedInstancePools":{"shape":"RequestedInstancePools"},
         "InstancesToExclude":{"shape":"InstancesToExclude"},
         "DryRun":{"shape":"DryRun"},
@@ -1229,6 +1235,11 @@
           "shape":"OrderId",
           "location":"querystring",
           "locationName":"OrderId"
+        },
+        "AssetId":{
+          "shape":"AssetIdInput",
+          "location":"querystring",
+          "locationName":"AssetId"
         },
         "MaxResults":{
           "shape":"MaxResults1000",
@@ -1983,7 +1994,8 @@
         "L6_30P",
         "IEC309",
         "AH530P7W",
-        "AH532P6W"
+        "AH532P6W",
+        "CS8365C"
       ]
     },
     "PowerDrawKva":{
@@ -2143,6 +2155,7 @@
           "locationName":"OutpostId"
         },
         "OrderId":{"shape":"OrderId"},
+        "AssetId":{"shape":"AssetIdInput"},
         "InstancePools":{"shape":"RequestedInstancePools"},
         "InstancesToExclude":{"shape":"InstancesToExclude"},
         "DryRun":{"shape":"DryRun"},
@@ -2155,6 +2168,7 @@
         "CapacityTaskId":{"shape":"CapacityTaskId"},
         "OutpostId":{"shape":"OutpostId"},
         "OrderId":{"shape":"OrderId"},
+        "AssetId":{"shape":"AssetId"},
         "RequestedInstancePools":{"shape":"RequestedInstancePools"},
         "InstancesToExclude":{"shape":"InstancesToExclude"},
         "DryRun":{"shape":"DryRun"},
@@ -2268,8 +2282,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValue":{
       "type":"string",
@@ -2322,8 +2335,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateOutpostInput":{
       "type":"structure",

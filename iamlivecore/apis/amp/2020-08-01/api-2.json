@@ -51,6 +51,23 @@
       ],
       "idempotent":true
     },
+    "CreateQueryLoggingConfiguration":{
+      "name":"CreateQueryLoggingConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/workspaces/{workspaceId}/logging/query",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateQueryLoggingConfigurationRequest"},
+      "output":{"shape":"CreateQueryLoggingConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "CreateRuleGroupsNamespace":{
       "name":"CreateRuleGroupsNamespace",
       "http":{
@@ -136,6 +153,23 @@
         "responseCode":202
       },
       "input":{"shape":"DeleteLoggingConfigurationRequest"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteQueryLoggingConfiguration":{
+      "name":"DeleteQueryLoggingConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/workspaces/{workspaceId}/logging/query",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteQueryLoggingConfigurationRequest"},
       "errors":[
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
@@ -233,6 +267,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DescribeQueryLoggingConfiguration":{
+      "name":"DescribeQueryLoggingConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/workspaces/{workspaceId}/logging/query",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeQueryLoggingConfigurationRequest"},
+      "output":{"shape":"DescribeQueryLoggingConfigurationResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeRuleGroupsNamespace":{
       "name":"DescribeRuleGroupsNamespace",
       "http":{
@@ -276,6 +326,23 @@
       },
       "input":{"shape":"DescribeWorkspaceRequest"},
       "output":{"shape":"DescribeWorkspaceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeWorkspaceConfiguration":{
+      "name":"DescribeWorkspaceConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/workspaces/{workspaceId}/configuration",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeWorkspaceConfigurationRequest"},
+      "output":{"shape":"DescribeWorkspaceConfigurationResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
@@ -458,6 +525,24 @@
       ],
       "idempotent":true
     },
+    "UpdateQueryLoggingConfiguration":{
+      "name":"UpdateQueryLoggingConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/workspaces/{workspaceId}/logging/query",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateQueryLoggingConfigurationRequest"},
+      "output":{"shape":"UpdateQueryLoggingConfigurationResponse"},
+      "errors":[
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "UpdateScraper":{
       "name":"UpdateScraper",
       "http":{
@@ -486,6 +571,26 @@
         "responseCode":204
       },
       "input":{"shape":"UpdateWorkspaceAliasRequest"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
+    "UpdateWorkspaceConfiguration":{
+      "name":"UpdateWorkspaceConfiguration",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/workspaces/{workspaceId}/configuration",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateWorkspaceConfigurationRequest"},
+      "output":{"shape":"UpdateWorkspaceConfigurationResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ConflictException"},
@@ -554,6 +659,13 @@
       }
     },
     "Blob":{"type":"blob"},
+    "CloudWatchLogDestination":{
+      "type":"structure",
+      "required":["logGroupArn"],
+      "members":{
+        "logGroupArn":{"shape":"LogGroupArn"}
+      }
+    },
     "ClusterArn":{
       "type":"string",
       "pattern":"^arn:aws[-a-z]*:eks:[-a-z0-9]+:[0-9]{12}:cluster/.+$"
@@ -628,6 +740,32 @@
         "status":{"shape":"LoggingConfigurationStatus"}
       }
     },
+    "CreateQueryLoggingConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "destinations",
+        "workspaceId"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "destinations":{"shape":"LoggingDestinations"},
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "CreateQueryLoggingConfigurationResponse":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"QueryLoggingConfigurationStatus"}
+      }
+    },
     "CreateRuleGroupsNamespaceRequest":{
       "type":"structure",
       "required":[
@@ -678,6 +816,7 @@
           "idempotencyToken":true
         },
         "destination":{"shape":"Destination"},
+        "roleConfiguration":{"shape":"RoleConfiguration"},
         "scrapeConfiguration":{"shape":"ScrapeConfiguration"},
         "source":{"shape":"Source"},
         "tags":{"shape":"TagMap"}
@@ -742,6 +881,23 @@
       }
     },
     "DeleteLoggingConfigurationRequest":{
+      "type":"structure",
+      "required":["workspaceId"],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "DeleteQueryLoggingConfigurationRequest":{
       "type":"structure",
       "required":["workspaceId"],
       "members":{
@@ -864,6 +1020,24 @@
         "loggingConfiguration":{"shape":"LoggingConfigurationMetadata"}
       }
     },
+    "DescribeQueryLoggingConfigurationRequest":{
+      "type":"structure",
+      "required":["workspaceId"],
+      "members":{
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "DescribeQueryLoggingConfigurationResponse":{
+      "type":"structure",
+      "required":["queryLoggingConfiguration"],
+      "members":{
+        "queryLoggingConfiguration":{"shape":"QueryLoggingConfigurationMetadata"}
+      }
+    },
     "DescribeRuleGroupsNamespaceRequest":{
       "type":"structure",
       "required":[
@@ -906,6 +1080,24 @@
       "required":["scraper"],
       "members":{
         "scraper":{"shape":"ScraperDescription"}
+      }
+    },
+    "DescribeWorkspaceConfigurationRequest":{
+      "type":"structure",
+      "required":["workspaceId"],
+      "members":{
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "DescribeWorkspaceConfigurationResponse":{
+      "type":"structure",
+      "required":["workspaceConfiguration"],
+      "members":{
+        "workspaceConfiguration":{"shape":"WorkspaceConfigurationDescription"}
       }
     },
     "DescribeWorkspaceRequest":{
@@ -973,7 +1165,10 @@
         "configuration":{"shape":"Blob"}
       }
     },
-    "IamRoleArn":{"type":"string"},
+    "IamRoleArn":{
+      "type":"string",
+      "pattern":"^arn:aws[-a-z]*:iam::[0-9]{12}:role/.+$"
+    },
     "IdempotencyToken":{
       "type":"string",
       "max":64,
@@ -1004,7 +1199,47 @@
       "type":"string",
       "max":2048,
       "min":20,
-      "pattern":"^arn:aws:kms:[a-z0-9\\-]+:\\d+:key/[a-f0-9\\-]+$"
+      "pattern":"^arn:aws[-a-z]*:kms:[-a-z0-9]+:[0-9]{12}:key/[-a-f0-9]+$"
+    },
+    "LabelName":{
+      "type":"string",
+      "min":1,
+      "pattern":"^[a-zA-Z_][a-zA-Z0-9_]*$"
+    },
+    "LabelSet":{
+      "type":"map",
+      "key":{"shape":"LabelName"},
+      "value":{"shape":"LabelValue"}
+    },
+    "LabelValue":{
+      "type":"string",
+      "min":1
+    },
+    "LimitsPerLabelSet":{
+      "type":"structure",
+      "required":[
+        "labelSet",
+        "limits"
+      ],
+      "members":{
+        "labelSet":{"shape":"LabelSet"},
+        "limits":{"shape":"LimitsPerLabelSetEntry"}
+      }
+    },
+    "LimitsPerLabelSetEntry":{
+      "type":"structure",
+      "members":{
+        "maxSeries":{"shape":"LimitsPerLabelSetEntryMaxSeriesLong"}
+      }
+    },
+    "LimitsPerLabelSetEntryMaxSeriesLong":{
+      "type":"long",
+      "box":true,
+      "min":0
+    },
+    "LimitsPerLabelSetList":{
+      "type":"list",
+      "member":{"shape":"LimitsPerLabelSet"}
     },
     "ListRuleGroupsNamespacesRequest":{
       "type":"structure",
@@ -1132,7 +1367,7 @@
     },
     "LogGroupArn":{
       "type":"string",
-      "pattern":"^arn:aws[a-z0-9-]*:logs:[a-z0-9-]+:\\d{12}:log-group:[A-Za-z0-9\\.\\-\\_\\#/]{1,512}\\:\\*$"
+      "pattern":"^arn:aws[-a-z]*:logs:[-a-z0-9]+:[0-9]{12}:log-group:[A-Za-z0-9\\.\\-\\_\\#/]{1,512}\\:\\*$"
     },
     "LoggingConfigurationMetadata":{
       "type":"structure",
@@ -1169,6 +1404,35 @@
         "CREATION_FAILED",
         "UPDATE_FAILED"
       ]
+    },
+    "LoggingDestination":{
+      "type":"structure",
+      "required":[
+        "cloudWatchLogs",
+        "filters"
+      ],
+      "members":{
+        "cloudWatchLogs":{"shape":"CloudWatchLogDestination"},
+        "filters":{"shape":"LoggingFilter"}
+      }
+    },
+    "LoggingDestinations":{
+      "type":"list",
+      "member":{"shape":"LoggingDestination"},
+      "max":1,
+      "min":1
+    },
+    "LoggingFilter":{
+      "type":"structure",
+      "required":["qspThreshold"],
+      "members":{
+        "qspThreshold":{"shape":"LoggingFilterQspThresholdLong"}
+      }
+    },
+    "LoggingFilterQspThresholdLong":{
+      "type":"long",
+      "box":true,
+      "min":0
     },
     "PaginationToken":{
       "type":"string",
@@ -1240,6 +1504,42 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "QueryLoggingConfigurationMetadata":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "destinations",
+        "modifiedAt",
+        "status",
+        "workspace"
+      ],
+      "members":{
+        "createdAt":{"shape":"Timestamp"},
+        "destinations":{"shape":"LoggingDestinations"},
+        "modifiedAt":{"shape":"Timestamp"},
+        "status":{"shape":"QueryLoggingConfigurationStatus"},
+        "workspace":{"shape":"WorkspaceId"}
+      }
+    },
+    "QueryLoggingConfigurationStatus":{
+      "type":"structure",
+      "required":["statusCode"],
+      "members":{
+        "statusCode":{"shape":"QueryLoggingConfigurationStatusCode"},
+        "statusReason":{"shape":"String"}
+      }
+    },
+    "QueryLoggingConfigurationStatusCode":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "UPDATING",
+        "DELETING",
+        "CREATION_FAILED",
+        "UPDATE_FAILED"
+      ]
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "required":[
@@ -1257,6 +1557,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "RoleConfiguration":{
+      "type":"structure",
+      "members":{
+        "sourceRoleArn":{"shape":"IamRoleArn"},
+        "targetRoleArn":{"shape":"IamRoleArn"}
+      }
     },
     "RuleGroupsNamespaceArn":{"type":"string"},
     "RuleGroupsNamespaceData":{"type":"blob"},
@@ -1361,6 +1668,7 @@
         "destination":{"shape":"Destination"},
         "lastModifiedAt":{"shape":"Timestamp"},
         "roleArn":{"shape":"IamRoleArn"},
+        "roleConfiguration":{"shape":"RoleConfiguration"},
         "scrapeConfiguration":{"shape":"ScrapeConfiguration"},
         "scraperId":{"shape":"ScraperId"},
         "source":{"shape":"Source"},
@@ -1420,6 +1728,7 @@
         "destination":{"shape":"Destination"},
         "lastModifiedAt":{"shape":"Timestamp"},
         "roleArn":{"shape":"IamRoleArn"},
+        "roleConfiguration":{"shape":"RoleConfiguration"},
         "scraperId":{"shape":"ScraperId"},
         "source":{"shape":"Source"},
         "status":{"shape":"ScraperStatus"},
@@ -1604,6 +1913,32 @@
         "status":{"shape":"LoggingConfigurationStatus"}
       }
     },
+    "UpdateQueryLoggingConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "destinations",
+        "workspaceId"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "destinations":{"shape":"LoggingDestinations"},
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "UpdateQueryLoggingConfigurationResponse":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"QueryLoggingConfigurationStatus"}
+      }
+    },
     "UpdateScraperRequest":{
       "type":"structure",
       "required":["scraperId"],
@@ -1614,6 +1949,7 @@
           "idempotencyToken":true
         },
         "destination":{"shape":"Destination"},
+        "roleConfiguration":{"shape":"RoleConfiguration"},
         "scrapeConfiguration":{"shape":"ScrapeConfiguration"},
         "scraperId":{
           "shape":"ScraperId",
@@ -1650,6 +1986,35 @@
           "location":"uri",
           "locationName":"workspaceId"
         }
+      }
+    },
+    "UpdateWorkspaceConfigurationRequest":{
+      "type":"structure",
+      "required":["workspaceId"],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "limitsPerLabelSet":{"shape":"LimitsPerLabelSetList"},
+        "retentionPeriodInDays":{"shape":"UpdateWorkspaceConfigurationRequestRetentionPeriodInDaysInteger"},
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "UpdateWorkspaceConfigurationRequestRetentionPeriodInDaysInteger":{
+      "type":"integer",
+      "box":true,
+      "min":1
+    },
+    "UpdateWorkspaceConfigurationResponse":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"WorkspaceConfigurationStatus"}
       }
     },
     "Uri":{
@@ -1706,6 +2071,36 @@
     "WorkspaceArn":{
       "type":"string",
       "pattern":"^arn:aws[-a-z]*:aps:[-a-z0-9]+:[0-9]{12}:workspace/.+$"
+    },
+    "WorkspaceConfigurationDescription":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "limitsPerLabelSet":{"shape":"LimitsPerLabelSetList"},
+        "retentionPeriodInDays":{"shape":"WorkspaceConfigurationDescriptionRetentionPeriodInDaysInteger"},
+        "status":{"shape":"WorkspaceConfigurationStatus"}
+      }
+    },
+    "WorkspaceConfigurationDescriptionRetentionPeriodInDaysInteger":{
+      "type":"integer",
+      "box":true,
+      "min":1
+    },
+    "WorkspaceConfigurationStatus":{
+      "type":"structure",
+      "required":["statusCode"],
+      "members":{
+        "statusCode":{"shape":"WorkspaceConfigurationStatusCode"},
+        "statusReason":{"shape":"String"}
+      }
+    },
+    "WorkspaceConfigurationStatusCode":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "UPDATING",
+        "UPDATE_FAILED"
+      ]
     },
     "WorkspaceDescription":{
       "type":"structure",

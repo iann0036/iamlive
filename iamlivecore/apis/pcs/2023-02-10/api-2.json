@@ -260,6 +260,7 @@
       },
       "input":{"shape":"TagResourceRequest"},
       "errors":[
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ResourceNotFoundException"}
       ],
       "idempotent":true
@@ -324,6 +325,41 @@
       },
       "exception":true
     },
+    "Accounting":{
+      "type":"structure",
+      "required":["mode"],
+      "members":{
+        "mode":{"shape":"AccountingMode"},
+        "defaultPurgeTimeInDays":{"shape":"AccountingDefaultPurgeTimeInDaysInteger"}
+      }
+    },
+    "AccountingDefaultPurgeTimeInDaysInteger":{
+      "type":"integer",
+      "box":true,
+      "max":10000,
+      "min":-1
+    },
+    "AccountingMode":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "NONE"
+      ]
+    },
+    "AccountingRequest":{
+      "type":"structure",
+      "required":["mode"],
+      "members":{
+        "mode":{"shape":"AccountingMode"},
+        "defaultPurgeTimeInDays":{"shape":"AccountingRequestDefaultPurgeTimeInDaysInteger"}
+      }
+    },
+    "AccountingRequestDefaultPurgeTimeInDaysInteger":{
+      "type":"integer",
+      "box":true,
+      "max":10000,
+      "min":-1
+    },
     "AmiId":{
       "type":"string",
       "pattern":"ami-[a-z0-9]+"
@@ -332,7 +368,7 @@
       "type":"string",
       "max":1011,
       "min":1,
-      "pattern":"arn:aws*:pcs:.*:[0-9]{12}:.*/[a-z0-9_\\-]+"
+      "pattern":"arn:aws.*:pcs:.*:[0-9]{12}:.*/[a-z0-9_\\-]+"
     },
     "BootstrapId":{
       "type":"string",
@@ -370,7 +406,7 @@
     },
     "ClusterIdentifier":{
       "type":"string",
-      "pattern":"(pcs_[a-zA-Z0-9]+|[A-Za-z][A-Za-z0-9-]{1,40})"
+      "pattern":"(pcs_[a-zA-Z0-9]+|[A-Za-z][A-Za-z0-9-]{2,40})"
     },
     "ClusterList":{
       "type":"list",
@@ -379,22 +415,24 @@
     "ClusterName":{
       "type":"string",
       "max":40,
-      "min":1,
-      "pattern":"(?!pcs_)^(?![A-Za-z0-9]{10}$)[A-Za-z][A-Za-z0-9-]+"
+      "min":3,
+      "pattern":"(?!pcs_)^[A-Za-z][A-Za-z0-9-]+"
     },
     "ClusterSlurmConfiguration":{
       "type":"structure",
       "members":{
         "scaleDownIdleTimeInSeconds":{"shape":"ClusterSlurmConfigurationScaleDownIdleTimeInSecondsInteger"},
         "slurmCustomSettings":{"shape":"SlurmCustomSettings"},
-        "authKey":{"shape":"SlurmAuthKey"}
+        "authKey":{"shape":"SlurmAuthKey"},
+        "accounting":{"shape":"Accounting"}
       }
     },
     "ClusterSlurmConfigurationRequest":{
       "type":"structure",
       "members":{
         "scaleDownIdleTimeInSeconds":{"shape":"ClusterSlurmConfigurationRequestScaleDownIdleTimeInSecondsInteger"},
-        "slurmCustomSettings":{"shape":"SlurmCustomSettings"}
+        "slurmCustomSettings":{"shape":"SlurmCustomSettings"},
+        "accounting":{"shape":"AccountingRequest"}
       }
     },
     "ClusterSlurmConfigurationRequestScaleDownIdleTimeInSecondsInteger":{
@@ -416,7 +454,9 @@
         "DELETING",
         "CREATE_FAILED",
         "DELETE_FAILED",
-        "UPDATE_FAILED"
+        "UPDATE_FAILED",
+        "SUSPENDING",
+        "SUSPENDED"
       ]
     },
     "ClusterSummary":{
@@ -486,7 +526,7 @@
     },
     "ComputeNodeGroupIdentifier":{
       "type":"string",
-      "pattern":"(pcs_[a-zA-Z0-9]+|[A-Za-z][A-Za-z0-9-]{1,25})"
+      "pattern":"(pcs_[a-zA-Z0-9]+|[A-Za-z][A-Za-z0-9-]{2,25})"
     },
     "ComputeNodeGroupList":{
       "type":"list",
@@ -495,8 +535,8 @@
     "ComputeNodeGroupName":{
       "type":"string",
       "max":25,
-      "min":1,
-      "pattern":"(?!pcs_)^(?![A-Za-z0-9]{10}$)[A-Za-z][A-Za-z0-9-]+"
+      "min":3,
+      "pattern":"(?!pcs_)^[A-Za-z][A-Za-z0-9-]+"
     },
     "ComputeNodeGroupSlurmConfiguration":{
       "type":"structure",
@@ -520,7 +560,9 @@
         "CREATE_FAILED",
         "DELETE_FAILED",
         "UPDATE_FAILED",
-        "DELETED"
+        "DELETED",
+        "SUSPENDING",
+        "SUSPENDED"
       ]
     },
     "ComputeNodeGroupSummary":{
@@ -806,7 +848,7 @@
     },
     "InstanceProfileArn":{
       "type":"string",
-      "pattern":"arn:aws([a-zA-Z-]{0,10})?:iam::[0-9]{12}:instance-profile/.{1,128}"
+      "pattern":"arn:aws([a-zA-Z-]{0,10})?:iam::[0-9]{12}:instance-profile/[/\\w+=,.@-]{1,128}"
     },
     "Integer":{
       "type":"integer",
@@ -937,7 +979,7 @@
     },
     "QueueIdentifier":{
       "type":"string",
-      "pattern":"(pcs_[a-zA-Z0-9]+|[A-Za-z][A-Za-z0-9-]{1,25})"
+      "pattern":"(pcs_[a-zA-Z0-9]+|[A-Za-z][A-Za-z0-9-]{2,25})"
     },
     "QueueList":{
       "type":"list",
@@ -946,8 +988,8 @@
     "QueueName":{
       "type":"string",
       "max":25,
-      "min":1,
-      "pattern":"(?!pcs_)^(?![A-Za-z0-9]{10}$)[A-Za-z][A-Za-z0-9-]+"
+      "min":3,
+      "pattern":"(?!pcs_)^[A-Za-z][A-Za-z0-9-]+"
     },
     "QueueStatus":{
       "type":"string",
@@ -958,7 +1000,9 @@
         "DELETING",
         "CREATE_FAILED",
         "DELETE_FAILED",
-        "UPDATE_FAILED"
+        "UPDATE_FAILED",
+        "SUSPENDING",
+        "SUSPENDED"
       ]
     },
     "QueueSummary":{

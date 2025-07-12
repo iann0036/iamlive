@@ -4161,6 +4161,13 @@
       "max":30,
       "min":1
     },
+    "AllowFullTableExternalDataAccessEnum":{
+      "type":"string",
+      "enum":[
+        "True",
+        "False"
+      ]
+    },
     "AllowedValue":{
       "type":"structure",
       "required":["Value"],
@@ -5029,8 +5036,7 @@
     },
     "CancelDataQualityRuleRecommendationRunResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CancelDataQualityRulesetEvaluationRunRequest":{
       "type":"structure",
@@ -5041,8 +5047,7 @@
     },
     "CancelDataQualityRulesetEvaluationRunResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CancelMLTaskRunRequest":{
       "type":"structure",
@@ -5077,8 +5082,7 @@
     },
     "CancelStatementResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "Capabilities":{
       "type":"structure",
@@ -5108,7 +5112,8 @@
         "FederatedCatalog":{"shape":"FederatedCatalog"},
         "CatalogProperties":{"shape":"CatalogPropertiesOutput"},
         "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"},
-        "CreateDatabaseDefaultPermissions":{"shape":"PrincipalPermissionsList"}
+        "CreateDatabaseDefaultPermissions":{"shape":"PrincipalPermissionsList"},
+        "AllowFullTableExternalDataAccess":{"shape":"AllowFullTableExternalDataAccessEnum"}
       }
     },
     "CatalogDeltaSource":{
@@ -5193,7 +5198,8 @@
         "TargetRedshiftCatalog":{"shape":"TargetRedshiftCatalog"},
         "CatalogProperties":{"shape":"CatalogProperties"},
         "CreateTableDefaultPermissions":{"shape":"PrincipalPermissionsList"},
-        "CreateDatabaseDefaultPermissions":{"shape":"PrincipalPermissionsList"}
+        "CreateDatabaseDefaultPermissions":{"shape":"PrincipalPermissionsList"},
+        "AllowFullTableExternalDataAccess":{"shape":"AllowFullTableExternalDataAccessEnum"}
       }
     },
     "CatalogKafkaSource":{
@@ -5369,6 +5375,7 @@
         "RedshiftSource":{"shape":"RedshiftSource"},
         "S3CatalogSource":{"shape":"S3CatalogSource"},
         "S3CsvSource":{"shape":"S3CsvSource"},
+        "S3ExcelSource":{"shape":"S3ExcelSource"},
         "S3JsonSource":{"shape":"S3JsonSource"},
         "S3ParquetSource":{"shape":"S3ParquetSource"},
         "RelationalCatalogSource":{"shape":"RelationalCatalogSource"},
@@ -5379,7 +5386,9 @@
         "RedshiftTarget":{"shape":"RedshiftTarget"},
         "S3CatalogTarget":{"shape":"S3CatalogTarget"},
         "S3GlueParquetTarget":{"shape":"S3GlueParquetTarget"},
+        "S3HyperDirectTarget":{"shape":"S3HyperDirectTarget"},
         "S3DirectTarget":{"shape":"S3DirectTarget"},
+        "S3IcebergDirectTarget":{"shape":"S3IcebergDirectTarget"},
         "ApplyMapping":{"shape":"ApplyMapping"},
         "SelectFields":{"shape":"SelectFields"},
         "DropFields":{"shape":"DropFields"},
@@ -5711,11 +5720,25 @@
       "min":1,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
+    "CompactionConfiguration":{
+      "type":"structure",
+      "members":{
+        "icebergConfiguration":{"shape":"IcebergCompactionConfiguration"}
+      }
+    },
     "CompactionMetrics":{
       "type":"structure",
       "members":{
         "IcebergMetrics":{"shape":"IcebergCompactionMetrics"}
       }
+    },
+    "CompactionStrategy":{
+      "type":"string",
+      "enum":[
+        "binpack",
+        "sort",
+        "z-order"
+      ]
     },
     "Comparator":{
       "type":"string",
@@ -5858,7 +5881,8 @@
     },
     "ConditionList":{
       "type":"list",
-      "member":{"shape":"Condition"}
+      "member":{"shape":"Condition"},
+      "max":500
     },
     "ConfigValueString":{
       "type":"string",
@@ -6036,6 +6060,15 @@
         "FAILED"
       ]
     },
+    "ConnectionString":{
+      "type":"string",
+      "max":255
+    },
+    "ConnectionStringList":{
+      "type":"list",
+      "member":{"shape":"ConnectionString"},
+      "max":1000
+    },
     "ConnectionType":{
       "type":"string",
       "enum":[
@@ -6074,18 +6107,36 @@
       "type":"structure",
       "members":{
         "ConnectionType":{"shape":"ConnectionType"},
+        "DisplayName":{"shape":"DisplayName"},
+        "Vendor":{"shape":"Vendor"},
         "Description":{"shape":"Description"},
-        "Capabilities":{"shape":"Capabilities"}
+        "Categories":{"shape":"ListOfString"},
+        "Capabilities":{"shape":"Capabilities"},
+        "LogoUrl":{"shape":"UrlString"},
+        "ConnectionTypeVariants":{"shape":"ConnectionTypeVariantList"}
       }
     },
     "ConnectionTypeList":{
       "type":"list",
       "member":{"shape":"ConnectionTypeBrief"}
     },
+    "ConnectionTypeVariant":{
+      "type":"structure",
+      "members":{
+        "ConnectionTypeVariantName":{"shape":"DisplayName"},
+        "DisplayName":{"shape":"DisplayName"},
+        "Description":{"shape":"Description"},
+        "LogoUrl":{"shape":"UrlString"}
+      }
+    },
+    "ConnectionTypeVariantList":{
+      "type":"list",
+      "member":{"shape":"ConnectionTypeVariant"}
+    },
     "ConnectionsList":{
       "type":"structure",
       "members":{
-        "Connections":{"shape":"OrchestrationStringList"}
+        "Connections":{"shape":"ConnectionStringList"}
       }
     },
     "ConnectorDataSource":{
@@ -6350,8 +6401,7 @@
     },
     "CreateCatalogResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateClassifierRequest":{
       "type":"structure",
@@ -6364,8 +6414,7 @@
     },
     "CreateClassifierResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateColumnStatisticsTaskSettingsRequest":{
       "type":"structure",
@@ -6388,8 +6437,7 @@
     },
     "CreateColumnStatisticsTaskSettingsResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateConnectionRequest":{
       "type":"structure",
@@ -6433,8 +6481,7 @@
     },
     "CreateCrawlerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateCsvClassifierRequest":{
       "type":"structure",
@@ -6504,8 +6551,7 @@
     },
     "CreateDatabaseResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateDevEndpointRequest":{
       "type":"structure",
@@ -6569,6 +6615,20 @@
         "CustomPatterns":{"shape":"CustomPatterns"}
       }
     },
+    "CreateIcebergTableInput":{
+      "type":"structure",
+      "required":[
+        "Location",
+        "Schema"
+      ],
+      "members":{
+        "Location":{"shape":"LocationString"},
+        "Schema":{"shape":"IcebergSchema"},
+        "PartitionSpec":{"shape":"IcebergPartitionSpec"},
+        "WriteOrder":{"shape":"IcebergSortOrder"},
+        "Properties":{"shape":"StringToStringMap"}
+      }
+    },
     "CreateIntegrationRequest":{
       "type":"structure",
       "required":[
@@ -6584,7 +6644,8 @@
         "DataFilter":{"shape":"String2048"},
         "KmsKeyId":{"shape":"String2048"},
         "AdditionalEncryptionContext":{"shape":"IntegrationAdditionalEncryptionContextMap"},
-        "Tags":{"shape":"IntegrationTagsList"}
+        "Tags":{"shape":"IntegrationTagsList"},
+        "IntegrationConfig":{"shape":"IntegrationConfig"}
       }
     },
     "CreateIntegrationResourcePropertyRequest":{
@@ -6627,7 +6688,8 @@
         "Status":{"shape":"IntegrationStatus"},
         "CreateTime":{"shape":"IntegrationTimestamp"},
         "Errors":{"shape":"IntegrationErrorList"},
-        "DataFilter":{"shape":"String2048"}
+        "DataFilter":{"shape":"String2048"},
+        "IntegrationConfig":{"shape":"IntegrationConfig"}
       }
     },
     "CreateIntegrationTablePropertiesRequest":{
@@ -6645,8 +6707,7 @@
     },
     "CreateIntegrationTablePropertiesResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateJobRequest":{
       "type":"structure",
@@ -6750,8 +6811,7 @@
     },
     "CreatePartitionIndexResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreatePartitionRequest":{
       "type":"structure",
@@ -6769,8 +6829,7 @@
     },
     "CreatePartitionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateRegistryInput":{
       "type":"structure",
@@ -6908,8 +6967,7 @@
     },
     "CreateTableOptimizerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateTableRequest":{
       "type":"structure",
@@ -6920,6 +6978,7 @@
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
+        "Name":{"shape":"NameString"},
         "TableInput":{"shape":"TableInput"},
         "PartitionIndexes":{"shape":"PartitionIndexList"},
         "TransactionId":{"shape":"TransactionIdString"},
@@ -6928,8 +6987,7 @@
     },
     "CreateTableResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateTriggerRequest":{
       "type":"structure",
@@ -6990,15 +7048,14 @@
     },
     "CreateUserDefinedFunctionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateWorkflowRequest":{
       "type":"structure",
       "required":["Name"],
       "members":{
         "Name":{"shape":"NameString"},
-        "Description":{"shape":"GenericString"},
+        "Description":{"shape":"WorkflowDescriptionString"},
         "DefaultRunProperties":{"shape":"WorkflowRunProperties"},
         "Tags":{"shape":"TagsMap"},
         "MaxConcurrentRuns":{"shape":"NullableInteger"}
@@ -7263,6 +7320,17 @@
       "type":"list",
       "member":{"shape":"DataOperation"}
     },
+    "DataQualityAggregatedMetrics":{
+      "type":"structure",
+      "members":{
+        "TotalRowsProcessed":{"shape":"NullableDouble"},
+        "TotalRowsPassed":{"shape":"NullableDouble"},
+        "TotalRowsFailed":{"shape":"NullableDouble"},
+        "TotalRulesProcessed":{"shape":"NullableDouble"},
+        "TotalRulesPassed":{"shape":"NullableDouble"},
+        "TotalRulesFailed":{"shape":"NullableDouble"}
+      }
+    },
     "DataQualityAnalyzerResult":{
       "type":"structure",
       "members":{
@@ -7277,6 +7345,20 @@
       "member":{"shape":"DataQualityAnalyzerResult"},
       "max":2000,
       "min":0
+    },
+    "DataQualityEncryption":{
+      "type":"structure",
+      "members":{
+        "DataQualityEncryptionMode":{"shape":"DataQualityEncryptionMode"},
+        "KmsKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "DataQualityEncryptionMode":{
+      "type":"string",
+      "enum":[
+        "DISABLED",
+        "SSE-KMS"
+      ]
     },
     "DataQualityEvaluationRunAdditionalRunOptions":{
       "type":"structure",
@@ -7339,7 +7421,8 @@
         "RulesetEvaluationRunId":{"shape":"HashString"},
         "RuleResults":{"shape":"DataQualityRuleResults"},
         "AnalyzerResults":{"shape":"DataQualityAnalyzerResults"},
-        "Observations":{"shape":"DataQualityObservations"}
+        "Observations":{"shape":"DataQualityObservations"},
+        "AggregatedMetrics":{"shape":"DataQualityAggregatedMetrics"}
       }
     },
     "DataQualityResultDescription":{
@@ -7412,7 +7495,8 @@
         "EvaluationMessage":{"shape":"DataQualityRuleResultDescription"},
         "Result":{"shape":"DataQualityRuleResultStatus"},
         "EvaluatedMetrics":{"shape":"EvaluatedMetricsMap"},
-        "EvaluatedRule":{"shape":"DataQualityRuleResultDescription"}
+        "EvaluatedRule":{"shape":"DataQualityRuleResultDescription"},
+        "RuleMetrics":{"shape":"RuleMetricsMap"}
       }
     },
     "DataQualityRuleResultDescription":{
@@ -7660,8 +7744,7 @@
     },
     "DeleteCatalogResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteClassifierRequest":{
       "type":"structure",
@@ -7672,8 +7755,7 @@
     },
     "DeleteClassifierResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteColumnStatisticsForPartitionRequest":{
       "type":"structure",
@@ -7693,8 +7775,7 @@
     },
     "DeleteColumnStatisticsForPartitionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteColumnStatisticsForTableRequest":{
       "type":"structure",
@@ -7712,8 +7793,7 @@
     },
     "DeleteColumnStatisticsForTableResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteColumnStatisticsTaskSettingsRequest":{
       "type":"structure",
@@ -7728,8 +7808,7 @@
     },
     "DeleteColumnStatisticsTaskSettingsResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteConnectionNameList":{
       "type":"list",
@@ -7747,8 +7826,7 @@
     },
     "DeleteConnectionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteCrawlerRequest":{
       "type":"structure",
@@ -7759,8 +7837,7 @@
     },
     "DeleteCrawlerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteCustomEntityTypeRequest":{
       "type":"structure",
@@ -7784,8 +7861,7 @@
     },
     "DeleteDataQualityRulesetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteDatabaseRequest":{
       "type":"structure",
@@ -7797,8 +7873,7 @@
     },
     "DeleteDatabaseResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteDevEndpointRequest":{
       "type":"structure",
@@ -7809,8 +7884,7 @@
     },
     "DeleteDevEndpointResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteIntegrationRequest":{
       "type":"structure",
@@ -7857,8 +7931,7 @@
     },
     "DeleteIntegrationTablePropertiesResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteJobRequest":{
       "type":"structure",
@@ -7902,8 +7975,7 @@
     },
     "DeletePartitionIndexResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeletePartitionRequest":{
       "type":"structure",
@@ -7921,8 +7993,7 @@
     },
     "DeletePartitionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteRegistryInput":{
       "type":"structure",
@@ -7948,8 +8019,7 @@
     },
     "DeleteResourcePolicyResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteSchemaInput":{
       "type":"structure",
@@ -7992,8 +8062,7 @@
     },
     "DeleteSecurityConfigurationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteSessionRequest":{
       "type":"structure",
@@ -8026,8 +8095,7 @@
     },
     "DeleteTableOptimizerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteTableRequest":{
       "type":"structure",
@@ -8044,8 +8112,7 @@
     },
     "DeleteTableResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteTableVersionRequest":{
       "type":"structure",
@@ -8063,8 +8130,7 @@
     },
     "DeleteTableVersionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteTriggerRequest":{
       "type":"structure",
@@ -8088,8 +8154,7 @@
     },
     "DeleteUsageProfileResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteUserDefinedFunctionRequest":{
       "type":"structure",
@@ -8105,8 +8170,7 @@
     },
     "DeleteUserDefinedFunctionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteWorkflowRequest":{
       "type":"structure",
@@ -8346,6 +8410,11 @@
         "Database":{"shape":"EnclosedInStringProperty"}
       }
     },
+    "DisplayName":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "Double":{"type":"double"},
     "DoubleColumnStatisticsData":{
       "type":"structure",
@@ -8496,7 +8565,8 @@
       "members":{
         "S3Encryption":{"shape":"S3EncryptionList"},
         "CloudWatchEncryption":{"shape":"CloudWatchEncryption"},
-        "JobBookmarksEncryption":{"shape":"JobBookmarksEncryption"}
+        "JobBookmarksEncryption":{"shape":"JobBookmarksEncryption"},
+        "DataQualityEncryption":{"shape":"DataQualityEncryption"}
       }
     },
     "Entity":{
@@ -8657,14 +8727,16 @@
       "type":"structure",
       "members":{
         "Identifier":{"shape":"FederationIdentifier"},
-        "ConnectionName":{"shape":"NameString"}
+        "ConnectionName":{"shape":"NameString"},
+        "ConnectionType":{"shape":"NameString"}
       }
     },
     "FederatedDatabase":{
       "type":"structure",
       "members":{
         "Identifier":{"shape":"FederationIdentifier"},
-        "ConnectionName":{"shape":"NameString"}
+        "ConnectionName":{"shape":"NameString"},
+        "ConnectionType":{"shape":"NameString"}
       }
     },
     "FederatedResourceAlreadyExistsException":{
@@ -8680,7 +8752,8 @@
       "members":{
         "Identifier":{"shape":"FederationIdentifier"},
         "DatabaseIdentifier":{"shape":"FederationIdentifier"},
-        "ConnectionName":{"shape":"NameString"}
+        "ConnectionName":{"shape":"NameString"},
+        "ConnectionType":{"shape":"NameString"}
       }
     },
     "FederationIdentifier":{
@@ -9039,7 +9112,8 @@
         "ParentCatalogId":{"shape":"CatalogIdString"},
         "NextToken":{"shape":"Token"},
         "MaxResults":{"shape":"PageSize"},
-        "Recursive":{"shape":"Boolean"}
+        "Recursive":{"shape":"Boolean"},
+        "IncludeRoot":{"shape":"NullableBoolean"}
       }
     },
     "GetCatalogsResponse":{
@@ -9345,7 +9419,8 @@
         "RulesetEvaluationRunId":{"shape":"HashString"},
         "RuleResults":{"shape":"DataQualityRuleResults"},
         "AnalyzerResults":{"shape":"DataQualityAnalyzerResults"},
-        "Observations":{"shape":"DataQualityObservations"}
+        "Observations":{"shape":"DataQualityObservations"},
+        "AggregatedMetrics":{"shape":"DataQualityAggregatedMetrics"}
       }
     },
     "GetDataQualityRuleRecommendationRunRequest":{
@@ -10572,26 +10647,50 @@
       "type":"list",
       "member":{"shape":"HudiTarget"}
     },
+    "HyperTargetCompressionType":{
+      "type":"string",
+      "enum":["uncompressed"]
+    },
     "IAMRoleArn":{
       "type":"string",
       "pattern":"^arn:aws(-(cn|us-gov|iso(-[bef])?))?:iam::[0-9]{12}:role/.+"
+    },
+    "IcebergCompactionConfiguration":{
+      "type":"structure",
+      "members":{
+        "strategy":{"shape":"CompactionStrategy"}
+      }
     },
     "IcebergCompactionMetrics":{
       "type":"structure",
       "members":{
         "NumberOfBytesCompacted":{"shape":"metricCounts"},
         "NumberOfFilesCompacted":{"shape":"metricCounts"},
+        "DpuHours":{"shape":"dpuHours"},
         "NumberOfDpus":{"shape":"dpuCounts"},
         "JobDurationInHour":{"shape":"dpuDurationInHour"}
       }
+    },
+    "IcebergDocument":{
+      "type":"structure",
+      "members":{},
+      "document":true
     },
     "IcebergInput":{
       "type":"structure",
       "required":["MetadataOperation"],
       "members":{
         "MetadataOperation":{"shape":"MetadataOperation"},
-        "Version":{"shape":"VersionString"}
+        "Version":{"shape":"VersionString"},
+        "CreateIcebergTableInput":{"shape":"CreateIcebergTableInput"}
       }
+    },
+    "IcebergNullOrder":{
+      "type":"string",
+      "enum":[
+        "nulls-first",
+        "nulls-last"
+      ]
     },
     "IcebergOrphanFileDeletionConfiguration":{
       "type":"structure",
@@ -10604,9 +10703,36 @@
       "type":"structure",
       "members":{
         "NumberOfOrphanFilesDeleted":{"shape":"metricCounts"},
+        "DpuHours":{"shape":"dpuHours"},
         "NumberOfDpus":{"shape":"dpuCounts"},
         "JobDurationInHour":{"shape":"dpuDurationInHour"}
       }
+    },
+    "IcebergPartitionField":{
+      "type":"structure",
+      "required":[
+        "SourceId",
+        "Transform",
+        "Name"
+      ],
+      "members":{
+        "SourceId":{"shape":"Integer"},
+        "Transform":{"shape":"IcebergTransformString"},
+        "Name":{"shape":"ColumnNameString"},
+        "FieldId":{"shape":"Integer"}
+      }
+    },
+    "IcebergPartitionSpec":{
+      "type":"structure",
+      "required":["Fields"],
+      "members":{
+        "Fields":{"shape":"IcebergPartitionSpecFieldList"},
+        "SpecId":{"shape":"Integer"}
+      }
+    },
+    "IcebergPartitionSpecFieldList":{
+      "type":"list",
+      "member":{"shape":"IcebergPartitionField"}
     },
     "IcebergRetentionConfiguration":{
       "type":"structure",
@@ -10622,9 +10748,99 @@
         "NumberOfDataFilesDeleted":{"shape":"metricCounts"},
         "NumberOfManifestFilesDeleted":{"shape":"metricCounts"},
         "NumberOfManifestListsDeleted":{"shape":"metricCounts"},
+        "DpuHours":{"shape":"dpuHours"},
         "NumberOfDpus":{"shape":"dpuCounts"},
         "JobDurationInHour":{"shape":"dpuDurationInHour"}
       }
+    },
+    "IcebergSchema":{
+      "type":"structure",
+      "required":["Fields"],
+      "members":{
+        "SchemaId":{"shape":"Integer"},
+        "IdentifierFieldIds":{"shape":"IntegerList"},
+        "Type":{"shape":"IcebergStructTypeEnum"},
+        "Fields":{"shape":"IcebergStructFieldList"}
+      }
+    },
+    "IcebergSortDirection":{
+      "type":"string",
+      "enum":[
+        "asc",
+        "desc"
+      ]
+    },
+    "IcebergSortField":{
+      "type":"structure",
+      "required":[
+        "SourceId",
+        "Transform",
+        "Direction",
+        "NullOrder"
+      ],
+      "members":{
+        "SourceId":{"shape":"Integer"},
+        "Transform":{"shape":"IcebergTransformString"},
+        "Direction":{"shape":"IcebergSortDirection"},
+        "NullOrder":{"shape":"IcebergNullOrder"}
+      }
+    },
+    "IcebergSortOrder":{
+      "type":"structure",
+      "required":[
+        "OrderId",
+        "Fields"
+      ],
+      "members":{
+        "OrderId":{"shape":"Integer"},
+        "Fields":{"shape":"IcebergSortOrderFieldList"}
+      }
+    },
+    "IcebergSortOrderFieldList":{
+      "type":"list",
+      "member":{"shape":"IcebergSortField"}
+    },
+    "IcebergStructField":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Name",
+        "Type",
+        "Required"
+      ],
+      "members":{
+        "Id":{"shape":"Integer"},
+        "Name":{"shape":"ColumnNameString"},
+        "Type":{"shape":"IcebergDocument"},
+        "Required":{"shape":"Boolean"},
+        "Doc":{"shape":"CommentString"}
+      }
+    },
+    "IcebergStructFieldList":{
+      "type":"list",
+      "member":{"shape":"IcebergStructField"}
+    },
+    "IcebergStructTypeEnum":{
+      "type":"string",
+      "enum":["struct"]
+    },
+    "IcebergTableUpdate":{
+      "type":"structure",
+      "required":[
+        "Schema",
+        "Location"
+      ],
+      "members":{
+        "Schema":{"shape":"IcebergSchema"},
+        "PartitionSpec":{"shape":"IcebergPartitionSpec"},
+        "SortOrder":{"shape":"IcebergSortOrder"},
+        "Location":{"shape":"LocationString"},
+        "Properties":{"shape":"StringToStringMap"}
+      }
+    },
+    "IcebergTableUpdateList":{
+      "type":"list",
+      "member":{"shape":"IcebergTableUpdate"}
     },
     "IcebergTarget":{
       "type":"structure",
@@ -10635,10 +10851,20 @@
         "MaximumTraversalDepth":{"shape":"NullableInteger"}
       }
     },
+    "IcebergTargetCompressionType":{
+      "type":"string",
+      "enum":[
+        "gzip",
+        "lzo",
+        "uncompressed",
+        "snappy"
+      ]
+    },
     "IcebergTargetList":{
       "type":"list",
       "member":{"shape":"IcebergTarget"}
     },
+    "IcebergTransformString":{"type":"string"},
     "IdString":{
       "type":"string",
       "max":255,
@@ -10685,8 +10911,7 @@
     },
     "ImportCatalogToGlueResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "ImportLabelsTaskRunProperties":{
       "type":"structure",
@@ -10710,6 +10935,7 @@
         "IntegrationArn":{"shape":"String128"},
         "Status":{"shape":"IntegrationStatus"},
         "CreateTime":{"shape":"IntegrationTimestamp"},
+        "IntegrationConfig":{"shape":"IntegrationConfig"},
         "Errors":{"shape":"IntegrationErrorList"}
       }
     },
@@ -10734,6 +10960,10 @@
       "max":1,
       "min":0
     },
+    "IntegerList":{
+      "type":"list",
+      "member":{"shape":"Integer"}
+    },
     "IntegerValue":{"type":"integer"},
     "Integration":{
       "type":"structure",
@@ -10756,6 +10986,7 @@
         "Tags":{"shape":"IntegrationTagsList"},
         "Status":{"shape":"IntegrationStatus"},
         "CreateTime":{"shape":"IntegrationTimestamp"},
+        "IntegrationConfig":{"shape":"IntegrationConfig"},
         "Errors":{"shape":"IntegrationErrorList"},
         "DataFilter":{"shape":"String2048"}
       }
@@ -10764,6 +10995,13 @@
       "type":"map",
       "key":{"shape":"IntegrationString"},
       "value":{"shape":"IntegrationString"}
+    },
+    "IntegrationConfig":{
+      "type":"structure",
+      "members":{
+        "RefreshInterval":{"shape":"String128"},
+        "SourceProperties":{"shape":"IntegrationSourcePropertiesMap"}
+      }
     },
     "IntegrationConflictOperationFault":{
       "type":"structure",
@@ -10816,7 +11054,8 @@
       "type":"structure",
       "members":{
         "FieldName":{"shape":"String128"},
-        "FunctionSpec":{"shape":"String128"}
+        "FunctionSpec":{"shape":"String128"},
+        "ConversionSpec":{"shape":"String128"}
       }
     },
     "IntegrationPartitionSpecList":{
@@ -10829,6 +11068,11 @@
         "Message":{"shape":"IntegrationErrorMessage"}
       },
       "exception":true
+    },
+    "IntegrationSourcePropertiesMap":{
+      "type":"map",
+      "key":{"shape":"IntegrationString"},
+      "value":{"shape":"IntegrationString"}
     },
     "IntegrationStatus":{
       "type":"string",
@@ -12331,6 +12575,7 @@
       "type":"string",
       "box":true
     },
+    "NumberTargetPartitionsString":{"type":"string"},
     "OAuth2ClientApplication":{
       "type":"structure",
       "members":{
@@ -12631,6 +12876,8 @@
         "snappy",
         "lzo",
         "gzip",
+        "brotli",
+        "lz4",
         "uncompressed",
         "none"
       ]
@@ -12994,8 +13241,7 @@
     },
     "PutDataCatalogEncryptionSettingsResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "PutDataQualityProfileAnnotationRequest":{
       "type":"structure",
@@ -13010,8 +13256,7 @@
     },
     "PutDataQualityProfileAnnotationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "PutResourcePolicyRequest":{
       "type":"structure",
@@ -13068,8 +13313,7 @@
     },
     "PutWorkflowRunPropertiesResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "PythonScript":{"type":"string"},
     "PythonVersionString":{
@@ -13170,8 +13414,7 @@
     },
     "Record":{
       "type":"structure",
-      "members":{
-      },
+      "members":{},
       "document":true,
       "sensitive":true
     },
@@ -13467,6 +13710,12 @@
     },
     "RoleString":{"type":"string"},
     "RowTag":{"type":"string"},
+    "RuleMetricsMap":{
+      "type":"map",
+      "key":{"shape":"NameString"},
+      "value":{"shape":"NullableDouble"},
+      "sensitive":true
+    },
     "RulesetNames":{
       "type":"list",
       "member":{"shape":"NameString"},
@@ -13638,6 +13887,7 @@
         "PartitionKeys":{"shape":"GlueStudioPathList"},
         "Path":{"shape":"EnclosedInStringProperty"},
         "Compression":{"shape":"DeltaTargetCompressionType"},
+        "NumberTargetPartitions":{"shape":"NumberTargetPartitionsString"},
         "Format":{"shape":"TargetFormat"},
         "AdditionalOptions":{"shape":"AdditionalOptions"},
         "SchemaChangePolicy":{"shape":"DirectSchemaChangePolicy"}
@@ -13680,6 +13930,7 @@
         "PartitionKeys":{"shape":"GlueStudioPathList"},
         "Path":{"shape":"EnclosedInStringProperty"},
         "Compression":{"shape":"EnclosedInStringProperty"},
+        "NumberTargetPartitions":{"shape":"NumberTargetPartitionsString"},
         "Format":{"shape":"TargetFormat"},
         "SchemaChangePolicy":{"shape":"DirectSchemaChangePolicy"}
       }
@@ -13703,6 +13954,28 @@
         "SSE-S3"
       ]
     },
+    "S3ExcelSource":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Paths"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Paths":{"shape":"EnclosedInStringProperties"},
+        "CompressionType":{"shape":"ParquetCompressionType"},
+        "Exclusions":{"shape":"EnclosedInStringProperties"},
+        "GroupSize":{"shape":"EnclosedInStringProperty"},
+        "GroupFiles":{"shape":"EnclosedInStringProperty"},
+        "Recurse":{"shape":"BoxedBoolean"},
+        "MaxBand":{"shape":"BoxedNonNegativeInt"},
+        "MaxFilesInBand":{"shape":"BoxedNonNegativeInt"},
+        "AdditionalOptions":{"shape":"S3DirectSourceAdditionalOptions"},
+        "NumberRows":{"shape":"BoxedLong"},
+        "SkipFooter":{"shape":"BoxedNonNegativeInt"},
+        "OutputSchemas":{"shape":"GlueSchemas"}
+      }
+    },
     "S3GlueParquetTarget":{
       "type":"structure",
       "required":[
@@ -13716,6 +13989,7 @@
         "PartitionKeys":{"shape":"GlueStudioPathList"},
         "Path":{"shape":"EnclosedInStringProperty"},
         "Compression":{"shape":"ParquetCompressionType"},
+        "NumberTargetPartitions":{"shape":"NumberTargetPartitionsString"},
         "SchemaChangePolicy":{"shape":"DirectSchemaChangePolicy"}
       }
     },
@@ -13753,6 +14027,7 @@
         "Inputs":{"shape":"OneInput"},
         "Path":{"shape":"EnclosedInStringProperty"},
         "Compression":{"shape":"HudiTargetCompressionType"},
+        "NumberTargetPartitions":{"shape":"NumberTargetPartitionsString"},
         "PartitionKeys":{"shape":"GlueStudioPathList"},
         "Format":{"shape":"TargetFormat"},
         "AdditionalOptions":{"shape":"AdditionalOptions"},
@@ -13771,6 +14046,43 @@
         "AdditionalHudiOptions":{"shape":"AdditionalOptions"},
         "AdditionalOptions":{"shape":"S3DirectSourceAdditionalOptions"},
         "OutputSchemas":{"shape":"GlueSchemas"}
+      }
+    },
+    "S3HyperDirectTarget":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Inputs",
+        "Path"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Inputs":{"shape":"OneInput"},
+        "PartitionKeys":{"shape":"GlueStudioPathList"},
+        "Path":{"shape":"EnclosedInStringProperty"},
+        "Compression":{"shape":"HyperTargetCompressionType"},
+        "SchemaChangePolicy":{"shape":"DirectSchemaChangePolicy"}
+      }
+    },
+    "S3IcebergDirectTarget":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Inputs",
+        "Path",
+        "Format",
+        "Compression"
+      ],
+      "members":{
+        "Name":{"shape":"NodeName"},
+        "Inputs":{"shape":"OneInput"},
+        "PartitionKeys":{"shape":"GlueStudioPathList"},
+        "Path":{"shape":"EnclosedInStringProperty"},
+        "Format":{"shape":"TargetFormat"},
+        "AdditionalOptions":{"shape":"AdditionalOptions"},
+        "SchemaChangePolicy":{"shape":"DirectSchemaChangePolicy"},
+        "Compression":{"shape":"IcebergTargetCompressionType"},
+        "NumberTargetPartitions":{"shape":"NumberTargetPartitionsString"}
       }
     },
     "S3JsonSource":{
@@ -14479,8 +14791,7 @@
     },
     "StartColumnStatisticsTaskRunScheduleResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "StartCrawlerRequest":{
       "type":"structure",
@@ -14491,8 +14802,7 @@
     },
     "StartCrawlerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "StartCrawlerScheduleRequest":{
       "type":"structure",
@@ -14503,8 +14813,7 @@
     },
     "StartCrawlerScheduleResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "StartDataQualityRuleRecommendationRunRequest":{
       "type":"structure",
@@ -14816,8 +15125,7 @@
     },
     "StopColumnStatisticsTaskRunResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "StopColumnStatisticsTaskRunScheduleRequest":{
       "type":"structure",
@@ -14832,8 +15140,7 @@
     },
     "StopColumnStatisticsTaskRunScheduleResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "StopCrawlerRequest":{
       "type":"structure",
@@ -14844,8 +15151,7 @@
     },
     "StopCrawlerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "StopCrawlerScheduleRequest":{
       "type":"structure",
@@ -14856,8 +15162,7 @@
     },
     "StopCrawlerScheduleResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "StopSessionRequest":{
       "type":"structure",
@@ -14899,8 +15204,7 @@
     },
     "StopWorkflowRunResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "StorageDescriptor":{
       "type":"structure",
@@ -14957,6 +15261,11 @@
     "StringList":{
       "type":"list",
       "member":{"shape":"GenericString"}
+    },
+    "StringToStringMap":{
+      "type":"map",
+      "key":{"shape":"NullableString"},
+      "value":{"shape":"NullableString"}
     },
     "SupportedDialect":{
       "type":"structure",
@@ -15065,6 +15374,7 @@
         "roleArn":{"shape":"ArnString"},
         "enabled":{"shape":"NullableBoolean"},
         "vpcConfiguration":{"shape":"TableOptimizerVpcConfiguration"},
+        "compactionConfiguration":{"shape":"CompactionConfiguration"},
         "retentionConfiguration":{"shape":"RetentionConfiguration"},
         "orphanFileDeletionConfiguration":{"shape":"OrphanFileDeletionConfiguration"}
       }
@@ -15091,6 +15401,7 @@
         },
         "error":{"shape":"MessageString"},
         "compactionMetrics":{"shape":"CompactionMetrics"},
+        "compactionStrategy":{"shape":"CompactionStrategy"},
         "retentionMetrics":{"shape":"RetentionMetrics"},
         "orphanFileDeletionMetrics":{"shape":"OrphanFileDeletionMetrics"}
       }
@@ -15187,8 +15498,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValue":{
       "type":"string",
@@ -15216,7 +15526,10 @@
         "orc",
         "parquet",
         "hudi",
-        "delta"
+        "delta",
+        "iceberg",
+        "hyper",
+        "xml"
       ]
     },
     "TargetProcessingProperties":{
@@ -15351,8 +15664,7 @@
     },
     "TestConnectionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "ThrottlingException":{
       "type":"structure",
@@ -15648,8 +15960,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateBehavior":{
       "type":"string",
@@ -15696,8 +16007,7 @@
     },
     "UpdateCatalogResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateClassifierRequest":{
       "type":"structure",
@@ -15710,8 +16020,7 @@
     },
     "UpdateClassifierResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateColumnStatisticsForPartitionRequest":{
       "type":"structure",
@@ -15780,8 +16089,7 @@
     },
     "UpdateColumnStatisticsTaskSettingsResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateConnectionRequest":{
       "type":"structure",
@@ -15797,8 +16105,7 @@
     },
     "UpdateConnectionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateCrawlerRequest":{
       "type":"structure",
@@ -15822,8 +16129,7 @@
     },
     "UpdateCrawlerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateCrawlerScheduleRequest":{
       "type":"structure",
@@ -15835,8 +16141,7 @@
     },
     "UpdateCrawlerScheduleResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateCsvClassifierRequest":{
       "type":"structure",
@@ -15885,8 +16190,7 @@
     },
     "UpdateDatabaseResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateDevEndpointRequest":{
       "type":"structure",
@@ -15904,8 +16208,7 @@
     },
     "UpdateDevEndpointResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateGrokClassifierRequest":{
       "type":"structure",
@@ -15915,6 +16218,20 @@
         "Classification":{"shape":"Classification"},
         "GrokPattern":{"shape":"GrokPattern"},
         "CustomPatterns":{"shape":"CustomPatterns"}
+      }
+    },
+    "UpdateIcebergInput":{
+      "type":"structure",
+      "required":["UpdateIcebergTableInput"],
+      "members":{
+        "UpdateIcebergTableInput":{"shape":"UpdateIcebergTableInput"}
+      }
+    },
+    "UpdateIcebergTableInput":{
+      "type":"structure",
+      "required":["Updates"],
+      "members":{
+        "Updates":{"shape":"IcebergTableUpdateList"}
       }
     },
     "UpdateIntegrationResourcePropertyRequest":{
@@ -15949,8 +16266,7 @@
     },
     "UpdateIntegrationTablePropertiesResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateJobFromSourceControlRequest":{
       "type":"structure",
@@ -16020,6 +16336,12 @@
         "TransformId":{"shape":"HashString"}
       }
     },
+    "UpdateOpenTableFormatInput":{
+      "type":"structure",
+      "members":{
+        "UpdateIcebergInput":{"shape":"UpdateIcebergInput"}
+      }
+    },
     "UpdatePartitionRequest":{
       "type":"structure",
       "required":[
@@ -16038,8 +16360,7 @@
     },
     "UpdatePartitionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateRegistryInput":{
       "type":"structure",
@@ -16116,30 +16437,27 @@
     },
     "UpdateTableOptimizerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateTableRequest":{
       "type":"structure",
-      "required":[
-        "DatabaseName",
-        "TableInput"
-      ],
+      "required":["DatabaseName"],
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
         "DatabaseName":{"shape":"NameString"},
+        "Name":{"shape":"NameString"},
         "TableInput":{"shape":"TableInput"},
         "SkipArchive":{"shape":"BooleanNullable"},
         "TransactionId":{"shape":"TransactionIdString"},
         "VersionId":{"shape":"VersionString"},
         "ViewUpdateAction":{"shape":"ViewUpdateAction"},
-        "Force":{"shape":"Boolean"}
+        "Force":{"shape":"Boolean"},
+        "UpdateOpenTableFormatInput":{"shape":"UpdateOpenTableFormatInput"}
       }
     },
     "UpdateTableResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateTriggerRequest":{
       "type":"structure",
@@ -16192,15 +16510,14 @@
     },
     "UpdateUserDefinedFunctionResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateWorkflowRequest":{
       "type":"structure",
       "required":["Name"],
       "members":{
         "Name":{"shape":"NameString"},
-        "Description":{"shape":"GenericString"},
+        "Description":{"shape":"WorkflowDescriptionString"},
         "DefaultRunProperties":{"shape":"WorkflowRunProperties"},
         "MaxConcurrentRuns":{"shape":"NullableInteger"}
       }
@@ -16230,6 +16547,7 @@
       }
     },
     "UriString":{"type":"string"},
+    "UrlString":{"type":"string"},
     "UsageProfileDefinition":{
       "type":"structure",
       "members":{
@@ -16301,6 +16619,11 @@
     "ValueStringList":{
       "type":"list",
       "member":{"shape":"ValueString"}
+    },
+    "Vendor":{
+      "type":"string",
+      "max":128,
+      "min":1
     },
     "VersionId":{"type":"long"},
     "VersionLongNumber":{
@@ -16451,6 +16774,10 @@
         "BlueprintDetails":{"shape":"BlueprintDetails"}
       }
     },
+    "WorkflowDescriptionString":{
+      "type":"string",
+      "max":120000
+    },
     "WorkflowGraph":{
       "type":"structure",
       "members":{
@@ -16542,6 +16869,7 @@
     "double":{"type":"double"},
     "dpuCounts":{"type":"integer"},
     "dpuDurationInHour":{"type":"double"},
+    "dpuHours":{"type":"double"},
     "glueConnectionNameString":{
       "type":"string",
       "min":1

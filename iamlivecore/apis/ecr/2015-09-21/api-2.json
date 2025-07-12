@@ -834,6 +834,8 @@
         "imageTags":{"shape":"ImageTagsList"},
         "platform":{"shape":"Platform"},
         "pushedAt":{"shape":"Date"},
+        "lastInUseAt":{"shape":"Date"},
+        "inUseCount":{"shape":"InUseCount"},
         "registry":{"shape":"RegistryId"},
         "repositoryName":{"shape":"RepositoryName"}
       }
@@ -960,7 +962,9 @@
         "upstreamRegistryUrl":{"shape":"Url"},
         "registryId":{"shape":"RegistryId"},
         "upstreamRegistry":{"shape":"UpstreamRegistry"},
-        "credentialArn":{"shape":"CredentialArn"}
+        "credentialArn":{"shape":"CredentialArn"},
+        "customRoleArn":{"shape":"CustomRoleArn"},
+        "upstreamRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"}
       }
     },
     "CreatePullThroughCacheRuleResponse":{
@@ -971,7 +975,9 @@
         "createdAt":{"shape":"CreationTimestamp"},
         "registryId":{"shape":"RegistryId"},
         "upstreamRegistry":{"shape":"UpstreamRegistry"},
-        "credentialArn":{"shape":"CredentialArn"}
+        "credentialArn":{"shape":"CredentialArn"},
+        "customRoleArn":{"shape":"CustomRoleArn"},
+        "upstreamRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"}
       }
     },
     "CreateRepositoryCreationTemplateRequest":{
@@ -1095,13 +1101,14 @@
         "upstreamRegistryUrl":{"shape":"Url"},
         "createdAt":{"shape":"CreationTimestamp"},
         "registryId":{"shape":"RegistryId"},
-        "credentialArn":{"shape":"CredentialArn"}
+        "credentialArn":{"shape":"CredentialArn"},
+        "customRoleArn":{"shape":"CustomRoleArn"},
+        "upstreamRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"}
       }
     },
     "DeleteRegistryPolicyRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteRegistryPolicyResponse":{
       "type":"structure",
@@ -1243,8 +1250,7 @@
     },
     "DescribeRegistryRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DescribeRegistryResponse":{
       "type":"structure",
@@ -1468,8 +1474,7 @@
     },
     "GetRegistryPolicyRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "GetRegistryPolicyResponse":{
       "type":"structure",
@@ -1480,8 +1485,7 @@
     },
     "GetRegistryScanningConfigurationRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "GetRegistryScanningConfigurationResponse":{
       "type":"structure",
@@ -1701,6 +1705,10 @@
     "ImageTagsList":{
       "type":"list",
       "member":{"shape":"ImageTag"}
+    },
+    "InUseCount":{
+      "type":"long",
+      "min":0
     },
     "InitiateLayerUploadRequest":{
       "type":"structure",
@@ -2034,6 +2042,8 @@
         "createdAt":{"shape":"CreationTimestamp"},
         "registryId":{"shape":"RegistryId"},
         "credentialArn":{"shape":"CredentialArn"},
+        "customRoleArn":{"shape":"CustomRoleArn"},
+        "upstreamRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
         "upstreamRegistry":{"shape":"UpstreamRegistry"},
         "updatedAt":{"shape":"UpdatedTimestamp"}
       }
@@ -2060,7 +2070,7 @@
       "type":"string",
       "max":30,
       "min":2,
-      "pattern":"(?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*"
+      "pattern":"^((?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*/?|ROOT)$"
     },
     "PullThroughCacheRuleRepositoryPrefixList":{
       "type":"list",
@@ -2530,7 +2540,8 @@
         "ACTIVE",
         "PENDING",
         "SCAN_ELIGIBILITY_EXPIRED",
-        "FINDINGS_UNAVAILABLE"
+        "FINDINGS_UNAVAILABLE",
+        "LIMIT_EXCEEDED"
       ]
     },
     "ScanStatusDescription":{"type":"string"},
@@ -2704,8 +2715,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagStatus":{
       "type":"string",
@@ -2799,19 +2809,16 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdatePullThroughCacheRuleRequest":{
       "type":"structure",
-      "required":[
-        "ecrRepositoryPrefix",
-        "credentialArn"
-      ],
+      "required":["ecrRepositoryPrefix"],
       "members":{
         "registryId":{"shape":"RegistryId"},
         "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
-        "credentialArn":{"shape":"CredentialArn"}
+        "credentialArn":{"shape":"CredentialArn"},
+        "customRoleArn":{"shape":"CustomRoleArn"}
       }
     },
     "UpdatePullThroughCacheRuleResponse":{
@@ -2820,7 +2827,9 @@
         "ecrRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
         "registryId":{"shape":"RegistryId"},
         "updatedAt":{"shape":"UpdatedTimestamp"},
-        "credentialArn":{"shape":"CredentialArn"}
+        "credentialArn":{"shape":"CredentialArn"},
+        "customRoleArn":{"shape":"CustomRoleArn"},
+        "upstreamRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"}
       }
     },
     "UpdateRepositoryCreationTemplateRequest":{
@@ -2887,6 +2896,7 @@
     "UpstreamRegistry":{
       "type":"string",
       "enum":[
+        "ecr",
         "ecr-public",
         "quay",
         "k8s",
@@ -2912,6 +2922,8 @@
         "registryId":{"shape":"RegistryId"},
         "upstreamRegistryUrl":{"shape":"Url"},
         "credentialArn":{"shape":"CredentialArn"},
+        "customRoleArn":{"shape":"CustomRoleArn"},
+        "upstreamRepositoryPrefix":{"shape":"PullThroughCacheRuleRepositoryPrefix"},
         "isValid":{"shape":"IsPTCRuleValid"},
         "failure":{"shape":"PTCValidateFailure"}
       }

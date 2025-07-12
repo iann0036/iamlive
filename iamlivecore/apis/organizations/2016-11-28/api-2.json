@@ -541,6 +541,7 @@
         {"shape":"AccessDeniedException"},
         {"shape":"AWSOrganizationsNotInUseException"},
         {"shape":"ConcurrentModificationException"},
+        {"shape":"ConstraintViolationException"},
         {"shape":"HandshakeConstraintViolationException"},
         {"shape":"InvalidInputException"},
         {"shape":"ServiceException"},
@@ -1295,6 +1296,7 @@
         "CANNOT_REGISTER_MASTER_AS_DELEGATED_ADMINISTRATOR",
         "CANNOT_REMOVE_DELEGATED_ADMINISTRATOR_FROM_ORG",
         "DELEGATED_ADMINISTRATOR_EXISTS_FOR_THIS_SERVICE",
+        "POLICY_TYPE_ENABLED_FOR_THIS_SERVICE",
         "MASTER_ACCOUNT_MISSING_BUSINESS_LICENSE",
         "CANNOT_CLOSE_MANAGEMENT_ACCOUNT",
         "CLOSE_ACCOUNT_QUOTA_EXCEEDED",
@@ -1302,7 +1304,8 @@
         "SERVICE_ACCESS_NOT_ENABLED",
         "INVALID_PAYMENT_INSTRUMENT",
         "ACCOUNT_CREATION_NOT_COMPLETE",
-        "CANNOT_REGISTER_SUSPENDED_ACCOUNT_AS_DELEGATED_ADMINISTRATOR"
+        "CANNOT_REGISTER_SUSPENDED_ACCOUNT_AS_DELEGATED_ADMINISTRATOR",
+        "ALL_FEATURES_MIGRATION_ORGANIZATION_SIZE_LIMIT_EXCEEDED"
       ]
     },
     "CreateAccountFailureReason":{
@@ -1722,7 +1725,8 @@
         "BACKUP_POLICY",
         "AISERVICES_OPT_OUT_POLICY",
         "CHATBOT_POLICY",
-        "DECLARATIVE_POLICY_EC2"
+        "DECLARATIVE_POLICY_EC2",
+        "SECURITYHUB_POLICY"
       ]
     },
     "Email":{
@@ -1741,8 +1745,7 @@
     },
     "EnableAllFeaturesRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "EnableAllFeaturesResponse":{
       "type":"structure",
@@ -2507,7 +2510,8 @@
         "BACKUP_POLICY",
         "AISERVICES_OPT_OUT_POLICY",
         "CHATBOT_POLICY",
-        "DECLARATIVE_POLICY_EC2"
+        "DECLARATIVE_POLICY_EC2",
+        "SECURITYHUB_POLICY"
       ]
     },
     "PolicyTypeAlreadyEnabledException":{

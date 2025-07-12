@@ -3653,7 +3653,7 @@
     "AuthorizedPrincipalIdentifiers":{
       "type":"list",
       "member":{"shape":"AuthorizedPrincipalIdentifier"},
-      "max":10,
+      "max":20,
       "min":1
     },
     "AwsAccount":{
@@ -4647,6 +4647,7 @@
         "domainId":{"shape":"DomainId"},
         "environmentActions":{"shape":"EnvironmentActionList"},
         "environmentBlueprintId":{"shape":"EnvironmentBlueprintId"},
+        "environmentConfigurationId":{"shape":"EnvironmentConfigurationId"},
         "environmentProfileId":{"shape":"EnvironmentProfileId"},
         "glossaryTerms":{"shape":"GlossaryTerms"},
         "id":{"shape":"EnvironmentId"},
@@ -6805,6 +6806,7 @@
       "type":"structure",
       "members":{
         "environmentConfigurationName":{"shape":"EnvironmentConfigurationName"},
+        "environmentId":{"shape":"EnvironmentId"},
         "environmentParameters":{"shape":"EnvironmentParametersList"}
       }
     },
@@ -6938,6 +6940,7 @@
         "createdBy":{"shape":"String"},
         "description":{"shape":"Description"},
         "domainId":{"shape":"DomainId"},
+        "environmentConfigurationId":{"shape":"EnvironmentConfigurationId"},
         "environmentProfileId":{"shape":"EnvironmentProfileId"},
         "id":{"shape":"EnvironmentId"},
         "name":{"shape":"EnvironmentName"},
@@ -7819,6 +7822,7 @@
         "domainId":{"shape":"DomainId"},
         "environmentActions":{"shape":"EnvironmentActionList"},
         "environmentBlueprintId":{"shape":"EnvironmentBlueprintId"},
+        "environmentConfigurationId":{"shape":"EnvironmentConfigurationId"},
         "environmentProfileId":{"shape":"EnvironmentProfileId"},
         "glossaryTerms":{"shape":"GlossaryTerms"},
         "id":{"shape":"EnvironmentId"},
@@ -11071,7 +11075,8 @@
         "DELEGATE_CREATE_ENVIRONMENT_PROFILE",
         "CREATE_ENVIRONMENT",
         "CREATE_ENVIRONMENT_FROM_BLUEPRINT",
-        "CREATE_PROJECT_FROM_PROJECT_PROFILE"
+        "CREATE_PROJECT_FROM_PROJECT_PROFILE",
+        "USE_ASSET_TYPE"
       ]
     },
     "MatchCriteria":{
@@ -11536,7 +11541,8 @@
         "createProjectFromProjectProfile":{"shape":"CreateProjectFromProjectProfilePolicyGrantDetail"},
         "delegateCreateEnvironmentProfile":{"shape":"Unit"},
         "overrideDomainUnitOwners":{"shape":"OverrideDomainUnitOwnersPolicyGrantDetail"},
-        "overrideProjectOwners":{"shape":"OverrideProjectOwnersPolicyGrantDetail"}
+        "overrideProjectOwners":{"shape":"OverrideProjectOwnersPolicyGrantDetail"},
+        "useAssetType":{"shape":"UseAssetTypePolicyGrantDetail"}
       },
       "union":true
     },
@@ -11747,7 +11753,9 @@
       "enum":[
         "ACTIVE",
         "DELETING",
-        "DELETE_FAILED"
+        "DELETE_FAILED",
+        "UPDATING",
+        "UPDATE_FAILED"
       ]
     },
     "ProjectSummaries":{
@@ -12475,7 +12483,10 @@
     },
     "RuleAction":{
       "type":"string",
-      "enum":["CREATE_SUBSCRIPTION_REQUEST"]
+      "enum":[
+        "CREATE_LISTING_CHANGE_SET",
+        "CREATE_SUBSCRIPTION_REQUEST"
+      ]
     },
     "RuleAssetTypeList":{
       "type":"list",
@@ -12918,9 +12929,14 @@
     "SingleSignOn":{
       "type":"structure",
       "members":{
+        "idcInstanceArn":{"shape":"SingleSignOnIdcInstanceArnString"},
         "type":{"shape":"AuthType"},
         "userAssignment":{"shape":"UserAssignment"}
       }
+    },
+    "SingleSignOnIdcInstanceArnString":{
+      "type":"string",
+      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):sso:::instance/(sso)?ins-[a-zA-Z0-9-.]{16}"
     },
     "Smithy":{
       "type":"string",
@@ -13629,7 +13645,8 @@
       "enum":[
         "DOMAIN_UNIT",
         "ENVIRONMENT_BLUEPRINT_CONFIGURATION",
-        "ENVIRONMENT_PROFILE"
+        "ENVIRONMENT_PROFILE",
+        "ASSET_TYPE"
       ]
     },
     "TaskId":{
@@ -14232,6 +14249,7 @@
         "identifier"
       ],
       "members":{
+        "blueprintVersion":{"shape":"String"},
         "description":{"shape":"String"},
         "domainIdentifier":{
           "shape":"DomainId",
@@ -14244,7 +14262,8 @@
           "location":"uri",
           "locationName":"identifier"
         },
-        "name":{"shape":"String"}
+        "name":{"shape":"String"},
+        "userParameters":{"shape":"EnvironmentParametersList"}
       }
     },
     "UpdateEnvironmentOutput":{
@@ -14266,6 +14285,7 @@
         "domainId":{"shape":"DomainId"},
         "environmentActions":{"shape":"EnvironmentActionList"},
         "environmentBlueprintId":{"shape":"EnvironmentBlueprintId"},
+        "environmentConfigurationId":{"shape":"EnvironmentConfigurationId"},
         "environmentProfileId":{"shape":"EnvironmentProfileId"},
         "glossaryTerms":{"shape":"GlossaryTerms"},
         "id":{"shape":"EnvironmentId"},
@@ -14459,6 +14479,7 @@
           "location":"uri",
           "locationName":"domainIdentifier"
         },
+        "domainUnitId":{"shape":"DomainUnitId"},
         "environmentDeploymentDetails":{"shape":"EnvironmentDeploymentDetails"},
         "glossaryTerms":{"shape":"GlossaryTerms"},
         "identifier":{
@@ -14466,7 +14487,9 @@
           "location":"uri",
           "locationName":"identifier"
         },
-        "name":{"shape":"ProjectName"}
+        "name":{"shape":"ProjectName"},
+        "projectProfileVersion":{"shape":"String"},
+        "userParameters":{"shape":"EnvironmentConfigurationUserParametersList"}
       }
     },
     "UpdateProjectOutput":{
@@ -14816,6 +14839,12 @@
     },
     "UpdatedAt":{"type":"timestamp"},
     "UpdatedBy":{"type":"string"},
+    "UseAssetTypePolicyGrantDetail":{
+      "type":"structure",
+      "members":{
+        "domainUnitId":{"shape":"DomainUnitId"}
+      }
+    },
     "UserAssignment":{
       "type":"string",
       "enum":[

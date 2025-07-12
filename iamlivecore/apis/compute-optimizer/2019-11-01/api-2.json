@@ -569,6 +569,20 @@
       "member":{"shape":"AccountId"}
     },
     "AllocatedStorage":{"type":"integer"},
+    "AllocationStrategy":{
+      "type":"string",
+      "enum":[
+        "Prioritized",
+        "LowestPrice"
+      ]
+    },
+    "AsgType":{
+      "type":"string",
+      "enum":[
+        "SingleInstanceType",
+        "MixedInstanceTypes"
+      ]
+    },
     "AutoScalingConfiguration":{
       "type":"string",
       "enum":[
@@ -587,7 +601,11 @@
         "desiredCapacity":{"shape":"DesiredCapacity"},
         "minSize":{"shape":"MinSize"},
         "maxSize":{"shape":"MaxSize"},
-        "instanceType":{"shape":"InstanceType"}
+        "instanceType":{"shape":"NullableInstanceType"},
+        "allocationStrategy":{"shape":"AllocationStrategy"},
+        "estimatedInstanceHourReductionPercentage":{"shape":"NullableEstimatedInstanceHourReductionPercentage"},
+        "type":{"shape":"AsgType"},
+        "mixedInstanceTypes":{"shape":"MixedInstanceTypes"}
       }
     },
     "AutoScalingGroupEstimatedMonthlySavings":{
@@ -767,8 +785,7 @@
     },
     "DeleteRecommendationPreferencesResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DescribeRecommendationExportJobsRequest":{
       "type":"structure",
@@ -1300,6 +1317,9 @@
         "CurrentConfigurationDesiredCapacity",
         "CurrentConfigurationMinSize",
         "CurrentConfigurationMaxSize",
+        "CurrentConfigurationAllocationStrategy",
+        "CurrentConfigurationMixedInstanceTypes",
+        "CurrentConfigurationType",
         "CurrentOnDemandPrice",
         "CurrentStandardOneYearNoUpfrontReservedPrice",
         "CurrentStandardThreeYearNoUpfrontReservedPrice",
@@ -1311,6 +1331,10 @@
         "RecommendationOptionsConfigurationDesiredCapacity",
         "RecommendationOptionsConfigurationMinSize",
         "RecommendationOptionsConfigurationMaxSize",
+        "RecommendationOptionsConfigurationEstimatedInstanceHourReductionPercentage",
+        "RecommendationOptionsConfigurationAllocationStrategy",
+        "RecommendationOptionsConfigurationMixedInstanceTypes",
+        "RecommendationOptionsConfigurationType",
         "RecommendationOptionsProjectedUtilizationMetricsCpuMaximum",
         "RecommendationOptionsProjectedUtilizationMetricsMemoryMaximum",
         "RecommendationOptionsPerformanceRisk",
@@ -1574,15 +1598,20 @@
         "EngineVersion",
         "Idle",
         "MultiAZDBInstance",
+        "ClusterWriter",
         "CurrentDBInstanceClass",
         "CurrentStorageConfigurationStorageType",
         "CurrentStorageConfigurationAllocatedStorage",
         "CurrentStorageConfigurationMaxAllocatedStorage",
         "CurrentStorageConfigurationIOPS",
         "CurrentStorageConfigurationStorageThroughput",
+        "CurrentStorageEstimatedMonthlyVolumeIOPsCostVariation",
         "CurrentInstanceOnDemandHourlyPrice",
         "CurrentStorageOnDemandMonthlyPrice",
         "LookbackPeriodInDays",
+        "CurrentStorageEstimatedClusterInstanceOnDemandMonthlyCost",
+        "CurrentStorageEstimatedClusterStorageOnDemandMonthlyCost",
+        "CurrentStorageEstimatedClusterStorageIOOnDemandMonthlyCost",
         "CurrentInstancePerformanceRisk",
         "UtilizationMetricsCpuMaximum",
         "UtilizationMetricsMemoryMaximum",
@@ -1602,6 +1631,9 @@
         "UtilizationMetricsAuroraMemoryNumKillQueryTotalMaximum",
         "UtilizationMetricsReadIOPSEphemeralStorageMaximum",
         "UtilizationMetricsWriteIOPSEphemeralStorageMaximum",
+        "UtilizationMetricsVolumeBytesUsedAverage",
+        "UtilizationMetricsVolumeReadIOPsAverage",
+        "UtilizationMetricsVolumeWriteIOPsAverage",
         "InstanceFinding",
         "InstanceFindingReasonCodes",
         "StorageFinding",
@@ -1616,6 +1648,7 @@
         "StorageRecommendationOptionsIOPS",
         "StorageRecommendationOptionsStorageThroughput",
         "StorageRecommendationOptionsRank",
+        "StorageRecommendationOptionsEstimatedMonthlyVolumeIOPsCostVariation",
         "InstanceRecommendationOptionsInstanceOnDemandHourlyPrice",
         "InstanceRecommendationOptionsSavingsOpportunityPercentage",
         "InstanceRecommendationOptionsEstimatedMonthlySavingsCurrency",
@@ -1624,6 +1657,9 @@
         "InstanceRecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts",
         "InstanceRecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts",
         "StorageRecommendationOptionsOnDemandMonthlyPrice",
+        "StorageRecommendationOptionsEstimatedClusterInstanceOnDemandMonthlyCost",
+        "StorageRecommendationOptionsEstimatedClusterStorageOnDemandMonthlyCost",
+        "StorageRecommendationOptionsEstimatedClusterStorageIOOnDemandMonthlyCost",
         "StorageRecommendationOptionsSavingsOpportunityPercentage",
         "StorageRecommendationOptionsEstimatedMonthlySavingsCurrency",
         "StorageRecommendationOptionsEstimatedMonthlySavingsValue",
@@ -1918,8 +1954,7 @@
     },
     "GetEnrollmentStatusRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "GetEnrollmentStatusResponse":{
       "type":"structure",
@@ -2831,9 +2866,16 @@
       "exception":true,
       "synthetic":true
     },
+    "MixedInstanceType":{"type":"string"},
+    "MixedInstanceTypes":{
+      "type":"list",
+      "member":{"shape":"MixedInstanceType"}
+    },
     "NextToken":{"type":"string"},
     "NullableCpu":{"type":"integer"},
+    "NullableEstimatedInstanceHourReductionPercentage":{"type":"double"},
     "NullableIOPS":{"type":"integer"},
+    "NullableInstanceType":{"type":"string"},
     "NullableMaxAllocatedStorage":{"type":"integer"},
     "NullableMemory":{"type":"integer"},
     "NullableMemoryReservation":{"type":"integer"},
@@ -2940,8 +2982,7 @@
     },
     "PutRecommendationPreferencesResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "RDSCurrentInstancePerformanceRisk":{
       "type":"string",
@@ -2987,7 +3028,10 @@
         "AuroraMemoryNumKillConnTotal",
         "AuroraMemoryNumKillQueryTotal",
         "ReadIOPSEphemeralStorage",
-        "WriteIOPSEphemeralStorage"
+        "WriteIOPSEphemeralStorage",
+        "VolumeReadIOPs",
+        "VolumeBytesUsed",
+        "VolumeWriteIOPs"
       ]
     },
     "RDSDBMetricStatistic":{
@@ -3018,6 +3062,7 @@
         "storageFinding":{"shape":"RDSStorageFinding"},
         "instanceFindingReasonCodes":{"shape":"RDSInstanceFindingReasonCodes"},
         "currentInstancePerformanceRisk":{"shape":"RDSCurrentInstancePerformanceRisk"},
+        "currentStorageEstimatedMonthlyVolumeIOPsCostVariation":{"shape":"RDSEstimatedMonthlyVolumeIOPsCostVariation"},
         "storageFindingReasonCodes":{"shape":"RDSStorageFindingReasonCodes"},
         "instanceRecommendationOptions":{"shape":"RDSDBInstanceRecommendationOptions"},
         "storageRecommendationOptions":{"shape":"RDSDBStorageRecommendationOptions"},
@@ -3059,7 +3104,8 @@
         "storageConfiguration":{"shape":"DBStorageConfiguration"},
         "rank":{"shape":"Rank"},
         "savingsOpportunity":{"shape":"SavingsOpportunity"},
-        "savingsOpportunityAfterDiscounts":{"shape":"RDSStorageSavingsOpportunityAfterDiscounts"}
+        "savingsOpportunityAfterDiscounts":{"shape":"RDSStorageSavingsOpportunityAfterDiscounts"},
+        "estimatedMonthlyVolumeIOPsCostVariation":{"shape":"RDSEstimatedMonthlyVolumeIOPsCostVariation"}
       }
     },
     "RDSDBStorageRecommendationOptions":{
@@ -3110,6 +3156,15 @@
         "lookBackPeriod":{"shape":"LookBackPeriodPreference"},
         "savingsEstimationMode":{"shape":"RDSSavingsEstimationMode"}
       }
+    },
+    "RDSEstimatedMonthlyVolumeIOPsCostVariation":{
+      "type":"string",
+      "enum":[
+        "None",
+        "Low",
+        "Medium",
+        "High"
+      ]
     },
     "RDSInstanceEstimatedMonthlySavings":{
       "type":"structure",
@@ -3182,7 +3237,8 @@
       "enum":[
         "Optimized",
         "Underprovisioned",
-        "Overprovisioned"
+        "Overprovisioned",
+        "NotOptimized"
       ]
     },
     "RDSStorageFindingReasonCode":{
@@ -3192,7 +3248,9 @@
         "EBSVolumeThroughputUnderprovisioned",
         "EBSVolumeIOPSOverprovisioned",
         "EBSVolumeThroughputOverprovisioned",
-        "NewGenerationStorageTypeAvailable"
+        "NewGenerationStorageTypeAvailable",
+        "DBClusterStorageOptionAvailable",
+        "DBClusterStorageSavingsAvailable"
       ]
     },
     "RDSStorageFindingReasonCodes":{
@@ -3295,7 +3353,8 @@
         "EcsService",
         "License",
         "RdsDBInstance",
-        "RdsDBInstanceStorage"
+        "RdsDBInstanceStorage",
+        "AuroraDBClusterStorage"
       ]
     },
     "RecommendationSources":{
@@ -3359,6 +3418,7 @@
         "EcsService",
         "License",
         "RdsDBInstance",
+        "AuroraDBClusterStorage",
         "Idle"
       ]
     },
