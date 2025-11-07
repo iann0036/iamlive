@@ -636,6 +636,22 @@
         {"shape":"ValidationException"}
       ]
     },
+    "GetApplicationSessionConfiguration":{
+      "name":"GetApplicationSessionConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetApplicationSessionConfigurationRequest"},
+      "output":{"shape":"GetApplicationSessionConfigurationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"}
+      ]
+    },
     "GetInlinePolicyForPermissionSet":{
       "name":"GetInlinePolicyForPermissionSet",
       "http":{
@@ -758,8 +774,8 @@
       "output":{"shape":"ListApplicationAccessScopesResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
-        {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
       ]
@@ -806,8 +822,8 @@
       "output":{"shape":"ListApplicationAuthenticationMethodsResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
-        {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
       ]
@@ -822,8 +838,8 @@
       "output":{"shape":"ListApplicationGrantsResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
-        {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
       ]
@@ -1070,6 +1086,24 @@
       ],
       "idempotent":true
     },
+    "PutApplicationSessionConfiguration":{
+      "name":"PutApplicationSessionConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutApplicationSessionConfigurationRequest"},
+      "output":{"shape":"PutApplicationSessionConfigurationResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"}
+      ],
+      "idempotent":true
+    },
     "PutInlinePolicyToPermissionSet":{
       "name":"PutInlinePolicyToPermissionSet",
       "http":{
@@ -1168,6 +1202,7 @@
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ConflictException"}
@@ -1271,11 +1306,16 @@
     "AccessDeniedException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"AccessDeniedExceptionMessage"}
+        "Message":{"shape":"AccessDeniedExceptionMessage"},
+        "Reason":{"shape":"AccessDeniedExceptionReason"}
       },
       "exception":true
     },
     "AccessDeniedExceptionMessage":{"type":"string"},
+    "AccessDeniedExceptionReason":{
+      "type":"string",
+      "enum":["KMS_AccessDeniedException"]
+    },
     "AccountAssignment":{
       "type":"structure",
       "members":{
@@ -1340,8 +1380,7 @@
     },
     "ActorPolicyDocument":{
       "type":"structure",
-      "members":{
-      },
+      "members":{},
       "document":true
     },
     "Application":{
@@ -1349,7 +1388,7 @@
       "members":{
         "ApplicationArn":{"shape":"ApplicationArn"},
         "ApplicationProviderArn":{"shape":"ApplicationProviderArn"},
-        "Name":{"shape":"NameType"},
+        "Name":{"shape":"ApplicationNameType"},
         "ApplicationAccount":{"shape":"AccountId"},
         "InstanceArn":{"shape":"InstanceArn"},
         "Status":{"shape":"ApplicationStatus"},
@@ -1464,8 +1503,7 @@
     },
     "AttachCustomerManagedPolicyReferenceToPermissionSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "AttachManagedPolicyToPermissionSetRequest":{
       "type":"structure",
@@ -1482,8 +1520,7 @@
     },
     "AttachManagedPolicyToPermissionSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "AttachedManagedPolicy":{
       "type":"structure",
@@ -1597,8 +1634,7 @@
     },
     "CreateApplicationAssignmentResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateApplicationRequest":{
       "type":"structure",
@@ -1640,8 +1676,7 @@
     },
     "CreateInstanceAccessControlAttributeConfigurationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateInstanceRequest":{
       "type":"structure",
@@ -1771,8 +1806,7 @@
     },
     "DeleteApplicationAssignmentResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteApplicationAuthenticationMethodRequest":{
       "type":"structure",
@@ -1805,8 +1839,7 @@
     },
     "DeleteApplicationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteInlinePolicyFromPermissionSetRequest":{
       "type":"structure",
@@ -1821,8 +1854,7 @@
     },
     "DeleteInlinePolicyFromPermissionSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteInstanceAccessControlAttributeConfigurationRequest":{
       "type":"structure",
@@ -1833,8 +1865,7 @@
     },
     "DeleteInstanceAccessControlAttributeConfigurationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteInstanceRequest":{
       "type":"structure",
@@ -1845,8 +1876,7 @@
     },
     "DeleteInstanceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeletePermissionSetRequest":{
       "type":"structure",
@@ -1861,8 +1891,7 @@
     },
     "DeletePermissionSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeletePermissionsBoundaryFromPermissionSetRequest":{
       "type":"structure",
@@ -1877,8 +1906,7 @@
     },
     "DeletePermissionsBoundaryFromPermissionSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteTrustedTokenIssuerRequest":{
       "type":"structure",
@@ -1889,8 +1917,7 @@
     },
     "DeleteTrustedTokenIssuerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DescribeAccountAssignmentCreationStatusRequest":{
       "type":"structure",
@@ -1976,7 +2003,7 @@
       "members":{
         "ApplicationArn":{"shape":"ApplicationArn"},
         "ApplicationProviderArn":{"shape":"ApplicationProviderArn"},
-        "Name":{"shape":"NameType"},
+        "Name":{"shape":"ApplicationNameType"},
         "ApplicationAccount":{"shape":"AccountId"},
         "InstanceArn":{"shape":"InstanceArn"},
         "Status":{"shape":"ApplicationStatus"},
@@ -2015,7 +2042,9 @@
         "OwnerAccountId":{"shape":"AccountId"},
         "Name":{"shape":"NameType"},
         "CreatedDate":{"shape":"Date"},
-        "Status":{"shape":"InstanceStatus"}
+        "Status":{"shape":"InstanceStatus"},
+        "StatusReason":{"shape":"Reason"},
+        "EncryptionConfigurationDetails":{"shape":"EncryptionConfigurationDetails"}
       }
     },
     "DescribePermissionSetProvisioningStatusRequest":{
@@ -2088,8 +2117,7 @@
     },
     "DetachCustomerManagedPolicyReferenceFromPermissionSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DetachManagedPolicyFromPermissionSetRequest":{
       "type":"structure",
@@ -2106,8 +2134,7 @@
     },
     "DetachManagedPolicyFromPermissionSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DisplayData":{
       "type":"structure",
@@ -2122,6 +2149,23 @@
       "max":100,
       "min":1,
       "pattern":"(-?)P(?=\\d|T\\d)(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)([DW]))?(?:T(?:(\\d+)H)?(?:(\\d+)M)?(?:(\\d+(?:\\.\\d+)?)S)?)?"
+    },
+    "EncryptionConfiguration":{
+      "type":"structure",
+      "required":["KeyType"],
+      "members":{
+        "KeyType":{"shape":"KmsKeyType"},
+        "KmsKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "EncryptionConfigurationDetails":{
+      "type":"structure",
+      "members":{
+        "KeyType":{"shape":"KmsKeyType"},
+        "KmsKeyArn":{"shape":"KmsKeyArn"},
+        "EncryptionStatus":{"shape":"KmsKeyStatus"},
+        "EncryptionStatusReason":{"shape":"Reason"}
+      }
     },
     "FederationProtocol":{
       "type":"string",
@@ -2196,6 +2240,19 @@
       "required":["Grant"],
       "members":{
         "Grant":{"shape":"Grant"}
+      }
+    },
+    "GetApplicationSessionConfigurationRequest":{
+      "type":"structure",
+      "required":["ApplicationArn"],
+      "members":{
+        "ApplicationArn":{"shape":"ApplicationArn"}
+      }
+    },
+    "GetApplicationSessionConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "UserBackgroundSessionApplicationStatus":{"shape":"UserBackgroundSessionApplicationStatus"}
       }
     },
     "GetInlinePolicyForPermissionSetRequest":{
@@ -2321,13 +2378,15 @@
         "OwnerAccountId":{"shape":"AccountId"},
         "Name":{"shape":"NameType"},
         "CreatedDate":{"shape":"Date"},
-        "Status":{"shape":"InstanceStatus"}
+        "Status":{"shape":"InstanceStatus"},
+        "StatusReason":{"shape":"Reason"}
       }
     },
     "InstanceStatus":{
       "type":"string",
       "enum":[
         "CREATE_IN_PROGRESS",
+        "CREATE_FAILED",
         "DELETE_IN_PROGRESS",
         "ACTIVE"
       ]
@@ -2356,6 +2415,27 @@
       "members":{
         "AuthorizedTokenIssuers":{"shape":"AuthorizedTokenIssuers"}
       }
+    },
+    "KmsKeyArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-[bcd]):kms:([a-z]{2,}(-[a-z0-9]+)+){1}:[0-9]{12}:key/(mrk-[a-f0-9]{32}|[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+    },
+    "KmsKeyStatus":{
+      "type":"string",
+      "enum":[
+        "UPDATING",
+        "ENABLED",
+        "UPDATE_FAILED"
+      ]
+    },
+    "KmsKeyType":{
+      "type":"string",
+      "enum":[
+        "AWS_OWNED_KMS_KEY",
+        "CUSTOMER_MANAGED_KEY"
+      ]
     },
     "ListAccountAssignmentCreationStatusRequest":{
       "type":"structure",
@@ -2952,8 +3032,7 @@
     },
     "PutApplicationAssignmentConfigurationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "PutApplicationAuthenticationMethodRequest":{
       "type":"structure",
@@ -2981,6 +3060,18 @@
         "Grant":{"shape":"Grant"}
       }
     },
+    "PutApplicationSessionConfigurationRequest":{
+      "type":"structure",
+      "required":["ApplicationArn"],
+      "members":{
+        "ApplicationArn":{"shape":"ApplicationArn"},
+        "UserBackgroundSessionApplicationStatus":{"shape":"UserBackgroundSessionApplicationStatus"}
+      }
+    },
+    "PutApplicationSessionConfigurationResponse":{
+      "type":"structure",
+      "members":{}
+    },
     "PutInlinePolicyToPermissionSetRequest":{
       "type":"structure",
       "required":[
@@ -2996,8 +3087,7 @@
     },
     "PutInlinePolicyToPermissionSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "PutPermissionsBoundaryToPermissionSetRequest":{
       "type":"structure",
@@ -3014,8 +3104,7 @@
     },
     "PutPermissionsBoundaryToPermissionSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "Reason":{
       "type":"string",
@@ -3029,8 +3118,7 @@
     },
     "RefreshTokenGrant":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "RelayState":{
       "type":"string",
@@ -3041,9 +3129,14 @@
     "ResourceNotFoundException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"ResourceNotFoundMessage"}
+        "Message":{"shape":"ResourceNotFoundMessage"},
+        "Reason":{"shape":"ResourceNotFoundExceptionReason"}
       },
       "exception":true
+    },
+    "ResourceNotFoundExceptionReason":{
+      "type":"string",
+      "enum":["KMS_NotFoundException"]
     },
     "ResourceNotFoundMessage":{"type":"string"},
     "ResourceServerConfig":{
@@ -3174,8 +3267,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValue":{
       "type":"string",
@@ -3202,11 +3294,16 @@
     "ThrottlingException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"ThrottlingExceptionMessage"}
+        "Message":{"shape":"ThrottlingExceptionMessage"},
+        "Reason":{"shape":"ThrottlingExceptionReason"}
       },
       "exception":true
     },
     "ThrottlingExceptionMessage":{"type":"string"},
+    "ThrottlingExceptionReason":{
+      "type":"string",
+      "enum":["KMS_ThrottlingException"]
+    },
     "Token":{
       "type":"string",
       "max":2048,
@@ -3215,8 +3312,7 @@
     },
     "TokenExchangeGrant":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TokenIssuerAudience":{
       "type":"string",
@@ -3298,8 +3394,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateApplicationPortalOptions":{
       "type":"structure",
@@ -3320,8 +3415,7 @@
     },
     "UpdateApplicationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateInstanceAccessControlAttributeConfigurationRequest":{
       "type":"structure",
@@ -3336,24 +3430,20 @@
     },
     "UpdateInstanceAccessControlAttributeConfigurationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateInstanceRequest":{
       "type":"structure",
-      "required":[
-        "Name",
-        "InstanceArn"
-      ],
+      "required":["InstanceArn"],
       "members":{
         "Name":{"shape":"NameType"},
-        "InstanceArn":{"shape":"InstanceArn"}
+        "InstanceArn":{"shape":"InstanceArn"},
+        "EncryptionConfiguration":{"shape":"EncryptionConfiguration"}
       }
     },
     "UpdateInstanceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdatePermissionSetRequest":{
       "type":"structure",
@@ -3371,8 +3461,7 @@
     },
     "UpdatePermissionSetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateTrustedTokenIssuerRequest":{
       "type":"structure",
@@ -3385,16 +3474,31 @@
     },
     "UpdateTrustedTokenIssuerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
+    },
+    "UserBackgroundSessionApplicationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "ValidationException":{
       "type":"structure",
       "members":{
-        "Message":{"shape":"ValidationExceptionMessage"}
+        "Message":{"shape":"ValidationExceptionMessage"},
+        "Reason":{"shape":"ValidationExceptionReason"}
       },
       "exception":true
     },
-    "ValidationExceptionMessage":{"type":"string"}
+    "ValidationExceptionMessage":{"type":"string"},
+    "ValidationExceptionReason":{
+      "type":"string",
+      "enum":[
+        "KMS_InvalidKeyUsageException",
+        "KMS_InvalidStateException",
+        "KMS_DisabledException"
+      ]
+    }
   }
 }

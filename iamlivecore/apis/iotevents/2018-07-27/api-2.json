@@ -788,8 +788,7 @@
     },
     "DeleteAlarmModelResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteDetectorModelRequest":{
       "type":"structure",
@@ -804,8 +803,7 @@
     },
     "DeleteDetectorModelResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteInputRequest":{
       "type":"structure",
@@ -820,8 +818,7 @@
     },
     "DeleteInputResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeliveryStreamName":{"type":"string"},
     "DescribeAlarmModelRequest":{
@@ -918,8 +915,7 @@
     },
     "DescribeLoggingOptionsRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DescribeLoggingOptionsResponse":{
       "type":"structure",
@@ -1821,8 +1817,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValue":{
       "type":"string",
@@ -1900,8 +1895,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateAlarmModelRequest":{
       "type":"structure",

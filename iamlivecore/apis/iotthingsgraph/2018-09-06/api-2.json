@@ -623,8 +623,7 @@
     },
     "AssociateEntityToThingResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateFlowTemplateRequest":{
       "type":"structure",
@@ -704,13 +703,11 @@
     },
     "DeleteFlowTemplateResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteNamespaceRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteNamespaceResponse":{
       "type":"structure",
@@ -727,8 +724,7 @@
     },
     "DeleteSystemInstanceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteSystemTemplateRequest":{
       "type":"structure",
@@ -739,8 +735,7 @@
     },
     "DeleteSystemTemplateResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DependencyRevision":{
       "type":"structure",
@@ -784,8 +779,7 @@
     },
     "DeprecateFlowTemplateResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeprecateSystemTemplateRequest":{
       "type":"structure",
@@ -796,8 +790,7 @@
     },
     "DeprecateSystemTemplateResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DescribeNamespaceRequest":{
       "type":"structure",
@@ -828,8 +821,7 @@
     },
     "DissociateEntityFromThingResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "Enabled":{"type":"boolean"},
     "EntityDescription":{
@@ -1050,8 +1042,7 @@
     },
     "GetNamespaceDeletionStatusRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "GetNamespaceDeletionStatusResponse":{
       "type":"structure",
@@ -1511,8 +1502,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValue":{
       "type":"string",
@@ -1570,8 +1560,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateFlowTemplateRequest":{
       "type":"structure",

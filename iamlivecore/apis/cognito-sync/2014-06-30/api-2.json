@@ -1006,8 +1006,7 @@
     },
     "SubscribeToDatasetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "SyncSessionToken":{"type":"string"},
     "TooManyRequestsException":{
@@ -1052,8 +1051,7 @@
     },
     "UnsubscribeFromDatasetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateRecordsRequest":{
       "type":"structure",

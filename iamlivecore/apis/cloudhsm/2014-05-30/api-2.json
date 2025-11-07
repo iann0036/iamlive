@@ -397,8 +397,7 @@
     },
     "CloudHsmInternalException":{
       "type":"structure",
-      "members":{
-      },
+      "members":{},
       "exception":true,
       "fault":true
     },
@@ -650,8 +649,7 @@
     },
     "InvalidRequestException":{
       "type":"structure",
-      "members":{
-      },
+      "members":{},
       "exception":true
     },
     "IpAddress":{
@@ -664,8 +662,7 @@
     },
     "ListAvailableZonesRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "ListAvailableZonesResponse":{
       "type":"structure",

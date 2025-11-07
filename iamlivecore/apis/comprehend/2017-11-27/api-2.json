@@ -2020,8 +2020,7 @@
     },
     "DeleteDocumentClassifierResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteEndpointRequest":{
       "type":"structure",
@@ -2032,8 +2031,7 @@
     },
     "DeleteEndpointResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteEntityRecognizerRequest":{
       "type":"structure",
@@ -2044,8 +2042,7 @@
     },
     "DeleteEntityRecognizerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteFlywheelRequest":{
       "type":"structure",
@@ -2056,8 +2053,7 @@
     },
     "DeleteFlywheelResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteResourcePolicyRequest":{
       "type":"structure",
@@ -2069,8 +2065,7 @@
     },
     "DeleteResourcePolicyResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DescribeDatasetRequest":{
       "type":"structure",
@@ -4514,8 +4509,7 @@
     },
     "StopTrainingDocumentClassifierResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "StopTrainingEntityRecognizerRequest":{
       "type":"structure",
@@ -4526,8 +4520,7 @@
     },
     "StopTrainingEntityRecognizerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "String":{
       "type":"string",
@@ -4604,8 +4597,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValue":{
       "type":"string",
@@ -4811,8 +4803,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateDataSecurityConfig":{
       "type":"structure",

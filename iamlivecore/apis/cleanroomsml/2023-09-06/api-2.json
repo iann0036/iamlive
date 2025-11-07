@@ -22,8 +22,8 @@
       },
       "input":{"shape":"CancelTrainedModelRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
@@ -39,8 +39,8 @@
       },
       "input":{"shape":"CancelTrainedModelInferenceJobRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
@@ -57,8 +57,8 @@
       "input":{"shape":"CreateAudienceModelRequest"},
       "output":{"shape":"CreateAudienceModelResponse"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceQuotaExceededException"}
@@ -75,8 +75,8 @@
       "input":{"shape":"CreateConfiguredAudienceModelRequest"},
       "output":{"shape":"CreateConfiguredAudienceModelResponse"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceQuotaExceededException"}
@@ -93,8 +93,8 @@
       "input":{"shape":"CreateConfiguredModelAlgorithmRequest"},
       "output":{"shape":"CreateConfiguredModelAlgorithmResponse"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ServiceQuotaExceededException"}
       ],
@@ -110,8 +110,8 @@
       "input":{"shape":"CreateConfiguredModelAlgorithmAssociationRequest"},
       "output":{"shape":"CreateConfiguredModelAlgorithmAssociationResponse"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -129,8 +129,8 @@
       "input":{"shape":"CreateMLInputChannelRequest"},
       "output":{"shape":"CreateMLInputChannelResponse"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -148,12 +148,12 @@
       "input":{"shape":"CreateTrainedModelRequest"},
       "output":{"shape":"CreateTrainedModelResponse"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"},
+        {"shape":"ThrottlingException"},
         {"shape":"ServiceQuotaExceededException"}
       ],
       "idempotent":true
@@ -168,8 +168,8 @@
       "input":{"shape":"CreateTrainingDatasetRequest"},
       "output":{"shape":"CreateTrainingDatasetResponse"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
       ],
       "idempotent":true
@@ -183,8 +183,8 @@
       },
       "input":{"shape":"DeleteAudienceGenerationJobRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
       ],
@@ -199,8 +199,8 @@
       },
       "input":{"shape":"DeleteAudienceModelRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
       ],
@@ -215,8 +215,8 @@
       },
       "input":{"shape":"DeleteConfiguredAudienceModelRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
       ],
@@ -246,8 +246,8 @@
       },
       "input":{"shape":"DeleteConfiguredModelAlgorithmRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
       ],
@@ -262,8 +262,8 @@
       },
       "input":{"shape":"DeleteConfiguredModelAlgorithmAssociationRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
@@ -295,8 +295,8 @@
       },
       "input":{"shape":"DeleteMLInputChannelDataRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
@@ -312,8 +312,8 @@
       },
       "input":{"shape":"DeleteTrainedModelOutputRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
@@ -329,8 +329,8 @@
       },
       "input":{"shape":"DeleteTrainingDatasetRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
       ],
@@ -349,7 +349,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetAudienceModel":{
       "name":"GetAudienceModel",
@@ -364,7 +365,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetCollaborationConfiguredModelAlgorithmAssociation":{
       "name":"GetCollaborationConfiguredModelAlgorithmAssociation",
@@ -380,7 +382,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetCollaborationMLInputChannel":{
       "name":"GetCollaborationMLInputChannel",
@@ -396,7 +399,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetCollaborationTrainedModel":{
       "name":"GetCollaborationTrainedModel",
@@ -412,7 +416,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetConfiguredAudienceModel":{
       "name":"GetConfiguredAudienceModel",
@@ -427,7 +432,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetConfiguredAudienceModelPolicy":{
       "name":"GetConfiguredAudienceModelPolicy",
@@ -442,7 +448,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetConfiguredModelAlgorithm":{
       "name":"GetConfiguredModelAlgorithm",
@@ -457,7 +464,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetConfiguredModelAlgorithmAssociation":{
       "name":"GetConfiguredModelAlgorithmAssociation",
@@ -473,7 +481,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetMLConfiguration":{
       "name":"GetMLConfiguration",
@@ -489,7 +498,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetMLInputChannel":{
       "name":"GetMLInputChannel",
@@ -505,7 +515,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetTrainedModel":{
       "name":"GetTrainedModel",
@@ -521,7 +532,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetTrainedModelInferenceJob":{
       "name":"GetTrainedModelInferenceJob",
@@ -537,7 +549,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetTrainingDataset":{
       "name":"GetTrainingDataset",
@@ -552,7 +565,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListAudienceExportJobs":{
       "name":"ListAudienceExportJobs",
@@ -566,7 +580,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListAudienceGenerationJobs":{
       "name":"ListAudienceGenerationJobs",
@@ -580,7 +595,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListAudienceModels":{
       "name":"ListAudienceModels",
@@ -594,7 +610,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListCollaborationConfiguredModelAlgorithmAssociations":{
       "name":"ListCollaborationConfiguredModelAlgorithmAssociations",
@@ -609,7 +626,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListCollaborationMLInputChannels":{
       "name":"ListCollaborationMLInputChannels",
@@ -624,7 +642,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListCollaborationTrainedModelExportJobs":{
       "name":"ListCollaborationTrainedModelExportJobs",
@@ -639,7 +658,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListCollaborationTrainedModelInferenceJobs":{
       "name":"ListCollaborationTrainedModelInferenceJobs",
@@ -654,7 +674,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListCollaborationTrainedModels":{
       "name":"ListCollaborationTrainedModels",
@@ -669,7 +690,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListConfiguredAudienceModels":{
       "name":"ListConfiguredAudienceModels",
@@ -683,7 +705,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListConfiguredModelAlgorithmAssociations":{
       "name":"ListConfiguredModelAlgorithmAssociations",
@@ -698,7 +721,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListConfiguredModelAlgorithms":{
       "name":"ListConfiguredModelAlgorithms",
@@ -712,7 +736,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListMLInputChannels":{
       "name":"ListMLInputChannels",
@@ -727,7 +752,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -742,7 +768,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListTrainedModelInferenceJobs":{
       "name":"ListTrainedModelInferenceJobs",
@@ -757,7 +784,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListTrainedModelVersions":{
       "name":"ListTrainedModelVersions",
@@ -773,7 +801,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListTrainedModels":{
       "name":"ListTrainedModels",
@@ -788,7 +817,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListTrainingDatasets":{
       "name":"ListTrainingDatasets",
@@ -802,7 +832,8 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "readonly":true
     },
     "PutConfiguredAudienceModelPolicy":{
       "name":"PutConfiguredAudienceModelPolicy",
@@ -844,8 +875,8 @@
       },
       "input":{"shape":"StartAudienceExportJobRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ServiceQuotaExceededException"}
@@ -862,8 +893,8 @@
       "input":{"shape":"StartAudienceGenerationJobRequest"},
       "output":{"shape":"StartAudienceGenerationJobResponse"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -880,8 +911,8 @@
       },
       "input":{"shape":"StartTrainedModelExportJobRequest"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
@@ -898,8 +929,8 @@
       "input":{"shape":"StartTrainedModelInferenceJobRequest"},
       "output":{"shape":"StartTrainedModelInferenceJobResponse"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -948,8 +979,8 @@
       "input":{"shape":"UpdateConfiguredAudienceModelRequest"},
       "output":{"shape":"UpdateConfiguredAudienceModelResponse"},
       "errors":[
-        {"shape":"ValidationException"},
         {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"}
       ],
@@ -957,6 +988,57 @@
     }
   },
   "shapes":{
+    "AccessBudget":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "details",
+        "aggregateRemainingBudget"
+      ],
+      "members":{
+        "resourceArn":{"shape":"BudgetedResourceArn"},
+        "details":{"shape":"AccessBudgetDetailsList"},
+        "aggregateRemainingBudget":{"shape":"Budget"}
+      }
+    },
+    "AccessBudgetDetails":{
+      "type":"structure",
+      "required":[
+        "startTime",
+        "remainingBudget",
+        "budget",
+        "budgetType"
+      ],
+      "members":{
+        "startTime":{"shape":"SyntheticTimestamp_date_time"},
+        "endTime":{"shape":"SyntheticTimestamp_date_time"},
+        "remainingBudget":{"shape":"Budget"},
+        "budget":{"shape":"Budget"},
+        "budgetType":{"shape":"AccessBudgetType"},
+        "autoRefresh":{"shape":"AutoRefreshMode"}
+      }
+    },
+    "AccessBudgetDetailsList":{
+      "type":"list",
+      "member":{"shape":"AccessBudgetDetails"},
+      "max":2,
+      "min":1
+    },
+    "AccessBudgetType":{
+      "type":"string",
+      "enum":[
+        "CALENDAR_DAY",
+        "CALENDAR_MONTH",
+        "CALENDAR_WEEK",
+        "LIFETIME"
+      ]
+    },
+    "AccessBudgets":{
+      "type":"list",
+      "member":{"shape":"AccessBudget"},
+      "max":100,
+      "min":1
+    },
     "AccessDeniedException":{
       "type":"structure",
       "required":["message"],
@@ -1186,9 +1268,27 @@
       "max":20000000,
       "min":1
     },
+    "AutoRefreshMode":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "Boolean":{
       "type":"boolean",
       "box":true
+    },
+    "Budget":{
+      "type":"integer",
+      "box":true,
+      "min":0
+    },
+    "BudgetedResourceArn":{
+      "type":"string",
+      "max":200,
+      "min":0,
+      "pattern":"arn:aws:[\\w]+:[\\w]{2}-[\\w]{4,9}-[\\d]:[\\d]{12}:membership/[\\d\\w-]+/configuredtableassociation/[\\d\\w-]+"
     },
     "CancelTrainedModelInferenceJobRequest":{
       "type":"structure",
@@ -1798,6 +1898,25 @@
         "trainingDatasetArn":{"shape":"TrainingDatasetArn"}
       }
     },
+    "CustomDataIdentifier":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"[a-zA-Z0-9\\_\\#\\=\\@/\\;\\,\\-\\ \\^\\$\\?\\[\\]\\{\\}\\|\\\\\\*\\+\\.\\(\\)]+"
+    },
+    "CustomDataIdentifierList":{
+      "type":"list",
+      "member":{"shape":"CustomDataIdentifier"},
+      "max":10,
+      "min":1
+    },
+    "CustomEntityConfig":{
+      "type":"structure",
+      "required":["customDataIdentifiers"],
+      "members":{
+        "customDataIdentifiers":{"shape":"CustomDataIdentifierList"}
+      }
+    },
     "DataSource":{
       "type":"structure",
       "required":["glueDataSource"],
@@ -1987,6 +2106,19 @@
         "s3Destination":{"shape":"S3ConfigMap"}
       }
     },
+    "EntityType":{
+      "type":"string",
+      "enum":[
+        "ALL_PERSONALLY_IDENTIFIABLE_INFORMATION",
+        "NUMBERS",
+        "CUSTOM"
+      ]
+    },
+    "EntityTypeList":{
+      "type":"list",
+      "member":{"shape":"EntityType"},
+      "min":1
+    },
     "Environment":{
       "type":"map",
       "key":{"shape":"EnvironmentKeyString"},
@@ -2147,21 +2279,18 @@
     "GetCollaborationMLInputChannelResponse":{
       "type":"structure",
       "required":[
-        "createTime",
-        "updateTime",
-        "creatorAccountId",
         "membershipIdentifier",
         "collaborationIdentifier",
         "mlInputChannelArn",
         "name",
         "configuredModelAlgorithmAssociations",
         "status",
-        "retentionInDays"
+        "retentionInDays",
+        "createTime",
+        "updateTime",
+        "creatorAccountId"
       ],
       "members":{
-        "createTime":{"shape":"SyntheticTimestamp_date_time"},
-        "updateTime":{"shape":"SyntheticTimestamp_date_time"},
-        "creatorAccountId":{"shape":"AccountId"},
         "membershipIdentifier":{"shape":"UUID"},
         "collaborationIdentifier":{"shape":"UUID"},
         "mlInputChannelArn":{"shape":"MLInputChannelArn"},
@@ -2171,7 +2300,11 @@
         "statusDetails":{"shape":"StatusDetails"},
         "retentionInDays":{"shape":"GetCollaborationMLInputChannelResponseRetentionInDaysInteger"},
         "numberOfRecords":{"shape":"GetCollaborationMLInputChannelResponseNumberOfRecordsLong"},
-        "description":{"shape":"ResourceDescription"}
+        "privacyBudgets":{"shape":"PrivacyBudgets"},
+        "description":{"shape":"ResourceDescription"},
+        "createTime":{"shape":"SyntheticTimestamp_date_time"},
+        "updateTime":{"shape":"SyntheticTimestamp_date_time"},
+        "creatorAccountId":{"shape":"AccountId"}
       }
     },
     "GetCollaborationMLInputChannelResponseConfiguredModelAlgorithmAssociationsList":{
@@ -2440,24 +2573,20 @@
     "GetMLInputChannelResponse":{
       "type":"structure",
       "required":[
-        "createTime",
-        "updateTime",
         "membershipIdentifier",
         "collaborationIdentifier",
-        "inputChannel",
         "mlInputChannelArn",
         "name",
         "configuredModelAlgorithmAssociations",
         "status",
-        "retentionInDays"
+        "retentionInDays",
+        "createTime",
+        "updateTime",
+        "inputChannel"
       ],
       "members":{
-        "createTime":{"shape":"SyntheticTimestamp_date_time"},
-        "updateTime":{"shape":"SyntheticTimestamp_date_time"},
         "membershipIdentifier":{"shape":"UUID"},
         "collaborationIdentifier":{"shape":"UUID"},
-        "inputChannel":{"shape":"InputChannel"},
-        "protectedQueryIdentifier":{"shape":"UUID"},
         "mlInputChannelArn":{"shape":"MLInputChannelArn"},
         "name":{"shape":"NameString"},
         "configuredModelAlgorithmAssociations":{"shape":"GetMLInputChannelResponseConfiguredModelAlgorithmAssociationsList"},
@@ -2465,9 +2594,14 @@
         "statusDetails":{"shape":"StatusDetails"},
         "retentionInDays":{"shape":"GetMLInputChannelResponseRetentionInDaysInteger"},
         "numberOfRecords":{"shape":"GetMLInputChannelResponseNumberOfRecordsLong"},
+        "privacyBudgets":{"shape":"PrivacyBudgets"},
+        "description":{"shape":"ResourceDescription"},
+        "createTime":{"shape":"SyntheticTimestamp_date_time"},
+        "updateTime":{"shape":"SyntheticTimestamp_date_time"},
+        "inputChannel":{"shape":"InputChannel"},
+        "protectedQueryIdentifier":{"shape":"UUID"},
         "numberOfFiles":{"shape":"GetMLInputChannelResponseNumberOfFilesDouble"},
         "sizeInGb":{"shape":"GetMLInputChannelResponseSizeInGbDouble"},
-        "description":{"shape":"ResourceDescription"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
         "tags":{"shape":"TagMap"}
       }
@@ -2810,7 +2944,6 @@
         "ml.r6i.large",
         "ml.g5.2xlarge",
         "ml.m5.large",
-        "ml.p3.16xlarge",
         "ml.m7i.48xlarge",
         "ml.m6i.16xlarge",
         "ml.p2.16xlarge",
@@ -2858,7 +2991,6 @@
         "ml.m6i.2xlarge",
         "ml.g5.16xlarge",
         "ml.m7i.4xlarge",
-        "ml.p3.2xlarge",
         "ml.r6i.32xlarge",
         "ml.m6i.4xlarge",
         "ml.m5.xlarge",
@@ -2884,8 +3016,10 @@
         "ml.p2.8xlarge",
         "ml.r6i.4xlarge",
         "ml.m6i.32xlarge",
-        "ml.p3.8xlarge",
-        "ml.m4.4xlarge"
+        "ml.m4.4xlarge",
+        "ml.p3.16xlarge",
+        "ml.p3.2xlarge",
+        "ml.p3.8xlarge"
       ]
     },
     "InferenceOutputConfiguration":{
@@ -2974,10 +3108,6 @@
         "ml.p2.xlarge",
         "ml.p2.8xlarge",
         "ml.p2.16xlarge",
-        "ml.p3.2xlarge",
-        "ml.p3.8xlarge",
-        "ml.p3.16xlarge",
-        "ml.p3dn.24xlarge",
         "ml.p4d.24xlarge",
         "ml.p4de.24xlarge",
         "ml.p5.48xlarge",
@@ -3038,7 +3168,55 @@
         "ml.r5.8xlarge",
         "ml.r5.12xlarge",
         "ml.r5.16xlarge",
-        "ml.r5.24xlarge"
+        "ml.r5.24xlarge",
+        "ml.c7i.large",
+        "ml.c7i.xlarge",
+        "ml.c7i.2xlarge",
+        "ml.c7i.4xlarge",
+        "ml.c7i.8xlarge",
+        "ml.c7i.12xlarge",
+        "ml.c7i.16xlarge",
+        "ml.c7i.24xlarge",
+        "ml.c7i.48xlarge",
+        "ml.m7i.large",
+        "ml.m7i.xlarge",
+        "ml.m7i.2xlarge",
+        "ml.m7i.4xlarge",
+        "ml.m7i.8xlarge",
+        "ml.m7i.12xlarge",
+        "ml.m7i.16xlarge",
+        "ml.m7i.24xlarge",
+        "ml.m7i.48xlarge",
+        "ml.r7i.large",
+        "ml.r7i.xlarge",
+        "ml.r7i.2xlarge",
+        "ml.r7i.4xlarge",
+        "ml.r7i.8xlarge",
+        "ml.r7i.12xlarge",
+        "ml.r7i.16xlarge",
+        "ml.r7i.24xlarge",
+        "ml.r7i.48xlarge",
+        "ml.g6.xlarge",
+        "ml.g6.2xlarge",
+        "ml.g6.4xlarge",
+        "ml.g6.8xlarge",
+        "ml.g6.12xlarge",
+        "ml.g6.16xlarge",
+        "ml.g6.24xlarge",
+        "ml.g6.48xlarge",
+        "ml.g6e.xlarge",
+        "ml.g6e.2xlarge",
+        "ml.g6e.4xlarge",
+        "ml.g6e.8xlarge",
+        "ml.g6e.12xlarge",
+        "ml.g6e.16xlarge",
+        "ml.g6e.24xlarge",
+        "ml.g6e.48xlarge",
+        "ml.p5en.48xlarge",
+        "ml.p3.2xlarge",
+        "ml.p3.8xlarge",
+        "ml.p3.16xlarge",
+        "ml.p3dn.24xlarge"
       ]
     },
     "InternalServiceException":{
@@ -3564,12 +3742,29 @@
         "trainingDatasets":{"shape":"TrainingDatasetList"}
       }
     },
+    "LogRedactionConfiguration":{
+      "type":"structure",
+      "required":["entitiesToRedact"],
+      "members":{
+        "entitiesToRedact":{"shape":"EntityTypeList"},
+        "customEntityConfig":{"shape":"CustomEntityConfig"}
+      }
+    },
+    "LogType":{
+      "type":"string",
+      "enum":[
+        "ALL",
+        "ERROR_SUMMARY"
+      ]
+    },
     "LogsConfigurationPolicy":{
       "type":"structure",
       "required":["allowedAccountIds"],
       "members":{
         "allowedAccountIds":{"shape":"AccountIdList"},
-        "filterPattern":{"shape":"LogsConfigurationPolicyFilterPatternString"}
+        "filterPattern":{"shape":"LogsConfigurationPolicyFilterPatternString"},
+        "logType":{"shape":"LogType"},
+        "logRedactionConfiguration":{"shape":"LogRedactionConfiguration"}
       }
     },
     "LogsConfigurationPolicyFilterPatternString":{
@@ -3787,6 +3982,13 @@
         "POLICY_MUST_NOT_EXIST"
       ]
     },
+    "PrivacyBudgets":{
+      "type":"structure",
+      "members":{
+        "accessBudgets":{"shape":"AccessBudgets"}
+      },
+      "union":true
+    },
     "PrivacyConfiguration":{
       "type":"structure",
       "required":["policies"],
@@ -3807,7 +4009,8 @@
       "required":["sqlParameters"],
       "members":{
         "sqlParameters":{"shape":"ProtectedQuerySQLParameters"},
-        "computeConfiguration":{"shape":"ComputeConfiguration"}
+        "computeConfiguration":{"shape":"ComputeConfiguration"},
+        "resultFormat":{"shape":"ResultFormat"}
       }
     },
     "ProtectedQuerySQLParameters":{
@@ -3931,6 +4134,13 @@
       "type":"string",
       "max":20480,
       "min":1
+    },
+    "ResultFormat":{
+      "type":"string",
+      "enum":[
+        "CSV",
+        "PARQUET"
+      ]
     },
     "S3ConfigMap":{
       "type":"structure",
@@ -4145,8 +4355,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValue":{
       "type":"string",
@@ -4476,8 +4685,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateConfiguredAudienceModelRequest":{
       "type":"structure",

@@ -15,6 +15,24 @@
     "uid":"payment-cryptography-2021-09-14"
   },
   "operations":{
+    "AddKeyReplicationRegions":{
+      "name":"AddKeyReplicationRegions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AddKeyReplicationRegionsInput"},
+      "output":{"shape":"AddKeyReplicationRegionsOutput"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "CreateAlias":{
       "name":"CreateAlias",
       "http":{
@@ -92,6 +110,42 @@
       ],
       "idempotent":true
     },
+    "DisableDefaultKeyReplicationRegions":{
+      "name":"DisableDefaultKeyReplicationRegions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisableDefaultKeyReplicationRegionsInput"},
+      "output":{"shape":"DisableDefaultKeyReplicationRegionsOutput"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "EnableDefaultKeyReplicationRegions":{
+      "name":"EnableDefaultKeyReplicationRegions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"EnableDefaultKeyReplicationRegionsInput"},
+      "output":{"shape":"EnableDefaultKeyReplicationRegionsOutput"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ExportKey":{
       "name":"ExportKey",
       "http":{
@@ -125,6 +179,42 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "GetCertificateSigningRequest":{
+      "name":"GetCertificateSigningRequest",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetCertificateSigningRequestInput"},
+      "output":{"shape":"GetCertificateSigningRequestOutput"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "GetDefaultKeyReplicationRegions":{
+      "name":"GetDefaultKeyReplicationRegions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetDefaultKeyReplicationRegionsInput"},
+      "output":{"shape":"GetDefaultKeyReplicationRegionsOutput"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ]
     },
     "GetKey":{
@@ -142,7 +232,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetParametersForExport":{
       "name":"GetParametersForExport",
@@ -197,7 +288,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
-      ]
+      ],
+      "readonly":true
     },
     "ImportKey":{
       "name":"ImportKey",
@@ -233,7 +325,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListKeys":{
       "name":"ListKeys",
@@ -250,7 +343,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -263,6 +357,25 @@
       "errors":[
         {"shape":"ServiceUnavailableException"},
         {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "RemoveKeyReplicationRegions":{
+      "name":"RemoveKeyReplicationRegions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveKeyReplicationRegionsInput"},
+      "output":{"shape":"RemoveKeyReplicationRegionsOutput"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -390,6 +503,24 @@
       },
       "exception":true
     },
+    "AddKeyReplicationRegionsInput":{
+      "type":"structure",
+      "required":[
+        "KeyIdentifier",
+        "ReplicationRegions"
+      ],
+      "members":{
+        "KeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
+        "ReplicationRegions":{"shape":"Regions"}
+      }
+    },
+    "AddKeyReplicationRegionsOutput":{
+      "type":"structure",
+      "required":["Key"],
+      "members":{
+        "Key":{"shape":"Key"}
+      }
+    },
     "Alias":{
       "type":"structure",
       "required":["AliasName"],
@@ -412,12 +543,73 @@
       "type":"boolean",
       "box":true
     },
-    "CertificateType":{
+    "CertificateSigningRequestType":{
       "type":"string",
       "max":32768,
       "min":1,
       "pattern":"[^\\[;\\]<>]+",
       "sensitive":true
+    },
+    "CertificateSubjectType":{
+      "type":"structure",
+      "required":["CommonName"],
+      "members":{
+        "CommonName":{"shape":"CertificateSubjectTypeCommonNameString"},
+        "OrganizationUnit":{"shape":"CertificateSubjectTypeOrganizationUnitString"},
+        "Organization":{"shape":"CertificateSubjectTypeOrganizationString"},
+        "City":{"shape":"CertificateSubjectTypeCityString"},
+        "Country":{"shape":"CertificateSubjectTypeCountryString"},
+        "StateOrProvince":{"shape":"CertificateSubjectTypeStateOrProvinceString"},
+        "EmailAddress":{"shape":"CertificateSubjectTypeEmailAddressString"}
+      }
+    },
+    "CertificateSubjectTypeCityString":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[^\\[;\\]<>]+"
+    },
+    "CertificateSubjectTypeCommonNameString":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[^\\[;\\]<>]+"
+    },
+    "CertificateSubjectTypeCountryString":{
+      "type":"string",
+      "max":2,
+      "min":2,
+      "pattern":"[A-Za-z]+"
+    },
+    "CertificateSubjectTypeEmailAddressString":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*"
+    },
+    "CertificateSubjectTypeOrganizationString":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[^\\[;\\]<>]+"
+    },
+    "CertificateSubjectTypeOrganizationUnitString":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[^\\[;\\]<>]+"
+    },
+    "CertificateSubjectTypeStateOrProvinceString":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[^\\[;\\]<>]+"
+    },
+    "CertificateType":{
+      "type":"string",
+      "max":32768,
+      "min":1,
+      "pattern":"[^\\[;\\]<>]+"
     },
     "ConflictException":{
       "type":"structure",
@@ -453,7 +645,8 @@
         "Exportable":{"shape":"Boolean"},
         "Enabled":{"shape":"Boolean"},
         "Tags":{"shape":"Tags"},
-        "DeriveKeyUsage":{"shape":"DeriveKeyUsage"}
+        "DeriveKeyUsage":{"shape":"DeriveKeyUsage"},
+        "ReplicationRegions":{"shape":"Regions"}
       }
     },
     "CreateKeyOutput":{
@@ -472,8 +665,7 @@
     },
     "DeleteAliasOutput":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteKeyInput":{
       "type":"structure",
@@ -526,6 +718,34 @@
         "SharedInformation":{"shape":"SharedInformation"}
       },
       "union":true
+    },
+    "DisableDefaultKeyReplicationRegionsInput":{
+      "type":"structure",
+      "required":["ReplicationRegions"],
+      "members":{
+        "ReplicationRegions":{"shape":"Regions"}
+      }
+    },
+    "DisableDefaultKeyReplicationRegionsOutput":{
+      "type":"structure",
+      "required":["EnabledReplicationRegions"],
+      "members":{
+        "EnabledReplicationRegions":{"shape":"Regions"}
+      }
+    },
+    "EnableDefaultKeyReplicationRegionsInput":{
+      "type":"structure",
+      "required":["ReplicationRegions"],
+      "members":{
+        "ReplicationRegions":{"shape":"Regions"}
+      }
+    },
+    "EnableDefaultKeyReplicationRegionsOutput":{
+      "type":"structure",
+      "required":["EnabledReplicationRegions"],
+      "members":{
+        "EnabledReplicationRegions":{"shape":"Regions"}
+      }
     },
     "EvenHexLengthBetween16And32":{
       "type":"string",
@@ -611,7 +831,7 @@
     },
     "ExportTokenId":{
       "type":"string",
-      "pattern":"export-token-[0-9a-zA-Z]{16,64}"
+      "pattern":"(export-token-[0-9a-zA-Z]{16,64})?"
     },
     "ExportTr31KeyBlock":{
       "type":"structure",
@@ -626,13 +846,14 @@
       "required":[
         "CertificateAuthorityPublicKeyIdentifier",
         "WrappingKeyCertificate",
-        "ExportToken",
         "KeyBlockFormat"
       ],
       "members":{
         "CertificateAuthorityPublicKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
         "WrappingKeyCertificate":{"shape":"CertificateType"},
         "ExportToken":{"shape":"ExportTokenId"},
+        "SigningKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
+        "SigningKeyCertificate":{"shape":"CertificateType"},
         "KeyBlockFormat":{"shape":"Tr34KeyBlockFormat"},
         "RandomNonce":{"shape":"EvenHexLengthBetween16And32"},
         "KeyBlockHeaders":{"shape":"KeyBlockHeaders"}
@@ -650,6 +871,37 @@
       "required":["Alias"],
       "members":{
         "Alias":{"shape":"Alias"}
+      }
+    },
+    "GetCertificateSigningRequestInput":{
+      "type":"structure",
+      "required":[
+        "KeyIdentifier",
+        "SigningAlgorithm",
+        "CertificateSubject"
+      ],
+      "members":{
+        "KeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
+        "SigningAlgorithm":{"shape":"SigningAlgorithmType"},
+        "CertificateSubject":{"shape":"CertificateSubjectType"}
+      }
+    },
+    "GetCertificateSigningRequestOutput":{
+      "type":"structure",
+      "required":["CertificateSigningRequest"],
+      "members":{
+        "CertificateSigningRequest":{"shape":"CertificateSigningRequestType"}
+      }
+    },
+    "GetDefaultKeyReplicationRegionsInput":{
+      "type":"structure",
+      "members":{}
+    },
+    "GetDefaultKeyReplicationRegionsOutput":{
+      "type":"structure",
+      "required":["EnabledReplicationRegions"],
+      "members":{
+        "EnabledReplicationRegions":{"shape":"Regions"}
       }
     },
     "GetKeyInput":{
@@ -792,7 +1044,8 @@
         "KeyMaterial":{"shape":"ImportKeyMaterial"},
         "KeyCheckValueAlgorithm":{"shape":"KeyCheckValueAlgorithm"},
         "Enabled":{"shape":"Boolean"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "ReplicationRegions":{"shape":"Regions"}
       }
     },
     "ImportKeyMaterial":{
@@ -816,7 +1069,7 @@
     },
     "ImportTokenId":{
       "type":"string",
-      "pattern":"import-token-[0-9a-zA-Z]{16,64}"
+      "pattern":"(import-token-[0-9a-zA-Z]{16,64})?"
     },
     "ImportTr31KeyBlock":{
       "type":"structure",
@@ -834,7 +1087,6 @@
       "required":[
         "CertificateAuthorityPublicKeyIdentifier",
         "SigningKeyCertificate",
-        "ImportToken",
         "WrappedKeyBlock",
         "KeyBlockFormat"
       ],
@@ -842,6 +1094,8 @@
         "CertificateAuthorityPublicKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
         "SigningKeyCertificate":{"shape":"CertificateType"},
         "ImportToken":{"shape":"ImportTokenId"},
+        "WrappingKeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
+        "WrappingKeyCertificate":{"shape":"CertificateType"},
         "WrappedKeyBlock":{"shape":"Tr34WrappedKeyBlock"},
         "KeyBlockFormat":{"shape":"Tr34KeyBlockFormat"},
         "RandomNonce":{"shape":"EvenHexLengthBetween16And32"}
@@ -882,7 +1136,11 @@
         "UsageStopTimestamp":{"shape":"Timestamp"},
         "DeletePendingTimestamp":{"shape":"Timestamp"},
         "DeleteTimestamp":{"shape":"Timestamp"},
-        "DeriveKeyUsage":{"shape":"DeriveKeyUsage"}
+        "DeriveKeyUsage":{"shape":"DeriveKeyUsage"},
+        "MultiRegionKeyType":{"shape":"MultiRegionKeyType"},
+        "PrimaryRegion":{"shape":"Region"},
+        "ReplicationStatus":{"shape":"ReplicationStatus"},
+        "UsingDefaultReplicationRegions":{"shape":"Boolean"}
       }
     },
     "KeyAlgorithm":{
@@ -952,7 +1210,8 @@
       "enum":[
         "CMAC",
         "ANSI_X9_24",
-        "HMAC"
+        "HMAC",
+        "SHA_1"
       ]
     },
     "KeyClass":{
@@ -990,7 +1249,7 @@
     "KeyMaterial":{
       "type":"string",
       "max":16384,
-      "min":48,
+      "min":32,
       "sensitive":true
     },
     "KeyMaterialType":{
@@ -1024,6 +1283,15 @@
         "AWS_PAYMENT_CRYPTOGRAPHY"
       ]
     },
+    "KeyReplicationState":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "DELETE_IN_PROGRESS",
+        "FAILED",
+        "SYNCHRONIZED"
+      ]
+    },
     "KeyState":{
       "type":"string",
       "enum":[
@@ -1049,7 +1317,9 @@
         "KeyAttributes":{"shape":"KeyAttributes"},
         "KeyCheckValue":{"shape":"KeyCheckValue"},
         "Exportable":{"shape":"Boolean"},
-        "Enabled":{"shape":"Boolean"}
+        "Enabled":{"shape":"Boolean"},
+        "MultiRegionKeyType":{"shape":"MultiRegionKeyType"},
+        "PrimaryRegion":{"shape":"Region"}
       }
     },
     "KeySummaryList":{
@@ -1145,6 +1415,13 @@
       "max":100,
       "min":1
     },
+    "MultiRegionKeyType":{
+      "type":"string",
+      "enum":[
+        "PRIMARY",
+        "REPLICA"
+      ]
+    },
     "NextToken":{
       "type":"string",
       "max":8192,
@@ -1161,7 +1438,7 @@
       "type":"string",
       "max":108,
       "min":1,
-      "pattern":"[0-9A-Z]+",
+      "pattern":"[0-9a-zA-Z]+",
       "sensitive":true
     },
     "OptionalBlocks":{
@@ -1170,6 +1447,45 @@
       "value":{"shape":"OptionalBlockValue"}
     },
     "PrimitiveBoolean":{"type":"boolean"},
+    "Region":{
+      "type":"string",
+      "pattern":"[a-z]{2}-[a-z]{1,16}-[0-9]+"
+    },
+    "Regions":{
+      "type":"list",
+      "member":{"shape":"Region"}
+    },
+    "RemoveKeyReplicationRegionsInput":{
+      "type":"structure",
+      "required":[
+        "KeyIdentifier",
+        "ReplicationRegions"
+      ],
+      "members":{
+        "KeyIdentifier":{"shape":"KeyArnOrKeyAliasType"},
+        "ReplicationRegions":{"shape":"Regions"}
+      }
+    },
+    "RemoveKeyReplicationRegionsOutput":{
+      "type":"structure",
+      "required":["Key"],
+      "members":{
+        "Key":{"shape":"Key"}
+      }
+    },
+    "ReplicationStatus":{
+      "type":"map",
+      "key":{"shape":"Region"},
+      "value":{"shape":"ReplicationStatusType"}
+    },
+    "ReplicationStatusType":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"KeyReplicationState"},
+        "StatusMessage":{"shape":"String"}
+      }
+    },
     "ResourceArn":{
       "type":"string",
       "max":150,
@@ -1228,6 +1544,15 @@
       "max":2048,
       "min":2,
       "pattern":"(?:[0-9a-fA-F][0-9a-fA-F])+"
+    },
+    "SigningAlgorithmType":{
+      "type":"string",
+      "enum":[
+        "SHA224",
+        "SHA256",
+        "SHA384",
+        "SHA512"
+      ]
     },
     "StartKeyUsageInput":{
       "type":"structure",
@@ -1307,8 +1632,7 @@
     },
     "TagResourceOutput":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValue":{
       "type":"string",
@@ -1333,7 +1657,7 @@
       "type":"string",
       "max":9984,
       "min":56,
-      "pattern":"[0-9A-Z]+",
+      "pattern":"[0-9a-zA-Z]+",
       "sensitive":true
     },
     "Tr34KeyBlockFormat":{
@@ -1373,8 +1697,7 @@
     },
     "UntagResourceOutput":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateAliasInput":{
       "type":"structure",

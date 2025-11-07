@@ -124,8 +124,7 @@
     },
     "DeleteHumanLoopResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DescribeHumanLoopRequest":{
       "type":"structure",
@@ -342,8 +341,7 @@
     },
     "StopHumanLoopResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "String":{"type":"string"},
     "ThrottlingException":{

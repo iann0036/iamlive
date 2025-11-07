@@ -229,7 +229,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ClientException"},
         {"shape":"ServerException"},
-        {"shape":"ServiceUnavailableException"}
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InvalidRequestException"}
       ]
     },
     "DeleteEksAnywhereSubscription":{
@@ -452,6 +453,21 @@
       },
       "input":{"shape":"DescribeInsightRequest"},
       "output":{"shape":"DescribeInsightResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
+    "DescribeInsightsRefresh":{
+      "name":"DescribeInsightsRefresh",
+      "http":{
+        "method":"GET",
+        "requestUri":"/clusters/{name}/insights-refresh"
+      },
+      "input":{"shape":"DescribeInsightsRefreshRequest"},
+      "output":{"shape":"DescribeInsightsRefreshResponse"},
       "errors":[
         {"shape":"ServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -748,6 +764,21 @@
         {"shape":"ResourcePropagationDelayException"}
       ]
     },
+    "StartInsightsRefresh":{
+      "name":"StartInsightsRefresh",
+      "http":{
+        "method":"POST",
+        "requestUri":"/clusters/{name}/insights-refresh"
+      },
+      "input":{"shape":"StartInsightsRefreshRequest"},
+      "output":{"shape":"StartInsightsRefreshResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -1010,7 +1041,8 @@
         "owner":{"shape":"String"},
         "marketplaceInformation":{"shape":"MarketplaceInformation"},
         "configurationValues":{"shape":"String"},
-        "podIdentityAssociations":{"shape":"StringList"}
+        "podIdentityAssociations":{"shape":"StringList"},
+        "namespaceConfig":{"shape":"AddonNamespaceConfigResponse"}
       }
     },
     "AddonCompatibilityDetail":{
@@ -1038,7 +1070,8 @@
         "addonVersions":{"shape":"AddonVersionInfoList"},
         "publisher":{"shape":"String"},
         "owner":{"shape":"String"},
-        "marketplaceInformation":{"shape":"MarketplaceInformation"}
+        "marketplaceInformation":{"shape":"MarketplaceInformation"},
+        "defaultNamespace":{"shape":"String"}
       }
     },
     "AddonIssue":{
@@ -1067,6 +1100,18 @@
     "AddonIssueList":{
       "type":"list",
       "member":{"shape":"AddonIssue"}
+    },
+    "AddonNamespaceConfigRequest":{
+      "type":"structure",
+      "members":{
+        "namespace":{"shape":"namespace"}
+      }
+    },
+    "AddonNamespaceConfigResponse":{
+      "type":"structure",
+      "members":{
+        "namespace":{"shape":"namespace"}
+      }
     },
     "AddonPodIdentityAssociations":{
       "type":"structure",
@@ -1345,7 +1390,8 @@
         "zonalShiftConfig":{"shape":"ZonalShiftConfigResponse"},
         "remoteNetworkConfig":{"shape":"RemoteNetworkConfigResponse"},
         "computeConfig":{"shape":"ComputeConfigResponse"},
-        "storageConfig":{"shape":"StorageConfigResponse"}
+        "storageConfig":{"shape":"StorageConfigResponse"},
+        "deletionProtection":{"shape":"BoxedBoolean"}
       }
     },
     "ClusterHealth":{
@@ -1567,7 +1613,8 @@
         },
         "tags":{"shape":"TagMap"},
         "configurationValues":{"shape":"String"},
-        "podIdentityAssociations":{"shape":"AddonPodIdentityAssociationsList"}
+        "podIdentityAssociations":{"shape":"AddonPodIdentityAssociationsList"},
+        "namespaceConfig":{"shape":"AddonNamespaceConfigRequest"}
       }
     },
     "CreateAddonResponse":{
@@ -1603,7 +1650,8 @@
         "zonalShiftConfig":{"shape":"ZonalShiftConfigRequest"},
         "remoteNetworkConfig":{"shape":"RemoteNetworkConfigRequest"},
         "computeConfig":{"shape":"ComputeConfigRequest"},
-        "storageConfig":{"shape":"StorageConfigRequest"}
+        "storageConfig":{"shape":"StorageConfigRequest"},
+        "deletionProtection":{"shape":"BoxedBoolean"}
       }
     },
     "CreateClusterResponse":{
@@ -2232,6 +2280,26 @@
         "insight":{"shape":"Insight"}
       }
     },
+    "DescribeInsightsRefreshRequest":{
+      "type":"structure",
+      "required":["clusterName"],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "DescribeInsightsRefreshResponse":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"},
+        "status":{"shape":"InsightsRefreshStatus"},
+        "startedAt":{"shape":"Timestamp"},
+        "endedAt":{"shape":"Timestamp"}
+      }
+    },
     "DescribeNodegroupRequest":{
       "type":"structure",
       "required":[
@@ -2666,6 +2734,14 @@
         "kubernetesVersions":{"shape":"StringList"},
         "statuses":{"shape":"InsightStatusValueList"}
       }
+    },
+    "InsightsRefreshStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "FAILED",
+        "COMPLETED"
+      ]
     },
     "Integer":{"type":"integer"},
     "InvalidParameterException":{
@@ -3237,8 +3313,26 @@
     "NodeRepairConfig":{
       "type":"structure",
       "members":{
-        "enabled":{"shape":"BoxedBoolean"}
+        "enabled":{"shape":"BoxedBoolean"},
+        "maxUnhealthyNodeThresholdCount":{"shape":"NonZeroInteger"},
+        "maxUnhealthyNodeThresholdPercentage":{"shape":"PercentCapacity"},
+        "maxParallelNodesRepairedCount":{"shape":"NonZeroInteger"},
+        "maxParallelNodesRepairedPercentage":{"shape":"PercentCapacity"},
+        "nodeRepairConfigOverrides":{"shape":"NodeRepairConfigOverridesList"}
       }
+    },
+    "NodeRepairConfigOverrides":{
+      "type":"structure",
+      "members":{
+        "nodeMonitoringCondition":{"shape":"String"},
+        "nodeUnhealthyReason":{"shape":"String"},
+        "minRepairWaitTimeMins":{"shape":"NonZeroInteger"},
+        "repairAction":{"shape":"RepairAction"}
+      }
+    },
+    "NodeRepairConfigOverridesList":{
+      "type":"list",
+      "member":{"shape":"NodeRepairConfigOverrides"}
     },
     "Nodegroup":{
       "type":"structure",
@@ -3546,6 +3640,14 @@
       "member":{"shape":"RemotePodNetwork"},
       "max":1
     },
+    "RepairAction":{
+      "type":"string",
+      "enum":[
+        "Replace",
+        "Reboot",
+        "NoAction"
+      ]
+    },
     "ResolveConflicts":{
       "type":"string",
       "enum":[
@@ -3623,6 +3725,24 @@
       "error":{"httpStatusCode":503},
       "exception":true,
       "fault":true
+    },
+    "StartInsightsRefreshRequest":{
+      "type":"structure",
+      "required":["clusterName"],
+      "members":{
+        "clusterName":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "StartInsightsRefreshResponse":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"},
+        "status":{"shape":"InsightsRefreshStatus"}
+      }
     },
     "StorageConfigRequest":{
       "type":"structure",
@@ -3852,7 +3972,8 @@
         "computeConfig":{"shape":"ComputeConfigRequest"},
         "kubernetesNetworkConfig":{"shape":"KubernetesNetworkConfigRequest"},
         "storageConfig":{"shape":"StorageConfigRequest"},
-        "remoteNetworkConfig":{"shape":"RemoteNetworkConfigRequest"}
+        "remoteNetworkConfig":{"shape":"RemoteNetworkConfigRequest"},
+        "deletionProtection":{"shape":"BoxedBoolean"}
       }
     },
     "UpdateClusterConfigResponse":{
@@ -4031,7 +4152,9 @@
         "ComputeConfig",
         "StorageConfig",
         "KubernetesNetworkConfig",
-        "RemoteNetworkConfig"
+        "RemoteNetworkConfig",
+        "DeletionProtection",
+        "NodeRepairConfig"
       ]
     },
     "UpdateParams":{
@@ -4102,7 +4225,8 @@
         "UpgradePolicyUpdate",
         "ZonalShiftConfigUpdate",
         "AutoModeUpdate",
-        "RemoteNetworkConfigUpdate"
+        "RemoteNetworkConfigUpdate",
+        "DeletionProtectionUpdate"
       ]
     },
     "UpgradePolicyRequest":{
@@ -4190,6 +4314,11 @@
       "type":"map",
       "key":{"shape":"labelKey"},
       "value":{"shape":"labelValue"}
+    },
+    "namespace":{
+      "type":"string",
+      "max":63,
+      "min":1
     },
     "requiredClaimsKey":{
       "type":"string",

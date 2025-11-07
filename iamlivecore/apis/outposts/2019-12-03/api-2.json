@@ -155,6 +155,7 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -200,6 +201,20 @@
         {"shape":"NotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
+      ]
+    },
+    "GetOutpostBillingInformation":{
+      "name":"GetOutpostBillingInformation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/outpost/{OutpostIdentifier}/billing-information"
+      },
+      "input":{"shape":"GetOutpostBillingInformationInput"},
+      "output":{"shape":"GetOutpostBillingInformationOutput"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "GetOutpostInstanceTypes":{
@@ -333,6 +348,7 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -421,6 +437,22 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"NotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StartOutpostDecommission":{
+      "name":"StartOutpostDecommission",
+      "http":{
+        "method":"POST",
+        "requestUri":"/outposts/{OutpostId}/decommission"
+      },
+      "input":{"shape":"StartOutpostDecommissionInput"},
+      "output":{"shape":"StartOutpostDecommissionOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -719,6 +751,22 @@
       "type":"list",
       "member":{"shape":"BlockingInstance"}
     },
+    "BlockingResourceType":{
+      "type":"string",
+      "enum":[
+        "EC2_INSTANCE",
+        "OUTPOST_RAM_SHARE",
+        "LGW_ROUTING_DOMAIN",
+        "LGW_ROUTE_TABLE",
+        "LGW_VIRTUAL_INTERFACE_GROUP",
+        "OUTPOST_ORDER_CANCELLABLE",
+        "OUTPOST_ORDER_INTERVENTION_REQUIRED"
+      ]
+    },
+    "BlockingResourceTypeList":{
+      "type":"list",
+      "member":{"shape":"BlockingResourceType"}
+    },
     "CIDR":{
       "type":"string",
       "max":18,
@@ -951,7 +999,6 @@
       "type":"structure",
       "required":[
         "OutpostIdentifier",
-        "LineItems",
         "PaymentOption"
       ],
       "members":{
@@ -1007,6 +1054,14 @@
       "members":{
         "Site":{"shape":"Site"}
       }
+    },
+    "DecommissionRequestStatus":{
+      "type":"string",
+      "enum":[
+        "SKIPPED",
+        "BLOCKED",
+        "REQUESTED"
+      ]
     },
     "DeleteOutpostInput":{
       "type":"structure",
@@ -1173,6 +1228,35 @@
       "type":"structure",
       "members":{
         "Order":{"shape":"Order"}
+      }
+    },
+    "GetOutpostBillingInformationInput":{
+      "type":"structure",
+      "required":["OutpostIdentifier"],
+      "members":{
+        "NextToken":{
+          "shape":"Token",
+          "location":"querystring",
+          "locationName":"NextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults1000",
+          "location":"querystring",
+          "locationName":"MaxResults"
+        },
+        "OutpostIdentifier":{
+          "shape":"OutpostIdentifier",
+          "location":"uri",
+          "locationName":"OutpostIdentifier"
+        }
+      }
+    },
+    "GetOutpostBillingInformationOutput":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"Token"},
+        "Subscriptions":{"shape":"SubscriptionList"},
+        "ContractEndDate":{"shape":"String"}
       }
     },
     "GetOutpostInput":{
@@ -1820,6 +1904,7 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "NullableDouble":{"type":"double"},
     "OpticalStandard":{
       "type":"string",
       "enum":[
@@ -1857,6 +1942,10 @@
       "max":20,
       "min":1,
       "pattern":"oo-[a-f0-9]{17}$"
+    },
+    "OrderIdList":{
+      "type":"list",
+      "member":{"shape":"String"}
     },
     "OrderStatus":{
       "type":"string",
@@ -2201,6 +2290,25 @@
         "UnderlayIpAddress":{"shape":"UnderlayIpAddress"}
       }
     },
+    "StartOutpostDecommissionInput":{
+      "type":"structure",
+      "required":["OutpostIdentifier"],
+      "members":{
+        "OutpostIdentifier":{
+          "shape":"OutpostIdentifier",
+          "location":"uri",
+          "locationName":"OutpostId"
+        },
+        "ValidateOnly":{"shape":"ValidateOnly"}
+      }
+    },
+    "StartOutpostDecommissionOutput":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"DecommissionRequestStatus"},
+        "BlockingResourceTypes":{"shape":"BlockingResourceTypeList"}
+      }
+    },
     "StateOrRegion":{
       "type":"string",
       "max":50,
@@ -2222,6 +2330,39 @@
       "max":1000,
       "min":1,
       "pattern":"^[\\S \\n]+$"
+    },
+    "Subscription":{
+      "type":"structure",
+      "members":{
+        "SubscriptionId":{"shape":"String"},
+        "SubscriptionType":{"shape":"SubscriptionType"},
+        "SubscriptionStatus":{"shape":"SubscriptionStatus"},
+        "OrderIds":{"shape":"OrderIdList"},
+        "BeginDate":{"shape":"ISO8601Timestamp"},
+        "EndDate":{"shape":"ISO8601Timestamp"},
+        "MonthlyRecurringPrice":{"shape":"NullableDouble"},
+        "UpfrontPrice":{"shape":"NullableDouble"}
+      }
+    },
+    "SubscriptionList":{
+      "type":"list",
+      "member":{"shape":"Subscription"}
+    },
+    "SubscriptionStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "INACTIVE",
+        "CANCELLED"
+      ]
+    },
+    "SubscriptionType":{
+      "type":"string",
+      "enum":[
+        "ORIGINAL",
+        "RENEWAL",
+        "CAPACITY_INCREASE"
+      ]
     },
     "SupportedHardwareType":{
       "type":"string",
@@ -2455,6 +2596,7 @@
       "type":"integer",
       "box":true
     },
+    "ValidateOnly":{"type":"boolean"},
     "ValidationException":{
       "type":"structure",
       "members":{

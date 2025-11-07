@@ -28,7 +28,8 @@
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFUnavailableEntityException"},
-        {"shape":"WAFInvalidOperationException"}
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFLimitsExceededException"}
       ]
     },
     "CheckCapacity":{
@@ -1105,7 +1106,7 @@
     "AttributeValues":{
       "type":"list",
       "member":{"shape":"AttributeValue"},
-      "max":10,
+      "max":50,
       "min":1
     },
     "BlockAction":{
@@ -4336,7 +4337,8 @@
         "ChallengeConfig":{"shape":"ChallengeConfig"},
         "TokenDomains":{"shape":"TokenDomains"},
         "AssociationConfig":{"shape":"AssociationConfig"},
-        "OnSourceDDoSProtectionConfig":{"shape":"OnSourceDDoSProtectionConfig"}
+        "OnSourceDDoSProtectionConfig":{"shape":"OnSourceDDoSProtectionConfig"},
+        "ApplicationConfig":{"shape":"ApplicationConfig"}
       }
     },
     "UpdateWebACLResponse":{

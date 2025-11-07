@@ -92,11 +92,27 @@
       "input":{"shape":"CreateCollectionRequest"},
       "output":{"shape":"CreateCollectionResponse"},
       "errors":[
-        {"shape":"OcuLimitExceededException"},
         {"shape":"InternalServerException"},
+        {"shape":"OcuLimitExceededException"},
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
+    "CreateIndex":{
+      "name":"CreateIndex",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateIndexRequest"},
+      "output":{"shape":"CreateIndexResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
       ],
       "idempotent":true
     },
@@ -174,8 +190,8 @@
       "output":{"shape":"DeleteAccessPolicyResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ],
       "idempotent":true
@@ -190,8 +206,23 @@
       "output":{"shape":"DeleteCollectionResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteIndex":{
+      "name":"DeleteIndex",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteIndexRequest"},
+      "output":{"shape":"DeleteIndexResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ],
       "idempotent":true
@@ -206,8 +237,8 @@
       "output":{"shape":"DeleteLifecyclePolicyResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ],
       "idempotent":true
@@ -222,8 +253,8 @@
       "output":{"shape":"DeleteSecurityConfigResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ],
       "idempotent":true
@@ -238,8 +269,8 @@
       "output":{"shape":"DeleteSecurityPolicyResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ],
       "idempotent":true
@@ -254,8 +285,8 @@
       "output":{"shape":"DeleteVpcEndpointResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ],
       "idempotent":true
@@ -284,6 +315,20 @@
       "output":{"shape":"GetAccountSettingsResponse"},
       "errors":[
         {"shape":"InternalServerException"},
+        {"shape":"ValidationException"}
+      ]
+    },
+    "GetIndex":{
+      "name":"GetIndex",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetIndexRequest"},
+      "output":{"shape":"GetIndexResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ]
     },
@@ -429,8 +474,8 @@
       "output":{"shape":"TagResourceResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"}
       ]
@@ -445,8 +490,8 @@
       "output":{"shape":"UntagResourceResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ]
     },
@@ -460,8 +505,8 @@
       "output":{"shape":"UpdateAccessPolicyResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ],
       "idempotent":true
@@ -494,6 +539,21 @@
       ],
       "idempotent":true
     },
+    "UpdateIndex":{
+      "name":"UpdateIndex",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateIndexRequest"},
+      "output":{"shape":"UpdateIndexResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"}
+      ],
+      "idempotent":true
+    },
     "UpdateLifecyclePolicy":{
       "name":"UpdateLifecyclePolicy",
       "http":{
@@ -504,8 +564,8 @@
       "output":{"shape":"UpdateLifecyclePolicyResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"}
       ],
@@ -521,8 +581,8 @@
       "output":{"shape":"UpdateSecurityConfigResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
       ],
       "idempotent":true
@@ -537,8 +597,8 @@
       "output":{"shape":"UpdateSecurityPolicyResponse"},
       "errors":[
         {"shape":"InternalServerException"},
-        {"shape":"ResourceNotFoundException"},
         {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"}
       ],
@@ -696,6 +756,7 @@
         "lastModifiedDate":{"shape":"Long"},
         "collectionEndpoint":{"shape":"String"},
         "dashboardEndpoint":{"shape":"String"},
+        "fipsEndpoints":{"shape":"FipsEndpoints"},
         "failureCode":{"shape":"String"},
         "failureMessage":{"shape":"String"}
       }
@@ -870,6 +931,22 @@
         "groupAttribute":{"shape":"IamIdentityCenterGroupAttribute"}
       }
     },
+    "CreateIndexRequest":{
+      "type":"structure",
+      "required":[
+        "id",
+        "indexName"
+      ],
+      "members":{
+        "id":{"shape":"CollectionId"},
+        "indexName":{"shape":"IndexName"},
+        "indexSchema":{"shape":"IndexSchema"}
+      }
+    },
+    "CreateIndexResponse":{
+      "type":"structure",
+      "members":{}
+    },
     "CreateLifecyclePolicyRequest":{
       "type":"structure",
       "required":[
@@ -906,6 +983,7 @@
         "description":{"shape":"ConfigDescription"},
         "samlOptions":{"shape":"SamlConfigOptions"},
         "iamIdentityCenterOptions":{"shape":"CreateIamIdentityCenterConfigOptions"},
+        "iamFederationOptions":{"shape":"IamFederationConfigOptions"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -991,8 +1069,7 @@
     },
     "DeleteAccessPolicyResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteCollectionDetail":{
       "type":"structure",
@@ -1019,6 +1096,21 @@
         "deleteCollectionDetail":{"shape":"DeleteCollectionDetail"}
       }
     },
+    "DeleteIndexRequest":{
+      "type":"structure",
+      "required":[
+        "id",
+        "indexName"
+      ],
+      "members":{
+        "id":{"shape":"CollectionId"},
+        "indexName":{"shape":"IndexName"}
+      }
+    },
+    "DeleteIndexResponse":{
+      "type":"structure",
+      "members":{}
+    },
     "DeleteLifecyclePolicyRequest":{
       "type":"structure",
       "required":[
@@ -1036,8 +1128,7 @@
     },
     "DeleteLifecyclePolicyResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteSecurityConfigRequest":{
       "type":"structure",
@@ -1052,8 +1143,7 @@
     },
     "DeleteSecurityConfigResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteSecurityPolicyRequest":{
       "type":"structure",
@@ -1072,8 +1162,7 @@
     },
     "DeleteSecurityPolicyResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteVpcEndpointDetail":{
       "type":"structure",
@@ -1102,8 +1191,7 @@
     },
     "Document":{
       "type":"structure",
-      "members":{
-      },
+      "members":{},
       "document":true
     },
     "EffectiveLifecyclePolicyDetail":{
@@ -1134,6 +1222,13 @@
       "type":"list",
       "member":{"shape":"EffectiveLifecyclePolicyErrorDetail"}
     },
+    "FipsEndpoints":{
+      "type":"structure",
+      "members":{
+        "collectionEndpoint":{"shape":"String"},
+        "dashboardEndpoint":{"shape":"String"}
+      }
+    },
     "GetAccessPolicyRequest":{
       "type":"structure",
       "required":[
@@ -1153,8 +1248,7 @@
     },
     "GetAccountSettingsRequest":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "GetAccountSettingsResponse":{
       "type":"structure",
@@ -1162,10 +1256,26 @@
         "accountSettingsDetail":{"shape":"AccountSettingsDetail"}
       }
     },
-    "GetPoliciesStatsRequest":{
+    "GetIndexRequest":{
+      "type":"structure",
+      "required":[
+        "id",
+        "indexName"
+      ],
+      "members":{
+        "id":{"shape":"CollectionId"},
+        "indexName":{"shape":"IndexName"}
+      }
+    },
+    "GetIndexResponse":{
       "type":"structure",
       "members":{
+        "indexSchema":{"shape":"IndexSchema"}
       }
+    },
+    "GetPoliciesStatsRequest":{
+      "type":"structure",
+      "members":{}
     },
     "GetPoliciesStatsResponse":{
       "type":"structure",
@@ -1207,6 +1317,13 @@
         "securityPolicyDetail":{"shape":"SecurityPolicyDetail"}
       }
     },
+    "IamFederationConfigOptions":{
+      "type":"structure",
+      "members":{
+        "groupAttribute":{"shape":"iamFederationGroupAttribute"},
+        "userAttribute":{"shape":"iamFederationUserAttribute"}
+      }
+    },
     "IamIdentityCenterApplicationArn":{
       "type":"string",
       "max":1224,
@@ -1244,6 +1361,12 @@
         "UserName",
         "Email"
       ]
+    },
+    "IndexName":{"type":"string"},
+    "IndexSchema":{
+      "type":"structure",
+      "members":{},
+      "document":true
     },
     "IndexingCapacityValue":{
       "type":"integer",
@@ -1593,6 +1716,7 @@
         "description":{"shape":"ConfigDescription"},
         "samlOptions":{"shape":"SamlConfigOptions"},
         "iamIdentityCenterOptions":{"shape":"IamIdentityCenterConfigOptions"},
+        "iamFederationOptions":{"shape":"IamFederationConfigOptions"},
         "createdDate":{"shape":"Long"},
         "lastModifiedDate":{"shape":"Long"}
       }
@@ -1627,7 +1751,8 @@
       "type":"string",
       "enum":[
         "saml",
-        "iamidentitycenter"
+        "iamidentitycenter",
+        "iamfederation"
       ]
     },
     "SecurityGroupId":{
@@ -1715,7 +1840,6 @@
     "SubnetIds":{
       "type":"list",
       "member":{"shape":"SubnetId"},
-      "max":6,
       "min":1
     },
     "Tag":{
@@ -1753,8 +1877,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValue":{
       "type":"string",
@@ -1780,8 +1903,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateAccessPolicyRequest":{
       "type":"structure",
@@ -1863,6 +1985,22 @@
         "groupAttribute":{"shape":"IamIdentityCenterGroupAttribute"}
       }
     },
+    "UpdateIndexRequest":{
+      "type":"structure",
+      "required":[
+        "id",
+        "indexName"
+      ],
+      "members":{
+        "id":{"shape":"CollectionId"},
+        "indexName":{"shape":"IndexName"},
+        "indexSchema":{"shape":"IndexSchema"}
+      }
+    },
+    "UpdateIndexResponse":{
+      "type":"structure",
+      "members":{}
+    },
     "UpdateLifecyclePolicyRequest":{
       "type":"structure",
       "required":[
@@ -1900,6 +2038,7 @@
         "description":{"shape":"ConfigDescription"},
         "samlOptions":{"shape":"SamlConfigOptions"},
         "iamIdentityCenterOptionsUpdates":{"shape":"UpdateIamIdentityCenterConfigOptions"},
+        "iamFederationOptions":{"shape":"IamFederationConfigOptions"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -2056,6 +2195,18 @@
       "max":255,
       "min":1,
       "pattern":"vpc-[0-9a-z]*"
+    },
+    "iamFederationGroupAttribute":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[A-Za-z][A-Za-z0-9_.:/=+\\-@]*"
+    },
+    "iamFederationUserAttribute":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[A-Za-z][A-Za-z0-9_.:/=+\\-@]*"
     },
     "openSearchServerlessEntityId":{
       "type":"string",

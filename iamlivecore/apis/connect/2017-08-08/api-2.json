@@ -81,6 +81,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "AssociateContactWithUser":{
+      "name":"AssociateContactWithUser",
+      "http":{
+        "method":"POST",
+        "requestUri":"/contacts/{InstanceId}/{ContactId}/associate-user"
+      },
+      "input":{"shape":"AssociateContactWithUserRequest"},
+      "output":{"shape":"AssociateContactWithUserResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "AssociateDefaultVocabulary":{
       "name":"AssociateDefaultVocabulary",
       "http":{
@@ -95,6 +112,25 @@
         {"shape":"InternalServiceException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
+      ]
+    },
+    "AssociateEmailAddressAlias":{
+      "name":"AssociateEmailAddressAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/email-addresses/{InstanceId}/{EmailAddressId}/associate-alias"
+      },
+      "input":{"shape":"AssociateEmailAddressAliasRequest"},
+      "output":{"shape":"AssociateEmailAddressAliasResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceConflictException"},
+        {"shape":"IdempotencyException"}
       ]
     },
     "AssociateFlow":{
@@ -594,7 +630,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServiceException"},
         {"shape":"ServiceQuotaExceededException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"}
       ]
     },
     "CreatePersistentContactAssociation":{
@@ -1825,6 +1862,24 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DisassociateEmailAddressAlias":{
+      "name":"DisassociateEmailAddressAlias",
+      "http":{
+        "method":"POST",
+        "requestUri":"/email-addresses/{InstanceId}/{EmailAddressId}/disassociate-alias"
+      },
+      "input":{"shape":"DisassociateEmailAddressAliasRequest"},
+      "output":{"shape":"DisassociateEmailAddressAliasResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceConflictException"}
+      ]
+    },
     "DisassociateFlow":{
       "name":"DisassociateFlow",
       "http":{
@@ -2024,6 +2079,23 @@
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "GetContactMetrics":{
+      "name":"GetContactMetrics",
+      "http":{
+        "method":"POST",
+        "requestUri":"/metrics/contact"
+      },
+      "input":{"shape":"GetContactMetricsRequest"},
+      "output":{"shape":"GetContactMetricsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceException"}
       ]
     },
@@ -2713,6 +2785,22 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "ListRoutingProfileManualAssignmentQueues":{
+      "name":"ListRoutingProfileManualAssignmentQueues",
+      "http":{
+        "method":"GET",
+        "requestUri":"/routing-profiles/{InstanceId}/{RoutingProfileId}/manual-assignment-queues"
+      },
+      "input":{"shape":"ListRoutingProfileManualAssignmentQueuesRequest"},
+      "output":{"shape":"ListRoutingProfileManualAssignmentQueuesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "ListRoutingProfileQueues":{
       "name":"ListRoutingProfileQueues",
       "http":{
@@ -3138,6 +3226,22 @@
         {"shape":"AccessDeniedException"}
       ]
     },
+    "SearchContactEvaluations":{
+      "name":"SearchContactEvaluations",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-contact-evaluations"
+      },
+      "input":{"shape":"SearchContactEvaluationsRequest"},
+      "output":{"shape":"SearchContactEvaluationsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
     "SearchContactFlowModules":{
       "name":"SearchContactFlowModules",
       "http":{
@@ -3200,6 +3304,22 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InvalidParameterException"},
         {"shape":"InvalidRequestException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "SearchEvaluationForms":{
+      "name":"SearchEvaluationForms",
+      "http":{
+        "method":"POST",
+        "requestUri":"/search-evaluation-forms"
+      },
+      "input":{"shape":"SearchEvaluationFormsRequest"},
+      "output":{"shape":"SearchEvaluationFormsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServiceException"}
       ]
     },
@@ -4732,6 +4852,12 @@
       "type":"list",
       "member":{"shape":"AgentContactReference"}
     },
+    "AgentFirst":{
+      "type":"structure",
+      "members":{
+        "Preview":{"shape":"Preview"}
+      }
+    },
     "AgentFirstName":{
       "type":"string",
       "max":255,
@@ -4766,6 +4892,8 @@
       "type":"structure",
       "members":{
         "Id":{"shape":"AgentResourceId"},
+        "AcceptedByAgentTimestamp":{"shape":"timestamp"},
+        "PreviewEndTimestamp":{"shape":"timestamp"},
         "ConnectedToAgentTimestamp":{"shape":"timestamp"},
         "AgentPauseDurationInSeconds":{"shape":"AgentPauseDurationInSeconds"},
         "HierarchyGroups":{"shape":"HierarchyGroups"},
@@ -4826,6 +4954,13 @@
       "min":1
     },
     "AgentStatusId":{"type":"string"},
+    "AgentStatusIdentifier":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"ARN"},
+        "Id":{"shape":"AgentStatusId"}
+      }
+    },
     "AgentStatusList":{
       "type":"list",
       "member":{"shape":"AgentStatus"}
@@ -4901,6 +5036,10 @@
       "member":{"shape":"AgentStatusType"},
       "max":3
     },
+    "AgentStatuses":{
+      "type":"list",
+      "member":{"shape":"AgentStatusId"}
+    },
     "AgentUsername":{
       "type":"string",
       "max":100,
@@ -4923,6 +5062,18 @@
       "max":100,
       "min":1
     },
+    "AliasConfiguration":{
+      "type":"structure",
+      "required":["EmailAddressId"],
+      "members":{
+        "EmailAddressId":{"shape":"EmailAddressId"}
+      }
+    },
+    "AliasConfigurationList":{
+      "type":"list",
+      "member":{"shape":"AliasConfiguration"},
+      "max":1
+    },
     "AllowedAccessControlTags":{
       "type":"map",
       "key":{"shape":"SecurityProfilePolicyKey"},
@@ -4940,6 +5091,17 @@
       "type":"list",
       "member":{"shape":"MonitorCapability"},
       "max":2
+    },
+    "AllowedUserAction":{
+      "type":"string",
+      "enum":[
+        "CALL",
+        "DISCARD"
+      ]
+    },
+    "AllowedUserActions":{
+      "type":"list",
+      "member":{"shape":"AllowedUserAction"}
     },
     "AnalyticsDataAssociationResult":{
       "type":"structure",
@@ -5097,6 +5259,31 @@
         }
       }
     },
+    "AssociateContactWithUserRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "UserId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "ContactId":{
+          "shape":"ContactId",
+          "location":"uri",
+          "locationName":"ContactId"
+        },
+        "UserId":{"shape":"AgentResourceId"}
+      }
+    },
+    "AssociateContactWithUserResponse":{
+      "type":"structure",
+      "members":{}
+    },
     "AssociateDefaultVocabularyRequest":{
       "type":"structure",
       "required":[
@@ -5118,6 +5305,35 @@
       }
     },
     "AssociateDefaultVocabularyResponse":{
+      "type":"structure",
+      "members":{}
+    },
+    "AssociateEmailAddressAliasRequest":{
+      "type":"structure",
+      "required":[
+        "EmailAddressId",
+        "InstanceId",
+        "AliasConfiguration"
+      ],
+      "members":{
+        "EmailAddressId":{
+          "shape":"EmailAddressId",
+          "location":"uri",
+          "locationName":"EmailAddressId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "AliasConfiguration":{"shape":"AliasConfiguration"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "AssociateEmailAddressAliasResponse":{
       "type":"structure",
       "members":{}
     },
@@ -5251,8 +5467,7 @@
       "type":"structure",
       "required":[
         "InstanceId",
-        "RoutingProfileId",
-        "QueueConfigs"
+        "RoutingProfileId"
       ],
       "members":{
         "InstanceId":{
@@ -5265,7 +5480,8 @@
           "location":"uri",
           "locationName":"RoutingProfileId"
         },
-        "QueueConfigs":{"shape":"RoutingProfileQueueConfigList"}
+        "QueueConfigs":{"shape":"RoutingProfileQueueConfigList"},
+        "ManualAssignmentQueueConfigs":{"shape":"RoutingProfileManualAssignmentQueueConfigList"}
       }
     },
     "AssociateSecurityKeyRequest":{
@@ -5571,6 +5787,35 @@
       "sensitive":true
     },
     "AutoAccept":{"type":"boolean"},
+    "AutoEvaluationConfiguration":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "AutoEvaluationDetails":{
+      "type":"structure",
+      "required":["AutoEvaluationEnabled"],
+      "members":{
+        "AutoEvaluationEnabled":{"shape":"Boolean"},
+        "AutoEvaluationStatus":{"shape":"AutoEvaluationStatus"}
+      }
+    },
+    "AutoEvaluationStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "FAILED",
+        "SUCCEEDED"
+      ]
+    },
+    "AutomaticFailConfiguration":{
+      "type":"structure",
+      "members":{
+        "TargetSection":{"shape":"ReferenceId"}
+      }
+    },
     "AvailableNumberSummary":{
       "type":"structure",
       "members":{
@@ -5725,6 +5970,20 @@
       "sensitive":true
     },
     "Boolean":{"type":"boolean"},
+    "BooleanComparisonType":{
+      "type":"string",
+      "enum":[
+        "IS_TRUE",
+        "IS_FALSE"
+      ]
+    },
+    "BooleanCondition":{
+      "type":"structure",
+      "members":{
+        "FieldName":{"shape":"String"},
+        "ComparisonType":{"shape":"BooleanComparisonType"}
+      }
+    },
     "BotName":{
       "type":"string",
       "max":50
@@ -6053,7 +6312,9 @@
         "Recordings":{"shape":"Recordings"},
         "DisconnectReason":{"shape":"String"},
         "ContactEvaluations":{"shape":"ContactEvaluations"},
+        "TaskTemplateInfo":{"shape":"TaskTemplateInfoV2"},
         "ContactDetails":{"shape":"ContactDetails"},
+        "OutboundStrategy":{"shape":"OutboundStrategy"},
         "Attributes":{"shape":"Attributes"}
       }
     },
@@ -6080,7 +6341,8 @@
         "RequestIdentifier":{"shape":"RequestIdentifier"},
         "QueueId":{"shape":"QueueId"},
         "Attributes":{"shape":"Attributes"},
-        "Campaign":{"shape":"Campaign"}
+        "Campaign":{"shape":"Campaign"},
+        "OutboundStrategy":{"shape":"OutboundStrategy"}
       }
     },
     "ContactDataRequestList":{
@@ -6360,6 +6622,44 @@
         "FLOW"
       ]
     },
+    "ContactMetricInfo":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"ContactMetricName"}
+      }
+    },
+    "ContactMetricName":{
+      "type":"string",
+      "enum":["POSITION_IN_QUEUE"]
+    },
+    "ContactMetricResult":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"ContactMetricName"},
+        "Value":{"shape":"ContactMetricValue"}
+      }
+    },
+    "ContactMetricResults":{
+      "type":"list",
+      "member":{"shape":"ContactMetricResult"}
+    },
+    "ContactMetricValue":{
+      "type":"structure",
+      "members":{
+        "Number":{"shape":"Double"}
+      },
+      "union":true
+    },
+    "ContactMetrics":{
+      "type":"list",
+      "member":{"shape":"ContactMetricInfo"},
+      "min":1
+    },
     "ContactNotFoundException":{
       "type":"structure",
       "members":{
@@ -6395,7 +6695,9 @@
         "InitiationTimestamp":{"shape":"timestamp"},
         "DisconnectTimestamp":{"shape":"timestamp"},
         "ScheduledTimestamp":{"shape":"timestamp"},
-        "SegmentAttributes":{"shape":"ContactSearchSummarySegmentAttributes"}
+        "SegmentAttributes":{"shape":"ContactSearchSummarySegmentAttributes"},
+        "Name":{"shape":"Name"},
+        "RoutingCriteria":{"shape":"RoutingCriteria"}
       }
     },
     "ContactSearchSummaryAgentInfo":{
@@ -6415,13 +6717,15 @@
     "ContactSearchSummarySegmentAttributeValue":{
       "type":"structure",
       "members":{
-        "ValueString":{"shape":"SegmentAttributeValueString"}
+        "ValueString":{"shape":"SegmentAttributeValueString"},
+        "ValueMap":{"shape":"SegmentAttributeValueMap"}
       }
     },
     "ContactSearchSummarySegmentAttributes":{
       "type":"map",
       "key":{"shape":"SegmentAttributeName"},
-      "value":{"shape":"ContactSearchSummarySegmentAttributeValue"}
+      "value":{"shape":"ContactSearchSummarySegmentAttributeValue"},
+      "sensitive":true
     },
     "ContactState":{
       "type":"string",
@@ -6714,10 +7018,12 @@
         "Description":{"shape":"EvaluationFormDescription"},
         "Items":{"shape":"EvaluationFormItemsList"},
         "ScoringStrategy":{"shape":"EvaluationFormScoringStrategy"},
+        "AutoEvaluationConfiguration":{"shape":"EvaluationFormAutoEvaluationConfiguration"},
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagMap"}
       }
     },
     "CreateEvaluationFormResponse":{
@@ -6906,8 +7212,7 @@
       "type":"structure",
       "required":[
         "InstanceId",
-        "Name",
-        "Values"
+        "Name"
       ],
       "members":{
         "InstanceId":{
@@ -6916,7 +7221,9 @@
           "locationName":"InstanceId"
         },
         "Name":{"shape":"PredefinedAttributeName"},
-        "Values":{"shape":"PredefinedAttributeValues"}
+        "Values":{"shape":"PredefinedAttributeValues"},
+        "Purposes":{"shape":"PredefinedAttributePurposeNameList"},
+        "AttributeConfiguration":{"shape":"InputPredefinedAttributeConfiguration"}
       }
     },
     "CreatePromptRequest":{
@@ -7055,6 +7362,7 @@
         "Description":{"shape":"RoutingProfileDescription"},
         "DefaultOutboundQueueId":{"shape":"QueueId"},
         "QueueConfigs":{"shape":"RoutingProfileQueueConfigList"},
+        "ManualAssignmentQueueConfigs":{"shape":"RoutingProfileManualAssignmentQueueConfigList"},
         "MediaConcurrencies":{"shape":"MediaConcurrencies"},
         "Tags":{"shape":"TagMap"},
         "AgentAvailabilityTimer":{"shape":"AgentAvailabilityTimer"}
@@ -7539,6 +7847,30 @@
         "Value":{"shape":"ReferenceValue"}
       }
     },
+    "DateTimeComparisonType":{
+      "type":"string",
+      "enum":[
+        "GREATER_THAN",
+        "LESS_THAN",
+        "GREATER_THAN_OR_EQUAL_TO",
+        "LESS_THAN_OR_EQUAL_TO",
+        "EQUAL_TO",
+        "RANGE"
+      ]
+    },
+    "DateTimeCondition":{
+      "type":"structure",
+      "members":{
+        "FieldName":{"shape":"String"},
+        "MinValue":{"shape":"DateTimeFormat"},
+        "MaxValue":{"shape":"DateTimeFormat"},
+        "ComparisonType":{"shape":"DateTimeComparisonType"}
+      }
+    },
+    "DateTimeFormat":{
+      "type":"string",
+      "pattern":"^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{3})?Z?$"
+    },
     "DateYearMonthDayFormat":{
       "type":"string",
       "pattern":"^\\d{4}-\\d{2}-\\d{2}$"
@@ -7575,6 +7907,27 @@
         "EvaluationFormId":{"shape":"ResourceId"},
         "EvaluationFormArn":{"shape":"ARN"},
         "EvaluationFormVersion":{"shape":"VersionNumber"}
+      }
+    },
+    "DecimalComparisonType":{
+      "type":"string",
+      "enum":[
+        "GREATER_OR_EQUAL",
+        "GREATER",
+        "LESSER_OR_EQUAL",
+        "LESSER",
+        "EQUAL",
+        "NOT_EQUAL",
+        "RANGE"
+      ]
+    },
+    "DecimalCondition":{
+      "type":"structure",
+      "members":{
+        "FieldName":{"shape":"String"},
+        "MinValue":{"shape":"NullableDouble"},
+        "MaxValue":{"shape":"NullableDouble"},
+        "ComparisonType":{"shape":"DecimalComparisonType"}
       }
     },
     "DefaultVocabulary":{
@@ -8383,6 +8736,7 @@
         "Description":{"shape":"Description"},
         "CreateTimestamp":{"shape":"ISO8601Datetime"},
         "ModifiedTimestamp":{"shape":"ISO8601Datetime"},
+        "AliasConfigurations":{"shape":"AliasConfigurationList"},
         "Tags":{"shape":"TagMap"}
       }
     },
@@ -8928,7 +9282,8 @@
         "Queue":{"shape":"QueueReference"},
         "Channel":{"shape":"Channel"},
         "RoutingProfile":{"shape":"RoutingProfileReference"},
-        "RoutingStepExpression":{"shape":"RoutingExpression"}
+        "RoutingStepExpression":{"shape":"RoutingExpression"},
+        "AgentStatus":{"shape":"AgentStatusIdentifier"}
       }
     },
     "DimensionsV2Key":{"type":"string"},
@@ -9017,6 +9372,35 @@
           "idempotencyToken":true
         }
       }
+    },
+    "DisassociateEmailAddressAliasRequest":{
+      "type":"structure",
+      "required":[
+        "EmailAddressId",
+        "InstanceId",
+        "AliasConfiguration"
+      ],
+      "members":{
+        "EmailAddressId":{
+          "shape":"EmailAddressId",
+          "location":"uri",
+          "locationName":"EmailAddressId"
+        },
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "AliasConfiguration":{"shape":"AliasConfiguration"},
+        "ClientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "DisassociateEmailAddressAliasResponse":{
+      "type":"structure",
+      "members":{}
     },
     "DisassociateFlowRequest":{
       "type":"structure",
@@ -9178,8 +9562,7 @@
       "type":"structure",
       "required":[
         "InstanceId",
-        "RoutingProfileId",
-        "QueueReferences"
+        "RoutingProfileId"
       ],
       "members":{
         "InstanceId":{
@@ -9192,7 +9575,8 @@
           "location":"uri",
           "locationName":"RoutingProfileId"
         },
-        "QueueReferences":{"shape":"RoutingProfileQueueReferenceList"}
+        "QueueReferences":{"shape":"RoutingProfileQueueReferenceList"},
+        "ManualAssignmentQueueReferences":{"shape":"RoutingProfileQueueReferenceList"}
       }
     },
     "DisassociateSecurityKeyRequest":{
@@ -9410,7 +9794,8 @@
         "EmailAddressArn":{"shape":"EmailAddressArn"},
         "EmailAddress":{"shape":"EmailAddress"},
         "Description":{"shape":"Description"},
-        "DisplayName":{"shape":"EmailAddressDisplayName"}
+        "DisplayName":{"shape":"EmailAddressDisplayName"},
+        "AliasConfigurations":{"shape":"AliasConfigurationList"}
       }
     },
     "EmailAddressRecipientList":{
@@ -9509,6 +9894,7 @@
       "type":"structure",
       "members":{}
     },
+    "EnableValueValidationOnAssociation":{"type":"boolean"},
     "EncryptionConfig":{
       "type":"structure",
       "required":[
@@ -9598,8 +9984,34 @@
         "Scores":{"shape":"EvaluationScoresMap"},
         "CreatedTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
+        "EvaluationType":{"shape":"EvaluationType"},
         "Tags":{"shape":"TagMap"}
       }
+    },
+    "EvaluationAcknowledgement":{
+      "type":"structure",
+      "required":[
+        "AcknowledgedTime",
+        "AcknowledgedBy"
+      ],
+      "members":{
+        "AcknowledgedTime":{"shape":"Timestamp"},
+        "AcknowledgedBy":{"shape":"ARN"},
+        "AcknowledgerComment":{"shape":"EvaluationAcknowledgerCommentString"}
+      }
+    },
+    "EvaluationAcknowledgementSummary":{
+      "type":"structure",
+      "members":{
+        "AcknowledgedTime":{"shape":"Timestamp"},
+        "AcknowledgedBy":{"shape":"ARN"},
+        "AcknowledgerComment":{"shape":"EvaluationAcknowledgerCommentString"}
+      }
+    },
+    "EvaluationAcknowledgerCommentString":{
+      "type":"string",
+      "max":3072,
+      "min":0
     },
     "EvaluationAnswerData":{
       "type":"structure",
@@ -9613,7 +10025,7 @@
     "EvaluationAnswerDataNumericValue":{"type":"double"},
     "EvaluationAnswerDataStringValue":{
       "type":"string",
-      "max":128,
+      "max":300,
       "min":0
     },
     "EvaluationAnswerInput":{
@@ -9626,7 +10038,8 @@
       "type":"structure",
       "members":{
         "Value":{"shape":"EvaluationAnswerData"},
-        "SystemSuggestedValue":{"shape":"EvaluationAnswerData"}
+        "SystemSuggestedValue":{"shape":"EvaluationAnswerData"},
+        "SuggestedAnswers":{"shape":"EvaluationSuggestedAnswersList"}
       }
     },
     "EvaluationAnswersInputMap":{
@@ -9642,6 +10055,28 @@
       "max":100
     },
     "EvaluationArn":{"type":"string"},
+    "EvaluationAutomationRuleCategory":{
+      "type":"structure",
+      "required":[
+        "Category",
+        "Condition"
+      ],
+      "members":{
+        "Category":{"shape":"QuestionRuleCategoryAutomationLabel"},
+        "Condition":{"shape":"QuestionRuleCategoryAutomationCondition"},
+        "PointsOfInterest":{"shape":"EvaluationTranscriptPointsOfInterest"}
+      }
+    },
+    "EvaluationAutomationRuleCategoryList":{
+      "type":"list",
+      "member":{"shape":"EvaluationAutomationRuleCategory"}
+    },
+    "EvaluationContactLensAnswerAnalysisDetails":{
+      "type":"structure",
+      "members":{
+        "MatchedRuleCategories":{"shape":"EvaluationAutomationRuleCategoryList"}
+      }
+    },
     "EvaluationForm":{
       "type":"structure",
       "required":[
@@ -9671,7 +10106,15 @@
         "CreatedBy":{"shape":"ARN"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "LastModifiedBy":{"shape":"ARN"},
+        "AutoEvaluationConfiguration":{"shape":"EvaluationFormAutoEvaluationConfiguration"},
         "Tags":{"shape":"TagMap"}
+      }
+    },
+    "EvaluationFormAutoEvaluationConfiguration":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"Boolean"}
       }
     },
     "EvaluationFormContent":{
@@ -9690,7 +10133,8 @@
         "Title":{"shape":"EvaluationFormTitle"},
         "Description":{"shape":"EvaluationFormDescription"},
         "Items":{"shape":"EvaluationFormItemsList"},
-        "ScoringStrategy":{"shape":"EvaluationFormScoringStrategy"}
+        "ScoringStrategy":{"shape":"EvaluationFormScoringStrategy"},
+        "AutoEvaluationConfiguration":{"shape":"EvaluationFormAutoEvaluationConfiguration"}
       }
     },
     "EvaluationFormDescription":{
@@ -9711,6 +10155,102 @@
       },
       "union":true
     },
+    "EvaluationFormItemEnablementAction":{
+      "type":"string",
+      "enum":[
+        "DISABLE",
+        "ENABLE"
+      ]
+    },
+    "EvaluationFormItemEnablementCondition":{
+      "type":"structure",
+      "required":["Operands"],
+      "members":{
+        "Operands":{"shape":"EvaluationFormItemEnablementConditionOperandList"},
+        "Operator":{"shape":"EvaluationFormItemEnablementOperator"}
+      }
+    },
+    "EvaluationFormItemEnablementConditionOperand":{
+      "type":"structure",
+      "members":{
+        "Expression":{"shape":"EvaluationFormItemEnablementExpression"},
+        "Condition":{"shape":"EvaluationFormItemEnablementCondition"}
+      },
+      "union":true
+    },
+    "EvaluationFormItemEnablementConditionOperandList":{
+      "type":"list",
+      "member":{"shape":"EvaluationFormItemEnablementConditionOperand"},
+      "min":1
+    },
+    "EvaluationFormItemEnablementConfiguration":{
+      "type":"structure",
+      "required":[
+        "Condition",
+        "Action"
+      ],
+      "members":{
+        "Condition":{"shape":"EvaluationFormItemEnablementCondition"},
+        "Action":{"shape":"EvaluationFormItemEnablementAction"},
+        "DefaultAction":{"shape":"EvaluationFormItemEnablementAction"}
+      }
+    },
+    "EvaluationFormItemEnablementExpression":{
+      "type":"structure",
+      "required":[
+        "Source",
+        "Values",
+        "Comparator"
+      ],
+      "members":{
+        "Source":{"shape":"EvaluationFormItemEnablementSource"},
+        "Values":{"shape":"EvaluationFormItemEnablementSourceValueList"},
+        "Comparator":{"shape":"EvaluationFormItemSourceValuesComparator"}
+      }
+    },
+    "EvaluationFormItemEnablementOperator":{
+      "type":"string",
+      "enum":[
+        "OR",
+        "AND"
+      ]
+    },
+    "EvaluationFormItemEnablementSource":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"EvaluationFormItemEnablementSourceType"},
+        "RefId":{"shape":"ReferenceId"}
+      }
+    },
+    "EvaluationFormItemEnablementSourceType":{
+      "type":"string",
+      "enum":["QUESTION_REF_ID"]
+    },
+    "EvaluationFormItemEnablementSourceValue":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"EvaluationFormItemEnablementSourceValueType"},
+        "RefId":{"shape":"ReferenceId"}
+      }
+    },
+    "EvaluationFormItemEnablementSourceValueList":{
+      "type":"list",
+      "member":{"shape":"EvaluationFormItemEnablementSourceValue"},
+      "min":1
+    },
+    "EvaluationFormItemEnablementSourceValueType":{
+      "type":"string",
+      "enum":["OPTION_REF_ID"]
+    },
+    "EvaluationFormItemSourceValuesComparator":{
+      "type":"string",
+      "enum":[
+        "IN",
+        "NOT_IN"
+      ]
+    },
     "EvaluationFormItemWeight":{
       "type":"double",
       "max":100,
@@ -9725,7 +10265,8 @@
     "EvaluationFormNumericQuestionAutomation":{
       "type":"structure",
       "members":{
-        "PropertyValue":{"shape":"NumericQuestionPropertyValueAutomation"}
+        "PropertyValue":{"shape":"NumericQuestionPropertyValueAutomation"},
+        "AnswerSource":{"shape":"EvaluationFormQuestionAutomationAnswerSource"}
       },
       "union":true
     },
@@ -9739,7 +10280,8 @@
         "MinValue":{"shape":"Integer"},
         "MaxValue":{"shape":"Integer"},
         "Score":{"shape":"EvaluationFormQuestionAnswerScore"},
-        "AutomaticFail":{"shape":"Boolean"}
+        "AutomaticFail":{"shape":"Boolean"},
+        "AutomaticFailConfiguration":{"shape":"AutomaticFailConfiguration"}
       }
     },
     "EvaluationFormNumericQuestionOptionList":{
@@ -9775,6 +10317,7 @@
         "NotApplicableEnabled":{"shape":"Boolean"},
         "QuestionType":{"shape":"EvaluationFormQuestionType"},
         "QuestionTypeProperties":{"shape":"EvaluationFormQuestionTypeProperties"},
+        "Enablement":{"shape":"EvaluationFormItemEnablementConfiguration"},
         "Weight":{"shape":"EvaluationFormItemWeight"}
       }
     },
@@ -9782,6 +10325,20 @@
       "type":"integer",
       "max":10,
       "min":0
+    },
+    "EvaluationFormQuestionAutomationAnswerSource":{
+      "type":"structure",
+      "required":["SourceType"],
+      "members":{
+        "SourceType":{"shape":"EvaluationFormQuestionAutomationAnswerSourceType"}
+      }
+    },
+    "EvaluationFormQuestionAutomationAnswerSourceType":{
+      "type":"string",
+      "enum":[
+        "CONTACT_LENS_DATA",
+        "GEN_AI"
+      ]
     },
     "EvaluationFormQuestionInstructions":{
       "type":"string",
@@ -9805,7 +10362,8 @@
       "type":"structure",
       "members":{
         "Numeric":{"shape":"EvaluationFormNumericQuestionProperties"},
-        "SingleSelect":{"shape":"EvaluationFormSingleSelectQuestionProperties"}
+        "SingleSelect":{"shape":"EvaluationFormSingleSelectQuestionProperties"},
+        "Text":{"shape":"EvaluationFormTextQuestionProperties"}
       },
       "union":true
     },
@@ -9834,6 +10392,68 @@
         "Status":{"shape":"EvaluationFormScoringStatus"}
       }
     },
+    "EvaluationFormSearchConditionList":{
+      "type":"list",
+      "member":{"shape":"EvaluationFormSearchCriteria"}
+    },
+    "EvaluationFormSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"EvaluationFormSearchConditionList"},
+        "AndConditions":{"shape":"EvaluationFormSearchConditionList"},
+        "StringCondition":{"shape":"StringCondition"},
+        "NumberCondition":{"shape":"NumberCondition"},
+        "BooleanCondition":{"shape":"BooleanCondition"},
+        "DateTimeCondition":{"shape":"DateTimeCondition"}
+      }
+    },
+    "EvaluationFormSearchFilter":{
+      "type":"structure",
+      "members":{
+        "AttributeFilter":{"shape":"ControlPlaneAttributeFilter"}
+      }
+    },
+    "EvaluationFormSearchSummary":{
+      "type":"structure",
+      "required":[
+        "EvaluationFormId",
+        "EvaluationFormArn",
+        "Title",
+        "Status",
+        "CreatedTime",
+        "CreatedBy",
+        "LastModifiedTime",
+        "LastModifiedBy",
+        "LatestVersion"
+      ],
+      "members":{
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "EvaluationFormArn":{"shape":"ARN"},
+        "Title":{"shape":"EvaluationFormTitle"},
+        "Status":{"shape":"EvaluationFormVersionStatus"},
+        "Description":{"shape":"EvaluationFormDescription"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "CreatedBy":{"shape":"ARN"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedBy":{"shape":"ARN"},
+        "LastActivatedTime":{"shape":"Timestamp"},
+        "LastActivatedBy":{"shape":"ARN"},
+        "LatestVersion":{
+          "shape":"VersionNumber",
+          "box":true
+        },
+        "ActiveVersion":{
+          "shape":"VersionNumber",
+          "box":true
+        },
+        "AutoEvaluationEnabled":{"shape":"Boolean"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "EvaluationFormSearchSummaryList":{
+      "type":"list",
+      "member":{"shape":"EvaluationFormSearchSummary"}
+    },
     "EvaluationFormSection":{
       "type":"structure",
       "required":[
@@ -9856,10 +10476,10 @@
     },
     "EvaluationFormSingleSelectQuestionAutomation":{
       "type":"structure",
-      "required":["Options"],
       "members":{
         "Options":{"shape":"EvaluationFormSingleSelectQuestionAutomationOptionList"},
-        "DefaultOptionRefId":{"shape":"ReferenceId"}
+        "DefaultOptionRefId":{"shape":"ReferenceId"},
+        "AnswerSource":{"shape":"EvaluationFormQuestionAutomationAnswerSource"}
       }
     },
     "EvaluationFormSingleSelectQuestionAutomationOption":{
@@ -9872,8 +10492,7 @@
     "EvaluationFormSingleSelectQuestionAutomationOptionList":{
       "type":"list",
       "member":{"shape":"EvaluationFormSingleSelectQuestionAutomationOption"},
-      "max":20,
-      "min":1
+      "max":20
     },
     "EvaluationFormSingleSelectQuestionDisplayMode":{
       "type":"string",
@@ -9892,7 +10511,8 @@
         "RefId":{"shape":"ReferenceId"},
         "Text":{"shape":"EvaluationFormSingleSelectQuestionOptionText"},
         "Score":{"shape":"EvaluationFormQuestionAnswerScore"},
-        "AutomaticFail":{"shape":"Boolean"}
+        "AutomaticFail":{"shape":"Boolean"},
+        "AutomaticFailConfiguration":{"shape":"AutomaticFailConfiguration"}
       }
     },
     "EvaluationFormSingleSelectQuestionOptionList":{
@@ -9948,6 +10568,18 @@
       "type":"list",
       "member":{"shape":"EvaluationFormSummary"}
     },
+    "EvaluationFormTextQuestionAutomation":{
+      "type":"structure",
+      "members":{
+        "AnswerSource":{"shape":"EvaluationFormQuestionAutomationAnswerSource"}
+      }
+    },
+    "EvaluationFormTextQuestionProperties":{
+      "type":"structure",
+      "members":{
+        "Automation":{"shape":"EvaluationFormTextQuestionAutomation"}
+      }
+    },
     "EvaluationFormTitle":{
       "type":"string",
       "max":128,
@@ -9990,6 +10622,13 @@
       "type":"list",
       "member":{"shape":"EvaluationFormVersionSummary"}
     },
+    "EvaluationGenAIAnswerAnalysisDetails":{
+      "type":"structure",
+      "members":{
+        "Justification":{"shape":"EvaluationSuggestedAnswerJustification"},
+        "PointsOfInterest":{"shape":"EvaluationTranscriptPointsOfInterest"}
+      }
+    },
     "EvaluationId":{"type":"string"},
     "EvaluationMetadata":{
       "type":"structure",
@@ -10001,7 +10640,10 @@
         "ContactId":{"shape":"ContactId"},
         "EvaluatorArn":{"shape":"ARN"},
         "ContactAgentId":{"shape":"ResourceId"},
-        "Score":{"shape":"EvaluationScore"}
+        "CalibrationSessionId":{"shape":"ResourceId"},
+        "Score":{"shape":"EvaluationScore"},
+        "AutoEvaluation":{"shape":"AutoEvaluationDetails"},
+        "Acknowledgement":{"shape":"EvaluationAcknowledgement"}
       }
     },
     "EvaluationNote":{
@@ -10020,6 +10662,27 @@
       "key":{"shape":"ResourceId"},
       "value":{"shape":"EvaluationNote"},
       "max":100
+    },
+    "EvaluationQuestionAnswerAnalysisDetails":{
+      "type":"structure",
+      "members":{
+        "GenAI":{"shape":"EvaluationGenAIAnswerAnalysisDetails"},
+        "ContactLens":{"shape":"EvaluationContactLensAnswerAnalysisDetails"}
+      },
+      "union":true
+    },
+    "EvaluationQuestionAnswerAnalysisType":{
+      "type":"string",
+      "enum":[
+        "CONTACT_LENS_DATA",
+        "GEN_AI"
+      ]
+    },
+    "EvaluationQuestionInputDetails":{
+      "type":"structure",
+      "members":{
+        "TranscriptType":{"shape":"EvaluationTranscriptType"}
+      }
     },
     "EvaluationScore":{
       "type":"structure",
@@ -10040,12 +10703,128 @@
       "value":{"shape":"EvaluationScore"},
       "max":100
     },
+    "EvaluationSearchConditionList":{
+      "type":"list",
+      "member":{"shape":"EvaluationSearchCriteria"}
+    },
+    "EvaluationSearchCriteria":{
+      "type":"structure",
+      "members":{
+        "OrConditions":{"shape":"EvaluationSearchConditionList"},
+        "AndConditions":{"shape":"EvaluationSearchConditionList"},
+        "StringCondition":{"shape":"StringCondition"},
+        "NumberCondition":{"shape":"NumberCondition"},
+        "BooleanCondition":{"shape":"BooleanCondition"},
+        "DateTimeCondition":{"shape":"DateTimeCondition"},
+        "DecimalCondition":{"shape":"DecimalCondition"}
+      }
+    },
+    "EvaluationSearchFilter":{
+      "type":"structure",
+      "members":{
+        "AttributeFilter":{"shape":"ControlPlaneAttributeFilter"}
+      }
+    },
+    "EvaluationSearchMetadata":{
+      "type":"structure",
+      "required":[
+        "ContactId",
+        "EvaluatorArn"
+      ],
+      "members":{
+        "ContactId":{"shape":"ContactId"},
+        "EvaluatorArn":{"shape":"ARN"},
+        "ContactAgentId":{"shape":"ResourceId"},
+        "CalibrationSessionId":{"shape":"ResourceId"},
+        "ScorePercentage":{"shape":"EvaluationScorePercentage"},
+        "ScoreAutomaticFail":{"shape":"Boolean"},
+        "ScoreNotApplicable":{"shape":"Boolean"},
+        "AutoEvaluationEnabled":{"shape":"Boolean"},
+        "AutoEvaluationStatus":{"shape":"AutoEvaluationStatus"},
+        "AcknowledgedTime":{"shape":"Timestamp"},
+        "AcknowledgedBy":{"shape":"ARN"},
+        "AcknowledgerComment":{"shape":"EvaluationAcknowledgerCommentString"}
+      }
+    },
+    "EvaluationSearchSummary":{
+      "type":"structure",
+      "required":[
+        "EvaluationId",
+        "EvaluationArn",
+        "EvaluationFormVersion",
+        "Metadata",
+        "Status",
+        "CreatedTime",
+        "LastModifiedTime"
+      ],
+      "members":{
+        "EvaluationId":{"shape":"ResourceId"},
+        "EvaluationArn":{"shape":"ARN"},
+        "EvaluationFormId":{"shape":"ResourceId"},
+        "EvaluationFormVersion":{
+          "shape":"VersionNumber",
+          "box":true
+        },
+        "Metadata":{"shape":"EvaluationSearchMetadata"},
+        "Status":{"shape":"EvaluationStatus"},
+        "EvaluationType":{"shape":"EvaluationType"},
+        "CreatedTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "Tags":{"shape":"TagMap"}
+      }
+    },
+    "EvaluationSearchSummaryList":{
+      "type":"list",
+      "member":{"shape":"EvaluationSearchSummary"}
+    },
     "EvaluationStatus":{
       "type":"string",
       "enum":[
         "DRAFT",
         "SUBMITTED"
       ]
+    },
+    "EvaluationSuggestedAnswer":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "AnalysisType"
+      ],
+      "members":{
+        "Value":{"shape":"EvaluationAnswerData"},
+        "Status":{"shape":"EvaluationSuggestedAnswerStatus"},
+        "Input":{"shape":"EvaluationQuestionInputDetails"},
+        "AnalysisType":{"shape":"EvaluationQuestionAnswerAnalysisType"},
+        "AnalysisDetails":{"shape":"EvaluationQuestionAnswerAnalysisDetails"}
+      }
+    },
+    "EvaluationSuggestedAnswerJustification":{
+      "type":"string",
+      "min":1
+    },
+    "EvaluationSuggestedAnswerStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "FAILED",
+        "SUCCEEDED"
+      ]
+    },
+    "EvaluationSuggestedAnswerTranscriptMillisOffset":{
+      "type":"integer",
+      "min":0
+    },
+    "EvaluationSuggestedAnswerTranscriptMillisecondOffsets":{
+      "type":"structure",
+      "required":["BeginOffsetMillis"],
+      "members":{
+        "BeginOffsetMillis":{"shape":"EvaluationSuggestedAnswerTranscriptMillisOffset"}
+      }
+    },
+    "EvaluationSuggestedAnswerTranscriptSegment":{"type":"string"},
+    "EvaluationSuggestedAnswersList":{
+      "type":"list",
+      "member":{"shape":"EvaluationSuggestedAnswer"}
     },
     "EvaluationSummary":{
       "type":"structure",
@@ -10064,9 +10843,14 @@
         "EvaluationArn":{"shape":"ARN"},
         "EvaluationFormTitle":{"shape":"EvaluationFormTitle"},
         "EvaluationFormId":{"shape":"ResourceId"},
+        "CalibrationSessionId":{"shape":"ResourceId"},
         "Status":{"shape":"EvaluationStatus"},
+        "AutoEvaluationEnabled":{"shape":"Boolean"},
+        "AutoEvaluationStatus":{"shape":"AutoEvaluationStatus"},
         "EvaluatorArn":{"shape":"ARN"},
         "Score":{"shape":"EvaluationScore"},
+        "Acknowledgement":{"shape":"EvaluationAcknowledgementSummary"},
+        "EvaluationType":{"shape":"EvaluationType"},
         "CreatedTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"}
       }
@@ -10074,6 +10858,40 @@
     "EvaluationSummaryList":{
       "type":"list",
       "member":{"shape":"EvaluationSummary"}
+    },
+    "EvaluationTranscriptPointOfInterest":{
+      "type":"structure",
+      "members":{
+        "MillisecondOffsets":{"shape":"EvaluationSuggestedAnswerTranscriptMillisecondOffsets"},
+        "TranscriptSegment":{"shape":"EvaluationSuggestedAnswerTranscriptSegment"}
+      }
+    },
+    "EvaluationTranscriptPointsOfInterest":{
+      "type":"list",
+      "member":{"shape":"EvaluationTranscriptPointOfInterest"},
+      "max":100,
+      "min":0
+    },
+    "EvaluationTranscriptType":{
+      "type":"string",
+      "enum":[
+        "RAW",
+        "REDACTED"
+      ]
+    },
+    "EvaluationType":{
+      "type":"string",
+      "enum":[
+        "STANDARD",
+        "CALIBRATION"
+      ]
+    },
+    "EvaluatorUserUnion":{
+      "type":"structure",
+      "members":{
+        "ConnectUserArn":{"shape":"ARN"}
+      },
+      "union":true
     },
     "EventBridgeActionDefinition":{
       "type":"structure",
@@ -10145,6 +10963,7 @@
         "INVALID_CUSTOMER_ENDPOINT",
         "INVALID_SYSTEM_ENDPOINT",
         "INVALID_QUEUE",
+        "INVALID_OUTBOUND_STRATEGY",
         "MISSING_CAMPAIGN",
         "MISSING_CUSTOMER_ENDPOINT",
         "MISSING_QUEUE_ID_AND_SYSTEM_ENDPOINT",
@@ -10244,7 +11063,8 @@
         "Queues":{"shape":"Queues"},
         "Channels":{"shape":"Channels"},
         "RoutingProfiles":{"shape":"RoutingProfiles"},
-        "RoutingStepExpressions":{"shape":"RoutingExpressions"}
+        "RoutingStepExpressions":{"shape":"RoutingExpressions"},
+        "AgentStatuses":{"shape":"AgentStatuses"}
       }
     },
     "FiltersV2List":{
@@ -10369,6 +11189,27 @@
       "type":"structure",
       "members":{
         "Attributes":{"shape":"Attributes"}
+      }
+    },
+    "GetContactMetricsRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "ContactId",
+        "Metrics"
+      ],
+      "members":{
+        "InstanceId":{"shape":"InstanceIdOrArn"},
+        "ContactId":{"shape":"InstanceIdOrArn"},
+        "Metrics":{"shape":"ContactMetrics"}
+      }
+    },
+    "GetContactMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "MetricResults":{"shape":"ContactMetricResults"},
+        "Id":{"shape":"ContactId"},
+        "Arn":{"shape":"ARN"}
       }
     },
     "GetCurrentMetricDataRequest":{
@@ -10695,7 +11536,8 @@
         "QUEUE",
         "CHANNEL",
         "ROUTING_PROFILE",
-        "ROUTING_STEP_EXPRESSION"
+        "ROUTING_STEP_EXPRESSION",
+        "AGENT_STATUS"
       ]
     },
     "GroupingV2":{"type":"string"},
@@ -11168,6 +12010,12 @@
       "type":"list",
       "member":{"shape":"ContactInitiationMethod"}
     },
+    "InputPredefinedAttributeConfiguration":{
+      "type":"structure",
+      "members":{
+        "EnableValueValidationOnAssociation":{"shape":"EnableValueValidationOnAssociation"}
+      }
+    },
     "Instance":{
       "type":"structure",
       "members":{
@@ -11432,6 +12280,7 @@
       "type":"list",
       "member":{"shape":"IpCidr"}
     },
+    "IsReadOnly":{"type":"boolean"},
     "IvrRecordingTrack":{
       "type":"string",
       "enum":["ALL"]
@@ -12607,6 +13456,45 @@
         "NextToken":{"shape":"LargeNextToken"}
       }
     },
+    "ListRoutingProfileManualAssignmentQueuesRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceId",
+        "RoutingProfileId"
+      ],
+      "members":{
+        "InstanceId":{
+          "shape":"InstanceId",
+          "location":"uri",
+          "locationName":"InstanceId"
+        },
+        "RoutingProfileId":{
+          "shape":"RoutingProfileId",
+          "location":"uri",
+          "locationName":"RoutingProfileId"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true,
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListRoutingProfileManualAssignmentQueuesResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "RoutingProfileManualAssignmentQueueConfigSummaryList":{"shape":"RoutingProfileManualAssignmentQueueConfigSummaryList"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "LastModifiedRegion":{"shape":"RegionName"}
+      }
+    },
     "ListRoutingProfileQueuesRequest":{
       "type":"structure",
       "required":[
@@ -13416,6 +14304,17 @@
       "min":1,
       "pattern":"(^[\\S].*[\\S]$)|(^[\\S]$)"
     },
+    "NameCriteria":{
+      "type":"structure",
+      "required":[
+        "SearchText",
+        "MatchType"
+      ],
+      "members":{
+        "SearchText":{"shape":"SearchTextList"},
+        "MatchType":{"shape":"SearchContactsMatchType"}
+      }
+    },
     "Namespace":{
       "type":"string",
       "max":128,
@@ -13453,6 +14352,7 @@
       }
     },
     "NullableBoolean":{"type":"boolean"},
+    "NullableDouble":{"type":"double"},
     "NullableProficiencyLevel":{
       "type":"float",
       "max":5.0,
@@ -13497,7 +14397,10 @@
         "NUMBER_OF_INTERRUPTIONS",
         "CONTACT_DURATION",
         "AGENT_INTERACTION_DURATION",
-        "CUSTOMER_HOLD_TIME"
+        "CUSTOMER_HOLD_TIME",
+        "LONGEST_HOLD_DURATION",
+        "NUMBER_OF_HOLDS",
+        "AGENT_INTERACTION_AND_HOLD_DURATION"
       ]
     },
     "NumericQuestionPropertyValueAutomation":{
@@ -13599,6 +14502,24 @@
       "max":36,
       "min":36
     },
+    "OutboundStrategy":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"OutboundStrategyType"},
+        "Config":{"shape":"OutboundStrategyConfig"}
+      }
+    },
+    "OutboundStrategyConfig":{
+      "type":"structure",
+      "members":{
+        "AgentFirst":{"shape":"AgentFirst"}
+      }
+    },
+    "OutboundStrategyType":{
+      "type":"string",
+      "enum":["AGENT_FIRST"]
+    },
     "OutboundSubject":{
       "type":"string",
       "max":998,
@@ -13665,7 +14586,8 @@
       "type":"structure",
       "members":{
         "ParticipantRole":{"shape":"ParticipantRole"},
-        "DisplayName":{"shape":"DisplayName"}
+        "DisplayName":{"shape":"DisplayName"},
+        "ParticipantCapabilities":{"shape":"ParticipantCapabilities"}
       }
     },
     "ParticipantId":{
@@ -13814,6 +14736,7 @@
         "SourceContactId":{"shape":"ContactId"}
       }
     },
+    "PersistentConnection":{"type":"boolean"},
     "PhoneNumber":{
       "type":"string",
       "pattern":"\\\\+[1-9]\\\\d{1,14}$"
@@ -14152,6 +15075,17 @@
       "max":128,
       "min":0
     },
+    "PostAcceptPreviewTimeoutDurationInSeconds":{
+      "type":"integer",
+      "min":0
+    },
+    "PostAcceptTimeoutConfig":{
+      "type":"structure",
+      "required":["DurationInSeconds"],
+      "members":{
+        "DurationInSeconds":{"shape":"PostAcceptPreviewTimeoutDurationInSeconds"}
+      }
+    },
     "PotentialAudioQualityIssue":{
       "type":"string",
       "max":128,
@@ -14178,14 +15112,34 @@
       "members":{
         "Name":{"shape":"PredefinedAttributeName"},
         "Values":{"shape":"PredefinedAttributeValues"},
+        "Purposes":{"shape":"PredefinedAttributePurposeNameList"},
+        "AttributeConfiguration":{"shape":"PredefinedAttributeConfiguration"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "LastModifiedRegion":{"shape":"RegionName"}
       }
     },
+    "PredefinedAttributeConfiguration":{
+      "type":"structure",
+      "members":{
+        "EnableValueValidationOnAssociation":{"shape":"EnableValueValidationOnAssociation"},
+        "IsReadOnly":{"shape":"IsReadOnly"}
+      }
+    },
     "PredefinedAttributeName":{
       "type":"string",
-      "max":64,
+      "max":100,
       "min":1
+    },
+    "PredefinedAttributePurposeName":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "PredefinedAttributePurposeNameList":{
+      "type":"list",
+      "member":{"shape":"PredefinedAttributePurposeName"},
+      "max":10,
+      "min":0
     },
     "PredefinedAttributeSearchConditionList":{
       "type":"list",
@@ -14205,14 +15159,14 @@
     },
     "PredefinedAttributeStringValue":{
       "type":"string",
-      "max":64,
+      "max":100,
       "min":1
     },
     "PredefinedAttributeStringValuesList":{
       "type":"list",
       "member":{"shape":"PredefinedAttributeStringValue"},
-      "max":128,
-      "min":1
+      "max":500,
+      "min":0
     },
     "PredefinedAttributeSummary":{
       "type":"structure",
@@ -14237,6 +15191,17 @@
       "type":"string",
       "max":128,
       "min":1
+    },
+    "Preview":{
+      "type":"structure",
+      "required":[
+        "PostAcceptTimeoutConfig",
+        "AllowedUserActions"
+      ],
+      "members":{
+        "PostAcceptTimeoutConfig":{"shape":"PostAcceptTimeoutConfig"},
+        "AllowedUserActions":{"shape":"AllowedUserActions"}
+      }
     },
     "Priority":{
       "type":"integer",
@@ -14408,6 +15373,18 @@
         "Agent":{"shape":"AgentQualityMetrics"},
         "Customer":{"shape":"CustomerQualityMetrics"}
       }
+    },
+    "QuestionRuleCategoryAutomationCondition":{
+      "type":"string",
+      "enum":[
+        "PRESENT",
+        "NOT_PRESENT"
+      ]
+    },
+    "QuestionRuleCategoryAutomationLabel":{
+      "type":"string",
+      "max":50,
+      "min":1
     },
     "Queue":{
       "type":"structure",
@@ -15352,12 +16329,14 @@
         "DefaultOutboundQueueId":{"shape":"QueueId"},
         "Tags":{"shape":"TagMap"},
         "NumberOfAssociatedQueues":{"shape":"Long"},
+        "NumberOfAssociatedManualAssignmentQueues":{"shape":"Long"},
         "NumberOfAssociatedUsers":{"shape":"Long"},
         "AgentAvailabilityTimer":{"shape":"AgentAvailabilityTimer"},
         "LastModifiedTime":{"shape":"Timestamp"},
         "LastModifiedRegion":{"shape":"RegionName"},
         "IsDefault":{"shape":"Boolean"},
-        "AssociatedQueueIds":{"shape":"AssociatedQueueIdList"}
+        "AssociatedQueueIds":{"shape":"AssociatedQueueIdList"},
+        "AssociatedManualAssignmentQueueIds":{"shape":"AssociatedQueueIdList"}
       }
     },
     "RoutingProfileDescription":{
@@ -15369,6 +16348,38 @@
     "RoutingProfileList":{
       "type":"list",
       "member":{"shape":"RoutingProfile"}
+    },
+    "RoutingProfileManualAssignmentQueueConfig":{
+      "type":"structure",
+      "required":["QueueReference"],
+      "members":{
+        "QueueReference":{"shape":"RoutingProfileQueueReference"}
+      }
+    },
+    "RoutingProfileManualAssignmentQueueConfigList":{
+      "type":"list",
+      "member":{"shape":"RoutingProfileManualAssignmentQueueConfig"},
+      "max":10,
+      "min":1
+    },
+    "RoutingProfileManualAssignmentQueueConfigSummary":{
+      "type":"structure",
+      "required":[
+        "QueueId",
+        "QueueArn",
+        "QueueName",
+        "Channel"
+      ],
+      "members":{
+        "QueueId":{"shape":"QueueId"},
+        "QueueArn":{"shape":"ARN"},
+        "QueueName":{"shape":"QueueName"},
+        "Channel":{"shape":"Channel"}
+      }
+    },
+    "RoutingProfileManualAssignmentQueueConfigSummaryList":{
+      "type":"list",
+      "member":{"shape":"RoutingProfileManualAssignmentQueueConfigSummary"}
     },
     "RoutingProfileName":{
       "type":"string",
@@ -15655,6 +16666,28 @@
         "AvailableNumbersList":{"shape":"AvailableNumbersList"}
       }
     },
+    "SearchContactEvaluationsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchCriteria":{"shape":"EvaluationSearchCriteria"},
+        "SearchFilter":{"shape":"EvaluationSearchFilter"}
+      }
+    },
+    "SearchContactEvaluationsResponse":{
+      "type":"structure",
+      "members":{
+        "EvaluationSearchSummaryList":{"shape":"EvaluationSearchSummaryList"},
+        "NextToken":{"shape":"NextToken"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
+      }
+    },
     "SearchContactFlowModulesRequest":{
       "type":"structure",
       "required":["InstanceId"],
@@ -15699,11 +16732,35 @@
         "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
       }
     },
+    "SearchContactsAdditionalTimeRange":{
+      "type":"structure",
+      "required":[
+        "Criteria",
+        "MatchType"
+      ],
+      "members":{
+        "Criteria":{"shape":"SearchContactsAdditionalTimeRangeCriteriaList"},
+        "MatchType":{"shape":"SearchContactsMatchType"}
+      }
+    },
+    "SearchContactsAdditionalTimeRangeCriteria":{
+      "type":"structure",
+      "members":{
+        "TimeRange":{"shape":"SearchContactsTimeRange"},
+        "TimestampCondition":{"shape":"SearchContactsTimestampCondition"}
+      }
+    },
+    "SearchContactsAdditionalTimeRangeCriteriaList":{
+      "type":"list",
+      "member":{"shape":"SearchContactsAdditionalTimeRangeCriteria"}
+    },
     "SearchContactsMatchType":{
       "type":"string",
       "enum":[
         "MATCH_ALL",
-        "MATCH_ANY"
+        "MATCH_ANY",
+        "MATCH_EXACT",
+        "MATCH_NONE"
       ]
     },
     "SearchContactsRequest":{
@@ -15746,24 +16803,43 @@
         "EndTime":{"shape":"Timestamp"}
       }
     },
+    "SearchContactsTimeRangeConditionType":{
+      "type":"string",
+      "enum":["NOT_EXISTS"]
+    },
     "SearchContactsTimeRangeType":{
       "type":"string",
       "enum":[
         "INITIATION_TIMESTAMP",
         "SCHEDULED_TIMESTAMP",
         "CONNECTED_TO_AGENT_TIMESTAMP",
-        "DISCONNECT_TIMESTAMP"
+        "DISCONNECT_TIMESTAMP",
+        "ENQUEUE_TIMESTAMP"
       ]
+    },
+    "SearchContactsTimestampCondition":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "ConditionType"
+      ],
+      "members":{
+        "Type":{"shape":"SearchContactsTimeRangeType"},
+        "ConditionType":{"shape":"SearchContactsTimeRangeConditionType"}
+      }
     },
     "SearchCriteria":{
       "type":"structure",
       "members":{
+        "Name":{"shape":"NameCriteria"},
         "AgentIds":{"shape":"AgentResourceIdList"},
         "AgentHierarchyGroups":{"shape":"AgentHierarchyGroups"},
         "Channels":{"shape":"ChannelList"},
         "ContactAnalysis":{"shape":"ContactAnalysis"},
         "InitiationMethods":{"shape":"InitiationMethodList"},
         "QueueIds":{"shape":"QueueIdList"},
+        "RoutingCriteria":{"shape":"SearchableRoutingCriteria"},
+        "AdditionalTimeRange":{"shape":"SearchContactsAdditionalTimeRange"},
         "SearchableContactAttributes":{"shape":"SearchableContactAttributes"},
         "SearchableSegmentAttributes":{"shape":"SearchableSegmentAttributes"}
       }
@@ -15784,6 +16860,28 @@
       "members":{
         "NextToken":{"shape":"NextToken"},
         "EmailAddresses":{"shape":"EmailAddressList"},
+        "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
+      }
+    },
+    "SearchEvaluationFormsRequest":{
+      "type":"structure",
+      "required":["InstanceId"],
+      "members":{
+        "InstanceId":{"shape":"InstanceId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{
+          "shape":"MaxResult100",
+          "box":true
+        },
+        "SearchCriteria":{"shape":"EvaluationFormSearchCriteria"},
+        "SearchFilter":{"shape":"EvaluationFormSearchFilter"}
+      }
+    },
+    "SearchEvaluationFormsResponse":{
+      "type":"structure",
+      "members":{
+        "EvaluationFormSearchSummaryList":{"shape":"EvaluationFormSearchSummaryList"},
+        "NextToken":{"shape":"NextToken"},
         "ApproximateTotalCount":{"shape":"ApproximateTotalCount"}
       }
     },
@@ -16061,6 +17159,13 @@
         "NextToken":{"shape":"VocabularyNextToken"}
       }
     },
+    "SearchableAgentCriteriaStep":{
+      "type":"structure",
+      "members":{
+        "AgentIds":{"shape":"AgentResourceIdList"},
+        "MatchType":{"shape":"SearchContactsMatchType"}
+      }
+    },
     "SearchableContactAttributeKey":{
       "type":"string",
       "max":100,
@@ -16107,6 +17212,22 @@
     "SearchableQueueType":{
       "type":"string",
       "enum":["STANDARD"]
+    },
+    "SearchableRoutingCriteria":{
+      "type":"structure",
+      "members":{
+        "Steps":{"shape":"SearchableRoutingCriteriaStepList"}
+      }
+    },
+    "SearchableRoutingCriteriaStep":{
+      "type":"structure",
+      "members":{
+        "AgentCriteria":{"shape":"SearchableAgentCriteriaStep"}
+      }
+    },
+    "SearchableRoutingCriteriaStepList":{
+      "type":"list",
+      "member":{"shape":"SearchableRoutingCriteriaStep"}
     },
     "SearchableSegmentAttributeKey":{
       "type":"string",
@@ -16268,10 +17389,16 @@
       "members":{
         "ValueString":{"shape":"SegmentAttributeValueString"},
         "ValueMap":{"shape":"SegmentAttributeValueMap"},
-        "ValueInteger":{"shape":"SegmentAttributeValueInteger"}
+        "ValueInteger":{"shape":"SegmentAttributeValueInteger"},
+        "ValueList":{"shape":"SegmentAttributeValueList"},
+        "ValueArn":{"shape":"SegmentAttributeValueString"}
       }
     },
     "SegmentAttributeValueInteger":{"type":"integer"},
+    "SegmentAttributeValueList":{
+      "type":"list",
+      "member":{"shape":"SegmentAttributeValue"}
+    },
     "SegmentAttributeValueMap":{
       "type":"map",
       "key":{"shape":"SegmentAttributeName"},
@@ -16469,7 +17596,8 @@
         "CONNECTED_TO_AGENT_TIMESTAMP",
         "DISCONNECT_TIMESTAMP",
         "INITIATION_METHOD",
-        "CHANNEL"
+        "CHANNEL",
+        "EXPIRY_TIMESTAMP"
       ]
     },
     "SourceApplicationName":{
@@ -16593,10 +17721,12 @@
         },
         "ContactId":{"shape":"ContactId"},
         "EvaluationFormId":{"shape":"ResourceId"},
+        "AutoEvaluationConfiguration":{"shape":"AutoEvaluationConfiguration"},
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagMap"}
       }
     },
     "StartContactEvaluationResponse":{
@@ -16772,7 +17902,8 @@
         "Attributes":{"shape":"Attributes"},
         "AnswerMachineDetectionConfig":{"shape":"AnswerMachineDetectionConfig"},
         "CampaignId":{"shape":"CampaignId"},
-        "TrafficType":{"shape":"TrafficType"}
+        "TrafficType":{"shape":"TrafficType"},
+        "OutboundStrategy":{"shape":"OutboundStrategy"}
       }
     },
     "StartOutboundVoiceContactResponse":{
@@ -17021,7 +18152,8 @@
           "locationName":"EvaluationId"
         },
         "Answers":{"shape":"EvaluationAnswersInputMap"},
-        "Notes":{"shape":"EvaluationNotesMap"}
+        "Notes":{"shape":"EvaluationNotesMap"},
+        "SubmittedBy":{"shape":"EvaluatorUserUnion"}
       }
     },
     "SubmitContactEvaluationResponse":{
@@ -17311,6 +18443,13 @@
       "type":"string",
       "max":500,
       "min":1
+    },
+    "TaskTemplateInfoV2":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"ARN"},
+        "Name":{"shape":"TaskTemplateName"}
+      }
     },
     "TaskTemplateList":{
       "type":"list",
@@ -17730,7 +18869,8 @@
           "locationName":"EvaluationId"
         },
         "Answers":{"shape":"EvaluationAnswersInputMap"},
-        "Notes":{"shape":"EvaluationNotesMap"}
+        "Notes":{"shape":"EvaluationNotesMap"},
+        "UpdatedBy":{"shape":"EvaluatorUserUnion"}
       }
     },
     "UpdateContactEvaluationResponse":{
@@ -18003,6 +19143,7 @@
         "Description":{"shape":"EvaluationFormDescription"},
         "Items":{"shape":"EvaluationFormItemsList"},
         "ScoringStrategy":{"shape":"EvaluationFormScoringStrategy"},
+        "AutoEvaluationConfiguration":{"shape":"EvaluationFormAutoEvaluationConfiguration"},
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -18243,7 +19384,9 @@
           "location":"uri",
           "locationName":"Name"
         },
-        "Values":{"shape":"PredefinedAttributeValues"}
+        "Values":{"shape":"PredefinedAttributeValues"},
+        "Purposes":{"shape":"PredefinedAttributePurposeNameList"},
+        "AttributeConfiguration":{"shape":"InputPredefinedAttributeConfiguration"}
       }
     },
     "UpdatePromptRequest":{
@@ -19057,7 +20200,11 @@
         "PhoneType":{"shape":"PhoneType"},
         "AutoAccept":{"shape":"AutoAccept"},
         "AfterContactWorkTimeLimit":{"shape":"AfterContactWorkTimeLimit"},
-        "DeskPhoneNumber":{"shape":"PhoneNumber"}
+        "DeskPhoneNumber":{"shape":"PhoneNumber"},
+        "PersistentConnection":{
+          "shape":"PersistentConnection",
+          "box":true
+        }
       }
     },
     "UserProficiency":{

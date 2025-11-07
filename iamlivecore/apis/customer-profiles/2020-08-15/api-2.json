@@ -613,6 +613,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetProfileHistoryRecord":{
+      "name":"GetProfileHistoryRecord",
+      "http":{
+        "method":"GET",
+        "requestUri":"/domains/{DomainName}/profiles/{ProfileId}/history-records/{Id}"
+      },
+      "input":{"shape":"GetProfileHistoryRecordRequest"},
+      "output":{"shape":"GetProfileHistoryRecordResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "GetProfileObjectType":{
       "name":"GetProfileObjectType",
       "http":{
@@ -660,7 +676,8 @@
         {"shape":"BadRequestException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetSegmentEstimate":{
       "name":"GetSegmentEstimate",
@@ -743,7 +760,8 @@
         {"shape":"BadRequestException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetUploadJobPath":{
       "name":"GetUploadJobPath",
@@ -760,7 +778,8 @@
         {"shape":"BadRequestException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetWorkflow":{
       "name":"GetWorkflow",
@@ -970,6 +989,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListProfileHistoryRecords":{
+      "name":"ListProfileHistoryRecords",
+      "http":{
+        "method":"POST",
+        "requestUri":"/domains/{DomainName}/profiles/history-records"
+      },
+      "input":{"shape":"ListProfileHistoryRecordsRequest"},
+      "output":{"shape":"ListProfileHistoryRecordsResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListProfileObjectTypeTemplates":{
       "name":"ListProfileObjectTypeTemplates",
       "http":{
@@ -1049,7 +1084,8 @@
         {"shape":"BadRequestException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -1080,7 +1116,8 @@
         {"shape":"BadRequestException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"}
-      ]
+      ],
+      "readonly":true
     },
     "ListWorkflows":{
       "name":"ListWorkflows",
@@ -1334,6 +1371,20 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "ActionType":{
+      "type":"string",
+      "enum":[
+        "ADDED_PROFILE_KEY",
+        "DELETED_PROFILE_KEY",
+        "CREATED",
+        "UPDATED",
+        "INGESTED",
+        "DELETED_BY_CUSTOMER",
+        "EXPIRED",
+        "MERGED",
+        "DELETED_BY_MERGE"
+      ]
     },
     "AddProfileKeyRequest":{
       "type":"structure",
@@ -1849,6 +1900,27 @@
         "MatchingAttributesList":{"shape":"MatchingAttributesList"}
       }
     },
+    "ContactPreference":{
+      "type":"structure",
+      "members":{
+        "KeyName":{"shape":"name"},
+        "KeyValue":{"shape":"string1To255"},
+        "ProfileId":{"shape":"uuid"},
+        "ContactType":{"shape":"ContactType"}
+      }
+    },
+    "ContactType":{
+      "type":"string",
+      "enum":[
+        "PhoneNumber",
+        "MobilePhoneNumber",
+        "HomePhoneNumber",
+        "BusinessPhoneNumber",
+        "EmailAddress",
+        "PersonalEmailAddress",
+        "BusinessEmailAddress"
+      ]
+    },
     "CreateCalculatedAttributeDefinitionRequest":{
       "type":"structure",
       "required":[
@@ -2124,7 +2196,9 @@
         "BillingAddress":{"shape":"Address"},
         "Attributes":{"shape":"Attributes"},
         "PartyTypeString":{"shape":"sensitiveString1To255"},
-        "GenderString":{"shape":"sensitiveString1To255"}
+        "GenderString":{"shape":"sensitiveString1To255"},
+        "ProfileType":{"shape":"ProfileType"},
+        "EngagementPreferences":{"shape":"EngagementPreferences"}
       }
     },
     "CreateProfileResponse":{
@@ -2714,7 +2788,19 @@
       "max":3,
       "min":1
     },
+    "EmailPreferenceList":{
+      "type":"list",
+      "member":{"shape":"ContactPreference"}
+    },
     "End":{"type":"integer"},
+    "EngagementPreferences":{
+      "type":"structure",
+      "members":{
+        "Phone":{"shape":"PhonePreferenceList"},
+        "Email":{"shape":"EmailPreferenceList"}
+      },
+      "sensitive":true
+    },
     "EstimateStatus":{
       "type":"string",
       "enum":[
@@ -2928,7 +3014,9 @@
         "ShippingAddress":{"shape":"uuid"},
         "MailingAddress":{"shape":"uuid"},
         "BillingAddress":{"shape":"uuid"},
-        "Attributes":{"shape":"AttributeSourceIdMap"}
+        "Attributes":{"shape":"AttributeSourceIdMap"},
+        "ProfileType":{"shape":"uuid"},
+        "EngagementPreferences":{"shape":"uuid"}
       }
     },
     "Filter":{
@@ -3389,6 +3477,50 @@
         "MatchGenerationDate":{"shape":"timestamp"},
         "PotentialMatches":{"shape":"matchesNumber"},
         "Matches":{"shape":"MatchesList"}
+      }
+    },
+    "GetProfileHistoryRecordRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "ProfileId",
+        "Id"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "ProfileId":{
+          "shape":"uuid",
+          "location":"uri",
+          "locationName":"ProfileId"
+        },
+        "Id":{
+          "shape":"uuid",
+          "location":"uri",
+          "locationName":"Id"
+        }
+      }
+    },
+    "GetProfileHistoryRecordResponse":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "ObjectTypeName",
+        "CreatedAt",
+        "ActionType"
+      ],
+      "members":{
+        "Id":{"shape":"uuid"},
+        "ObjectTypeName":{"shape":"typeName"},
+        "CreatedAt":{"shape":"timestamp"},
+        "LastUpdatedAt":{"shape":"timestamp"},
+        "ActionType":{"shape":"ActionType"},
+        "ProfileObjectUniqueKey":{"shape":"string1To255"},
+        "Content":{"shape":"stringifiedJson"},
+        "PerformedBy":{"shape":"string1To255"}
       }
     },
     "GetProfileObjectTypeRequest":{
@@ -4386,6 +4518,41 @@
         "NextToken":{"shape":"token"}
       }
     },
+    "ListProfileHistoryRecordsRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "ProfileId"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"name",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "ProfileId":{"shape":"uuid"},
+        "ObjectTypeName":{"shape":"typeName"},
+        "NextToken":{
+          "shape":"token",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"maxSize100",
+          "location":"querystring",
+          "locationName":"max-results"
+        },
+        "ActionType":{"shape":"ActionType"},
+        "PerformedBy":{"shape":"string1To255"}
+      }
+    },
+    "ListProfileHistoryRecordsResponse":{
+      "type":"structure",
+      "members":{
+        "ProfileHistoryRecords":{"shape":"ProfileHistoryRecords"},
+        "NextToken":{"shape":"token"}
+      }
+    },
     "ListProfileObjectTypeItem":{
       "type":"structure",
       "required":[
@@ -4950,6 +5117,10 @@
       "max":4,
       "min":1
     },
+    "PhonePreferenceList":{
+      "type":"list",
+      "member":{"shape":"ContactPreference"}
+    },
     "Profile":{
       "type":"structure",
       "members":{
@@ -4977,7 +5148,9 @@
         "Attributes":{"shape":"Attributes"},
         "FoundByItems":{"shape":"foundByList"},
         "PartyTypeString":{"shape":"sensitiveString1To255"},
-        "GenderString":{"shape":"sensitiveString1To255"}
+        "GenderString":{"shape":"sensitiveString1To255"},
+        "ProfileType":{"shape":"ProfileType"},
+        "EngagementPreferences":{"shape":"EngagementPreferences"}
       }
     },
     "ProfileAttributeValuesRequest":{
@@ -5097,6 +5270,10 @@
         "Attributes":{
           "shape":"CustomAttributes",
           "locationName":"Attributes"
+        },
+        "ProfileType":{
+          "shape":"ProfileTypeDimension",
+          "locationName":"ProfileType"
         }
       },
       "sensitive":true
@@ -5117,6 +5294,28 @@
           "locationName":"Values"
         }
       }
+    },
+    "ProfileHistoryRecord":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "ObjectTypeName",
+        "CreatedAt",
+        "ActionType"
+      ],
+      "members":{
+        "Id":{"shape":"uuid"},
+        "ObjectTypeName":{"shape":"typeName"},
+        "CreatedAt":{"shape":"timestamp"},
+        "LastUpdatedAt":{"shape":"timestamp"},
+        "ActionType":{"shape":"ActionType"},
+        "ProfileObjectUniqueKey":{"shape":"string1To255"},
+        "PerformedBy":{"shape":"string1To255"}
+      }
+    },
+    "ProfileHistoryRecords":{
+      "type":"list",
+      "member":{"shape":"ProfileHistoryRecord"}
     },
     "ProfileId":{"type":"string"},
     "ProfileIdList":{
@@ -5193,6 +5392,44 @@
           "locationName":"Profile"
         }
       }
+    },
+    "ProfileType":{
+      "type":"string",
+      "enum":[
+        "ACCOUNT_PROFILE",
+        "PROFILE"
+      ],
+      "sensitive":true
+    },
+    "ProfileTypeDimension":{
+      "type":"structure",
+      "required":[
+        "DimensionType",
+        "Values"
+      ],
+      "members":{
+        "DimensionType":{
+          "shape":"ProfileTypeDimensionType",
+          "locationName":"DimensionType"
+        },
+        "Values":{
+          "shape":"ProfileTypeValues",
+          "locationName":"Values"
+        }
+      }
+    },
+    "ProfileTypeDimensionType":{
+      "type":"string",
+      "enum":[
+        "INCLUSIVE",
+        "EXCLUSIVE"
+      ]
+    },
+    "ProfileTypeValues":{
+      "type":"list",
+      "member":{"shape":"ProfileType"},
+      "max":1,
+      "min":1
     },
     "Profiles":{
       "type":"list",
@@ -6227,7 +6464,9 @@
         "BillingAddress":{"shape":"UpdateAddress"},
         "Attributes":{"shape":"UpdateAttributes"},
         "PartyTypeString":{"shape":"sensitiveString0To255"},
-        "GenderString":{"shape":"sensitiveString0To255"}
+        "GenderString":{"shape":"sensitiveString0To255"},
+        "ProfileType":{"shape":"ProfileType"},
+        "EngagementPreferences":{"shape":"EngagementPreferences"}
       }
     },
     "UpdateProfileResponse":{

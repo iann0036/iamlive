@@ -2372,6 +2372,19 @@
       },
       "exception":true
     },
+    "ConnectionArn":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"arn:aws(-[\\w]+)*:.+:.+:[0-9]{12}:.+"
+    },
+    "ContainerRegistryMap":{
+      "type":"structure",
+      "members":{
+        "registryMappings":{"shape":"RegistryMappingsList"},
+        "imageMappings":{"shape":"ImageMappingsList"}
+      }
+    },
     "CreateAnnotationStoreRequest":{
       "type":"structure",
       "required":["storeFormat"],
@@ -2703,7 +2716,15 @@
           "idempotencyToken":true
         },
         "accelerators":{"shape":"Accelerators"},
-        "storageType":{"shape":"StorageType"}
+        "storageType":{"shape":"StorageType"},
+        "containerRegistryMap":{"shape":"ContainerRegistryMap"},
+        "containerRegistryMapUri":{"shape":"Uri"},
+        "readmeMarkdown":{"shape":"ReadmeMarkdown"},
+        "parameterTemplatePath":{"shape":"ParameterTemplatePath"},
+        "readmePath":{"shape":"ReadmePath"},
+        "definitionRepository":{"shape":"DefinitionRepository"},
+        "workflowBucketOwnerId":{"shape":"WorkflowBucketOwnerId"},
+        "readmeUri":{"shape":"S3UriForObject"}
       }
     },
     "CreateWorkflowRequestStorageCapacityInteger":{
@@ -2750,7 +2771,14 @@
         "storageType":{"shape":"StorageType"},
         "storageCapacity":{"shape":"CreateWorkflowVersionRequestStorageCapacityInteger"},
         "tags":{"shape":"TagMap"},
-        "workflowBucketOwnerId":{"shape":"WorkflowBucketOwnerId"}
+        "workflowBucketOwnerId":{"shape":"WorkflowBucketOwnerId"},
+        "containerRegistryMap":{"shape":"ContainerRegistryMap"},
+        "containerRegistryMapUri":{"shape":"Uri"},
+        "readmeMarkdown":{"shape":"ReadmeMarkdown"},
+        "parameterTemplatePath":{"shape":"ParameterTemplatePath"},
+        "readmePath":{"shape":"ReadmePath"},
+        "definitionRepository":{"shape":"DefinitionRepository"},
+        "readmeUri":{"shape":"S3UriForObject"}
       }
     },
     "CreateWorkflowVersionRequestStorageCapacityInteger":{
@@ -2786,6 +2814,29 @@
         "IMPORT",
         "UPLOAD"
       ]
+    },
+    "DefinitionRepository":{
+      "type":"structure",
+      "required":[
+        "connectionArn",
+        "fullRepositoryId"
+      ],
+      "members":{
+        "connectionArn":{"shape":"ConnectionArn"},
+        "fullRepositoryId":{"shape":"FullRepositoryId"},
+        "sourceReference":{"shape":"SourceReference"},
+        "excludeFilePatterns":{"shape":"ExcludeFilePatternList"}
+      }
+    },
+    "DefinitionRepositoryDetails":{
+      "type":"structure",
+      "members":{
+        "connectionArn":{"shape":"ConnectionArn"},
+        "fullRepositoryId":{"shape":"FullRepositoryId"},
+        "sourceReference":{"shape":"SourceReference"},
+        "providerType":{"shape":"String"},
+        "providerEndpoint":{"shape":"String"}
+      }
     },
     "DeleteAnnotationStoreRequest":{
       "type":"structure",
@@ -3046,6 +3097,12 @@
         "SHA512up"
       ]
     },
+    "EcrRepositoryPrefix":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+"
+    },
     "Encoding":{
       "type":"string",
       "max":20,
@@ -3069,6 +3126,12 @@
       "min":1
     },
     "EscapeQuotes":{"type":"boolean"},
+    "ExcludeFilePatternList":{
+      "type":"list",
+      "member":{"shape":"String"},
+      "max":50,
+      "min":1
+    },
     "ExportJobId":{
       "type":"string",
       "max":36,
@@ -3204,6 +3267,10 @@
       "type":"string",
       "max":1000,
       "min":0
+    },
+    "FullRepositoryId":{
+      "type":"string",
+      "pattern":".+/.+"
     },
     "GeneratedFrom":{
       "type":"string",
@@ -3898,7 +3965,8 @@
         "logStream":{"shape":"TaskLogStream"},
         "gpus":{"shape":"GetRunTaskResponseGpusInteger"},
         "instanceType":{"shape":"TaskInstanceType"},
-        "failureReason":{"shape":"TaskFailureReason"}
+        "failureReason":{"shape":"TaskFailureReason"},
+        "imageDetails":{"shape":"ImageDetails"}
       }
     },
     "GetRunTaskResponseCpusInteger":{
@@ -4119,7 +4187,11 @@
         "metadata":{"shape":"WorkflowMetadata"},
         "accelerators":{"shape":"Accelerators"},
         "storageType":{"shape":"StorageType"},
-        "uuid":{"shape":"WorkflowUuid"}
+        "uuid":{"shape":"WorkflowUuid"},
+        "containerRegistryMap":{"shape":"ContainerRegistryMap"},
+        "readme":{"shape":"ReadmeS3PresignedUrl"},
+        "definitionRepositoryDetails":{"shape":"DefinitionRepositoryDetails"},
+        "readmePath":{"shape":"ReadmePath"}
       }
     },
     "GetWorkflowResponseStorageCapacityInteger":{
@@ -4184,7 +4256,11 @@
         "type":{"shape":"WorkflowType"},
         "tags":{"shape":"TagMap"},
         "uuid":{"shape":"WorkflowUuid"},
-        "workflowBucketOwnerId":{"shape":"WorkflowBucketOwnerId"}
+        "workflowBucketOwnerId":{"shape":"WorkflowBucketOwnerId"},
+        "containerRegistryMap":{"shape":"ContainerRegistryMap"},
+        "readme":{"shape":"ReadmeS3PresignedUrl"},
+        "definitionRepositoryDetails":{"shape":"DefinitionRepositoryDetails"},
+        "readmePath":{"shape":"ReadmePath"}
       }
     },
     "GetWorkflowVersionResponseStorageCapacityInteger":{
@@ -4194,6 +4270,25 @@
       "min":0
     },
     "Header":{"type":"boolean"},
+    "ImageDetails":{
+      "type":"structure",
+      "members":{
+        "image":{"shape":"Uri"},
+        "imageDigest":{"shape":"TaskImageDigest"},
+        "sourceImage":{"shape":"Uri"}
+      }
+    },
+    "ImageMapping":{
+      "type":"structure",
+      "members":{
+        "sourceImage":{"shape":"Uri"},
+        "destinationImage":{"shape":"Uri"}
+      }
+    },
+    "ImageMappingsList":{
+      "type":"list",
+      "member":{"shape":"ImageMapping"}
+    },
     "ImportJobId":{
       "type":"string",
       "max":36,
@@ -5269,6 +5364,12 @@
       "min":1,
       "pattern":"[0-9]+"
     },
+    "ParameterTemplatePath":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+"
+    },
     "PrimitiveBoolean":{"type":"boolean"},
     "PropagatedSetLevelTags":{
       "type":"list",
@@ -5593,6 +5694,19 @@
       "max":5368709120,
       "min":1
     },
+    "ReadmeMarkdown":{"type":"string"},
+    "ReadmePath":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+"
+    },
+    "ReadmeS3PresignedUrl":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+"
+    },
     "ReferenceArn":{
       "type":"string",
       "max":127,
@@ -5767,6 +5881,19 @@
     "ReferenceStreamingBlob":{
       "type":"blob",
       "streaming":true
+    },
+    "RegistryMapping":{
+      "type":"structure",
+      "members":{
+        "upstreamRegistryUrl":{"shape":"Uri"},
+        "ecrRepositoryPrefix":{"shape":"EcrRepositoryPrefix"},
+        "upstreamRepositoryPrefix":{"shape":"UpstreamRepositoryPrefix"},
+        "ecrAccountId":{"shape":"AwsAccountId"}
+      }
+    },
+    "RegistryMappingsList":{
+      "type":"list",
+      "member":{"shape":"RegistryMapping"}
     },
     "RequestTimeoutException":{
       "type":"structure",
@@ -6148,6 +6275,10 @@
       "type":"string",
       "pattern":"s3://([a-z0-9][a-z0-9-.]{1,61}[a-z0-9])(/(.{0,1024}))?"
     },
+    "S3UriForObject":{
+      "type":"string",
+      "pattern":"s3://([a-z0-9][a-z0-9-.]{1,61}[a-z0-9])/((.{1,1024}))"
+    },
     "SampleId":{
       "type":"string",
       "max":127,
@@ -6338,6 +6469,26 @@
         "source2":{"shape":"S3Uri"}
       }
     },
+    "SourceReference":{
+      "type":"structure",
+      "required":[
+        "type",
+        "value"
+      ],
+      "members":{
+        "type":{"shape":"SourceReferenceType"},
+        "value":{"shape":"SourceReferenceValue"}
+      }
+    },
+    "SourceReferenceType":{
+      "type":"string",
+      "enum":[
+        "BRANCH",
+        "TAG",
+        "COMMIT"
+      ]
+    },
+    "SourceReferenceValue":{"type":"string"},
     "SseConfig":{
       "type":"structure",
       "required":["type"],
@@ -6582,6 +6733,7 @@
       "type":"structure",
       "required":[
         "roleArn",
+        "outputUri",
         "requestId"
       ],
       "members":{
@@ -6731,7 +6883,7 @@
     },
     "TagArn":{
       "type":"string",
-      "max":128,
+      "max":150,
       "min":1,
       "pattern":"arn:.+"
     },
@@ -6794,6 +6946,12 @@
       "max":18,
       "min":1,
       "pattern":"[0-9]+"
+    },
+    "TaskImageDigest":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"sha[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+"
     },
     "TaskInstanceType":{
       "type":"string",
@@ -7173,7 +7331,8 @@
         "name":{"shape":"WorkflowName"},
         "description":{"shape":"WorkflowDescription"},
         "storageType":{"shape":"StorageType"},
-        "storageCapacity":{"shape":"UpdateWorkflowRequestStorageCapacityInteger"}
+        "storageCapacity":{"shape":"UpdateWorkflowRequestStorageCapacityInteger"},
+        "readmeMarkdown":{"shape":"ReadmeMarkdown"}
       }
     },
     "UpdateWorkflowRequestStorageCapacityInteger":{
@@ -7201,7 +7360,8 @@
         },
         "description":{"shape":"WorkflowVersionDescription"},
         "storageType":{"shape":"StorageType"},
-        "storageCapacity":{"shape":"UpdateWorkflowVersionRequestStorageCapacityInteger"}
+        "storageCapacity":{"shape":"UpdateWorkflowVersionRequestStorageCapacityInteger"},
+        "readmeMarkdown":{"shape":"ReadmeMarkdown"}
       }
     },
     "UpdateWorkflowVersionRequestStorageCapacityInteger":{
@@ -7262,6 +7422,18 @@
       "members":{
         "checksum":{"shape":"String"}
       }
+    },
+    "UpstreamRepositoryPrefix":{
+      "type":"string",
+      "max":30,
+      "min":2,
+      "pattern":"[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+"
+    },
+    "Uri":{
+      "type":"string",
+      "max":750,
+      "min":1,
+      "pattern":"[\\p{L}||\\p{M}||\\p{Z}||\\p{S}||\\p{N}||\\p{P}]+"
     },
     "UserCustomDescription":{
       "type":"string",
@@ -7458,14 +7630,18 @@
       "enum":[
         "WDL",
         "NEXTFLOW",
-        "CWL"
+        "CWL",
+        "WDL_LENIENT"
       ],
       "max":64,
       "min":1
     },
     "WorkflowExport":{
       "type":"string",
-      "enum":["DEFINITION"],
+      "enum":[
+        "DEFINITION",
+        "README"
+      ],
       "max":64,
       "min":1
     },
@@ -7603,7 +7779,7 @@
     },
     "WorkflowVersionArn":{
       "type":"string",
-      "max":128,
+      "max":150,
       "min":1,
       "pattern":"arn:.+"
     },

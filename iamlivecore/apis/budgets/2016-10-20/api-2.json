@@ -25,12 +25,14 @@
       "output":{"shape":"CreateBudgetResponse"},
       "errors":[
         {"shape":"InvalidParameterException"},
+        {"shape":"BillingViewHealthStatusException"},
         {"shape":"InternalErrorException"},
         {"shape":"CreationLimitExceededException"},
         {"shape":"DuplicateRecordException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"ServiceQuotaExceededException"}
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"NotFoundException"}
       ]
     },
     "CreateBudgetAction":{
@@ -402,6 +404,7 @@
       "errors":[
         {"shape":"InternalErrorException"},
         {"shape":"InvalidParameterException"},
+        {"shape":"BillingViewHealthStatusException"},
         {"shape":"NotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"}
@@ -619,6 +622,19 @@
         "FORECAST"
       ]
     },
+    "BillingViewArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws[a-z-]*:(billing)::[0-9]{12}:billingview/[a-zA-Z0-9/:_\\+=\\.\\-@]{0,75}[a-zA-Z0-9]$"
+    },
+    "BillingViewHealthStatusException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"errorMessage"}
+      },
+      "exception":true
+    },
     "Budget":{
       "type":"structure",
       "required":[
@@ -649,7 +665,9 @@
         "LastUpdatedTime":{"shape":"GenericTimestamp"},
         "AutoAdjustData":{"shape":"AutoAdjustData"},
         "FilterExpression":{"shape":"Expression"},
-        "Metrics":{"shape":"Metrics"}
+        "Metrics":{"shape":"Metrics"},
+        "BillingViewArn":{"shape":"BillingViewArn"},
+        "HealthStatus":{"shape":"HealthStatus"}
       }
     },
     "BudgetName":{
@@ -678,6 +696,7 @@
         "CostFilters":{"shape":"CostFilters"},
         "CostTypes":{"shape":"CostTypes"},
         "TimeUnit":{"shape":"TimeUnit"},
+        "BillingViewArn":{"shape":"BillingViewArn"},
         "BudgetedAndActualAmountsList":{"shape":"BudgetedAndActualAmountsList"}
       }
     },
@@ -808,8 +827,7 @@
     },
     "CreateBudgetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateNotificationRequest":{
       "type":"structure",
@@ -828,8 +846,7 @@
     },
     "CreateNotificationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateSubscriberRequest":{
       "type":"structure",
@@ -848,8 +865,7 @@
     },
     "CreateSubscriberResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreationLimitExceededException":{
       "type":"structure",
@@ -905,8 +921,7 @@
     },
     "DeleteBudgetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteNotificationRequest":{
       "type":"structure",
@@ -923,8 +938,7 @@
     },
     "DeleteNotificationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteSubscriberRequest":{
       "type":"structure",
@@ -943,8 +957,7 @@
     },
     "DeleteSubscriberResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DescribeBudgetActionHistoriesRequest":{
       "type":"structure",
@@ -1305,6 +1318,30 @@
       "max":100,
       "min":1
     },
+    "HealthStatus":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"HealthStatusValue"},
+        "StatusReason":{"shape":"HealthStatusReason"},
+        "LastUpdatedTime":{"shape":"GenericTimestamp"}
+      }
+    },
+    "HealthStatusReason":{
+      "type":"string",
+      "enum":[
+        "BILLING_VIEW_NO_ACCESS",
+        "BILLING_VIEW_UNHEALTHY",
+        "FILTER_INVALID",
+        "MULTI_YEAR_HISTORICAL_DATA_DISABLED"
+      ]
+    },
+    "HealthStatusValue":{
+      "type":"string",
+      "enum":[
+        "HEALTHY",
+        "UNHEALTHY"
+      ]
+    },
     "HistoricalOptions":{
       "type":"structure",
       "required":["BudgetAdjustmentPeriod"],
@@ -1502,7 +1539,7 @@
       "type":"string",
       "max":684,
       "min":25,
-      "pattern":"^arn:aws(-cn|-us-gov|-iso|-iso-[a-z]{1})?:iam::(\\d{12}|aws):policy(\\u002F[\\u0021-\\u007F]+\\u002F|\\u002F)[\\w+=,.@-]+$"
+      "pattern":"^arn:aws(-eusc|-cn|-us-gov|-iso|-iso-[a-z]{1})?:iam::(\\d{12}|aws):policy(\\u002F[\\u0021-\\u007F]+\\u002F|\\u002F)[\\w+=,.@-]+$"
     },
     "PolicyId":{
       "type":"string",
@@ -1514,7 +1551,7 @@
       "type":"string",
       "max":20,
       "min":9,
-      "pattern":"^\\w{2}-\\w+(-\\w+)?-\\d$"
+      "pattern":"^\\w{2,4}-\\w+(-\\w+)?-\\d$"
     },
     "ResourceLockedException":{
       "type":"structure",
@@ -1566,7 +1603,7 @@
       "type":"string",
       "max":618,
       "min":32,
-      "pattern":"^arn:aws(-cn|-us-gov|-iso|-iso-[a-z]{1})?:iam::\\d{12}:role(\\u002F[\\u0021-\\u007F]+\\u002F|\\u002F)[\\w+=,.@-]+$"
+      "pattern":"^arn:aws(-eusc|-cn|-us-gov|-iso|-iso-[a-z]{1})?:iam::\\d{12}:role(\\u002F[\\u0021-\\u007F]+\\u002F|\\u002F)[\\w+=,.@-]+$"
     },
     "Roles":{
       "type":"list",
@@ -1666,8 +1703,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValues":{
       "type":"structure",
@@ -1716,7 +1752,8 @@
         "DAILY",
         "MONTHLY",
         "QUARTERLY",
-        "ANNUALLY"
+        "ANNUALLY",
+        "CUSTOM"
       ]
     },
     "UnitValue":{
@@ -1738,8 +1775,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateBudgetActionRequest":{
       "type":"structure",
@@ -1788,8 +1824,7 @@
     },
     "UpdateBudgetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateNotificationRequest":{
       "type":"structure",
@@ -1808,8 +1843,7 @@
     },
     "UpdateNotificationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateSubscriberRequest":{
       "type":"structure",
@@ -1830,8 +1864,7 @@
     },
     "UpdateSubscriberResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "User":{
       "type":"string",

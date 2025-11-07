@@ -31,6 +31,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
         {"shape":"ValidationException"},
         {"shape":"ServiceQuotaExceededException"}
       ]
@@ -77,6 +78,25 @@
         {"shape":"ModelErrorException"}
       ]
     },
+    "CountTokens":{
+      "name":"CountTokens",
+      "http":{
+        "method":"POST",
+        "requestUri":"/model/{modelId}/count-tokens",
+        "responseCode":200
+      },
+      "input":{"shape":"CountTokensRequest"},
+      "output":{"shape":"CountTokensResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ValidationException"}
+      ],
+      "readonly":true
+    },
     "GetAsyncInvoke":{
       "name":"GetAsyncInvoke",
       "http":{
@@ -91,7 +111,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"}
-      ]
+      ],
+      "readonly":true
     },
     "InvokeModel":{
       "name":"InvokeModel",
@@ -175,7 +196,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"},
         {"shape":"ValidationException"}
-      ]
+      ],
+      "readonly":true
     },
     "StartAsyncInvoke":{
       "name":"StartAsyncInvoke",
@@ -217,8 +239,7 @@
     },
     "AnyToolChoice":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "ApplyGuardrailRequest":{
       "type":"structure",
@@ -335,8 +356,13 @@
     },
     "AutoToolChoice":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
+    },
+    "AutomatedReasoningRuleIdentifier":{
+      "type":"string",
+      "max":12,
+      "min":0,
+      "pattern":"[a-z0-9]{12}"
     },
     "BidirectionalInputPayloadPart":{
       "type":"structure",
@@ -398,6 +424,7 @@
     "CitationLocation":{
       "type":"structure",
       "members":{
+        "web":{"shape":"WebLocation"},
         "documentChar":{"shape":"DocumentCharLocation"},
         "documentPage":{"shape":"DocumentPageLocation"},
         "documentChunk":{"shape":"DocumentChunkLocation"}
@@ -483,6 +510,7 @@
       "members":{
         "text":{"shape":"String"},
         "toolUse":{"shape":"ToolUseBlockDelta"},
+        "toolResult":{"shape":"ToolResultBlocksDelta"},
         "reasoningContent":{"shape":"ReasoningContentBlockDelta"},
         "citation":{"shape":"CitationsDelta"}
       },
@@ -503,7 +531,8 @@
     "ContentBlockStart":{
       "type":"structure",
       "members":{
-        "toolUse":{"shape":"ToolUseBlockStart"}
+        "toolUse":{"shape":"ToolUseBlockStart"},
+        "toolResult":{"shape":"ToolResultBlockStart"}
       },
       "union":true
     },
@@ -542,7 +571,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:imported-model/[a-z0-9]{12})|([0-9]{12}:provisioned-model/[a-z0-9]{12})|([0-9]{12}:(inference-profile|application-inference-profile)/[a-zA-Z0-9-:.]+)))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)|([a-zA-Z0-9-:.]+)|(^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:prompt/[0-9a-zA-Z]{10}(?::[0-9]{1,5})?))$|(^arn:aws:sagemaker:[a-z0-9-]+:[0-9]{12}:endpoint/[a-zA-Z0-9-]+$)|(^arn:aws(-[^:]+)?:bedrock:([0-9a-z-]{1,20}):([0-9]{12}):(default-)?prompt-router/[a-zA-Z0-9-:.]+$)"
+      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:imported-model/[a-z0-9]{12})|([0-9]{12}:provisioned-model/[a-z0-9]{12})|([0-9]{12}:custom-model-deployment/[a-z0-9]{12})|([0-9]{12}:(inference-profile|application-inference-profile)/[a-zA-Z0-9-:.]+)))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)|([a-zA-Z0-9-:.]+)|(^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:prompt/[0-9a-zA-Z]{10}(?::[0-9]{1,5})?))$|(^arn:aws:sagemaker:[a-z0-9-]+:[0-9]{12}:endpoint/[a-zA-Z0-9-]+$)|(^arn:aws(-[^:]+)?:bedrock:([0-9a-z-]{1,20}):([0-9]{12}):(default-)?prompt-router/[a-zA-Z0-9-:.]+$)"
     },
     "ConverseMetrics":{
       "type":"structure",
@@ -692,6 +721,13 @@
         "promptRouter":{"shape":"PromptRouterTrace"}
       }
     },
+    "ConverseTokensRequest":{
+      "type":"structure",
+      "members":{
+        "messages":{"shape":"Messages"},
+        "system":{"shape":"SystemContentBlocks"}
+      }
+    },
     "ConverseTrace":{
       "type":"structure",
       "members":{
@@ -699,10 +735,39 @@
         "promptRouter":{"shape":"PromptRouterTrace"}
       }
     },
-    "Document":{
+    "CountTokensInput":{
       "type":"structure",
       "members":{
+        "invokeModel":{"shape":"InvokeModelTokensRequest"},
+        "converse":{"shape":"ConverseTokensRequest"}
       },
+      "union":true
+    },
+    "CountTokensRequest":{
+      "type":"structure",
+      "required":[
+        "modelId",
+        "input"
+      ],
+      "members":{
+        "modelId":{
+          "shape":"FoundationModelVersionIdentifier",
+          "location":"uri",
+          "locationName":"modelId"
+        },
+        "input":{"shape":"CountTokensInput"}
+      }
+    },
+    "CountTokensResponse":{
+      "type":"structure",
+      "required":["inputTokens"],
+      "members":{
+        "inputTokens":{"shape":"Integer"}
+      }
+    },
+    "Document":{
+      "type":"structure",
+      "members":{},
       "document":true
     },
     "DocumentBlock":{
@@ -832,6 +897,12 @@
       "type":"blob",
       "min":1
     },
+    "FoundationModelVersionIdentifier":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z_\\.\\-/0-9:]+"
+    },
     "GetAsyncInvokeRequest":{
       "type":"structure",
       "required":["invocationArn"],
@@ -879,6 +950,7 @@
         "wordPolicy":{"shape":"GuardrailWordPolicyAssessment"},
         "sensitiveInformationPolicy":{"shape":"GuardrailSensitiveInformationPolicyAssessment"},
         "contextualGroundingPolicy":{"shape":"GuardrailContextualGroundingPolicyAssessment"},
+        "automatedReasoningPolicy":{"shape":"GuardrailAutomatedReasoningPolicyAssessment"},
         "invocationMetrics":{"shape":"GuardrailInvocationMetrics"}
       }
     },
@@ -895,6 +967,195 @@
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"GuardrailAssessment"}
+    },
+    "GuardrailAutomatedReasoningDifferenceScenarioList":{
+      "type":"list",
+      "member":{"shape":"GuardrailAutomatedReasoningScenario"},
+      "max":2,
+      "min":0
+    },
+    "GuardrailAutomatedReasoningFinding":{
+      "type":"structure",
+      "members":{
+        "valid":{"shape":"GuardrailAutomatedReasoningValidFinding"},
+        "invalid":{"shape":"GuardrailAutomatedReasoningInvalidFinding"},
+        "satisfiable":{"shape":"GuardrailAutomatedReasoningSatisfiableFinding"},
+        "impossible":{"shape":"GuardrailAutomatedReasoningImpossibleFinding"},
+        "translationAmbiguous":{"shape":"GuardrailAutomatedReasoningTranslationAmbiguousFinding"},
+        "tooComplex":{"shape":"GuardrailAutomatedReasoningTooComplexFinding"},
+        "noTranslations":{"shape":"GuardrailAutomatedReasoningNoTranslationsFinding"}
+      },
+      "union":true
+    },
+    "GuardrailAutomatedReasoningFindingList":{
+      "type":"list",
+      "member":{"shape":"GuardrailAutomatedReasoningFinding"}
+    },
+    "GuardrailAutomatedReasoningImpossibleFinding":{
+      "type":"structure",
+      "members":{
+        "translation":{"shape":"GuardrailAutomatedReasoningTranslation"},
+        "contradictingRules":{"shape":"GuardrailAutomatedReasoningRuleList"},
+        "logicWarning":{"shape":"GuardrailAutomatedReasoningLogicWarning"}
+      }
+    },
+    "GuardrailAutomatedReasoningInputTextReference":{
+      "type":"structure",
+      "members":{
+        "text":{"shape":"GuardrailAutomatedReasoningStatementNaturalLanguageContent"}
+      }
+    },
+    "GuardrailAutomatedReasoningInputTextReferenceList":{
+      "type":"list",
+      "member":{"shape":"GuardrailAutomatedReasoningInputTextReference"}
+    },
+    "GuardrailAutomatedReasoningInvalidFinding":{
+      "type":"structure",
+      "members":{
+        "translation":{"shape":"GuardrailAutomatedReasoningTranslation"},
+        "contradictingRules":{"shape":"GuardrailAutomatedReasoningRuleList"},
+        "logicWarning":{"shape":"GuardrailAutomatedReasoningLogicWarning"}
+      }
+    },
+    "GuardrailAutomatedReasoningLogicWarning":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"GuardrailAutomatedReasoningLogicWarningType"},
+        "premises":{"shape":"GuardrailAutomatedReasoningStatementList"},
+        "claims":{"shape":"GuardrailAutomatedReasoningStatementList"}
+      }
+    },
+    "GuardrailAutomatedReasoningLogicWarningType":{
+      "type":"string",
+      "enum":[
+        "ALWAYS_FALSE",
+        "ALWAYS_TRUE"
+      ]
+    },
+    "GuardrailAutomatedReasoningNoTranslationsFinding":{
+      "type":"structure",
+      "members":{}
+    },
+    "GuardrailAutomatedReasoningPoliciesProcessed":{
+      "type":"integer",
+      "box":true
+    },
+    "GuardrailAutomatedReasoningPolicyAssessment":{
+      "type":"structure",
+      "members":{
+        "findings":{"shape":"GuardrailAutomatedReasoningFindingList"}
+      }
+    },
+    "GuardrailAutomatedReasoningPolicyUnitsProcessed":{
+      "type":"integer",
+      "box":true
+    },
+    "GuardrailAutomatedReasoningPolicyVersionArn":{
+      "type":"string",
+      "max":2048,
+      "min":0,
+      "pattern":"arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:automated-reasoning-policy/[a-z0-9]{12}(:([1-9][0-9]{0,11}))?"
+    },
+    "GuardrailAutomatedReasoningRule":{
+      "type":"structure",
+      "members":{
+        "identifier":{"shape":"AutomatedReasoningRuleIdentifier"},
+        "policyVersionArn":{"shape":"GuardrailAutomatedReasoningPolicyVersionArn"}
+      }
+    },
+    "GuardrailAutomatedReasoningRuleList":{
+      "type":"list",
+      "member":{"shape":"GuardrailAutomatedReasoningRule"}
+    },
+    "GuardrailAutomatedReasoningSatisfiableFinding":{
+      "type":"structure",
+      "members":{
+        "translation":{"shape":"GuardrailAutomatedReasoningTranslation"},
+        "claimsTrueScenario":{"shape":"GuardrailAutomatedReasoningScenario"},
+        "claimsFalseScenario":{"shape":"GuardrailAutomatedReasoningScenario"},
+        "logicWarning":{"shape":"GuardrailAutomatedReasoningLogicWarning"}
+      }
+    },
+    "GuardrailAutomatedReasoningScenario":{
+      "type":"structure",
+      "members":{
+        "statements":{"shape":"GuardrailAutomatedReasoningStatementList"}
+      }
+    },
+    "GuardrailAutomatedReasoningStatement":{
+      "type":"structure",
+      "members":{
+        "logic":{"shape":"GuardrailAutomatedReasoningStatementLogicContent"},
+        "naturalLanguage":{"shape":"GuardrailAutomatedReasoningStatementNaturalLanguageContent"}
+      }
+    },
+    "GuardrailAutomatedReasoningStatementList":{
+      "type":"list",
+      "member":{"shape":"GuardrailAutomatedReasoningStatement"}
+    },
+    "GuardrailAutomatedReasoningStatementLogicContent":{
+      "type":"string",
+      "max":1000,
+      "min":0,
+      "sensitive":true
+    },
+    "GuardrailAutomatedReasoningStatementNaturalLanguageContent":{
+      "type":"string",
+      "max":1000,
+      "min":0,
+      "sensitive":true
+    },
+    "GuardrailAutomatedReasoningTooComplexFinding":{
+      "type":"structure",
+      "members":{}
+    },
+    "GuardrailAutomatedReasoningTranslation":{
+      "type":"structure",
+      "members":{
+        "premises":{"shape":"GuardrailAutomatedReasoningStatementList"},
+        "claims":{"shape":"GuardrailAutomatedReasoningStatementList"},
+        "untranslatedPremises":{"shape":"GuardrailAutomatedReasoningInputTextReferenceList"},
+        "untranslatedClaims":{"shape":"GuardrailAutomatedReasoningInputTextReferenceList"},
+        "confidence":{"shape":"GuardrailAutomatedReasoningTranslationConfidence"}
+      }
+    },
+    "GuardrailAutomatedReasoningTranslationAmbiguousFinding":{
+      "type":"structure",
+      "members":{
+        "options":{"shape":"GuardrailAutomatedReasoningTranslationOptionList"},
+        "differenceScenarios":{"shape":"GuardrailAutomatedReasoningDifferenceScenarioList"}
+      }
+    },
+    "GuardrailAutomatedReasoningTranslationConfidence":{
+      "type":"double",
+      "box":true,
+      "max":1,
+      "min":0
+    },
+    "GuardrailAutomatedReasoningTranslationList":{
+      "type":"list",
+      "member":{"shape":"GuardrailAutomatedReasoningTranslation"}
+    },
+    "GuardrailAutomatedReasoningTranslationOption":{
+      "type":"structure",
+      "members":{
+        "translations":{"shape":"GuardrailAutomatedReasoningTranslationList"}
+      }
+    },
+    "GuardrailAutomatedReasoningTranslationOptionList":{
+      "type":"list",
+      "member":{"shape":"GuardrailAutomatedReasoningTranslationOption"},
+      "max":2,
+      "min":0
+    },
+    "GuardrailAutomatedReasoningValidFinding":{
+      "type":"structure",
+      "members":{
+        "translation":{"shape":"GuardrailAutomatedReasoningTranslation"},
+        "claimsTrueScenario":{"shape":"GuardrailAutomatedReasoningScenario"},
+        "supportingRules":{"shape":"GuardrailAutomatedReasoningRuleList"},
+        "logicWarning":{"shape":"GuardrailAutomatedReasoningLogicWarning"}
+      }
     },
     "GuardrailConfiguration":{
       "type":"structure",
@@ -1448,7 +1709,9 @@
         "sensitiveInformationPolicyUnits":{"shape":"GuardrailSensitiveInformationPolicyUnitsProcessed"},
         "sensitiveInformationPolicyFreeUnits":{"shape":"GuardrailSensitiveInformationPolicyFreeUnitsProcessed"},
         "contextualGroundingPolicyUnits":{"shape":"GuardrailContextualGroundingPolicyUnitsProcessed"},
-        "contentPolicyImageUnits":{"shape":"GuardrailContentPolicyImageUnitsProcessed"}
+        "contentPolicyImageUnits":{"shape":"GuardrailContentPolicyImageUnitsProcessed"},
+        "automatedReasoningPolicyUnits":{"shape":"GuardrailAutomatedReasoningPolicyUnitsProcessed"},
+        "automatedReasoningPolicies":{"shape":"GuardrailAutomatedReasoningPoliciesProcessed"}
       }
     },
     "GuardrailVersion":{
@@ -1534,7 +1797,7 @@
     "InferenceConfigurationStopSequencesList":{
       "type":"list",
       "member":{"shape":"NonEmptyString"},
-      "max":4,
+      "max":2500,
       "min":0
     },
     "InferenceConfigurationTemperatureFloat":{
@@ -1548,6 +1811,10 @@
       "box":true,
       "max":1,
       "min":0
+    },
+    "Integer":{
+      "type":"integer",
+      "box":true
     },
     "InternalServerException":{
       "type":"structure",
@@ -1568,7 +1835,7 @@
       "type":"string",
       "max":2048,
       "min":1,
-      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:imported-model/[a-z0-9]{12})|([0-9]{12}:provisioned-model/[a-z0-9]{12})|([0-9]{12}:(inference-profile|application-inference-profile)/[a-zA-Z0-9-:.]+)))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)|([a-zA-Z0-9-:.]+)$|(^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:prompt/[0-9a-zA-Z]{10}(?::[0-9]{1,5})?))$|(^arn:aws:sagemaker:[a-z0-9-]+:[0-9]{12}:endpoint/[a-zA-Z0-9-]+$)|(^arn:aws(-[^:]+)?:bedrock:([0-9a-z-]{1,20}):([0-9]{12}):(default-)?prompt-router/[a-zA-Z0-9-:.]+$)"
+      "pattern":"(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:(([0-9]{12}:custom-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}/[a-z0-9]{12})|(:foundation-model/[a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|([0-9]{12}:imported-model/[a-z0-9]{12})|([0-9]{12}:provisioned-model/[a-z0-9]{12})|([0-9]{12}:custom-model-deployment/[a-z0-9]{12})|([0-9]{12}:(inference-profile|application-inference-profile)/[a-zA-Z0-9-:.]+)))|([a-z0-9-]{1,63}[.]{1}[a-z0-9-]{1,63}([.:]?[a-z0-9-]{1,63}))|(([0-9a-zA-Z][_-]?)+)|([a-zA-Z0-9-:.]+)$|(^(arn:aws(-[^:]+)?:bedrock:[a-z0-9-]{1,20}:[0-9]{12}:prompt/[0-9a-zA-Z]{10}(?::[0-9]{1,5})?))$|(^arn:aws:sagemaker:[a-z0-9-]+:[0-9]{12}:endpoint/[a-zA-Z0-9-]+$)|(^arn:aws(-[^:]+)?:bedrock:([0-9a-z-]{1,20}):([0-9]{12}):(default-)?prompt-router/[a-zA-Z0-9-:.]+$)"
     },
     "InvokeModelRequest":{
       "type":"structure",
@@ -1633,6 +1900,13 @@
         }
       },
       "payload":"body"
+    },
+    "InvokeModelTokensRequest":{
+      "type":"structure",
+      "required":["body"],
+      "members":{
+        "body":{"shape":"Body"}
+      }
     },
     "InvokeModelWithBidirectionalStreamInput":{
       "type":"structure",
@@ -1857,8 +2131,7 @@
     },
     "ModelInputPayload":{
       "type":"structure",
-      "members":{
-      },
+      "members":{},
       "document":true,
       "sensitive":true
     },
@@ -2130,7 +2403,8 @@
         "max_tokens",
         "stop_sequence",
         "guardrail_intervened",
-        "content_filtered"
+        "content_filtered",
+        "model_context_window_exceeded"
       ]
     },
     "String":{"type":"string"},
@@ -2146,6 +2420,13 @@
     "SystemContentBlocks":{
       "type":"list",
       "member":{"shape":"SystemContentBlock"}
+    },
+    "SystemTool":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"ToolName"}
+      }
     },
     "Tag":{
       "type":"structure",
@@ -2243,6 +2524,7 @@
       "type":"structure",
       "members":{
         "toolSpec":{"shape":"ToolSpecification"},
+        "systemTool":{"shape":"SystemTool"},
         "cachePoint":{"shape":"CachePointBlock"}
       },
       "union":true
@@ -2291,8 +2573,29 @@
       "members":{
         "toolUseId":{"shape":"ToolUseId"},
         "content":{"shape":"ToolResultContentBlocks"},
+        "status":{"shape":"ToolResultStatus"},
+        "type":{"shape":"String"}
+      }
+    },
+    "ToolResultBlockDelta":{
+      "type":"structure",
+      "members":{
+        "text":{"shape":"String"}
+      },
+      "union":true
+    },
+    "ToolResultBlockStart":{
+      "type":"structure",
+      "required":["toolUseId"],
+      "members":{
+        "toolUseId":{"shape":"ToolUseId"},
+        "type":{"shape":"String"},
         "status":{"shape":"ToolResultStatus"}
       }
+    },
+    "ToolResultBlocksDelta":{
+      "type":"list",
+      "member":{"shape":"ToolResultBlockDelta"}
     },
     "ToolResultContentBlock":{
       "type":"structure",
@@ -2338,7 +2641,8 @@
       "members":{
         "toolUseId":{"shape":"ToolUseId"},
         "name":{"shape":"ToolName"},
-        "input":{"shape":"Document"}
+        "input":{"shape":"Document"},
+        "type":{"shape":"ToolUseType"}
       }
     },
     "ToolUseBlockDelta":{
@@ -2356,7 +2660,8 @@
       ],
       "members":{
         "toolUseId":{"shape":"ToolUseId"},
-        "name":{"shape":"ToolName"}
+        "name":{"shape":"ToolName"},
+        "type":{"shape":"ToolUseType"}
       }
     },
     "ToolUseId":{
@@ -2364,6 +2669,10 @@
       "max":64,
       "min":1,
       "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "ToolUseType":{
+      "type":"string",
+      "enum":["server_tool_use"]
     },
     "Trace":{
       "type":"string",
@@ -2420,6 +2729,13 @@
     "VideoSourceBytesBlob":{
       "type":"blob",
       "min":1
+    },
+    "WebLocation":{
+      "type":"structure",
+      "members":{
+        "url":{"shape":"String"},
+        "domain":{"shape":"String"}
+      }
     }
   }
 }

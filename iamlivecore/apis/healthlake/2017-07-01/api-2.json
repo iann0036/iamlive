@@ -518,7 +518,8 @@
         "JobOutputDataConfig":{"shape":"OutputDataConfig"},
         "JobProgressReport":{"shape":"JobProgressReport"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
-        "Message":{"shape":"Message"}
+        "Message":{"shape":"Message"},
+        "ValidationLevel":{"shape":"ValidationLevel"}
       }
     },
     "ImportJobPropertiesList":{
@@ -776,7 +777,8 @@
         "ClientToken":{
           "shape":"ClientTokenString",
           "idempotencyToken":true
-        }
+        },
+        "ValidationLevel":{"shape":"ValidationLevel"}
       }
     },
     "StartFHIRImportJobResponse":{
@@ -838,8 +840,7 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "TagValue":{
       "type":"string",
@@ -868,8 +869,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "ValidationException":{
       "type":"structure",
@@ -877,6 +877,14 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "ValidationLevel":{
+      "type":"string",
+      "enum":[
+        "strict",
+        "structure-only",
+        "minimal"
+      ]
     }
   }
 }

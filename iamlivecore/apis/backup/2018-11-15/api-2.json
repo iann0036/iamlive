@@ -1617,7 +1617,12 @@
         "BackupJobId":{"shape":"string"},
         "BackupVaultName":{"shape":"BackupVaultName"},
         "BackupVaultArn":{"shape":"ARN"},
+        "VaultType":{"shape":"string"},
+        "VaultLockState":{"shape":"string"},
         "RecoveryPointArn":{"shape":"ARN"},
+        "RecoveryPointLifecycle":{"shape":"Lifecycle"},
+        "EncryptionKeyArn":{"shape":"ARN"},
+        "IsEncrypted":{"shape":"boolean"},
         "ResourceArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
         "CompletionDate":{"shape":"timestamp"},
@@ -1902,7 +1907,8 @@
         "Locked":{"shape":"Boolean"},
         "MinRetentionDays":{"shape":"Long"},
         "MaxRetentionDays":{"shape":"Long"},
-        "LockDate":{"shape":"timestamp"}
+        "LockDate":{"shape":"timestamp"},
+        "EncryptionKeyType":{"shape":"EncryptionKeyType"}
       }
     },
     "BackupVaultName":{
@@ -2040,7 +2046,11 @@
         "SourceBackupVaultArn":{"shape":"ARN"},
         "SourceRecoveryPointArn":{"shape":"ARN"},
         "DestinationBackupVaultArn":{"shape":"ARN"},
+        "DestinationVaultType":{"shape":"string"},
+        "DestinationVaultLockState":{"shape":"string"},
         "DestinationRecoveryPointArn":{"shape":"ARN"},
+        "DestinationEncryptionKeyArn":{"shape":"ARN"},
+        "DestinationRecoveryPointLifecycle":{"shape":"Lifecycle"},
         "ResourceArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
         "CompletionDate":{"shape":"timestamp"},
@@ -2257,7 +2267,8 @@
           "idempotencyToken":true
         },
         "MinRetentionDays":{"shape":"Long"},
-        "MaxRetentionDays":{"shape":"Long"}
+        "MaxRetentionDays":{"shape":"Long"},
+        "EncryptionKeyArn":{"shape":"ARN"}
       }
     },
     "CreateLogicallyAirGappedBackupVaultOutput":{
@@ -2566,8 +2577,13 @@
         "AccountId":{"shape":"AccountId"},
         "BackupJobId":{"shape":"string"},
         "BackupVaultName":{"shape":"BackupVaultName"},
+        "RecoveryPointLifecycle":{"shape":"Lifecycle"},
         "BackupVaultArn":{"shape":"ARN"},
+        "VaultType":{"shape":"string"},
+        "VaultLockState":{"shape":"string"},
         "RecoveryPointArn":{"shape":"ARN"},
+        "EncryptionKeyArn":{"shape":"ARN"},
+        "IsEncrypted":{"shape":"boolean"},
         "ResourceArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
         "CompletionDate":{"shape":"timestamp"},
@@ -2626,7 +2642,8 @@
         "SourceBackupVaultArn":{"shape":"ARN"},
         "MpaApprovalTeamArn":{"shape":"ARN"},
         "MpaSessionArn":{"shape":"ARN"},
-        "LatestMpaApprovalTeamUpdate":{"shape":"LatestMpaApprovalTeamUpdate"}
+        "LatestMpaApprovalTeamUpdate":{"shape":"LatestMpaApprovalTeamUpdate"},
+        "EncryptionKeyType":{"shape":"EncryptionKeyType"}
       }
     },
     "DescribeCopyJobInput":{
@@ -2759,7 +2776,8 @@
         "ResourceName":{"shape":"string"},
         "VaultType":{"shape":"VaultType"},
         "IndexStatus":{"shape":"IndexStatus"},
-        "IndexStatusMessage":{"shape":"string"}
+        "IndexStatusMessage":{"shape":"string"},
+        "EncryptionKeyType":{"shape":"EncryptionKeyType"}
       }
     },
     "DescribeRegionSettingsInput":{
@@ -2824,6 +2842,8 @@
         "AccountId":{"shape":"AccountId"},
         "RestoreJobId":{"shape":"string"},
         "RecoveryPointArn":{"shape":"ARN"},
+        "SourceResourceArn":{"shape":"ARN"},
+        "BackupVaultArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
         "CompletionDate":{"shape":"timestamp"},
         "Status":{"shape":"RestoreJobStatus"},
@@ -2891,6 +2911,13 @@
           "locationName":"recoveryPointArn"
         }
       }
+    },
+    "EncryptionKeyType":{
+      "type":"string",
+      "enum":[
+        "AWS_OWNED_KMS_KEY",
+        "CUSTOMER_MANAGED_KMS_KEY"
+      ]
     },
     "ExportBackupPlanTemplateInput":{
       "type":"structure",
@@ -2996,6 +3023,11 @@
           "shape":"string",
           "location":"querystring",
           "locationName":"versionId"
+        },
+        "MaxScheduledRunsPreview":{
+          "shape":"MaxScheduledRunsPreview",
+          "location":"querystring",
+          "locationName":"MaxScheduledRunsPreview"
         }
       }
     },
@@ -3010,7 +3042,8 @@
         "CreationDate":{"shape":"timestamp"},
         "DeletionDate":{"shape":"timestamp"},
         "LastExecutionDate":{"shape":"timestamp"},
-        "AdvancedBackupSettings":{"shape":"AdvancedBackupSettings"}
+        "AdvancedBackupSettings":{"shape":"AdvancedBackupSettings"},
+        "ScheduledRunsPreview":{"shape":"ScheduledRunsPreview"}
       }
     },
     "GetBackupSelectionInput":{
@@ -4438,6 +4471,11 @@
       "max":1000,
       "min":1
     },
+    "MaxScheduledRunsPreview":{
+      "type":"integer",
+      "max":10,
+      "min":0
+    },
     "MessageCategory":{"type":"string"},
     "Metadata":{
       "type":"map",
@@ -4583,7 +4621,8 @@
         "ResourceName":{"shape":"string"},
         "VaultType":{"shape":"VaultType"},
         "IndexStatus":{"shape":"IndexStatus"},
-        "IndexStatusMessage":{"shape":"string"}
+        "IndexStatusMessage":{"shape":"string"},
+        "EncryptionKeyType":{"shape":"EncryptionKeyType"}
       }
     },
     "RecoveryPointByBackupVaultList":{
@@ -4605,7 +4644,8 @@
         "ResourceName":{"shape":"string"},
         "VaultType":{"shape":"VaultType"},
         "IndexStatus":{"shape":"IndexStatus"},
-        "IndexStatusMessage":{"shape":"string"}
+        "IndexStatusMessage":{"shape":"string"},
+        "EncryptionKeyType":{"shape":"EncryptionKeyType"}
       }
     },
     "RecoveryPointByResourceList":{
@@ -4617,8 +4657,12 @@
       "members":{
         "BackupPlanId":{"shape":"string"},
         "BackupPlanArn":{"shape":"ARN"},
+        "BackupPlanName":{"shape":"string"},
         "BackupPlanVersion":{"shape":"string"},
-        "BackupRuleId":{"shape":"string"}
+        "BackupRuleId":{"shape":"string"},
+        "BackupRuleName":{"shape":"string"},
+        "BackupRuleCron":{"shape":"string"},
+        "BackupRuleTimezone":{"shape":"string"}
       }
     },
     "RecoveryPointMember":{
@@ -4853,6 +4897,8 @@
         "AccountId":{"shape":"AccountId"},
         "RestoreJobId":{"shape":"string"},
         "RecoveryPointArn":{"shape":"ARN"},
+        "SourceResourceArn":{"shape":"ARN"},
+        "BackupVaultArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
         "CompletionDate":{"shape":"timestamp"},
         "Status":{"shape":"RestoreJobStatus"},
@@ -5071,6 +5117,26 @@
           "locationName":"requesterComment"
         }
       }
+    },
+    "RuleExecutionType":{
+      "type":"string",
+      "enum":[
+        "CONTINUOUS",
+        "SNAPSHOTS",
+        "CONTINUOUS_AND_SNAPSHOTS"
+      ]
+    },
+    "ScheduledPlanExecutionMember":{
+      "type":"structure",
+      "members":{
+        "ExecutionTime":{"shape":"timestamp"},
+        "RuleId":{"shape":"string"},
+        "RuleExecutionType":{"shape":"RuleExecutionType"}
+      }
+    },
+    "ScheduledRunsPreview":{
+      "type":"list",
+      "member":{"shape":"ScheduledPlanExecutionMember"}
     },
     "SensitiveStringMap":{
       "type":"map",

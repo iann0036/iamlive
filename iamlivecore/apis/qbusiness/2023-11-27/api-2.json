@@ -446,6 +446,7 @@
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"LicenseNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
@@ -701,6 +702,23 @@
       },
       "input":{"shape":"GetDataSourceRequest"},
       "output":{"shape":"GetDataSourceResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"}
+      ]
+    },
+    "GetDocumentContent":{
+      "name":"GetDocumentContent",
+      "http":{
+        "method":"GET",
+        "requestUri":"/applications/{applicationId}/index/{indexId}/documents/{documentId}/content",
+        "responseCode":200
+      },
+      "input":{"shape":"GetDocumentContentRequest"},
+      "output":{"shape":"GetDocumentContentResponse"},
       "errors":[
         {"shape":"InternalServerException"},
         {"shape":"ResourceNotFoundException"},
@@ -4051,6 +4069,52 @@
         "mediaExtractionConfiguration":{"shape":"MediaExtractionConfiguration"}
       }
     },
+    "GetDocumentContentRequest":{
+      "type":"structure",
+      "required":[
+        "applicationId",
+        "indexId",
+        "documentId"
+      ],
+      "members":{
+        "applicationId":{
+          "shape":"ApplicationId",
+          "location":"uri",
+          "locationName":"applicationId"
+        },
+        "indexId":{
+          "shape":"IndexId",
+          "location":"uri",
+          "locationName":"indexId"
+        },
+        "dataSourceId":{
+          "shape":"DataSourceId",
+          "location":"querystring",
+          "locationName":"dataSourceId"
+        },
+        "documentId":{
+          "shape":"DocumentId",
+          "location":"uri",
+          "locationName":"documentId"
+        },
+        "outputFormat":{
+          "shape":"OutputFormat",
+          "location":"querystring",
+          "locationName":"outputFormat"
+        }
+      }
+    },
+    "GetDocumentContentResponse":{
+      "type":"structure",
+      "required":[
+        "presignedUrl",
+        "mimeType"
+      ],
+      "members":{
+        "presignedUrl":{"shape":"String"},
+        "mimeType":{"shape":"String"}
+      }
+    },
     "GetGroupRequest":{
       "type":"structure",
       "required":[
@@ -5259,7 +5323,9 @@
     },
     "MaxResults":{
       "type":"integer",
-      "box":true
+      "box":true,
+      "max":100,
+      "min":1
     },
     "MaxResultsIntegerForGetTopicConfigurations":{
       "type":"integer",
@@ -5609,6 +5675,13 @@
       "max":256,
       "min":1,
       "pattern":"(http://|https://)[a-zA-Z0-9-_.]+(?::[0-9]{1,5})?"
+    },
+    "OutputFormat":{
+      "type":"string",
+      "enum":[
+        "RAW",
+        "EXTRACTED"
+      ]
     },
     "Payload":{
       "type":"string",
@@ -6175,7 +6248,10 @@
         "queryText":{"shape":"QueryText"},
         "contentSource":{"shape":"ContentSource"},
         "attributeFilter":{"shape":"AttributeFilter"},
-        "maxResults":{"shape":"MaxResults"},
+        "maxResults":{
+          "shape":"MaxResults",
+          "box":true
+        },
         "nextToken":{"shape":"NextToken"}
       }
     },
@@ -6243,7 +6319,10 @@
         "url":{"shape":"String"},
         "citationNumber":{"shape":"Integer"},
         "updatedAt":{"shape":"Timestamp"},
-        "textMessageSegments":{"shape":"TextSegmentList"}
+        "textMessageSegments":{"shape":"TextSegmentList"},
+        "documentId":{"shape":"String"},
+        "indexId":{"shape":"String"},
+        "datasourceId":{"shape":"String"}
       }
     },
     "SourceAttributionMediaId":{

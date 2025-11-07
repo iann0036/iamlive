@@ -151,7 +151,8 @@
         {"shape":"InvalidDocumentContent"},
         {"shape":"DocumentLimitExceeded"},
         {"shape":"InvalidDocumentSchemaVersion"},
-        {"shape":"TooManyUpdates"}
+        {"shape":"TooManyUpdates"},
+        {"shape":"NoLongerSupportedException"}
       ]
     },
     "CreateMaintenanceWindow":{
@@ -1890,7 +1891,8 @@
         {"shape":"AutomationDefinitionVersionNotFoundException"},
         {"shape":"IdempotentParameterMismatch"},
         {"shape":"InternalServerError"},
-        {"shape":"AutomationDefinitionNotApprovedException"}
+        {"shape":"AutomationDefinitionNotApprovedException"},
+        {"shape":"NoLongerSupportedException"}
       ]
     },
     "StartExecutionPreview":{
@@ -5489,7 +5491,8 @@
       "members":{
         "InstanceId":{"shape":"InstanceId"},
         "SnapshotId":{"shape":"SnapshotId"},
-        "BaselineOverride":{"shape":"BaselineOverride"}
+        "BaselineOverride":{"shape":"BaselineOverride"},
+        "UseS3DualStackEndpoint":{"shape":"Boolean"}
       }
     },
     "GetDeployablePatchSnapshotForInstanceResult":{
@@ -8050,6 +8053,13 @@
       "members":{}
     },
     "NextToken":{"type":"string"},
+    "NoLongerSupportedException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"}
+      },
+      "exception":true
+    },
     "Node":{
       "type":"structure",
       "members":{

@@ -21,7 +21,8 @@
         "responseCode":200
       },
       "input":{"shape":"GetGlyphsRequest"},
-      "output":{"shape":"GetGlyphsResponse"}
+      "output":{"shape":"GetGlyphsResponse"},
+      "readonly":true
     },
     "GetSprites":{
       "name":"GetSprites",
@@ -31,7 +32,8 @@
         "responseCode":200
       },
       "input":{"shape":"GetSpritesRequest"},
-      "output":{"shape":"GetSpritesResponse"}
+      "output":{"shape":"GetSpritesResponse"},
+      "readonly":true
     },
     "GetStaticMap":{
       "name":"GetStaticMap",
@@ -47,7 +49,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetStyleDescriptor":{
       "name":"GetStyleDescriptor",
@@ -57,7 +60,8 @@
         "responseCode":200
       },
       "input":{"shape":"GetStyleDescriptorRequest"},
-      "output":{"shape":"GetStyleDescriptorResponse"}
+      "output":{"shape":"GetStyleDescriptorResponse"},
+      "readonly":true
     },
     "GetTile":{
       "name":"GetTile",
@@ -70,10 +74,12 @@
       "output":{"shape":"GetTileResponse"},
       "errors":[
         {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     }
   },
   "shapes":{
@@ -113,23 +119,31 @@
     "CompactOverlay":{
       "type":"string",
       "max":7000,
-      "min":1
+      "min":1,
+      "sensitive":true
+    },
+    "ContourDensity":{
+      "type":"string",
+      "enum":["Medium"]
     },
     "CountryCode":{
       "type":"string",
       "max":3,
       "min":2,
-      "pattern":"([A-Z]{2}|[A-Z]{3})"
+      "pattern":"([A-Z]{2}|[A-Z]{3})",
+      "sensitive":true
     },
     "DistanceMeters":{
       "type":"long",
       "max":4294967295,
-      "min":0
+      "min":0,
+      "sensitive":true
     },
     "GeoJsonOverlay":{
       "type":"string",
       "max":7000,
-      "min":1
+      "min":1,
+      "sensitive":true
     },
     "GetGlyphsRequest":{
       "type":"structure",
@@ -157,6 +171,8 @@
     },
     "GetGlyphsRequestFontUnicodeRangeString":{
       "type":"string",
+      "max":50,
+      "min":0,
       "pattern":"[0-9]+-[0-9]+\\.pbf"
     },
     "GetGlyphsResponse":{
@@ -247,12 +263,12 @@
       ],
       "members":{
         "BoundingBox":{
-          "shape":"PositionListString",
+          "shape":"GetStaticMapRequestBoundingBoxString",
           "location":"querystring",
           "locationName":"bounding-box"
         },
         "BoundedPositions":{
-          "shape":"PositionListString",
+          "shape":"GetStaticMapRequestBoundedPositionsString",
           "location":"querystring",
           "locationName":"bounded-positions"
         },
@@ -302,7 +318,7 @@
           "locationName":"lang"
         },
         "Padding":{
-          "shape":"Integer",
+          "shape":"GetStaticMapRequestPaddingInteger",
           "location":"querystring",
           "locationName":"padding"
         },
@@ -349,6 +365,20 @@
         }
       }
     },
+    "GetStaticMapRequestBoundedPositionsString":{
+      "type":"string",
+      "max":2000,
+      "min":0,
+      "pattern":"(-?\\d{1,3}(\\.\\d{1,14})?,-?\\d{1,2}(\\.\\d{1,14})?)(,(-?\\d{1,3}(\\.\\d{1,14})?,-?\\d{1,2}(\\.\\d{1,14})?))*",
+      "sensitive":true
+    },
+    "GetStaticMapRequestBoundingBoxString":{
+      "type":"string",
+      "max":100,
+      "min":0,
+      "pattern":"(-?\\d{1,3}(\\.\\d{1,14})?,-?\\d{1,2}(\\.\\d{1,14})?)(,(-?\\d{1,3}(\\.\\d{1,14})?,-?\\d{1,2}(\\.\\d{1,14})?))*",
+      "sensitive":true
+    },
     "GetStaticMapRequestFileNameString":{
       "type":"string",
       "pattern":"map(@2x)?"
@@ -357,19 +387,29 @@
       "type":"integer",
       "box":true,
       "max":1400,
-      "min":64
+      "min":64,
+      "sensitive":true
+    },
+    "GetStaticMapRequestPaddingInteger":{
+      "type":"integer",
+      "box":true,
+      "max":350,
+      "min":0,
+      "sensitive":true
     },
     "GetStaticMapRequestWidthInteger":{
       "type":"integer",
       "box":true,
       "max":1400,
-      "min":64
+      "min":64,
+      "sensitive":true
     },
     "GetStaticMapRequestZoomFloat":{
       "type":"float",
       "box":true,
       "max":20,
-      "min":0
+      "min":0,
+      "sensitive":true
     },
     "GetStaticMapResponse":{
       "type":"structure",
@@ -418,6 +458,26 @@
           "location":"querystring",
           "locationName":"political-view"
         },
+        "Terrain":{
+          "shape":"Terrain",
+          "location":"querystring",
+          "locationName":"terrain"
+        },
+        "ContourDensity":{
+          "shape":"ContourDensity",
+          "location":"querystring",
+          "locationName":"contour-density"
+        },
+        "Traffic":{
+          "shape":"Traffic",
+          "location":"querystring",
+          "locationName":"traffic"
+        },
+        "TravelModes":{
+          "shape":"TravelModeList",
+          "location":"querystring",
+          "locationName":"travel-modes"
+        },
         "Key":{
           "shape":"ApiKey",
           "location":"querystring",
@@ -456,6 +516,11 @@
         "Y"
       ],
       "members":{
+        "AdditionalFeatures":{
+          "shape":"TileAdditionalFeatureList",
+          "location":"querystring",
+          "locationName":"additional-features"
+        },
         "Tileset":{
           "shape":"Tileset",
           "location":"uri",
@@ -485,15 +550,24 @@
     },
     "GetTileRequestXString":{
       "type":"string",
-      "pattern":".*\\d+.*"
+      "max":7,
+      "min":0,
+      "pattern":".*\\d+.*",
+      "sensitive":true
     },
     "GetTileRequestYString":{
       "type":"string",
-      "pattern":".*\\d+.*"
+      "max":7,
+      "min":0,
+      "pattern":".*\\d+.*",
+      "sensitive":true
     },
     "GetTileRequestZString":{
       "type":"string",
-      "pattern":".*\\d+.*"
+      "max":2,
+      "min":0,
+      "pattern":".*\\d+.*",
+      "sensitive":true
     },
     "GetTileResponse":{
       "type":"structure",
@@ -522,10 +596,6 @@
         }
       },
       "payload":"Blob"
-    },
-    "Integer":{
-      "type":"integer",
-      "box":true
     },
     "InternalServerException":{
       "type":"structure",
@@ -569,16 +639,27 @@
         "Satellite"
       ]
     },
-    "PositionListString":{
-      "type":"string",
-      "min":7,
-      "pattern":"(-?\\d{1,3}(\\.\\d{1,14})?,-?\\d{1,2}(\\.\\d{1,14})?)(,(-?\\d{1,3}(\\.\\d{1,14})?,-?\\d{1,2}(\\.\\d{1,14})?))*"
-    },
     "PositionString":{
       "type":"string",
       "max":36,
       "min":3,
-      "pattern":"-?\\d{1,3}(\\.\\d{1,14})?,-?\\d{1,2}(\\.\\d{1,14})?"
+      "pattern":"-?\\d{1,3}(\\.\\d{1,14})?,-?\\d{1,2}(\\.\\d{1,14})?",
+      "sensitive":true
+    },
+    "ResourceNotFoundException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        }
+      },
+      "error":{
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
     },
     "ScaleBarUnit":{
       "type":"string",
@@ -597,6 +678,10 @@
       ]
     },
     "String":{"type":"string"},
+    "Terrain":{
+      "type":"string",
+      "enum":["Hillshade"]
+    },
     "ThrottlingException":{
       "type":"structure",
       "required":["Message"],
@@ -613,11 +698,43 @@
       "exception":true,
       "retryable":{"throttling":false}
     },
+    "TileAdditionalFeature":{
+      "type":"string",
+      "enum":[
+        "ContourLines",
+        "Hillshade",
+        "Logistics",
+        "Transit"
+      ]
+    },
+    "TileAdditionalFeatureList":{
+      "type":"list",
+      "member":{"shape":"TileAdditionalFeature"},
+      "max":4,
+      "min":0
+    },
     "Tileset":{
       "type":"string",
       "max":100,
       "min":1,
       "pattern":"[-.\\w]+"
+    },
+    "Traffic":{
+      "type":"string",
+      "enum":["All"]
+    },
+    "TravelMode":{
+      "type":"string",
+      "enum":[
+        "Transit",
+        "Truck"
+      ]
+    },
+    "TravelModeList":{
+      "type":"list",
+      "member":{"shape":"TravelMode"},
+      "max":2,
+      "min":0
     },
     "ValidationException":{
       "type":"structure",
