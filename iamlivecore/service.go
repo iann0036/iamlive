@@ -170,13 +170,11 @@ func Run() {
 		defer pprof.StopCPUProfile()
 	}
 
-	if *refreshRateFlag != 0 && *providerFlag == "aws" {
+	if *refreshRateFlag != 0 {
 		setTerminalRefresh()
 	}
 
-	if *providerFlag == "aws" {
-		setINIConfigAndFileFlush()
-	}
+	setINIConfigAndFileFlush()
 
 	loadMaps()
 
@@ -219,13 +217,11 @@ func RunWithArgs(provider string, setIni bool, profile string, failsOnly bool, o
 		defer pprof.StopCPUProfile()
 	}
 
-	if *refreshRateFlag != 0 && *providerFlag == "aws" {
+	if *refreshRateFlag != 0 {
 		setTerminalRefresh()
 	}
 
-	if *providerFlag == "aws" {
-		setINIConfigAndFileFlush()
-	}
+	setINIConfigAndFileFlush()
 
 	loadMaps()
 
