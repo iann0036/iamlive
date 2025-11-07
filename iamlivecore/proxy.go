@@ -438,6 +438,7 @@ type ActionCandidate struct {
 
 func handleAWSRequest(req *http.Request, body []byte, respCode int) {
 	host := req.Host
+	host = strings.TrimSuffix(host, ".cn")
 	uri := req.RequestURI
 
 	var endpointUriPrefix string
