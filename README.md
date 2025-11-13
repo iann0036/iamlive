@@ -175,6 +175,8 @@ export HTTP_PROXY=http://127.0.0.1:10080
 export HTTPS_PROXY=http://127.0.0.1:10080
 ```
 
+Note that other software in subprocesses might also honor these variables, resulting in untrusted certificates. You might be able to use the `NO_PROXY` variable or add the CA bundle to other software to work around issues.
+
 #### AWS SDKs
 
 To enable proxy mode in the various AWS SDKs, you can run the following in the window executing your application prior to it starting:
