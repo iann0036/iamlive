@@ -20,7 +20,7 @@ jobs:
       - name: Set up Gon
         run: brew install Bearer/tap/gon
       - name: Import Keychain Certs
-        uses: apple-actions/import-codesign-certs@v1
+        uses: apple-actions/import-codesign-certs@v3
         with: 
           p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
           p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
