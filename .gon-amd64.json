@@ -6,7 +6,7 @@
         "provider": "R7ZQG222E8"
     },
     "sign": {
-        "application_identity" : "Developer ID Application: Ian McKay"
+        "application_identity" : "Mac Developer ID Application: Ian McKay"
     },
     "dmg" :{
         "output_path":  "./dist/iamlive-darwin-amd64.dmg",
