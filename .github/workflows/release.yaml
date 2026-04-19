@@ -25,6 +25,7 @@ jobs:
           p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
           p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
           keychain: login
+          create-keychain: 'false'
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:
