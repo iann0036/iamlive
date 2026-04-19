@@ -10,3 +10,9 @@ builds:
     goarch:
       - amd64
       - arm64
+notarize:
+  macos:
+    - enabled: true
+      sign:
+        certificate: "{{.Env.MACOS_SIGN_P12}}"
+        password: "{{.Env.MACOS_SIGN_PASSWORD}}"
