@@ -947,7 +947,8 @@
         "Order":{"shape":"ActionOrder"},
         "RedirectConfig":{"shape":"RedirectActionConfig"},
         "FixedResponseConfig":{"shape":"FixedResponseActionConfig"},
-        "ForwardConfig":{"shape":"ForwardActionConfig"}
+        "ForwardConfig":{"shape":"ForwardActionConfig"},
+        "JwtValidationConfig":{"shape":"JwtValidationActionConfig"}
       }
     },
     "ActionOrder":{
@@ -962,7 +963,8 @@
         "authenticate-oidc",
         "authenticate-cognito",
         "redirect",
-        "fixed-response"
+        "fixed-response",
+        "jwt-validation"
       ]
     },
     "Actions":{
@@ -1360,7 +1362,8 @@
         "Matcher":{"shape":"Matcher"},
         "TargetType":{"shape":"TargetTypeEnum"},
         "Tags":{"shape":"TagList"},
-        "IpAddressType":{"shape":"TargetGroupIpAddressTypeEnum"}
+        "IpAddressType":{"shape":"TargetGroupIpAddressTypeEnum"},
+        "TargetControlPort":{"shape":"TargetControlPort"}
       }
     },
     "CreateTargetGroupOutput":{
@@ -2074,6 +2077,51 @@
       }
     },
     "IsDefault":{"type":"boolean"},
+    "JwtValidationActionAdditionalClaim":{
+      "type":"structure",
+      "required":[
+        "Format",
+        "Name",
+        "Values"
+      ],
+      "members":{
+        "Format":{"shape":"JwtValidationActionAdditionalClaimFormatEnum"},
+        "Name":{"shape":"JwtValidationActionAdditionalClaimName"},
+        "Values":{"shape":"JwtValidationActionAdditionalClaimValues"}
+      }
+    },
+    "JwtValidationActionAdditionalClaimFormatEnum":{
+      "type":"string",
+      "enum":[
+        "single-string",
+        "string-array",
+        "space-separated-values"
+      ]
+    },
+    "JwtValidationActionAdditionalClaimName":{"type":"string"},
+    "JwtValidationActionAdditionalClaimValue":{"type":"string"},
+    "JwtValidationActionAdditionalClaimValues":{
+      "type":"list",
+      "member":{"shape":"JwtValidationActionAdditionalClaimValue"}
+    },
+    "JwtValidationActionAdditionalClaims":{
+      "type":"list",
+      "member":{"shape":"JwtValidationActionAdditionalClaim"}
+    },
+    "JwtValidationActionConfig":{
+      "type":"structure",
+      "required":[
+        "JwksEndpoint",
+        "Issuer"
+      ],
+      "members":{
+        "JwksEndpoint":{"shape":"JwtValidationActionJwksEndpoint"},
+        "Issuer":{"shape":"JwtValidationActionIssuer"},
+        "AdditionalClaims":{"shape":"JwtValidationActionAdditionalClaims"}
+      }
+    },
+    "JwtValidationActionIssuer":{"type":"string"},
+    "JwtValidationActionJwksEndpoint":{"type":"string"},
     "LastModifiedTime":{"type":"timestamp"},
     "Limit":{
       "type":"structure",
@@ -2521,7 +2569,9 @@
         "TLS",
         "UDP",
         "TCP_UDP",
-        "GENEVE"
+        "GENEVE",
+        "QUIC",
+        "TCP_QUIC"
       ]
     },
     "ProtocolVersion":{"type":"string"},
@@ -2541,6 +2591,11 @@
     "QueryStringKeyValuePairList":{
       "type":"list",
       "member":{"shape":"QueryStringKeyValuePair"}
+    },
+    "QuicServerId":{
+      "type":"string",
+      "max":256,
+      "min":1
     },
     "RedirectActionConfig":{
       "type":"structure",
@@ -3020,13 +3075,19 @@
         "zonal_shift_delegated_to_dns"
       ]
     },
+    "TargetControlPort":{
+      "type":"integer",
+      "max":65535,
+      "min":1
+    },
     "TargetDescription":{
       "type":"structure",
       "required":["Id"],
       "members":{
         "Id":{"shape":"TargetId"},
         "Port":{"shape":"Port"},
-        "AvailabilityZone":{"shape":"ZoneName"}
+        "AvailabilityZone":{"shape":"ZoneName"},
+        "QuicServerId":{"shape":"QuicServerId"}
       }
     },
     "TargetDescriptions":{
@@ -3053,7 +3114,8 @@
         "LoadBalancerArns":{"shape":"LoadBalancerArns"},
         "TargetType":{"shape":"TargetTypeEnum"},
         "ProtocolVersion":{"shape":"ProtocolVersion"},
-        "IpAddressType":{"shape":"TargetGroupIpAddressTypeEnum"}
+        "IpAddressType":{"shape":"TargetGroupIpAddressTypeEnum"},
+        "TargetControlPort":{"shape":"TargetControlPort"}
       }
     },
     "TargetGroupArn":{"type":"string"},

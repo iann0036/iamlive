@@ -203,6 +203,70 @@
         }
       ]
     },
+    "CreateTopic": {
+      "name": "CreateTopic",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/clusters/{clusterArn}/topics",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "CreateTopicRequest"
+      },
+      "output": {
+        "shape": "CreateTopicResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "ConflictException"
+        },
+        {
+          "shape": "TopicExistsException"
+        },
+        {
+          "shape": "ClusterConnectivityException"
+        },
+        {
+          "shape": "KafkaTimeoutException"
+        },
+        {
+          "shape": "UnknownTopicOrPartitionException"
+        },
+        {
+          "shape": "ControllerMovedException"
+        },
+        {
+          "shape": "NotControllerException"
+        },
+        {
+          "shape": "ReassignmentInProgressException"
+        },
+        {
+          "shape": "GroupSubscribedToTopicException"
+        },
+        {
+          "shape": "KafkaRequestException"
+        }
+      ]
+    },
     "CreateVpcConnection": {
       "name": "CreateVpcConnection",
       "http": {
@@ -333,6 +397,34 @@
         }
       ]
     },
+    "DeleteTopic": {
+      "name": "DeleteTopic",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/clusters/{clusterArn}/topics/{topicName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DeleteTopicRequest"
+      },
+      "output": {
+        "shape": "DeleteTopicResponse"
+      },
+      "errors": [
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
     "DeleteVpcConnection": {
       "name": "DeleteVpcConnection",
       "http": {
@@ -358,6 +450,30 @@
         },
         {
           "shape": "ForbiddenException"
+        },
+        {
+          "shape": "ClusterConnectivityException"
+        },
+        {
+          "shape": "KafkaTimeoutException"
+        },
+        {
+          "shape": "UnknownTopicOrPartitionException"
+        },
+        {
+          "shape": "ControllerMovedException"
+        },
+        {
+          "shape": "NotControllerException"
+        },
+        {
+          "shape": "ReassignmentInProgressException"
+        },
+        {
+          "shape": "GroupSubscribedToTopicException"
+        },
+        {
+          "shape": "KafkaRequestException"
         }
       ]
     },
@@ -593,6 +709,68 @@
         },
         {
           "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "DescribeTopic": {
+      "name": "DescribeTopic",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/clusters/{clusterArn}/topics/{topicName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeTopicRequest"
+      },
+      "output": {
+        "shape": "DescribeTopicResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        }
+      ]
+    },
+    "DescribeTopicPartitions": {
+      "name": "DescribeTopicPartitions",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/clusters/{clusterArn}/topics/{topicName}/partitions",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "DescribeTopicPartitionsRequest"
+      },
+      "output": {
+        "shape": "DescribeTopicPartitionsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
         }
       ]
     },
@@ -1138,6 +1316,37 @@
         }
       ]
     },
+    "ListTopics": {
+      "name": "ListTopics",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/clusters/{clusterArn}/topics",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListTopicsRequest"
+      },
+      "output": {
+        "shape": "ListTopicsResponse"
+      },
+      "errors": [
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
     "RejectClientVpcConnection": {
       "name": "RejectClientVpcConnection",
       "http": {
@@ -1612,6 +1821,43 @@
         }
       ]
     },
+    "UpdateRebalancing": {
+      "name": "UpdateRebalancing",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/clusters/{clusterArn}/rebalancing",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateRebalancingRequest"
+      },
+      "output": {
+        "shape": "UpdateRebalancingResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        }
+      ]
+    },
     "UpdateReplicationInfo": {
       "name": "UpdateReplicationInfo",
       "http": {
@@ -1720,6 +1966,64 @@
         },
         {
           "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "UpdateTopic": {
+      "name": "UpdateTopic",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/clusters/{clusterArn}/topics/{topicName}",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "UpdateTopicRequest"
+      },
+      "output": {
+        "shape": "UpdateTopicResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "UnauthorizedException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "ServiceUnavailableException"
+        },
+        {
+          "shape": "ClusterConnectivityException"
+        },
+        {
+          "shape": "KafkaTimeoutException"
+        },
+        {
+          "shape": "UnknownTopicOrPartitionException"
+        },
+        {
+          "shape": "ControllerMovedException"
+        },
+        {
+          "shape": "NotControllerException"
+        },
+        {
+          "shape": "ReassignmentInProgressException"
+        },
+        {
+          "shape": "GroupSubscribedToTopicException"
+        },
+        {
+          "shape": "KafkaRequestException"
         }
       ]
     }
@@ -2044,6 +2348,10 @@
           "shape": "StorageMode",
           "locationName": "storageMode"
         },
+        "Rebalancing": {
+          "shape": "Rebalancing",
+          "locationName": "rebalancing"
+        },
         "CustomerActionStatus": {
           "shape": "CustomerActionStatus",
           "locationName": "customerActionStatus"
@@ -2190,6 +2498,14 @@
     "ClusterOperationV2Serverless": {
       "type": "structure",
       "members": {
+        "SourceClusterInfo": {
+          "shape": "ServerlessConnectivityInfo",
+          "locationName": "sourceClusterInfo"
+        },
+        "TargetClusterInfo": {
+          "shape": "ServerlessConnectivityInfo",
+          "locationName": "targetClusterInfo"
+        },
         "VpcConnectionInfo": {
           "shape": "VpcConnectionInfoServerless",
           "locationName": "vpcConnectionInfo"
@@ -2431,6 +2747,10 @@
         "VpcConnectivity": {
           "shape": "VpcConnectivity",
           "locationName": "vpcConnectivity"
+        },
+        "NetworkType": {
+          "shape": "NetworkType",
+          "locationName": "networkType"
         }
       }
     },
@@ -2544,6 +2864,10 @@
         "Tags": {
           "shape": "__mapOf__string",
           "locationName": "tags"
+        },
+        "Rebalancing": {
+          "shape": "Rebalancing",
+          "locationName": "rebalancing"
         },
         "StorageMode": {
           "shape": "StorageMode",
@@ -2673,6 +2997,55 @@
         "ReplicatorState": {
           "shape": "ReplicatorState",
           "locationName": "replicatorState"
+        }
+      }
+    },
+    "CreateTopicRequest": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        },
+        "TopicName": {
+          "shape": "__string",
+          "locationName": "topicName"
+        },
+        "PartitionCount": {
+          "shape": "__integerMin1",
+          "locationName": "partitionCount"
+        },
+        "ReplicationFactor": {
+          "shape": "__integerMin1",
+          "locationName": "replicationFactor"
+        },
+        "Configs": {
+          "shape": "__string",
+          "locationName": "configs"
+        }
+      },
+      "required": [
+        "ClusterArn",
+        "TopicName",
+        "PartitionCount",
+        "ReplicationFactor"
+      ]
+    },
+    "CreateTopicResponse": {
+      "type": "structure",
+      "members": {
+        "TopicArn": {
+          "shape": "__string",
+          "locationName": "topicArn"
+        },
+        "TopicName": {
+          "shape": "__string",
+          "locationName": "topicName"
+        },
+        "Status": {
+          "shape": "TopicState",
+          "locationName": "status"
         }
       }
     },
@@ -2836,6 +3209,42 @@
         "ReplicatorState": {
           "shape": "ReplicatorState",
           "locationName": "replicatorState"
+        }
+      }
+    },
+    "DeleteTopicRequest": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        },
+        "TopicName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "topicName"
+        }
+      },
+      "required": [
+        "ClusterArn",
+        "TopicName"
+      ]
+    },
+    "DeleteTopicResponse": {
+      "type": "structure",
+      "members": {
+        "TopicArn": {
+          "shape": "__string",
+          "locationName": "topicArn"
+        },
+        "TopicName": {
+          "shape": "__string",
+          "locationName": "topicName"
+        },
+        "Status": {
+          "shape": "TopicState",
+          "locationName": "status"
         }
       }
     },
@@ -3018,6 +3427,118 @@
         "ServerProperties": {
           "shape": "__blob",
           "locationName": "serverProperties"
+        }
+      }
+    },
+    "DescribeTopicRequest": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        },
+        "TopicName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "topicName"
+        }
+      },
+      "required": [
+        "ClusterArn",
+        "TopicName"
+      ]
+    },
+    "DescribeTopicPartitionsRequest": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        },
+        "TopicName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "topicName"
+        },
+        "MaxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        }
+      },
+      "required": [
+        "ClusterArn",
+        "TopicName"
+      ]
+    },
+    "DescribeTopicResponse": {
+      "type": "structure",
+      "members": {
+        "TopicArn": {
+          "shape": "__string",
+          "locationName": "topicArn"
+        },
+        "TopicName": {
+          "shape": "__string",
+          "locationName": "topicName"
+        },
+        "ReplicationFactor": {
+          "shape": "__integer",
+          "locationName": "replicationFactor"
+        },
+        "PartitionCount": {
+          "shape": "__integer",
+          "locationName": "partitionCount"
+        },
+        "Configs": {
+          "shape": "__string",
+          "locationName": "configs"
+        },
+        "Status": {
+          "shape": "TopicState",
+          "locationName": "status"
+        }
+      }
+    },
+    "DescribeTopicPartitionsResponse": {
+      "type": "structure",
+      "members": {
+        "Partitions": {
+          "shape": "__listOfTopicPartitionInfo",
+          "locationName": "partitions"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
+    "TopicPartitionInfo": {
+      "type": "structure",
+      "documentation": "<p>Contains information about a topic partition.</p>",
+      "members": {
+        "Partition": {
+          "shape": "__integer",
+          "locationName": "partition"
+        },
+        "Leader": {
+          "shape": "__integer",
+          "locationName": "leader"
+        },
+        "Replicas": {
+          "shape": "__listOf__integer",
+          "locationName": "replicas"
+        },
+        "Isr": {
+          "shape": "__listOf__integer",
+          "locationName": "isr"
         }
       }
     },
@@ -3351,6 +3872,22 @@
         "BootstrapBrokerStringVpcConnectivitySaslIam": {
           "shape": "__string",
           "locationName": "bootstrapBrokerStringVpcConnectivitySaslIam"
+        },
+        "BootstrapBrokerStringIpv6": {
+          "shape": "__string",
+          "locationName": "bootstrapBrokerStringIpv6"
+        },
+        "BootstrapBrokerStringTlsIpv6": {
+          "shape": "__string",
+          "locationName": "bootstrapBrokerStringTlsIpv6"
+        },
+        "BootstrapBrokerStringSaslScramIpv6": {
+          "shape": "__string",
+          "locationName": "bootstrapBrokerStringSaslScramIpv6"
+        },
+        "BootstrapBrokerStringSaslIamIpv6": {
+          "shape": "__string",
+          "locationName": "bootstrapBrokerStringSaslIamIpv6"
         }
       }
     },
@@ -3817,6 +4354,28 @@
         "SERVERLESS"
       ]
     },
+    "Rebalancing": {
+      "type": "structure",
+      "documentation": "\n            <p>Specifies whether or not intelligent rebalancing is turned on for a newly created MSK Provisioned cluster with Express brokers. Intelligent rebalancing performs automatic partition balancing operations when you scale your clusters up or down. By default, intelligent rebalancing is ACTIVE for all new Express-based clusters.</p>\n         ",
+      "members": {
+        "Status": {
+          "shape": "RebalancingStatus",
+          "locationName": "status",
+          "documentation": "\n            <p>Intelligent rebalancing status. The default intelligent rebalancing status is ACTIVE for all new Express-based clusters.</p>\n         "
+        }
+      },
+      "required": [
+        "Status"
+      ]
+    },
+    "RebalancingStatus": {
+      "type": "string",
+      "documentation": "\n            <p>Intelligent rebalancing status. The default intelligent rebalancing status is ACTIVE for all new Express-based clusters.</p>\n         ",
+      "enum": [
+        "PAUSED",
+        "ACTIVE"
+      ]
+    },
     "ProvisionedRequest": {
       "type": "structure",
       "documentation": "\n            <p>Provisioned cluster request.</p>\n         ",
@@ -3870,6 +4429,11 @@
           "shape": "StorageMode",
           "locationName": "storageMode",
           "documentation": "\n            <p>This controls storage mode for supported storage tiers.</p>\n         "
+        },
+        "Rebalancing": {
+          "shape": "Rebalancing",
+          "locationName": "rebalancing",
+          "documentation": "\n            <p>Specifies if intelligent rebalancing should be turned on for a new MSK Provisioned cluster with Express brokers. For all new Express-based clusters that you create, intelligent rebalancing is turned on by default.</p>\n         "
         }
       },
       "required": [
@@ -3936,6 +4500,11 @@
           "shape": "StorageMode",
           "locationName": "storageMode",
           "documentation": "\n            <p>This controls storage mode for supported storage tiers.</p>\n         "
+        },
+        "Rebalancing": {
+          "shape": "Rebalancing",
+          "locationName": "rebalancing",
+          "documentation": "\n            <p>Specifies if intelligent rebalancing is turned on for your MSK Provisioned cluster with Express brokers. For all new Express-based clusters that you create, intelligent rebalancing is turned on by default.</p>\n         "
         },
         "CustomerActionStatus": {
           "shape": "CustomerActionStatus",
@@ -4008,6 +4577,16 @@
       },
       "documentation": "\n            <p>Details for client authentication using SASL.</p>\n         "
     },
+    "ServerlessConnectivityInfo": {
+      "type": "structure",
+      "members": {
+        "NetworkType": {
+          "shape": "NetworkType",
+          "locationName": "networkType",
+          "documentation": "\n            <p>The network type of the cluster, which is IPv4 or DUAL. The DUAL network type uses both IPv4 and IPv6 addresses for your cluster and its resources.</p><p>By default, a cluster uses the IPv4 network type.</p>\n         "
+        }
+      }
+    },
     "Serverless": {
       "type": "structure",
       "documentation": "\n            <p>Serverless cluster.</p>\n         ",
@@ -4021,6 +4600,11 @@
           "shape": "ServerlessClientAuthentication",
           "locationName": "clientAuthentication",
           "documentation": "\n            <p>Includes all client authentication information.</p>\n         "
+        },
+        "ConnectivityInfo": {
+          "shape": "ServerlessConnectivityInfo",
+          "locationName": "connectivityInfo",
+          "documentation": "\n            <p>Describes the cluster's connectivity information, such as its network type, which is IPv4 or DUAL.</p>\n         "
         }
       },
       "required": [
@@ -4299,6 +4883,47 @@
         }
       }
     },
+    "ListTopicsRequest": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        },
+        "MaxResults": {
+          "shape": "MaxResults",
+          "location": "querystring",
+          "locationName": "maxResults"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "nextToken"
+        },
+        "TopicNameFilter": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "topicNameFilter"
+        }
+      },
+      "required": [
+        "ClusterArn"
+      ]
+    },
+    "ListTopicsResponse": {
+      "type": "structure",
+      "members": {
+        "Topics": {
+          "shape": "__listOfTopicInfo",
+          "locationName": "topics"
+        },
+        "NextToken": {
+          "shape": "__string",
+          "locationName": "nextToken"
+        }
+      }
+    },
     "ListReplicatorsRequest": {
       "type": "structure",
       "members": {
@@ -4436,6 +5061,10 @@
         "BrokerCountUpdateInfo": {
           "shape": "BrokerCountUpdateInfo",
           "locationName": "brokerCountUpdateInfo"
+        },
+        "Rebalancing": {
+          "shape": "Rebalancing",
+          "locationName": "rebalancing"
         }
       }
     },
@@ -4471,6 +5100,14 @@
           "locationName": "zookeeperNodeInfo"
         }
       }
+    },
+    "NetworkType": {
+      "type": "string",
+      "documentation": "\n            <p>The network type of the cluster, which is IPv4 or DUAL. The DUAL network type uses both IPv4 and IPv6 addresses for your cluster and its resources.</p><p>By default, a cluster uses the IPv4 network type.</p>\n         ",
+      "enum": [
+        "IPV4",
+        "DUAL"
+      ]
     },
     "NodeType": {
       "type": "string",
@@ -4878,6 +5515,31 @@
         }
       }
     },
+    "TopicInfo": {
+      "type": "structure",
+      "members": {
+        "TopicArn": {
+          "shape": "__string",
+          "locationName": "topicArn"
+        },
+        "TopicName": {
+          "shape": "__string",
+          "locationName": "topicName"
+        },
+        "ReplicationFactor": {
+          "shape": "__integer",
+          "locationName": "replicationFactor"
+        },
+        "PartitionCount": {
+          "shape": "__integer",
+          "locationName": "partitionCount"
+        },
+        "OutOfSyncReplicaCount": {
+          "shape": "__integer",
+          "locationName": "outOfSyncReplicaCount"
+        }
+      }
+    },
     "VpcConnectivityTls": {
       "type": "structure",
       "members": {
@@ -4928,6 +5590,159 @@
       "exception": true,
       "error": {
         "httpStatusCode": 401
+      }
+    },
+    "TopicExistsException": {
+      "type": "structure",
+      "members": {
+        "InvalidParameter": {
+          "shape": "__string",
+          "locationName": "invalidParameter"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "exception": true,
+      "error": {
+        "httpStatusCode": 409
+      }
+    },
+    "ClusterConnectivityException": {
+      "type": "structure",
+      "members": {
+        "InvalidParameter": {
+          "shape": "__string",
+          "locationName": "invalidParameter"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "exception": true,
+      "error": {
+        "httpStatusCode": 409
+      }
+    },
+    "KafkaTimeoutException": {
+      "type": "structure",
+      "members": {
+        "InvalidParameter": {
+          "shape": "__string",
+          "locationName": "invalidParameter"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "exception": true,
+      "error": {
+        "httpStatusCode": 409
+      }
+    },
+    "UnknownTopicOrPartitionException": {
+      "type": "structure",
+      "members": {
+        "InvalidParameter": {
+          "shape": "__string",
+          "locationName": "invalidParameter"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "exception": true,
+      "error": {
+        "httpStatusCode": 404
+      }
+    },
+    "ControllerMovedException": {
+      "type": "structure",
+      "members": {
+        "InvalidParameter": {
+          "shape": "__string",
+          "locationName": "invalidParameter"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "exception": true,
+      "error": {
+        "httpStatusCode": 409
+      }
+    },
+    "NotControllerException": {
+      "type": "structure",
+      "members": {
+        "InvalidParameter": {
+          "shape": "__string",
+          "locationName": "invalidParameter"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "exception": true,
+      "error": {
+        "httpStatusCode": 409
+      }
+    },
+    "ReassignmentInProgressException": {
+      "type": "structure",
+      "members": {
+        "InvalidParameter": {
+          "shape": "__string",
+          "locationName": "invalidParameter"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "exception": true,
+      "error": {
+        "httpStatusCode": 409
+      }
+    },
+    "GroupSubscribedToTopicException": {
+      "type": "structure",
+      "members": {
+        "InvalidParameter": {
+          "shape": "__string",
+          "locationName": "invalidParameter"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "exception": true,
+      "error": {
+        "httpStatusCode": 409
+      }
+    },
+    "KafkaRequestException": {
+      "type": "structure",
+      "members": {
+        "InvalidParameter": {
+          "shape": "__string",
+          "locationName": "invalidParameter"
+        },
+        "Message": {
+          "shape": "__string",
+          "locationName": "message"
+        }
+      },
+      "exception": true,
+      "error": {
+        "httpStatusCode": 400
       }
     },
     "UnprocessedScramSecret": {
@@ -5026,6 +5841,42 @@
       ]
     },
     "UpdateBrokerCountResponse": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "locationName": "clusterArn"
+        },
+        "ClusterOperationArn": {
+          "shape": "__string",
+          "locationName": "clusterOperationArn"
+        }
+      }
+    },
+    "UpdateRebalancingRequest": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        },
+        "CurrentVersion": {
+          "shape": "__string",
+          "locationName": "currentVersion"
+        },
+        "Rebalancing": {
+          "shape": "Rebalancing",
+          "locationName": "rebalancing"
+        }
+      },
+      "required": [
+        "ClusterArn",
+        "CurrentVersion",
+        "Rebalancing"
+      ]
+    },
+    "UpdateRebalancingResponse": {
       "type": "structure",
       "members": {
         "ClusterArn": {
@@ -5382,6 +6233,50 @@
         "CurrentVersion"
       ]
     },
+    "UpdateTopicRequest": {
+      "type": "structure",
+      "members": {
+        "ClusterArn": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "clusterArn"
+        },
+        "TopicName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "topicName"
+        },
+        "Configs": {
+          "shape": "__string",
+          "locationName": "configs"
+        },
+        "PartitionCount": {
+          "shape": "__integer",
+          "locationName": "partitionCount"
+        }
+      },
+      "required": [
+        "ClusterArn",
+        "TopicName"
+      ]
+    },
+    "UpdateTopicResponse": {
+      "type": "structure",
+      "members": {
+        "TopicArn": {
+          "shape": "__string",
+          "locationName": "topicArn"
+        },
+        "TopicName": {
+          "shape": "__string",
+          "locationName": "topicName"
+        },
+        "Status": {
+          "shape": "TopicState",
+          "locationName": "status"
+        }
+      }
+    },
     "UpdateStorageResponse": {
       "type": "structure",
       "members": {
@@ -5572,6 +6467,15 @@
         }
       }
     },
+    "TopicState": {
+      "type": "string",
+      "enum": [
+        "CREATING",
+        "UPDATING",
+        "DELETING",
+        "ACTIVE"
+      ]
+    },
     "VpcConnectionState": {
       "type": "string",
       "enum": [
@@ -5706,6 +6610,10 @@
       "min": 1,
       "max": 16384
     },
+    "__integerMin1": {
+      "type": "integer",
+      "min": 1
+    },
     "__listOfBrokerEBSVolumeInfo": {
       "type": "list",
       "member": {
@@ -5826,6 +6734,18 @@
         "shape": "ReplicatorSummary"
       }
     },
+    "__listOfTopicInfo": {
+      "type": "list",
+      "member": {
+        "shape": "TopicInfo"
+      }
+    },
+    "__listOfTopicPartitionInfo": {
+      "type": "list",
+      "member": {
+        "shape": "TopicPartitionInfo"
+      }
+    },
     "__listOfVpcConnection": {
       "type": "list",
       "member": {
@@ -5848,6 +6768,12 @@
       "type": "list",
       "member": {
         "shape": "__string"
+      }
+    },
+    "__listOf__integer": {
+      "type": "list",
+      "member": {
+        "shape": "__integer"
       }
     },
     "__listOf__stringMax249": {

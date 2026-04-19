@@ -95,6 +95,25 @@
       ],
       "idempotent":true
     },
+    "CreateBrowserProfile":{
+      "name":"CreateBrowserProfile",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/browser-profiles",
+        "responseCode":200
+      },
+      "input":{"shape":"CreateBrowserProfileRequest"},
+      "output":{"shape":"CreateBrowserProfileResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "CreateCodeInterpreter":{
       "name":"CreateCodeInterpreter",
       "http":{
@@ -113,6 +132,24 @@
         {"shape":"InternalServerException"}
       ],
       "idempotent":true
+    },
+    "CreateEvaluator":{
+      "name":"CreateEvaluator",
+      "http":{
+        "method":"POST",
+        "requestUri":"/evaluators/create",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateEvaluatorRequest"},
+      "output":{"shape":"CreateEvaluatorResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
     },
     "CreateGateway":{
       "name":"CreateGateway",
@@ -194,6 +231,100 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"},
         {"shape":"EncryptionFailure"}
+      ],
+      "idempotent":true
+    },
+    "CreateOnlineEvaluationConfig":{
+      "name":"CreateOnlineEvaluationConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/online-evaluation-configs/create",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateOnlineEvaluationConfigRequest"},
+      "output":{"shape":"CreateOnlineEvaluationConfigResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "CreatePolicy":{
+      "name":"CreatePolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy-engines/{policyEngineId}/policies",
+        "responseCode":202
+      },
+      "input":{"shape":"CreatePolicyRequest"},
+      "output":{"shape":"CreatePolicyResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "CreatePolicyEngine":{
+      "name":"CreatePolicyEngine",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy-engines",
+        "responseCode":202
+      },
+      "input":{"shape":"CreatePolicyEngineRequest"},
+      "output":{"shape":"CreatePolicyEngineResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "CreateRegistry":{
+      "name":"CreateRegistry",
+      "http":{
+        "method":"POST",
+        "requestUri":"/registries",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateRegistryRequest"},
+      "output":{"shape":"CreateRegistryResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "CreateRegistryRecord":{
+      "name":"CreateRegistryRecord",
+      "http":{
+        "method":"POST",
+        "requestUri":"/registries/{registryId}/records",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateRegistryRecordRequest"},
+      "output":{"shape":"CreateRegistryRecordResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
       ],
       "idempotent":true
     },
@@ -291,6 +422,25 @@
       ],
       "idempotent":true
     },
+    "DeleteBrowserProfile":{
+      "name":"DeleteBrowserProfile",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/browser-profiles/{profileId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteBrowserProfileRequest"},
+      "output":{"shape":"DeleteBrowserProfileResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "DeleteCodeInterpreter":{
       "name":"DeleteCodeInterpreter",
       "http":{
@@ -305,6 +455,25 @@
         {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteEvaluator":{
+      "name":"DeleteEvaluator",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/evaluators/{evaluatorId}",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteEvaluatorRequest"},
+      "output":{"shape":"DeleteEvaluatorResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
@@ -362,6 +531,7 @@
         {"shape":"ServiceException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottledException"}
       ],
@@ -382,6 +552,119 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteOnlineEvaluationConfig":{
+      "name":"DeleteOnlineEvaluationConfig",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/online-evaluation-configs/{onlineEvaluationConfigId}",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteOnlineEvaluationConfigRequest"},
+      "output":{"shape":"DeleteOnlineEvaluationConfigResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeletePolicy":{
+      "name":"DeletePolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/policy-engines/{policyEngineId}/policies/{policyId}",
+        "responseCode":202
+      },
+      "input":{"shape":"DeletePolicyRequest"},
+      "output":{"shape":"DeletePolicyResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeletePolicyEngine":{
+      "name":"DeletePolicyEngine",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/policy-engines/{policyEngineId}",
+        "responseCode":202
+      },
+      "input":{"shape":"DeletePolicyEngineRequest"},
+      "output":{"shape":"DeletePolicyEngineResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteRegistry":{
+      "name":"DeleteRegistry",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/registries/{registryId}",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteRegistryRequest"},
+      "output":{"shape":"DeleteRegistryResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteRegistryRecord":{
+      "name":"DeleteRegistryRecord",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/registries/{registryId}/records/{recordId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeleteRegistryRecordRequest"},
+      "output":{"shape":"DeleteRegistryRecordResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteResourcePolicy":{
+      "name":"DeleteResourcePolicy",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/resourcepolicy/{resourceArn}",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteResourcePolicyRequest"},
+      "output":{"shape":"DeleteResourcePolicyResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ],
       "idempotent":true
@@ -479,6 +762,24 @@
       ],
       "readonly":true
     },
+    "GetBrowserProfile":{
+      "name":"GetBrowserProfile",
+      "http":{
+        "method":"GET",
+        "requestUri":"/browser-profiles/{profileId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetBrowserProfileRequest"},
+      "output":{"shape":"GetBrowserProfileResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
     "GetCodeInterpreter":{
       "name":"GetCodeInterpreter",
       "http":{
@@ -490,6 +791,24 @@
       "output":{"shape":"GetCodeInterpreterResponse"},
       "errors":[
         {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "GetEvaluator":{
+      "name":"GetEvaluator",
+      "http":{
+        "method":"GET",
+        "requestUri":"/evaluators/{evaluatorId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetEvaluatorRequest"},
+      "output":{"shape":"GetEvaluatorResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
@@ -567,6 +886,133 @@
         {"shape":"DecryptionFailure"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "GetOnlineEvaluationConfig":{
+      "name":"GetOnlineEvaluationConfig",
+      "http":{
+        "method":"GET",
+        "requestUri":"/online-evaluation-configs/{onlineEvaluationConfigId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetOnlineEvaluationConfigRequest"},
+      "output":{"shape":"GetOnlineEvaluationConfigResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "GetPolicy":{
+      "name":"GetPolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/policy-engines/{policyEngineId}/policies/{policyId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPolicyRequest"},
+      "output":{"shape":"GetPolicyResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "GetPolicyEngine":{
+      "name":"GetPolicyEngine",
+      "http":{
+        "method":"GET",
+        "requestUri":"/policy-engines/{policyEngineId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPolicyEngineRequest"},
+      "output":{"shape":"GetPolicyEngineResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "GetPolicyGeneration":{
+      "name":"GetPolicyGeneration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/policy-engines/{policyEngineId}/policy-generations/{policyGenerationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetPolicyGenerationRequest"},
+      "output":{"shape":"GetPolicyGenerationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "GetRegistry":{
+      "name":"GetRegistry",
+      "http":{
+        "method":"GET",
+        "requestUri":"/registries/{registryId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetRegistryRequest"},
+      "output":{"shape":"GetRegistryResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "GetRegistryRecord":{
+      "name":"GetRegistryRecord",
+      "http":{
+        "method":"GET",
+        "requestUri":"/registries/{registryId}/records/{recordId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetRegistryRecordRequest"},
+      "output":{"shape":"GetRegistryRecordResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "GetResourcePolicy":{
+      "name":"GetResourcePolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/resourcepolicy/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetResourcePolicyRequest"},
+      "output":{"shape":"GetResourcePolicyResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ],
       "readonly":true
@@ -680,6 +1126,23 @@
       ],
       "readonly":true
     },
+    "ListBrowserProfiles":{
+      "name":"ListBrowserProfiles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/browser-profiles",
+        "responseCode":200
+      },
+      "input":{"shape":"ListBrowserProfilesRequest"},
+      "output":{"shape":"ListBrowserProfilesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
     "ListBrowsers":{
       "name":"ListBrowsers",
       "http":{
@@ -709,6 +1172,23 @@
       "errors":[
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "ListEvaluators":{
+      "name":"ListEvaluators",
+      "http":{
+        "method":"POST",
+        "requestUri":"/evaluators",
+        "responseCode":200
+      },
+      "input":{"shape":"ListEvaluatorsRequest"},
+      "output":{"shape":"ListEvaluatorsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ],
@@ -785,6 +1265,130 @@
       ],
       "readonly":true
     },
+    "ListOnlineEvaluationConfigs":{
+      "name":"ListOnlineEvaluationConfigs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/online-evaluation-configs",
+        "responseCode":200
+      },
+      "input":{"shape":"ListOnlineEvaluationConfigsRequest"},
+      "output":{"shape":"ListOnlineEvaluationConfigsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "ListPolicies":{
+      "name":"ListPolicies",
+      "http":{
+        "method":"GET",
+        "requestUri":"/policy-engines/{policyEngineId}/policies",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPoliciesRequest"},
+      "output":{"shape":"ListPoliciesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "ListPolicyEngines":{
+      "name":"ListPolicyEngines",
+      "http":{
+        "method":"GET",
+        "requestUri":"/policy-engines",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPolicyEnginesRequest"},
+      "output":{"shape":"ListPolicyEnginesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "ListPolicyGenerationAssets":{
+      "name":"ListPolicyGenerationAssets",
+      "http":{
+        "method":"GET",
+        "requestUri":"/policy-engines/{policyEngineId}/policy-generations/{policyGenerationId}/assets",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPolicyGenerationAssetsRequest"},
+      "output":{"shape":"ListPolicyGenerationAssetsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "ListPolicyGenerations":{
+      "name":"ListPolicyGenerations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/policy-engines/{policyEngineId}/policy-generations",
+        "responseCode":200
+      },
+      "input":{"shape":"ListPolicyGenerationsRequest"},
+      "output":{"shape":"ListPolicyGenerationsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "ListRegistries":{
+      "name":"ListRegistries",
+      "http":{
+        "method":"GET",
+        "requestUri":"/registries",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRegistriesRequest"},
+      "output":{"shape":"ListRegistriesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
+    "ListRegistryRecords":{
+      "name":"ListRegistryRecords",
+      "http":{
+        "method":"GET",
+        "requestUri":"/registries/{registryId}/records",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRegistryRecordsRequest"},
+      "output":{"shape":"ListRegistryRecordsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "readonly":true
+    },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
       "http":{
@@ -822,6 +1426,24 @@
       ],
       "readonly":true
     },
+    "PutResourcePolicy":{
+      "name":"PutResourcePolicy",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/resourcepolicy/{resourceArn}",
+        "responseCode":201
+      },
+      "input":{"shape":"PutResourcePolicyRequest"},
+      "output":{"shape":"PutResourcePolicyResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "SetTokenVaultCMK":{
       "name":"SetTokenVaultCMK",
       "http":{
@@ -836,6 +1458,43 @@
         {"shape":"ConcurrentModificationException"},
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "StartPolicyGeneration":{
+      "name":"StartPolicyGeneration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/policy-engines/{policyEngineId}/policy-generations",
+        "responseCode":202
+      },
+      "input":{"shape":"StartPolicyGenerationRequest"},
+      "output":{"shape":"StartPolicyGenerationResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "SubmitRegistryRecordForApproval":{
+      "name":"SubmitRegistryRecordForApproval",
+      "http":{
+        "method":"POST",
+        "requestUri":"/registries/{registryId}/records/{recordId}/submit-for-approval",
+        "responseCode":202
+      },
+      "input":{"shape":"SubmitRegistryRecordForApprovalRequest"},
+      "output":{"shape":"SubmitRegistryRecordForApprovalResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
@@ -960,6 +1619,26 @@
       ],
       "idempotent":true
     },
+    "UpdateEvaluator":{
+      "name":"UpdateEvaluator",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/evaluators/{evaluatorId}",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateEvaluatorRequest"},
+      "output":{"shape":"UpdateEvaluatorResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "UpdateGateway":{
       "name":"UpdateGateway",
       "http":{
@@ -1042,6 +1721,119 @@
         {"shape":"EncryptionFailure"}
       ]
     },
+    "UpdateOnlineEvaluationConfig":{
+      "name":"UpdateOnlineEvaluationConfig",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/online-evaluation-configs/{onlineEvaluationConfigId}",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateOnlineEvaluationConfigRequest"},
+      "output":{"shape":"UpdateOnlineEvaluationConfigResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "UpdatePolicy":{
+      "name":"UpdatePolicy",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/policy-engines/{policyEngineId}/policies/{policyId}",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdatePolicyRequest"},
+      "output":{"shape":"UpdatePolicyResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "UpdatePolicyEngine":{
+      "name":"UpdatePolicyEngine",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/policy-engines/{policyEngineId}",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdatePolicyEngineRequest"},
+      "output":{"shape":"UpdatePolicyEngineResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "UpdateRegistry":{
+      "name":"UpdateRegistry",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/registries/{registryId}",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateRegistryRequest"},
+      "output":{"shape":"UpdateRegistryResponse"},
+      "errors":[
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateRegistryRecord":{
+      "name":"UpdateRegistryRecord",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/registries/{registryId}/records/{recordId}",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateRegistryRecordRequest"},
+      "output":{"shape":"UpdateRegistryRecordResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UpdateRegistryRecordStatus":{
+      "name":"UpdateRegistryRecordStatus",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/registries/{registryId}/records/{recordId}/status",
+        "responseCode":202
+      },
+      "input":{"shape":"UpdateRegistryRecordStatusRequest"},
+      "output":{"shape":"UpdateRegistryRecordStatusResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "UpdateWorkloadIdentity":{
       "name":"UpdateWorkloadIdentity",
       "http":{
@@ -1063,6 +1855,12 @@
     }
   },
   "shapes":{
+    "A2aDescriptor":{
+      "type":"structure",
+      "members":{
+        "agentCard":{"shape":"AgentCardDefinition"}
+      }
+    },
     "AccessDeniedException":{
       "type":"structure",
       "members":{
@@ -1073,6 +1871,18 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "AdditionalModelRequestFields":{
+      "type":"structure",
+      "members":{},
+      "document":true
+    },
+    "AgentCardDefinition":{
+      "type":"structure",
+      "members":{
+        "schemaVersion":{"shape":"SchemaVersion"},
+        "inlineContent":{"shape":"InlineContent"}
+      }
     },
     "AgentEndpointDescription":{
       "type":"string",
@@ -1085,7 +1895,8 @@
         "PYTHON_3_10",
         "PYTHON_3_11",
         "PYTHON_3_12",
-        "PYTHON_3_13"
+        "PYTHON_3_13",
+        "PYTHON_3_14"
       ]
     },
     "AgentRuntime":{
@@ -1197,6 +2008,13 @@
       "type":"list",
       "member":{"shape":"AgentRuntime"}
     },
+    "AgentSkillsDescriptor":{
+      "type":"structure",
+      "members":{
+        "skillMd":{"shape":"SkillMdDefinition"},
+        "skillDefinition":{"shape":"SkillDefinition"}
+      }
+    },
     "AllowedAudience":{"type":"string"},
     "AllowedAudienceList":{
       "type":"list",
@@ -1208,6 +2026,89 @@
       "type":"list",
       "member":{"shape":"AllowedClient"},
       "min":1
+    },
+    "AllowedQueryParameters":{
+      "type":"list",
+      "member":{"shape":"HttpQueryParameterName"},
+      "max":10,
+      "min":1
+    },
+    "AllowedRequestHeaders":{
+      "type":"list",
+      "member":{"shape":"HttpHeaderName"},
+      "max":10,
+      "min":1
+    },
+    "AllowedResponseHeaders":{
+      "type":"list",
+      "member":{"shape":"HttpHeaderName"},
+      "max":10,
+      "min":1
+    },
+    "AllowedScopeType":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[\\x21\\x23-\\x5B\\x5D-\\x7E]+"
+    },
+    "AllowedScopesType":{
+      "type":"list",
+      "member":{"shape":"AllowedScopeType"},
+      "min":1
+    },
+    "ApiGatewayTargetConfiguration":{
+      "type":"structure",
+      "required":[
+        "restApiId",
+        "stage",
+        "apiGatewayToolConfiguration"
+      ],
+      "members":{
+        "restApiId":{"shape":"String"},
+        "stage":{"shape":"String"},
+        "apiGatewayToolConfiguration":{"shape":"ApiGatewayToolConfiguration"}
+      }
+    },
+    "ApiGatewayToolConfiguration":{
+      "type":"structure",
+      "required":["toolFilters"],
+      "members":{
+        "toolOverrides":{"shape":"ApiGatewayToolOverrides"},
+        "toolFilters":{"shape":"ApiGatewayToolFilters"}
+      }
+    },
+    "ApiGatewayToolFilter":{
+      "type":"structure",
+      "required":[
+        "filterPath",
+        "methods"
+      ],
+      "members":{
+        "filterPath":{"shape":"String"},
+        "methods":{"shape":"RestApiMethods"}
+      }
+    },
+    "ApiGatewayToolFilters":{
+      "type":"list",
+      "member":{"shape":"ApiGatewayToolFilter"}
+    },
+    "ApiGatewayToolOverride":{
+      "type":"structure",
+      "required":[
+        "name",
+        "path",
+        "method"
+      ],
+      "members":{
+        "name":{"shape":"String"},
+        "description":{"shape":"String"},
+        "path":{"shape":"String"},
+        "method":{"shape":"RestApiMethod"}
+      }
+    },
+    "ApiGatewayToolOverrides":{
+      "type":"list",
+      "member":{"shape":"ApiGatewayToolOverride"}
     },
     "ApiKeyCredentialLocation":{
       "type":"string",
@@ -1277,6 +2178,12 @@
       },
       "union":true
     },
+    "ApprovalConfiguration":{
+      "type":"structure",
+      "members":{
+        "autoApproval":{"shape":"Boolean"}
+      }
+    },
     "Arn":{
       "type":"string",
       "pattern":"arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}"
@@ -1300,6 +2207,13 @@
         "clientId":{"shape":"ClientIdType"}
       }
     },
+    "AuthorizationData":{
+      "type":"structure",
+      "members":{
+        "oauth2":{"shape":"OAuth2AuthorizationData"}
+      },
+      "union":true
+    },
     "AuthorizationEndpointType":{"type":"string"},
     "AuthorizerConfiguration":{
       "type":"structure",
@@ -1312,12 +2226,38 @@
       "type":"string",
       "enum":[
         "CUSTOM_JWT",
-        "AWS_IAM"
+        "AWS_IAM",
+        "NONE"
       ]
+    },
+    "AuthorizingClaimMatchValueType":{
+      "type":"structure",
+      "required":[
+        "claimMatchValue",
+        "claimMatchOperator"
+      ],
+      "members":{
+        "claimMatchValue":{"shape":"ClaimMatchValueType"},
+        "claimMatchOperator":{"shape":"ClaimMatchOperatorType"}
+      }
     },
     "AwsAccountId":{
       "type":"string",
       "pattern":"[0-9]{12}"
+    },
+    "BedrockAgentcoreResourceArn":{
+      "type":"string",
+      "max":1011,
+      "min":20
+    },
+    "BedrockEvaluatorModelConfig":{
+      "type":"structure",
+      "required":["modelId"],
+      "members":{
+        "modelId":{"shape":"ModelId"},
+        "inferenceConfig":{"shape":"InferenceConfiguration"},
+        "additionalModelRequestFields":{"shape":"AdditionalModelRequestFields"}
+      }
     },
     "Boolean":{
       "type":"boolean",
@@ -1326,6 +2266,27 @@
     "BrowserArn":{
       "type":"string",
       "pattern":"arn:(-[^:]+)?:bedrock-agentcore:[a-z0-9-]+:(aws|[0-9]{12}):browser(-custom)?/(aws\\.browser\\.v1|[a-zA-Z][a-zA-Z0-9_]{0,47}-[a-zA-Z0-9]{10})"
+    },
+    "BrowserEnterprisePolicies":{
+      "type":"list",
+      "member":{"shape":"BrowserEnterprisePolicy"},
+      "max":100,
+      "min":0
+    },
+    "BrowserEnterprisePolicy":{
+      "type":"structure",
+      "required":["location"],
+      "members":{
+        "location":{"shape":"ResourceLocation"},
+        "type":{"shape":"BrowserEnterprisePolicyType"}
+      }
+    },
+    "BrowserEnterprisePolicyType":{
+      "type":"string",
+      "enum":[
+        "MANAGED",
+        "RECOMMENDED"
+      ]
     },
     "BrowserId":{
       "type":"string",
@@ -1345,6 +2306,58 @@
         "PUBLIC",
         "VPC"
       ]
+    },
+    "BrowserProfileArn":{
+      "type":"string",
+      "pattern":"arn:(-[^:]+)?:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:browser-profile/[a-zA-Z][a-zA-Z0-9_]{0,47}-[a-zA-Z0-9]{10}"
+    },
+    "BrowserProfileId":{
+      "type":"string",
+      "pattern":"[a-zA-Z][a-zA-Z0-9_]{0,47}-[a-zA-Z0-9]{10}"
+    },
+    "BrowserProfileName":{
+      "type":"string",
+      "pattern":"[a-zA-Z][a-zA-Z0-9_]{0,47}"
+    },
+    "BrowserProfileStatus":{
+      "type":"string",
+      "enum":[
+        "READY",
+        "DELETING",
+        "DELETED",
+        "SAVING"
+      ]
+    },
+    "BrowserProfileSummaries":{
+      "type":"list",
+      "member":{"shape":"BrowserProfileSummary"}
+    },
+    "BrowserProfileSummary":{
+      "type":"structure",
+      "required":[
+        "profileId",
+        "profileArn",
+        "name",
+        "status",
+        "createdAt",
+        "lastUpdatedAt"
+      ],
+      "members":{
+        "profileId":{"shape":"BrowserProfileId"},
+        "profileArn":{"shape":"BrowserProfileArn"},
+        "name":{"shape":"BrowserProfileName"},
+        "description":{"shape":"Description"},
+        "status":{"shape":"BrowserProfileStatus"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "lastUpdatedAt":{"shape":"DateTimestamp"},
+        "lastSavedAt":{"shape":"DateTimestamp"},
+        "lastSavedBrowserSessionId":{"shape":"BrowserSessionId"},
+        "lastSavedBrowserId":{"shape":"BrowserId"}
+      }
+    },
+    "BrowserSessionId":{
+      "type":"string",
+      "pattern":"[0-9a-zA-Z]{1,40}"
     },
     "BrowserSigningConfigInput":{
       "type":"structure",
@@ -1393,6 +2406,69 @@
         "lastUpdatedAt":{"shape":"DateTimestamp"}
       }
     },
+    "CategoricalScaleDefinition":{
+      "type":"structure",
+      "required":[
+        "definition",
+        "label"
+      ],
+      "members":{
+        "definition":{"shape":"String"},
+        "label":{"shape":"CategoricalScaleDefinitionLabelString"}
+      }
+    },
+    "CategoricalScaleDefinitionLabelString":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "CategoricalScaleDefinitions":{
+      "type":"list",
+      "member":{"shape":"CategoricalScaleDefinition"}
+    },
+    "CedarPolicy":{
+      "type":"structure",
+      "required":["statement"],
+      "members":{
+        "statement":{"shape":"Statement"}
+      }
+    },
+    "Certificate":{
+      "type":"structure",
+      "required":["location"],
+      "members":{
+        "location":{"shape":"CertificateLocation"}
+      }
+    },
+    "CertificateLocation":{
+      "type":"structure",
+      "members":{
+        "secretsManager":{"shape":"SecretsManagerLocation"}
+      },
+      "union":true
+    },
+    "Certificates":{
+      "type":"list",
+      "member":{"shape":"Certificate"},
+      "max":200,
+      "min":1
+    },
+    "ClaimMatchOperatorType":{
+      "type":"string",
+      "enum":[
+        "EQUALS",
+        "CONTAINS",
+        "CONTAINS_ANY"
+      ]
+    },
+    "ClaimMatchValueType":{
+      "type":"structure",
+      "members":{
+        "matchValueString":{"shape":"MatchValueString"},
+        "matchValueStringList":{"shape":"MatchValueStringList"}
+      },
+      "union":true
+    },
     "ClientIdType":{
       "type":"string",
       "max":256,
@@ -1410,10 +2486,47 @@
       "min":33,
       "pattern":"[a-zA-Z0-9](-*[a-zA-Z0-9]){0,256}"
     },
+    "CloudWatchLogsInputConfig":{
+      "type":"structure",
+      "required":[
+        "logGroupNames",
+        "serviceNames"
+      ],
+      "members":{
+        "logGroupNames":{"shape":"CloudWatchLogsInputConfigLogGroupNamesList"},
+        "serviceNames":{"shape":"CloudWatchLogsInputConfigServiceNamesList"}
+      }
+    },
+    "CloudWatchLogsInputConfigLogGroupNamesList":{
+      "type":"list",
+      "member":{"shape":"LogGroupName"},
+      "max":5,
+      "min":1
+    },
+    "CloudWatchLogsInputConfigServiceNamesList":{
+      "type":"list",
+      "member":{"shape":"ServiceName"},
+      "max":1,
+      "min":1
+    },
+    "CloudWatchOutputConfig":{
+      "type":"structure",
+      "required":["logGroupName"],
+      "members":{
+        "logGroupName":{"shape":"LogGroupName"}
+      }
+    },
     "Code":{
       "type":"structure",
       "members":{
         "s3":{"shape":"S3Location"}
+      },
+      "union":true
+    },
+    "CodeBasedEvaluatorConfig":{
+      "type":"structure",
+      "members":{
+        "lambdaConfig":{"shape":"LambdaEvaluatorConfig"}
       },
       "union":true
     },
@@ -1530,6 +2643,32 @@
         "containerUri":{"shape":"RuntimeContainerUri"}
       }
     },
+    "Content":{
+      "type":"structure",
+      "members":{
+        "rawText":{"shape":"NaturalLanguage"}
+      },
+      "union":true
+    },
+    "ContentConfiguration":{
+      "type":"structure",
+      "required":["type"],
+      "members":{
+        "type":{"shape":"ContentType"},
+        "level":{"shape":"ContentLevel"}
+      }
+    },
+    "ContentLevel":{
+      "type":"string",
+      "enum":[
+        "METADATA_ONLY",
+        "FULL_CONTENT"
+      ]
+    },
+    "ContentType":{
+      "type":"string",
+      "enum":["MEMORY_RECORDS"]
+    },
     "CreateAgentRuntimeEndpointRequest":{
       "type":"structure",
       "required":[
@@ -1594,6 +2733,7 @@
         "protocolConfiguration":{"shape":"ProtocolConfiguration"},
         "lifecycleConfiguration":{"shape":"LifecycleConfiguration"},
         "environmentVariables":{"shape":"EnvironmentVariablesMap"},
+        "filesystemConfigurations":{"shape":"FilesystemConfigurations"},
         "tags":{"shape":"TagsMap"}
       }
     },
@@ -1640,6 +2780,34 @@
         "credentialProviderArn":{"shape":"ApiKeyCredentialProviderArnType"}
       }
     },
+    "CreateBrowserProfileRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"BrowserProfileName"},
+        "description":{"shape":"Description"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "CreateBrowserProfileResponse":{
+      "type":"structure",
+      "required":[
+        "profileId",
+        "profileArn",
+        "createdAt",
+        "status"
+      ],
+      "members":{
+        "profileId":{"shape":"BrowserProfileId"},
+        "profileArn":{"shape":"BrowserProfileArn"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "status":{"shape":"BrowserProfileStatus"}
+      }
+    },
     "CreateBrowserRequest":{
       "type":"structure",
       "required":[
@@ -1653,6 +2821,8 @@
         "networkConfiguration":{"shape":"BrowserNetworkConfiguration"},
         "recording":{"shape":"RecordingConfig"},
         "browserSigning":{"shape":"BrowserSigningConfigInput"},
+        "enterprisePolicies":{"shape":"BrowserEnterprisePolicies"},
+        "certificates":{"shape":"Certificates"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -1686,6 +2856,7 @@
         "description":{"shape":"Description"},
         "executionRoleArn":{"shape":"RoleArn"},
         "networkConfiguration":{"shape":"CodeInterpreterNetworkConfiguration"},
+        "certificates":{"shape":"Certificates"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -1706,6 +2877,40 @@
         "codeInterpreterArn":{"shape":"CodeInterpreterArn"},
         "createdAt":{"shape":"DateTimestamp"},
         "status":{"shape":"CodeInterpreterStatus"}
+      }
+    },
+    "CreateEvaluatorRequest":{
+      "type":"structure",
+      "required":[
+        "evaluatorName",
+        "evaluatorConfig",
+        "level"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "evaluatorName":{"shape":"CustomEvaluatorName"},
+        "description":{"shape":"EvaluatorDescription"},
+        "evaluatorConfig":{"shape":"EvaluatorConfig"},
+        "level":{"shape":"EvaluatorLevel"},
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "CreateEvaluatorResponse":{
+      "type":"structure",
+      "required":[
+        "evaluatorArn",
+        "evaluatorId",
+        "createdAt",
+        "status"
+      ],
+      "members":{
+        "evaluatorArn":{"shape":"CustomEvaluatorArn"},
+        "evaluatorId":{"shape":"EvaluatorId"},
+        "createdAt":{"shape":"Timestamp"},
+        "status":{"shape":"EvaluatorStatus"}
       }
     },
     "CreateGatewayRequest":{
@@ -1729,6 +2934,8 @@
         "authorizerType":{"shape":"AuthorizerType"},
         "authorizerConfiguration":{"shape":"AuthorizerConfiguration"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
+        "interceptorConfigurations":{"shape":"GatewayInterceptorConfigurations"},
+        "policyEngineConfiguration":{"shape":"GatewayPolicyEngineConfiguration"},
         "exceptionLevel":{"shape":"ExceptionLevel"},
         "tags":{"shape":"TagsMap"}
       }
@@ -1761,6 +2968,8 @@
         "authorizerType":{"shape":"AuthorizerType"},
         "authorizerConfiguration":{"shape":"AuthorizerConfiguration"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
+        "interceptorConfigurations":{"shape":"GatewayInterceptorConfigurations"},
+        "policyEngineConfiguration":{"shape":"GatewayPolicyEngineConfiguration"},
         "workloadIdentityDetails":{"shape":"WorkloadIdentityDetails"},
         "exceptionLevel":{"shape":"ExceptionLevel"}
       }
@@ -1785,7 +2994,9 @@
           "idempotencyToken":true
         },
         "targetConfiguration":{"shape":"TargetConfiguration"},
-        "credentialProviderConfigurations":{"shape":"CredentialProviderConfigurations"}
+        "credentialProviderConfigurations":{"shape":"CredentialProviderConfigurations"},
+        "metadataConfiguration":{"shape":"MetadataConfiguration"},
+        "privateEndpoint":{"shape":"PrivateEndpoint"}
       }
     },
     "CreateGatewayTargetResponse":{
@@ -1811,7 +3022,11 @@
         "description":{"shape":"TargetDescription"},
         "targetConfiguration":{"shape":"TargetConfiguration"},
         "credentialProviderConfigurations":{"shape":"CredentialProviderConfigurations"},
-        "lastSynchronizedAt":{"shape":"DateTimestamp"}
+        "lastSynchronizedAt":{"shape":"DateTimestamp"},
+        "metadataConfiguration":{"shape":"MetadataConfiguration"},
+        "privateEndpoint":{"shape":"PrivateEndpoint"},
+        "privateEndpointManagedResources":{"shape":"PrivateEndpointManagedResources"},
+        "authorizationData":{"shape":"AuthorizationData"}
       }
     },
     "CreateMemoryInput":{
@@ -1831,6 +3046,7 @@
         "memoryExecutionRoleArn":{"shape":"Arn"},
         "eventExpiryDuration":{"shape":"CreateMemoryInputEventExpiryDurationInteger"},
         "memoryStrategies":{"shape":"MemoryStrategyInputList"},
+        "streamDeliveryResources":{"shape":"StreamDeliveryResources"},
         "tags":{"shape":"TagsMap"}
       }
     },
@@ -1843,7 +3059,7 @@
       "type":"integer",
       "box":true,
       "max":365,
-      "min":7
+      "min":3
     },
     "CreateMemoryOutput":{
       "type":"structure",
@@ -1880,6 +3096,195 @@
         "oauth2ProviderConfigOutput":{"shape":"Oauth2ProviderConfigOutput"}
       }
     },
+    "CreateOnlineEvaluationConfigRequest":{
+      "type":"structure",
+      "required":[
+        "onlineEvaluationConfigName",
+        "rule",
+        "dataSourceConfig",
+        "evaluators",
+        "evaluationExecutionRoleArn",
+        "enableOnCreate"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "onlineEvaluationConfigName":{"shape":"EvaluationConfigName"},
+        "description":{"shape":"EvaluationConfigDescription"},
+        "rule":{"shape":"Rule"},
+        "dataSourceConfig":{"shape":"DataSourceConfig"},
+        "evaluators":{"shape":"EvaluatorList"},
+        "evaluationExecutionRoleArn":{"shape":"RoleArn"},
+        "enableOnCreate":{"shape":"Boolean"},
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "CreateOnlineEvaluationConfigResponse":{
+      "type":"structure",
+      "required":[
+        "onlineEvaluationConfigArn",
+        "onlineEvaluationConfigId",
+        "createdAt",
+        "status",
+        "executionStatus"
+      ],
+      "members":{
+        "onlineEvaluationConfigArn":{"shape":"OnlineEvaluationConfigArn"},
+        "onlineEvaluationConfigId":{"shape":"OnlineEvaluationConfigId"},
+        "createdAt":{"shape":"Timestamp"},
+        "outputConfig":{"shape":"OutputConfig"},
+        "status":{"shape":"OnlineEvaluationConfigStatus"},
+        "executionStatus":{"shape":"OnlineEvaluationExecutionStatus"},
+        "failureReason":{"shape":"String"}
+      }
+    },
+    "CreatePolicyEngineRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"PolicyEngineName"},
+        "description":{"shape":"Description"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "encryptionKeyArn":{"shape":"KmsKeyArn"},
+        "tags":{"shape":"TagsMap"}
+      }
+    },
+    "CreatePolicyEngineResponse":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "name",
+        "createdAt",
+        "updatedAt",
+        "policyEngineArn",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyEngineId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyEngineName"},
+        "description":{"shape":"Description"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "policyEngineArn":{"shape":"PolicyEngineArn"},
+        "status":{"shape":"PolicyEngineStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"},
+        "encryptionKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "CreatePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "definition",
+        "policyEngineId"
+      ],
+      "members":{
+        "name":{"shape":"PolicyName"},
+        "definition":{"shape":"PolicyDefinition"},
+        "description":{"shape":"Description"},
+        "validationMode":{"shape":"PolicyValidationMode"},
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreatePolicyResponse":{
+      "type":"structure",
+      "required":[
+        "policyId",
+        "name",
+        "policyEngineId",
+        "definition",
+        "createdAt",
+        "updatedAt",
+        "policyArn",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyName"},
+        "policyEngineId":{"shape":"ResourceId"},
+        "definition":{"shape":"PolicyDefinition"},
+        "description":{"shape":"Description"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "policyArn":{"shape":"PolicyArn"},
+        "status":{"shape":"PolicyStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"}
+      }
+    },
+    "CreateRegistryRecordRequest":{
+      "type":"structure",
+      "required":[
+        "registryId",
+        "name",
+        "descriptorType"
+      ],
+      "members":{
+        "registryId":{
+          "shape":"RegistryIdentifier",
+          "location":"uri",
+          "locationName":"registryId"
+        },
+        "name":{"shape":"RegistryRecordName"},
+        "description":{"shape":"Description"},
+        "descriptorType":{"shape":"DescriptorType"},
+        "descriptors":{"shape":"Descriptors"},
+        "recordVersion":{"shape":"RegistryRecordVersion"},
+        "synchronizationType":{"shape":"SynchronizationType"},
+        "synchronizationConfiguration":{"shape":"SynchronizationConfiguration"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "CreateRegistryRecordResponse":{
+      "type":"structure",
+      "required":[
+        "recordArn",
+        "status"
+      ],
+      "members":{
+        "recordArn":{"shape":"RegistryRecordArn"},
+        "status":{"shape":"RegistryRecordStatus"}
+      }
+    },
+    "CreateRegistryRequest":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"RegistryName"},
+        "description":{"shape":"Description"},
+        "authorizerType":{"shape":"RegistryAuthorizerType"},
+        "authorizerConfiguration":{"shape":"AuthorizerConfiguration"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "approvalConfiguration":{"shape":"ApprovalConfiguration"}
+      }
+    },
+    "CreateRegistryResponse":{
+      "type":"structure",
+      "required":["registryArn"],
+      "members":{
+        "registryArn":{"shape":"RegistryArn"}
+      }
+    },
     "CreateWorkloadIdentityRequest":{
       "type":"structure",
       "required":["name"],
@@ -1905,9 +3310,16 @@
       "type":"structure",
       "members":{
         "oauthCredentialProvider":{"shape":"OAuthCredentialProvider"},
-        "apiKeyCredentialProvider":{"shape":"ApiKeyCredentialProvider"}
+        "apiKeyCredentialProvider":{"shape":"ApiKeyCredentialProvider"},
+        "iamCredentialProvider":{"shape":"IamCredentialProvider"}
       },
       "union":true
+    },
+    "CredentialProviderArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:aws(-[^:]+)?:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:.*"
     },
     "CredentialProviderArnType":{
       "type":"string",
@@ -1971,12 +3383,31 @@
         "CognitoOauth2"
       ]
     },
+    "CustomClaimValidationType":{
+      "type":"structure",
+      "required":[
+        "inboundTokenClaimName",
+        "inboundTokenClaimValueType",
+        "authorizingClaimMatchValue"
+      ],
+      "members":{
+        "inboundTokenClaimName":{"shape":"InboundTokenClaimNameType"},
+        "inboundTokenClaimValueType":{"shape":"InboundTokenClaimValueType"},
+        "authorizingClaimMatchValue":{"shape":"AuthorizingClaimMatchValueType"}
+      }
+    },
+    "CustomClaimValidationsType":{
+      "type":"list",
+      "member":{"shape":"CustomClaimValidationType"},
+      "min":1
+    },
     "CustomConfigurationInput":{
       "type":"structure",
       "members":{
         "semanticOverride":{"shape":"SemanticOverrideConfigurationInput"},
         "summaryOverride":{"shape":"SummaryOverrideConfigurationInput"},
         "userPreferenceOverride":{"shape":"UserPreferenceOverrideConfigurationInput"},
+        "episodicOverride":{"shape":"EpisodicOverrideConfigurationInput"},
         "selfManagedConfiguration":{"shape":"SelfManagedConfigurationInput"}
       },
       "union":true
@@ -1986,7 +3417,8 @@
       "members":{
         "semanticConsolidationOverride":{"shape":"SemanticConsolidationOverride"},
         "summaryConsolidationOverride":{"shape":"SummaryConsolidationOverride"},
-        "userPreferenceConsolidationOverride":{"shape":"UserPreferenceConsolidationOverride"}
+        "userPreferenceConsolidationOverride":{"shape":"UserPreferenceConsolidationOverride"},
+        "episodicConsolidationOverride":{"shape":"EpisodicConsolidationOverride"}
       },
       "union":true
     },
@@ -1995,15 +3427,31 @@
       "members":{
         "semanticConsolidationOverride":{"shape":"SemanticOverrideConsolidationConfigurationInput"},
         "summaryConsolidationOverride":{"shape":"SummaryOverrideConsolidationConfigurationInput"},
-        "userPreferenceConsolidationOverride":{"shape":"UserPreferenceOverrideConsolidationConfigurationInput"}
+        "userPreferenceConsolidationOverride":{"shape":"UserPreferenceOverrideConsolidationConfigurationInput"},
+        "episodicConsolidationOverride":{"shape":"EpisodicOverrideConsolidationConfigurationInput"}
       },
       "union":true
+    },
+    "CustomDescriptor":{
+      "type":"structure",
+      "members":{
+        "inlineContent":{"shape":"InlineContent"}
+      }
+    },
+    "CustomEvaluatorArn":{
+      "type":"string",
+      "pattern":"arn:aws:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:evaluator\\/[a-zA-Z][a-zA-Z0-9-_]{0,99}-[a-zA-Z0-9]{10}"
+    },
+    "CustomEvaluatorName":{
+      "type":"string",
+      "pattern":"[a-zA-Z][a-zA-Z0-9_]{0,47}"
     },
     "CustomExtractionConfiguration":{
       "type":"structure",
       "members":{
         "semanticExtractionOverride":{"shape":"SemanticExtractionOverride"},
-        "userPreferenceExtractionOverride":{"shape":"UserPreferenceExtractionOverride"}
+        "userPreferenceExtractionOverride":{"shape":"UserPreferenceExtractionOverride"},
+        "episodicExtractionOverride":{"shape":"EpisodicExtractionOverride"}
       },
       "union":true
     },
@@ -2011,7 +3459,8 @@
       "type":"structure",
       "members":{
         "semanticExtractionOverride":{"shape":"SemanticOverrideExtractionConfigurationInput"},
-        "userPreferenceExtractionOverride":{"shape":"UserPreferenceOverrideExtractionConfigurationInput"}
+        "userPreferenceExtractionOverride":{"shape":"UserPreferenceOverrideExtractionConfigurationInput"},
+        "episodicExtractionOverride":{"shape":"EpisodicOverrideExtractionConfigurationInput"}
       },
       "union":true
     },
@@ -2021,7 +3470,9 @@
       "members":{
         "discoveryUrl":{"shape":"DiscoveryUrl"},
         "allowedAudience":{"shape":"AllowedAudienceList"},
-        "allowedClients":{"shape":"AllowedClientsList"}
+        "allowedClients":{"shape":"AllowedClientsList"},
+        "allowedScopes":{"shape":"AllowedScopesType"},
+        "customClaims":{"shape":"CustomClaimValidationsType"}
       }
     },
     "CustomMemoryStrategyInput":{
@@ -2030,7 +3481,13 @@
       "members":{
         "name":{"shape":"Name"},
         "description":{"shape":"Description"},
-        "namespaces":{"shape":"NamespacesList"},
+        "namespaces":{
+          "shape":"NamespacesList",
+          "deprecated":true,
+          "deprecatedMessage":"Use namespaceTemplates instead",
+          "deprecatedSince":"2026-03-02"
+        },
+        "namespaceTemplates":{"shape":"NamespacesList"},
         "configuration":{"shape":"CustomConfigurationInput"}
       }
     },
@@ -2054,6 +3511,32 @@
         "oauthDiscovery":{"shape":"Oauth2Discovery"},
         "clientId":{"shape":"ClientIdType"}
       }
+    },
+    "CustomParameterMap":{
+      "type":"map",
+      "key":{"shape":"String"},
+      "value":{"shape":"String"}
+    },
+    "CustomReflectionConfiguration":{
+      "type":"structure",
+      "members":{
+        "episodicReflectionOverride":{"shape":"EpisodicReflectionOverride"}
+      },
+      "union":true
+    },
+    "CustomReflectionConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "episodicReflectionOverride":{"shape":"EpisodicOverrideReflectionConfigurationInput"}
+      },
+      "union":true
+    },
+    "DataSourceConfig":{
+      "type":"structure",
+      "members":{
+        "cloudWatchLogs":{"shape":"CloudWatchLogsInputConfig"}
+      },
+      "union":true
     },
     "DateTimestamp":{
       "type":"timestamp",
@@ -2141,6 +3624,39 @@
       "type":"structure",
       "members":{}
     },
+    "DeleteBrowserProfileRequest":{
+      "type":"structure",
+      "required":["profileId"],
+      "members":{
+        "profileId":{
+          "shape":"BrowserProfileId",
+          "location":"uri",
+          "locationName":"profileId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        }
+      }
+    },
+    "DeleteBrowserProfileResponse":{
+      "type":"structure",
+      "required":[
+        "profileId",
+        "profileArn",
+        "status",
+        "lastUpdatedAt"
+      ],
+      "members":{
+        "profileId":{"shape":"BrowserProfileId"},
+        "profileArn":{"shape":"BrowserProfileArn"},
+        "status":{"shape":"BrowserProfileStatus"},
+        "lastUpdatedAt":{"shape":"DateTimestamp"},
+        "lastSavedAt":{"shape":"DateTimestamp"}
+      }
+    },
     "DeleteBrowserRequest":{
       "type":"structure",
       "required":["browserId"],
@@ -2199,6 +3715,30 @@
         "codeInterpreterId":{"shape":"CodeInterpreterId"},
         "status":{"shape":"CodeInterpreterStatus"},
         "lastUpdatedAt":{"shape":"DateTimestamp"}
+      }
+    },
+    "DeleteEvaluatorRequest":{
+      "type":"structure",
+      "required":["evaluatorId"],
+      "members":{
+        "evaluatorId":{
+          "shape":"EvaluatorId",
+          "location":"uri",
+          "locationName":"evaluatorId"
+        }
+      }
+    },
+    "DeleteEvaluatorResponse":{
+      "type":"structure",
+      "required":[
+        "evaluatorArn",
+        "evaluatorId",
+        "status"
+      ],
+      "members":{
+        "evaluatorArn":{"shape":"EvaluatorArn"},
+        "evaluatorId":{"shape":"EvaluatorId"},
+        "status":{"shape":"EvaluatorStatus"}
       }
     },
     "DeleteGatewayRequest":{
@@ -2309,6 +3849,165 @@
       "type":"structure",
       "members":{}
     },
+    "DeleteOnlineEvaluationConfigRequest":{
+      "type":"structure",
+      "required":["onlineEvaluationConfigId"],
+      "members":{
+        "onlineEvaluationConfigId":{
+          "shape":"OnlineEvaluationConfigId",
+          "location":"uri",
+          "locationName":"onlineEvaluationConfigId"
+        }
+      }
+    },
+    "DeleteOnlineEvaluationConfigResponse":{
+      "type":"structure",
+      "required":[
+        "onlineEvaluationConfigArn",
+        "onlineEvaluationConfigId",
+        "status"
+      ],
+      "members":{
+        "onlineEvaluationConfigArn":{"shape":"OnlineEvaluationConfigArn"},
+        "onlineEvaluationConfigId":{"shape":"OnlineEvaluationConfigId"},
+        "status":{"shape":"OnlineEvaluationConfigStatus"}
+      }
+    },
+    "DeletePolicyEngineRequest":{
+      "type":"structure",
+      "required":["policyEngineId"],
+      "members":{
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        }
+      }
+    },
+    "DeletePolicyEngineResponse":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "name",
+        "createdAt",
+        "updatedAt",
+        "policyEngineArn",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyEngineId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyEngineName"},
+        "description":{"shape":"Description"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "policyEngineArn":{"shape":"PolicyEngineArn"},
+        "status":{"shape":"PolicyEngineStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"},
+        "encryptionKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "DeletePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "policyId"
+      ],
+      "members":{
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        },
+        "policyId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyId"
+        }
+      }
+    },
+    "DeletePolicyResponse":{
+      "type":"structure",
+      "required":[
+        "policyId",
+        "name",
+        "policyEngineId",
+        "definition",
+        "createdAt",
+        "updatedAt",
+        "policyArn",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyName"},
+        "policyEngineId":{"shape":"ResourceId"},
+        "definition":{"shape":"PolicyDefinition"},
+        "description":{"shape":"Description"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "policyArn":{"shape":"PolicyArn"},
+        "status":{"shape":"PolicyStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"}
+      }
+    },
+    "DeleteRegistryRecordRequest":{
+      "type":"structure",
+      "required":[
+        "registryId",
+        "recordId"
+      ],
+      "members":{
+        "registryId":{
+          "shape":"RegistryIdentifier",
+          "location":"uri",
+          "locationName":"registryId"
+        },
+        "recordId":{
+          "shape":"RecordIdentifier",
+          "location":"uri",
+          "locationName":"recordId"
+        }
+      }
+    },
+    "DeleteRegistryRecordResponse":{
+      "type":"structure",
+      "members":{}
+    },
+    "DeleteRegistryRequest":{
+      "type":"structure",
+      "required":["registryId"],
+      "members":{
+        "registryId":{
+          "shape":"RegistryIdentifier",
+          "location":"uri",
+          "locationName":"registryId"
+        }
+      }
+    },
+    "DeleteRegistryResponse":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"RegistryStatus"}
+      }
+    },
+    "DeleteResourcePolicyRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"BedrockAgentcoreResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "DeleteResourcePolicyResponse":{
+      "type":"structure",
+      "members":{}
+    },
     "DeleteWorkloadIdentityRequest":{
       "type":"structure",
       "required":["name"],
@@ -2326,6 +4025,24 @@
       "min":1,
       "sensitive":true
     },
+    "DescriptorType":{
+      "type":"string",
+      "enum":[
+        "MCP",
+        "A2A",
+        "CUSTOM",
+        "AGENT_SKILLS"
+      ]
+    },
+    "Descriptors":{
+      "type":"structure",
+      "members":{
+        "mcp":{"shape":"McpDescriptor"},
+        "a2a":{"shape":"A2aDescriptor"},
+        "custom":{"shape":"CustomDescriptor"},
+        "agentSkills":{"shape":"AgentSkillsDescriptor"}
+      }
+    },
     "DiscoveryUrl":{
       "type":"string",
       "pattern":".+/\\.well-known/openid-configuration"
@@ -2333,6 +4050,11 @@
     "DiscoveryUrlType":{
       "type":"string",
       "pattern":".+/\\.well-known/openid-configuration"
+    },
+    "DomainName":{"type":"string"},
+    "Double":{
+      "type":"double",
+      "box":true
     },
     "EncryptionFailure":{
       "type":"structure",
@@ -2345,6 +4067,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "EndpointIpAddressType":{
+      "type":"string",
+      "enum":[
+        "IPV4",
+        "IPV6"
+      ]
     },
     "EndpointName":{
       "type":"string",
@@ -2369,6 +4098,250 @@
       "min":0,
       "sensitive":true
     },
+    "EpisodicConsolidationOverride":{
+      "type":"structure",
+      "required":[
+        "appendToPrompt",
+        "modelId"
+      ],
+      "members":{
+        "appendToPrompt":{"shape":"Prompt"},
+        "modelId":{"shape":"String"}
+      }
+    },
+    "EpisodicExtractionOverride":{
+      "type":"structure",
+      "required":[
+        "appendToPrompt",
+        "modelId"
+      ],
+      "members":{
+        "appendToPrompt":{"shape":"Prompt"},
+        "modelId":{"shape":"String"}
+      }
+    },
+    "EpisodicMemoryStrategyInput":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"Name"},
+        "description":{"shape":"Description"},
+        "namespaces":{
+          "shape":"NamespacesList",
+          "deprecated":true,
+          "deprecatedMessage":"Use namespaceTemplates instead",
+          "deprecatedSince":"2026-03-02"
+        },
+        "namespaceTemplates":{"shape":"NamespacesList"},
+        "reflectionConfiguration":{"shape":"EpisodicReflectionConfigurationInput"}
+      }
+    },
+    "EpisodicOverrideConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "extraction":{"shape":"EpisodicOverrideExtractionConfigurationInput"},
+        "consolidation":{"shape":"EpisodicOverrideConsolidationConfigurationInput"},
+        "reflection":{"shape":"EpisodicOverrideReflectionConfigurationInput"}
+      }
+    },
+    "EpisodicOverrideConsolidationConfigurationInput":{
+      "type":"structure",
+      "required":[
+        "appendToPrompt",
+        "modelId"
+      ],
+      "members":{
+        "appendToPrompt":{"shape":"Prompt"},
+        "modelId":{"shape":"String"}
+      }
+    },
+    "EpisodicOverrideExtractionConfigurationInput":{
+      "type":"structure",
+      "required":[
+        "appendToPrompt",
+        "modelId"
+      ],
+      "members":{
+        "appendToPrompt":{"shape":"Prompt"},
+        "modelId":{"shape":"String"}
+      }
+    },
+    "EpisodicOverrideReflectionConfigurationInput":{
+      "type":"structure",
+      "required":[
+        "appendToPrompt",
+        "modelId"
+      ],
+      "members":{
+        "appendToPrompt":{"shape":"Prompt"},
+        "modelId":{"shape":"String"},
+        "namespaces":{
+          "shape":"NamespacesList",
+          "deprecated":true,
+          "deprecatedMessage":"Use namespaceTemplates instead",
+          "deprecatedSince":"2026-03-02"
+        },
+        "namespaceTemplates":{"shape":"NamespacesList"}
+      }
+    },
+    "EpisodicReflectionConfiguration":{
+      "type":"structure",
+      "members":{
+        "namespaces":{
+          "shape":"NamespacesList",
+          "deprecated":true,
+          "deprecatedMessage":"Use namespaceTemplates instead",
+          "deprecatedSince":"2026-03-02"
+        },
+        "namespaceTemplates":{"shape":"NamespacesList"}
+      }
+    },
+    "EpisodicReflectionConfigurationInput":{
+      "type":"structure",
+      "members":{
+        "namespaces":{
+          "shape":"NamespacesList",
+          "deprecated":true,
+          "deprecatedMessage":"Use namespaceTemplates instead",
+          "deprecatedSince":"2026-03-02"
+        },
+        "namespaceTemplates":{"shape":"NamespacesList"}
+      }
+    },
+    "EpisodicReflectionOverride":{
+      "type":"structure",
+      "required":[
+        "appendToPrompt",
+        "modelId"
+      ],
+      "members":{
+        "appendToPrompt":{"shape":"Prompt"},
+        "modelId":{"shape":"String"},
+        "namespaces":{
+          "shape":"NamespacesList",
+          "deprecated":true,
+          "deprecatedMessage":"Use namespaceTemplates instead",
+          "deprecatedSince":"2026-03-02"
+        },
+        "namespaceTemplates":{"shape":"NamespacesList"}
+      }
+    },
+    "EvaluationConfigDescription":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":".+",
+      "sensitive":true
+    },
+    "EvaluationConfigName":{
+      "type":"string",
+      "pattern":"[a-zA-Z][a-zA-Z0-9_]{0,47}"
+    },
+    "EvaluatorArn":{
+      "type":"string",
+      "pattern":"arn:aws:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:evaluator\\/[a-zA-Z][a-zA-Z0-9-_]{0,99}-[a-zA-Z0-9]{10}$|^arn:aws:bedrock-agentcore:::evaluator/Builtin.[a-zA-Z0-9_-]+"
+    },
+    "EvaluatorConfig":{
+      "type":"structure",
+      "members":{
+        "llmAsAJudge":{"shape":"LlmAsAJudgeEvaluatorConfig"},
+        "codeBased":{"shape":"CodeBasedEvaluatorConfig"}
+      },
+      "union":true
+    },
+    "EvaluatorDescription":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "sensitive":true
+    },
+    "EvaluatorId":{
+      "type":"string",
+      "pattern":"(Builtin.[a-zA-Z0-9_-]+|[a-zA-Z][a-zA-Z0-9-_]{0,99}-[a-zA-Z0-9]{10})"
+    },
+    "EvaluatorInstructions":{
+      "type":"string",
+      "sensitive":true
+    },
+    "EvaluatorLevel":{
+      "type":"string",
+      "enum":[
+        "TOOL_CALL",
+        "TRACE",
+        "SESSION"
+      ]
+    },
+    "EvaluatorList":{
+      "type":"list",
+      "member":{"shape":"EvaluatorReference"},
+      "max":10,
+      "min":1
+    },
+    "EvaluatorModelConfig":{
+      "type":"structure",
+      "members":{
+        "bedrockEvaluatorModelConfig":{"shape":"BedrockEvaluatorModelConfig"}
+      },
+      "union":true
+    },
+    "EvaluatorName":{
+      "type":"string",
+      "pattern":"(Builtin.[a-zA-Z0-9_-]+|[a-zA-Z][a-zA-Z0-9_]{0,47})"
+    },
+    "EvaluatorReference":{
+      "type":"structure",
+      "members":{
+        "evaluatorId":{"shape":"EvaluatorId"}
+      },
+      "union":true
+    },
+    "EvaluatorStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "CREATING",
+        "CREATE_FAILED",
+        "UPDATING",
+        "UPDATE_FAILED",
+        "DELETING"
+      ]
+    },
+    "EvaluatorSummary":{
+      "type":"structure",
+      "required":[
+        "evaluatorArn",
+        "evaluatorId",
+        "evaluatorName",
+        "evaluatorType",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "evaluatorArn":{"shape":"EvaluatorArn"},
+        "evaluatorId":{"shape":"EvaluatorId"},
+        "evaluatorName":{"shape":"EvaluatorName"},
+        "description":{"shape":"EvaluatorDescription"},
+        "evaluatorType":{"shape":"EvaluatorType"},
+        "level":{"shape":"EvaluatorLevel"},
+        "status":{"shape":"EvaluatorStatus"},
+        "createdAt":{"shape":"Timestamp"},
+        "updatedAt":{"shape":"Timestamp"},
+        "lockedForModification":{"shape":"Boolean"}
+      }
+    },
+    "EvaluatorSummaryList":{
+      "type":"list",
+      "member":{"shape":"EvaluatorSummary"}
+    },
+    "EvaluatorType":{
+      "type":"string",
+      "enum":[
+        "Builtin",
+        "Custom",
+        "CustomCode"
+      ]
+    },
     "ExceptionLevel":{
       "type":"string",
       "enum":["DEBUG"]
@@ -2379,6 +4352,102 @@
         "customExtractionConfiguration":{"shape":"CustomExtractionConfiguration"}
       },
       "union":true
+    },
+    "FilesystemConfiguration":{
+      "type":"structure",
+      "members":{
+        "sessionStorage":{"shape":"SessionStorageConfiguration"}
+      },
+      "union":true
+    },
+    "FilesystemConfigurations":{
+      "type":"list",
+      "member":{"shape":"FilesystemConfiguration"},
+      "max":1,
+      "min":0
+    },
+    "Filter":{
+      "type":"structure",
+      "required":[
+        "key",
+        "operator",
+        "value"
+      ],
+      "members":{
+        "key":{"shape":"FilterKeyString"},
+        "operator":{"shape":"FilterOperator"},
+        "value":{"shape":"FilterValue"}
+      }
+    },
+    "FilterKeyString":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z0-9._-]+"
+    },
+    "FilterList":{
+      "type":"list",
+      "member":{"shape":"Filter"},
+      "max":5,
+      "min":0
+    },
+    "FilterOperator":{
+      "type":"string",
+      "enum":[
+        "Equals",
+        "NotEquals",
+        "GreaterThan",
+        "LessThan",
+        "GreaterThanOrEqual",
+        "LessThanOrEqual",
+        "Contains",
+        "NotContains"
+      ]
+    },
+    "FilterValue":{
+      "type":"structure",
+      "members":{
+        "stringValue":{"shape":"FilterValueStringValueString"},
+        "doubleValue":{"shape":"Double"},
+        "booleanValue":{"shape":"Boolean"}
+      },
+      "union":true
+    },
+    "FilterValueStringValueString":{
+      "type":"string",
+      "max":1024,
+      "min":1
+    },
+    "Finding":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"FindingType"},
+        "description":{"shape":"String"}
+      }
+    },
+    "FindingType":{
+      "type":"string",
+      "enum":[
+        "VALID",
+        "INVALID",
+        "NOT_TRANSLATABLE",
+        "ALLOW_ALL",
+        "ALLOW_NONE",
+        "DENY_ALL",
+        "DENY_NONE"
+      ]
+    },
+    "Findings":{
+      "type":"list",
+      "member":{"shape":"Finding"}
+    },
+    "FromUrlSynchronizationConfiguration":{
+      "type":"structure",
+      "required":["url"],
+      "members":{
+        "url":{"shape":"McpServerUrl"},
+        "credentialProviderConfigurations":{"shape":"RegistryRecordCredentialProviderConfigurationList"}
+      }
     },
     "GatewayArn":{
       "type":"string",
@@ -2398,6 +4467,37 @@
       "type":"string",
       "pattern":"([0-9a-z][-]?){1,100}-[0-9a-z]{10}"
     },
+    "GatewayInterceptionPoint":{
+      "type":"string",
+      "enum":[
+        "REQUEST",
+        "RESPONSE"
+      ]
+    },
+    "GatewayInterceptionPoints":{
+      "type":"list",
+      "member":{"shape":"GatewayInterceptionPoint"},
+      "max":2,
+      "min":1
+    },
+    "GatewayInterceptorConfiguration":{
+      "type":"structure",
+      "required":[
+        "interceptor",
+        "interceptionPoints"
+      ],
+      "members":{
+        "interceptor":{"shape":"InterceptorConfiguration"},
+        "interceptionPoints":{"shape":"GatewayInterceptionPoints"},
+        "inputConfiguration":{"shape":"InterceptorInputConfiguration"}
+      }
+    },
+    "GatewayInterceptorConfigurations":{
+      "type":"list",
+      "member":{"shape":"GatewayInterceptorConfiguration"},
+      "max":2,
+      "min":1
+    },
     "GatewayMaxResults":{
       "type":"integer",
       "box":true,
@@ -2414,6 +4514,30 @@
       "max":2048,
       "min":1,
       "pattern":"\\S*"
+    },
+    "GatewayPolicyEngineArn":{
+      "type":"string",
+      "max":170,
+      "min":1,
+      "pattern":"arn:aws:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:policy-engine\\/[a-zA-Z][a-zA-Z0-9-_]{0,99}-[a-zA-Z0-9_]{10}"
+    },
+    "GatewayPolicyEngineConfiguration":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "mode"
+      ],
+      "members":{
+        "arn":{"shape":"GatewayPolicyEngineArn"},
+        "mode":{"shape":"GatewayPolicyEngineMode"}
+      }
+    },
+    "GatewayPolicyEngineMode":{
+      "type":"string",
+      "enum":[
+        "LOG_ONLY",
+        "ENFORCE"
+      ]
     },
     "GatewayProtocolConfiguration":{
       "type":"structure",
@@ -2486,7 +4610,11 @@
         "description":{"shape":"TargetDescription"},
         "targetConfiguration":{"shape":"TargetConfiguration"},
         "credentialProviderConfigurations":{"shape":"CredentialProviderConfigurations"},
-        "lastSynchronizedAt":{"shape":"DateTimestamp"}
+        "lastSynchronizedAt":{"shape":"DateTimestamp"},
+        "metadataConfiguration":{"shape":"MetadataConfiguration"},
+        "privateEndpoint":{"shape":"PrivateEndpoint"},
+        "privateEndpointManagedResources":{"shape":"PrivateEndpointManagedResources"},
+        "authorizationData":{"shape":"AuthorizationData"}
       }
     },
     "GatewayTargetList":{
@@ -2583,13 +4711,16 @@
         "networkConfiguration":{"shape":"NetworkConfiguration"},
         "status":{"shape":"AgentRuntimeStatus"},
         "lifecycleConfiguration":{"shape":"LifecycleConfiguration"},
+        "failureReason":{"shape":"String"},
         "description":{"shape":"Description"},
         "workloadIdentityDetails":{"shape":"WorkloadIdentityDetails"},
         "agentRuntimeArtifact":{"shape":"AgentRuntimeArtifact"},
         "protocolConfiguration":{"shape":"ProtocolConfiguration"},
         "environmentVariables":{"shape":"EnvironmentVariablesMap"},
         "authorizerConfiguration":{"shape":"AuthorizerConfiguration"},
-        "requestHeaderConfiguration":{"shape":"RequestHeaderConfiguration"}
+        "requestHeaderConfiguration":{"shape":"RequestHeaderConfiguration"},
+        "metadataConfiguration":{"shape":"RuntimeMetadataConfiguration"},
+        "filesystemConfigurations":{"shape":"FilesystemConfigurations"}
       }
     },
     "GetApiKeyCredentialProviderRequest":{
@@ -2614,6 +4745,40 @@
         "credentialProviderArn":{"shape":"ApiKeyCredentialProviderArnType"},
         "createdTime":{"shape":"Timestamp"},
         "lastUpdatedTime":{"shape":"Timestamp"}
+      }
+    },
+    "GetBrowserProfileRequest":{
+      "type":"structure",
+      "required":["profileId"],
+      "members":{
+        "profileId":{
+          "shape":"BrowserProfileId",
+          "location":"uri",
+          "locationName":"profileId"
+        }
+      }
+    },
+    "GetBrowserProfileResponse":{
+      "type":"structure",
+      "required":[
+        "profileId",
+        "profileArn",
+        "name",
+        "status",
+        "createdAt",
+        "lastUpdatedAt"
+      ],
+      "members":{
+        "profileId":{"shape":"BrowserProfileId"},
+        "profileArn":{"shape":"BrowserProfileArn"},
+        "name":{"shape":"BrowserProfileName"},
+        "description":{"shape":"Description"},
+        "status":{"shape":"BrowserProfileStatus"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "lastUpdatedAt":{"shape":"DateTimestamp"},
+        "lastSavedAt":{"shape":"DateTimestamp"},
+        "lastSavedBrowserSessionId":{"shape":"BrowserSessionId"},
+        "lastSavedBrowserId":{"shape":"BrowserId"}
       }
     },
     "GetBrowserRequest":{
@@ -2647,6 +4812,8 @@
         "networkConfiguration":{"shape":"BrowserNetworkConfiguration"},
         "recording":{"shape":"RecordingConfig"},
         "browserSigning":{"shape":"BrowserSigningConfigOutput"},
+        "enterprisePolicies":{"shape":"BrowserEnterprisePolicies"},
+        "certificates":{"shape":"Certificates"},
         "status":{"shape":"BrowserStatus"},
         "failureReason":{"shape":"String"},
         "createdAt":{"shape":"DateTimestamp"},
@@ -2683,9 +4850,46 @@
         "executionRoleArn":{"shape":"RoleArn"},
         "networkConfiguration":{"shape":"CodeInterpreterNetworkConfiguration"},
         "status":{"shape":"CodeInterpreterStatus"},
+        "certificates":{"shape":"Certificates"},
         "failureReason":{"shape":"String"},
         "createdAt":{"shape":"DateTimestamp"},
         "lastUpdatedAt":{"shape":"DateTimestamp"}
+      }
+    },
+    "GetEvaluatorRequest":{
+      "type":"structure",
+      "required":["evaluatorId"],
+      "members":{
+        "evaluatorId":{
+          "shape":"EvaluatorId",
+          "location":"uri",
+          "locationName":"evaluatorId"
+        }
+      }
+    },
+    "GetEvaluatorResponse":{
+      "type":"structure",
+      "required":[
+        "evaluatorArn",
+        "evaluatorId",
+        "evaluatorName",
+        "evaluatorConfig",
+        "level",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "evaluatorArn":{"shape":"EvaluatorArn"},
+        "evaluatorId":{"shape":"EvaluatorId"},
+        "evaluatorName":{"shape":"EvaluatorName"},
+        "description":{"shape":"EvaluatorDescription"},
+        "evaluatorConfig":{"shape":"EvaluatorConfig"},
+        "level":{"shape":"EvaluatorLevel"},
+        "status":{"shape":"EvaluatorStatus"},
+        "createdAt":{"shape":"Timestamp"},
+        "updatedAt":{"shape":"Timestamp"},
+        "lockedForModification":{"shape":"Boolean"}
       }
     },
     "GetGatewayRequest":{
@@ -2727,6 +4931,8 @@
         "authorizerType":{"shape":"AuthorizerType"},
         "authorizerConfiguration":{"shape":"AuthorizerConfiguration"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
+        "interceptorConfigurations":{"shape":"GatewayInterceptorConfigurations"},
+        "policyEngineConfiguration":{"shape":"GatewayPolicyEngineConfiguration"},
         "workloadIdentityDetails":{"shape":"WorkloadIdentityDetails"},
         "exceptionLevel":{"shape":"ExceptionLevel"}
       }
@@ -2773,7 +4979,11 @@
         "description":{"shape":"TargetDescription"},
         "targetConfiguration":{"shape":"TargetConfiguration"},
         "credentialProviderConfigurations":{"shape":"CredentialProviderConfigurations"},
-        "lastSynchronizedAt":{"shape":"DateTimestamp"}
+        "lastSynchronizedAt":{"shape":"DateTimestamp"},
+        "metadataConfiguration":{"shape":"MetadataConfiguration"},
+        "privateEndpoint":{"shape":"PrivateEndpoint"},
+        "privateEndpointManagedResources":{"shape":"PrivateEndpointManagedResources"},
+        "authorizationData":{"shape":"AuthorizationData"}
       }
     },
     "GetMemoryInput":{
@@ -2784,6 +4994,11 @@
           "shape":"MemoryId",
           "location":"uri",
           "locationName":"memoryId"
+        },
+        "view":{
+          "shape":"MemoryView",
+          "location":"querystring",
+          "locationName":"view"
         }
       }
     },
@@ -2821,6 +5036,273 @@
         "oauth2ProviderConfigOutput":{"shape":"Oauth2ProviderConfigOutput"},
         "createdTime":{"shape":"Timestamp"},
         "lastUpdatedTime":{"shape":"Timestamp"}
+      }
+    },
+    "GetOnlineEvaluationConfigRequest":{
+      "type":"structure",
+      "required":["onlineEvaluationConfigId"],
+      "members":{
+        "onlineEvaluationConfigId":{
+          "shape":"OnlineEvaluationConfigId",
+          "location":"uri",
+          "locationName":"onlineEvaluationConfigId"
+        }
+      }
+    },
+    "GetOnlineEvaluationConfigResponse":{
+      "type":"structure",
+      "required":[
+        "onlineEvaluationConfigArn",
+        "onlineEvaluationConfigId",
+        "onlineEvaluationConfigName",
+        "rule",
+        "dataSourceConfig",
+        "evaluators",
+        "status",
+        "executionStatus",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "onlineEvaluationConfigArn":{"shape":"OnlineEvaluationConfigArn"},
+        "onlineEvaluationConfigId":{"shape":"OnlineEvaluationConfigId"},
+        "onlineEvaluationConfigName":{"shape":"EvaluationConfigName"},
+        "description":{"shape":"EvaluationConfigDescription"},
+        "rule":{"shape":"Rule"},
+        "dataSourceConfig":{"shape":"DataSourceConfig"},
+        "evaluators":{"shape":"EvaluatorList"},
+        "outputConfig":{"shape":"OutputConfig"},
+        "evaluationExecutionRoleArn":{"shape":"RoleArn"},
+        "status":{"shape":"OnlineEvaluationConfigStatus"},
+        "executionStatus":{"shape":"OnlineEvaluationExecutionStatus"},
+        "createdAt":{"shape":"Timestamp"},
+        "updatedAt":{"shape":"Timestamp"},
+        "failureReason":{"shape":"String"}
+      }
+    },
+    "GetPolicyEngineRequest":{
+      "type":"structure",
+      "required":["policyEngineId"],
+      "members":{
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        }
+      }
+    },
+    "GetPolicyEngineResponse":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "name",
+        "createdAt",
+        "updatedAt",
+        "policyEngineArn",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyEngineId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyEngineName"},
+        "description":{"shape":"Description"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "policyEngineArn":{"shape":"PolicyEngineArn"},
+        "status":{"shape":"PolicyEngineStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"},
+        "encryptionKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "GetPolicyGenerationRequest":{
+      "type":"structure",
+      "required":[
+        "policyGenerationId",
+        "policyEngineId"
+      ],
+      "members":{
+        "policyGenerationId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyGenerationId"
+        },
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        }
+      }
+    },
+    "GetPolicyGenerationResponse":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "policyGenerationId",
+        "name",
+        "policyGenerationArn",
+        "resource",
+        "createdAt",
+        "updatedAt",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyEngineId":{"shape":"ResourceId"},
+        "policyGenerationId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyGenerationName"},
+        "policyGenerationArn":{"shape":"PolicyGenerationArn"},
+        "resource":{"shape":"Resource"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "status":{"shape":"PolicyGenerationStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"},
+        "findings":{"shape":"String"}
+      }
+    },
+    "GetPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "policyId"
+      ],
+      "members":{
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        },
+        "policyId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyId"
+        }
+      }
+    },
+    "GetPolicyResponse":{
+      "type":"structure",
+      "required":[
+        "policyId",
+        "name",
+        "policyEngineId",
+        "definition",
+        "createdAt",
+        "updatedAt",
+        "policyArn",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyName"},
+        "policyEngineId":{"shape":"ResourceId"},
+        "definition":{"shape":"PolicyDefinition"},
+        "description":{"shape":"Description"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "policyArn":{"shape":"PolicyArn"},
+        "status":{"shape":"PolicyStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"}
+      }
+    },
+    "GetRegistryRecordRequest":{
+      "type":"structure",
+      "required":[
+        "registryId",
+        "recordId"
+      ],
+      "members":{
+        "registryId":{
+          "shape":"RegistryIdentifier",
+          "location":"uri",
+          "locationName":"registryId"
+        },
+        "recordId":{
+          "shape":"RecordIdentifier",
+          "location":"uri",
+          "locationName":"recordId"
+        }
+      }
+    },
+    "GetRegistryRecordResponse":{
+      "type":"structure",
+      "required":[
+        "registryArn",
+        "recordArn",
+        "recordId",
+        "name",
+        "descriptorType",
+        "descriptors",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "registryArn":{"shape":"RegistryArn"},
+        "recordArn":{"shape":"RegistryRecordArn"},
+        "recordId":{"shape":"RegistryRecordId"},
+        "name":{"shape":"RegistryRecordName"},
+        "description":{"shape":"Description"},
+        "descriptorType":{"shape":"DescriptorType"},
+        "descriptors":{"shape":"Descriptors"},
+        "recordVersion":{"shape":"RegistryRecordVersion"},
+        "status":{"shape":"RegistryRecordStatus"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "statusReason":{"shape":"String"},
+        "synchronizationType":{"shape":"SynchronizationType"},
+        "synchronizationConfiguration":{"shape":"SynchronizationConfiguration"}
+      }
+    },
+    "GetRegistryRequest":{
+      "type":"structure",
+      "required":["registryId"],
+      "members":{
+        "registryId":{
+          "shape":"RegistryIdentifier",
+          "location":"uri",
+          "locationName":"registryId"
+        }
+      }
+    },
+    "GetRegistryResponse":{
+      "type":"structure",
+      "required":[
+        "name",
+        "registryId",
+        "registryArn",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "name":{"shape":"RegistryName"},
+        "description":{"shape":"Description"},
+        "registryId":{"shape":"RegistryId"},
+        "registryArn":{"shape":"RegistryArn"},
+        "authorizerType":{"shape":"RegistryAuthorizerType"},
+        "authorizerConfiguration":{"shape":"AuthorizerConfiguration"},
+        "approvalConfiguration":{"shape":"ApprovalConfiguration"},
+        "status":{"shape":"RegistryStatus"},
+        "statusReason":{"shape":"String"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"}
+      }
+    },
+    "GetResourcePolicyRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"BedrockAgentcoreResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "GetResourcePolicyResponse":{
+      "type":"structure",
+      "members":{
+        "policy":{"shape":"ResourcePolicyBody"}
       }
     },
     "GetTokenVaultRequest":{
@@ -2909,6 +5391,67 @@
       "min":1,
       "pattern":"(Authorization|X-Amzn-Bedrock-AgentCore-Runtime-Custom-[a-zA-Z0-9-]+)"
     },
+    "HttpHeaderName":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "HttpQueryParameterName":{
+      "type":"string",
+      "max":40,
+      "min":1
+    },
+    "IamCredentialProvider":{
+      "type":"structure",
+      "required":["service"],
+      "members":{
+        "service":{"shape":"IamCredentialProviderServiceString"},
+        "region":{"shape":"IamCredentialProviderRegionString"}
+      }
+    },
+    "IamCredentialProviderRegionString":{
+      "type":"string",
+      "max":32,
+      "min":1,
+      "pattern":"[a-zA-Z0-9-]+"
+    },
+    "IamCredentialProviderServiceString":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9._-]+"
+    },
+    "IamRoleArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws(-[^:]+)?:iam::[0-9]{12}:role/.+"
+    },
+    "IamSigningRegion":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-z0-9-]+"
+    },
+    "IamSigningServiceName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_-]+"
+    },
+    "InboundTokenClaimNameType":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[A-Za-z0-9_.-:]+"
+    },
+    "InboundTokenClaimValueType":{
+      "type":"string",
+      "enum":[
+        "STRING",
+        "STRING_ARRAY"
+      ]
+    },
     "IncludedOauth2ProviderConfigInput":{
       "type":"structure",
       "required":[
@@ -2931,6 +5474,43 @@
         "clientId":{"shape":"ClientIdType"}
       }
     },
+    "InferenceConfiguration":{
+      "type":"structure",
+      "members":{
+        "maxTokens":{"shape":"InferenceConfigurationMaxTokensInteger"},
+        "temperature":{"shape":"InferenceConfigurationTemperatureFloat"},
+        "topP":{"shape":"InferenceConfigurationTopPFloat"},
+        "stopSequences":{"shape":"InferenceConfigurationStopSequencesList"}
+      }
+    },
+    "InferenceConfigurationMaxTokensInteger":{
+      "type":"integer",
+      "box":true,
+      "min":1
+    },
+    "InferenceConfigurationStopSequencesList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":2500,
+      "min":0
+    },
+    "InferenceConfigurationTemperatureFloat":{
+      "type":"float",
+      "box":true,
+      "max":1,
+      "min":0
+    },
+    "InferenceConfigurationTopPFloat":{
+      "type":"float",
+      "box":true,
+      "max":1,
+      "min":0
+    },
+    "InlineContent":{
+      "type":"string",
+      "max":102400,
+      "min":1
+    },
     "InlinePayload":{
       "type":"string",
       "sensitive":true
@@ -2938,6 +5518,20 @@
     "Integer":{
       "type":"integer",
       "box":true
+    },
+    "InterceptorConfiguration":{
+      "type":"structure",
+      "members":{
+        "lambda":{"shape":"LambdaInterceptorConfiguration"}
+      },
+      "union":true
+    },
+    "InterceptorInputConfiguration":{
+      "type":"structure",
+      "required":["passRequestHeaders"],
+      "members":{
+        "passRequestHeaders":{"shape":"Boolean"}
+      }
     },
     "InternalServerException":{
       "type":"structure",
@@ -2982,6 +5576,23 @@
         "ServiceManagedKey"
       ]
     },
+    "KinesisResource":{
+      "type":"structure",
+      "required":[
+        "dataStreamArn",
+        "contentConfigurations"
+      ],
+      "members":{
+        "dataStreamArn":{"shape":"Arn"},
+        "contentConfigurations":{"shape":"KinesisResourceContentConfigurationsList"}
+      }
+    },
+    "KinesisResourceContentConfigurationsList":{
+      "type":"list",
+      "member":{"shape":"ContentConfiguration"},
+      "max":1,
+      "min":1
+    },
     "KmsConfiguration":{
       "type":"structure",
       "required":["keyType"],
@@ -2996,11 +5607,36 @@
       "min":1,
       "pattern":"arn:aws(|-cn|-us-gov):kms:[a-zA-Z0-9-]*:[0-9]{12}:key/[a-zA-Z0-9-]{36}"
     },
+    "LambdaArn":{
+      "type":"string",
+      "pattern":"arn:(aws[a-zA-Z-]*)?:lambda:([a-z]{2}(-gov)?-[a-z]+-\\d{1}):(\\d{12}):function:([a-zA-Z0-9-_.]+)(:(\\$LATEST|[a-zA-Z0-9-_]+))?"
+    },
+    "LambdaEvaluatorConfig":{
+      "type":"structure",
+      "required":["lambdaArn"],
+      "members":{
+        "lambdaArn":{"shape":"LambdaArn"},
+        "lambdaTimeoutInSeconds":{"shape":"LambdaEvaluatorConfigLambdaTimeoutInSecondsInteger"}
+      }
+    },
+    "LambdaEvaluatorConfigLambdaTimeoutInSecondsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":300,
+      "min":1
+    },
     "LambdaFunctionArn":{
       "type":"string",
       "max":170,
       "min":1,
       "pattern":"arn:(aws[a-zA-Z-]*)?:lambda:([a-z]{2}(-gov)?-[a-z]+-\\d{1}):(\\d{12}):function:([a-zA-Z0-9-_.]+)(:(\\$LATEST|[a-zA-Z0-9-]+))?"
+    },
+    "LambdaInterceptorConfiguration":{
+      "type":"structure",
+      "required":["arn"],
+      "members":{
+        "arn":{"shape":"LambdaFunctionArn"}
+      }
     },
     "LifecycleConfiguration":{
       "type":"structure",
@@ -3136,6 +5772,30 @@
         "nextToken":{"shape":"String"}
       }
     },
+    "ListBrowserProfilesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "name":{"shape":"BrowserProfileName"}
+      }
+    },
+    "ListBrowserProfilesResponse":{
+      "type":"structure",
+      "required":["profileSummaries"],
+      "members":{
+        "profileSummaries":{"shape":"BrowserProfileSummaries"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListBrowsersRequest":{
       "type":"structure",
       "members":{
@@ -3190,6 +5850,35 @@
       "members":{
         "codeInterpreterSummaries":{"shape":"CodeInterpreterSummaries"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListEvaluatorsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"ListEvaluatorsRequestMaxResultsInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListEvaluatorsRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListEvaluatorsResponse":{
+      "type":"structure",
+      "required":["evaluators"],
+      "members":{
+        "evaluators":{"shape":"EvaluatorSummaryList"},
+        "nextToken":{"shape":"String"}
       }
     },
     "ListGatewayTargetsRequest":{
@@ -3286,6 +5975,229 @@
         "nextToken":{"shape":"String"}
       }
     },
+    "ListOnlineEvaluationConfigsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"ListOnlineEvaluationConfigsRequestMaxResultsInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListOnlineEvaluationConfigsRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":100,
+      "min":1
+    },
+    "ListOnlineEvaluationConfigsResponse":{
+      "type":"structure",
+      "required":["onlineEvaluationConfigs"],
+      "members":{
+        "onlineEvaluationConfigs":{"shape":"OnlineEvaluationConfigSummaryList"},
+        "nextToken":{"shape":"String"}
+      }
+    },
+    "ListPoliciesRequest":{
+      "type":"structure",
+      "required":["policyEngineId"],
+      "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        },
+        "targetResourceScope":{
+          "shape":"BedrockAgentcoreResourceArn",
+          "location":"querystring",
+          "locationName":"targetResourceScope"
+        }
+      }
+    },
+    "ListPoliciesResponse":{
+      "type":"structure",
+      "required":["policies"],
+      "members":{
+        "policies":{"shape":"Policies"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListPolicyEnginesRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListPolicyEnginesResponse":{
+      "type":"structure",
+      "required":["policyEngines"],
+      "members":{
+        "policyEngines":{"shape":"PolicyEngines"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListPolicyGenerationAssetsRequest":{
+      "type":"structure",
+      "required":[
+        "policyGenerationId",
+        "policyEngineId"
+      ],
+      "members":{
+        "policyGenerationId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyGenerationId"
+        },
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListPolicyGenerationAssetsResponse":{
+      "type":"structure",
+      "members":{
+        "policyGenerationAssets":{"shape":"PolicyGenerationAssets"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListPolicyGenerationsRequest":{
+      "type":"structure",
+      "required":["policyEngineId"],
+      "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        }
+      }
+    },
+    "ListPolicyGenerationsResponse":{
+      "type":"structure",
+      "required":["policyGenerations"],
+      "members":{
+        "policyGenerations":{"shape":"PolicyGenerations"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListRegistriesRequest":{
+      "type":"structure",
+      "members":{
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "status":{
+          "shape":"RegistryStatus",
+          "location":"querystring",
+          "locationName":"status"
+        }
+      }
+    },
+    "ListRegistriesResponse":{
+      "type":"structure",
+      "required":["registries"],
+      "members":{
+        "registries":{"shape":"RegistrySummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListRegistryRecordsRequest":{
+      "type":"structure",
+      "required":["registryId"],
+      "members":{
+        "registryId":{
+          "shape":"RegistryIdentifier",
+          "location":"uri",
+          "locationName":"registryId"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "name":{
+          "shape":"RegistryRecordName",
+          "location":"querystring",
+          "locationName":"name"
+        },
+        "status":{
+          "shape":"RegistryRecordStatus",
+          "location":"querystring",
+          "locationName":"status"
+        },
+        "descriptorType":{
+          "shape":"DescriptorType",
+          "location":"querystring",
+          "locationName":"descriptorType"
+        }
+      }
+    },
+    "ListRegistryRecordsResponse":{
+      "type":"structure",
+      "required":["registryRecords"],
+      "members":{
+        "registryRecords":{"shape":"RegistryRecordSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["resourceArn"],
@@ -3324,6 +6236,25 @@
         "nextToken":{"shape":"String"}
       }
     },
+    "LlmAsAJudgeEvaluatorConfig":{
+      "type":"structure",
+      "required":[
+        "instructions",
+        "ratingScale",
+        "modelConfig"
+      ],
+      "members":{
+        "instructions":{"shape":"EvaluatorInstructions"},
+        "ratingScale":{"shape":"RatingScale"},
+        "modelConfig":{"shape":"EvaluatorModelConfig"}
+      }
+    },
+    "LogGroupName":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[.\\-_/#A-Za-z0-9]+"
+    },
     "MCPGatewayConfiguration":{
       "type":"structure",
       "members":{
@@ -3332,11 +6263,53 @@
         "searchType":{"shape":"SearchType"}
       }
     },
+    "ManagedLatticeResource":{
+      "type":"structure",
+      "required":[
+        "vpcIdentifier",
+        "subnetIds",
+        "endpointIpAddressType"
+      ],
+      "members":{
+        "vpcIdentifier":{"shape":"VpcIdentifier"},
+        "subnetIds":{"shape":"SubnetIds"},
+        "endpointIpAddressType":{"shape":"EndpointIpAddressType"},
+        "securityGroupIds":{"shape":"SecurityGroupIds"},
+        "tags":{"shape":"TagsMap"},
+        "routingDomain":{"shape":"RoutingDomain"}
+      }
+    },
+    "ManagedResourceDetails":{
+      "type":"structure",
+      "members":{
+        "domain":{"shape":"DomainName"},
+        "resourceGatewayArn":{"shape":"ResourceGatewayArn"},
+        "resourceAssociationArn":{"shape":"ResourceAssociationArn"}
+      }
+    },
+    "MatchValueString":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[A-Za-z0-9_.-]+"
+    },
+    "MatchValueStringList":{
+      "type":"list",
+      "member":{"shape":"MatchValueString"},
+      "min":1
+    },
     "MaxResults":{
       "type":"integer",
       "box":true,
       "max":100,
       "min":1
+    },
+    "McpDescriptor":{
+      "type":"structure",
+      "members":{
+        "server":{"shape":"ServerDefinition"},
+        "tools":{"shape":"ToolsDefinition"}
+      }
     },
     "McpInstructions":{
       "type":"string",
@@ -3358,11 +6331,18 @@
       "type":"structure",
       "required":["endpoint"],
       "members":{
-        "endpoint":{"shape":"McpServerTargetConfigurationEndpointString"}
+        "endpoint":{"shape":"McpServerTargetConfigurationEndpointString"},
+        "mcpToolSchema":{"shape":"McpToolSchemaConfiguration"}
       }
     },
     "McpServerTargetConfigurationEndpointString":{
       "type":"string",
+      "pattern":"https://.*"
+    },
+    "McpServerUrl":{
+      "type":"string",
+      "max":2048,
+      "min":1,
       "pattern":"https://.*"
     },
     "McpSupportedVersions":{
@@ -3375,7 +6355,16 @@
         "openApiSchema":{"shape":"ApiSchemaConfiguration"},
         "smithyModel":{"shape":"ApiSchemaConfiguration"},
         "lambda":{"shape":"McpLambdaTargetConfiguration"},
-        "mcpServer":{"shape":"McpServerTargetConfiguration"}
+        "mcpServer":{"shape":"McpServerTargetConfiguration"},
+        "apiGateway":{"shape":"ApiGatewayTargetConfiguration"}
+      },
+      "union":true
+    },
+    "McpToolSchemaConfiguration":{
+      "type":"structure",
+      "members":{
+        "s3":{"shape":"S3Configuration"},
+        "inlinePayload":{"shape":"InlinePayload"}
       },
       "union":true
     },
@@ -3403,7 +6392,8 @@
         "failureReason":{"shape":"String"},
         "createdAt":{"shape":"Timestamp"},
         "updatedAt":{"shape":"Timestamp"},
-        "strategies":{"shape":"MemoryStrategyList"}
+        "strategies":{"shape":"MemoryStrategyList"},
+        "streamDeliveryResources":{"shape":"StreamDeliveryResources"}
       }
     },
     "MemoryArn":{
@@ -3436,7 +6426,8 @@
         "strategyId",
         "name",
         "type",
-        "namespaces"
+        "namespaces",
+        "namespaceTemplates"
       ],
       "members":{
         "strategyId":{"shape":"MemoryStrategyId"},
@@ -3444,7 +6435,13 @@
         "description":{"shape":"Description"},
         "configuration":{"shape":"StrategyConfiguration"},
         "type":{"shape":"MemoryStrategyType"},
-        "namespaces":{"shape":"NamespacesList"},
+        "namespaces":{
+          "shape":"NamespacesList",
+          "deprecated":true,
+          "deprecatedMessage":"Use namespaceTemplates instead",
+          "deprecatedSince":"2026-03-02"
+        },
+        "namespaceTemplates":{"shape":"NamespacesList"},
         "createdAt":{"shape":"Timestamp"},
         "updatedAt":{"shape":"Timestamp"},
         "status":{"shape":"MemoryStrategyStatus"}
@@ -3461,7 +6458,8 @@
         "semanticMemoryStrategy":{"shape":"SemanticMemoryStrategyInput"},
         "summaryMemoryStrategy":{"shape":"SummaryMemoryStrategyInput"},
         "userPreferenceMemoryStrategy":{"shape":"UserPreferenceMemoryStrategyInput"},
-        "customMemoryStrategy":{"shape":"CustomMemoryStrategyInput"}
+        "customMemoryStrategy":{"shape":"CustomMemoryStrategyInput"},
+        "episodicMemoryStrategy":{"shape":"EpisodicMemoryStrategyInput"}
       },
       "union":true
     },
@@ -3488,7 +6486,8 @@
         "SEMANTIC",
         "SUMMARIZATION",
         "USER_PREFERENCE",
-        "CUSTOM"
+        "CUSTOM",
+        "EPISODIC"
       ]
     },
     "MemorySummary":{
@@ -3509,6 +6508,13 @@
       "type":"list",
       "member":{"shape":"MemorySummary"}
     },
+    "MemoryView":{
+      "type":"string",
+      "enum":[
+        "full",
+        "without_decryption"
+      ]
+    },
     "MessageBasedTrigger":{
       "type":"structure",
       "members":{
@@ -3526,6 +6532,14 @@
       "box":true,
       "max":50,
       "min":1
+    },
+    "MetadataConfiguration":{
+      "type":"structure",
+      "members":{
+        "allowedRequestHeaders":{"shape":"AllowedRequestHeaders"},
+        "allowedQueryParameters":{"shape":"AllowedQueryParameters"},
+        "allowedResponseHeaders":{"shape":"AllowedResponseHeaders"}
+      }
     },
     "MicrosoftOauth2ProviderConfigInput":{
       "type":"structure",
@@ -3547,6 +6561,7 @@
         "clientId":{"shape":"ClientIdType"}
       }
     },
+    "ModelId":{"type":"string"},
     "ModifyConsolidationConfiguration":{
       "type":"structure",
       "members":{
@@ -3590,9 +6605,23 @@
       "members":{
         "memoryStrategyId":{"shape":"String"},
         "description":{"shape":"Description"},
-        "namespaces":{"shape":"NamespacesList"},
+        "namespaces":{
+          "shape":"NamespacesList",
+          "deprecated":true,
+          "deprecatedMessage":"Use namespaceTemplates instead",
+          "deprecatedSince":"2026-03-02"
+        },
+        "namespaceTemplates":{"shape":"NamespacesList"},
         "configuration":{"shape":"ModifyStrategyConfiguration"}
       }
+    },
+    "ModifyReflectionConfiguration":{
+      "type":"structure",
+      "members":{
+        "episodicReflectionConfiguration":{"shape":"EpisodicReflectionConfigurationInput"},
+        "customReflectionConfiguration":{"shape":"CustomReflectionConfigurationInput"}
+      },
+      "union":true
     },
     "ModifySelfManagedConfiguration":{
       "type":"structure",
@@ -3613,8 +6642,15 @@
       "members":{
         "extraction":{"shape":"ModifyExtractionConfiguration"},
         "consolidation":{"shape":"ModifyConsolidationConfiguration"},
+        "reflection":{"shape":"ModifyReflectionConfiguration"},
         "selfManagedConfiguration":{"shape":"ModifySelfManagedConfiguration"}
       }
+    },
+    "MountPath":{
+      "type":"string",
+      "max":200,
+      "min":6,
+      "pattern":"/mnt/[a-zA-Z0-9._-]+/?"
     },
     "Name":{
       "type":"string",
@@ -3622,13 +6658,19 @@
     },
     "Namespace":{
       "type":"string",
-      "max":1024,
+      "max":512,
       "min":1,
       "pattern":"[a-zA-Z0-9\\-_\\/]*(\\{(actorId|sessionId|memoryStrategyId)\\}[a-zA-Z0-9\\-_\\/]*)*"
     },
     "NamespacesList":{
       "type":"list",
       "member":{"shape":"Namespace"},
+      "max":1,
+      "min":1
+    },
+    "NaturalLanguage":{
+      "type":"string",
+      "max":2000,
       "min":1
     },
     "NetworkConfiguration":{
@@ -3656,6 +6698,54 @@
       "type":"string",
       "pattern":"[\\s\\S]+"
     },
+    "NonEmptyString":{
+      "type":"string",
+      "min":1
+    },
+    "NumericalScaleDefinition":{
+      "type":"structure",
+      "required":[
+        "definition",
+        "value",
+        "label"
+      ],
+      "members":{
+        "definition":{"shape":"String"},
+        "value":{"shape":"NumericalScaleDefinitionValueDouble"},
+        "label":{"shape":"NumericalScaleDefinitionLabelString"}
+      }
+    },
+    "NumericalScaleDefinitionLabelString":{
+      "type":"string",
+      "max":100,
+      "min":1
+    },
+    "NumericalScaleDefinitionValueDouble":{
+      "type":"double",
+      "box":true,
+      "min":0
+    },
+    "NumericalScaleDefinitions":{
+      "type":"list",
+      "member":{"shape":"NumericalScaleDefinition"}
+    },
+    "OAuth2AuthorizationData":{
+      "type":"structure",
+      "required":["authorizationUrl"],
+      "members":{
+        "authorizationUrl":{"shape":"OAuth2AuthorizationDataAuthorizationUrlString"},
+        "userId":{"shape":"OAuth2AuthorizationDataUserIdString"}
+      }
+    },
+    "OAuth2AuthorizationDataAuthorizationUrlString":{
+      "type":"string",
+      "min":1
+    },
+    "OAuth2AuthorizationDataUserIdString":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
     "OAuthCredentialProvider":{
       "type":"structure",
       "required":[
@@ -3665,7 +6755,9 @@
       "members":{
         "providerArn":{"shape":"OAuthCredentialProviderArn"},
         "scopes":{"shape":"OAuthScopes"},
-        "customParameters":{"shape":"OAuthCustomParameters"}
+        "customParameters":{"shape":"OAuthCustomParameters"},
+        "grantType":{"shape":"OAuthGrantType"},
+        "defaultReturnUrl":{"shape":"OAuthDefaultReturnUrl"}
       }
     },
     "OAuthCredentialProviderArn":{
@@ -3689,6 +6781,19 @@
       "max":2048,
       "min":1,
       "sensitive":true
+    },
+    "OAuthDefaultReturnUrl":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"\\w+:(\\/?\\/?)[^\\s]+"
+    },
+    "OAuthGrantType":{
+      "type":"string",
+      "enum":[
+        "CLIENT_CREDENTIALS",
+        "AUTHORIZATION_CODE"
+      ]
     },
     "OAuthScope":{
       "type":"string",
@@ -3775,14 +6880,297 @@
       },
       "union":true
     },
+    "OnlineEvaluationConfigArn":{
+      "type":"string",
+      "pattern":"arn:aws:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:online-evaluation-config\\/[a-zA-Z][a-zA-Z0-9-_]{0,99}-[a-zA-Z0-9]{10}"
+    },
+    "OnlineEvaluationConfigId":{
+      "type":"string",
+      "pattern":"[a-zA-Z][a-zA-Z0-9-_]{0,99}-[a-zA-Z0-9]{10}"
+    },
+    "OnlineEvaluationConfigStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "CREATING",
+        "CREATE_FAILED",
+        "UPDATING",
+        "UPDATE_FAILED",
+        "DELETING"
+      ]
+    },
+    "OnlineEvaluationConfigSummary":{
+      "type":"structure",
+      "required":[
+        "onlineEvaluationConfigArn",
+        "onlineEvaluationConfigId",
+        "onlineEvaluationConfigName",
+        "status",
+        "executionStatus",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "onlineEvaluationConfigArn":{"shape":"OnlineEvaluationConfigArn"},
+        "onlineEvaluationConfigId":{"shape":"OnlineEvaluationConfigId"},
+        "onlineEvaluationConfigName":{"shape":"EvaluationConfigName"},
+        "description":{"shape":"EvaluationConfigDescription"},
+        "status":{"shape":"OnlineEvaluationConfigStatus"},
+        "executionStatus":{"shape":"OnlineEvaluationExecutionStatus"},
+        "createdAt":{"shape":"Timestamp"},
+        "updatedAt":{"shape":"Timestamp"},
+        "failureReason":{"shape":"String"}
+      }
+    },
+    "OnlineEvaluationConfigSummaryList":{
+      "type":"list",
+      "member":{"shape":"OnlineEvaluationConfigSummary"}
+    },
+    "OnlineEvaluationExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "OutputConfig":{
+      "type":"structure",
+      "required":["cloudWatchConfig"],
+      "members":{
+        "cloudWatchConfig":{"shape":"CloudWatchOutputConfig"}
+      }
+    },
     "OverrideType":{
       "type":"string",
       "enum":[
         "SEMANTIC_OVERRIDE",
         "SUMMARY_OVERRIDE",
         "USER_PREFERENCE_OVERRIDE",
-        "SELF_MANAGED"
+        "SELF_MANAGED",
+        "EPISODIC_OVERRIDE"
       ]
+    },
+    "Policies":{
+      "type":"list",
+      "member":{"shape":"Policy"},
+      "max":100,
+      "min":0
+    },
+    "Policy":{
+      "type":"structure",
+      "required":[
+        "policyId",
+        "name",
+        "policyEngineId",
+        "definition",
+        "createdAt",
+        "updatedAt",
+        "policyArn",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyName"},
+        "policyEngineId":{"shape":"ResourceId"},
+        "definition":{"shape":"PolicyDefinition"},
+        "description":{"shape":"Description"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "policyArn":{"shape":"PolicyArn"},
+        "status":{"shape":"PolicyStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"}
+      }
+    },
+    "PolicyArn":{
+      "type":"string",
+      "max":203,
+      "min":96,
+      "pattern":"arn:aws[-a-z]{0,7}:bedrock-agentcore:[a-z0-9-]{9,15}:[0-9]{12}:policy-engine/[a-zA-Z][a-zA-Z0-9-_]{0,47}-[a-zA-Z0-9_]{10}/policy/[a-zA-Z][a-zA-Z0-9-_]{0,47}-[a-zA-Z0-9_]{10}"
+    },
+    "PolicyDefinition":{
+      "type":"structure",
+      "members":{
+        "cedar":{"shape":"CedarPolicy"},
+        "policyGeneration":{"shape":"PolicyGenerationDetails"}
+      },
+      "union":true
+    },
+    "PolicyEngine":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "name",
+        "createdAt",
+        "updatedAt",
+        "policyEngineArn",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyEngineId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyEngineName"},
+        "description":{"shape":"Description"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "policyEngineArn":{"shape":"PolicyEngineArn"},
+        "status":{"shape":"PolicyEngineStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"},
+        "encryptionKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "PolicyEngineArn":{
+      "type":"string",
+      "max":136,
+      "min":76,
+      "pattern":"arn:aws[-a-z]{0,7}:bedrock-agentcore:[a-z0-9-]{9,15}:[0-9]{12}:policy-engine/[a-zA-Z][a-zA-Z0-9-_]{0,47}-[a-zA-Z0-9_]{10}"
+    },
+    "PolicyEngineName":{
+      "type":"string",
+      "max":48,
+      "min":1,
+      "pattern":"[A-Za-z][A-Za-z0-9_]*"
+    },
+    "PolicyEngineStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "UPDATING",
+        "DELETING",
+        "CREATE_FAILED",
+        "UPDATE_FAILED",
+        "DELETE_FAILED"
+      ]
+    },
+    "PolicyEngines":{
+      "type":"list",
+      "member":{"shape":"PolicyEngine"},
+      "max":100,
+      "min":0
+    },
+    "PolicyGeneration":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "policyGenerationId",
+        "name",
+        "policyGenerationArn",
+        "resource",
+        "createdAt",
+        "updatedAt",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyEngineId":{"shape":"ResourceId"},
+        "policyGenerationId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyGenerationName"},
+        "policyGenerationArn":{"shape":"PolicyGenerationArn"},
+        "resource":{"shape":"Resource"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "status":{"shape":"PolicyGenerationStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"},
+        "findings":{"shape":"String"}
+      }
+    },
+    "PolicyGenerationArn":{
+      "type":"string",
+      "max":210,
+      "min":103,
+      "pattern":"arn:aws[-a-z]{0,7}:bedrock-agentcore:[a-z0-9-]{9,15}:[0-9]{12}:policy-engine/[a-zA-Z][a-zA-Z0-9-_]{0,47}-[a-zA-Z0-9_]{10}/policy-generation/[a-zA-Z][a-zA-Z0-9-_]{0,47}-[a-zA-Z0-9_]{10}"
+    },
+    "PolicyGenerationAsset":{
+      "type":"structure",
+      "required":[
+        "policyGenerationAssetId",
+        "rawTextFragment",
+        "findings"
+      ],
+      "members":{
+        "policyGenerationAssetId":{"shape":"ResourceId"},
+        "definition":{"shape":"PolicyDefinition"},
+        "rawTextFragment":{"shape":"NaturalLanguage"},
+        "findings":{"shape":"Findings"}
+      }
+    },
+    "PolicyGenerationAssets":{
+      "type":"list",
+      "member":{"shape":"PolicyGenerationAsset"}
+    },
+    "PolicyGenerationDetails":{
+      "type":"structure",
+      "required":[
+        "policyGenerationId",
+        "policyGenerationAssetId"
+      ],
+      "members":{
+        "policyGenerationId":{"shape":"ResourceId"},
+        "policyGenerationAssetId":{"shape":"ResourceId"}
+      }
+    },
+    "PolicyGenerationName":{
+      "type":"string",
+      "max":48,
+      "min":1,
+      "pattern":"[A-Za-z][A-Za-z0-9_]*"
+    },
+    "PolicyGenerationStatus":{
+      "type":"string",
+      "enum":[
+        "GENERATING",
+        "GENERATED",
+        "GENERATE_FAILED",
+        "DELETE_FAILED"
+      ]
+    },
+    "PolicyGenerations":{
+      "type":"list",
+      "member":{"shape":"PolicyGeneration"},
+      "max":100,
+      "min":0
+    },
+    "PolicyName":{
+      "type":"string",
+      "max":48,
+      "min":1,
+      "pattern":"[A-Za-z][A-Za-z0-9_]*"
+    },
+    "PolicyStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "UPDATING",
+        "DELETING",
+        "CREATE_FAILED",
+        "UPDATE_FAILED",
+        "DELETE_FAILED"
+      ]
+    },
+    "PolicyStatusReasons":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
+    "PolicyValidationMode":{
+      "type":"string",
+      "enum":[
+        "FAIL_ON_ANY_FINDINGS",
+        "IGNORE_ALL_FINDINGS"
+      ]
+    },
+    "PrivateEndpoint":{
+      "type":"structure",
+      "members":{
+        "selfManagedLatticeResource":{"shape":"SelfManagedLatticeResource"},
+        "managedLatticeResource":{"shape":"ManagedLatticeResource"}
+      },
+      "union":true
+    },
+    "PrivateEndpointManagedResources":{
+      "type":"list",
+      "member":{"shape":"ManagedResourceDetails"}
     },
     "Prompt":{
       "type":"string",
@@ -3797,12 +7185,246 @@
         "serverProtocol":{"shape":"ServerProtocol"}
       }
     },
+    "PutResourcePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "policy"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"BedrockAgentcoreResourceArn",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "policy":{"shape":"ResourcePolicyBody"}
+      }
+    },
+    "PutResourcePolicyResponse":{
+      "type":"structure",
+      "required":["policy"],
+      "members":{
+        "policy":{"shape":"ResourcePolicyBody"}
+      }
+    },
+    "RatingScale":{
+      "type":"structure",
+      "members":{
+        "numerical":{"shape":"NumericalScaleDefinitions"},
+        "categorical":{"shape":"CategoricalScaleDefinitions"}
+      },
+      "sensitive":true,
+      "union":true
+    },
+    "RecordIdentifier":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"(arn:aws(-[^:]+)?:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:registry/[a-zA-Z0-9]{12,16}/record/)?[a-zA-Z0-9]{12}"
+    },
     "RecordingConfig":{
       "type":"structure",
       "members":{
         "enabled":{"shape":"Boolean"},
         "s3Location":{"shape":"S3Location"}
       }
+    },
+    "ReflectionConfiguration":{
+      "type":"structure",
+      "members":{
+        "customReflectionConfiguration":{"shape":"CustomReflectionConfiguration"},
+        "episodicReflectionConfiguration":{"shape":"EpisodicReflectionConfiguration"}
+      },
+      "union":true
+    },
+    "RegistryArn":{
+      "type":"string",
+      "pattern":"arn:aws(-[^:]+)?:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:registry/[a-zA-Z0-9]{12,16}"
+    },
+    "RegistryAuthorizerType":{
+      "type":"string",
+      "enum":[
+        "CUSTOM_JWT",
+        "AWS_IAM"
+      ]
+    },
+    "RegistryId":{
+      "type":"string",
+      "max":16,
+      "min":12,
+      "pattern":"[a-zA-Z0-9]{12,16}"
+    },
+    "RegistryIdentifier":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"(arn:aws(-[^:]+)?:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:registry/)?[a-zA-Z0-9]{12,16}"
+    },
+    "RegistryName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_\\-\\.\\/]*"
+    },
+    "RegistryRecordArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:aws(-[^:]+)?:bedrock-agentcore:[a-z0-9-]+:[0-9]{12}:registry/[a-zA-Z0-9]{12,16}/record/[a-zA-Z0-9]{12}"
+    },
+    "RegistryRecordCredentialProviderConfiguration":{
+      "type":"structure",
+      "required":[
+        "credentialProviderType",
+        "credentialProvider"
+      ],
+      "members":{
+        "credentialProviderType":{"shape":"RegistryRecordCredentialProviderType"},
+        "credentialProvider":{"shape":"RegistryRecordCredentialProviderUnion"}
+      }
+    },
+    "RegistryRecordCredentialProviderConfigurationList":{
+      "type":"list",
+      "member":{"shape":"RegistryRecordCredentialProviderConfiguration"},
+      "max":1,
+      "min":0
+    },
+    "RegistryRecordCredentialProviderType":{
+      "type":"string",
+      "enum":[
+        "OAUTH",
+        "IAM"
+      ]
+    },
+    "RegistryRecordCredentialProviderUnion":{
+      "type":"structure",
+      "members":{
+        "oauthCredentialProvider":{"shape":"RegistryRecordOAuthCredentialProvider"},
+        "iamCredentialProvider":{"shape":"RegistryRecordIamCredentialProvider"}
+      },
+      "union":true
+    },
+    "RegistryRecordIamCredentialProvider":{
+      "type":"structure",
+      "members":{
+        "roleArn":{"shape":"IamRoleArn"},
+        "service":{"shape":"IamSigningServiceName"},
+        "region":{"shape":"IamSigningRegion"}
+      }
+    },
+    "RegistryRecordId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"[a-zA-Z0-9]{12}"
+    },
+    "RegistryRecordName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9][a-zA-Z0-9_\\-\\.\\/]*"
+    },
+    "RegistryRecordOAuthCredentialProvider":{
+      "type":"structure",
+      "required":["providerArn"],
+      "members":{
+        "providerArn":{"shape":"CredentialProviderArn"},
+        "grantType":{"shape":"RegistryRecordOAuthGrantType"},
+        "scopes":{"shape":"ScopeList"},
+        "customParameters":{"shape":"CustomParameterMap"}
+      }
+    },
+    "RegistryRecordOAuthGrantType":{
+      "type":"string",
+      "enum":["CLIENT_CREDENTIALS"]
+    },
+    "RegistryRecordStatus":{
+      "type":"string",
+      "enum":[
+        "DRAFT",
+        "PENDING_APPROVAL",
+        "APPROVED",
+        "REJECTED",
+        "DEPRECATED",
+        "CREATING",
+        "UPDATING",
+        "CREATE_FAILED",
+        "UPDATE_FAILED"
+      ]
+    },
+    "RegistryRecordSummary":{
+      "type":"structure",
+      "required":[
+        "registryArn",
+        "recordArn",
+        "recordId",
+        "name",
+        "descriptorType",
+        "recordVersion",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "registryArn":{"shape":"RegistryArn"},
+        "recordArn":{"shape":"RegistryRecordArn"},
+        "recordId":{"shape":"RegistryRecordId"},
+        "name":{"shape":"RegistryRecordName"},
+        "description":{"shape":"Description"},
+        "descriptorType":{"shape":"DescriptorType"},
+        "recordVersion":{"shape":"RegistryRecordVersion"},
+        "status":{"shape":"RegistryRecordStatus"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"}
+      }
+    },
+    "RegistryRecordSummaryList":{
+      "type":"list",
+      "member":{"shape":"RegistryRecordSummary"}
+    },
+    "RegistryRecordVersion":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"[a-zA-Z0-9.-]+"
+    },
+    "RegistryStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "READY",
+        "UPDATING",
+        "CREATE_FAILED",
+        "UPDATE_FAILED",
+        "DELETING",
+        "DELETE_FAILED"
+      ]
+    },
+    "RegistrySummary":{
+      "type":"structure",
+      "required":[
+        "name",
+        "registryId",
+        "registryArn",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "name":{"shape":"RegistryName"},
+        "description":{"shape":"Description"},
+        "registryId":{"shape":"RegistryId"},
+        "registryArn":{"shape":"RegistryArn"},
+        "authorizerType":{"shape":"RegistryAuthorizerType"},
+        "status":{"shape":"RegistryStatus"},
+        "statusReason":{"shape":"String"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"}
+      }
+    },
+    "RegistrySummaryList":{
+      "type":"list",
+      "member":{"shape":"RegistrySummary"}
     },
     "RequestHeaderAllowlist":{
       "type":"list",
@@ -3821,6 +7443,33 @@
       "type":"list",
       "member":{"shape":"String"}
     },
+    "Resource":{
+      "type":"structure",
+      "members":{
+        "arn":{"shape":"BedrockAgentcoreResourceArn"}
+      },
+      "union":true
+    },
+    "ResourceAssociationArn":{
+      "type":"string",
+      "pattern":"arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:servicenetworkresourceassociation/snra-[0-9a-f]{17}"
+    },
+    "ResourceConfigurationIdentifier":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"((rcfg-[0-9a-z]{17})|(arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:resourceconfiguration/rcfg-[0-9a-z]{17}))"
+    },
+    "ResourceGatewayArn":{
+      "type":"string",
+      "pattern":"arn:[a-z0-9\\-]+:vpc-lattice:[a-zA-Z0-9\\-]+:\\d{12}:resourcegateway/rgw-[0-9a-z]{17}"
+    },
+    "ResourceId":{
+      "type":"string",
+      "max":59,
+      "min":12,
+      "pattern":"[A-Za-z][A-Za-z0-9_]*-[a-z0-9_]{10}"
+    },
     "ResourceLimitExceededException":{
       "type":"structure",
       "members":{
@@ -3831,6 +7480,13 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "ResourceLocation":{
+      "type":"structure",
+      "members":{
+        "s3":{"shape":"S3Location"}
+      },
+      "union":true
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -3853,6 +7509,11 @@
       "min":1,
       "pattern":"\\w+:(\\/?\\/?)[^\\s]+"
     },
+    "ResourcePolicyBody":{
+      "type":"string",
+      "max":20480,
+      "min":1
+    },
     "ResourceType":{
       "type":"string",
       "enum":[
@@ -3865,17 +7526,54 @@
       "member":{"shape":"ResponseType"}
     },
     "ResponseType":{"type":"string"},
+    "RestApiMethod":{
+      "type":"string",
+      "enum":[
+        "GET",
+        "DELETE",
+        "HEAD",
+        "OPTIONS",
+        "PATCH",
+        "PUT",
+        "POST"
+      ]
+    },
+    "RestApiMethods":{
+      "type":"list",
+      "member":{"shape":"RestApiMethod"}
+    },
     "RoleArn":{
       "type":"string",
       "max":2048,
       "min":1,
       "pattern":"arn:aws(-[^:]+)?:iam::([0-9]{12})?:role/.+"
     },
+    "RoutingDomain":{
+      "type":"string",
+      "max":255,
+      "min":3
+    },
+    "Rule":{
+      "type":"structure",
+      "required":["samplingConfig"],
+      "members":{
+        "samplingConfig":{"shape":"SamplingConfig"},
+        "filters":{"shape":"FilterList"},
+        "sessionConfig":{"shape":"SessionConfig"}
+      }
+    },
     "RuntimeContainerUri":{
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"([0-9]{12})\\.dkr\\.ecr\\.([a-z0-9-]+)\\.amazonaws\\.com/((?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*)(?::([^:@]{1,300}))?(?:@(.+))?"
+      "pattern":"(([0-9]{12})\\.dkr\\.ecr\\.([a-z0-9-]+)\\.amazonaws\\.com(\\.cn)?|public\\.ecr\\.aws)/((?:[a-z0-9]+(?:[._-][a-z0-9]+)*/)*[a-z0-9]+(?:[._-][a-z0-9]+)*)(?::([^:@]{1,300}))?(?:@(.+))?"
+    },
+    "RuntimeMetadataConfiguration":{
+      "type":"structure",
+      "required":["requireMMDSV2"],
+      "members":{
+        "requireMMDSV2":{"shape":"Boolean"}
+      }
     },
     "S3BucketUri":{
       "type":"string",
@@ -3933,6 +7631,19 @@
         "clientId":{"shape":"ClientIdType"}
       }
     },
+    "SamplingConfig":{
+      "type":"structure",
+      "required":["samplingPercentage"],
+      "members":{
+        "samplingPercentage":{"shape":"SamplingConfigSamplingPercentageDouble"}
+      }
+    },
+    "SamplingConfigSamplingPercentageDouble":{
+      "type":"double",
+      "box":true,
+      "max":100.0,
+      "min":0.01
+    },
     "SandboxName":{
       "type":"string",
       "pattern":"[a-zA-Z][a-zA-Z0-9_]{0,47}"
@@ -3964,6 +7675,15 @@
         "integer"
       ]
     },
+    "SchemaVersion":{
+      "type":"string",
+      "max":255,
+      "min":1
+    },
+    "ScopeList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "SearchType":{
       "type":"string",
       "enum":["SEMANTIC"]
@@ -3979,9 +7699,26 @@
       "type":"string",
       "pattern":"arn:(aws|aws-us-gov):secretsmanager:[A-Za-z0-9-]{1,64}:[0-9]{12}:secret:[a-zA-Z0-9-_/+=.@!]+"
     },
+    "SecretsManagerLocation":{
+      "type":"structure",
+      "required":["secretArn"],
+      "members":{
+        "secretArn":{"shape":"ToolSecretArn"}
+      }
+    },
     "SecurityGroupId":{
       "type":"string",
       "pattern":"sg-[0-9a-zA-Z]{8,17}"
+    },
+    "SecurityGroupIdentifier":{
+      "type":"string",
+      "pattern":"sg-(([0-9a-z]{8})|([0-9a-z]{17}))"
+    },
+    "SecurityGroupIds":{
+      "type":"list",
+      "member":{"shape":"SecurityGroupIdentifier"},
+      "max":5,
+      "min":0
     },
     "SecurityGroups":{
       "type":"list",
@@ -4017,6 +7754,13 @@
       "max":50,
       "min":0
     },
+    "SelfManagedLatticeResource":{
+      "type":"structure",
+      "members":{
+        "resourceConfigurationIdentifier":{"shape":"ResourceConfigurationIdentifier"}
+      },
+      "union":true
+    },
     "SemanticConsolidationOverride":{
       "type":"structure",
       "required":[
@@ -4045,7 +7789,13 @@
       "members":{
         "name":{"shape":"Name"},
         "description":{"shape":"Description"},
-        "namespaces":{"shape":"NamespacesList"}
+        "namespaces":{
+          "shape":"NamespacesList",
+          "deprecated":true,
+          "deprecatedMessage":"Use namespaceTemplates instead",
+          "deprecatedSince":"2026-03-02"
+        },
+        "namespaceTemplates":{"shape":"NamespacesList"}
       }
     },
     "SemanticOverrideConfigurationInput":{
@@ -4077,12 +7827,20 @@
         "modelId":{"shape":"String"}
       }
     },
+    "ServerDefinition":{
+      "type":"structure",
+      "members":{
+        "schemaVersion":{"shape":"SchemaVersion"},
+        "inlineContent":{"shape":"InlineContent"}
+      }
+    },
     "ServerProtocol":{
       "type":"string",
       "enum":[
         "MCP",
         "HTTP",
-        "A2A"
+        "A2A",
+        "AGUI"
       ]
     },
     "ServiceException":{
@@ -4095,6 +7853,12 @@
       "fault":true,
       "retryable":{"throttling":false}
     },
+    "ServiceName":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "pattern":"[a-zA-Z0-9._-]+"
+    },
     "ServiceQuotaExceededException":{
       "type":"structure",
       "members":{
@@ -4105,6 +7869,26 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "SessionConfig":{
+      "type":"structure",
+      "required":["sessionTimeoutMinutes"],
+      "members":{
+        "sessionTimeoutMinutes":{"shape":"SessionConfigSessionTimeoutMinutesInteger"}
+      }
+    },
+    "SessionConfigSessionTimeoutMinutesInteger":{
+      "type":"integer",
+      "box":true,
+      "max":1440,
+      "min":1
+    },
+    "SessionStorageConfiguration":{
+      "type":"structure",
+      "required":["mountPath"],
+      "members":{
+        "mountPath":{"shape":"MountPath"}
+      }
     },
     "SetTokenVaultCMKRequest":{
       "type":"structure",
@@ -4127,6 +7911,19 @@
         "lastModifiedDate":{"shape":"Timestamp"}
       }
     },
+    "SkillDefinition":{
+      "type":"structure",
+      "members":{
+        "schemaVersion":{"shape":"SchemaVersion"},
+        "inlineContent":{"shape":"InlineContent"}
+      }
+    },
+    "SkillMdDefinition":{
+      "type":"structure",
+      "members":{
+        "inlineContent":{"shape":"InlineContent"}
+      }
+    },
     "SlackOauth2ProviderConfigInput":{
       "type":"structure",
       "required":[
@@ -4146,6 +7943,60 @@
         "clientId":{"shape":"ClientIdType"}
       }
     },
+    "StartPolicyGenerationRequest":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "resource",
+        "content",
+        "name"
+      ],
+      "members":{
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        },
+        "resource":{"shape":"Resource"},
+        "content":{"shape":"Content"},
+        "name":{"shape":"PolicyGenerationName"},
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "StartPolicyGenerationResponse":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "policyGenerationId",
+        "name",
+        "policyGenerationArn",
+        "resource",
+        "createdAt",
+        "updatedAt",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyEngineId":{"shape":"ResourceId"},
+        "policyGenerationId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyGenerationName"},
+        "policyGenerationArn":{"shape":"PolicyGenerationArn"},
+        "resource":{"shape":"Resource"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "status":{"shape":"PolicyGenerationStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"},
+        "findings":{"shape":"String"}
+      }
+    },
+    "Statement":{
+      "type":"string",
+      "max":10000,
+      "min":35
+    },
     "StatusReason":{
       "type":"string",
       "max":2048,
@@ -4163,13 +8014,74 @@
         "type":{"shape":"OverrideType"},
         "extraction":{"shape":"ExtractionConfiguration"},
         "consolidation":{"shape":"ConsolidationConfiguration"},
+        "reflection":{"shape":"ReflectionConfiguration"},
         "selfManagedConfiguration":{"shape":"SelfManagedConfiguration"}
       }
     },
+    "StreamDeliveryResource":{
+      "type":"structure",
+      "members":{
+        "kinesis":{"shape":"KinesisResource"}
+      },
+      "union":true
+    },
+    "StreamDeliveryResources":{
+      "type":"structure",
+      "required":["resources"],
+      "members":{
+        "resources":{"shape":"StreamDeliveryResourcesList"}
+      }
+    },
+    "StreamDeliveryResourcesList":{
+      "type":"list",
+      "member":{"shape":"StreamDeliveryResource"},
+      "max":1,
+      "min":0
+    },
     "String":{"type":"string"},
+    "SubmitRegistryRecordForApprovalRequest":{
+      "type":"structure",
+      "required":[
+        "registryId",
+        "recordId"
+      ],
+      "members":{
+        "registryId":{
+          "shape":"RegistryIdentifier",
+          "location":"uri",
+          "locationName":"registryId"
+        },
+        "recordId":{
+          "shape":"RecordIdentifier",
+          "location":"uri",
+          "locationName":"recordId"
+        }
+      }
+    },
+    "SubmitRegistryRecordForApprovalResponse":{
+      "type":"structure",
+      "required":[
+        "registryArn",
+        "recordArn",
+        "recordId",
+        "status",
+        "updatedAt"
+      ],
+      "members":{
+        "registryArn":{"shape":"RegistryArn"},
+        "recordArn":{"shape":"RegistryRecordArn"},
+        "recordId":{"shape":"RegistryRecordId"},
+        "status":{"shape":"RegistryRecordStatus"},
+        "updatedAt":{"shape":"DateTimestamp"}
+      }
+    },
     "SubnetId":{
       "type":"string",
       "pattern":"subnet-[0-9a-zA-Z]{8,17}"
+    },
+    "SubnetIds":{
+      "type":"list",
+      "member":{"shape":"SubnetId"}
     },
     "Subnets":{
       "type":"list",
@@ -4194,7 +8106,13 @@
       "members":{
         "name":{"shape":"Name"},
         "description":{"shape":"Description"},
-        "namespaces":{"shape":"NamespacesList"}
+        "namespaces":{
+          "shape":"NamespacesList",
+          "deprecated":true,
+          "deprecatedMessage":"Use namespaceTemplates instead",
+          "deprecatedSince":"2026-03-02"
+        },
+        "namespaceTemplates":{"shape":"NamespacesList"}
       }
     },
     "SummaryOverrideConfigurationInput":{
@@ -4213,6 +8131,16 @@
         "appendToPrompt":{"shape":"Prompt"},
         "modelId":{"shape":"String"}
       }
+    },
+    "SynchronizationConfiguration":{
+      "type":"structure",
+      "members":{
+        "fromUrl":{"shape":"FromUrlSynchronizationConfiguration"}
+      }
+    },
+    "SynchronizationType":{
+      "type":"string",
+      "enum":["URL"]
     },
     "SynchronizeGatewayTargetsRequest":{
       "type":"structure",
@@ -4335,7 +8263,10 @@
         "READY",
         "FAILED",
         "SYNCHRONIZING",
-        "SYNCHRONIZE_UNSUCCESSFUL"
+        "SYNCHRONIZE_UNSUCCESSFUL",
+        "CREATE_PENDING_AUTH",
+        "UPDATE_PENDING_AUTH",
+        "SYNCHRONIZE_PENDING_AUTH"
       ]
     },
     "TargetSummaries":{
@@ -4468,6 +8399,17 @@
       },
       "union":true
     },
+    "ToolSecretArn":{
+      "type":"string",
+      "pattern":"arn:aws(-[a-z-]+)?:secretsmanager:[a-z0-9-]+:[0-9]{12}:secret:[a-zA-Z0-9/_+=.@-]+"
+    },
+    "ToolsDefinition":{
+      "type":"structure",
+      "members":{
+        "protocolVersion":{"shape":"SchemaVersion"},
+        "inlineContent":{"shape":"InlineContent"}
+      }
+    },
     "TriggerCondition":{
       "type":"structure",
       "members":{
@@ -4596,7 +8538,9 @@
         "requestHeaderConfiguration":{"shape":"RequestHeaderConfiguration"},
         "protocolConfiguration":{"shape":"ProtocolConfiguration"},
         "lifecycleConfiguration":{"shape":"LifecycleConfiguration"},
+        "metadataConfiguration":{"shape":"RuntimeMetadataConfiguration"},
         "environmentVariables":{"shape":"EnvironmentVariablesMap"},
+        "filesystemConfigurations":{"shape":"FilesystemConfigurations"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
@@ -4651,6 +8595,39 @@
         "lastUpdatedTime":{"shape":"Timestamp"}
       }
     },
+    "UpdateEvaluatorRequest":{
+      "type":"structure",
+      "required":["evaluatorId"],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "evaluatorId":{
+          "shape":"EvaluatorId",
+          "location":"uri",
+          "locationName":"evaluatorId"
+        },
+        "description":{"shape":"EvaluatorDescription"},
+        "evaluatorConfig":{"shape":"EvaluatorConfig"},
+        "level":{"shape":"EvaluatorLevel"}
+      }
+    },
+    "UpdateEvaluatorResponse":{
+      "type":"structure",
+      "required":[
+        "evaluatorArn",
+        "evaluatorId",
+        "updatedAt",
+        "status"
+      ],
+      "members":{
+        "evaluatorArn":{"shape":"EvaluatorArn"},
+        "evaluatorId":{"shape":"EvaluatorId"},
+        "updatedAt":{"shape":"Timestamp"},
+        "status":{"shape":"EvaluatorStatus"}
+      }
+    },
     "UpdateGatewayRequest":{
       "type":"structure",
       "required":[
@@ -4674,6 +8651,8 @@
         "authorizerType":{"shape":"AuthorizerType"},
         "authorizerConfiguration":{"shape":"AuthorizerConfiguration"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
+        "interceptorConfigurations":{"shape":"GatewayInterceptorConfigurations"},
+        "policyEngineConfiguration":{"shape":"GatewayPolicyEngineConfiguration"},
         "exceptionLevel":{"shape":"ExceptionLevel"}
       }
     },
@@ -4705,6 +8684,8 @@
         "authorizerType":{"shape":"AuthorizerType"},
         "authorizerConfiguration":{"shape":"AuthorizerConfiguration"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
+        "interceptorConfigurations":{"shape":"GatewayInterceptorConfigurations"},
+        "policyEngineConfiguration":{"shape":"GatewayPolicyEngineConfiguration"},
         "workloadIdentityDetails":{"shape":"WorkloadIdentityDetails"},
         "exceptionLevel":{"shape":"ExceptionLevel"}
       }
@@ -4731,7 +8712,9 @@
         "name":{"shape":"TargetName"},
         "description":{"shape":"TargetDescription"},
         "targetConfiguration":{"shape":"TargetConfiguration"},
-        "credentialProviderConfigurations":{"shape":"CredentialProviderConfigurations"}
+        "credentialProviderConfigurations":{"shape":"CredentialProviderConfigurations"},
+        "metadataConfiguration":{"shape":"MetadataConfiguration"},
+        "privateEndpoint":{"shape":"PrivateEndpoint"}
       }
     },
     "UpdateGatewayTargetResponse":{
@@ -4757,7 +8740,11 @@
         "description":{"shape":"TargetDescription"},
         "targetConfiguration":{"shape":"TargetConfiguration"},
         "credentialProviderConfigurations":{"shape":"CredentialProviderConfigurations"},
-        "lastSynchronizedAt":{"shape":"DateTimestamp"}
+        "lastSynchronizedAt":{"shape":"DateTimestamp"},
+        "metadataConfiguration":{"shape":"MetadataConfiguration"},
+        "privateEndpoint":{"shape":"PrivateEndpoint"},
+        "privateEndpointManagedResources":{"shape":"PrivateEndpointManagedResources"},
+        "authorizationData":{"shape":"AuthorizationData"}
       }
     },
     "UpdateMemoryInput":{
@@ -4776,7 +8763,8 @@
         "description":{"shape":"Description"},
         "eventExpiryDuration":{"shape":"UpdateMemoryInputEventExpiryDurationInteger"},
         "memoryExecutionRoleArn":{"shape":"Arn"},
-        "memoryStrategies":{"shape":"ModifyMemoryStrategies"}
+        "memoryStrategies":{"shape":"ModifyMemoryStrategies"},
+        "streamDeliveryResources":{"shape":"StreamDeliveryResources"}
       }
     },
     "UpdateMemoryInputClientTokenString":{
@@ -4788,7 +8776,7 @@
       "type":"integer",
       "box":true,
       "max":365,
-      "min":7
+      "min":3
     },
     "UpdateMemoryOutput":{
       "type":"structure",
@@ -4831,6 +8819,271 @@
         "lastUpdatedTime":{"shape":"Timestamp"}
       }
     },
+    "UpdateOnlineEvaluationConfigRequest":{
+      "type":"structure",
+      "required":["onlineEvaluationConfigId"],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true
+        },
+        "onlineEvaluationConfigId":{
+          "shape":"OnlineEvaluationConfigId",
+          "location":"uri",
+          "locationName":"onlineEvaluationConfigId"
+        },
+        "description":{"shape":"EvaluationConfigDescription"},
+        "rule":{"shape":"Rule"},
+        "dataSourceConfig":{"shape":"DataSourceConfig"},
+        "evaluators":{"shape":"EvaluatorList"},
+        "evaluationExecutionRoleArn":{"shape":"RoleArn"},
+        "executionStatus":{"shape":"OnlineEvaluationExecutionStatus"}
+      }
+    },
+    "UpdateOnlineEvaluationConfigResponse":{
+      "type":"structure",
+      "required":[
+        "onlineEvaluationConfigArn",
+        "onlineEvaluationConfigId",
+        "updatedAt",
+        "status",
+        "executionStatus"
+      ],
+      "members":{
+        "onlineEvaluationConfigArn":{"shape":"OnlineEvaluationConfigArn"},
+        "onlineEvaluationConfigId":{"shape":"OnlineEvaluationConfigId"},
+        "updatedAt":{"shape":"Timestamp"},
+        "status":{"shape":"OnlineEvaluationConfigStatus"},
+        "executionStatus":{"shape":"OnlineEvaluationExecutionStatus"},
+        "failureReason":{"shape":"String"}
+      }
+    },
+    "UpdatePolicyEngineRequest":{
+      "type":"structure",
+      "required":["policyEngineId"],
+      "members":{
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        },
+        "description":{"shape":"UpdatedDescription"}
+      }
+    },
+    "UpdatePolicyEngineResponse":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "name",
+        "createdAt",
+        "updatedAt",
+        "policyEngineArn",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyEngineId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyEngineName"},
+        "description":{"shape":"Description"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "policyEngineArn":{"shape":"PolicyEngineArn"},
+        "status":{"shape":"PolicyEngineStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"},
+        "encryptionKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "UpdatePolicyRequest":{
+      "type":"structure",
+      "required":[
+        "policyEngineId",
+        "policyId"
+      ],
+      "members":{
+        "policyEngineId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyEngineId"
+        },
+        "policyId":{
+          "shape":"ResourceId",
+          "location":"uri",
+          "locationName":"policyId"
+        },
+        "description":{"shape":"UpdatedDescription"},
+        "definition":{"shape":"PolicyDefinition"},
+        "validationMode":{"shape":"PolicyValidationMode"}
+      }
+    },
+    "UpdatePolicyResponse":{
+      "type":"structure",
+      "required":[
+        "policyId",
+        "name",
+        "policyEngineId",
+        "definition",
+        "createdAt",
+        "updatedAt",
+        "policyArn",
+        "status",
+        "statusReasons"
+      ],
+      "members":{
+        "policyId":{"shape":"ResourceId"},
+        "name":{"shape":"PolicyName"},
+        "policyEngineId":{"shape":"ResourceId"},
+        "definition":{"shape":"PolicyDefinition"},
+        "description":{"shape":"Description"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "policyArn":{"shape":"PolicyArn"},
+        "status":{"shape":"PolicyStatus"},
+        "statusReasons":{"shape":"PolicyStatusReasons"}
+      }
+    },
+    "UpdateRegistryRecordRequest":{
+      "type":"structure",
+      "required":[
+        "registryId",
+        "recordId"
+      ],
+      "members":{
+        "registryId":{
+          "shape":"RegistryIdentifier",
+          "location":"uri",
+          "locationName":"registryId"
+        },
+        "recordId":{
+          "shape":"RecordIdentifier",
+          "location":"uri",
+          "locationName":"recordId"
+        },
+        "name":{"shape":"RegistryRecordName"},
+        "description":{"shape":"UpdatedDescription"},
+        "descriptorType":{"shape":"DescriptorType"},
+        "descriptors":{"shape":"UpdatedDescriptors"},
+        "recordVersion":{"shape":"RegistryRecordVersion"},
+        "synchronizationType":{"shape":"UpdatedSynchronizationType"},
+        "synchronizationConfiguration":{"shape":"UpdatedSynchronizationConfiguration"},
+        "triggerSynchronization":{"shape":"Boolean"}
+      }
+    },
+    "UpdateRegistryRecordResponse":{
+      "type":"structure",
+      "required":[
+        "registryArn",
+        "recordArn",
+        "recordId",
+        "name",
+        "descriptorType",
+        "descriptors",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "registryArn":{"shape":"RegistryArn"},
+        "recordArn":{"shape":"RegistryRecordArn"},
+        "recordId":{"shape":"RegistryRecordId"},
+        "name":{"shape":"RegistryRecordName"},
+        "description":{"shape":"Description"},
+        "descriptorType":{"shape":"DescriptorType"},
+        "descriptors":{"shape":"Descriptors"},
+        "recordVersion":{"shape":"RegistryRecordVersion"},
+        "status":{"shape":"RegistryRecordStatus"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"},
+        "statusReason":{"shape":"String"},
+        "synchronizationType":{"shape":"SynchronizationType"},
+        "synchronizationConfiguration":{"shape":"SynchronizationConfiguration"}
+      }
+    },
+    "UpdateRegistryRecordStatusRequest":{
+      "type":"structure",
+      "required":[
+        "registryId",
+        "recordId",
+        "status",
+        "statusReason"
+      ],
+      "members":{
+        "registryId":{
+          "shape":"RegistryIdentifier",
+          "location":"uri",
+          "locationName":"registryId"
+        },
+        "recordId":{
+          "shape":"RecordIdentifier",
+          "location":"uri",
+          "locationName":"recordId"
+        },
+        "status":{"shape":"RegistryRecordStatus"},
+        "statusReason":{"shape":"UpdateRegistryRecordStatusRequestStatusReasonString"}
+      }
+    },
+    "UpdateRegistryRecordStatusRequestStatusReasonString":{
+      "type":"string",
+      "max":255,
+      "min":0
+    },
+    "UpdateRegistryRecordStatusResponse":{
+      "type":"structure",
+      "required":[
+        "registryArn",
+        "recordArn",
+        "recordId",
+        "status",
+        "statusReason",
+        "updatedAt"
+      ],
+      "members":{
+        "registryArn":{"shape":"RegistryArn"},
+        "recordArn":{"shape":"RegistryRecordArn"},
+        "recordId":{"shape":"RegistryRecordId"},
+        "status":{"shape":"RegistryRecordStatus"},
+        "statusReason":{"shape":"String"},
+        "updatedAt":{"shape":"DateTimestamp"}
+      }
+    },
+    "UpdateRegistryRequest":{
+      "type":"structure",
+      "required":["registryId"],
+      "members":{
+        "registryId":{
+          "shape":"RegistryIdentifier",
+          "location":"uri",
+          "locationName":"registryId"
+        },
+        "name":{"shape":"RegistryName"},
+        "description":{"shape":"UpdatedDescription"},
+        "authorizerConfiguration":{"shape":"UpdatedAuthorizerConfiguration"},
+        "approvalConfiguration":{"shape":"UpdatedApprovalConfiguration"}
+      }
+    },
+    "UpdateRegistryResponse":{
+      "type":"structure",
+      "required":[
+        "name",
+        "registryId",
+        "registryArn",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ],
+      "members":{
+        "name":{"shape":"RegistryName"},
+        "description":{"shape":"Description"},
+        "registryId":{"shape":"RegistryId"},
+        "registryArn":{"shape":"RegistryArn"},
+        "authorizerType":{"shape":"RegistryAuthorizerType"},
+        "authorizerConfiguration":{"shape":"AuthorizerConfiguration"},
+        "approvalConfiguration":{"shape":"ApprovalConfiguration"},
+        "status":{"shape":"RegistryStatus"},
+        "statusReason":{"shape":"String"},
+        "createdAt":{"shape":"DateTimestamp"},
+        "updatedAt":{"shape":"DateTimestamp"}
+      }
+    },
     "UpdateWorkloadIdentityRequest":{
       "type":"structure",
       "required":["name"],
@@ -4853,6 +9106,113 @@
         "allowedResourceOauth2ReturnUrls":{"shape":"ResourceOauth2ReturnUrlListType"},
         "createdTime":{"shape":"Timestamp"},
         "lastUpdatedTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdatedA2aDescriptor":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"A2aDescriptor"}
+      }
+    },
+    "UpdatedAgentSkillsDescriptor":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"UpdatedAgentSkillsDescriptorFields"}
+      }
+    },
+    "UpdatedAgentSkillsDescriptorFields":{
+      "type":"structure",
+      "members":{
+        "skillMd":{"shape":"UpdatedSkillMdDefinition"},
+        "skillDefinition":{"shape":"UpdatedSkillDefinition"}
+      }
+    },
+    "UpdatedApprovalConfiguration":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"ApprovalConfiguration"}
+      }
+    },
+    "UpdatedAuthorizerConfiguration":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"AuthorizerConfiguration"}
+      }
+    },
+    "UpdatedCustomDescriptor":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"CustomDescriptor"}
+      }
+    },
+    "UpdatedDescription":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"Description"}
+      }
+    },
+    "UpdatedDescriptors":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"UpdatedDescriptorsUnion"}
+      }
+    },
+    "UpdatedDescriptorsUnion":{
+      "type":"structure",
+      "members":{
+        "mcp":{"shape":"UpdatedMcpDescriptor"},
+        "a2a":{"shape":"UpdatedA2aDescriptor"},
+        "custom":{"shape":"UpdatedCustomDescriptor"},
+        "agentSkills":{"shape":"UpdatedAgentSkillsDescriptor"}
+      }
+    },
+    "UpdatedMcpDescriptor":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"UpdatedMcpDescriptorFields"}
+      }
+    },
+    "UpdatedMcpDescriptorFields":{
+      "type":"structure",
+      "members":{
+        "server":{"shape":"UpdatedServerDefinition"},
+        "tools":{"shape":"UpdatedToolsDefinition"}
+      }
+    },
+    "UpdatedServerDefinition":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"ServerDefinition"}
+      }
+    },
+    "UpdatedSkillDefinition":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"SkillDefinition"}
+      }
+    },
+    "UpdatedSkillMdDefinition":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"SkillMdDefinition"}
+      }
+    },
+    "UpdatedSynchronizationConfiguration":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"SynchronizationConfiguration"}
+      }
+    },
+    "UpdatedSynchronizationType":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"SynchronizationType"}
+      }
+    },
+    "UpdatedToolsDefinition":{
+      "type":"structure",
+      "members":{
+        "optionalValue":{"shape":"ToolsDefinition"}
       }
     },
     "UserPreferenceConsolidationOverride":{
@@ -4883,7 +9243,13 @@
       "members":{
         "name":{"shape":"Name"},
         "description":{"shape":"Description"},
-        "namespaces":{"shape":"NamespacesList"}
+        "namespaces":{
+          "shape":"NamespacesList",
+          "deprecated":true,
+          "deprecatedMessage":"Use namespaceTemplates instead",
+          "deprecatedSince":"2026-03-02"
+        },
+        "namespaceTemplates":{"shape":"NamespacesList"}
       }
     },
     "UserPreferenceOverrideConfigurationInput":{
@@ -4967,6 +9333,10 @@
         "securityGroups":{"shape":"SecurityGroups"},
         "subnets":{"shape":"Subnets"}
       }
+    },
+    "VpcIdentifier":{
+      "type":"string",
+      "pattern":"vpc-(([0-9a-z]{8})|([0-9a-z]{17}))"
     },
     "WorkloadIdentityArn":{
       "type":"string",

@@ -348,6 +348,15 @@
         "UseS3ExpressControlEndpoint":{"value":true}
       }
     },
+    "GetBucketAbac":{
+      "name":"GetBucketAbac",
+      "http":{
+        "method":"GET",
+        "requestUri":"/{Bucket}?abac"
+      },
+      "input":{"shape":"GetBucketAbacRequest"},
+      "output":{"shape":"GetBucketAbacOutput"}
+    },
     "GetBucketAccelerateConfiguration":{
       "name":"GetBucketAccelerateConfiguration",
       "http":{
@@ -809,7 +818,10 @@
         "requestUri":"/{Bucket}?metrics"
       },
       "input":{"shape":"ListBucketMetricsConfigurationsRequest"},
-      "output":{"shape":"ListBucketMetricsConfigurationsOutput"}
+      "output":{"shape":"ListBucketMetricsConfigurationsOutput"},
+      "staticContextParams":{
+        "UseS3ExpressControlEndpoint":{"value":true}
+      }
     },
     "ListBuckets":{
       "name":"ListBuckets",
@@ -882,6 +894,18 @@
       },
       "input":{"shape":"ListPartsRequest"},
       "output":{"shape":"ListPartsOutput"}
+    },
+    "PutBucketAbac":{
+      "name":"PutBucketAbac",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/{Bucket}?abac"
+      },
+      "input":{"shape":"PutBucketAbacRequest"},
+      "httpChecksum":{
+        "requestAlgorithmMember":"ChecksumAlgorithm",
+        "requestChecksumRequired":false
+      }
     },
     "PutBucketAccelerateConfiguration":{
       "name":"PutBucketAccelerateConfiguration",
@@ -1339,6 +1363,24 @@
         "UseS3ExpressControlEndpoint":{"value":true}
       }
     },
+    "UpdateObjectEncryption":{
+      "name":"UpdateObjectEncryption",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/{Bucket}/{Key+}?encryption"
+      },
+      "input":{"shape":"UpdateObjectEncryptionRequest"},
+      "output":{"shape":"UpdateObjectEncryptionResponse"},
+      "errors":[
+        {"shape":"NoSuchKey"},
+        {"shape":"InvalidRequest"},
+        {"shape":"AccessDenied"}
+      ],
+      "httpChecksum":{
+        "requestAlgorithmMember":"ChecksumAlgorithm",
+        "requestChecksumRequired":true
+      }
+    },
     "UploadPart":{
       "name":"UploadPart",
       "http":{
@@ -1382,6 +1424,12 @@
     }
   },
   "shapes":{
+    "AbacStatus":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"BucketAbacStatus"}
+      }
+    },
     "AbortDate":{"type":"timestamp"},
     "AbortIncompleteMultipartUpload":{
       "type":"structure",
@@ -1465,6 +1513,13 @@
       "members":{
         "Owner":{"shape":"OwnerOverride"}
       }
+    },
+    "AccessDenied":{
+      "type":"structure",
+      "members":{},
+      "error":{"httpStatusCode":403},
+      "exception":true,
+      "synthetic":true
     },
     "AccessKeyIdValue":{"type":"string"},
     "AccessPointAlias":{
@@ -1563,6 +1618,12 @@
         "DEEP_ARCHIVE_ACCESS"
       ]
     },
+    "BlockedEncryptionTypes":{
+      "type":"structure",
+      "members":{
+        "EncryptionType":{"shape":"EncryptionTypeList"}
+      }
+    },
     "Body":{"type":"blob"},
     "Bucket":{
       "type":"structure",
@@ -1572,6 +1633,13 @@
         "BucketRegion":{"shape":"BucketRegion"},
         "BucketArn":{"shape":"S3RegionalOrS3ExpressBucketArnString"}
       }
+    },
+    "BucketAbacStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
     },
     "BucketAccelerateStatus":{
       "type":"string",
@@ -1627,6 +1695,7 @@
       "enum":[
         "af-south-1",
         "ap-east-1",
+        "ap-east-2",
         "ap-northeast-1",
         "ap-northeast-2",
         "ap-northeast-3",
@@ -1637,7 +1706,10 @@
         "ap-southeast-3",
         "ap-southeast-4",
         "ap-southeast-5",
+        "ap-southeast-6",
+        "ap-southeast-7",
         "ca-central-1",
+        "ca-west-1",
         "cn-north-1",
         "cn-northwest-1",
         "EU",
@@ -1652,6 +1724,7 @@
         "il-central-1",
         "me-central-1",
         "me-south-1",
+        "mx-central-1",
         "sa-east-1",
         "us-east-2",
         "us-gov-east-1",
@@ -1676,6 +1749,13 @@
       ]
     },
     "BucketName":{"type":"string"},
+    "BucketNamespace":{
+      "type":"string",
+      "enum":[
+        "account-regional",
+        "global"
+      ]
+    },
     "BucketRegion":{"type":"string"},
     "BucketType":{
       "type":"string",
@@ -2531,6 +2611,11 @@
           "shape":"ObjectOwnership",
           "location":"header",
           "locationName":"x-amz-object-ownership"
+        },
+        "BucketNamespace":{
+          "shape":"BucketNamespace",
+          "location":"header",
+          "locationName":"x-amz-bucket-namespace"
         }
       },
       "payload":"CreateBucketConfiguration"
@@ -3457,6 +3542,21 @@
         "ReplicaKmsKeyID":{"shape":"ReplicaKmsKeyID"}
       }
     },
+    "EncryptionType":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "SSE-C"
+      ]
+    },
+    "EncryptionTypeList":{
+      "type":"list",
+      "member":{
+        "shape":"EncryptionType",
+        "locationName":"EncryptionType"
+      },
+      "flattened":true
+    },
     "EncryptionTypeMismatch":{
       "type":"structure",
       "members":{},
@@ -3621,6 +3721,30 @@
       ]
     },
     "FilterRuleValue":{"type":"string"},
+    "GetBucketAbacOutput":{
+      "type":"structure",
+      "members":{
+        "AbacStatus":{"shape":"AbacStatus"}
+      },
+      "payload":"AbacStatus"
+    },
+    "GetBucketAbacRequest":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
+          "location":"uri",
+          "locationName":"Bucket"
+        },
+        "ExpectedBucketOwner":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-expected-bucket-owner"
+        }
+      }
+    },
     "GetBucketAccelerateConfigurationOutput":{
       "type":"structure",
       "members":{
@@ -5583,7 +5707,8 @@
         "BucketKeyStatus",
         "ChecksumAlgorithm",
         "ObjectAccessControlList",
-        "ObjectOwner"
+        "ObjectOwner",
+        "LifecycleExpirationDate"
       ]
     },
     "InventoryOptionalFields":{
@@ -6657,6 +6782,13 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "NonEmptyKmsKeyArnString":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"arn:aws[a-zA-Z0-9-]*:kms:[a-z0-9-]+:[0-9]{12}:key/[a-zA-Z0-9-]+",
+      "sensitive":true
+    },
     "NoncurrentVersionExpiration":{
       "type":"structure",
       "members":{
@@ -6758,6 +6890,16 @@
         "bucket-owner-read",
         "bucket-owner-full-control"
       ]
+    },
+    "ObjectEncryption":{
+      "type":"structure",
+      "members":{
+        "SSEKMS":{
+          "shape":"SSEKMSEncryption",
+          "locationName":"SSE-KMS"
+        }
+      },
+      "union":true
     },
     "ObjectIdentifier":{
       "type":"structure",
@@ -6896,7 +7038,8 @@
         "GLACIER_IR",
         "SNOW",
         "EXPRESS_ONEZONE",
-        "FSX_OPENZFS"
+        "FSX_OPENZFS",
+        "FSX_ONTAP"
       ]
     },
     "ObjectVersion":{
@@ -7104,6 +7247,42 @@
           "locationName":"RestrictPublicBuckets"
         }
       }
+    },
+    "PutBucketAbacRequest":{
+      "type":"structure",
+      "required":[
+        "Bucket",
+        "AbacStatus"
+      ],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
+          "location":"uri",
+          "locationName":"Bucket"
+        },
+        "ContentMD5":{
+          "shape":"ContentMD5",
+          "location":"header",
+          "locationName":"Content-MD5"
+        },
+        "ChecksumAlgorithm":{
+          "shape":"ChecksumAlgorithm",
+          "location":"header",
+          "locationName":"x-amz-sdk-checksum-algorithm"
+        },
+        "ExpectedBucketOwner":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-expected-bucket-owner"
+        },
+        "AbacStatus":{
+          "shape":"AbacStatus",
+          "locationName":"AbacStatus",
+          "xmlNamespace":{"uri":"http://s3.amazonaws.com/doc/2006-03-01/"}
+        }
+      },
+      "payload":"AbacStatus"
     },
     "PutBucketAccelerateConfigurationRequest":{
       "type":"structure",
@@ -9065,6 +9244,15 @@
       },
       "locationName":"SSE-KMS"
     },
+    "SSEKMSEncryption":{
+      "type":"structure",
+      "required":["KMSKeyArn"],
+      "members":{
+        "KMSKeyArn":{"shape":"NonEmptyKmsKeyArnString"},
+        "BucketKeyEnabled":{"shape":"BucketKeyEnabled"}
+      },
+      "locationName":"SSE-KMS"
+    },
     "SSEKMSEncryptionContext":{
       "type":"string",
       "sensitive":true
@@ -9199,7 +9387,8 @@
       "type":"structure",
       "members":{
         "ApplyServerSideEncryptionByDefault":{"shape":"ServerSideEncryptionByDefault"},
-        "BucketKeyEnabled":{"shape":"BucketKeyEnabled"}
+        "BucketKeyEnabled":{"shape":"BucketKeyEnabled"},
+        "BlockedEncryptionTypes":{"shape":"BlockedEncryptionTypes"}
       }
     },
     "ServerSideEncryptionRules":{
@@ -9321,7 +9510,8 @@
         "GLACIER_IR",
         "SNOW",
         "EXPRESS_ONEZONE",
-        "FSX_OPENZFS"
+        "FSX_OPENZFS",
+        "FSX_ONTAP"
       ]
     },
     "StorageClassAnalysis":{
@@ -9601,6 +9791,68 @@
         }
       },
       "payload":"JournalTableConfiguration"
+    },
+    "UpdateObjectEncryptionRequest":{
+      "type":"structure",
+      "required":[
+        "Bucket",
+        "Key",
+        "ObjectEncryption"
+      ],
+      "members":{
+        "Bucket":{
+          "shape":"BucketName",
+          "contextParam":{"name":"Bucket"},
+          "location":"uri",
+          "locationName":"Bucket"
+        },
+        "Key":{
+          "shape":"ObjectKey",
+          "location":"uri",
+          "locationName":"Key"
+        },
+        "VersionId":{
+          "shape":"ObjectVersionId",
+          "location":"querystring",
+          "locationName":"versionId"
+        },
+        "ObjectEncryption":{
+          "shape":"ObjectEncryption",
+          "locationName":"ObjectEncryption",
+          "xmlNamespace":{"uri":"http://s3.amazonaws.com/doc/2006-03-01/"}
+        },
+        "RequestPayer":{
+          "shape":"RequestPayer",
+          "location":"header",
+          "locationName":"x-amz-request-payer"
+        },
+        "ExpectedBucketOwner":{
+          "shape":"AccountId",
+          "location":"header",
+          "locationName":"x-amz-expected-bucket-owner"
+        },
+        "ContentMD5":{
+          "shape":"ContentMD5",
+          "location":"header",
+          "locationName":"Content-MD5"
+        },
+        "ChecksumAlgorithm":{
+          "shape":"ChecksumAlgorithm",
+          "location":"header",
+          "locationName":"x-amz-sdk-checksum-algorithm"
+        }
+      },
+      "payload":"ObjectEncryption"
+    },
+    "UpdateObjectEncryptionResponse":{
+      "type":"structure",
+      "members":{
+        "RequestCharged":{
+          "shape":"RequestCharged",
+          "location":"header",
+          "locationName":"x-amz-request-charged"
+        }
+      }
     },
     "UploadIdMarker":{"type":"string"},
     "UploadPartCopyOutput":{

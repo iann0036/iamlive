@@ -456,7 +456,52 @@
         "tl-PH",
         "uk-UA",
         "vi-VN",
-        "zu-ZA"
+        "zu-ZA",
+        "am-ET",
+        "be-BY",
+        "bg-BG",
+        "bn-IN",
+        "bs-BA",
+        "ckb-IQ",
+        "ckb-IR",
+        "cy-WL",
+        "es-MX",
+        "et-ET",
+        "fa-AF",
+        "gu-IN",
+        "ht-HT",
+        "hu-HU",
+        "hy-AM",
+        "is-IS",
+        "jv-ID",
+        "ka-GE",
+        "kab-DZ",
+        "kk-KZ",
+        "km-KH",
+        "kn-IN",
+        "lg-IN",
+        "lt-LT",
+        "mk-MK",
+        "ml-IN",
+        "mr-IN",
+        "my-MM",
+        "ne-NP",
+        "or-IN",
+        "pa-IN",
+        "ps-AF",
+        "si-LK",
+        "sl-SI",
+        "sq-AL",
+        "su-ID",
+        "sw-BI",
+        "sw-KE",
+        "sw-RW",
+        "sw-TZ",
+        "sw-UG",
+        "ta-IN",
+        "te-IN",
+        "tr-TR",
+        "uz-UZ"
       ]
     },
     "LanguageIdentification":{
@@ -937,6 +982,11 @@
       "max":36,
       "min":36,
       "pattern":"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+    },
+    "SessionResumeWindow":{
+      "type":"integer",
+      "max":300,
+      "min":1
     },
     "Specialty":{
       "type":"string",
@@ -1474,6 +1524,11 @@
           "shape":"VocabularyFilterNames",
           "location":"header",
           "locationName":"x-amzn-transcribe-vocabulary-filter-names"
+        },
+        "SessionResumeWindow":{
+          "shape":"SessionResumeWindow",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-session-resume-window"
         }
       },
       "payload":"AudioStream"
@@ -1596,6 +1651,11 @@
           "shape":"VocabularyFilterNames",
           "location":"header",
           "locationName":"x-amzn-transcribe-vocabulary-filter-names"
+        },
+        "SessionResumeWindow":{
+          "shape":"SessionResumeWindow",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-session-resume-window"
         }
       },
       "payload":"TranscriptResultStream"

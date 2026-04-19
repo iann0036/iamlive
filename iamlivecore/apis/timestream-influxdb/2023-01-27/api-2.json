@@ -232,6 +232,42 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "RebootDbCluster":{
+      "name":"RebootDbCluster",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RebootDbClusterInput"},
+      "output":{"shape":"RebootDbClusterOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
+    "RebootDbInstance":{
+      "name":"RebootDbInstance",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RebootDbInstanceInput"},
+      "output":{"shape":"RebootDbInstanceOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "idempotent":true
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -325,6 +361,14 @@
       "min":2,
       "pattern":"[^_\"][^\"]*"
     },
+    "ClusterConfiguration":{
+      "type":"structure",
+      "members":{
+        "ingestQueryInstances":{"shape":"Integer"},
+        "queryOnlyInstances":{"shape":"Integer"},
+        "dedicatedCompactor":{"shape":"Boolean"}
+      }
+    },
     "ClusterDeploymentType":{
       "type":"string",
       "enum":["MULTI_NODE_READ_REPLICAS"]
@@ -338,7 +382,11 @@
         "AVAILABLE",
         "FAILED",
         "DELETED",
-        "MAINTENANCE"
+        "MAINTENANCE",
+        "UPDATING_INSTANCE_TYPE",
+        "REBOOTING",
+        "REBOOT_FAILED",
+        "PARTIALLY_AVAILABLE"
       ]
     },
     "ConflictException":{
@@ -381,6 +429,7 @@
         "deploymentType":{"shape":"ClusterDeploymentType"},
         "failoverMode":{"shape":"FailoverMode"},
         "logDeliveryConfiguration":{"shape":"LogDeliveryConfiguration"},
+        "maintenanceSchedule":{"shape":"MaintenanceSchedule"},
         "tags":{"shape":"RequestTagMap"}
       }
     },
@@ -416,6 +465,7 @@
         "dbParameterGroupIdentifier":{"shape":"DbParameterGroupIdentifier"},
         "deploymentType":{"shape":"DeploymentType"},
         "logDeliveryConfiguration":{"shape":"LogDeliveryConfiguration"},
+        "maintenanceSchedule":{"shape":"MaintenanceSchedule"},
         "tags":{"shape":"RequestTagMap"},
         "port":{"shape":"Port"},
         "networkType":{"shape":"NetworkType"}
@@ -451,7 +501,10 @@
         "influxAuthParametersSecretArn":{"shape":"String"},
         "dbClusterId":{"shape":"DbClusterId"},
         "instanceMode":{"shape":"InstanceMode"},
-        "instanceModes":{"shape":"InstanceModeList"}
+        "instanceModes":{"shape":"InstanceModeList"},
+        "maintenanceSchedule":{"shape":"MaintenanceSchedule"},
+        "lastMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"},
+        "nextMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"}
       }
     },
     "CreateDbParameterGroupInput":{
@@ -708,7 +761,10 @@
         "influxAuthParametersSecretArn":{"shape":"String"},
         "dbClusterId":{"shape":"DbClusterId"},
         "instanceMode":{"shape":"InstanceMode"},
-        "instanceModes":{"shape":"InstanceModeList"}
+        "instanceModes":{"shape":"InstanceModeList"},
+        "maintenanceSchedule":{"shape":"MaintenanceSchedule"},
+        "lastMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"},
+        "nextMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"}
       }
     },
     "DeploymentType":{
@@ -790,10 +846,14 @@
         "publiclyAccessible":{"shape":"Boolean"},
         "dbParameterGroupIdentifier":{"shape":"DbParameterGroupIdentifier"},
         "logDeliveryConfiguration":{"shape":"LogDeliveryConfiguration"},
+        "maintenanceSchedule":{"shape":"MaintenanceSchedule"},
+        "lastMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"},
+        "nextMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"},
         "influxAuthParametersSecretArn":{"shape":"String"},
         "vpcSubnetIds":{"shape":"VpcSubnetIdList"},
         "vpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
-        "failoverMode":{"shape":"FailoverMode"}
+        "failoverMode":{"shape":"FailoverMode"},
+        "clusterConfiguration":{"shape":"ClusterConfiguration"}
       }
     },
     "GetDbInstanceInput":{
@@ -833,7 +893,10 @@
         "influxAuthParametersSecretArn":{"shape":"String"},
         "dbClusterId":{"shape":"DbClusterId"},
         "instanceMode":{"shape":"InstanceMode"},
-        "instanceModes":{"shape":"InstanceModeList"}
+        "instanceModes":{"shape":"InstanceModeList"},
+        "maintenanceSchedule":{"shape":"MaintenanceSchedule"},
+        "lastMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"},
+        "nextMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"}
       }
     },
     "GetDbParameterGroupInput":{
@@ -857,6 +920,12 @@
         "description":{"shape":"String"},
         "parameters":{"shape":"Parameters"}
       }
+    },
+    "IanaTimezone":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"(UTC|[A-Za-z_]+/[A-Za-z0-9_]+(/[A-Za-z0-9_]+)?)"
     },
     "InfluxDBv2Parameters":{
       "type":"structure",
@@ -1045,7 +1114,7 @@
     },
     "InfluxDBv3CoreParametersDataFusionConfigString":{
       "type":"string",
-      "pattern":"[a-zA-Z0-9_]+=[^,\\s]+(?:,[a-zA-Z0-9_]+=[^,\\s]+)*"
+      "pattern":"[a-zA-Z0-9_.]+:[^,\\s]+(?:,[a-zA-Z0-9_.]+:[^,\\s]+)*"
     },
     "InfluxDBv3CoreParametersDataFusionMaxParquetFanoutInteger":{
       "type":"integer",
@@ -1236,7 +1305,7 @@
     },
     "InfluxDBv3EnterpriseParametersDataFusionConfigString":{
       "type":"string",
-      "pattern":"[a-zA-Z0-9_]+=[^,\\s]+(?:,[a-zA-Z0-9_]+=[^,\\s]+)*"
+      "pattern":"[a-zA-Z0-9_.]+:[^,\\s]+(?:,[a-zA-Z0-9_.]+:[^,\\s]+)*"
     },
     "InfluxDBv3EnterpriseParametersDataFusionMaxParquetFanoutInteger":{
       "type":"integer",
@@ -1481,6 +1550,23 @@
         "error"
       ]
     },
+    "MaintenanceSchedule":{
+      "type":"structure",
+      "required":[
+        "timezone",
+        "preferredMaintenanceWindow"
+      ],
+      "members":{
+        "timezone":{"shape":"IanaTimezone"},
+        "preferredMaintenanceWindow":{"shape":"MaintenanceWindow"}
+      }
+    },
+    "MaintenanceWindow":{
+      "type":"string",
+      "max":19,
+      "min":0,
+      "pattern":"$|^(Mon|Tue|Wed|Thu|Fri|Sat|Sun):([01]\\d|2[0-3]):[0-5]\\d-(Mon|Tue|Wed|Thu|Fri|Sat|Sun):([01]\\d|2[0-3]):[0-5]\\d"
+    },
     "MaxResults":{
       "type":"integer",
       "box":true,
@@ -1544,6 +1630,69 @@
       "box":true,
       "max":65535,
       "min":1024
+    },
+    "RebootDbClusterInput":{
+      "type":"structure",
+      "required":["dbClusterId"],
+      "members":{
+        "dbClusterId":{"shape":"DbClusterId"},
+        "instanceIds":{"shape":"RebootDbClusterInputInstanceIdsList"}
+      }
+    },
+    "RebootDbClusterInputInstanceIdsList":{
+      "type":"list",
+      "member":{"shape":"DbInstanceId"},
+      "max":3,
+      "min":0
+    },
+    "RebootDbClusterOutput":{
+      "type":"structure",
+      "members":{
+        "dbClusterStatus":{"shape":"ClusterStatus"}
+      }
+    },
+    "RebootDbInstanceInput":{
+      "type":"structure",
+      "required":["identifier"],
+      "members":{
+        "identifier":{"shape":"DbInstanceIdentifier"}
+      }
+    },
+    "RebootDbInstanceOutput":{
+      "type":"structure",
+      "required":[
+        "id",
+        "name",
+        "arn",
+        "vpcSubnetIds"
+      ],
+      "members":{
+        "id":{"shape":"DbInstanceId"},
+        "name":{"shape":"DbInstanceName"},
+        "arn":{"shape":"Arn"},
+        "status":{"shape":"Status"},
+        "endpoint":{"shape":"String"},
+        "port":{"shape":"Port"},
+        "networkType":{"shape":"NetworkType"},
+        "dbInstanceType":{"shape":"DbInstanceType"},
+        "dbStorageType":{"shape":"DbStorageType"},
+        "allocatedStorage":{"shape":"AllocatedStorage"},
+        "deploymentType":{"shape":"DeploymentType"},
+        "vpcSubnetIds":{"shape":"VpcSubnetIdList"},
+        "publiclyAccessible":{"shape":"Boolean"},
+        "vpcSecurityGroupIds":{"shape":"VpcSecurityGroupIdList"},
+        "dbParameterGroupIdentifier":{"shape":"DbParameterGroupIdentifier"},
+        "availabilityZone":{"shape":"String"},
+        "secondaryAvailabilityZone":{"shape":"String"},
+        "logDeliveryConfiguration":{"shape":"LogDeliveryConfiguration"},
+        "influxAuthParametersSecretArn":{"shape":"String"},
+        "dbClusterId":{"shape":"DbClusterId"},
+        "instanceMode":{"shape":"InstanceMode"},
+        "instanceModes":{"shape":"InstanceModeList"},
+        "maintenanceSchedule":{"shape":"MaintenanceSchedule"},
+        "lastMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"},
+        "nextMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"}
+      }
     },
     "RequestTagMap":{
       "type":"map",
@@ -1610,10 +1759,16 @@
         "FAILED",
         "UPDATING_DEPLOYMENT_TYPE",
         "UPDATING_INSTANCE_TYPE",
-        "MAINTENANCE"
+        "MAINTENANCE",
+        "REBOOTING",
+        "REBOOT_FAILED"
       ]
     },
     "String":{"type":"string"},
+    "SyntheticTimestamp_date_time":{
+      "type":"timestamp",
+      "timestampFormat":"iso8601"
+    },
     "TagKey":{
       "type":"string",
       "max":128,
@@ -1679,7 +1834,8 @@
         "dbParameterGroupIdentifier":{"shape":"DbParameterGroupIdentifier"},
         "port":{"shape":"Port"},
         "dbInstanceType":{"shape":"DbInstanceType"},
-        "failoverMode":{"shape":"FailoverMode"}
+        "failoverMode":{"shape":"FailoverMode"},
+        "maintenanceSchedule":{"shape":"MaintenanceSchedule"}
       }
     },
     "UpdateDbClusterOutput":{
@@ -1699,7 +1855,8 @@
         "dbInstanceType":{"shape":"DbInstanceType"},
         "deploymentType":{"shape":"DeploymentType"},
         "dbStorageType":{"shape":"DbStorageType"},
-        "allocatedStorage":{"shape":"AllocatedStorage"}
+        "allocatedStorage":{"shape":"AllocatedStorage"},
+        "maintenanceSchedule":{"shape":"MaintenanceSchedule"}
       }
     },
     "UpdateDbInstanceOutput":{
@@ -1732,7 +1889,10 @@
         "influxAuthParametersSecretArn":{"shape":"String"},
         "dbClusterId":{"shape":"DbClusterId"},
         "instanceMode":{"shape":"InstanceMode"},
-        "instanceModes":{"shape":"InstanceModeList"}
+        "instanceModes":{"shape":"InstanceModeList"},
+        "maintenanceSchedule":{"shape":"MaintenanceSchedule"},
+        "lastMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"},
+        "nextMaintenanceTime":{"shape":"SyntheticTimestamp_date_time"}
       }
     },
     "Username":{
@@ -1781,7 +1941,7 @@
     "VpcSubnetIdList":{
       "type":"list",
       "member":{"shape":"VpcSubnetId"},
-      "max":3,
+      "max":6,
       "min":1
     }
   }

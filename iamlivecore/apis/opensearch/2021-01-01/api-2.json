@@ -193,6 +193,25 @@
         {"shape":"ValidationException"}
       ]
     },
+    "CreateIndex":{
+      "name":"CreateIndex",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/index"
+      },
+      "input":{"shape":"CreateIndexRequest"},
+      "output":{"shape":"CreateIndexResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"InternalException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"DependencyFailureException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "CreateOutboundConnection":{
       "name":"CreateOutboundConnection",
       "http":{
@@ -322,6 +341,24 @@
         {"shape":"DisabledOperationException"}
       ]
     },
+    "DeleteIndex":{
+      "name":"DeleteIndex",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}"
+      },
+      "input":{"shape":"DeleteIndexRequest"},
+      "output":{"shape":"DeleteIndexResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"DependencyFailureException"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DeleteOutboundConnection":{
       "name":"DeleteOutboundConnection",
       "http":{
@@ -365,6 +402,24 @@
         {"shape":"DisabledOperationException"},
         {"shape":"InternalException"},
         {"shape":"BaseException"}
+      ]
+    },
+    "DeregisterCapability":{
+      "name":"DeregisterCapability",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/2021-01-01/opensearch/application/{ApplicationId}/capability/deregister/{CapabilityName}",
+        "responseCode":200
+      },
+      "input":{"shape":"DeregisterCapabilityRequest"},
+      "output":{"shape":"DeregisterCapabilityResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"DisabledOperationException"}
       ]
     },
     "DescribeDomain":{
@@ -501,6 +556,23 @@
       "errors":[
         {"shape":"InvalidPaginationTokenException"},
         {"shape":"DisabledOperationException"}
+      ]
+    },
+    "DescribeInsightDetails":{
+      "name":"DescribeInsightDetails",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/opensearch/insight-details"
+      },
+      "input":{"shape":"DescribeInsightDetailsRequest"},
+      "output":{"shape":"DescribeInsightDetailsResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "DescribeInstanceTypeLimits":{
@@ -646,6 +718,23 @@
         {"shape":"DisabledOperationException"}
       ]
     },
+    "GetCapability":{
+      "name":"GetCapability",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/application/{ApplicationId}/capability/{CapabilityName}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetCapabilityRequest"},
+      "output":{"shape":"GetCapabilityResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"DisabledOperationException"}
+      ]
+    },
     "GetCompatibleVersions":{
       "name":"GetCompatibleVersions",
       "http":{
@@ -725,6 +814,24 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
         {"shape":"DisabledOperationException"}
+      ]
+    },
+    "GetIndex":{
+      "name":"GetIndex",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}"
+      },
+      "input":{"shape":"GetIndexRequest"},
+      "output":{"shape":"GetIndexResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"DependencyFailureException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "GetPackageVersionHistory":{
@@ -869,6 +976,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "ListInsights":{
+      "name":"ListInsights",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/opensearch/insights"
+      },
+      "input":{"shape":"ListInsightsRequest"},
+      "output":{"shape":"ListInsightsResponse"},
+      "errors":[
+        {"shape":"BaseException"},
+        {"shape":"InternalException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "ListInstanceTypeDetails":{
@@ -1025,6 +1149,25 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "RegisterCapability":{
+      "name":"RegisterCapability",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2021-01-01/opensearch/application/{ApplicationId}/capability/register",
+        "responseCode":200
+      },
+      "input":{"shape":"RegisterCapabilityRequest"},
+      "output":{"shape":"RegisterCapabilityResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ServiceQuotaExceededException"},
+        {"shape":"DisabledOperationException"}
+      ]
+    },
     "RejectInboundConnection":{
       "name":"RejectInboundConnection",
       "http":{
@@ -1147,7 +1290,8 @@
         {"shape":"InternalException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"},
-        {"shape":"DisabledOperationException"}
+        {"shape":"DisabledOperationException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "UpdateDomainConfig":{
@@ -1165,6 +1309,24 @@
         {"shape":"LimitExceededException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"ValidationException"}
+      ]
+    },
+    "UpdateIndex":{
+      "name":"UpdateIndex",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2021-01-01/opensearch/domain/{DomainName}/index/{IndexName}"
+      },
+      "input":{"shape":"UpdateIndexRequest"},
+      "output":{"shape":"UpdateIndexResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalException"},
+        {"shape":"DisabledOperationException"},
+        {"shape":"DependencyFailureException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "UpdatePackage":{
@@ -1254,18 +1416,24 @@
     }
   },
   "shapes":{
+    "AIConfig":{
+      "type":"structure",
+      "members":{}
+    },
     "AIMLOptionsInput":{
       "type":"structure",
       "members":{
         "NaturalLanguageQueryGenerationOptions":{"shape":"NaturalLanguageQueryGenerationOptionsInput"},
-        "S3VectorsEngine":{"shape":"S3VectorsEngine"}
+        "S3VectorsEngine":{"shape":"S3VectorsEngine"},
+        "ServerlessVectorAcceleration":{"shape":"ServerlessVectorAcceleration"}
       }
     },
     "AIMLOptionsOutput":{
       "type":"structure",
       "members":{
         "NaturalLanguageQueryGenerationOptions":{"shape":"NaturalLanguageQueryGenerationOptionsOutput"},
-        "S3VectorsEngine":{"shape":"S3VectorsEngine"}
+        "S3VectorsEngine":{"shape":"S3VectorsEngine"},
+        "ServerlessVectorAcceleration":{"shape":"ServerlessVectorAcceleration"}
       }
     },
     "AIMLOptionsStatus":{
@@ -1274,6 +1442,10 @@
         "Options":{"shape":"AIMLOptionsOutput"},
         "Status":{"shape":"OptionStatus"}
       }
+    },
+    "AMPWorkspaceArn":{
+      "type":"string",
+      "pattern":"^arn:aws[a-zA-Z-]*:aps:[a-z0-9-]+:[0-9]{12}:workspace\\/ws-[a-z0-9-]*$"
     },
     "ARN":{
       "type":"string",
@@ -1387,14 +1559,14 @@
       "type":"structure",
       "required":[
         "DataSourceName",
-        "DataSourceType",
-        "OpenSearchArns"
+        "DataSourceType"
       ],
       "members":{
         "DataSourceName":{"shape":"DirectQueryDataSourceName"},
         "DataSourceType":{"shape":"DirectQueryDataSourceType"},
         "Description":{"shape":"DirectQueryDataSourceDescription"},
         "OpenSearchArns":{"shape":"DirectQueryOpenSearchARNList"},
+        "DataSourceAccessPolicy":{"shape":"PolicyDocument"},
         "TagList":{"shape":"TagList"}
       }
     },
@@ -1500,6 +1672,10 @@
       "type":"list",
       "member":{"shape":"AppConfig"},
       "max":200
+    },
+    "ApplicationId":{
+      "type":"string",
+      "pattern":"[a-z0-9]{3,30}"
     },
     "ApplicationName":{
       "type":"string",
@@ -1798,6 +1974,61 @@
       "type":"list",
       "member":{"shape":"CancelledChangeProperty"}
     },
+    "CapabilityBaseRequestConfig":{
+      "type":"structure",
+      "members":{
+        "aiConfig":{"shape":"AIConfig"}
+      },
+      "union":true
+    },
+    "CapabilityBaseResponseConfig":{
+      "type":"structure",
+      "members":{
+        "aiConfig":{"shape":"AIConfig"}
+      },
+      "union":true
+    },
+    "CapabilityExtendedResponseConfig":{
+      "type":"structure",
+      "members":{
+        "aiConfig":{"shape":"AIConfig"}
+      },
+      "union":true
+    },
+    "CapabilityFailure":{
+      "type":"structure",
+      "members":{
+        "reason":{"shape":"CapabilityFailureReason"},
+        "details":{"shape":"CapabilityFailureDetails"}
+      }
+    },
+    "CapabilityFailureDetails":{"type":"string"},
+    "CapabilityFailureReason":{
+      "type":"string",
+      "enum":["KMS_KEY_INSUFFICIENT_PERMISSION"]
+    },
+    "CapabilityFailures":{
+      "type":"list",
+      "member":{"shape":"CapabilityFailure"}
+    },
+    "CapabilityName":{
+      "type":"string",
+      "max":30,
+      "min":3,
+      "pattern":"^[a-zA-Z0-9-]+$"
+    },
+    "CapabilityStatus":{
+      "type":"string",
+      "enum":[
+        "creating",
+        "create_failed",
+        "active",
+        "updating",
+        "update_failed",
+        "deleting",
+        "delete_failed"
+      ]
+    },
     "ChangeProgressDetails":{
       "type":"structure",
       "members":{
@@ -1994,7 +2225,8 @@
         "dataSources":{"shape":"DataSources"},
         "iamIdentityCenterOptions":{"shape":"IamIdentityCenterOptionsInput"},
         "appConfigs":{"shape":"AppConfigs"},
-        "tagList":{"shape":"TagList"}
+        "tagList":{"shape":"TagList"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
       }
     },
     "CreateApplicationResponse":{
@@ -2007,7 +2239,8 @@
         "iamIdentityCenterOptions":{"shape":"IamIdentityCenterOptions"},
         "appConfigs":{"shape":"AppConfigs"},
         "tagList":{"shape":"TagList"},
-        "createdAt":{"shape":"Timestamp"}
+        "createdAt":{"shape":"Timestamp"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
       }
     },
     "CreateDomainRequest":{
@@ -2034,13 +2267,38 @@
         "AutoTuneOptions":{"shape":"AutoTuneOptionsInput"},
         "OffPeakWindowOptions":{"shape":"OffPeakWindowOptions"},
         "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"},
-        "AIMLOptions":{"shape":"AIMLOptionsInput"}
+        "AIMLOptions":{"shape":"AIMLOptionsInput"},
+        "DeploymentStrategyOptions":{"shape":"DeploymentStrategyOptions"}
       }
     },
     "CreateDomainResponse":{
       "type":"structure",
       "members":{
         "DomainStatus":{"shape":"DomainStatus"}
+      }
+    },
+    "CreateIndexRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "IndexName",
+        "IndexSchema"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "IndexName":{"shape":"IndexName"},
+        "IndexSchema":{"shape":"IndexSchema"}
+      }
+    },
+    "CreateIndexResponse":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"IndexStatus"}
       }
     },
     "CreateOutboundConnectionRequest":{
@@ -2124,7 +2382,8 @@
       "type":"structure",
       "members":{
         "dataSourceArn":{"shape":"ARN"},
-        "dataSourceDescription":{"shape":"DataSourceDescription"}
+        "dataSourceDescription":{"shape":"DataSourceDescription"},
+        "iamRoleForDataSourceArn":{"shape":"RoleArn"}
       }
     },
     "DataSourceDescription":{
@@ -2254,6 +2513,32 @@
         "Connection":{"shape":"InboundConnection"}
       }
     },
+    "DeleteIndexRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "IndexName"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "IndexName":{
+          "shape":"IndexName",
+          "location":"uri",
+          "locationName":"IndexName"
+        }
+      }
+    },
+    "DeleteIndexResponse":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"IndexStatus"}
+      }
+    },
     "DeleteOutboundConnectionRequest":{
       "type":"structure",
       "required":["ConnectionId"],
@@ -2323,10 +2608,60 @@
         "ELIGIBLE"
       ]
     },
+    "DeploymentStrategy":{
+      "type":"string",
+      "enum":[
+        "Default",
+        "CapacityOptimized"
+      ]
+    },
+    "DeploymentStrategyOptions":{
+      "type":"structure",
+      "required":["DeploymentStrategy"],
+      "members":{
+        "DeploymentStrategy":{"shape":"DeploymentStrategy"}
+      }
+    },
+    "DeploymentStrategyOptionsStatus":{
+      "type":"structure",
+      "required":[
+        "Options",
+        "Status"
+      ],
+      "members":{
+        "Options":{"shape":"DeploymentStrategyOptions"},
+        "Status":{"shape":"OptionStatus"}
+      }
+    },
     "DeploymentType":{
       "type":"string",
       "max":128,
       "min":2
+    },
+    "DeregisterCapabilityRequest":{
+      "type":"structure",
+      "required":[
+        "applicationId",
+        "capabilityName"
+      ],
+      "members":{
+        "applicationId":{
+          "shape":"ApplicationId",
+          "location":"uri",
+          "locationName":"ApplicationId"
+        },
+        "capabilityName":{
+          "shape":"CapabilityName",
+          "location":"uri",
+          "locationName":"CapabilityName"
+        }
+      }
+    },
+    "DeregisterCapabilityResponse":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"CapabilityStatus"}
+      }
     },
     "DescribeDomainAutoTunesRequest":{
       "type":"structure",
@@ -2337,8 +2672,16 @@
           "location":"uri",
           "locationName":"DomainName"
         },
-        "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"NextToken"}
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
       }
     },
     "DescribeDomainAutoTunesResponse":{
@@ -2508,6 +2851,25 @@
       "members":{
         "Connections":{"shape":"InboundConnections"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeInsightDetailsRequest":{
+      "type":"structure",
+      "required":[
+        "Entity",
+        "InsightId"
+      ],
+      "members":{
+        "Entity":{"shape":"InsightEntity"},
+        "InsightId":{"shape":"GUID"},
+        "ShowHtmlContent":{"shape":"Boolean"}
+      }
+    },
+    "DescribeInsightDetailsResponse":{
+      "type":"structure",
+      "required":["Fields"],
+      "members":{
+        "Fields":{"shape":"InsightFieldList"}
       }
     },
     "DescribeInstanceTypeLimitsRequest":{
@@ -2710,7 +3072,8 @@
       "type":"structure",
       "members":{
         "CloudWatchLog":{"shape":"CloudWatchDirectQueryDataSource"},
-        "SecurityLake":{"shape":"SecurityLakeDirectQueryDataSource"}
+        "SecurityLake":{"shape":"SecurityLakeDirectQueryDataSource"},
+        "Prometheus":{"shape":"PrometheusDirectQueryDataSource"}
       },
       "union":true
     },
@@ -2796,7 +3159,8 @@
         "OffPeakWindowOptions":{"shape":"OffPeakWindowOptionsStatus"},
         "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptionsStatus"},
         "ModifyingProperties":{"shape":"ModifyingPropertiesList"},
-        "AIMLOptions":{"shape":"AIMLOptionsStatus"}
+        "AIMLOptions":{"shape":"AIMLOptionsStatus"},
+        "DeploymentStrategyOptions":{"shape":"DeploymentStrategyOptionsStatus"}
       }
     },
     "DomainEndpointOptions":{
@@ -2993,7 +3357,8 @@
         "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"},
         "DomainProcessingStatus":{"shape":"DomainProcessingStatusType"},
         "ModifyingProperties":{"shape":"ModifyingPropertiesList"},
-        "AIMLOptions":{"shape":"AIMLOptionsOutput"}
+        "AIMLOptions":{"shape":"AIMLOptionsOutput"},
+        "DeploymentStrategyOptions":{"shape":"DeploymentStrategyOptions"}
       }
     },
     "DomainStatusList":{
@@ -3166,7 +3531,37 @@
         "dataSources":{"shape":"DataSources"},
         "appConfigs":{"shape":"AppConfigs"},
         "createdAt":{"shape":"Timestamp"},
-        "lastUpdatedAt":{"shape":"Timestamp"}
+        "lastUpdatedAt":{"shape":"Timestamp"},
+        "kmsKeyArn":{"shape":"KmsKeyArn"}
+      }
+    },
+    "GetCapabilityRequest":{
+      "type":"structure",
+      "required":[
+        "applicationId",
+        "capabilityName"
+      ],
+      "members":{
+        "applicationId":{
+          "shape":"ApplicationId",
+          "location":"uri",
+          "locationName":"ApplicationId"
+        },
+        "capabilityName":{
+          "shape":"CapabilityName",
+          "location":"uri",
+          "locationName":"CapabilityName"
+        }
+      }
+    },
+    "GetCapabilityResponse":{
+      "type":"structure",
+      "members":{
+        "capabilityName":{"shape":"CapabilityName"},
+        "applicationId":{"shape":"ApplicationId"},
+        "status":{"shape":"CapabilityStatus"},
+        "capabilityConfig":{"shape":"CapabilityExtendedResponseConfig"},
+        "failures":{"shape":"CapabilityFailures"}
       }
     },
     "GetCompatibleVersionsRequest":{
@@ -3241,6 +3636,7 @@
         "DataSourceType":{"shape":"DirectQueryDataSourceType"},
         "Description":{"shape":"DirectQueryDataSourceDescription"},
         "OpenSearchArns":{"shape":"DirectQueryOpenSearchARNList"},
+        "DataSourceAccessPolicy":{"shape":"PolicyDocument"},
         "DataSourceArn":{"shape":"String"}
       }
     },
@@ -3272,6 +3668,32 @@
         "Action":{"shape":"MaintenanceType"},
         "CreatedAt":{"shape":"UpdateTimestamp"},
         "UpdatedAt":{"shape":"UpdateTimestamp"}
+      }
+    },
+    "GetIndexRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "IndexName"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "IndexName":{
+          "shape":"IndexName",
+          "location":"uri",
+          "locationName":"IndexName"
+        }
+      }
+    },
+    "GetIndexResponse":{
+      "type":"structure",
+      "required":["IndexSchema"],
+      "members":{
+        "IndexSchema":{"shape":"IndexSchema"}
       }
     },
     "GetPackageVersionHistoryRequest":{
@@ -3507,11 +3929,139 @@
       "type":"list",
       "member":{"shape":"InboundConnection"}
     },
+    "IndexName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^(?!\\.\\.?$)[^_ ,:\"+/*\\\\|?#><A-Z-][^ ,:\"+/*\\\\|?#><A-Z]*$"
+    },
+    "IndexSchema":{
+      "type":"structure",
+      "members":{},
+      "document":true
+    },
+    "IndexStatus":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "UPDATED",
+        "DELETED"
+      ]
+    },
     "InitiatedBy":{
       "type":"string",
       "enum":[
         "CUSTOMER",
         "SERVICE"
+      ]
+    },
+    "Insight":{
+      "type":"structure",
+      "members":{
+        "InsightId":{"shape":"GUID"},
+        "DisplayName":{"shape":"String"},
+        "Type":{"shape":"InsightType"},
+        "Priority":{"shape":"InsightPriorityLevel"},
+        "Status":{"shape":"InsightStatus"},
+        "CreationTime":{"shape":"UpdateTimestamp"},
+        "UpdateTime":{"shape":"UpdateTimestamp"},
+        "IsExperimental":{"shape":"Boolean"}
+      }
+    },
+    "InsightEntity":{
+      "type":"structure",
+      "required":["Type"],
+      "members":{
+        "Type":{"shape":"InsightEntityType"},
+        "Value":{"shape":"InsightEntityValue"}
+      }
+    },
+    "InsightEntityType":{
+      "type":"string",
+      "enum":[
+        "Account",
+        "DomainName"
+      ]
+    },
+    "InsightEntityValue":{
+      "type":"string",
+      "max":28,
+      "min":3,
+      "pattern":"([a-z][a-z0-9\\-]+|\\d{12})"
+    },
+    "InsightField":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Type",
+        "Value"
+      ],
+      "members":{
+        "Name":{"shape":"String"},
+        "Type":{"shape":"InsightFieldType"},
+        "Value":{"shape":"String"}
+      }
+    },
+    "InsightFieldList":{
+      "type":"list",
+      "member":{"shape":"InsightField"}
+    },
+    "InsightFieldType":{
+      "type":"string",
+      "enum":[
+        "text",
+        "metric"
+      ]
+    },
+    "InsightList":{
+      "type":"list",
+      "member":{"shape":"Insight"}
+    },
+    "InsightPageSize":{
+      "type":"integer",
+      "max":500,
+      "min":1
+    },
+    "InsightPriorityLevel":{
+      "type":"string",
+      "enum":[
+        "CRITICAL",
+        "HIGH",
+        "MEDIUM",
+        "LOW"
+      ]
+    },
+    "InsightSortOrder":{
+      "type":"string",
+      "enum":[
+        "ASC",
+        "DESC"
+      ]
+    },
+    "InsightStatus":{
+      "type":"string",
+      "enum":[
+        "ACTIVE",
+        "RESOLVED",
+        "DISMISSED"
+      ]
+    },
+    "InsightTimeRange":{
+      "type":"structure",
+      "required":[
+        "From",
+        "To"
+      ],
+      "members":{
+        "From":{"shape":"Long"},
+        "To":{"shape":"Long"}
+      }
+    },
+    "InsightType":{
+      "type":"string",
+      "enum":[
+        "EVENT",
+        "RECOMMENDATION"
       ]
     },
     "InstanceCount":{
@@ -3609,6 +4159,12 @@
         "KeyAccessRoleArn":{"shape":"RoleArn"},
         "KeyStoreAccessEnabled":{"shape":"Boolean"}
       }
+    },
+    "KmsKeyArn":{
+      "type":"string",
+      "max":2048,
+      "min":20,
+      "pattern":"^arn:aws[a-zA-Z-]*:kms:[a-z0-9-]+:[0-9]{12}:key/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
     },
     "KmsKeyId":{
       "type":"string",
@@ -3788,6 +4344,24 @@
       "members":{
         "DomainPackageDetailsList":{"shape":"DomainPackageDetailsList"},
         "NextToken":{"shape":"String"}
+      }
+    },
+    "ListInsightsRequest":{
+      "type":"structure",
+      "required":["Entity"],
+      "members":{
+        "Entity":{"shape":"InsightEntity"},
+        "TimeRange":{"shape":"InsightTimeRange"},
+        "SortOrder":{"shape":"InsightSortOrder"},
+        "MaxResults":{"shape":"InsightPageSize"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListInsightsResponse":{
+      "type":"structure",
+      "members":{
+        "Insights":{"shape":"InsightList"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "ListInstanceTypeDetailsRequest":{
@@ -4186,7 +4760,8 @@
       "enum":[
         "Data",
         "Ultrawarm",
-        "Master"
+        "Master",
+        "Warm"
       ]
     },
     "NonEmptyString":{
@@ -4621,6 +5196,17 @@
         "AWS_SERVICE"
       ]
     },
+    "PrometheusDirectQueryDataSource":{
+      "type":"structure",
+      "required":[
+        "RoleArn",
+        "WorkspaceArn"
+      ],
+      "members":{
+        "RoleArn":{"shape":"DirectQueryDataSourceRoleArn"},
+        "WorkspaceArn":{"shape":"AMPWorkspaceArn"}
+      }
+    },
     "PropertyValueType":{
       "type":"string",
       "enum":[
@@ -4681,6 +5267,32 @@
       "max":30,
       "min":5,
       "pattern":"[a-z][a-z0-9\\-]+"
+    },
+    "RegisterCapabilityRequest":{
+      "type":"structure",
+      "required":[
+        "applicationId",
+        "capabilityName",
+        "capabilityConfig"
+      ],
+      "members":{
+        "applicationId":{
+          "shape":"ApplicationId",
+          "location":"uri",
+          "locationName":"ApplicationId"
+        },
+        "capabilityName":{"shape":"CapabilityName"},
+        "capabilityConfig":{"shape":"CapabilityBaseRequestConfig"}
+      }
+    },
+    "RegisterCapabilityResponse":{
+      "type":"structure",
+      "members":{
+        "capabilityName":{"shape":"CapabilityName"},
+        "applicationId":{"shape":"ApplicationId"},
+        "status":{"shape":"CapabilityStatus"},
+        "capabilityConfig":{"shape":"CapabilityBaseResponseConfig"}
+      }
     },
     "RejectInboundConnectionRequest":{
       "type":"structure",
@@ -4968,6 +5580,18 @@
         "RoleArn":{"shape":"DirectQueryDataSourceRoleArn"}
       }
     },
+    "ServerlessVectorAcceleration":{
+      "type":"structure",
+      "members":{
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "members":{},
+      "error":{"httpStatusCode":402},
+      "exception":true
+    },
     "ServiceSoftwareOptions":{
       "type":"structure",
       "members":{
@@ -5128,7 +5752,8 @@
       "enum":[
         "Policy-Min-TLS-1-0-2019-07",
         "Policy-Min-TLS-1-2-2019-07",
-        "Policy-Min-TLS-1-2-PFS-2023-10"
+        "Policy-Min-TLS-1-2-PFS-2023-10",
+        "Policy-Min-TLS-1-2-RFC9151-FIPS-2024-08"
       ]
     },
     "Tag":{
@@ -5157,6 +5782,12 @@
       "max":256,
       "min":0,
       "pattern":".*"
+    },
+    "ThrottlingException":{
+      "type":"structure",
+      "members":{},
+      "error":{"httpStatusCode":429},
+      "exception":true
     },
     "TimeUnit":{
       "type":"string",
@@ -5228,8 +5859,7 @@
       "type":"structure",
       "required":[
         "DataSourceName",
-        "DataSourceType",
-        "OpenSearchArns"
+        "DataSourceType"
       ],
       "members":{
         "DataSourceName":{
@@ -5239,7 +5869,8 @@
         },
         "DataSourceType":{"shape":"DirectQueryDataSourceType"},
         "Description":{"shape":"DirectQueryDataSourceDescription"},
-        "OpenSearchArns":{"shape":"DirectQueryOpenSearchARNList"}
+        "OpenSearchArns":{"shape":"DirectQueryOpenSearchARNList"},
+        "DataSourceAccessPolicy":{"shape":"PolicyDocument"}
       }
     },
     "UpdateDirectQueryDataSourceResponse":{
@@ -5276,7 +5907,8 @@
         "DryRunMode":{"shape":"DryRunMode"},
         "OffPeakWindowOptions":{"shape":"OffPeakWindowOptions"},
         "SoftwareUpdateOptions":{"shape":"SoftwareUpdateOptions"},
-        "AIMLOptions":{"shape":"AIMLOptionsInput"}
+        "AIMLOptions":{"shape":"AIMLOptionsInput"},
+        "DeploymentStrategyOptions":{"shape":"DeploymentStrategyOptions"}
       }
     },
     "UpdateDomainConfigResponse":{
@@ -5286,6 +5918,34 @@
         "DomainConfig":{"shape":"DomainConfig"},
         "DryRunResults":{"shape":"DryRunResults"},
         "DryRunProgressStatus":{"shape":"DryRunProgressStatus"}
+      }
+    },
+    "UpdateIndexRequest":{
+      "type":"structure",
+      "required":[
+        "DomainName",
+        "IndexName",
+        "IndexSchema"
+      ],
+      "members":{
+        "DomainName":{
+          "shape":"DomainName",
+          "location":"uri",
+          "locationName":"DomainName"
+        },
+        "IndexName":{
+          "shape":"IndexName",
+          "location":"uri",
+          "locationName":"IndexName"
+        },
+        "IndexSchema":{"shape":"IndexSchema"}
+      }
+    },
+    "UpdateIndexResponse":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"IndexStatus"}
       }
     },
     "UpdatePackageRequest":{

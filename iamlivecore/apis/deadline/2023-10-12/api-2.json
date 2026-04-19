@@ -185,6 +185,24 @@
       ],
       "endpoint":{"hostPrefix":"scheduling."}
     },
+    "BatchGetJob":{
+      "name":"BatchGetJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2023-10-12/batch-get-job",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetJobRequest"},
+      "output":{"shape":"BatchGetJobResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
+    },
     "BatchGetJobEntity":{
       "name":"BatchGetJobEntity",
       "http":{
@@ -201,7 +219,134 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"scheduling."}
+      "endpoint":{"hostPrefix":"scheduling."},
+      "readonly":true
+    },
+    "BatchGetSession":{
+      "name":"BatchGetSession",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2023-10-12/batch-get-session",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetSessionRequest"},
+      "output":{"shape":"BatchGetSessionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
+    },
+    "BatchGetSessionAction":{
+      "name":"BatchGetSessionAction",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2023-10-12/batch-get-session-action",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetSessionActionRequest"},
+      "output":{"shape":"BatchGetSessionActionResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
+    },
+    "BatchGetStep":{
+      "name":"BatchGetStep",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2023-10-12/batch-get-step",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetStepRequest"},
+      "output":{"shape":"BatchGetStepResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
+    },
+    "BatchGetTask":{
+      "name":"BatchGetTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2023-10-12/batch-get-task",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetTaskRequest"},
+      "output":{"shape":"BatchGetTaskResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
+    },
+    "BatchGetWorker":{
+      "name":"BatchGetWorker",
+      "http":{
+        "method":"POST",
+        "requestUri":"/2023-10-12/batch-get-worker",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchGetWorkerRequest"},
+      "output":{"shape":"BatchGetWorkerResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
+    },
+    "BatchUpdateJob":{
+      "name":"BatchUpdateJob",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/2023-10-12/batch-update-job",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchUpdateJobRequest"},
+      "output":{"shape":"BatchUpdateJobResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "endpoint":{"hostPrefix":"management."},
+      "idempotent":true
+    },
+    "BatchUpdateTask":{
+      "name":"BatchUpdateTask",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/2023-10-12/batch-update-task",
+        "responseCode":200
+      },
+      "input":{"shape":"BatchUpdateTaskRequest"},
+      "output":{"shape":"BatchUpdateTaskResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "endpoint":{"hostPrefix":"management."},
+      "idempotent":true
     },
     "CopyJobTemplate":{
       "name":"CopyJobTemplate",
@@ -822,7 +967,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetFarm":{
       "name":"GetFarm",
@@ -840,7 +986,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetFleet":{
       "name":"GetFleet",
@@ -858,7 +1005,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetJob":{
       "name":"GetJob",
@@ -876,7 +1024,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetLicenseEndpoint":{
       "name":"GetLicenseEndpoint",
@@ -894,7 +1043,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetLimit":{
       "name":"GetLimit",
@@ -912,7 +1062,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetMonitor":{
       "name":"GetMonitor",
@@ -930,7 +1081,27 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
+    },
+    "GetMonitorSettings":{
+      "name":"GetMonitorSettings",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2023-10-12/monitors/{monitorId}/settings",
+        "responseCode":200
+      },
+      "input":{"shape":"GetMonitorSettingsRequest"},
+      "output":{"shape":"GetMonitorSettingsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetQueue":{
       "name":"GetQueue",
@@ -948,7 +1119,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetQueueEnvironment":{
       "name":"GetQueueEnvironment",
@@ -966,7 +1138,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetQueueFleetAssociation":{
       "name":"GetQueueFleetAssociation",
@@ -984,7 +1157,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetQueueLimitAssociation":{
       "name":"GetQueueLimitAssociation",
@@ -1002,7 +1176,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetSession":{
       "name":"GetSession",
@@ -1020,7 +1195,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetSessionAction":{
       "name":"GetSessionAction",
@@ -1038,7 +1214,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetSessionsStatisticsAggregation":{
       "name":"GetSessionsStatisticsAggregation",
@@ -1056,7 +1233,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetStep":{
       "name":"GetStep",
@@ -1074,7 +1252,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetStorageProfile":{
       "name":"GetStorageProfile",
@@ -1092,7 +1271,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetStorageProfileForQueue":{
       "name":"GetStorageProfileForQueue",
@@ -1110,7 +1290,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetTask":{
       "name":"GetTask",
@@ -1128,7 +1309,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "GetWorker":{
       "name":"GetWorker",
@@ -1146,7 +1328,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListAvailableMeteredProducts":{
       "name":"ListAvailableMeteredProducts",
@@ -1161,7 +1344,8 @@
         {"shape":"InternalServerErrorException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListBudgets":{
       "name":"ListBudgets",
@@ -1179,7 +1363,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListFarmMembers":{
       "name":"ListFarmMembers",
@@ -1197,7 +1382,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListFarms":{
       "name":"ListFarms",
@@ -1214,7 +1400,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListFleetMembers":{
       "name":"ListFleetMembers",
@@ -1232,7 +1419,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListFleets":{
       "name":"ListFleets",
@@ -1250,7 +1438,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListJobMembers":{
       "name":"ListJobMembers",
@@ -1268,7 +1457,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListJobParameterDefinitions":{
       "name":"ListJobParameterDefinitions",
@@ -1286,7 +1476,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListJobs":{
       "name":"ListJobs",
@@ -1304,7 +1495,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListLicenseEndpoints":{
       "name":"ListLicenseEndpoints",
@@ -1322,7 +1514,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListLimits":{
       "name":"ListLimits",
@@ -1340,7 +1533,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListMeteredProducts":{
       "name":"ListMeteredProducts",
@@ -1358,7 +1552,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListMonitors":{
       "name":"ListMonitors",
@@ -1375,7 +1570,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListQueueEnvironments":{
       "name":"ListQueueEnvironments",
@@ -1393,7 +1589,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListQueueFleetAssociations":{
       "name":"ListQueueFleetAssociations",
@@ -1410,7 +1607,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListQueueLimitAssociations":{
       "name":"ListQueueLimitAssociations",
@@ -1427,7 +1625,8 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListQueueMembers":{
       "name":"ListQueueMembers",
@@ -1445,7 +1644,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListQueues":{
       "name":"ListQueues",
@@ -1463,7 +1663,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListSessionActions":{
       "name":"ListSessionActions",
@@ -1481,7 +1682,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListSessions":{
       "name":"ListSessions",
@@ -1499,7 +1701,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListSessionsForWorker":{
       "name":"ListSessionsForWorker",
@@ -1517,7 +1720,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListStepConsumers":{
       "name":"ListStepConsumers",
@@ -1535,7 +1739,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListStepDependencies":{
       "name":"ListStepDependencies",
@@ -1553,7 +1758,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListSteps":{
       "name":"ListSteps",
@@ -1571,7 +1777,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListStorageProfiles":{
       "name":"ListStorageProfiles",
@@ -1589,7 +1796,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListStorageProfilesForQueue":{
       "name":"ListStorageProfilesForQueue",
@@ -1607,7 +1815,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListTagsForResource":{
       "name":"ListTagsForResource",
@@ -1625,7 +1834,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListTasks":{
       "name":"ListTasks",
@@ -1643,7 +1853,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "ListWorkers":{
       "name":"ListWorkers",
@@ -1661,7 +1872,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "PutMeteredProduct":{
       "name":"PutMeteredProduct",
@@ -1698,7 +1910,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "SearchSteps":{
       "name":"SearchSteps",
@@ -1716,7 +1929,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "SearchTasks":{
       "name":"SearchTasks",
@@ -1734,7 +1948,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "SearchWorkers":{
       "name":"SearchWorkers",
@@ -1752,7 +1967,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "StartSessionsStatisticsAggregation":{
       "name":"StartSessionsStatisticsAggregation",
@@ -1770,7 +1986,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "readonly":true
     },
     "TagResource":{
       "name":"TagResource",
@@ -1927,6 +2144,25 @@
       "endpoint":{"hostPrefix":"management."},
       "idempotent":true
     },
+    "UpdateMonitorSettings":{
+      "name":"UpdateMonitorSettings",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/2023-10-12/monitors/{monitorId}/settings",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateMonitorSettingsRequest"},
+      "output":{"shape":"UpdateMonitorSettingsResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerErrorException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"}
+      ],
+      "endpoint":{"hostPrefix":"management."},
+      "idempotent":true
+    },
     "UpdateQueue":{
       "name":"UpdateQueue",
       "http":{
@@ -1962,7 +2198,8 @@
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"}
       ],
-      "endpoint":{"hostPrefix":"management."}
+      "endpoint":{"hostPrefix":"management."},
+      "idempotent":true
     },
     "UpdateQueueFleetAssociation":{
       "name":"UpdateQueueFleetAssociation",
@@ -2315,10 +2552,10 @@
       "type":"structure",
       "required":[
         "farmId",
-        "principalId",
         "principalType",
         "identityStoreId",
-        "membershipLevel"
+        "membershipLevel",
+        "principalId"
       ],
       "members":{
         "farmId":{
@@ -2326,30 +2563,29 @@
           "location":"uri",
           "locationName":"farmId"
         },
+        "principalType":{"shape":"PrincipalType"},
+        "identityStoreId":{"shape":"IdentityStoreId"},
+        "membershipLevel":{"shape":"MembershipLevel"},
         "principalId":{
           "shape":"IdentityCenterPrincipalId",
           "location":"uri",
           "locationName":"principalId"
-        },
-        "principalType":{"shape":"PrincipalType"},
-        "identityStoreId":{"shape":"IdentityStoreId"},
-        "membershipLevel":{"shape":"MembershipLevel"}
+        }
       }
     },
     "AssociateMemberToFarmResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "AssociateMemberToFleetRequest":{
       "type":"structure",
       "required":[
         "farmId",
         "fleetId",
-        "principalId",
         "principalType",
         "identityStoreId",
-        "membershipLevel"
+        "membershipLevel",
+        "principalId"
       ],
       "members":{
         "farmId":{
@@ -2362,20 +2598,19 @@
           "location":"uri",
           "locationName":"fleetId"
         },
+        "principalType":{"shape":"PrincipalType"},
+        "identityStoreId":{"shape":"IdentityStoreId"},
+        "membershipLevel":{"shape":"MembershipLevel"},
         "principalId":{
           "shape":"IdentityCenterPrincipalId",
           "location":"uri",
           "locationName":"principalId"
-        },
-        "principalType":{"shape":"PrincipalType"},
-        "identityStoreId":{"shape":"IdentityStoreId"},
-        "membershipLevel":{"shape":"MembershipLevel"}
+        }
       }
     },
     "AssociateMemberToFleetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "AssociateMemberToJobRequest":{
       "type":"structure",
@@ -2383,10 +2618,10 @@
         "farmId",
         "queueId",
         "jobId",
-        "principalId",
         "principalType",
         "identityStoreId",
-        "membershipLevel"
+        "membershipLevel",
+        "principalId"
       ],
       "members":{
         "farmId":{
@@ -2404,30 +2639,29 @@
           "location":"uri",
           "locationName":"jobId"
         },
+        "principalType":{"shape":"PrincipalType"},
+        "identityStoreId":{"shape":"IdentityStoreId"},
+        "membershipLevel":{"shape":"MembershipLevel"},
         "principalId":{
           "shape":"IdentityCenterPrincipalId",
           "location":"uri",
           "locationName":"principalId"
-        },
-        "principalType":{"shape":"PrincipalType"},
-        "identityStoreId":{"shape":"IdentityStoreId"},
-        "membershipLevel":{"shape":"MembershipLevel"}
+        }
       }
     },
     "AssociateMemberToJobResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "AssociateMemberToQueueRequest":{
       "type":"structure",
       "required":[
         "farmId",
         "queueId",
-        "principalId",
         "principalType",
         "identityStoreId",
-        "membershipLevel"
+        "membershipLevel",
+        "principalId"
       ],
       "members":{
         "farmId":{
@@ -2440,20 +2674,19 @@
           "location":"uri",
           "locationName":"queueId"
         },
+        "principalType":{"shape":"PrincipalType"},
+        "identityStoreId":{"shape":"IdentityStoreId"},
+        "membershipLevel":{"shape":"MembershipLevel"},
         "principalId":{
           "shape":"IdentityCenterPrincipalId",
           "location":"uri",
           "locationName":"principalId"
-        },
-        "principalType":{"shape":"PrincipalType"},
-        "identityStoreId":{"shape":"IdentityStoreId"},
-        "membershipLevel":{"shape":"MembershipLevel"}
+        }
       }
     },
     "AssociateMemberToQueueResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "AssumeFleetRoleForReadRequest":{
       "type":"structure",
@@ -2712,6 +2945,805 @@
         "errors":{"shape":"BatchGetJobEntityErrors"}
       }
     },
+    "BatchGetJobError":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "code",
+        "message"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "code":{"shape":"BatchGetJobErrorCode"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchGetJobErrorCode":{
+      "type":"string",
+      "enum":[
+        "InternalServerErrorException",
+        "ResourceNotFoundException",
+        "ValidationException",
+        "AccessDeniedException",
+        "ThrottlingException"
+      ]
+    },
+    "BatchGetJobErrors":{
+      "type":"list",
+      "member":{"shape":"BatchGetJobError"}
+    },
+    "BatchGetJobIdentifier":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"}
+      }
+    },
+    "BatchGetJobIdentifiers":{
+      "type":"list",
+      "member":{"shape":"BatchGetJobIdentifier"},
+      "max":100,
+      "min":1
+    },
+    "BatchGetJobItem":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "name",
+        "lifecycleStatus",
+        "lifecycleStatusMessage",
+        "priority",
+        "createdAt",
+        "createdBy"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "name":{"shape":"JobName"},
+        "lifecycleStatus":{"shape":"JobLifecycleStatus"},
+        "lifecycleStatusMessage":{"shape":"String"},
+        "priority":{"shape":"JobPriority"},
+        "createdAt":{"shape":"CreatedAt"},
+        "createdBy":{"shape":"CreatedBy"},
+        "updatedAt":{"shape":"UpdatedAt"},
+        "updatedBy":{"shape":"UpdatedBy"},
+        "startedAt":{"shape":"StartedAt"},
+        "endedAt":{"shape":"EndedAt"},
+        "taskRunStatus":{"shape":"TaskRunStatus"},
+        "targetTaskRunStatus":{"shape":"JobTargetTaskRunStatus"},
+        "taskRunStatusCounts":{"shape":"TaskRunStatusCounts"},
+        "taskFailureRetryCount":{"shape":"TaskFailureRetryCount"},
+        "storageProfileId":{"shape":"StorageProfileId"},
+        "maxFailedTasksCount":{"shape":"MaxFailedTasksCount"},
+        "maxRetriesPerTask":{"shape":"MaxRetriesPerTask"},
+        "parameters":{"shape":"JobParameters"},
+        "attachments":{"shape":"Attachments"},
+        "description":{"shape":"JobDescription"},
+        "maxWorkerCount":{"shape":"MaxWorkerCount"},
+        "sourceJobId":{"shape":"JobId"}
+      }
+    },
+    "BatchGetJobItems":{
+      "type":"list",
+      "member":{"shape":"BatchGetJobItem"}
+    },
+    "BatchGetJobRequest":{
+      "type":"structure",
+      "required":["identifiers"],
+      "members":{
+        "identifiers":{"shape":"BatchGetJobIdentifiers"}
+      }
+    },
+    "BatchGetJobResponse":{
+      "type":"structure",
+      "required":[
+        "jobs",
+        "errors"
+      ],
+      "members":{
+        "jobs":{"shape":"BatchGetJobItems"},
+        "errors":{"shape":"BatchGetJobErrors"}
+      }
+    },
+    "BatchGetSessionActionError":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "sessionActionId",
+        "code",
+        "message"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "sessionActionId":{"shape":"SessionActionId"},
+        "code":{"shape":"BatchGetSessionActionErrorCode"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchGetSessionActionErrorCode":{
+      "type":"string",
+      "enum":[
+        "InternalServerErrorException",
+        "ResourceNotFoundException",
+        "ValidationException"
+      ]
+    },
+    "BatchGetSessionActionErrors":{
+      "type":"list",
+      "member":{"shape":"BatchGetSessionActionError"}
+    },
+    "BatchGetSessionActionIdentifier":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "sessionActionId"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "sessionActionId":{"shape":"SessionActionId"}
+      }
+    },
+    "BatchGetSessionActionIdentifiers":{
+      "type":"list",
+      "member":{"shape":"BatchGetSessionActionIdentifier"},
+      "max":100,
+      "min":1
+    },
+    "BatchGetSessionActionItem":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "sessionActionId",
+        "status",
+        "sessionId",
+        "definition"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "sessionActionId":{"shape":"SessionActionId"},
+        "status":{"shape":"SessionActionStatus"},
+        "startedAt":{"shape":"StartedAt"},
+        "endedAt":{"shape":"EndedAt"},
+        "workerUpdatedAt":{"shape":"Timestamp"},
+        "progressPercent":{"shape":"SessionActionProgressPercent"},
+        "manifests":{"shape":"TaskRunManifestPropertiesListResponse"},
+        "sessionId":{"shape":"SessionId"},
+        "processExitCode":{"shape":"ProcessExitCode"},
+        "progressMessage":{"shape":"SessionActionProgressMessage"},
+        "acquiredLimits":{"shape":"AcquiredLimits"},
+        "definition":{"shape":"SessionActionDefinition"}
+      }
+    },
+    "BatchGetSessionActionItems":{
+      "type":"list",
+      "member":{"shape":"BatchGetSessionActionItem"}
+    },
+    "BatchGetSessionActionRequest":{
+      "type":"structure",
+      "required":["identifiers"],
+      "members":{
+        "identifiers":{"shape":"BatchGetSessionActionIdentifiers"}
+      }
+    },
+    "BatchGetSessionActionResponse":{
+      "type":"structure",
+      "required":[
+        "sessionActions",
+        "errors"
+      ],
+      "members":{
+        "sessionActions":{"shape":"BatchGetSessionActionItems"},
+        "errors":{"shape":"BatchGetSessionActionErrors"}
+      }
+    },
+    "BatchGetSessionError":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "sessionId",
+        "code",
+        "message"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "sessionId":{"shape":"SessionId"},
+        "code":{"shape":"BatchGetSessionErrorCode"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchGetSessionErrorCode":{
+      "type":"string",
+      "enum":[
+        "InternalServerErrorException",
+        "ResourceNotFoundException",
+        "ValidationException"
+      ]
+    },
+    "BatchGetSessionErrors":{
+      "type":"list",
+      "member":{"shape":"BatchGetSessionError"}
+    },
+    "BatchGetSessionIdentifier":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "sessionId"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "sessionId":{"shape":"SessionId"}
+      }
+    },
+    "BatchGetSessionIdentifiers":{
+      "type":"list",
+      "member":{"shape":"BatchGetSessionIdentifier"},
+      "max":100,
+      "min":1
+    },
+    "BatchGetSessionItem":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "sessionId",
+        "fleetId",
+        "workerId",
+        "startedAt",
+        "lifecycleStatus",
+        "log"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "sessionId":{"shape":"SessionId"},
+        "fleetId":{"shape":"FleetId"},
+        "workerId":{"shape":"WorkerId"},
+        "startedAt":{"shape":"StartedAt"},
+        "lifecycleStatus":{"shape":"SessionLifecycleStatus"},
+        "endedAt":{"shape":"EndedAt"},
+        "targetLifecycleStatus":{"shape":"SessionLifecycleTargetStatus"},
+        "updatedAt":{"shape":"UpdatedAt"},
+        "updatedBy":{"shape":"UpdatedBy"},
+        "log":{"shape":"LogConfiguration"},
+        "hostProperties":{"shape":"HostPropertiesResponse"},
+        "workerLog":{"shape":"LogConfiguration"}
+      }
+    },
+    "BatchGetSessionItems":{
+      "type":"list",
+      "member":{"shape":"BatchGetSessionItem"}
+    },
+    "BatchGetSessionRequest":{
+      "type":"structure",
+      "required":["identifiers"],
+      "members":{
+        "identifiers":{"shape":"BatchGetSessionIdentifiers"}
+      }
+    },
+    "BatchGetSessionResponse":{
+      "type":"structure",
+      "required":[
+        "sessions",
+        "errors"
+      ],
+      "members":{
+        "sessions":{"shape":"BatchGetSessionItems"},
+        "errors":{"shape":"BatchGetSessionErrors"}
+      }
+    },
+    "BatchGetStepError":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "stepId",
+        "code",
+        "message"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "stepId":{"shape":"StepId"},
+        "code":{"shape":"BatchGetStepErrorCode"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchGetStepErrorCode":{
+      "type":"string",
+      "enum":[
+        "InternalServerErrorException",
+        "ResourceNotFoundException",
+        "ValidationException",
+        "AccessDeniedException",
+        "ThrottlingException"
+      ]
+    },
+    "BatchGetStepErrors":{
+      "type":"list",
+      "member":{"shape":"BatchGetStepError"}
+    },
+    "BatchGetStepIdentifier":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "stepId"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "stepId":{"shape":"StepId"}
+      }
+    },
+    "BatchGetStepIdentifiers":{
+      "type":"list",
+      "member":{"shape":"BatchGetStepIdentifier"},
+      "max":100,
+      "min":1
+    },
+    "BatchGetStepItem":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "stepId",
+        "name",
+        "lifecycleStatus",
+        "taskRunStatus",
+        "taskRunStatusCounts",
+        "createdAt",
+        "createdBy"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "stepId":{"shape":"StepId"},
+        "name":{"shape":"StepName"},
+        "lifecycleStatus":{"shape":"StepLifecycleStatus"},
+        "lifecycleStatusMessage":{"shape":"String"},
+        "taskRunStatus":{"shape":"TaskRunStatus"},
+        "taskRunStatusCounts":{"shape":"TaskRunStatusCounts"},
+        "taskFailureRetryCount":{"shape":"TaskFailureRetryCount"},
+        "targetTaskRunStatus":{"shape":"StepTargetTaskRunStatus"},
+        "createdAt":{"shape":"CreatedAt"},
+        "createdBy":{"shape":"CreatedBy"},
+        "updatedAt":{"shape":"UpdatedAt"},
+        "updatedBy":{"shape":"UpdatedBy"},
+        "startedAt":{"shape":"StartedAt"},
+        "endedAt":{"shape":"EndedAt"},
+        "dependencyCounts":{"shape":"DependencyCounts"},
+        "requiredCapabilities":{"shape":"StepRequiredCapabilities"},
+        "parameterSpace":{"shape":"ParameterSpace"},
+        "description":{"shape":"StepDescription"}
+      }
+    },
+    "BatchGetStepItems":{
+      "type":"list",
+      "member":{"shape":"BatchGetStepItem"}
+    },
+    "BatchGetStepRequest":{
+      "type":"structure",
+      "required":["identifiers"],
+      "members":{
+        "identifiers":{"shape":"BatchGetStepIdentifiers"}
+      }
+    },
+    "BatchGetStepResponse":{
+      "type":"structure",
+      "required":[
+        "steps",
+        "errors"
+      ],
+      "members":{
+        "steps":{"shape":"BatchGetStepItems"},
+        "errors":{"shape":"BatchGetStepErrors"}
+      }
+    },
+    "BatchGetTaskError":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "stepId",
+        "taskId",
+        "code",
+        "message"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "stepId":{"shape":"StepId"},
+        "taskId":{"shape":"TaskId"},
+        "code":{"shape":"BatchGetTaskErrorCode"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchGetTaskErrorCode":{
+      "type":"string",
+      "enum":[
+        "InternalServerErrorException",
+        "ResourceNotFoundException",
+        "ValidationException",
+        "AccessDeniedException",
+        "ThrottlingException"
+      ]
+    },
+    "BatchGetTaskErrors":{
+      "type":"list",
+      "member":{"shape":"BatchGetTaskError"}
+    },
+    "BatchGetTaskIdentifier":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "stepId",
+        "taskId"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "stepId":{"shape":"StepId"},
+        "taskId":{"shape":"TaskId"}
+      }
+    },
+    "BatchGetTaskIdentifiers":{
+      "type":"list",
+      "member":{"shape":"BatchGetTaskIdentifier"},
+      "max":100,
+      "min":1
+    },
+    "BatchGetTaskItem":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "stepId",
+        "taskId",
+        "createdAt",
+        "createdBy",
+        "runStatus"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "stepId":{"shape":"StepId"},
+        "taskId":{"shape":"TaskId"},
+        "createdAt":{"shape":"CreatedAt"},
+        "createdBy":{"shape":"CreatedBy"},
+        "runStatus":{"shape":"TaskRunStatus"},
+        "targetRunStatus":{"shape":"TaskTargetRunStatus"},
+        "failureRetryCount":{"shape":"TaskRetryCount"},
+        "startedAt":{"shape":"StartedAt"},
+        "endedAt":{"shape":"EndedAt"},
+        "updatedAt":{"shape":"UpdatedAt"},
+        "updatedBy":{"shape":"UpdatedBy"},
+        "latestSessionActionId":{"shape":"SessionActionId"},
+        "parameters":{"shape":"TaskParameters"}
+      }
+    },
+    "BatchGetTaskItems":{
+      "type":"list",
+      "member":{"shape":"BatchGetTaskItem"}
+    },
+    "BatchGetTaskRequest":{
+      "type":"structure",
+      "required":["identifiers"],
+      "members":{
+        "identifiers":{"shape":"BatchGetTaskIdentifiers"}
+      }
+    },
+    "BatchGetTaskResponse":{
+      "type":"structure",
+      "required":[
+        "tasks",
+        "errors"
+      ],
+      "members":{
+        "tasks":{"shape":"BatchGetTaskItems"},
+        "errors":{"shape":"BatchGetTaskErrors"}
+      }
+    },
+    "BatchGetWorkerError":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "fleetId",
+        "workerId",
+        "code",
+        "message"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "fleetId":{"shape":"FleetId"},
+        "workerId":{"shape":"WorkerId"},
+        "code":{"shape":"BatchGetWorkerErrorCode"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchGetWorkerErrorCode":{
+      "type":"string",
+      "enum":[
+        "InternalServerErrorException",
+        "ResourceNotFoundException",
+        "ValidationException"
+      ]
+    },
+    "BatchGetWorkerErrors":{
+      "type":"list",
+      "member":{"shape":"BatchGetWorkerError"}
+    },
+    "BatchGetWorkerIdentifier":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "fleetId",
+        "workerId"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "fleetId":{"shape":"FleetId"},
+        "workerId":{"shape":"WorkerId"}
+      }
+    },
+    "BatchGetWorkerIdentifiers":{
+      "type":"list",
+      "member":{"shape":"BatchGetWorkerIdentifier"},
+      "max":100,
+      "min":1
+    },
+    "BatchGetWorkerItem":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "fleetId",
+        "workerId",
+        "status",
+        "createdAt",
+        "createdBy"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "fleetId":{"shape":"FleetId"},
+        "workerId":{"shape":"WorkerId"},
+        "hostProperties":{"shape":"HostPropertiesResponse"},
+        "status":{"shape":"WorkerStatus"},
+        "log":{"shape":"LogConfiguration"},
+        "createdAt":{"shape":"CreatedAt"},
+        "createdBy":{"shape":"CreatedBy"},
+        "updatedAt":{"shape":"UpdatedAt"},
+        "updatedBy":{"shape":"UpdatedBy"}
+      }
+    },
+    "BatchGetWorkerItems":{
+      "type":"list",
+      "member":{"shape":"BatchGetWorkerItem"}
+    },
+    "BatchGetWorkerRequest":{
+      "type":"structure",
+      "required":["identifiers"],
+      "members":{
+        "identifiers":{"shape":"BatchGetWorkerIdentifiers"}
+      }
+    },
+    "BatchGetWorkerResponse":{
+      "type":"structure",
+      "required":[
+        "workers",
+        "errors"
+      ],
+      "members":{
+        "workers":{"shape":"BatchGetWorkerItems"},
+        "errors":{"shape":"BatchGetWorkerErrors"}
+      }
+    },
+    "BatchUpdateJobError":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "code",
+        "message"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "code":{"shape":"BatchUpdateJobErrorCode"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchUpdateJobErrorCode":{
+      "type":"string",
+      "enum":[
+        "ConflictException",
+        "InternalServerErrorException",
+        "ResourceNotFoundException",
+        "ValidationException",
+        "AccessDeniedException",
+        "ThrottlingException"
+      ]
+    },
+    "BatchUpdateJobErrors":{
+      "type":"list",
+      "member":{"shape":"BatchUpdateJobError"}
+    },
+    "BatchUpdateJobItem":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "targetTaskRunStatus":{"shape":"JobTargetTaskRunStatus"},
+        "priority":{"shape":"JobPriority"},
+        "maxFailedTasksCount":{"shape":"MaxFailedTasksCount"},
+        "maxRetriesPerTask":{"shape":"MaxRetriesPerTask"},
+        "lifecycleStatus":{"shape":"UpdateJobLifecycleStatus"},
+        "maxWorkerCount":{"shape":"MaxWorkerCount"},
+        "name":{"shape":"JobName"},
+        "description":{"shape":"JobDescriptionOverride"}
+      }
+    },
+    "BatchUpdateJobItems":{
+      "type":"list",
+      "member":{"shape":"BatchUpdateJobItem"},
+      "max":100,
+      "min":1
+    },
+    "BatchUpdateJobRequest":{
+      "type":"structure",
+      "required":["jobs"],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
+        },
+        "jobs":{"shape":"BatchUpdateJobItems"}
+      }
+    },
+    "BatchUpdateJobResponse":{
+      "type":"structure",
+      "required":["errors"],
+      "members":{
+        "errors":{"shape":"BatchUpdateJobErrors"}
+      }
+    },
+    "BatchUpdateTaskError":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "stepId",
+        "taskId",
+        "code",
+        "message"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "stepId":{"shape":"StepId"},
+        "taskId":{"shape":"TaskId"},
+        "code":{"shape":"BatchUpdateTaskErrorCode"},
+        "message":{"shape":"String"}
+      }
+    },
+    "BatchUpdateTaskErrorCode":{
+      "type":"string",
+      "enum":[
+        "ConflictException",
+        "InternalServerErrorException",
+        "ResourceNotFoundException",
+        "ValidationException",
+        "AccessDeniedException",
+        "ThrottlingException"
+      ]
+    },
+    "BatchUpdateTaskErrors":{
+      "type":"list",
+      "member":{"shape":"BatchUpdateTaskError"}
+    },
+    "BatchUpdateTaskItem":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "stepId",
+        "taskId",
+        "targetRunStatus"
+      ],
+      "members":{
+        "farmId":{"shape":"FarmId"},
+        "queueId":{"shape":"QueueId"},
+        "jobId":{"shape":"JobId"},
+        "stepId":{"shape":"StepId"},
+        "taskId":{"shape":"TaskId"},
+        "targetRunStatus":{"shape":"TaskTargetRunStatus"}
+      }
+    },
+    "BatchUpdateTaskItems":{
+      "type":"list",
+      "member":{"shape":"BatchUpdateTaskItem"},
+      "max":100,
+      "min":1
+    },
+    "BatchUpdateTaskRequest":{
+      "type":"structure",
+      "required":["tasks"],
+      "members":{
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
+        },
+        "tasks":{"shape":"BatchUpdateTaskItems"}
+      }
+    },
+    "BatchUpdateTaskResponse":{
+      "type":"structure",
+      "required":["errors"],
+      "members":{
+        "errors":{"shape":"BatchUpdateTaskErrors"}
+      }
+    },
     "BoundedString":{
       "type":"string",
       "max":64,
@@ -2798,17 +3830,17 @@
         "usageTrackingResource":{"shape":"UsageTrackingResource"},
         "status":{"shape":"BudgetStatus"},
         "displayName":{"shape":"ResourceName"},
-        "description":{
-          "shape":"Description",
-          "deprecated":true,
-          "deprecatedMessage":"ListBudgets no longer supports description. Use GetBudget if description is needed."
-        },
         "approximateDollarLimit":{"shape":"ConsumedUsageLimit"},
         "usages":{"shape":"ConsumedUsages"},
         "createdBy":{"shape":"CreatedBy"},
         "createdAt":{"shape":"CreatedAt"},
         "updatedBy":{"shape":"UpdatedBy"},
-        "updatedAt":{"shape":"UpdatedAt"}
+        "updatedAt":{"shape":"UpdatedAt"},
+        "description":{
+          "shape":"Description",
+          "deprecated":true,
+          "deprecatedMessage":"ListBudgets no longer supports description. Use GetBudget if description is needed."
+        }
       }
     },
     "CancelSessionActions":{
@@ -2834,7 +3866,9 @@
         "GREATER_THAN_EQUAL_TO",
         "GREATER_THAN",
         "LESS_THAN_EQUAL_TO",
-        "LESS_THAN"
+        "LESS_THAN",
+        "ANY_EQUALS",
+        "ALL_NOT_EQUALS"
       ]
     },
     "CompletedStatus":{
@@ -2894,8 +3928,8 @@
       "type":"structure",
       "required":[
         "farmId",
-        "jobId",
         "queueId",
+        "jobId",
         "targetS3Location"
       ],
       "members":{
@@ -2904,15 +3938,15 @@
           "location":"uri",
           "locationName":"farmId"
         },
-        "jobId":{
-          "shape":"JobId",
-          "location":"uri",
-          "locationName":"jobId"
-        },
         "queueId":{
           "shape":"QueueId",
           "location":"uri",
           "locationName":"queueId"
+        },
+        "jobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"jobId"
         },
         "targetS3Location":{"shape":"S3Location"}
       }
@@ -2923,6 +3957,12 @@
       "members":{
         "templateType":{"shape":"JobTemplateType"}
       }
+    },
+    "CostScaleFactor":{
+      "type":"float",
+      "box":true,
+      "max":100,
+      "min":0
     },
     "CpuArchitectureType":{
       "type":"string",
@@ -2935,30 +3975,31 @@
       "type":"structure",
       "required":[
         "farmId",
-        "usageTrackingResource",
         "displayName",
+        "usageTrackingResource",
         "approximateDollarLimit",
         "actions",
         "schedule"
       ],
       "members":{
+        "farmId":{
+          "shape":"FarmId",
+          "location":"uri",
+          "locationName":"farmId"
+        },
+        "displayName":{"shape":"ResourceName"},
+        "description":{"shape":"Description"},
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true,
           "location":"header",
           "locationName":"X-Amz-Client-Token"
         },
-        "farmId":{
-          "shape":"FarmId",
-          "location":"uri",
-          "locationName":"farmId"
-        },
         "usageTrackingResource":{"shape":"UsageTrackingResource"},
-        "displayName":{"shape":"ResourceName"},
-        "description":{"shape":"Description"},
         "approximateDollarLimit":{"shape":"ConsumedUsageLimit"},
         "actions":{"shape":"BudgetActionsToAdd"},
-        "schedule":{"shape":"BudgetSchedule"}
+        "schedule":{"shape":"BudgetSchedule"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateBudgetResponse":{
@@ -2981,6 +4022,7 @@
         "displayName":{"shape":"ResourceName"},
         "description":{"shape":"Description"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
+        "costScaleFactor":{"shape":"CostScaleFactor"},
         "tags":{"shape":"Tags"}
       }
     },
@@ -3001,16 +4043,16 @@
         "configuration"
       ],
       "members":{
+        "farmId":{
+          "shape":"FarmId",
+          "location":"uri",
+          "locationName":"farmId"
+        },
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true,
           "location":"header",
           "locationName":"X-Amz-Client-Token"
-        },
-        "farmId":{
-          "shape":"FarmId",
-          "location":"uri",
-          "locationName":"farmId"
         },
         "displayName":{"shape":"ResourceName"},
         "description":{"shape":"Description"},
@@ -3063,7 +4105,10 @@
         "maxFailedTasksCount":{"shape":"MaxFailedTasksCount"},
         "maxRetriesPerTask":{"shape":"MaxRetriesPerTask"},
         "maxWorkerCount":{"shape":"MaxWorkerCount"},
-        "sourceJobId":{"shape":"JobId"}
+        "sourceJobId":{"shape":"JobId"},
+        "nameOverride":{"shape":"JobName"},
+        "descriptionOverride":{"shape":"JobDescriptionOverride"},
+        "tags":{"shape":"Tags"}
       }
     },
     "CreateJobResponse":{
@@ -3122,12 +4167,17 @@
     "CreateLimitRequest":{
       "type":"structure",
       "required":[
+        "farmId",
         "displayName",
         "amountRequirementName",
-        "maxCount",
-        "farmId"
+        "maxCount"
       ],
       "members":{
+        "farmId":{
+          "shape":"FarmId",
+          "location":"uri",
+          "locationName":"farmId"
+        },
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true,
@@ -3137,11 +4187,6 @@
         "displayName":{"shape":"ResourceName"},
         "amountRequirementName":{"shape":"AmountRequirementName"},
         "maxCount":{"shape":"MaxCount"},
-        "farmId":{
-          "shape":"FarmId",
-          "location":"uri",
-          "locationName":"farmId"
-        },
         "description":{"shape":"Description"}
       }
     },
@@ -3169,6 +4214,7 @@
         },
         "displayName":{"shape":"ResourceName"},
         "identityCenterInstanceArn":{"shape":"IdentityCenterInstanceArn"},
+        "identityCenterRegion":{"shape":"Region"},
         "subdomain":{"shape":"Subdomain"},
         "roleArn":{"shape":"IamRoleArn"},
         "tags":{"shape":"Tags"}
@@ -3195,12 +4241,6 @@
         "template"
       ],
       "members":{
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true,
-          "location":"header",
-          "locationName":"X-Amz-Client-Token"
-        },
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
@@ -3210,6 +4250,12 @@
           "shape":"QueueId",
           "location":"uri",
           "locationName":"queueId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
         },
         "priority":{"shape":"Priority"},
         "templateType":{"shape":"EnvironmentTemplateType"},
@@ -3242,8 +4288,7 @@
     },
     "CreateQueueFleetAssociationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateQueueLimitAssociationRequest":{
       "type":"structure",
@@ -3264,8 +4309,7 @@
     },
     "CreateQueueLimitAssociationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "CreateQueueRequest":{
       "type":"structure",
@@ -3274,16 +4318,16 @@
         "displayName"
       ],
       "members":{
+        "farmId":{
+          "shape":"FarmId",
+          "location":"uri",
+          "locationName":"farmId"
+        },
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true,
           "location":"header",
           "locationName":"X-Amz-Client-Token"
-        },
-        "farmId":{
-          "shape":"FarmId",
-          "location":"uri",
-          "locationName":"farmId"
         },
         "displayName":{"shape":"ResourceName"},
         "description":{"shape":"Description"},
@@ -3293,7 +4337,8 @@
         "jobRunAsUser":{"shape":"JobRunAsUser"},
         "requiredFileSystemLocationNames":{"shape":"RequiredFileSystemLocationNames"},
         "allowedStorageProfileIds":{"shape":"AllowedStorageProfileIds"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "schedulingConfiguration":{"shape":"SchedulingConfiguration"}
       }
     },
     "CreateQueueResponse":{
@@ -3311,16 +4356,16 @@
         "osFamily"
       ],
       "members":{
+        "farmId":{
+          "shape":"FarmId",
+          "location":"uri",
+          "locationName":"farmId"
+        },
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true,
           "location":"header",
           "locationName":"X-Amz-Client-Token"
-        },
-        "farmId":{
-          "shape":"FarmId",
-          "location":"uri",
-          "locationName":"farmId"
         },
         "displayName":{"shape":"ResourceName"},
         "osFamily":{"shape":"StorageProfileOperatingSystemFamily"},
@@ -3385,6 +4430,14 @@
       "max":15,
       "min":1
     },
+    "CustomerManagedAutoScalingConfiguration":{
+      "type":"structure",
+      "members":{
+        "standbyWorkerCount":{"shape":"MinZeroMaxInteger"},
+        "workerIdleDurationSeconds":{"shape":"MinZeroMaxInteger"},
+        "scaleOutWorkersPerMinute":{"shape":"MinOneMaxInteger"}
+      }
+    },
     "CustomerManagedFleetConfiguration":{
       "type":"structure",
       "required":[
@@ -3393,6 +4446,7 @@
       ],
       "members":{
         "mode":{"shape":"AutoScalingMode"},
+        "autoScalingConfiguration":{"shape":"CustomerManagedAutoScalingConfiguration"},
         "workerCapabilities":{"shape":"CustomerManagedWorkerCapabilities"},
         "storageProfileId":{"shape":"StorageProfileId"},
         "tagPropagationMode":{"shape":"TagPropagationMode"}
@@ -3447,6 +4501,12 @@
         "STOP_SCHEDULING_AND_CANCEL_TASKS"
       ]
     },
+    "DefaultTaskCount":{
+      "type":"integer",
+      "box":true,
+      "max":2147483647,
+      "min":1
+    },
     "DeleteBudgetRequest":{
       "type":"structure",
       "required":[
@@ -3468,8 +4528,7 @@
     },
     "DeleteBudgetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteFarmRequest":{
       "type":"structure",
@@ -3484,8 +4543,7 @@
     },
     "DeleteFarmResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteFleetRequest":{
       "type":"structure",
@@ -3494,12 +4552,6 @@
         "fleetId"
       ],
       "members":{
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true,
-          "location":"header",
-          "locationName":"X-Amz-Client-Token"
-        },
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
@@ -3509,13 +4561,18 @@
           "shape":"FleetId",
           "location":"uri",
           "locationName":"fleetId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
         }
       }
     },
     "DeleteFleetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteLicenseEndpointRequest":{
       "type":"structure",
@@ -3530,8 +4587,7 @@
     },
     "DeleteLicenseEndpointResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteLimitRequest":{
       "type":"structure",
@@ -3554,8 +4610,7 @@
     },
     "DeleteLimitResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteMeteredProductRequest":{
       "type":"structure",
@@ -3578,8 +4633,7 @@
     },
     "DeleteMeteredProductResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteMonitorRequest":{
       "type":"structure",
@@ -3594,8 +4648,7 @@
     },
     "DeleteMonitorResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteQueueEnvironmentRequest":{
       "type":"structure",
@@ -3624,8 +4677,7 @@
     },
     "DeleteQueueEnvironmentResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteQueueFleetAssociationRequest":{
       "type":"structure",
@@ -3654,8 +4706,7 @@
     },
     "DeleteQueueFleetAssociationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteQueueLimitAssociationRequest":{
       "type":"structure",
@@ -3684,8 +4735,7 @@
     },
     "DeleteQueueLimitAssociationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteQueueRequest":{
       "type":"structure",
@@ -3708,8 +4758,7 @@
     },
     "DeleteQueueResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteStorageProfileRequest":{
       "type":"structure",
@@ -3732,8 +4781,7 @@
     },
     "DeleteStorageProfileResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DeleteWorkerRequest":{
       "type":"structure",
@@ -3762,8 +4810,7 @@
     },
     "DeleteWorkerResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DependenciesList":{
       "type":"list",
@@ -3822,8 +4869,7 @@
     },
     "DisassociateMemberFromFarmResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DisassociateMemberFromFleetRequest":{
       "type":"structure",
@@ -3852,8 +4898,7 @@
     },
     "DisassociateMemberFromFleetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DisassociateMemberFromJobRequest":{
       "type":"structure",
@@ -3888,8 +4933,7 @@
     },
     "DisassociateMemberFromJobResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DisassociateMemberFromQueueRequest":{
       "type":"structure",
@@ -3918,14 +4962,12 @@
     },
     "DisassociateMemberFromQueueResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "DnsName":{"type":"string"},
     "Document":{
       "type":"structure",
-      "members":{
-      },
+      "members":{},
       "document":true,
       "sensitive":true
     },
@@ -4327,25 +5369,25 @@
         "displayName",
         "approximateDollarLimit",
         "usages",
-        "actions",
-        "schedule",
         "createdBy",
-        "createdAt"
+        "createdAt",
+        "actions",
+        "schedule"
       ],
       "members":{
         "budgetId":{"shape":"BudgetId"},
         "usageTrackingResource":{"shape":"UsageTrackingResource"},
         "status":{"shape":"BudgetStatus"},
         "displayName":{"shape":"ResourceName"},
-        "description":{"shape":"Description"},
         "approximateDollarLimit":{"shape":"ConsumedUsageLimit"},
         "usages":{"shape":"ConsumedUsages"},
-        "actions":{"shape":"ResponseBudgetActionList"},
-        "schedule":{"shape":"BudgetSchedule"},
         "createdBy":{"shape":"CreatedBy"},
         "createdAt":{"shape":"CreatedAt"},
         "updatedBy":{"shape":"UpdatedBy"},
         "updatedAt":{"shape":"UpdatedAt"},
+        "description":{"shape":"Description"},
+        "actions":{"shape":"ResponseBudgetActionList"},
+        "schedule":{"shape":"BudgetSchedule"},
         "queueStoppedAt":{"shape":"UpdatedAt"}
       }
     },
@@ -4365,19 +5407,20 @@
       "required":[
         "farmId",
         "displayName",
-        "kmsKeyArn",
         "createdAt",
-        "createdBy"
+        "createdBy",
+        "costScaleFactor"
       ],
       "members":{
         "farmId":{"shape":"FarmId"},
         "displayName":{"shape":"ResourceName"},
-        "description":{"shape":"Description"},
         "kmsKeyArn":{"shape":"KmsKeyArn"},
         "createdAt":{"shape":"CreatedAt"},
         "createdBy":{"shape":"CreatedBy"},
         "updatedAt":{"shape":"UpdatedAt"},
-        "updatedBy":{"shape":"UpdatedBy"}
+        "updatedBy":{"shape":"UpdatedBy"},
+        "description":{"shape":"Description"},
+        "costScaleFactor":{"shape":"CostScaleFactor"}
       }
     },
     "GetFleetRequest":{
@@ -4410,15 +5453,14 @@
         "minWorkerCount",
         "maxWorkerCount",
         "configuration",
-        "roleArn",
         "createdAt",
-        "createdBy"
+        "createdBy",
+        "roleArn"
       ],
       "members":{
         "fleetId":{"shape":"FleetId"},
         "farmId":{"shape":"FarmId"},
         "displayName":{"shape":"ResourceName"},
-        "description":{"shape":"Description"},
         "status":{"shape":"FleetStatus"},
         "statusMessage":{"shape":"String"},
         "autoScalingStatus":{"shape":"AutoScalingStatus"},
@@ -4427,13 +5469,14 @@
         "minWorkerCount":{"shape":"MinZeroMaxInteger"},
         "maxWorkerCount":{"shape":"MinZeroMaxInteger"},
         "configuration":{"shape":"FleetConfiguration"},
-        "hostConfiguration":{"shape":"HostConfiguration"},
-        "capabilities":{"shape":"FleetCapabilities"},
-        "roleArn":{"shape":"IamRoleArn"},
         "createdAt":{"shape":"CreatedAt"},
         "createdBy":{"shape":"CreatedBy"},
         "updatedAt":{"shape":"UpdatedAt"},
-        "updatedBy":{"shape":"UpdatedBy"}
+        "updatedBy":{"shape":"UpdatedBy"},
+        "description":{"shape":"Description"},
+        "hostConfiguration":{"shape":"HostConfiguration"},
+        "capabilities":{"shape":"FleetCapabilities"},
+        "roleArn":{"shape":"IamRoleArn"}
       }
     },
     "GetJobEntityError":{
@@ -4570,26 +5613,26 @@
     "GetLimitResponse":{
       "type":"structure",
       "required":[
-        "displayName",
-        "amountRequirementName",
-        "maxCount",
-        "createdAt",
-        "createdBy",
         "farmId",
         "limitId",
-        "currentCount"
+        "currentCount",
+        "createdAt",
+        "createdBy",
+        "displayName",
+        "amountRequirementName",
+        "maxCount"
       ],
       "members":{
-        "displayName":{"shape":"ResourceName"},
-        "amountRequirementName":{"shape":"AmountRequirementName"},
-        "maxCount":{"shape":"MaxCount"},
+        "farmId":{"shape":"FarmId"},
+        "limitId":{"shape":"LimitId"},
+        "currentCount":{"shape":"MinZeroMaxInteger"},
         "createdAt":{"shape":"CreatedAt"},
         "createdBy":{"shape":"CreatedBy"},
         "updatedAt":{"shape":"UpdatedAt"},
         "updatedBy":{"shape":"UpdatedBy"},
-        "farmId":{"shape":"FarmId"},
-        "limitId":{"shape":"LimitId"},
-        "currentCount":{"shape":"MinZeroMaxInteger"},
+        "displayName":{"shape":"ResourceName"},
+        "amountRequirementName":{"shape":"AmountRequirementName"},
+        "maxCount":{"shape":"MaxCount"},
         "description":{"shape":"Description"}
       }
     },
@@ -4624,11 +5667,30 @@
         "url":{"shape":"Url"},
         "roleArn":{"shape":"IamRoleArn"},
         "identityCenterInstanceArn":{"shape":"IdentityCenterInstanceArn"},
+        "identityCenterRegion":{"shape":"Region"},
         "identityCenterApplicationArn":{"shape":"IdentityCenterApplicationArn"},
         "createdAt":{"shape":"CreatedAt"},
         "createdBy":{"shape":"CreatedBy"},
         "updatedAt":{"shape":"UpdatedAt"},
         "updatedBy":{"shape":"UpdatedBy"}
+      }
+    },
+    "GetMonitorSettingsRequest":{
+      "type":"structure",
+      "required":["monitorId"],
+      "members":{
+        "monitorId":{
+          "shape":"MonitorId",
+          "location":"uri",
+          "locationName":"monitorId"
+        }
+      }
+    },
+    "GetMonitorSettingsResponse":{
+      "type":"structure",
+      "required":["settings"],
+      "members":{
+        "settings":{"shape":"SettingsMap"}
       }
     },
     "GetQueueEnvironmentRequest":{
@@ -4751,20 +5813,20 @@
     "GetQueueLimitAssociationResponse":{
       "type":"structure",
       "required":[
-        "createdAt",
-        "createdBy",
         "queueId",
         "limitId",
-        "status"
+        "status",
+        "createdAt",
+        "createdBy"
       ],
       "members":{
+        "queueId":{"shape":"QueueId"},
+        "limitId":{"shape":"LimitId"},
+        "status":{"shape":"QueueLimitAssociationStatus"},
         "createdAt":{"shape":"CreatedAt"},
         "createdBy":{"shape":"CreatedBy"},
         "updatedAt":{"shape":"UpdatedAt"},
-        "updatedBy":{"shape":"UpdatedBy"},
-        "queueId":{"shape":"QueueId"},
-        "limitId":{"shape":"LimitId"},
-        "status":{"shape":"QueueLimitAssociationStatus"}
+        "updatedBy":{"shape":"UpdatedBy"}
       }
     },
     "GetQueueRequest":{
@@ -4789,31 +5851,32 @@
     "GetQueueResponse":{
       "type":"structure",
       "required":[
+        "farmId",
         "queueId",
         "displayName",
-        "farmId",
         "status",
         "defaultBudgetAction",
         "createdAt",
         "createdBy"
       ],
       "members":{
+        "farmId":{"shape":"FarmId"},
         "queueId":{"shape":"QueueId"},
         "displayName":{"shape":"ResourceName"},
-        "description":{"shape":"Description"},
-        "farmId":{"shape":"FarmId"},
         "status":{"shape":"QueueStatus"},
         "defaultBudgetAction":{"shape":"DefaultQueueBudgetAction"},
         "blockedReason":{"shape":"QueueBlockedReason"},
+        "createdAt":{"shape":"CreatedAt"},
+        "createdBy":{"shape":"CreatedBy"},
+        "updatedAt":{"shape":"UpdatedAt"},
+        "updatedBy":{"shape":"UpdatedBy"},
+        "description":{"shape":"Description"},
         "jobAttachmentSettings":{"shape":"JobAttachmentSettings"},
         "roleArn":{"shape":"IamRoleArn"},
         "requiredFileSystemLocationNames":{"shape":"RequiredFileSystemLocationNames"},
         "allowedStorageProfileIds":{"shape":"AllowedStorageProfileIds"},
         "jobRunAsUser":{"shape":"JobRunAsUser"},
-        "createdAt":{"shape":"CreatedAt"},
-        "createdBy":{"shape":"CreatedBy"},
-        "updatedAt":{"shape":"UpdatedAt"},
-        "updatedBy":{"shape":"UpdatedBy"}
+        "schedulingConfiguration":{"shape":"SchedulingConfiguration"}
       }
     },
     "GetSessionActionRequest":{
@@ -4862,12 +5925,12 @@
         "endedAt":{"shape":"EndedAt"},
         "workerUpdatedAt":{"shape":"Timestamp"},
         "progressPercent":{"shape":"SessionActionProgressPercent"},
+        "manifests":{"shape":"TaskRunManifestPropertiesListResponse"},
         "sessionId":{"shape":"SessionId"},
         "processExitCode":{"shape":"ProcessExitCode"},
         "progressMessage":{"shape":"SessionActionProgressMessage"},
-        "definition":{"shape":"SessionActionDefinition"},
         "acquiredLimits":{"shape":"AcquiredLimits"},
-        "manifests":{"shape":"TaskRunManifestPropertiesListResponse"}
+        "definition":{"shape":"SessionActionDefinition"}
       }
     },
     "GetSessionRequest":{
@@ -4908,20 +5971,20 @@
         "fleetId",
         "workerId",
         "startedAt",
-        "log",
-        "lifecycleStatus"
+        "lifecycleStatus",
+        "log"
       ],
       "members":{
         "sessionId":{"shape":"SessionId"},
         "fleetId":{"shape":"FleetId"},
         "workerId":{"shape":"WorkerId"},
         "startedAt":{"shape":"StartedAt"},
-        "log":{"shape":"LogConfiguration"},
         "lifecycleStatus":{"shape":"SessionLifecycleStatus"},
         "endedAt":{"shape":"EndedAt"},
+        "targetLifecycleStatus":{"shape":"SessionLifecycleTargetStatus"},
         "updatedAt":{"shape":"UpdatedAt"},
         "updatedBy":{"shape":"UpdatedBy"},
-        "targetLifecycleStatus":{"shape":"SessionLifecycleTargetStatus"},
+        "log":{"shape":"LogConfiguration"},
         "hostProperties":{"shape":"HostPropertiesResponse"},
         "workerLog":{"shape":"LogConfiguration"}
       }
@@ -4938,20 +6001,20 @@
           "location":"uri",
           "locationName":"farmId"
         },
-        "aggregationId":{
-          "shape":"AggregationId",
+        "nextToken":{
+          "shape":"NextToken",
           "location":"querystring",
-          "locationName":"aggregationId"
+          "locationName":"nextToken"
         },
         "maxResults":{
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
         },
-        "nextToken":{
-          "shape":"String",
+        "aggregationId":{
+          "shape":"AggregationId",
           "location":"querystring",
-          "locationName":"nextToken"
+          "locationName":"aggregationId"
         }
       }
     },
@@ -4960,9 +6023,9 @@
       "required":["status"],
       "members":{
         "statistics":{"shape":"StatisticsList"},
-        "nextToken":{"shape":"String"},
         "status":{"shape":"SessionsStatisticsAggregationStatus"},
-        "statusMessage":{"shape":"String"}
+        "statusMessage":{"shape":"String"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "GetStepRequest":{
@@ -5158,12 +6221,12 @@
         "runStatus":{"shape":"TaskRunStatus"},
         "targetRunStatus":{"shape":"TaskTargetRunStatus"},
         "failureRetryCount":{"shape":"TaskRetryCount"},
-        "parameters":{"shape":"TaskParameters"},
         "startedAt":{"shape":"StartedAt"},
         "endedAt":{"shape":"EndedAt"},
         "updatedAt":{"shape":"UpdatedAt"},
         "updatedBy":{"shape":"UpdatedBy"},
-        "latestSessionActionId":{"shape":"SessionActionId"}
+        "latestSessionActionId":{"shape":"SessionActionId"},
+        "parameters":{"shape":"TaskParameters"}
       }
     },
     "GetWorkerRequest":{
@@ -5277,7 +6340,8 @@
     },
     "InstanceType":{
       "type":"string",
-      "pattern":"[a-zA-Z0-9]+\\.[a-zA-Z0-9]+"
+      "max":100,
+      "min":1
     },
     "InstanceTypes":{
       "type":"list",
@@ -5387,6 +6451,12 @@
       "type":"string",
       "max":2048,
       "min":1,
+      "sensitive":true
+    },
+    "JobDescriptionOverride":{
+      "type":"string",
+      "max":2048,
+      "min":0,
       "sensitive":true
     },
     "JobDetailsEntity":{
@@ -5524,8 +6594,7 @@
     },
     "JobParameterDefinition":{
       "type":"structure",
-      "members":{
-      },
+      "members":{},
       "document":true
     },
     "JobParameterDefinitions":{
@@ -5691,26 +6760,26 @@
     "LimitSummary":{
       "type":"structure",
       "required":[
-        "displayName",
-        "amountRequirementName",
-        "maxCount",
-        "createdAt",
-        "createdBy",
         "farmId",
         "limitId",
-        "currentCount"
+        "currentCount",
+        "createdAt",
+        "createdBy",
+        "displayName",
+        "amountRequirementName",
+        "maxCount"
       ],
       "members":{
-        "displayName":{"shape":"ResourceName"},
-        "amountRequirementName":{"shape":"AmountRequirementName"},
-        "maxCount":{"shape":"MaxCount"},
+        "farmId":{"shape":"FarmId"},
+        "limitId":{"shape":"LimitId"},
+        "currentCount":{"shape":"MinZeroMaxInteger"},
         "createdAt":{"shape":"CreatedAt"},
         "createdBy":{"shape":"CreatedBy"},
         "updatedAt":{"shape":"UpdatedAt"},
         "updatedBy":{"shape":"UpdatedBy"},
-        "farmId":{"shape":"FarmId"},
-        "limitId":{"shape":"LimitId"},
-        "currentCount":{"shape":"MinZeroMaxInteger"}
+        "displayName":{"shape":"ResourceName"},
+        "amountRequirementName":{"shape":"AmountRequirementName"},
+        "maxCount":{"shape":"MaxCount"}
       }
     },
     "ListAttributeCapabilityValue":{
@@ -5721,7 +6790,7 @@
       "type":"structure",
       "members":{
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -5737,22 +6806,22 @@
       "required":["meteredProducts"],
       "members":{
         "meteredProducts":{"shape":"MeteredProductSummaryList"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListBudgetsRequest":{
       "type":"structure",
       "required":["farmId"],
       "members":{
-        "nextToken":{
-          "shape":"String",
-          "location":"querystring",
-          "locationName":"nextToken"
-        },
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
           "locationName":"farmId"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
         },
         "maxResults":{
           "shape":"MaxResults",
@@ -5770,8 +6839,8 @@
       "type":"structure",
       "required":["budgets"],
       "members":{
-        "nextToken":{"shape":"String"},
-        "budgets":{"shape":"BudgetSummaries"}
+        "budgets":{"shape":"BudgetSummaries"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListFarmMembersRequest":{
@@ -5784,7 +6853,7 @@
           "locationName":"farmId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -5800,26 +6869,26 @@
       "required":["members"],
       "members":{
         "members":{"shape":"FarmMembers"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListFarmsRequest":{
       "type":"structure",
       "members":{
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
-        },
-        "principalId":{
-          "shape":"IdentityCenterPrincipalId",
-          "location":"querystring",
-          "locationName":"principalId"
         },
         "maxResults":{
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "principalId":{
+          "shape":"IdentityCenterPrincipalId",
+          "location":"querystring",
+          "locationName":"principalId"
         }
       }
     },
@@ -5827,8 +6896,8 @@
       "type":"structure",
       "required":["farms"],
       "members":{
-        "nextToken":{"shape":"String"},
-        "farms":{"shape":"FarmSummaries"}
+        "farms":{"shape":"FarmSummaries"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListFleetMembersRequest":{
@@ -5849,7 +6918,7 @@
           "locationName":"fleetId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -5865,7 +6934,7 @@
       "required":["members"],
       "members":{
         "members":{"shape":"FleetMembers"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListFleetsRequest":{
@@ -5876,6 +6945,16 @@
           "shape":"FarmId",
           "location":"uri",
           "locationName":"farmId"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
         },
         "principalId":{
           "shape":"IdentityCenterPrincipalId",
@@ -5891,16 +6970,6 @@
           "shape":"FleetStatus",
           "location":"querystring",
           "locationName":"status"
-        },
-        "nextToken":{
-          "shape":"String",
-          "location":"querystring",
-          "locationName":"nextToken"
-        },
-        "maxResults":{
-          "shape":"MaxResults",
-          "location":"querystring",
-          "locationName":"maxResults"
         }
       }
     },
@@ -5909,7 +6978,7 @@
       "required":["fleets"],
       "members":{
         "fleets":{"shape":"FleetSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListJobMembersRequest":{
@@ -5936,7 +7005,7 @@
           "locationName":"jobId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -5952,15 +7021,15 @@
       "required":["members"],
       "members":{
         "members":{"shape":"JobMembers"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListJobParameterDefinitionsRequest":{
       "type":"structure",
       "required":[
         "farmId",
-        "jobId",
-        "queueId"
+        "queueId",
+        "jobId"
       ],
       "members":{
         "farmId":{
@@ -5968,18 +7037,18 @@
           "location":"uri",
           "locationName":"farmId"
         },
-        "jobId":{
-          "shape":"JobId",
-          "location":"uri",
-          "locationName":"jobId"
-        },
         "queueId":{
           "shape":"QueueId",
           "location":"uri",
           "locationName":"queueId"
         },
+        "jobId":{
+          "shape":"JobId",
+          "location":"uri",
+          "locationName":"jobId"
+        },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -5995,7 +7064,7 @@
       "required":["jobParameterDefinitions"],
       "members":{
         "jobParameterDefinitions":{"shape":"JobParameterDefinitions"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListJobsRequest":{
@@ -6010,18 +7079,13 @@
           "location":"uri",
           "locationName":"farmId"
         },
-        "principalId":{
-          "shape":"IdentityCenterPrincipalId",
-          "location":"querystring",
-          "locationName":"principalId"
-        },
         "queueId":{
           "shape":"QueueId",
           "location":"uri",
           "locationName":"queueId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6029,6 +7093,11 @@
           "shape":"MaxResults",
           "location":"querystring",
           "locationName":"maxResults"
+        },
+        "principalId":{
+          "shape":"IdentityCenterPrincipalId",
+          "location":"querystring",
+          "locationName":"principalId"
         }
       }
     },
@@ -6037,14 +7106,14 @@
       "required":["jobs"],
       "members":{
         "jobs":{"shape":"JobSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListLicenseEndpointsRequest":{
       "type":"structure",
       "members":{
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6060,7 +7129,7 @@
       "required":["licenseEndpoints"],
       "members":{
         "licenseEndpoints":{"shape":"LicenseEndpointSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListLimitsRequest":{
@@ -6073,7 +7142,7 @@
           "locationName":"farmId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6089,7 +7158,7 @@
       "required":["limits"],
       "members":{
         "limits":{"shape":"LimitSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListMeteredProductsRequest":{
@@ -6102,7 +7171,7 @@
           "locationName":"licenseEndpointId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6118,14 +7187,14 @@
       "required":["meteredProducts"],
       "members":{
         "meteredProducts":{"shape":"MeteredProductSummaryList"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListMonitorsRequest":{
       "type":"structure",
       "members":{
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6140,8 +7209,8 @@
       "type":"structure",
       "required":["monitors"],
       "members":{
-        "nextToken":{"shape":"String"},
-        "monitors":{"shape":"MonitorSummaries"}
+        "monitors":{"shape":"MonitorSummaries"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListQueueEnvironmentsRequest":{
@@ -6162,7 +7231,7 @@
           "locationName":"queueId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6178,7 +7247,7 @@
       "required":["environments"],
       "members":{
         "environments":{"shape":"QueueEnvironmentSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListQueueFleetAssociationsRequest":{
@@ -6190,6 +7259,16 @@
           "location":"uri",
           "locationName":"farmId"
         },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
         "queueId":{
           "shape":"QueueId",
           "location":"querystring",
@@ -6199,16 +7278,6 @@
           "shape":"FleetId",
           "location":"querystring",
           "locationName":"fleetId"
-        },
-        "nextToken":{
-          "shape":"String",
-          "location":"querystring",
-          "locationName":"nextToken"
-        },
-        "maxResults":{
-          "shape":"MaxResults",
-          "location":"querystring",
-          "locationName":"maxResults"
         }
       }
     },
@@ -6217,7 +7286,7 @@
       "required":["queueFleetAssociations"],
       "members":{
         "queueFleetAssociations":{"shape":"QueueFleetAssociationSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListQueueLimitAssociationsRequest":{
@@ -6229,6 +7298,16 @@
           "location":"uri",
           "locationName":"farmId"
         },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
         "queueId":{
           "shape":"QueueId",
           "location":"querystring",
@@ -6238,16 +7317,6 @@
           "shape":"LimitId",
           "location":"querystring",
           "locationName":"limitId"
-        },
-        "nextToken":{
-          "shape":"String",
-          "location":"querystring",
-          "locationName":"nextToken"
-        },
-        "maxResults":{
-          "shape":"MaxResults",
-          "location":"querystring",
-          "locationName":"maxResults"
         }
       }
     },
@@ -6256,7 +7325,7 @@
       "required":["queueLimitAssociations"],
       "members":{
         "queueLimitAssociations":{"shape":"QueueLimitAssociationSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListQueueMembersRequest":{
@@ -6277,7 +7346,7 @@
           "locationName":"queueId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6293,7 +7362,7 @@
       "required":["members"],
       "members":{
         "members":{"shape":"QueueMemberList"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListQueuesRequest":{
@@ -6305,6 +7374,16 @@
           "location":"uri",
           "locationName":"farmId"
         },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
         "principalId":{
           "shape":"IdentityCenterPrincipalId",
           "location":"querystring",
@@ -6314,16 +7393,6 @@
           "shape":"QueueStatus",
           "location":"querystring",
           "locationName":"status"
-        },
-        "nextToken":{
-          "shape":"String",
-          "location":"querystring",
-          "locationName":"nextToken"
-        },
-        "maxResults":{
-          "shape":"MaxResults",
-          "location":"querystring",
-          "locationName":"maxResults"
         }
       }
     },
@@ -6332,7 +7401,7 @@
       "required":["queues"],
       "members":{
         "queues":{"shape":"QueueSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListSessionActionsRequest":{
@@ -6358,6 +7427,16 @@
           "location":"uri",
           "locationName":"jobId"
         },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
         "sessionId":{
           "shape":"SessionId",
           "location":"querystring",
@@ -6367,16 +7446,6 @@
           "shape":"TaskId",
           "location":"querystring",
           "locationName":"taskId"
-        },
-        "nextToken":{
-          "shape":"String",
-          "location":"querystring",
-          "locationName":"nextToken"
-        },
-        "maxResults":{
-          "shape":"MaxResults",
-          "location":"querystring",
-          "locationName":"maxResults"
         }
       }
     },
@@ -6385,7 +7454,7 @@
       "required":["sessionActions"],
       "members":{
         "sessionActions":{"shape":"SessionActionSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListSessionsForWorkerRequest":{
@@ -6412,7 +7481,7 @@
           "locationName":"workerId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6428,7 +7497,7 @@
       "required":["sessions"],
       "members":{
         "sessions":{"shape":"ListSessionsForWorkerSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListSessionsForWorkerSummaries":{
@@ -6459,7 +7528,7 @@
           "locationName":"jobId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6475,7 +7544,7 @@
       "required":["sessions"],
       "members":{
         "sessions":{"shape":"SessionSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListStepConsumersRequest":{
@@ -6508,7 +7577,7 @@
           "locationName":"stepId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6530,7 +7599,7 @@
       "required":["consumers"],
       "members":{
         "consumers":{"shape":"StepConsumers"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListStepDependenciesRequest":{
@@ -6563,7 +7632,7 @@
           "locationName":"stepId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6585,7 +7654,7 @@
       "required":["dependencies"],
       "members":{
         "dependencies":{"shape":"StepDependencies"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListStepsRequest":{
@@ -6612,7 +7681,7 @@
           "locationName":"jobId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6628,7 +7697,7 @@
       "required":["steps"],
       "members":{
         "steps":{"shape":"StepSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListStorageProfilesForQueueRequest":{
@@ -6649,7 +7718,7 @@
           "locationName":"queueId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6665,7 +7734,7 @@
       "required":["storageProfiles"],
       "members":{
         "storageProfiles":{"shape":"StorageProfileSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListStorageProfilesRequest":{
@@ -6678,7 +7747,7 @@
           "locationName":"farmId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6694,7 +7763,7 @@
       "required":["storageProfiles"],
       "members":{
         "storageProfiles":{"shape":"StorageProfileSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -6744,7 +7813,7 @@
           "locationName":"stepId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6760,7 +7829,7 @@
       "required":["tasks"],
       "members":{
         "tasks":{"shape":"TaskSummaries"},
-        "nextToken":{"shape":"String"}
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListWorkersRequest":{
@@ -6781,7 +7850,7 @@
           "locationName":"fleetId"
         },
         "nextToken":{
-          "shape":"String",
+          "shape":"NextToken",
           "location":"querystring",
           "locationName":"nextToken"
         },
@@ -6796,8 +7865,8 @@
       "type":"structure",
       "required":["workers"],
       "members":{
-        "nextToken":{"shape":"String"},
-        "workers":{"shape":"WorkerSummaries"}
+        "workers":{"shape":"WorkerSummaries"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "LogConfiguration":{
@@ -6996,6 +8065,7 @@
         "url":{"shape":"Url"},
         "roleArn":{"shape":"IamRoleArn"},
         "identityCenterInstanceArn":{"shape":"IdentityCenterInstanceArn"},
+        "identityCenterRegion":{"shape":"Region"},
         "identityCenterApplicationArn":{"shape":"IdentityCenterApplicationArn"},
         "createdAt":{"shape":"CreatedAt"},
         "createdBy":{"shape":"CreatedBy"},
@@ -7007,6 +8077,11 @@
       "type":"integer",
       "box":true,
       "max":10000,
+      "min":0
+    },
+    "NextToken":{
+      "type":"string",
+      "max":4096,
       "min":0
     },
     "OutputRelativeDirectoriesList":{
@@ -7143,6 +8218,16 @@
       "max":10000,
       "min":0
     },
+    "PriorityBalancedSchedulingConfiguration":{
+      "type":"structure",
+      "members":{
+        "renderingTaskBuffer":{"shape":"SchedulingRenderingTaskBuffer"}
+      }
+    },
+    "PriorityFifoSchedulingConfiguration":{
+      "type":"structure",
+      "members":{}
+    },
     "ProcessExitCode":{
       "type":"integer",
       "box":true,
@@ -7170,8 +8255,7 @@
     },
     "PutMeteredProductResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "QueueBlockedReason":{
       "type":"string",
@@ -7253,20 +8337,20 @@
     "QueueLimitAssociationSummary":{
       "type":"structure",
       "required":[
-        "createdAt",
-        "createdBy",
         "queueId",
         "limitId",
-        "status"
+        "status",
+        "createdAt",
+        "createdBy"
       ],
       "members":{
+        "queueId":{"shape":"QueueId"},
+        "limitId":{"shape":"LimitId"},
+        "status":{"shape":"QueueLimitAssociationStatus"},
         "createdAt":{"shape":"CreatedAt"},
         "createdBy":{"shape":"CreatedBy"},
         "updatedAt":{"shape":"UpdatedAt"},
-        "updatedBy":{"shape":"UpdatedBy"},
-        "queueId":{"shape":"QueueId"},
-        "limitId":{"shape":"LimitId"},
-        "status":{"shape":"QueueLimitAssociationStatus"}
+        "updatedBy":{"shape":"UpdatedBy"}
       }
     },
     "QueueMember":{
@@ -7327,6 +8411,19 @@
         "updatedAt":{"shape":"UpdatedAt"},
         "updatedBy":{"shape":"UpdatedBy"}
       }
+    },
+    "RangeConstraint":{
+      "type":"string",
+      "enum":[
+        "CONTIGUOUS",
+        "NONCONTIGUOUS"
+      ]
+    },
+    "Region":{
+      "type":"string",
+      "max":25,
+      "min":1,
+      "pattern":"[a-z0-9-]+"
     },
     "RequiredFileSystemLocationNames":{
       "type":"list",
@@ -7410,6 +8507,67 @@
       "min":1,
       "pattern":"[a-zA-Z0-9-_/]+"
     },
+    "SchedulingConfiguration":{
+      "type":"structure",
+      "members":{
+        "priorityFifo":{"shape":"PriorityFifoSchedulingConfiguration"},
+        "priorityBalanced":{"shape":"PriorityBalancedSchedulingConfiguration"},
+        "weightedBalanced":{"shape":"WeightedBalancedSchedulingConfiguration"}
+      },
+      "union":true
+    },
+    "SchedulingErrorWeight":{
+      "type":"double",
+      "box":true,
+      "max":10000,
+      "min":-10000
+    },
+    "SchedulingMaxPriorityOverride":{
+      "type":"structure",
+      "members":{
+        "alwaysScheduleFirst":{"shape":"SchedulingMaxPriorityOverrideAlwaysScheduleFirst"}
+      },
+      "union":true
+    },
+    "SchedulingMaxPriorityOverrideAlwaysScheduleFirst":{
+      "type":"structure",
+      "members":{}
+    },
+    "SchedulingMinPriorityOverride":{
+      "type":"structure",
+      "members":{
+        "alwaysScheduleLast":{"shape":"SchedulingMinPriorityOverrideAlwaysScheduleLast"}
+      },
+      "union":true
+    },
+    "SchedulingMinPriorityOverrideAlwaysScheduleLast":{
+      "type":"structure",
+      "members":{}
+    },
+    "SchedulingPriorityWeight":{
+      "type":"double",
+      "box":true,
+      "max":10000,
+      "min":0
+    },
+    "SchedulingRenderingTaskBuffer":{
+      "type":"integer",
+      "box":true,
+      "max":1000,
+      "min":0
+    },
+    "SchedulingRenderingTaskWeight":{
+      "type":"double",
+      "box":true,
+      "max":10000,
+      "min":-10000
+    },
+    "SchedulingSubmissionTimeWeight":{
+      "type":"double",
+      "box":true,
+      "max":10000,
+      "min":0
+    },
     "SearchFilterExpression":{
       "type":"structure",
       "members":{
@@ -7417,6 +8575,7 @@
         "parameterFilter":{"shape":"ParameterFilterExpression"},
         "searchTermFilter":{"shape":"SearchTermFilterExpression"},
         "stringFilter":{"shape":"StringFilterExpression"},
+        "stringListFilter":{"shape":"StringListFilterExpression"},
         "groupFilter":{"shape":"SearchGroupedFilterExpressions"}
       },
       "union":true
@@ -7442,8 +8601,8 @@
       "type":"structure",
       "required":[
         "farmId",
-        "queueIds",
-        "itemOffset"
+        "itemOffset",
+        "queueIds"
       ],
       "members":{
         "farmId":{
@@ -7451,11 +8610,11 @@
           "location":"uri",
           "locationName":"farmId"
         },
-        "queueIds":{"shape":"SearchJobsRequestQueueIdsList"},
         "filterExpressions":{"shape":"SearchGroupedFilterExpressions"},
         "sortExpressions":{"shape":"SearchSortExpressions"},
         "itemOffset":{"shape":"SearchJobsRequestItemOffsetInteger"},
-        "pageSize":{"shape":"SearchJobsRequestPageSizeInteger"}
+        "pageSize":{"shape":"SearchJobsRequestPageSizeInteger"},
+        "queueIds":{"shape":"SearchJobsRequestQueueIdsList"}
       }
     },
     "SearchJobsRequestItemOffsetInteger":{
@@ -7507,8 +8666,8 @@
       "type":"structure",
       "required":[
         "farmId",
-        "queueIds",
-        "itemOffset"
+        "itemOffset",
+        "queueIds"
       ],
       "members":{
         "farmId":{
@@ -7516,12 +8675,12 @@
           "location":"uri",
           "locationName":"farmId"
         },
-        "queueIds":{"shape":"SearchStepsRequestQueueIdsList"},
-        "jobId":{"shape":"JobId"},
         "filterExpressions":{"shape":"SearchGroupedFilterExpressions"},
         "sortExpressions":{"shape":"SearchSortExpressions"},
         "itemOffset":{"shape":"SearchStepsRequestItemOffsetInteger"},
-        "pageSize":{"shape":"SearchStepsRequestPageSizeInteger"}
+        "pageSize":{"shape":"SearchStepsRequestPageSizeInteger"},
+        "queueIds":{"shape":"SearchStepsRequestQueueIdsList"},
+        "jobId":{"shape":"JobId"}
       }
     },
     "SearchStepsRequestItemOffsetInteger":{
@@ -7558,8 +8717,8 @@
       "type":"structure",
       "required":[
         "farmId",
-        "queueIds",
-        "itemOffset"
+        "itemOffset",
+        "queueIds"
       ],
       "members":{
         "farmId":{
@@ -7567,12 +8726,12 @@
           "location":"uri",
           "locationName":"farmId"
         },
-        "queueIds":{"shape":"SearchTasksRequestQueueIdsList"},
-        "jobId":{"shape":"JobId"},
         "filterExpressions":{"shape":"SearchGroupedFilterExpressions"},
         "sortExpressions":{"shape":"SearchSortExpressions"},
         "itemOffset":{"shape":"SearchTasksRequestItemOffsetInteger"},
-        "pageSize":{"shape":"SearchTasksRequestPageSizeInteger"}
+        "pageSize":{"shape":"SearchTasksRequestPageSizeInteger"},
+        "queueIds":{"shape":"SearchTasksRequestQueueIdsList"},
+        "jobId":{"shape":"JobId"}
       }
     },
     "SearchTasksRequestItemOffsetInteger":{
@@ -7629,8 +8788,8 @@
       "type":"structure",
       "required":[
         "farmId",
-        "fleetIds",
-        "itemOffset"
+        "itemOffset",
+        "fleetIds"
       ],
       "members":{
         "farmId":{
@@ -7638,11 +8797,11 @@
           "location":"uri",
           "locationName":"farmId"
         },
-        "fleetIds":{"shape":"SearchWorkersRequestFleetIdsList"},
         "filterExpressions":{"shape":"SearchGroupedFilterExpressions"},
         "sortExpressions":{"shape":"SearchSortExpressions"},
         "itemOffset":{"shape":"SearchWorkersRequestItemOffsetInteger"},
-        "pageSize":{"shape":"SearchWorkersRequestPageSizeInteger"}
+        "pageSize":{"shape":"SearchWorkersRequestPageSizeInteger"},
+        "fleetIds":{"shape":"SearchWorkersRequestFleetIdsList"}
       }
     },
     "SearchWorkersRequestFleetIdsList":{
@@ -7683,6 +8842,14 @@
       "type":"string",
       "pattern":"sg-[\\w]{1,120}"
     },
+    "ServiceManagedEc2AutoScalingConfiguration":{
+      "type":"structure",
+      "members":{
+        "standbyWorkerCount":{"shape":"MinZeroMaxInteger"},
+        "workerIdleDurationSeconds":{"shape":"ServiceManagedEc2WorkerIdleDurationSeconds"},
+        "scaleOutWorkersPerMinute":{"shape":"MinOneMaxInteger"}
+      }
+    },
     "ServiceManagedEc2FleetConfiguration":{
       "type":"structure",
       "required":[
@@ -7693,7 +8860,8 @@
         "instanceCapabilities":{"shape":"ServiceManagedEc2InstanceCapabilities"},
         "instanceMarketOptions":{"shape":"ServiceManagedEc2InstanceMarketOptions"},
         "vpcConfiguration":{"shape":"VpcConfiguration"},
-        "storageProfileId":{"shape":"StorageProfileId"}
+        "storageProfileId":{"shape":"StorageProfileId"},
+        "autoScalingConfiguration":{"shape":"ServiceManagedEc2AutoScalingConfiguration"}
       }
     },
     "ServiceManagedEc2InstanceCapabilities":{
@@ -7723,6 +8891,12 @@
       "members":{
         "type":{"shape":"Ec2MarketType"}
       }
+    },
+    "ServiceManagedEc2WorkerIdleDurationSeconds":{
+      "type":"integer",
+      "box":true,
+      "max":86400,
+      "min":0
     },
     "ServiceManagedFleetOperatingSystemFamily":{
       "type":"string",
@@ -7839,8 +9013,8 @@
         "endedAt":{"shape":"EndedAt"},
         "workerUpdatedAt":{"shape":"Timestamp"},
         "progressPercent":{"shape":"SessionActionProgressPercent"},
-        "definition":{"shape":"SessionActionDefinitionSummary"},
-        "manifests":{"shape":"TaskRunManifestPropertiesListResponse"}
+        "manifests":{"shape":"TaskRunManifestPropertiesListResponse"},
+        "definition":{"shape":"SessionActionDefinitionSummary"}
       }
     },
     "SessionId":{
@@ -7881,9 +9055,9 @@
         "startedAt":{"shape":"StartedAt"},
         "lifecycleStatus":{"shape":"SessionLifecycleStatus"},
         "endedAt":{"shape":"EndedAt"},
+        "targetLifecycleStatus":{"shape":"SessionLifecycleTargetStatus"},
         "updatedAt":{"shape":"UpdatedAt"},
-        "updatedBy":{"shape":"UpdatedBy"},
-        "targetLifecycleStatus":{"shape":"SessionLifecycleTargetStatus"}
+        "updatedBy":{"shape":"UpdatedBy"}
       }
     },
     "SessionToken":{
@@ -7918,6 +9092,24 @@
       "member":{"shape":"QueueId"},
       "max":10,
       "min":1
+    },
+    "SettingKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z][a-zA-Z0-9_.:-]*"
+    },
+    "SettingValue":{
+      "type":"string",
+      "max":8192,
+      "min":0
+    },
+    "SettingsMap":{
+      "type":"map",
+      "key":{"shape":"SettingKey"},
+      "value":{"shape":"SettingValue"},
+      "max":64,
+      "min":0
     },
     "SortOrder":{
       "type":"string",
@@ -8011,7 +9203,7 @@
       "type":"list",
       "member":{"shape":"StepAmountCapability"},
       "max":25,
-      "min":1
+      "min":0
     },
     "StepAmountCapability":{
       "type":"structure",
@@ -8027,7 +9219,7 @@
       "type":"list",
       "member":{"shape":"StepAttributeCapability"},
       "max":25,
-      "min":1
+      "min":0
     },
     "StepAttributeCapability":{
       "type":"structure",
@@ -8143,7 +9335,20 @@
       ],
       "members":{
         "name":{"shape":"StepParameterName"},
-        "type":{"shape":"StepParameterType"}
+        "type":{"shape":"StepParameterType"},
+        "chunks":{"shape":"StepParameterChunks"}
+      }
+    },
+    "StepParameterChunks":{
+      "type":"structure",
+      "required":[
+        "defaultTaskCount",
+        "rangeConstraint"
+      ],
+      "members":{
+        "defaultTaskCount":{"shape":"DefaultTaskCount"},
+        "targetRuntimeSeconds":{"shape":"TargetRuntimeSeconds"},
+        "rangeConstraint":{"shape":"RangeConstraint"}
       }
     },
     "StepParameterList":{
@@ -8294,9 +9499,28 @@
         "value":{"shape":"StringFilter"}
       }
     },
+    "StringFilterList":{
+      "type":"list",
+      "member":{"shape":"StringFilter"},
+      "max":16,
+      "min":1
+    },
     "StringList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "StringListFilterExpression":{
+      "type":"structure",
+      "required":[
+        "name",
+        "operator",
+        "values"
+      ],
+      "members":{
+        "name":{"shape":"String"},
+        "operator":{"shape":"ComparisonOperator"},
+        "values":{"shape":"StringFilterList"}
+      }
     },
     "Subdomain":{
       "type":"string",
@@ -8345,13 +9569,18 @@
     },
     "TagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "Tags":{
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"String"}
+    },
+    "TargetRuntimeSeconds":{
+      "type":"integer",
+      "box":true,
+      "max":2147483647,
+      "min":0
     },
     "TaskFailureRetryCount":{
       "type":"integer",
@@ -8482,7 +9711,8 @@
         "startedAt":{"shape":"StartedAt"},
         "endedAt":{"shape":"EndedAt"},
         "updatedAt":{"shape":"UpdatedAt"},
-        "updatedBy":{"shape":"UpdatedBy"}
+        "updatedBy":{"shape":"UpdatedBy"},
+        "latestSessionActionId":{"shape":"SessionActionId"}
       }
     },
     "TaskSummaries":{
@@ -8504,12 +9734,12 @@
         "runStatus":{"shape":"TaskRunStatus"},
         "targetRunStatus":{"shape":"TaskTargetRunStatus"},
         "failureRetryCount":{"shape":"TaskRetryCount"},
-        "parameters":{"shape":"TaskParameters"},
         "startedAt":{"shape":"StartedAt"},
         "endedAt":{"shape":"EndedAt"},
         "updatedAt":{"shape":"UpdatedAt"},
         "updatedBy":{"shape":"UpdatedBy"},
-        "latestSessionActionId":{"shape":"SessionActionId"}
+        "latestSessionActionId":{"shape":"SessionActionId"},
+        "parameters":{"shape":"TaskParameters"}
       }
     },
     "TaskTargetRunStatus":{
@@ -8587,8 +9817,7 @@
     },
     "UntagResourceResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateBudgetRequest":{
       "type":"structure",
@@ -8597,12 +9826,6 @@
         "budgetId"
       ],
       "members":{
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true,
-          "location":"header",
-          "locationName":"X-Amz-Client-Token"
-        },
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
@@ -8612,6 +9835,12 @@
           "shape":"BudgetId",
           "location":"uri",
           "locationName":"budgetId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
         },
         "displayName":{"shape":"ResourceName"},
         "description":{"shape":"Description"},
@@ -8624,8 +9853,7 @@
     },
     "UpdateBudgetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateFarmRequest":{
       "type":"structure",
@@ -8637,13 +9865,13 @@
           "locationName":"farmId"
         },
         "displayName":{"shape":"ResourceName"},
-        "description":{"shape":"Description"}
+        "description":{"shape":"Description"},
+        "costScaleFactor":{"shape":"CostScaleFactor"}
       }
     },
     "UpdateFarmResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateFleetRequest":{
       "type":"structure",
@@ -8652,12 +9880,6 @@
         "fleetId"
       ],
       "members":{
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true,
-          "location":"header",
-          "locationName":"X-Amz-Client-Token"
-        },
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
@@ -8667,6 +9889,12 @@
           "shape":"FleetId",
           "location":"uri",
           "locationName":"fleetId"
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
         },
         "displayName":{"shape":"ResourceName"},
         "description":{"shape":"Description"},
@@ -8679,8 +9907,7 @@
     },
     "UpdateFleetResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateJobLifecycleStatus":{
       "type":"string",
@@ -8694,18 +9921,6 @@
         "jobId"
       ],
       "members":{
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true,
-          "location":"header",
-          "locationName":"X-Amz-Client-Token"
-        },
-        "targetTaskRunStatus":{"shape":"JobTargetTaskRunStatus"},
-        "priority":{"shape":"JobPriority"},
-        "maxFailedTasksCount":{"shape":"MaxFailedTasksCount"},
-        "maxRetriesPerTask":{"shape":"MaxRetriesPerTask"},
-        "lifecycleStatus":{"shape":"UpdateJobLifecycleStatus"},
-        "maxWorkerCount":{"shape":"MaxWorkerCount"},
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
@@ -8720,13 +9935,26 @@
           "shape":"JobId",
           "location":"uri",
           "locationName":"jobId"
-        }
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
+        },
+        "targetTaskRunStatus":{"shape":"JobTargetTaskRunStatus"},
+        "priority":{"shape":"JobPriority"},
+        "maxFailedTasksCount":{"shape":"MaxFailedTasksCount"},
+        "maxRetriesPerTask":{"shape":"MaxRetriesPerTask"},
+        "lifecycleStatus":{"shape":"UpdateJobLifecycleStatus"},
+        "maxWorkerCount":{"shape":"MaxWorkerCount"},
+        "name":{"shape":"JobName"},
+        "description":{"shape":"JobDescriptionOverride"}
       }
     },
     "UpdateJobResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateLimitRequest":{
       "type":"structure",
@@ -8752,8 +9980,7 @@
     },
     "UpdateLimitResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateMonitorRequest":{
       "type":"structure",
@@ -8771,8 +9998,26 @@
     },
     "UpdateMonitorResponse":{
       "type":"structure",
+      "members":{}
+    },
+    "UpdateMonitorSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "monitorId",
+        "settings"
+      ],
       "members":{
+        "monitorId":{
+          "shape":"MonitorId",
+          "location":"uri",
+          "locationName":"monitorId"
+        },
+        "settings":{"shape":"SettingsMap"}
       }
+    },
+    "UpdateMonitorSettingsResponse":{
+      "type":"structure",
+      "members":{}
     },
     "UpdateQueueEnvironmentRequest":{
       "type":"structure",
@@ -8782,12 +10027,6 @@
         "queueEnvironmentId"
       ],
       "members":{
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true,
-          "location":"header",
-          "locationName":"X-Amz-Client-Token"
-        },
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
@@ -8803,6 +10042,12 @@
           "location":"uri",
           "locationName":"queueEnvironmentId"
         },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
+        },
         "priority":{"shape":"Priority"},
         "templateType":{"shape":"EnvironmentTemplateType"},
         "template":{"shape":"EnvironmentTemplate"}
@@ -8810,8 +10055,7 @@
     },
     "UpdateQueueEnvironmentResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateQueueFleetAssociationRequest":{
       "type":"structure",
@@ -8842,8 +10086,7 @@
     },
     "UpdateQueueFleetAssociationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateQueueFleetAssociationStatus":{
       "type":"string",
@@ -8882,8 +10125,7 @@
     },
     "UpdateQueueLimitAssociationResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateQueueLimitAssociationStatus":{
       "type":"string",
@@ -8900,12 +10142,6 @@
         "queueId"
       ],
       "members":{
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true,
-          "location":"header",
-          "locationName":"X-Amz-Client-Token"
-        },
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
@@ -8916,6 +10152,12 @@
           "location":"uri",
           "locationName":"queueId"
         },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
+        },
         "displayName":{"shape":"ResourceName"},
         "description":{"shape":"Description"},
         "defaultBudgetAction":{"shape":"DefaultQueueBudgetAction"},
@@ -8925,31 +10167,24 @@
         "requiredFileSystemLocationNamesToAdd":{"shape":"RequiredFileSystemLocationNames"},
         "requiredFileSystemLocationNamesToRemove":{"shape":"RequiredFileSystemLocationNames"},
         "allowedStorageProfileIdsToAdd":{"shape":"AllowedStorageProfileIds"},
-        "allowedStorageProfileIdsToRemove":{"shape":"AllowedStorageProfileIds"}
+        "allowedStorageProfileIdsToRemove":{"shape":"AllowedStorageProfileIds"},
+        "schedulingConfiguration":{"shape":"SchedulingConfiguration"}
       }
     },
     "UpdateQueueResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateSessionRequest":{
       "type":"structure",
       "required":[
-        "targetLifecycleStatus",
         "farmId",
         "queueId",
         "jobId",
-        "sessionId"
+        "sessionId",
+        "targetLifecycleStatus"
       ],
       "members":{
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true,
-          "location":"header",
-          "locationName":"X-Amz-Client-Token"
-        },
-        "targetLifecycleStatus":{"shape":"SessionLifecycleTargetStatus"},
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
@@ -8969,31 +10204,30 @@
           "shape":"SessionId",
           "location":"uri",
           "locationName":"sessionId"
-        }
-      }
-    },
-    "UpdateSessionResponse":{
-      "type":"structure",
-      "members":{
-      }
-    },
-    "UpdateStepRequest":{
-      "type":"structure",
-      "required":[
-        "targetTaskRunStatus",
-        "farmId",
-        "queueId",
-        "jobId",
-        "stepId"
-      ],
-      "members":{
-        "targetTaskRunStatus":{"shape":"StepTargetTaskRunStatus"},
+        },
         "clientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true,
           "location":"header",
           "locationName":"X-Amz-Client-Token"
         },
+        "targetLifecycleStatus":{"shape":"SessionLifecycleTargetStatus"}
+      }
+    },
+    "UpdateSessionResponse":{
+      "type":"structure",
+      "members":{}
+    },
+    "UpdateStepRequest":{
+      "type":"structure",
+      "required":[
+        "farmId",
+        "queueId",
+        "jobId",
+        "stepId",
+        "targetTaskRunStatus"
+      ],
+      "members":{
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
@@ -9013,13 +10247,19 @@
           "shape":"StepId",
           "location":"uri",
           "locationName":"stepId"
-        }
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
+        },
+        "targetTaskRunStatus":{"shape":"StepTargetTaskRunStatus"}
       }
     },
     "UpdateStepResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateStorageProfileRequest":{
       "type":"structure",
@@ -9028,12 +10268,6 @@
         "storageProfileId"
       ],
       "members":{
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true,
-          "location":"header",
-          "locationName":"X-Amz-Client-Token"
-        },
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
@@ -9044,6 +10278,12 @@
           "location":"uri",
           "locationName":"storageProfileId"
         },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
+        },
         "displayName":{"shape":"ResourceName"},
         "osFamily":{"shape":"StorageProfileOperatingSystemFamily"},
         "fileSystemLocationsToAdd":{"shape":"FileSystemLocationsList"},
@@ -9052,27 +10292,19 @@
     },
     "UpdateStorageProfileResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateTaskRequest":{
       "type":"structure",
       "required":[
-        "targetRunStatus",
         "farmId",
         "queueId",
         "jobId",
         "stepId",
-        "taskId"
+        "taskId",
+        "targetRunStatus"
       ],
       "members":{
-        "clientToken":{
-          "shape":"ClientToken",
-          "idempotencyToken":true,
-          "location":"header",
-          "locationName":"X-Amz-Client-Token"
-        },
-        "targetRunStatus":{"shape":"TaskTargetRunStatus"},
         "farmId":{
           "shape":"FarmId",
           "location":"uri",
@@ -9097,13 +10329,19 @@
           "shape":"TaskId",
           "location":"uri",
           "locationName":"taskId"
-        }
+        },
+        "clientToken":{
+          "shape":"ClientToken",
+          "idempotencyToken":true,
+          "location":"header",
+          "locationName":"X-Amz-Client-Token"
+        },
+        "targetRunStatus":{"shape":"TaskTargetRunStatus"}
       }
     },
     "UpdateTaskResponse":{
       "type":"structure",
-      "members":{
-      }
+      "members":{}
     },
     "UpdateWorkerRequest":{
       "type":"structure",
@@ -9341,7 +10579,21 @@
     },
     "VpcResourceConfigurationArns":{
       "type":"list",
-      "member":{"shape":"VpcResourceConfigurationArn"}
+      "member":{"shape":"VpcResourceConfigurationArn"},
+      "max":10,
+      "min":0
+    },
+    "WeightedBalancedSchedulingConfiguration":{
+      "type":"structure",
+      "members":{
+        "priorityWeight":{"shape":"SchedulingPriorityWeight"},
+        "errorWeight":{"shape":"SchedulingErrorWeight"},
+        "submissionTimeWeight":{"shape":"SchedulingSubmissionTimeWeight"},
+        "renderingTaskWeight":{"shape":"SchedulingRenderingTaskWeight"},
+        "renderingTaskBuffer":{"shape":"SchedulingRenderingTaskBuffer"},
+        "maxPriorityOverride":{"shape":"SchedulingMaxPriorityOverride"},
+        "minPriorityOverride":{"shape":"SchedulingMinPriorityOverride"}
+      }
     },
     "WindowsUser":{
       "type":"structure",
@@ -9471,19 +10723,19 @@
     "WorkerSummary":{
       "type":"structure",
       "required":[
-        "workerId",
         "farmId",
         "fleetId",
+        "workerId",
         "status",
         "createdAt",
         "createdBy"
       ],
       "members":{
-        "workerId":{"shape":"WorkerId"},
         "farmId":{"shape":"FarmId"},
         "fleetId":{"shape":"FleetId"},
-        "status":{"shape":"WorkerStatus"},
+        "workerId":{"shape":"WorkerId"},
         "hostProperties":{"shape":"HostPropertiesResponse"},
+        "status":{"shape":"WorkerStatus"},
         "log":{"shape":"LogConfiguration"},
         "createdAt":{"shape":"CreatedAt"},
         "createdBy":{"shape":"CreatedBy"},

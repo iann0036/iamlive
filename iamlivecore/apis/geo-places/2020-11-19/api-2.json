@@ -17,7 +17,7 @@
       "name":"Autocomplete",
       "http":{
         "method":"POST",
-        "requestUri":"/autocomplete",
+        "requestUri":"/v2/autocomplete",
         "responseCode":200
       },
       "input":{"shape":"AutocompleteRequest"},
@@ -27,13 +27,14 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "Geocode":{
       "name":"Geocode",
       "http":{
         "method":"POST",
-        "requestUri":"/geocode",
+        "requestUri":"/v2/geocode",
         "responseCode":200
       },
       "input":{"shape":"GeocodeRequest"},
@@ -43,13 +44,14 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "GetPlace":{
       "name":"GetPlace",
       "http":{
         "method":"GET",
-        "requestUri":"/place/{PlaceId}",
+        "requestUri":"/v2/place/{PlaceId}",
         "responseCode":200
       },
       "input":{"shape":"GetPlaceRequest"},
@@ -59,13 +61,14 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "ReverseGeocode":{
       "name":"ReverseGeocode",
       "http":{
         "method":"POST",
-        "requestUri":"/reverse-geocode",
+        "requestUri":"/v2/reverse-geocode",
         "responseCode":200
       },
       "input":{"shape":"ReverseGeocodeRequest"},
@@ -75,13 +78,14 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "SearchNearby":{
       "name":"SearchNearby",
       "http":{
         "method":"POST",
-        "requestUri":"/search-nearby",
+        "requestUri":"/v2/search-nearby",
         "responseCode":200
       },
       "input":{"shape":"SearchNearbyRequest"},
@@ -91,13 +95,14 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "SearchText":{
       "name":"SearchText",
       "http":{
         "method":"POST",
-        "requestUri":"/search-text",
+        "requestUri":"/v2/search-text",
         "responseCode":200
       },
       "input":{"shape":"SearchTextRequest"},
@@ -107,13 +112,14 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     },
     "Suggest":{
       "name":"Suggest",
       "http":{
         "method":"POST",
-        "requestUri":"/suggest",
+        "requestUri":"/v2/suggest",
         "responseCode":200
       },
       "input":{"shape":"SuggestRequest"},
@@ -123,7 +129,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"}
-      ]
+      ],
+      "readonly":true
     }
   },
   "shapes":{
@@ -699,7 +706,7 @@
     "GeocodeAdditionalFeatureList":{
       "type":"list",
       "member":{"shape":"GeocodeAdditionalFeature"},
-      "max":2,
+      "max":4,
       "min":1
     },
     "GeocodeFilter":{
@@ -931,7 +938,7 @@
     "GetPlaceAdditionalFeatureList":{
       "type":"list",
       "member":{"shape":"GetPlaceAdditionalFeature"},
-      "max":4,
+      "max":5,
       "min":1
     },
     "GetPlaceIntendedUse":{
@@ -1029,6 +1036,12 @@
       "type":"string",
       "max":200,
       "min":0,
+      "sensitive":true
+    },
+    "Heading":{
+      "type":"double",
+      "max":360.0,
+      "min":0.0,
       "sensitive":true
     },
     "Highlight":{
@@ -1340,7 +1353,8 @@
         "PointOfInterest",
         "PointAddress",
         "InterpolatedAddress",
-        "SecondaryAddress"
+        "SecondaryAddress",
+        "InferredSecondaryAddress"
       ],
       "sensitive":true
     },
@@ -1525,7 +1539,7 @@
     "ReverseGeocodeAdditionalFeatureList":{
       "type":"list",
       "member":{"shape":"ReverseGeocodeAdditionalFeature"},
-      "max":2,
+      "max":3,
       "min":1
     },
     "ReverseGeocodeFilter":{
@@ -1576,7 +1590,8 @@
           "shape":"ApiKey",
           "location":"querystring",
           "locationName":"key"
-        }
+        },
+        "Heading":{"shape":"Heading"}
       }
     },
     "ReverseGeocodeRequestMaxResultsInteger":{
@@ -1906,13 +1921,20 @@
       "type":"structure",
       "required":["Number"],
       "members":{
-        "Number":{"shape":"SecondaryAddressComponentNumberString"}
+        "Number":{"shape":"SecondaryAddressComponentNumberString"},
+        "Designator":{"shape":"SecondaryAddressComponentDesignatorString"}
       }
+    },
+    "SecondaryAddressComponentDesignatorString":{
+      "type":"string",
+      "max":20,
+      "min":0,
+      "sensitive":true
     },
     "SecondaryAddressComponentList":{
       "type":"list",
       "member":{"shape":"SecondaryAddressComponent"},
-      "max":1,
+      "max":3,
       "min":0
     },
     "SecondaryAddressComponentMatchScore":{

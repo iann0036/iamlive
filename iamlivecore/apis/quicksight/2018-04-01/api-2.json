@@ -1311,6 +1311,24 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DescribeAutomationJob":{
+      "name":"DescribeAutomationJob",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/automation-groups/{AutomationGroupId}/automations/{AutomationId}/jobs/{JobId}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeAutomationJobRequest"},
+      "output":{"shape":"DescribeAutomationJobResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ],
+      "readonly":true
+    },
     "DescribeBrand":{
       "name":"DescribeBrand",
       "http":{
@@ -1827,6 +1845,25 @@
         {"shape":"ResourceUnavailableException"}
       ]
     },
+    "DescribeSelfUpgradeConfiguration":{
+      "name":"DescribeSelfUpgradeConfiguration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/namespaces/{Namespace}/self-upgrade-configuration"
+      },
+      "input":{"shape":"DescribeSelfUpgradeConfigurationRequest"},
+      "output":{"shape":"DescribeSelfUpgradeConfigurationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "DescribeTemplate":{
       "name":"DescribeTemplate",
       "http":{
@@ -2166,6 +2203,24 @@
         {"shape":"AccessDeniedException"}
       ],
       "readonly":true
+    },
+    "GetIdentityContext":{
+      "name":"GetIdentityContext",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/identity-context",
+        "responseCode":200
+      },
+      "input":{"shape":"GetIdentityContextRequest"},
+      "output":{"shape":"GetIdentityContextResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"}
+      ]
     },
     "GetSessionEmbedUrl":{
       "name":"GetSessionEmbedUrl",
@@ -2579,6 +2634,26 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"InvalidNextTokenException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
+    "ListSelfUpgrades":{
+      "name":"ListSelfUpgrades",
+      "http":{
+        "method":"GET",
+        "requestUri":"/accounts/{AwsAccountId}/namespaces/{Namespace}/self-upgrade-requests"
+      },
+      "input":{"shape":"ListSelfUpgradesRequest"},
+      "output":{"shape":"ListSelfUpgradesResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ThrottlingException"},
         {"shape":"PreconditionNotMetException"},
         {"shape":"LimitExceededException"},
         {"shape":"InternalFailureException"},
@@ -3074,6 +3149,24 @@
         {"shape":"LimitExceededException"},
         {"shape":"ConflictException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "StartAutomationJob":{
+      "name":"StartAutomationJob",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/automation-groups/{AutomationGroupId}/automations/{AutomationId}/jobs",
+        "responseCode":200
+      },
+      "input":{"shape":"StartAutomationJobRequest"},
+      "output":{"shape":"StartAutomationJobResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"AccessDeniedException"}
       ]
     },
     "StartDashboardSnapshotJob":{
@@ -3786,6 +3879,45 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "UpdateSelfUpgrade":{
+      "name":"UpdateSelfUpgrade",
+      "http":{
+        "method":"POST",
+        "requestUri":"/accounts/{AwsAccountId}/namespaces/{Namespace}/update-self-upgrade-request"
+      },
+      "input":{"shape":"UpdateSelfUpgradeRequest"},
+      "output":{"shape":"UpdateSelfUpgradeResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
+    "UpdateSelfUpgradeConfiguration":{
+      "name":"UpdateSelfUpgradeConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/accounts/{AwsAccountId}/namespaces/{Namespace}/self-upgrade-configuration"
+      },
+      "input":{"shape":"UpdateSelfUpgradeConfigurationRequest"},
+      "output":{"shape":"UpdateSelfUpgradeConfigurationResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"PreconditionNotMetException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceUnavailableException"}
+      ]
+    },
     "UpdateTemplate":{
       "name":"UpdateTemplate",
       "http":{
@@ -4466,6 +4598,7 @@
       "members":{
         "DataSetIdentifierDeclarations":{"shape":"DataSetIdentifierDeclarationList"},
         "Sheets":{"shape":"SheetDefinitionList"},
+        "TooltipSheets":{"shape":"TooltipSheetDefinitionList"},
         "CalculatedFields":{"shape":"CalculatedFields"},
         "ParameterDeclarations":{"shape":"ParameterDeclarationList"},
         "FilterGroups":{"shape":"FilterGroupList"},
@@ -5649,6 +5782,7 @@
       "members":{
         "WorkGroup":{"shape":"WorkGroup"},
         "RoleArn":{"shape":"RoleArn"},
+        "ConsumerAccountRoleArn":{"shape":"RoleArn"},
         "IdentityCenterConfiguration":{"shape":"IdentityCenterConfiguration"}
       }
     },
@@ -5721,6 +5855,7 @@
       "type":"string",
       "enum":[
         "PASSWORD",
+        "KEYPAIR",
         "TOKEN",
         "X509"
       ]
@@ -5799,6 +5934,20 @@
     "AuthorizedTargetsList":{
       "type":"list",
       "member":{"shape":"String"}
+    },
+    "AutomateId":{
+      "type":"string",
+      "pattern":"[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}"
+    },
+    "AutomationJobStatus":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "RUNNING",
+        "SUCCEEDED",
+        "QUEUED",
+        "STOPPED"
+      ]
     },
     "AwsAccountId":{
       "type":"string",
@@ -5952,12 +6101,21 @@
         "ValueAxis":{"shape":"AxisDisplayOptions"},
         "ValueLabelOptions":{"shape":"ChartAxisLabelOptions"},
         "ColorLabelOptions":{"shape":"ChartAxisLabelOptions"},
+        "DefaultSeriesSettings":{"shape":"BarChartDefaultSeriesSettings"},
+        "Series":{"shape":"BarSeriesItemList"},
         "Legend":{"shape":"LegendOptions"},
         "DataLabels":{"shape":"DataLabelOptions"},
         "Tooltip":{"shape":"TooltipOptions"},
         "ReferenceLines":{"shape":"ReferenceLineList"},
         "ContributionAnalysisDefaults":{"shape":"ContributionAnalysisDefaultList"},
         "Interactions":{"shape":"VisualInteractionOptions"}
+      }
+    },
+    "BarChartDefaultSeriesSettings":{
+      "type":"structure",
+      "members":{
+        "DecalSettings":{"shape":"DecalSettings"},
+        "BorderSettings":{"shape":"BorderSettings"}
       }
     },
     "BarChartFieldWells":{
@@ -5972,6 +6130,13 @@
         "HORIZONTAL",
         "VERTICAL"
       ]
+    },
+    "BarChartSeriesSettings":{
+      "type":"structure",
+      "members":{
+        "DecalSettings":{"shape":"DecalSettings"},
+        "BorderSettings":{"shape":"BorderSettings"}
+      }
     },
     "BarChartSortConfiguration":{
       "type":"structure",
@@ -5996,6 +6161,18 @@
         "ColumnHierarchies":{"shape":"ColumnHierarchyList"},
         "VisualContentAltText":{"shape":"LongPlainText"}
       }
+    },
+    "BarSeriesItem":{
+      "type":"structure",
+      "members":{
+        "FieldBarSeriesItem":{"shape":"FieldBarSeriesItem"},
+        "DataFieldBarSeriesItem":{"shape":"DataFieldBarSeriesItem"}
+      }
+    },
+    "BarSeriesItemList":{
+      "type":"list",
+      "member":{"shape":"BarSeriesItem"},
+      "max":2000
     },
     "BarsArrangement":{
       "type":"string",
@@ -6224,13 +6401,27 @@
     },
     "Boolean":{"type":"boolean"},
     "BooleanObject":{"type":"boolean"},
+    "BorderRadius":{
+      "type":"string",
+      "max":50
+    },
+    "BorderSettings":{
+      "type":"structure",
+      "members":{
+        "BorderVisibility":{"shape":"Visibility"},
+        "BorderWidth":{"shape":"PixelLength"},
+        "BorderColor":{"shape":"HexColorWithTransparency"}
+      }
+    },
     "BorderStyle":{
       "type":"structure",
       "members":{
+        "Color":{"shape":"Color"},
         "Show":{
           "shape":"Boolean",
           "box":true
-        }
+        },
+        "Width":{"shape":"Width"}
       }
     },
     "BoxPlotAggregatedFieldWells":{
@@ -6526,13 +6717,197 @@
         "PublishWithoutApproval":{"shape":"CapabilityState"},
         "UseBedrockModels":{"shape":"CapabilityState"},
         "PerformFlowUiTask":{"shape":"CapabilityState"},
+        "ApproveFlowShareRequests":{"shape":"CapabilityState"},
         "UseAgentWebSearch":{"shape":"CapabilityState"},
         "KnowledgeBase":{"shape":"CapabilityState"},
         "Action":{"shape":"CapabilityState"},
+        "GenericHTTPAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateGenericHTTPAction":{"shape":"CapabilityState"},
+        "ShareGenericHTTPAction":{"shape":"CapabilityState"},
+        "UseGenericHTTPAction":{"shape":"CapabilityState"},
+        "AsanaAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateAsanaAction":{"shape":"CapabilityState"},
+        "ShareAsanaAction":{"shape":"CapabilityState"},
+        "UseAsanaAction":{"shape":"CapabilityState"},
+        "SlackAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateSlackAction":{"shape":"CapabilityState"},
+        "ShareSlackAction":{"shape":"CapabilityState"},
+        "UseSlackAction":{"shape":"CapabilityState"},
+        "ServiceNowAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateServiceNowAction":{"shape":"CapabilityState"},
+        "ShareServiceNowAction":{"shape":"CapabilityState"},
+        "UseServiceNowAction":{"shape":"CapabilityState"},
+        "SalesforceAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateSalesforceAction":{"shape":"CapabilityState"},
+        "ShareSalesforceAction":{"shape":"CapabilityState"},
+        "UseSalesforceAction":{"shape":"CapabilityState"},
+        "MSExchangeAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateMSExchangeAction":{"shape":"CapabilityState"},
+        "ShareMSExchangeAction":{"shape":"CapabilityState"},
+        "UseMSExchangeAction":{"shape":"CapabilityState"},
+        "PagerDutyAction":{"shape":"CapabilityState"},
+        "CreateAndUpdatePagerDutyAction":{"shape":"CapabilityState"},
+        "SharePagerDutyAction":{"shape":"CapabilityState"},
+        "UsePagerDutyAction":{"shape":"CapabilityState"},
+        "JiraAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateJiraAction":{"shape":"CapabilityState"},
+        "ShareJiraAction":{"shape":"CapabilityState"},
+        "UseJiraAction":{"shape":"CapabilityState"},
+        "ConfluenceAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateConfluenceAction":{"shape":"CapabilityState"},
+        "ShareConfluenceAction":{"shape":"CapabilityState"},
+        "UseConfluenceAction":{"shape":"CapabilityState"},
+        "OneDriveAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateOneDriveAction":{"shape":"CapabilityState"},
+        "ShareOneDriveAction":{"shape":"CapabilityState"},
+        "UseOneDriveAction":{"shape":"CapabilityState"},
+        "SharePointAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateSharePointAction":{"shape":"CapabilityState"},
+        "ShareSharePointAction":{"shape":"CapabilityState"},
+        "UseSharePointAction":{"shape":"CapabilityState"},
+        "MSTeamsAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateMSTeamsAction":{"shape":"CapabilityState"},
+        "ShareMSTeamsAction":{"shape":"CapabilityState"},
+        "UseMSTeamsAction":{"shape":"CapabilityState"},
+        "GoogleCalendarAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateGoogleCalendarAction":{"shape":"CapabilityState"},
+        "ShareGoogleCalendarAction":{"shape":"CapabilityState"},
+        "UseGoogleCalendarAction":{"shape":"CapabilityState"},
+        "ZendeskAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateZendeskAction":{"shape":"CapabilityState"},
+        "ShareZendeskAction":{"shape":"CapabilityState"},
+        "UseZendeskAction":{"shape":"CapabilityState"},
+        "SmartsheetAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateSmartsheetAction":{"shape":"CapabilityState"},
+        "ShareSmartsheetAction":{"shape":"CapabilityState"},
+        "UseSmartsheetAction":{"shape":"CapabilityState"},
+        "SAPBusinessPartnerAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateSAPBusinessPartnerAction":{"shape":"CapabilityState"},
+        "ShareSAPBusinessPartnerAction":{"shape":"CapabilityState"},
+        "UseSAPBusinessPartnerAction":{"shape":"CapabilityState"},
+        "SAPProductMasterDataAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateSAPProductMasterDataAction":{"shape":"CapabilityState"},
+        "ShareSAPProductMasterDataAction":{"shape":"CapabilityState"},
+        "UseSAPProductMasterDataAction":{"shape":"CapabilityState"},
+        "SAPPhysicalInventoryAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateSAPPhysicalInventoryAction":{"shape":"CapabilityState"},
+        "ShareSAPPhysicalInventoryAction":{"shape":"CapabilityState"},
+        "UseSAPPhysicalInventoryAction":{"shape":"CapabilityState"},
+        "SAPBillOfMaterialAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateSAPBillOfMaterialAction":{"shape":"CapabilityState"},
+        "ShareSAPBillOfMaterialAction":{"shape":"CapabilityState"},
+        "UseSAPBillOfMaterialAction":{"shape":"CapabilityState"},
+        "SAPMaterialStockAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateSAPMaterialStockAction":{"shape":"CapabilityState"},
+        "ShareSAPMaterialStockAction":{"shape":"CapabilityState"},
+        "UseSAPMaterialStockAction":{"shape":"CapabilityState"},
+        "FactSetAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateFactSetAction":{"shape":"CapabilityState"},
+        "ShareFactSetAction":{"shape":"CapabilityState"},
+        "UseFactSetAction":{"shape":"CapabilityState"},
+        "AmazonSThreeAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateAmazonSThreeAction":{"shape":"CapabilityState"},
+        "ShareAmazonSThreeAction":{"shape":"CapabilityState"},
+        "UseAmazonSThreeAction":{"shape":"CapabilityState"},
+        "TextractAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateTextractAction":{"shape":"CapabilityState"},
+        "ShareTextractAction":{"shape":"CapabilityState"},
+        "UseTextractAction":{"shape":"CapabilityState"},
+        "ComprehendAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateComprehendAction":{"shape":"CapabilityState"},
+        "ShareComprehendAction":{"shape":"CapabilityState"},
+        "UseComprehendAction":{"shape":"CapabilityState"},
+        "ComprehendMedicalAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateComprehendMedicalAction":{"shape":"CapabilityState"},
+        "ShareComprehendMedicalAction":{"shape":"CapabilityState"},
+        "UseComprehendMedicalAction":{"shape":"CapabilityState"},
+        "AmazonBedrockARSAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateAmazonBedrockARSAction":{"shape":"CapabilityState"},
+        "ShareAmazonBedrockARSAction":{"shape":"CapabilityState"},
+        "UseAmazonBedrockARSAction":{"shape":"CapabilityState"},
+        "AmazonBedrockFSAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateAmazonBedrockFSAction":{"shape":"CapabilityState"},
+        "ShareAmazonBedrockFSAction":{"shape":"CapabilityState"},
+        "UseAmazonBedrockFSAction":{"shape":"CapabilityState"},
+        "AmazonBedrockKRSAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateAmazonBedrockKRSAction":{"shape":"CapabilityState"},
+        "ShareAmazonBedrockKRSAction":{"shape":"CapabilityState"},
+        "UseAmazonBedrockKRSAction":{"shape":"CapabilityState"},
+        "MCPAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateMCPAction":{"shape":"CapabilityState"},
+        "ShareMCPAction":{"shape":"CapabilityState"},
+        "UseMCPAction":{"shape":"CapabilityState"},
+        "OpenAPIAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateOpenAPIAction":{"shape":"CapabilityState"},
+        "ShareOpenAPIAction":{"shape":"CapabilityState"},
+        "UseOpenAPIAction":{"shape":"CapabilityState"},
+        "SandPGMIAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateSandPGMIAction":{"shape":"CapabilityState"},
+        "ShareSandPGMIAction":{"shape":"CapabilityState"},
+        "UseSandPGMIAction":{"shape":"CapabilityState"},
+        "SandPGlobalEnergyAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateSandPGlobalEnergyAction":{"shape":"CapabilityState"},
+        "ShareSandPGlobalEnergyAction":{"shape":"CapabilityState"},
+        "UseSandPGlobalEnergyAction":{"shape":"CapabilityState"},
+        "BambooHRAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateBambooHRAction":{"shape":"CapabilityState"},
+        "ShareBambooHRAction":{"shape":"CapabilityState"},
+        "UseBambooHRAction":{"shape":"CapabilityState"},
+        "BoxAgentAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateBoxAgentAction":{"shape":"CapabilityState"},
+        "ShareBoxAgentAction":{"shape":"CapabilityState"},
+        "UseBoxAgentAction":{"shape":"CapabilityState"},
+        "CanvaAgentAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateCanvaAgentAction":{"shape":"CapabilityState"},
+        "ShareCanvaAgentAction":{"shape":"CapabilityState"},
+        "UseCanvaAgentAction":{"shape":"CapabilityState"},
+        "GithubAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateGithubAction":{"shape":"CapabilityState"},
+        "ShareGithubAction":{"shape":"CapabilityState"},
+        "UseGithubAction":{"shape":"CapabilityState"},
+        "NotionAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateNotionAction":{"shape":"CapabilityState"},
+        "ShareNotionAction":{"shape":"CapabilityState"},
+        "UseNotionAction":{"shape":"CapabilityState"},
+        "LinearAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateLinearAction":{"shape":"CapabilityState"},
+        "ShareLinearAction":{"shape":"CapabilityState"},
+        "UseLinearAction":{"shape":"CapabilityState"},
+        "HuggingFaceAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateHuggingFaceAction":{"shape":"CapabilityState"},
+        "ShareHuggingFaceAction":{"shape":"CapabilityState"},
+        "UseHuggingFaceAction":{"shape":"CapabilityState"},
+        "MondayAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateMondayAction":{"shape":"CapabilityState"},
+        "ShareMondayAction":{"shape":"CapabilityState"},
+        "UseMondayAction":{"shape":"CapabilityState"},
+        "HubspotAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateHubspotAction":{"shape":"CapabilityState"},
+        "ShareHubspotAction":{"shape":"CapabilityState"},
+        "UseHubspotAction":{"shape":"CapabilityState"},
+        "IntercomAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateIntercomAction":{"shape":"CapabilityState"},
+        "ShareIntercomAction":{"shape":"CapabilityState"},
+        "UseIntercomAction":{"shape":"CapabilityState"},
+        "NewRelicAction":{"shape":"CapabilityState"},
+        "CreateAndUpdateNewRelicAction":{"shape":"CapabilityState"},
+        "ShareNewRelicAction":{"shape":"CapabilityState"},
+        "UseNewRelicAction":{"shape":"CapabilityState"},
+        "Topic":{"shape":"CapabilityState"},
+        "EditVisualWithQ":{"shape":"CapabilityState"},
+        "BuildCalculatedFieldWithQ":{"shape":"CapabilityState"},
+        "CreateDashboardExecutiveSummaryWithQ":{"shape":"CapabilityState"},
         "Space":{"shape":"CapabilityState"},
+        "CreateSpaces":{"shape":"CapabilityState"},
+        "ShareSpaces":{"shape":"CapabilityState"},
         "ChatAgent":{"shape":"CapabilityState"},
         "CreateChatAgents":{"shape":"CapabilityState"},
-        "Research":{"shape":"CapabilityState"}
+        "ShareChatAgents":{"shape":"CapabilityState"},
+        "Research":{"shape":"CapabilityState"},
+        "SelfUpgradeUserRole":{"shape":"CapabilityState"},
+        "Extension":{"shape":"CapabilityState"},
+        "ManageSharedFolders":{"shape":"CapabilityState"},
+        "GenerateAnalyses":{"shape":"CapabilityState"}
       }
     },
     "CapabilityState":{
@@ -6813,6 +7188,7 @@
       "member":{"shape":"CollectiveConstantEntry"},
       "max":2000
     },
+    "Color":{"type":"string"},
     "ColorFillType":{
       "type":"string",
       "enum":[
@@ -6856,7 +7232,8 @@
         "Column":{"shape":"ColumnIdentifier"},
         "FormatConfiguration":{"shape":"FormatConfiguration"},
         "Role":{"shape":"ColumnRole"},
-        "ColorsConfiguration":{"shape":"ColorsConfiguration"}
+        "ColorsConfiguration":{"shape":"ColorsConfiguration"},
+        "DecalSettingsConfiguration":{"shape":"DecalSettingsConfiguration"}
       }
     },
     "ColumnConfigurationList":{
@@ -7107,6 +7484,8 @@
         "SecondaryYAxisLabelOptions":{"shape":"ChartAxisLabelOptions"},
         "SingleAxisOptions":{"shape":"SingleAxisOptions"},
         "ColorLabelOptions":{"shape":"ChartAxisLabelOptions"},
+        "DefaultSeriesSettings":{"shape":"ComboChartDefaultSeriesSettings"},
+        "Series":{"shape":"ComboSeriesItemList"},
         "Legend":{"shape":"LegendOptions"},
         "BarDataLabels":{"shape":"DataLabelOptions"},
         "LineDataLabels":{"shape":"DataLabelOptions"},
@@ -7116,10 +7495,28 @@
         "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
+    "ComboChartDefaultSeriesSettings":{
+      "type":"structure",
+      "members":{
+        "LineStyleSettings":{"shape":"LineChartLineStyleSettings"},
+        "MarkerStyleSettings":{"shape":"LineChartMarkerStyleSettings"},
+        "DecalSettings":{"shape":"DecalSettings"},
+        "BorderSettings":{"shape":"BorderSettings"}
+      }
+    },
     "ComboChartFieldWells":{
       "type":"structure",
       "members":{
         "ComboChartAggregatedFieldWells":{"shape":"ComboChartAggregatedFieldWells"}
+      }
+    },
+    "ComboChartSeriesSettings":{
+      "type":"structure",
+      "members":{
+        "LineStyleSettings":{"shape":"LineChartLineStyleSettings"},
+        "MarkerStyleSettings":{"shape":"LineChartMarkerStyleSettings"},
+        "DecalSettings":{"shape":"DecalSettings"},
+        "BorderSettings":{"shape":"BorderSettings"}
       }
     },
     "ComboChartSortConfiguration":{
@@ -7143,6 +7540,18 @@
         "ColumnHierarchies":{"shape":"ColumnHierarchyList"},
         "VisualContentAltText":{"shape":"LongPlainText"}
       }
+    },
+    "ComboSeriesItem":{
+      "type":"structure",
+      "members":{
+        "FieldComboSeriesItem":{"shape":"FieldComboSeriesItem"},
+        "DataFieldComboSeriesItem":{"shape":"DataFieldComboSeriesItem"}
+      }
+    },
+    "ComboSeriesItemList":{
+      "type":"list",
+      "member":{"shape":"ComboSeriesItem"},
+      "max":2000
     },
     "CommitMode":{
       "type":"string",
@@ -7423,6 +7832,49 @@
       "member":{"shape":"ColumnIdentifier"},
       "max":4,
       "min":1
+    },
+    "ControlSortConfiguration":{
+      "type":"structure",
+      "members":{
+        "SelectableValuesSort":{"shape":"SelectableValuesSort"},
+        "ControlColumnSort":{"shape":"AggregationSortConfiguration"}
+      }
+    },
+    "ControlSortConfigurationList":{
+      "type":"list",
+      "member":{"shape":"ControlSortConfiguration"},
+      "max":1
+    },
+    "ControlSortDirection":{
+      "type":"string",
+      "enum":[
+        "ASC",
+        "DESC",
+        "USER_DEFINED_ORDER"
+      ]
+    },
+    "Coordinate":{
+      "type":"structure",
+      "required":[
+        "Latitude",
+        "Longitude"
+      ],
+      "members":{
+        "Latitude":{"shape":"CoordinateLatitudeDouble"},
+        "Longitude":{"shape":"CoordinateLongitudeDouble"}
+      }
+    },
+    "CoordinateLatitudeDouble":{
+      "type":"double",
+      "box":true,
+      "max":90.0,
+      "min":-90.0
+    },
+    "CoordinateLongitudeDouble":{
+      "type":"double",
+      "box":true,
+      "max":180.0,
+      "min":-180.0
     },
     "CopySourceArn":{
       "type":"string",
@@ -8699,6 +9151,26 @@
         "DISABLED"
       ]
     },
+    "DashboardCustomizationStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
+    "DashboardCustomizationSummaryConfigurations":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{"shape":"Boolean"}
+      }
+    },
+    "DashboardCustomizationVisualOptions":{
+      "type":"structure",
+      "members":{
+        "FieldsConfiguration":{"shape":"VisualCustomizationFieldsConfiguration"}
+      }
+    },
     "DashboardError":{
       "type":"structure",
       "members":{
@@ -8845,6 +9317,7 @@
       "members":{
         "DataSetIdentifierDeclarations":{"shape":"DataSetIdentifierDeclarationList"},
         "Sheets":{"shape":"SheetDefinitionList"},
+        "TooltipSheets":{"shape":"TooltipSheetDefinitionList"},
         "CalculatedFields":{"shape":"CalculatedFields"},
         "ParameterDeclarations":{"shape":"ParameterDeclarationList"},
         "FilterGroups":{"shape":"FilterGroupList"},
@@ -8941,6 +9414,24 @@
         "Colors":{"shape":"ColorList"},
         "MinMaxGradient":{"shape":"ColorList"},
         "EmptyFillColor":{"shape":"HexColor"}
+      }
+    },
+    "DataFieldBarSeriesItem":{
+      "type":"structure",
+      "required":["FieldId"],
+      "members":{
+        "FieldId":{"shape":"FieldId"},
+        "FieldValue":{"shape":"SensitiveString"},
+        "Settings":{"shape":"BarChartSeriesSettings"}
+      }
+    },
+    "DataFieldComboSeriesItem":{
+      "type":"structure",
+      "required":["FieldId"],
+      "members":{
+        "FieldId":{"shape":"FieldId"},
+        "FieldValue":{"shape":"SensitiveString"},
+        "Settings":{"shape":"ComboChartSeriesSettings"}
       }
     },
     "DataFieldSeriesItem":{
@@ -9536,7 +10027,9 @@
         "CredentialPair":{"shape":"CredentialPair"},
         "CopySourceArn":{"shape":"CopySourceArn"},
         "SecretArn":{"shape":"SecretArn"},
-        "WebProxyCredentials":{"shape":"WebProxyCredentials"}
+        "KeyPairCredentials":{"shape":"KeyPairCredentials"},
+        "WebProxyCredentials":{"shape":"WebProxyCredentials"},
+        "OAuthClientCredentials":{"shape":"OAuthClientCredentials"}
       },
       "sensitive":true
     },
@@ -9590,6 +10083,7 @@
         "RdsParameters":{"shape":"RdsParameters"},
         "RedshiftParameters":{"shape":"RedshiftParameters"},
         "S3Parameters":{"shape":"S3Parameters"},
+        "S3TablesParameters":{"shape":"S3TablesParameters"},
         "S3KnowledgeBaseParameters":{"shape":"S3KnowledgeBaseParameters"},
         "ServiceNowParameters":{"shape":"ServiceNowParameters"},
         "SnowflakeParameters":{"shape":"SnowflakeParameters"},
@@ -9668,6 +10162,7 @@
         "PRESTO",
         "REDSHIFT",
         "S3",
+        "S3_TABLES",
         "SALESFORCE",
         "SERVICENOW",
         "SNOWFLAKE",
@@ -9978,6 +10473,61 @@
       "max":64,
       "min":1
     },
+    "DecalPatternType":{
+      "type":"string",
+      "enum":[
+        "SOLID",
+        "DIAGONAL_MEDIUM",
+        "CIRCLE_MEDIUM",
+        "DIAMOND_GRID_MEDIUM",
+        "CHECKERBOARD_MEDIUM",
+        "TRIANGLE_MEDIUM",
+        "DIAGONAL_OPPOSITE_MEDIUM",
+        "DIAMOND_MEDIUM",
+        "DIAGONAL_LARGE",
+        "CIRCLE_LARGE",
+        "DIAMOND_GRID_LARGE",
+        "CHECKERBOARD_LARGE",
+        "TRIANGLE_LARGE",
+        "DIAGONAL_OPPOSITE_LARGE",
+        "DIAMOND_LARGE",
+        "DIAGONAL_SMALL",
+        "CIRCLE_SMALL",
+        "DIAMOND_GRID_SMALL",
+        "CHECKERBOARD_SMALL",
+        "TRIANGLE_SMALL",
+        "DIAGONAL_OPPOSITE_SMALL",
+        "DIAMOND_SMALL"
+      ]
+    },
+    "DecalSettings":{
+      "type":"structure",
+      "members":{
+        "ElementValue":{"shape":"ElementValue"},
+        "DecalVisibility":{"shape":"Visibility"},
+        "DecalColor":{"shape":"HexColorWithTransparency"},
+        "DecalPatternType":{"shape":"DecalPatternType"},
+        "DecalStyleType":{"shape":"DecalStyleType"}
+      }
+    },
+    "DecalSettingsConfiguration":{
+      "type":"structure",
+      "members":{
+        "CustomDecalSettings":{"shape":"DecalSettingsList"}
+      }
+    },
+    "DecalSettingsList":{
+      "type":"list",
+      "member":{"shape":"DecalSettings"},
+      "max":50
+    },
+    "DecalStyleType":{
+      "type":"string",
+      "enum":[
+        "Manual",
+        "Auto"
+      ]
+    },
     "DecimalDatasetParameter":{
       "type":"structure",
       "required":[
@@ -10122,7 +10672,8 @@
         "DisplayOptions":{"shape":"DropDownControlDisplayOptions"},
         "Type":{"shape":"SheetControlListType"},
         "SelectableValues":{"shape":"FilterSelectableValues"},
-        "CommitMode":{"shape":"CommitMode"}
+        "CommitMode":{"shape":"CommitMode"},
+        "ControlSortConfigurations":{"shape":"ControlSortConfigurationList"}
       }
     },
     "DefaultFilterListControlOptions":{
@@ -10130,7 +10681,8 @@
       "members":{
         "DisplayOptions":{"shape":"ListControlDisplayOptions"},
         "Type":{"shape":"SheetControlListType"},
-        "SelectableValues":{"shape":"FilterSelectableValues"}
+        "SelectableValues":{"shape":"FilterSelectableValues"},
+        "ControlSortConfigurations":{"shape":"ControlSortConfigurationList"}
       }
     },
     "DefaultFormatting":{
@@ -11632,6 +12184,64 @@
         "Warnings":{"shape":"AssetBundleImportJobWarningList"}
       }
     },
+    "DescribeAutomationJobRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "AutomationGroupId",
+        "AutomationId",
+        "JobId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "AutomationGroupId":{
+          "shape":"AutomateId",
+          "location":"uri",
+          "locationName":"AutomationGroupId"
+        },
+        "AutomationId":{
+          "shape":"AutomateId",
+          "location":"uri",
+          "locationName":"AutomationId"
+        },
+        "IncludeInputPayload":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"includeInputPayload"
+        },
+        "IncludeOutputPayload":{
+          "shape":"Boolean",
+          "location":"querystring",
+          "locationName":"includeOutputPayload"
+        },
+        "JobId":{
+          "shape":"AutomateId",
+          "location":"uri",
+          "locationName":"JobId"
+        }
+      }
+    },
+    "DescribeAutomationJobResponse":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "JobStatus"
+      ],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "CreatedAt":{"shape":"Timestamp"},
+        "StartedAt":{"shape":"Timestamp"},
+        "EndedAt":{"shape":"Timestamp"},
+        "JobStatus":{"shape":"AutomationJobStatus"},
+        "InputPayload":{"shape":"SensitiveIOPayload"},
+        "OutputPayload":{"shape":"SensitiveIOPayload"},
+        "RequestId":{"shape":"String"}
+      }
+    },
     "DescribeBrandAssignmentRequest":{
       "type":"structure",
       "required":["AwsAccountId"],
@@ -12614,6 +13224,36 @@
         "Status":{"shape":"StatusCode"}
       }
     },
+    "DescribeSelfUpgradeConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Namespace"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"uri",
+          "locationName":"Namespace"
+        }
+      }
+    },
+    "DescribeSelfUpgradeConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "SelfUpgradeConfiguration":{"shape":"SelfUpgradeConfiguration"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "DescribeTemplateAliasRequest":{
       "type":"structure",
       "required":[
@@ -13243,6 +13883,10 @@
         "ENTERPRISE_AND_Q"
       ]
     },
+    "ElementValue":{
+      "type":"string",
+      "max":1024
+    },
     "Email":{
       "type":"string",
       "pattern":"[\\w.%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
@@ -13424,12 +14068,28 @@
         "SenderFault":{"shape":"Boolean"}
       }
     },
+    "FieldBarSeriesItem":{
+      "type":"structure",
+      "required":["FieldId"],
+      "members":{
+        "FieldId":{"shape":"FieldId"},
+        "Settings":{"shape":"BarChartSeriesSettings"}
+      }
+    },
     "FieldBasedTooltip":{
       "type":"structure",
       "members":{
         "AggregationVisibility":{"shape":"Visibility"},
         "TooltipTitleType":{"shape":"TooltipTitleType"},
         "TooltipFields":{"shape":"TooltipItemList"}
+      }
+    },
+    "FieldComboSeriesItem":{
+      "type":"structure",
+      "required":["FieldId"],
+      "members":{
+        "FieldId":{"shape":"FieldId"},
+        "Settings":{"shape":"ComboChartSeriesSettings"}
       }
     },
     "FieldFolder":{
@@ -13620,7 +14280,8 @@
         "ConditionalFormatting":{"shape":"FilledMapConditionalFormatting"},
         "ColumnHierarchies":{"shape":"ColumnHierarchyList"},
         "Actions":{"shape":"VisualCustomActionList"},
-        "VisualContentAltText":{"shape":"LongPlainText"}
+        "VisualContentAltText":{"shape":"LongPlainText"},
+        "GeocodingPreferences":{"shape":"GeocodePreferenceList"}
       }
     },
     "Filter":{
@@ -13718,7 +14379,8 @@
         "Type":{"shape":"SheetControlListType"},
         "SelectableValues":{"shape":"FilterSelectableValues"},
         "CascadingControlConfiguration":{"shape":"CascadingControlConfiguration"},
-        "CommitMode":{"shape":"CommitMode"}
+        "CommitMode":{"shape":"CommitMode"},
+        "ControlSortConfigurations":{"shape":"ControlSortConfigurationList"}
       }
     },
     "FilterGroup":{
@@ -13771,7 +14433,8 @@
         "DisplayOptions":{"shape":"ListControlDisplayOptions"},
         "Type":{"shape":"SheetControlListType"},
         "SelectableValues":{"shape":"FilterSelectableValues"},
-        "CascadingControlConfiguration":{"shape":"CascadingControlConfiguration"}
+        "CascadingControlConfiguration":{"shape":"CascadingControlConfiguration"},
+        "ControlSortConfigurations":{"shape":"ControlSortConfigurationList"}
       }
     },
     "FilterNullOption":{
@@ -13906,7 +14569,7 @@
     "FilteredVisualsList":{
       "type":"list",
       "member":{"shape":"ShortRestrictiveResourceId"},
-      "max":50
+      "max":75
     },
     "FiltersOperation":{
       "type":"structure",
@@ -14198,7 +14861,8 @@
       "required":["Elements"],
       "members":{
         "Elements":{"shape":"FreeFromLayoutElementList"},
-        "CanvasSizeOptions":{"shape":"FreeFormLayoutCanvasSizeOptions"}
+        "CanvasSizeOptions":{"shape":"FreeFormLayoutCanvasSizeOptions"},
+        "Groups":{"shape":"SheetLayoutGroupList"}
       }
     },
     "FreeFormLayoutElement":{
@@ -14223,7 +14887,9 @@
         "BorderStyle":{"shape":"FreeFormLayoutElementBorderStyle"},
         "SelectedBorderStyle":{"shape":"FreeFormLayoutElementBorderStyle"},
         "BackgroundStyle":{"shape":"FreeFormLayoutElementBackgroundStyle"},
-        "LoadingAnimation":{"shape":"LoadingAnimation"}
+        "LoadingAnimation":{"shape":"LoadingAnimation"},
+        "BorderRadius":{"shape":"BorderRadius"},
+        "Padding":{"shape":"Padding"}
       }
     },
     "FreeFormLayoutElementBackgroundStyle":{
@@ -14237,7 +14903,8 @@
       "type":"structure",
       "members":{
         "Visibility":{"shape":"Visibility"},
-        "Color":{"shape":"HexColorWithTransparency"}
+        "Color":{"shape":"HexColorWithTransparency"},
+        "Width":{"shape":"Width"}
       }
     },
     "FreeFormLayoutScreenCanvasSizeOptions":{
@@ -14584,6 +15251,66 @@
         "LATITUDE"
       ]
     },
+    "GeocodePreference":{
+      "type":"structure",
+      "required":[
+        "RequestKey",
+        "Preference"
+      ],
+      "members":{
+        "RequestKey":{"shape":"GeocoderHierarchy"},
+        "Preference":{"shape":"GeocodePreferenceValue"}
+      }
+    },
+    "GeocodePreferenceList":{
+      "type":"list",
+      "member":{"shape":"GeocodePreference"},
+      "max":200,
+      "min":0
+    },
+    "GeocodePreferenceValue":{
+      "type":"structure",
+      "members":{
+        "GeocoderHierarchy":{"shape":"GeocoderHierarchy"},
+        "Coordinate":{"shape":"Coordinate"}
+      },
+      "union":true
+    },
+    "GeocoderHierarchy":{
+      "type":"structure",
+      "members":{
+        "Country":{"shape":"GeocoderHierarchyCountryString"},
+        "State":{"shape":"GeocoderHierarchyStateString"},
+        "County":{"shape":"GeocoderHierarchyCountyString"},
+        "City":{"shape":"GeocoderHierarchyCityString"},
+        "PostCode":{"shape":"GeocoderHierarchyPostCodeString"}
+      }
+    },
+    "GeocoderHierarchyCityString":{
+      "type":"string",
+      "max":3000,
+      "min":0
+    },
+    "GeocoderHierarchyCountryString":{
+      "type":"string",
+      "max":3000,
+      "min":0
+    },
+    "GeocoderHierarchyCountyString":{
+      "type":"string",
+      "max":3000,
+      "min":0
+    },
+    "GeocoderHierarchyPostCodeString":{
+      "type":"string",
+      "max":3000,
+      "min":0
+    },
+    "GeocoderHierarchyStateString":{
+      "type":"string",
+      "max":3000,
+      "min":0
+    },
     "GeospatialCategoricalColor":{
       "type":"structure",
       "required":["CategoryDataColors"],
@@ -14873,7 +15600,8 @@
         "ChartConfiguration":{"shape":"GeospatialMapConfiguration"},
         "ColumnHierarchies":{"shape":"ColumnHierarchyList"},
         "Actions":{"shape":"VisualCustomActionList"},
-        "VisualContentAltText":{"shape":"LongPlainText"}
+        "VisualContentAltText":{"shape":"LongPlainText"},
+        "GeocodingPreferences":{"shape":"GeocodePreferenceList"}
       }
     },
     "GeospatialNullDataSettings":{
@@ -15123,6 +15851,38 @@
         }
       }
     },
+    "GetIdentityContextRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "UserIdentifier"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "UserIdentifier":{"shape":"UserIdentifier"},
+        "Namespace":{"shape":"Namespace"},
+        "SessionExpiresAt":{"shape":"Timestamp"}
+      }
+    },
+    "GetIdentityContextResponse":{
+      "type":"structure",
+      "required":[
+        "Status",
+        "RequestId"
+      ],
+      "members":{
+        "Status":{
+          "shape":"statusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"},
+        "Context":{"shape":"String"}
+      }
+    },
     "GetSessionEmbedUrlRequest":{
       "type":"structure",
       "required":["AwsAccountId"],
@@ -15218,7 +15978,28 @@
         "ColumnIndex":{"shape":"GridLayoutElementColumnIndex"},
         "ColumnSpan":{"shape":"GridLayoutElementColumnSpan"},
         "RowIndex":{"shape":"GridLayoutElementRowIndex"},
-        "RowSpan":{"shape":"GridLayoutElementRowSpan"}
+        "RowSpan":{"shape":"GridLayoutElementRowSpan"},
+        "BorderStyle":{"shape":"GridLayoutElementBorderStyle"},
+        "SelectedBorderStyle":{"shape":"GridLayoutElementBorderStyle"},
+        "BackgroundStyle":{"shape":"GridLayoutElementBackgroundStyle"},
+        "LoadingAnimation":{"shape":"LoadingAnimation"},
+        "BorderRadius":{"shape":"BorderRadius"},
+        "Padding":{"shape":"Padding"}
+      }
+    },
+    "GridLayoutElementBackgroundStyle":{
+      "type":"structure",
+      "members":{
+        "Visibility":{"shape":"Visibility"},
+        "Color":{"shape":"HexColorWithTransparency"}
+      }
+    },
+    "GridLayoutElementBorderStyle":{
+      "type":"structure",
+      "members":{
+        "Visibility":{"shape":"Visibility"},
+        "Color":{"shape":"HexColorWithTransparency"},
+        "Width":{"shape":"Width"}
       }
     },
     "GridLayoutElementColumnIndex":{
@@ -15974,7 +16755,8 @@
         "DATETIME",
         "BIT",
         "BOOLEAN",
-        "JSON"
+        "JSON",
+        "SEMISTRUCT"
       ]
     },
     "InputColumnList":{
@@ -16122,6 +16904,15 @@
       "exception":true
     },
     "InvalidNextTokenException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"String"},
+        "RequestId":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
+    },
+    "InvalidParameterException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"String"},
@@ -16397,6 +17188,18 @@
         "VERTICAL"
       ]
     },
+    "KeyPairCredentials":{
+      "type":"structure",
+      "required":[
+        "KeyPairUsername",
+        "PrivateKey"
+      ],
+      "members":{
+        "KeyPairUsername":{"shape":"DbUsername"},
+        "PrivateKey":{"shape":"PrivateKey"},
+        "PrivateKeyPassphrase":{"shape":"PrivateKeyPassphrase"}
+      }
+    },
     "KeyRegistration":{
       "type":"list",
       "member":{"shape":"RegisteredCustomerManagedKey"}
@@ -16583,7 +17386,8 @@
       "members":{
         "AxisBinding":{"shape":"AxisBinding"},
         "LineStyleSettings":{"shape":"LineChartLineStyleSettings"},
-        "MarkerStyleSettings":{"shape":"LineChartMarkerStyleSettings"}
+        "MarkerStyleSettings":{"shape":"LineChartMarkerStyleSettings"},
+        "DecalSettings":{"shape":"DecalSettings"}
       }
     },
     "LineChartFieldWells":{
@@ -16632,7 +17436,8 @@
       "type":"structure",
       "members":{
         "LineStyleSettings":{"shape":"LineChartLineStyleSettings"},
-        "MarkerStyleSettings":{"shape":"LineChartMarkerStyleSettings"}
+        "MarkerStyleSettings":{"shape":"LineChartMarkerStyleSettings"},
+        "DecalSettings":{"shape":"DecalSettings"}
       }
     },
     "LineChartSortConfiguration":{
@@ -17583,6 +18388,48 @@
       "type":"structure",
       "members":{
         "MembersList":{"shape":"GroupsList"},
+        "NextToken":{"shape":"String"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "ListSelfUpgradesRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Namespace"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"uri",
+          "locationName":"Namespace"
+        },
+        "NextToken":{
+          "shape":"String",
+          "location":"querystring",
+          "locationName":"next-token"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "box":true,
+          "location":"querystring",
+          "locationName":"max-results"
+        }
+      }
+    },
+    "ListSelfUpgradesResponse":{
+      "type":"structure",
+      "members":{
+        "SelfUpgradeRequestDetails":{"shape":"SelfUpgradeRequestDetailList"},
         "NextToken":{"shape":"String"},
         "RequestId":{"shape":"String"},
         "Status":{
@@ -18830,6 +19677,26 @@
         "FormatConfiguration":{"shape":"NumberFormatConfiguration"}
       }
     },
+    "OAuthClientCredentials":{
+      "type":"structure",
+      "members":{
+        "ClientId":{"shape":"OAuthClientId"},
+        "ClientSecret":{"shape":"OAuthClientSecret"},
+        "Username":{"shape":"OAuthUsername"}
+      }
+    },
+    "OAuthClientId":{
+      "type":"string",
+      "max":256,
+      "min":1,
+      "sensitive":true
+    },
+    "OAuthClientSecret":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "sensitive":true
+    },
     "OAuthParameters":{
       "type":"structure",
       "required":["TokenProviderUrl"],
@@ -18844,6 +19711,12 @@
       "type":"string",
       "max":128,
       "min":1
+    },
+    "OAuthUsername":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "sensitive":true
     },
     "OnClause":{
       "type":"string",
@@ -18922,6 +19795,10 @@
         "NewParameterName":{"shape":"DatasetParameterName"},
         "NewDefaultValues":{"shape":"NewDefaultValues"}
       }
+    },
+    "Padding":{
+      "type":"string",
+      "max":200
     },
     "PageNumber":{
       "type":"long",
@@ -19043,7 +19920,7 @@
     "ParameterDeclarationList":{
       "type":"list",
       "member":{"shape":"ParameterDeclaration"},
-      "max":200
+      "max":400
     },
     "ParameterDropDownControl":{
       "type":"structure",
@@ -19060,7 +19937,8 @@
         "Type":{"shape":"SheetControlListType"},
         "SelectableValues":{"shape":"ParameterSelectableValues"},
         "CascadingControlConfiguration":{"shape":"CascadingControlConfiguration"},
-        "CommitMode":{"shape":"CommitMode"}
+        "CommitMode":{"shape":"CommitMode"},
+        "ControlSortConfigurations":{"shape":"ControlSortConfigurationList"}
       }
     },
     "ParameterListControl":{
@@ -19077,7 +19955,8 @@
         "DisplayOptions":{"shape":"ListControlDisplayOptions"},
         "Type":{"shape":"SheetControlListType"},
         "SelectableValues":{"shape":"ParameterSelectableValues"},
-        "CascadingControlConfiguration":{"shape":"CascadingControlConfiguration"}
+        "CascadingControlConfiguration":{"shape":"CascadingControlConfiguration"},
+        "ControlSortConfigurations":{"shape":"ControlSortConfigurationList"}
       }
     },
     "ParameterName":{
@@ -19478,6 +20357,8 @@
         "TotalOptions":{"shape":"PivotTableTotalOptions"},
         "FieldOptions":{"shape":"PivotTableFieldOptions"},
         "PaginatedReportOptions":{"shape":"PivotTablePaginatedReportOptions"},
+        "Tooltip":{"shape":"TooltipOptions"},
+        "DashboardCustomizationVisualOptions":{"shape":"DashboardCustomizationVisualOptions"},
         "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
@@ -19910,6 +20791,18 @@
       "member":{"shape":"String"},
       "max":100,
       "min":1
+    },
+    "PrivateKey":{
+      "type":"string",
+      "max":8000,
+      "min":1600,
+      "pattern":"^-{5}BEGIN (ENCRYPTED )?PRIVATE KEY-{5}\\u000D?\\u000A([A-Za-z0-9/+]{64}\\u000D?\\u000A)*[A-Za-z0-9/+]{1,64}={0,2}\\u000D?\\u000A-{5}END (ENCRYPTED )?PRIVATE KEY-{5}(\\u000D?\\u000A)?$",
+      "sensitive":true
+    },
+    "PrivateKeyPassphrase":{
+      "type":"string",
+      "max":256,
+      "sensitive":true
     },
     "ProgressBarOptions":{
       "type":"structure",
@@ -20621,7 +21514,8 @@
         "AmazonQInQuickSight":{"shape":"AmazonQInQuickSightConsoleConfigurations"},
         "Schedules":{"shape":"SchedulesConfigurations"},
         "RecentSnapshots":{"shape":"RecentSnapshotsConfigurations"},
-        "ThresholdAlerts":{"shape":"ThresholdAlertsConfigurations"}
+        "ThresholdAlerts":{"shape":"ThresholdAlertsConfigurations"},
+        "DashboardCustomizationSummary":{"shape":"DashboardCustomizationSummaryConfigurations"}
       }
     },
     "RegisteredUserDashboardEmbeddingConfiguration":{
@@ -20636,12 +21530,13 @@
       "type":"structure",
       "members":{
         "StatePersistence":{"shape":"StatePersistenceConfigurations"},
-        "SharedView":{"shape":"SharedViewConfigurations"},
         "Bookmarks":{"shape":"BookmarksConfigurations"},
+        "SharedView":{"shape":"SharedViewConfigurations"},
         "AmazonQInQuickSight":{"shape":"AmazonQInQuickSightDashboardConfigurations"},
         "Schedules":{"shape":"SchedulesConfigurations"},
         "RecentSnapshots":{"shape":"RecentSnapshotsConfigurations"},
-        "ThresholdAlerts":{"shape":"ThresholdAlertsConfigurations"}
+        "ThresholdAlerts":{"shape":"ThresholdAlertsConfigurations"},
+        "DashboardCustomizationSummary":{"shape":"DashboardCustomizationSummaryConfigurations"}
       }
     },
     "RegisteredUserDashboardVisualEmbeddingConfiguration":{
@@ -20658,7 +21553,8 @@
         "QuickSightConsole":{"shape":"RegisteredUserQuickSightConsoleEmbeddingConfiguration"},
         "QSearchBar":{"shape":"RegisteredUserQSearchBarEmbeddingConfiguration"},
         "DashboardVisual":{"shape":"RegisteredUserDashboardVisualEmbeddingConfiguration"},
-        "GenerativeQnA":{"shape":"RegisteredUserGenerativeQnAEmbeddingConfiguration"}
+        "GenerativeQnA":{"shape":"RegisteredUserGenerativeQnAEmbeddingConfiguration"},
+        "QuickChat":{"shape":"RegisteredUserQuickChatEmbeddingConfiguration"}
       }
     },
     "RegisteredUserGenerativeQnAEmbeddingConfiguration":{
@@ -20673,12 +21569,26 @@
         "InitialTopicId":{"shape":"RestrictiveResourceId"}
       }
     },
+    "RegisteredUserQuickChatEmbeddingConfiguration":{
+      "type":"structure",
+      "members":{}
+    },
     "RegisteredUserQuickSightConsoleEmbeddingConfiguration":{
       "type":"structure",
       "members":{
         "InitialPath":{"shape":"EntryPath"},
         "FeatureConfigurations":{"shape":"RegisteredUserConsoleFeatureConfigurations"}
       }
+    },
+    "RegisteredUserSnapshotJobResult":{
+      "type":"structure",
+      "members":{
+        "FileGroups":{"shape":"SnapshotJobResultFileGroupList"}
+      }
+    },
+    "RegisteredUserSnapshotJobResultList":{
+      "type":"list",
+      "member":{"shape":"RegisteredUserSnapshotJobResult"}
     },
     "RelationalTable":{
       "type":"structure",
@@ -21126,6 +22036,16 @@
         "DataSourceArn":{"shape":"Arn"},
         "UploadSettings":{"shape":"UploadSettings"},
         "InputColumns":{"shape":"InputColumnList"}
+      }
+    },
+    "S3TableBucketArn":{
+      "type":"string",
+      "pattern":"^(arn:aws[-a-z0-9]*:[a-z0-9]+:[-a-z0-9]*:[0-9]{12}:bucket/[a-zA-Z0-9-_]{3,63})$"
+    },
+    "S3TablesParameters":{
+      "type":"structure",
+      "members":{
+        "TableBucketArn":{"shape":"S3TableBucketArn"}
       }
     },
     "S3Uri":{
@@ -21705,6 +22625,13 @@
       "type":"string",
       "enum":["ALL_VALUES"]
     },
+    "SelectableValuesSort":{
+      "type":"structure",
+      "required":["Direction"],
+      "members":{
+        "Direction":{"shape":"ControlSortDirection"}
+      }
+    },
     "SelectedFieldList":{
       "type":"list",
       "member":{"shape":"FieldId"},
@@ -21725,7 +22652,57 @@
       "type":"string",
       "enum":[
         "BASIC",
-        "DETAILED"
+        "DETAILED",
+        "SHEET"
+      ]
+    },
+    "SelfUpgradeAdminAction":{
+      "type":"string",
+      "enum":[
+        "APPROVE",
+        "DENY",
+        "VERIFY"
+      ]
+    },
+    "SelfUpgradeConfiguration":{
+      "type":"structure",
+      "members":{
+        "SelfUpgradeStatus":{"shape":"SelfUpgradeStatus"}
+      }
+    },
+    "SelfUpgradeRequestDetail":{
+      "type":"structure",
+      "members":{
+        "UpgradeRequestId":{"shape":"String"},
+        "UserName":{"shape":"UserName"},
+        "OriginalRole":{"shape":"UserRole"},
+        "RequestedRole":{"shape":"UserRole"},
+        "RequestNote":{"shape":"String"},
+        "CreationTime":{"shape":"Long"},
+        "RequestStatus":{"shape":"SelfUpgradeRequestStatus"},
+        "lastUpdateAttemptTime":{"shape":"Long"},
+        "lastUpdateFailureReason":{"shape":"String"}
+      }
+    },
+    "SelfUpgradeRequestDetailList":{
+      "type":"list",
+      "member":{"shape":"SelfUpgradeRequestDetail"}
+    },
+    "SelfUpgradeRequestStatus":{
+      "type":"string",
+      "enum":[
+        "PENDING",
+        "APPROVED",
+        "DENIED",
+        "UPDATE_FAILED",
+        "VERIFY_FAILED"
+      ]
+    },
+    "SelfUpgradeStatus":{
+      "type":"string",
+      "enum":[
+        "AUTO_APPROVAL",
+        "ADMIN_APPROVAL"
       ]
     },
     "SemanticEntityType":{
@@ -21788,6 +22765,13 @@
     },
     "SensitiveDoubleObject":{
       "type":"double",
+      "sensitive":true
+    },
+    "SensitiveIOPayload":{
+      "type":"string",
+      "max":7000000,
+      "min":1,
+      "pattern":"[\\s\\S]*[{\\[].*[}\\]]\\s*",
       "sensitive":true
     },
     "SensitiveLong":{
@@ -21947,6 +22931,13 @@
         "SheetId":{"shape":"ShortRestrictiveResourceId"},
         "Name":{"shape":"SheetName"},
         "Images":{"shape":"SheetImageList"}
+      }
+    },
+    "SheetBackgroundStyle":{
+      "type":"structure",
+      "members":{
+        "Color":{"shape":"Color"},
+        "Gradient":{"shape":"String"}
       }
     },
     "SheetContentType":{
@@ -22139,6 +23130,46 @@
         "AvailabilityStatus":{"shape":"DashboardBehavior"}
       }
     },
+    "SheetLayoutGroup":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Members"
+      ],
+      "members":{
+        "Id":{"shape":"ShortRestrictiveResourceId"},
+        "Members":{"shape":"SheetLayoutGroupMemberList"}
+      }
+    },
+    "SheetLayoutGroupList":{
+      "type":"list",
+      "member":{"shape":"SheetLayoutGroup"},
+      "max":215
+    },
+    "SheetLayoutGroupMember":{
+      "type":"structure",
+      "required":[
+        "Id",
+        "Type"
+      ],
+      "members":{
+        "Id":{"shape":"ShortRestrictiveResourceId"},
+        "Type":{"shape":"SheetLayoutGroupMemberType"}
+      }
+    },
+    "SheetLayoutGroupMemberList":{
+      "type":"list",
+      "member":{"shape":"SheetLayoutGroupMember"},
+      "max":430,
+      "min":2
+    },
+    "SheetLayoutGroupMemberType":{
+      "type":"string",
+      "enum":[
+        "ELEMENT",
+        "GROUP"
+      ]
+    },
     "SheetList":{
       "type":"list",
       "member":{"shape":"Sheet"},
@@ -22153,7 +23184,8 @@
       "type":"structure",
       "members":{
         "Tile":{"shape":"TileStyle"},
-        "TileLayout":{"shape":"TileLayoutStyle"}
+        "TileLayout":{"shape":"TileLayoutStyle"},
+        "Background":{"shape":"SheetBackgroundStyle"}
       }
     },
     "SheetTextBox":{
@@ -22179,6 +23211,12 @@
       "max":1024,
       "min":1
     },
+    "SheetTooltip":{
+      "type":"structure",
+      "members":{
+        "SheetId":{"shape":"ShortRestrictiveResourceId"}
+      }
+    },
     "SheetVisualScopingConfiguration":{
       "type":"structure",
       "required":[
@@ -22194,7 +23232,7 @@
     "SheetVisualScopingConfigurations":{
       "type":"list",
       "member":{"shape":"SheetVisualScopingConfiguration"},
-      "max":50,
+      "max":75,
       "min":1
     },
     "ShortFormatText":{
@@ -22452,7 +23490,8 @@
     "SnapshotJobResult":{
       "type":"structure",
       "members":{
-        "AnonymousUsers":{"shape":"AnonymousUserSnapshotJobResultList"}
+        "AnonymousUsers":{"shape":"AnonymousUserSnapshotJobResultList"},
+        "RegisteredUsers":{"shape":"RegisteredUserSnapshotJobResultList"}
       }
     },
     "SnapshotJobResultErrorInfo":{
@@ -22578,6 +23617,38 @@
       "members":{
         "Host":{"shape":"Host"},
         "Port":{"shape":"Port"}
+      }
+    },
+    "SparklineAxisBehavior":{
+      "type":"string",
+      "enum":[
+        "SHARED",
+        "INDEPENDENT"
+      ]
+    },
+    "SparklineVisualType":{
+      "type":"string",
+      "enum":[
+        "LINE",
+        "AREA_LINE"
+      ]
+    },
+    "SparklinesOptions":{
+      "type":"structure",
+      "required":[
+        "FieldId",
+        "XAxisField"
+      ],
+      "members":{
+        "FieldId":{"shape":"FieldId"},
+        "XAxisField":{"shape":"DimensionField"},
+        "YAxisBehavior":{"shape":"SparklineAxisBehavior"},
+        "VisualType":{"shape":"SparklineVisualType"},
+        "LineColor":{"shape":"HexColor"},
+        "LineInterpolation":{"shape":"LineInterpolation"},
+        "AllPointsMarker":{"shape":"LineChartMarkerStyleSettings"},
+        "MaxValueMarker":{"shape":"LineChartMarkerStyleSettings"},
+        "MinValueMarker":{"shape":"LineChartMarkerStyleSettings"}
       }
     },
     "SpatialStaticFile":{
@@ -22722,13 +23793,54 @@
         }
       }
     },
+    "StartAutomationJobRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "AutomationGroupId",
+        "AutomationId"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "AutomationGroupId":{
+          "shape":"AutomateId",
+          "location":"uri",
+          "locationName":"AutomationGroupId"
+        },
+        "AutomationId":{
+          "shape":"AutomateId",
+          "location":"uri",
+          "locationName":"AutomationId"
+        },
+        "InputPayload":{"shape":"SensitiveIOPayload"}
+      }
+    },
+    "StartAutomationJobResponse":{
+      "type":"structure",
+      "required":[
+        "Arn",
+        "JobId"
+      ],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "JobId":{"shape":"AutomateId"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        },
+        "RequestId":{"shape":"String"}
+      }
+    },
     "StartDashboardSnapshotJobRequest":{
       "type":"structure",
       "required":[
         "AwsAccountId",
         "DashboardId",
         "SnapshotJobId",
-        "UserConfiguration",
         "SnapshotConfiguration"
       ],
       "members":{
@@ -23099,6 +24211,8 @@
         "FieldOptions":{"shape":"TableFieldOptions"},
         "PaginatedReportOptions":{"shape":"TablePaginatedReportOptions"},
         "TableInlineVisualizations":{"shape":"TableInlineVisualizationList"},
+        "Tooltip":{"shape":"TooltipOptions"},
+        "DashboardCustomizationVisualOptions":{"shape":"DashboardCustomizationVisualOptions"},
         "Interactions":{"shape":"VisualInteractionOptions"}
       }
     },
@@ -23196,7 +24310,8 @@
     "TableInlineVisualization":{
       "type":"structure",
       "members":{
-        "DataBars":{"shape":"DataBarsOptions"}
+        "DataBars":{"shape":"DataBarsOptions"},
+        "Sparklines":{"shape":"SparklinesOptions"}
       }
     },
     "TableInlineVisualizationList":{
@@ -23404,8 +24519,8 @@
     "TargetVisualList":{
       "type":"list",
       "member":{"shape":"ShortRestrictiveResourceId"},
-      "max":50,
-      "min":1
+      "max":75,
+      "min":0
     },
     "TargetVisualOptions":{
       "type":"string",
@@ -23523,6 +24638,7 @@
       "members":{
         "DataSetConfigurations":{"shape":"DataSetConfigurationList"},
         "Sheets":{"shape":"SheetDefinitionList"},
+        "TooltipSheets":{"shape":"TooltipSheetDefinitionList"},
         "CalculatedFields":{"shape":"CalculatedFields"},
         "ParameterDeclarations":{"shape":"ParameterDeclarationList"},
         "FilterGroups":{"shape":"FilterGroupList"},
@@ -23614,6 +24730,10 @@
         "DOUBLE_QUOTE",
         "SINGLE_QUOTE"
       ]
+    },
+    "TextTransform":{
+      "type":"string",
+      "enum":["CAPITALIZE"]
     },
     "TextWrap":{
       "type":"string",
@@ -23763,7 +24883,10 @@
     "TileStyle":{
       "type":"structure",
       "members":{
-        "Border":{"shape":"BorderStyle"}
+        "BackgroundColor":{"shape":"Color"},
+        "Border":{"shape":"BorderStyle"},
+        "BorderRadius":{"shape":"BorderRadius"},
+        "Padding":{"shape":"Padding"}
       }
     },
     "TimeBasedForecastProperties":{
@@ -23902,8 +25025,41 @@
       "members":{
         "TooltipVisibility":{"shape":"Visibility"},
         "SelectedTooltipType":{"shape":"SelectedTooltipType"},
-        "FieldBasedTooltip":{"shape":"FieldBasedTooltip"}
+        "FieldBasedTooltip":{"shape":"FieldBasedTooltip"},
+        "SheetTooltip":{"shape":"SheetTooltip"}
       }
+    },
+    "TooltipSheetDefinition":{
+      "type":"structure",
+      "required":["SheetId"],
+      "members":{
+        "SheetId":{"shape":"ShortRestrictiveResourceId"},
+        "Name":{"shape":"SheetName"},
+        "Visuals":{"shape":"TooltipSheetVisualList"},
+        "TextBoxes":{"shape":"TooltipSheetTextBoxList"},
+        "Images":{"shape":"TooltipSheetImageList"},
+        "Layouts":{"shape":"LayoutList"}
+      }
+    },
+    "TooltipSheetDefinitionList":{
+      "type":"list",
+      "member":{"shape":"TooltipSheetDefinition"},
+      "max":50
+    },
+    "TooltipSheetImageList":{
+      "type":"list",
+      "member":{"shape":"SheetImage"},
+      "max":5
+    },
+    "TooltipSheetTextBoxList":{
+      "type":"list",
+      "member":{"shape":"SheetTextBox"},
+      "max":5
+    },
+    "TooltipSheetVisualList":{
+      "type":"list",
+      "member":{"shape":"Visual"},
+      "max":5
     },
     "TooltipTarget":{
       "type":"string",
@@ -24743,7 +25899,14 @@
     "Typography":{
       "type":"structure",
       "members":{
-        "FontFamilies":{"shape":"FontList"}
+        "FontFamilies":{"shape":"FontList"},
+        "AxisTitleFontConfiguration":{"shape":"FontConfiguration"},
+        "AxisLabelFontConfiguration":{"shape":"FontConfiguration"},
+        "LegendTitleFontConfiguration":{"shape":"FontConfiguration"},
+        "LegendValueFontConfiguration":{"shape":"FontConfiguration"},
+        "DataLabelFontConfiguration":{"shape":"FontConfiguration"},
+        "VisualTitleFontConfiguration":{"shape":"VisualTitleFontConfiguration"},
+        "VisualSubtitleFontConfiguration":{"shape":"VisualSubtitleFontConfiguration"}
       }
     },
     "UIColorPalette":{
@@ -26101,6 +27264,71 @@
         }
       }
     },
+    "UpdateSelfUpgradeConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Namespace",
+        "SelfUpgradeStatus"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"uri",
+          "locationName":"Namespace"
+        },
+        "SelfUpgradeStatus":{"shape":"SelfUpgradeStatus"}
+      }
+    },
+    "UpdateSelfUpgradeConfigurationResponse":{
+      "type":"structure",
+      "members":{
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
+    "UpdateSelfUpgradeRequest":{
+      "type":"structure",
+      "required":[
+        "AwsAccountId",
+        "Namespace",
+        "UpgradeRequestId",
+        "Action"
+      ],
+      "members":{
+        "AwsAccountId":{
+          "shape":"AwsAccountId",
+          "location":"uri",
+          "locationName":"AwsAccountId"
+        },
+        "Namespace":{
+          "shape":"Namespace",
+          "location":"uri",
+          "locationName":"Namespace"
+        },
+        "UpgradeRequestId":{"shape":"String"},
+        "Action":{"shape":"SelfUpgradeAdminAction"}
+      }
+    },
+    "UpdateSelfUpgradeResponse":{
+      "type":"structure",
+      "members":{
+        "SelfUpgradeRequestDetail":{"shape":"SelfUpgradeRequestDetail"},
+        "RequestId":{"shape":"String"},
+        "Status":{
+          "shape":"StatusCode",
+          "location":"statusCode"
+        }
+      }
+    },
     "UpdateTemplateAliasRequest":{
       "type":"structure",
       "required":[
@@ -26587,6 +27815,15 @@
         "ExternalLoginId":{"shape":"String"}
       }
     },
+    "UserIdentifier":{
+      "type":"structure",
+      "members":{
+        "UserName":{"shape":"SensitiveString"},
+        "Email":{"shape":"SensitiveString"},
+        "UserArn":{"shape":"Arn"}
+      },
+      "union":true
+    },
     "UserList":{
       "type":"list",
       "member":{"shape":"User"}
@@ -26838,6 +28075,18 @@
         "DATA_POINT_MENU"
       ]
     },
+    "VisualCustomizationAdditionalFieldsList":{
+      "type":"list",
+      "member":{"shape":"ColumnIdentifier"},
+      "max":2500
+    },
+    "VisualCustomizationFieldsConfiguration":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"DashboardCustomizationStatus"},
+        "AdditionalFields":{"shape":"VisualCustomizationAdditionalFieldsList"}
+      }
+    },
     "VisualHighlightOperation":{
       "type":"structure",
       "required":["Trigger"],
@@ -26863,7 +28112,7 @@
     "VisualList":{
       "type":"list",
       "member":{"shape":"Visual"},
-      "max":50
+      "max":75
     },
     "VisualMenuOption":{
       "type":"structure",
@@ -26899,6 +28148,14 @@
       "max":1024,
       "min":1
     },
+    "VisualSubtitleFontConfiguration":{
+      "type":"structure",
+      "members":{
+        "FontConfiguration":{"shape":"FontConfiguration"},
+        "TextAlignment":{"shape":"HorizontalTextAlignment"},
+        "TextTransform":{"shape":"TextTransform"}
+      }
+    },
     "VisualSubtitleLabelOptions":{
       "type":"structure",
       "members":{
@@ -26910,6 +28167,14 @@
       "type":"string",
       "max":1024,
       "min":1
+    },
+    "VisualTitleFontConfiguration":{
+      "type":"structure",
+      "members":{
+        "FontConfiguration":{"shape":"FontConfiguration"},
+        "TextAlignment":{"shape":"HorizontalTextAlignment"},
+        "TextTransform":{"shape":"TextTransform"}
+      }
     },
     "VisualTitleLabelOptions":{
       "type":"structure",
@@ -27097,6 +28362,10 @@
         "DISABLED"
       ]
     },
+    "Width":{
+      "type":"string",
+      "max":50
+    },
     "WordCloudAggregatedFieldWells":{
       "type":"structure",
       "members":{
@@ -27220,6 +28489,10 @@
         "YAxis":{"shape":"SingleYAxisOption"}
       }
     },
-    "boolean":{"type":"boolean"}
+    "boolean":{"type":"boolean"},
+    "statusCode":{
+      "type":"integer",
+      "box":true
+    }
   }
 }
