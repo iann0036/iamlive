@@ -20,10 +20,22 @@ jobs:
       - name: Set up Gon
         run: brew install Bearer/tap/gon
       - name: Import Keychain Certs
-        uses: apple-actions/import-codesign-certs@v3
-        with: 
-          p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
-          p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+        env: 
+          P12_BASE64: ${{ secrets.CERTIFICATES_P12 }}
+          P12_PASSWORD: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+        run: |
+          # Create a temporary keychain
+          keychain_path=$RUNNER_TEMP/app-signing.keychain-db
+          keychain_password=$(openssl rand -base64 32)
+
+          security create-keychain -p "$keychain_password" $keychain_path
+          security set-keychain-settings -lut 21600 $keychain_path
+          security unlock-keychain -p "$keychain_password" $keychain_path
+
+          # Import certificate
+          echo "$P12_BASE64" | base64 --decode > $RUNNER_TEMP/certificate.p12
+          security import $RUNNER_TEMP/certificate.p12 -P "$P12_PASSWORD" -A -t cert -f pkcs12 -k $keychain_path
+          security list-keychains -d user -s $keychain_path
       - name: Verify Identities
         run: security find-identity -v
       - name: Run GoReleaser
