@@ -26,12 +26,6 @@ builds:
   - darwin
   goarch:
   - amd64
-  hooks:
-    post:
-    - gon .gon-amd64.json
-    - mv dist/iamlive-darwin-amd64.dmg dist/iamlive-v{{ .Version }}-darwin-amd64.dmg
-    - mv dist/iamlive-darwin-amd64.zip dist/iamlive-v{{ .Version }}-darwin-amd64.zip
-    - ls dist/
 - binary: iamlive
   env:
   - CGO_ENABLED=0
@@ -40,12 +34,6 @@ builds:
   - darwin
   goarch:
   - arm64
-  hooks:
-    post:
-    - gon .gon-arm64.json
-    - mv dist/iamlive-darwin-arm64.dmg dist/iamlive-v{{ .Version }}-darwin-arm64.dmg
-    - mv dist/iamlive-darwin-arm64.zip dist/iamlive-v{{ .Version }}-darwin-arm64.zip
-    - ls dist/
 archives:
 - id: linux-archive
   builds:
