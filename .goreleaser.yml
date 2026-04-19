@@ -1,68 +1,12 @@
+version: 2
+
+project_name: iamlive
 builds:
-- binary: iamlive
-  env:
-  - CGO_ENABLED=0
-  id: windows
-  goos:
-  - windows
-  goarch:
-  - "386"
-  - amd64
-- binary: iamlive
-  env:
-  - CGO_ENABLED=0
-  id: linux
-  goos:
-  - linux
-  goarch:
-  - "386"
-  - amd64
-  - arm64
-- binary: iamlive
-  env:
-  - CGO_ENABLED=0
-  id: macos-amd64
-  goos:
-  - darwin
-  goarch:
-  - amd64
-- binary: iamlive
-  env:
-  - CGO_ENABLED=0
-  id: macos-arm64
-  goos:
-  - darwin
-  goarch:
-  - arm64
-archives:
-- id: linux-archive
-  builds:
-  - linux
-  format: tar.gz
-  name_template: "{{ .ProjectName }}-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
-  files:
-  - none*
-- id: windows-archive
-  builds:
-  - windows
-  format: zip
-  name_template: "{{ .ProjectName }}-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
-  files:
-  - none*
-- id: darwin-archive
-  builds:
-  - macos-amd64
-  - macos-arm64
-  format: tar.gz
-  name_template: "{{ .ProjectName }}-v{{ .Version }}-{{ .Os }}-{{ .Arch }}"
-  files:
-  - none*
-release:
-  ids:
-  - linux-archive
-  - windows-archive
-  extra_files:
-  - glob: ./dist/*.dmg
-  - glob: ./dist/*-darwin-amd64.zip
-  - glob: ./dist/*-darwin-arm64.zip
-checksum:
+  - env: [CGO_ENABLED=0]
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
