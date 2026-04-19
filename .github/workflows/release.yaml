@@ -33,3 +33,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_GITHUB_TOKEN }}
           AC_PASSWORD: ${{ secrets.AC_PASSWORD }}
+          MACOS_SIGN_P12: ${{ secrets.CERTIFICATES_P12 }}
+          MACOS_SIGN_PASSWORD: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
